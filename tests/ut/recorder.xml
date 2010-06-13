@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="recorder">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF recorder unit test.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+       
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+
+		<lockcomponent id="DTFA1" timeout="60s"/>
+        
+	    <event name="dtf.perf.event" id="perf.event.small">
+	        <attribute name="iteration" value="${iter}"/>
+	    </event>
+    </local>
+
+    <log>TXT Recorder Unit Tests</log>
+       
+    <record type="txt" uri="storage://OUTPUT/recorder.txt" append="false">
+        <for property="index" range="[1..${iterations.tiny}]">
+            <event name="dtf.echo"/>
+        </for>
+    </record>
+    
+    <record type="txt" uri="storage://OUTPUT/recorder2.txt" append="false">
+        <for property="index" range="[1..${iterations.tiny}]">
+		    <event name="dtf.perf.event">
+		        <attribute name="iteration" value="${index}"/>
+		    </event>
+        </for>
+        <record type="txt" uri="storage://OUTPUT/recorder3.txt" append="false">
+            <for property="index" range="[1..${iterations.tiny}]">
+                <event name="dtf.echo.inner"/>
+            </for>
+        </record>
+    </record>
+    
+    <log>Object Recorder Unit Tests</log>
+    
+    <event name="object1">
+        <attribute name="property1" value="1" type="string" length="64"/>
+    </event>
+    
+    <local>
+        <echo>Previous event started at: ${object1.start}</echo>
+        <echo>Previous event ended at: ${object1.stop}</echo>
+        <echo>Previous event had property1 set to: ${object1.property1}</echo>
+    </local> 
+    
+    <!-- Object recorder with the property name containing some necessary characters -->
+    <event name="my_object1">
+        <attribute name="property1" value="1" type="string" length="64"/>
+    </event>
+    
+    <local>
+        <echo>Previous event started at: ${my_object1.start}</echo>
+        <echo>Previous event ended at: ${my_object1.stop}</echo>
+        <echo>Previous event had property1 set to: ${my_object1.property1}</echo>
+    </local>
+    
+    <!-- test out global attributes and if they work well even when multiple
+         threads are using them. -->
+    <record uri="storage://OUTPUT/recorder_output.txt">
+        <distribute id="mydist" 
+                    range="1..5"
+                    func="const(3)"
+                    iterations="${iterations.tiny}"
+                    property="iter">
+            <attribute name="global" value="${mydist.worker}"/>
+            <event name="recorder.event">
+                <attribute name="prop" value="${iter}"/>
+                <attribute name="static_string" value="BLAH"/> 
+                <sleep time="1s"/>
+            </event>
+        </distribute>
+    </record>
+    
+    <!-- negative -->
+    <try> 
+	    <record uri="storage://SOMEWHERE/blah.txt">   
+	    </record>
+        <catch exception="${dtf.StorageException}" property="message">
+            <log>Caught exception correctly [${message}]</log>
+        </catch>
+    </try>
+
+    <try> 
+	    <record uri="storage://OUTPUT/this_should_not_be_here.txt" type="caca">   
+	    </record>
+        <catch exception="${dtf.RecorderException}" property="message">
+            <log>Caught exception correctly [${message}]</log>
+        </catch>
+    </try>
+      
+</script>

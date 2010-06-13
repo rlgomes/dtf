@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="cat">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF unit test for cat tag.</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+
+        <cat uri="storage://OUTPUT/testoutput" append="true">
+This output will be visible at storage://OUTPUT/testoutput
+
+Os: ${os.name}
+Arch: ${os.arch}        
+
+dtf.test.property1 = ${dtf.test.property1}
+dtf.test.property2 = ${dtf.test.property2}</cat>
+    </local>
+    
+    <!-- negative -->
+    <try> 
+        <cat uri="storage://CACA/this_should_not_work.txt">BLAH</cat>
+        <catch exception="${dtf.StorageException}" property="message">
+            <log>Caught exception correctly [${message}]</log>
+        </catch>
+    </try>
+
+</script>

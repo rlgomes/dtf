@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="timer">
+	<info>
+		<author>
+			<name>Rodney Gomes</name>
+			<email>rlgomes@yahoo-inc.com</email>
+		</author>
+		<description>Unit test for the timer tag.</description>
+	</info>
+
+	<local>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+      
+        <property name="duration" value="100ms"/> 
+        
+		<echo message="Looping and creating events for ${duration}."/>
+	</local>
+	
+	<record type="txt" event="myevents.*" uri="storage://OUTPUT/timer.txt" append="false">
+    	<timer interval="${duration}">
+    		<local>
+    			<event name="myevents.event1"/>
+    		</local>
+    	</timer>
+   	</record>
+
+</script>

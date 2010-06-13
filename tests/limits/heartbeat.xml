@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="limits">
+	<info>
+		<author>
+			<name>Rodney Gomes</name>
+			<email>rlgomes@yahoo-inc.com</email>
+		</author>
+		<description>
+		</description>
+	</info>
+
+	<local>
+		<createstorage id="INPUT" path="${dtf.xml.path}" />
+		<createstorage id="OUTPUT" path="${dtf.xml.path}/output" />
+	</local>
+
+	<for property="i" range="1..3">
+		<local>
+			<lockcomponent id="DTFA${i}" timeout="60s" />
+		</local>
+	</for>
+
+	<parallelloop property="i" range="1..${ut.clients}">
+		<component id="DTFA${i}">
+			<parallelloop property="t" range="1..100">
+				<for property="j" range="1..1000000">
+					<property name="data" value="${i}" />
+				</for>
+			</parallelloop>
+		</component>
+	</parallelloop>
+</script>
+    

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="choices">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>Unit test for the choices tag.</description>
+    </info>
+   
+    <local>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+    
+        <property name="tolerance" value="5%"/>     
+        <property name="sizes" value="100,300"/> 
+    </local>
+    
+    <!-- bad choices usage -->
+    <try>   
+        <sequence>
+            <choices>
+                <choose howoften="50%">
+                    <event name="test.event2"/>
+                </choose>
+                <choose howoften="50%">
+                    <event name="test.event1"/>
+                </choose>
+                <choose howoften="50%">
+                    <event name="test.event3"/>
+                </choose>
+            </choices>
+            <fail message="Previous choices should have failed to execute"/>
+        </sequence>
+        <catch exception="${dtf.ParseException}">
+            <log>Caught choices exception correctly.</log>
+        </catch>
+    </try>
+    
+    <!-- choices with less than 100% of time doing something -->
+    <record uri="storage://OUTPUT/single-thread-choices.txt">
+        <for range="1..100" property="i">
+            <choices>
+                <choose howoften="25%">
+                    <event name="test.event2"/>
+                </choose>
+                <choose howoften="25%">
+                    <event name="test.event1"/>
+                </choose>
+            </choices>
+        </for> 
+    </record>     
+
+    <for property="event" range="1..2">
+        <query uri="storage://OUTPUT/single-thread-choices.txt" 
+               cursor="c1"
+               event="test.event${event}"/>
+               
+        <record type="object" uri="property://stats${event}">
+            <stats cursor="c1" event="test"/>
+        </record>
+    
+        <if>
+            <within op1="${stats${event}.tot_occ}" op2="25" tolerance="5%"/>
+            <else>
+                <fail message="${stats${event}.tot_occ} not with 5% of 25 !"/>
+            </else>
+        </if>
+    </for>
+    
+    <choices>
+        <choose howoften="20%">
+            <event name="test.event2"/>
+        </choose>
+        <choose howoften="30%">
+            <event name="test.event1"/>
+        </choose>
+        <choose howoften="50%">
+            <event name="test.event1"/>
+        </choose>
+    </choices>
+    
+    <!-- 
+         Iterate through different sizes of iterations and validate that
+         even if we're using single threaded or multi threaded access to the 
+         ranges we'll still get a distribution which is within 1% of a 
+         difference. If the difference is more than 1% then I'll throw an 
+         exception because something is very wrong with the way the choices
+         tag is working.
+    -->
+    
+    <for property="choices" range="${sizes}"> 
+        <record uri="storage://OUTPUT/single-thread-choices.txt">
+            <for range="1..${choices}" property="i">
+                <choices>
+                    <choose howoften="25%">
+                        <event name="test.event2"/>
+                    </choose>
+                    <choose howoften="25%">
+                        <event name="test.event1"/>
+                    </choose>
+                    <choose howoften="50%">
+                        <event name="test.event3"/>
+                    </choose>
+                </choices>
+            </for> 
+        </record>     
+       
+        <record uri="storage://OUTPUT/mult-thread-choices.txt">
+            <distribute range="1..5" iterations="${choices}">
+                <choices>
+                    <choose howoften="25%">
+                        <event name="test.event2"/>
+                    </choose>
+                    <choose howoften="25%">
+                        <event name="test.event1"/>
+                    </choose>
+                    <choose howoften="50%">
+                        <event name="test.event3"/>
+                    </choose>
+                </choices>
+            </distribute>
+        </record>     
+        
+        <for property="event" range="1..3"> 
+            <query uri="storage://OUTPUT/single-thread-choices.txt" 
+                   event="test.event${event}"
+                   cursor="event_cursor"/>
+                   
+            <stats cursor="event_cursor" event="singleperf${choices}.${event}"/>
+        </for>
+    
+        <query uri="storage://OUTPUT/single-thread-choices.txt" 
+               cursor="event_cursor"/>
+                   
+        <stats cursor="event_cursor" event="singleperf${choices}"/>
+        
+        <for property="event" range="1..3"> 
+            <query uri="storage://OUTPUT/mult-thread-choices.txt" 
+                   event="test.event${event}"
+                   cursor="event_cursor"/>
+                   
+            <stats cursor="event_cursor" event="multiperf${choices}.${event}"/>
+        </for>
+    
+        <query uri="storage://OUTPUT/mult-thread-choices.txt" 
+               cursor="event_cursor"/>
+                   
+        <stats cursor="event_cursor" event="multiperf${choices}"/>
+        
+        
+        <for property="event" range="1..3"> 
+            <if>
+                <within op1="${multiperf${choices}.${event}.tot_occ}"
+                        op2="${singleperf${choices}.${event}.tot_occ}" 
+                        tolerance="${tolerance}"/>
+                <else>
+                    <fail>
+                    Choices picked events by a difference greater than ${tolerance}
+                    Single thread: ${multiperf${choices}.${event}.tot_occ} 
+                    Multi thread:  ${singleperf${choices}.${event}.tot_occ}
+                    </fail>
+                </else>
+            </if>
+        </for>
+    </for> 
+
+    <record uri="storage://OUTPUT/choices.txt">
+	    <distribute range="1..10" func="const(10)" iterations="10">
+	        <choices>
+	            <choose howoften="20%">
+	                <event name="test.event1">
+	                   <sleep time="1s"/>
+                    </event>
+	            </choose>
+	            <choose howoften="20%">
+	                <event name="test.event2">
+	                   <sleep time="1s"/>
+                    </event>
+	            </choose>
+	            <choose howoften="20%">
+	                <event name="test.event3">
+	                   <sleep time="1s"/>
+                    </event>
+	            </choose>
+	            <choose howoften="40%">
+	                <event name="test.event4">
+	                   <sleep time="1s"/>
+                    </event>
+	            </choose>
+	        </choices> 
+	    </distribute>
+    </record>
+   
+    <createrange name="expected.count" value="2,2,2,4"/> 
+    
+    <for property="event" range="1..4"> 
+        <query uri="storage://OUTPUT/choices.txt" 
+               event="test.event${event}"
+               cursor="event_cursor"/>
+                   
+        <stats cursor="event_cursor" event="choices.event${event}"/>
+        <property name="expected" value="${expected.count}" overwrite="true"/>
+	    <if>
+	        <neq op1="${choices.event${event}.tot_occ}" op2="${expected}"/> 
+	        <then>
+                <fail>Expected ${expected} but got ${choices.event${event}.tot_occ}</fail>
+	        </then>
+	    </if>
+    </for>
+    
+</script> 

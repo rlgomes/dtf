@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="property">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF unit test for the property tag.</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+    </local>
+    
+    <property name="abc" value="a"/>
+    <property name="ABC" value="a"/>
+    <property name="A_C" value="a"/>
+    <property name="A.C" value="a"/>
+    <property name="A-C" value="a"/>
+    
+    <local>
+        <property name="test1" value="value1"/>
+        <echo>${test1}</echo>
+    </local>
+
+    <local>
+        <property name="test2" uri="storage://INPUT/json1.json"/>
+        <echo>${test2}</echo>
+    </local>
+
+    <local>
+        <property name="test3">
+        Contents of the property come from the child text node like this one,
+        which will continue to look just like this in the property itself.
+        
+        test1: ${test1}
+        </property>
+        <echo>${test3}</echo>
+    </local>
+    
+    <for property="i" range="1..10">
+        <local>
+            <property name="test-value-${i}" value="value-${i}"/>
+            <property name="test-body-${i}">value-${i}</property>
+        </local> 
+    </for>
+
+    <!-- Value of all of the previously created properties should be the 
+         same, independently if it were generated from the value attribute or 
+         body of the text in the XML tag -->
+    <for property="i" range="1..10">
+        <if>
+            <neq op1="${test-value-${i}}" op2="${test-body-${i}}"/>
+            <then>
+                <fail message="Properties are different ${test-value-${i}} != ${test-body-${i}}"/>
+            </then>
+        </if>
+    </for>
+    
+    <!-- reading external files with special encoding -->
+    <property name="data.fromxml">Chinese         一種語言永遠不夠 [一种语言永远不够]
+Japanese        一つの言語は決して十分ではない
+Persian         یک زبان را هرگز کافی است
+Thai            ภาษาเดียวไม่เคยพอ</property>
+
+    <property name="data.fromfile" uri="storage://INPUT/testfile.utf8" encoding="UTF-8"/>
+    
+    <if>
+        <not>
+            <eq op1="${data.fromxml}" op2="${data.fromfile}"/> 
+        </not>
+        <then>
+            <fail message="Data did not matchup! Encoding Issues!"/>
+        </then>
+        <else>
+            <log>Data matches!</log>
+        </else>
+    </if>
+   
+    <try> 
+        <sequence>
+	        <log>${dtf.recursive.property}</log>
+	        <fail>Didn't catch recursive property issue above.</fail>
+        </sequence>
+        <catch exception="${dtf.ParseException}">
+            <log>Caught property recursion correctly.</log>
+        </catch>
+    </try>
+
+    <try> 
+        <sequence>
+	        <log>${dtf.nested.recursive.property}</log>
+	        <fail>Didn't catch nested recursive property issue above.</fail>
+        </sequence>
+        <catch exception="${dtf.ParseException}">
+            <log>Caught nested property recursion correctly.</log>
+        </catch>
+    </try>
+    
+    <!-- dtf.property[1..3] are defined in the ut.properties in a special way to 
+         test out that the recursive property detection doesn't fall into a
+         well known corner case where the same property is resolved twice in 
+         the same string but not nested. --> 
+    <log>${dtf.property1}${dtf.property2}${dtf.property3}</log>
+</script>

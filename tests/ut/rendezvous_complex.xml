@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="rendezvous_complex">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        A few more complicated rendezvous usages that test how well rendezvous 
+        points can be used across components.
+        </description>
+    </info>
+   
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+
+        <!-- should be larger than 25 for the negative test to work -->
+        <property name="parties" value="50"/> 
+    </local>
+   
+    <for property="i" range="1..3"> 
+	    <local> 
+	        <lockcomponent id="C${i}"/>
+	    </local>
+    </for>
+    
+    <!-- local access to a rendezvous point before using any components to 
+         validate we can handle local rendezvous points correctly with locked
+         components that are not in use-->
+
+    <rendezvous_create parties="3" id="lrv1"/>
+    <parallelloop range="1..3" property="thread">
+        <for property="iteration" range="1..10">
+            <rendezvous_visit id="lrv1" timeout="2s"/>
+        </for>
+    </parallelloop>   
+    <rendezvous_destroy id="lrv1"/>
+
+    <rendezvous_create id="REMOTERENDEZVOUS" parties="2"/> 
+    <share_create id="INFO" type="cumulative"/> 
+    
+    <property name="acc" value="0"/>
+    <for property="i" range="1..5"> 
+	    <parallel> 
+		    <component id="C1">
+	            <share_set id="INFO">
+	                <property name="start"
+                              value="${dtf.timestamp}"
+                              overwrite="true"/>
+	            </share_set>
+		        <rendezvous_visit id="REMOTERENDEZVOUS" timeout="5s"/> 
+		    </component>
+            
+		    <component id="C1">
+		        <rendezvous_visit id="REMOTERENDEZVOUS" timeout="5s"/> 
+	            <share_set id="INFO">
+	                <property name="stop"
+                              value="${dtf.timestamp}"
+                              overwrite="true"/>
+	            </share_set>
+		    </component>
+	    </parallel>
+        
+	    <share_get id="INFO"/> 
+	    <subtract op1="${stop}" op2="${start}" result="duration"/> 
+        <add op1="${acc}" op2="${duration}" result="acc"/>
+        <log>resetting ${i}</log>
+        <rendezvous_reset id="REMOTERENDEZVOUS"/>
+    </for> 
+    
+    <divide op1="${acc}" op2="10" result="duration"/>
+	<log>Remote rendezvous sync off by ${duration}ms on average</log>
+
+    <rendezvous_create id="R1" parties="20"/> 
+    <parallel>
+	    <component id="C1">
+            <for property="i" range="1..5">
+	            <parallelloop property="i" range="1..10">
+	                <rendezvous_visit id="R1" timeout="2s"/> 
+	            </parallelloop>
+            </for>
+	    </component>
+	    <component id="C2">
+            <for property="i" range="1..5">
+	            <parallelloop property="i" range="1..10">
+		           <rendezvous_visit id="R1" timeout="2s"/> 
+	            </parallelloop>
+            </for>
+	    </component>
+    </parallel>
+   
+    <component id="C1">
+        <rendezvous_create id="rv1" parties="5"/> 
+  
+	    <parallelloop range="1..5" property="thread">
+	        <sequence>
+	            <rendezvous_visit id="rv1" timeout="2s"/>
+	        </sequence>
+	    </parallelloop> 
+        
+        <rendezvous_reset id="rv1"/>
+        <rendezvous_destroy id="rv1"/>
+    </component>
+
+    <for property="i" range="1..100">
+	    <parallel>
+		    <component id="C1">
+		        <rendezvous_create id="RV2" parties="3"/> 
+	            <rendezvous_visit id="RV2" timeout="5s"/>
+		    </component>
+		    <component id="C2">
+	            <while><not><rendezvous_exists id="RV2"/></not>
+	                <sleep time="10ms"/>
+	            </while>
+		        <rendezvous_visit id="RV2" timeout="5s"/>
+		    </component>
+		    <component id="C3">
+	            <while><not><rendezvous_exists id="RV2"/></not>
+	                <sleep time="10ms"/>
+	            </while>
+		        <rendezvous_visit id="RV2" timeout="5s"/>
+		    </component>
+	    </parallel>
+        <rendezvous_destroy id="RV2"/>
+    </for>
+
+    <rendezvous_create id="RV3" parties="10"/> 
+    <for property="i" range="1..10">
+	    <parallelloop property="t" range="1..10">
+		    <component id="C1">
+	            <rendezvous_visit id="RV3" timeout="5s"/>
+		    </component>
+	    </parallelloop>
+	    <rendezvous_reset id="RV3"/>
+        <log>Sync ${i} done.</log>
+    </for>
+    <rendezvous_destroy id="RV3"/>
+
+    <for property="i" range="1..10">
+        <rendezvous_create id="RV3" parties="10"/> 
+        <parallelloop property="threads" range="1..10">
+            <component id="C1">
+                <rendezvous_visit id="RV3" timeout="5s"/>
+            </component>
+        </parallelloop>
+        <rendezvous_destroy id="RV3"/>
+        <log>Sync ${i} done.</log>
+    </for>
+
+</script> 

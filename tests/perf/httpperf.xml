@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="httpperf">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>http_xxx tag performance tests</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+       
+        <loadproperties uri="storage://INPUT/perf.properties"/>
+        <import uri="storage://INPUT/perf_util.xml"/>
+        
+        <property name="perfrun" value="true"/>
+        <property name="http.server.port" value="33333"/>
+        <property name="dtf.http.uri" value="http://localhost:${http.server.port}/"/>
+        <property name="iterations" value="4000" overwrite="true"/>
+    </local> 
+   
+    <for property="client" range="1..${clients}"> 
+        <local>
+            <lockcomponent id="CLIENT${client}" timeout="60s"/>
+        </local>
+    </for>
+    
+    <parallel>
+	    <http_server port="${http.server.port}">
+	        <http_listener path="*" method="*" perfrun="${perfrun}"/>
+	    </http_server>
+    
+        <try>
+            <sequence> 
+                <sleep time="3s"/>
+                
+                <local>
+                    <echo>
+                          HTTP POST on ${dtf.http.uri} 
+                          for ${iterations} iteration(s) 
+                          from ${threads} thread(s)
+                          and ${clients} client(s)
+                    </echo>
+                </local>
+               
+                <record uri="storage://OUTPUT/http_events.txt" type="txt" append="false"> 
+                    <parallelloop property="client" range="1..${clients}">
+                        <component id="CLIENT${client}">
+                            <parallelloop property="thread" range="1..${threads}">
+                                <for property="iteration" range="1..${iterations}"> 
+                                    <http_post uri="${dtf.http.uri}"
+                                               perfrun="${perfrun}"
+                                               onFailure="continue">
+                                        <entity value="Hello World"/>
+                                    </http_post>
+                                </for>
+                            </parallelloop>
+                        </component>
+                    </parallelloop>
+                </record>
+                
+                <local>
+                    <echo>
+                          HTTP PUT on ${dtf.http.uri} 
+                          for ${iterations} iteration(s) 
+                          from ${threads} thread(s)
+                          and ${clients} client(s)
+                    </echo>
+                </local>
+               
+                <record uri="storage://OUTPUT/http_events.txt" type="txt" append="true"> 
+                    <parallelloop property="client" range="1..${clients}">
+                        <component id="CLIENT${client}">
+                            <parallelloop property="thread" range="1..${threads}">
+                                <for property="iteration" range="1..${iterations}"> 
+                                    <http_put uri="${dtf.http.uri}"
+                                              perfrun="${perfrun}"
+                                              onFailure="continue">
+                                        <entity value="${dtf.stream(repeat,128,DEADBEEF)}"/>
+                                    </http_put>
+                                </for>
+                            </parallelloop>
+                        </component>
+                    </parallelloop>
+                </record>
+                
+                <local>
+                    <echo>
+                          HTTP GET on ${dtf.http.uri} 
+                          for ${iterations} iteration(s) 
+                          from ${threads} thread(s).
+                    </echo>
+                </local>
+                <record uri="storage://OUTPUT/http_events.txt" append="true" type="txt"> 
+                    <parallelloop property="client" range="1..${clients}">
+                        <component id="CLIENT${client}">
+                            <parallelloop property="thread" range="1..${threads}">
+                                <for property="iteration" range="1..${iterations}"> 
+                                    <http_get uri="${dtf.http.uri}"
+                                              perfrun="${perfrun}"
+                                              onFailure="continue">
+                                    </http_get>
+                                </for>
+                            </parallelloop>
+                        </component>
+                    </parallelloop>
+                </record>
+                
+               <local>
+                    <echo>
+                          HTTP HEAD on ${dtf.http.uri} 
+                          for ${iterations} iteration(s) 
+                          from ${threads} thread(s).
+                    </echo>
+                </local>
+                <record uri="storage://OUTPUT/http_events.txt" append="true" type="txt"> 
+                    <parallelloop property="client" range="1..${clients}">
+                        <component id="CLIENT${client}">
+                            <parallelloop property="thread" range="1..${threads}">
+                                <for property="iteration" range="1..${iterations}"> 
+                                    <http_head uri="${dtf.http.uri}"
+                                               perfrun="${perfrun}"
+                                               onFailure="continue">
+                                    </http_head>
+                                </for>
+                            </parallelloop>
+                        </component>
+                    </parallelloop>
+                </record>
+                
+                <local>
+                    <echo>
+                          HTTP DELETE on ${dtf.http.uri} 
+                          for ${iterations} iteration(s) 
+                          from ${threads} thread(s).
+                    </echo>
+                </local>
+                <record uri="storage://OUTPUT/http_events.txt" append="true" type="txt"> 
+                    <parallelloop property="client" range="1..${clients}">
+                        <component id="CLIENT${client}">
+                            <parallelloop property="thread" range="1..${threads}">
+                                <for property="iteration" range="1..${iterations}"> 
+                                    <http_delete uri="${dtf.http.uri}"
+                                                 perfrun="${perfrun}"
+                                                 onFailure="continue">
+                                    </http_delete>
+                                </for>
+                            </parallelloop>
+                        </component>
+                    </parallelloop>
+                </record>
+                
+            </sequence>
+            <finally>
+                <http_server port="${http.server.port}" command="stop"/>
+            </finally>
+        </try>
+    </parallel>
+    
+    <function name="calcPerformance"> 
+        <param name="op.name" type="required"/>
+        <param name="op.event" type="required"/>
+    
+        <query uri="storage://OUTPUT/http_events.txt"
+               cursor="events_cursor"
+               event="${op.event}"/>
+               
+        <record type="object" uri="property://eventstats" append="false">
+            <stats cursor="events_cursor" event="${op.event}"/>
+        </record>
+        
+        <call function="writeperf">
+	        <property name="uri" value="storage://OUTPUT/${op.event}.perf"/>
+	        <property name="value" value="${eventstats.avg_occ}"/>
+        </call>
+        
+        <local>
+            <echo>
+                HTTP ${op.name}
+                Operations/second:  ${eventstats.avg_occ}
+                Total operations:   ${eventstats.tot_occ}
+                Time (MAX/MIN/AVG): ${eventstats.max_dur}/${eventstats.min_dur}/${eventstats.avg_dur}
+                Duration:           ${eventstats.tot_dur}
+            </echo>
+        </local>
+    </function>
+    
+    <call function="calcPerformance">
+        <property name="op.name" value="POST"/>
+        <property name="op.event" value="http.post"/>
+    </call>
+
+    <call function="calcPerformance">
+        <property name="op.name" value="PUT"/>
+        <property name="op.event" value="http.put"/>
+    </call>
+
+    <call function="calcPerformance">
+        <property name="op.name" value="GET"/>
+        <property name="op.event" value="http.get"/>
+    </call>
+
+    <call function="calcPerformance">
+        <property name="op.name" value="HEAD"/>
+        <property name="op.event" value="http.head"/>
+    </call>
+
+    <call function="calcPerformance">
+        <property name="op.name" value="DELETE"/>
+        <property name="op.event" value="http.delete"/>
+    </call>
+    
+</script>

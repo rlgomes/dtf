@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="cli_test">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF unit test for example cli_test tag.</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+    </local>
+
+    <for property="i" range="1..200000">
+        <cli_test arg1="hello" arg2="world"/>
+    </for>
+
+    <get_cli_stats uri="storage://OUTPUT/cli.out"/>
+  
+    <query uri="storage://OUTPUT/cli.out"
+           cursor="c1"
+           event="cli_test"/> 
+  
+    <stats cursor="c1" event="cli_test"/> 
+    
+    <log>
+        Test events/second: ${cli_test.avg_occ}
+    </log>
+    
+</script>

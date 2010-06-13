@@ -1,0 +1,30 @@
+
+PRODUCT_NAME = $(PLUGIN_PREFIX)dtf
+
+VERSION = $(DTF_VERSION)$(PLUGIN_SUFFIX)
+
+SHORT_DESC = Distributed Testing Framework
+
+LONG_DESC = `cat README`
+
+CUSTODIAN = dtf-devel@yahoo-inc.com \
+            http://twiki.corp.yahoo.com/view/CCDI/DistributedTestingFramework
+
+OWNER = yahoo
+GROUP = users
+PERM = 0544
+
+DIST_DIR = $(PLUGIN_PREFIX)dtf
+
+JAVA_PKG = `if [ "$(PKG_PLATFORM)" = "freebsd-4.x" ]; then echo "vespa_jdk 1.5.0p12.5g *"; else echo "yjava_jdk 1.5.0_16.2 *"; fi`
+
+file 0755 $(OWNER) $(GROUP) bin/$(PLUGIN_PREFIX)dtf      dtf 
+dir  0755 $(OWNER) $(GROUP) libexec/$(DIST_DIR)
+find 0544 $(OWNER) $(GROUP) libexec/$(DIST_DIR)/apache-ant-1.6.0/ apache-ant-1.6.0 -type f
+find 0544 $(OWNER) $(GROUP) libexec/$(DIST_DIR)/lib/ lib -type f
+find 0544 $(OWNER) $(GROUP) libexec/$(DIST_DIR)/xsl/ xsl -type f
+find 0444 $(OWNER) $(GROUP) libexec/$(DIST_DIR)/ dtf.properties build.xml dtf.xsd policy.txt README
+find 0555 $(OWNER) $(GROUP) libexec/$(DIST_DIR)/ ant.sh pkill.sh setup_yahoo_user.sh ssh_tunnel.sh
+
+YINST requires pkg $(JAVA_PKG)
+YINST post-install echo $YINST_INSTALLER successfully installed dtf

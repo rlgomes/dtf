@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="xml_dynamic">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        DTF example test to demonstrate how to generate dynamic XML.
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+    </local>
+    
+    <for property="i" range="1..10000">
+		<property name="xml"><![CDATA[
+            <req>
+                <index>${i}</index>
+                <time>${dtf.timestamp}</time>
+            </req>]]>
+		</property>
+    </for>
+  
+</script> 

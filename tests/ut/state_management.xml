@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="state_management">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        DTF unit test for testing certain limits of the state management in DTF.
+        </description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/remote-output"/>
+        <createstorage id="OUTPUT2" path="${dtf.xml.path}/remote-output/D1" />
+        
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <lockcomponent id="DTFA1"/>
+        <lockcomponent id="DTFA2"/>
+        <lockcomponent id="DTFA3"/>
+    </local>     
+    
+    <log> 
+    With a 5MB property created at runtime we try to do a few parallel and 
+    distributed accesses to 3 components that would result in 
+    OutOfMemoryException if the state management code wasn't freeing up the 
+    resources of the many threads created during these runs.
+    
+    This test is also one of the first tests to run in order to also produce 
+    agents that could possibly have a lot of non freed up resources that would 
+    almost certainly make the other tests fail.
+    </log>
+    
+    <property name="bigproperty" value="${dtf.stream(random,5242880,1234)}"/>
+
+    <log>Parallel Test</log>
+    <for property="i" range="1..${iterations.tiny}">
+	    <parallel>
+		    <component id="DTFA1">
+                <property name="a" value="${i}" overwrite="true"/>
+		    </component> 
+		    
+		    <component id="DTFA2">
+                <property name="a" value="${i}" overwrite="true"/>
+		    </component> 
+	    </parallel>
+    </for>
+
+    <log>Distribute Test</log>
+    <distribute id="dist" 
+                range="1..2"
+                iterations="${iterations.tiny}"
+                property="i">
+	    <component id="DTFA${dist.worker}">
+            <property name="a" value="${i}" overwrite="true"/>
+	    </component> 
+    </distribute>
+  
+</script>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="occupy_component">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Utilities for calculating performance numbers.
+        </description>
+    </info>
+
+    <function name="calcEventPerf">
+        <param name="iterations" type="required" />
+        <param name="event" type="required" />
+
+        <subtract op1="${${event}.stop}"
+                  op2="${${event}.start}"
+                  result="duration_ms" />
+
+        <if>
+            <neq op1="${duration_ms}" op2="0" />
+            <then>
+                <divide op1="${duration_ms}" op2="1000" result="duration" />
+                <if>
+                    <neq op1="${duration}" op2="0" />
+                    <then>
+                        <divide op1="${iterations}" op2="${duration}"
+                            result="ops_per_sec" />
+                    </then>
+                    <else>
+                        <property name="ops_per_sec" value="${iterations}" />
+                    </else>
+                </if>
+            </then>
+            <else>
+                <property name="ops_per_sec" value="${iterations}" />
+            </else>
+        </if>
+
+        <return>${ops_per_sec}</return>
+    </function>
+    
+</script>

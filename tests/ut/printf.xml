@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="printf">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>Unit test for the printf tag.</description>
+    </info>
+
+	<local>
+    	<createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+	    <loadproperties uri="storage://INPUT/ut.properties"/>
+	</local> 
+  
+    <property name="float" value="1.23456789"/> 
+    <property name="list" value="1,2,3,4"/> 
+
+    <printf format="INTEGER[%d] STRING[%s] FLOAT [%.2f] LIST [${list}]" 
+            args="23,Hello There!,${float}"
+            property="result"/>
+    <log>${result}</log> 
+    
+    <printf format="%.5s" args="Hello World!" property="result"/>
+    <assert><eq op1="${result}" op2="Hello"/></assert>
+
+    <printf format="%.2f" args="1.23456" property="result"/>
+    <log>1.23456 -- reduce precision to .2 -> ${result}</log>
+    <assert><eq op1="${result}" op2="1.23"/></assert>
+
+    <printf format="%03d" args="1" property="result"/>
+    <log>1 -- pad the number to 3 digits -> ${result}</log>
+    <assert><eq op1="${result}" op2="001"/></assert>
+
+    <printf format="%04x" args="10" property="result"/>
+    <log>10 -- convert to hex and pad to 4 digits -> ${result}</log>
+    <assert><eq op1="${result}" op2="000a"/></assert>
+   
+</script>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="load">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>Sample load test.</description>
+    </info>
+
+	<local>
+    	<createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+	    <loadproperties uri="storage://INPUT/ut.properties"/>
+    </local> 
+       
+    <local> 
+        <lockcomponent id="CLIENT" >
+            <attrib name="ydht.agent.type" value="client"/>
+        </lockcomponent>
+	</local> 
+    
+    
+    
+
+
+</script>	

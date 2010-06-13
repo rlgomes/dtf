@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="scenario1">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>regression scenario 1 from the users's guide documentation</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/websearch.properties"/>
+    </local>
+   
+    <property name="uri" value="${websearch.uri}?appid=dtftest&amp;query=yahoo&amp;results=1"/>
+    <log>HTTP Get on [${uri}]</log>
+    <http_get uri="${uri}"/>
+
+    <!-- check the status code was successful -->   
+    <if>
+        <neq op1="${http.get.status}" op2="200"/>
+        <then>
+            <fail message="Failed http request got [${http.get.status}] status"/>
+        </then> 
+    </if>
+    
+    <!--  check that the first result in the ResultSet is www.yahoo.com -->
+    <property name="firstresult.url" 
+              value="${http.get.body:xpath:/ResultSet/Result[1]/Url/text()}"/>
+    <if>
+        <neq op1="${firstresult.url}" op2="http://www.yahoo.com/"/>
+        <then>
+            <fail message="Result was not http://www.yahoo.com] got [${firstresult.url}]."/>
+        </then> 
+    </if>
+    
+</script>

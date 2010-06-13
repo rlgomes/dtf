@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="http">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Simple http tags test to validate the basic functionality of each of the
+        tags. 
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+       
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <property name="perfrun" value="false"/>
+        
+        <property name="dtf.http.server.port" value="44444"/>
+        <property name="dtf.http.uri" value="http://localhost:${dtf.http.server.port}/"/>
+    </local> 
+
+    <parallel>
+	    <http_server port="${dtf.http.server.port}">
+	        <http_listener path="*" method="*"/>
+	    </http_server>
+    
+        <try>
+            <sequence> 
+                <sleep time="1s"/>
+            	<http_config id="DEFAULT_HTTP_CONFIG"/>
+                <headergroup id="DEFAULT_HEADERGROUP">
+                    <header name="header1" value="value1"/>
+                </headergroup>
+                <cookiegroup id="DEFAULT_COOKIEGROUP">
+                    <cookie name="testcookie" value="value" domain="blah.com" path="abc/def"/>    
+                </cookiegroup>
+              
+                <local>
+                    <echo>
+                          HTTP POST on ${dtf.http.uri} 
+                          for ${iterations.tiny} iteration(s) 
+                          from ${threads} thread(s)
+                          and ${clients} client(s)
+                    </echo>
+                </local>
+               
+                <record uri="storage://OUTPUT/http_events.txt" type="txt" append="false"> 
+                    <parallelloop property="client" range="1..${clients}">
+                        <parallelloop property="thread" range="1..${threads}">
+                            <for property="iteration" range="1..${iterations.tiny}"> 
+                                <http_post uri="${dtf.http.uri}"
+                                           perfrun="${perfrun}"
+                                           onFailure="continue">
+                                    <http_config refid="DEFAULT_HTTP_CONFIG"/>
+                                    <headergroup refid="DEFAULT_HEADERGROUP"/>
+                                    <cookiegroup refid="DEFAULT_COOKIEGROUP"/>
+                                    <entity value="${dtf.stream(random,128,1234)}"/>
+                                </http_post>
+                            </for>
+                        </parallelloop>
+                    </parallelloop>
+                </record>
+                
+                <local>
+                    <echo>
+                          HTTP PUT on ${dtf.http.uri} 
+                          for ${iterations.tiny} iteration(s) 
+                          from ${threads} thread(s)
+                          and ${clients} client(s)
+                    </echo>
+                </local>
+               
+                <record uri="storage://OUTPUT/http_events.txt" type="txt" append="true"> 
+                    <parallelloop property="client" range="1..${clients}">
+                        <parallelloop property="thread" range="1..${threads}">
+                            <for property="iteration" range="1..${iterations.tiny}"> 
+                                <http_put uri="${dtf.http.uri}"
+                                          perfrun="${perfrun}"
+                                          onFailure="continue">
+                                    <http_config refid="DEFAULT_HTTP_CONFIG"/>
+                                    <headergroup refid="DEFAULT_HEADERGROUP"/>
+                                    <cookiegroup refid="DEFAULT_COOKIEGROUP"/>
+                                    <entity value="${dtf.stream(repeat,128,DEADBEEF)}"/>
+                                </http_put>
+                            </for>
+                        </parallelloop>
+                    </parallelloop>
+                </record>
+                
+                <local>
+                    <echo>
+                          HTTP GET on ${dtf.http.uri} 
+                          for ${iterations.tiny} iteration(s) 
+                          from ${threads} thread(s).
+                    </echo>
+                </local>
+                <record uri="storage://OUTPUT/http_events.txt" append="true" type="txt"> 
+                    <parallelloop property="client" range="1..${clients}">
+                        <parallelloop property="thread" range="1..${threads}">
+                            <for property="iteration" range="1..${iterations.tiny}"> 
+                                <http_get uri="${dtf.http.uri}"
+                                          perfrun="${perfrun}"
+                                          onFailure="continue">
+                                    <http_config refid="DEFAULT_HTTP_CONFIG"/>
+                                    <headergroup refid="DEFAULT_HEADERGROUP"/>
+                                    <cookiegroup refid="DEFAULT_COOKIEGROUP"/>
+                                </http_get>
+                            </for>
+                        </parallelloop>
+                    </parallelloop>
+                </record>
+                
+               <local>
+                    <echo>
+                          HTTP HEAD on ${dtf.http.uri} 
+                          for ${iterations.tiny} iteration(s) 
+                          from ${threads} thread(s).
+                    </echo>
+                </local>
+                <record uri="storage://OUTPUT/http_events.txt" append="true" type="txt"> 
+                    <parallelloop property="client" range="1..${clients}">
+                        <parallelloop property="thread" range="1..${threads}">
+                            <for property="iteration" range="1..${iterations.tiny}"> 
+                                <http_head uri="${dtf.http.uri}"
+                                           perfrun="${perfrun}"
+                                           onFailure="continue">
+                                    <http_config refid="DEFAULT_HTTP_CONFIG"/>
+                                    <headergroup refid="DEFAULT_HEADERGROUP"/>
+                                    <cookiegroup refid="DEFAULT_COOKIEGROUP"/>
+                                </http_head>
+                            </for>
+                        </parallelloop>
+                    </parallelloop>
+                </record>
+                
+                <local>
+                    <echo>
+                          HTTP DELETE on ${dtf.http.uri} 
+                          for ${iterations.tiny} iteration(s) 
+                          from ${threads} thread(s).
+                    </echo>
+                </local>
+                <record uri="storage://OUTPUT/http_events.txt" append="true" type="txt"> 
+                    <parallelloop property="client" range="1..${clients}">
+                        <parallelloop property="thread" range="1..${threads}">
+                            <for property="iteration" range="1..${iterations.tiny}"> 
+                                <http_delete uri="${dtf.http.uri}"
+                                             perfrun="${perfrun}"
+                                             onFailure="continue">
+                                    <http_config refid="DEFAULT_HTTP_CONFIG"/>
+                                    <headergroup refid="DEFAULT_HEADERGROUP"/>
+                                    <cookiegroup refid="DEFAULT_COOKIEGROUP"/>
+                                </http_delete>
+                            </for>
+                        </parallelloop>
+                    </parallelloop>
+                </record>
+                
+                <http_get uri="${dtf.http.uri}"/> 
+                <log>
+                    Event Information from HTTP GET request:
+                    ***************************************
+                    
+                    URI:                    ${http.get.uri}
+                    Status, Status Message: ${http.get.status}, ${http.get.statusmsg}
+                </log>
+                
+                <!-- Special characters in the URI --> 
+                <urlencode source="path with spaces" result="path"/>    
+                <http_get uri="${dtf.http.uri}/${path}" onFailure="continue"/> 
+                <log>
+                    Event Information from HTTP GET request:
+                    ***************************************
+                    
+                    URI:                    ${http.get.uri}
+                    Status, Status Message: ${http.get.status}, ${http.get.statusmsg}
+                </log>
+                
+                <urlencode source="中文" result="path"/>    
+                <http_get uri="${dtf.http.uri}/${path}" onFailure="continue"/> 
+                
+                <log>
+                    Event Information from HTTP GET request:
+                    ***************************************
+                    
+                    URI:                    ${http.get.uri}
+                    Status, Status Message: ${http.get.status}, ${http.get.statusmsg}
+                </log>
+        
+
+                <!-- negative testing... -->
+                <http_post uri="${dtf.http.uri}">
+                    <entity></entity>
+                </http_post>
+
+                <http_post uri="${dtf.http.uri}">
+                    <entity/>
+                </http_post>
+
+                <http_post uri="${dtf.http.uri}">
+                    <entity value=""/>
+                </http_post>
+            </sequence>
+            <finally>
+                <http_server port="${dtf.http.server.port}" command="stop"/>
+            </finally>
+        </try>
+    </parallel>
+    
+    <function name="calcPerformance"> 
+        <param name="op.name" type="required"/>
+        <param name="op.event" type="required"/>
+    
+        <query uri="storage://OUTPUT/http_events.txt"
+               cursor="events_cursor"
+               event="${op.event}"/>
+               
+        <record type="object" uri="property://eventstats" append="false">
+            <stats cursor="events_cursor" event="${op.event}"/>
+        </record>
+        
+        <local>
+            <echo>
+                HTTP ${op.name}
+                Operations/second:  ${eventstats.avg_occ}
+                Total operations:   ${eventstats.tot_occ}
+                Time (MAX/MIN/AVG): ${eventstats.max_dur}/${eventstats.min_dur}/${eventstats.avg_dur}
+                Duration:           ${eventstats.tot_dur}
+            </echo>
+        </local>
+    </function>
+    
+    <call function="calcPerformance">
+        <property name="op.name" value="POST"/>
+        <property name="op.event" value="http.post"/>
+    </call>
+
+    <call function="calcPerformance">
+        <property name="op.name" value="PUT"/>
+        <property name="op.event" value="http.put"/>
+    </call>
+
+    <call function="calcPerformance">
+        <property name="op.name" value="GET"/>
+        <property name="op.event" value="http.get"/>
+    </call>
+
+    <call function="calcPerformance">
+        <property name="op.name" value="HEAD"/>
+        <property name="op.event" value="http.head"/>
+    </call>
+
+    <call function="calcPerformance">
+        <property name="op.name" value="DELETE"/>
+        <property name="op.event" value="http.delete"/>
+    </call>
+    
+    <log>validate connection refused error</log>
+    <http_put uri="http://localhost:33333" onFailure="continue"/>
+    <assert><eq op1="${http.put.status}" op2="900"/></assert>
+    
+    <log>validate connection reset error</log>
+    <http_put uri="http://localhost:22/" onFailure="continue"/>
+    <assert><eq op1="${http.put.status}" op2="901"/></assert>
+
+    <log>validate unknown host error</log>
+    <http_put uri="http://cacacacaca/" onFailure="continue"/>
+    <assert><eq op1="${http.put.status}" op2="902"/></assert>
+ 
+    <log>validate connection timeout error</log>
+    <http_put uri="http://www.yahoo.com"
+              onFailure="continue"
+              connecttimeout="1ms"/>
+    <assert><eq op1="${http.put.status}" op2="903"/></assert>
+</script>

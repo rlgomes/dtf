@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="while">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF while unit test.</description>
+    </info>
+   
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <property name="workers" value="5" overwrite="true" />
+  
+        <rendezvous_create id="rendezvous" parties="2" />
+    </local>
+  
+    <parallel>
+        <sequence>
+            <log>Thread 1 is starting.</log>
+            <while>
+                <not>
+                    <rendezvous_check id="rendezvous" />
+                </not>
+                <!-- do whatever else you wanted in parallel and check at the
+                     end of iteration of the other thread has completed. -->
+            </while>
+            <log>Thread 1 is done.</log>
+            <!-- remember to visit the rendezvous to release the other thread
+                 as well. -->
+            <rendezvous_visit id="rendezvous" />
+        </sequence>
+            
+        <sequence>
+            <log>Thread 2 is starting.</log>
+            <for property="i" range="1..100000">
+                <!-- do some work... -->
+            </for>
+            <log>Thread 2 is done.</log>
+            <rendezvous_visit id="rendezvous" />
+        </sequence>
+    </parallel>
+    
+</script>

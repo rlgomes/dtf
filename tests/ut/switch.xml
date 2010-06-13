@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="switch">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF switch unit test.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="TINPUT" path="${dtf.xml.path}"/>
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+       
+        <import uri="storage://TINPUT/util.xml"/> 
+        <property name="test1" value="true"/>
+        <property name="test2" value="true"/>
+    </local>
+    
+    <function name="testFunction"> 
+        <param name="test" type="required"/>
+        
+        <switch property="${test}">
+            <case value="1">
+                <log tag="log" level="info">Switch case #1</log>
+                <call function="testFunction">
+                    <property name="test" value="2" overwrite="true"/>
+                </call>
+            </case> 
+            <case value="2">
+                <log tag="log" level="info">Switch case #2</log>
+                <call function="testFunction">
+                    <property name="test" value="UNKOWN" overwrite="true"/>
+                </call>
+            </case>
+            <case value="UNKOWN">
+                <log tag="log" level="info">Looped through switch and function call correctly.</log> 
+            </case>
+            <case value="failonme">
+                <fail message="Failing on demand"/>
+            </case>
+            <default>
+            </default>         
+        </switch>
+    </function>
+    
+    <call function="testFunction">
+        <property name="test" value="1"/>
+    </call>
+
+    <call function="testFunction">
+        <property name="test" value="2"/>
+    </call>
+
+    <call function="testFunction">
+        <property name="test" value="UNKOWN"/>
+    </call>
+
+    <try>
+        <sequence>
+            <call function="testFunction">
+                <property name="test" value="failonme"/>
+            </call>
+            <fail message="Switch failed to go into failure case and throw the FailException"/>
+        </sequence>
+        <catch exception="${dtf.FailException}">
+            <log tag="log" level="info">Switch went into the failure case correctly.</log>
+        </catch>
+    </try>
+
+    <!-- Test to catch the issue where the switch woudld move the range 
+         expression forward more than 1 position by doing the getProperty
+         everytime it needs to compare with an underlying case. -->
+         
+    <local>
+        <createrange name="myrange" value="1,2,3" recycle="true"/> 
+    </local>
+    
+    <for property="i" range="1..3">
+        <switch property="${myrange}">
+            <case value="3">
+                <if>
+                    <neq op1="${i}" op2="3"/>
+                    <then>
+                        <fail message="There must be a problem with the range expression resolution when using switches"/>
+                    </then>
+                </if> 
+            </case>
+            <case value="2">
+                <if>
+                    <neq op1="${i}" op2="2"/>
+                    <then>
+                        <fail message="There must be a problem with the range expression resolution when using switches"/>
+                    </then>
+                </if> 
+            </case>
+            <case value="1">
+                <if>
+                    <neq op1="${i}" op2="1"/>
+                    <then>
+                        <fail message="There must be a problem with the range expression resolution when using switches"/>
+                    </then>
+                </if>  
+            </case>
+        </switch>
+    </for>
+
+    <record uri="storage://OUTPUT/switch-test.txt">   
+        <for property="i" range="1..99">
+            <switch>
+                <case>
+                    <!-- less than or equal to 33 -->
+                    <or>
+                        <lt op1="${i}" op2="33"/>
+                        <eq op1="${i}" op2="33"/>
+                     </or>
+                    <event name="event1"/>
+                </case>
+                <case>
+                    <!-- greater than 33 but less than or equal to 6666666 -->
+                    <and>
+                        <gt op1="${i}" op2="33"/>
+                        <or>
+                            <lt op1="${i}" op2="66"/>
+                            <eq op1="${i}" op2="66"/>
+                        </or>
+                     </and>
+                    <event name="event2"/>
+                </case>
+                <case>
+                    <!-- greater than 66 -->
+                    <gt op1="${i}" op2="66"/>
+                    <event name="event3"/>
+                </case>
+            </switch>
+        </for>
+    </record>
+   
+    <for property="event" range="event1,event2,event3"> 
+        <call function="checkRecordCount">
+            <property name="recorder.location" value="storage://OUTPUT/switch-test.txt"/>
+            <property name="recorder.type" value="txt"/>
+            <property name="record.count" value="33"/>
+            <property name="event.name" value="${event}"/>
+        </call> 
+    </for>
+    
+</script>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="string_transform">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        DTF unit test for the string encoding/escaping capabilities
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="TINPUT" path="${dtf.xml.path}"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+    </local>
+    
+    <property name="dquotes" value='myString with "'/>
+    <property name="squotes" value="myString with '"/>
+    
+    <property name="dquotes_escaped" value="${dquotes:apply:xpath-escape}"/>
+    
+    <property name="path" value="path/with spaces/can sometimes/bring trouble"/>
+    <property name="path_encoded" value="${path:apply:url-encode}"/>
+
+    <property name="path_decoded" value="${path_encoded:apply:url-decode}"/>
+    <assert><eq op1="${path}" op2="${path_decoded}"/></assert>
+    
+</script>

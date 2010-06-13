@@ -1,0 +1,443 @@
+<?xml version="1.0" ?>
+<project>
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+	  <classpath>
+	    <pathelement location="apache-ant-1.6.0/lib/ant-contrib-1.0b3.jar"/>
+	  </classpath>
+	</taskdef>
+	
+	<target name="init">
+		<loadproperties srcfile="dtf.properties"/>
+		<path id="dtf.classpath">
+			<fileset dir="lib">
+				<include name="*.jar"/>
+			</fileset>
+		</path>
+		
+		<condition property="dtf.connect.addr" value="localhost">
+			<not>
+				<isset property="dtf.connect.addr"/>
+			</not>
+		</condition>
+		
+		<condition property="dtf.connect.port" value="20000">
+			<not>
+				<isset property="dtf.connect.port"/>
+			</not>
+		</condition>
+
+		<condition property="dtf.dtfa.ids" value="1,2,3">
+			<not>
+				<isset property="dtf.dtfa.ids"/>
+			</not>
+		</condition>
+	
+		<property name="dtf.properties.filename" value="dtf.properties"/>
+		<property name="dtf.connect.addr" value="${dtf.connect.addr}"/>
+		<property name="dtf.connect.port" value="${dtf.connect.port}"/>
+	    <property name="dtf.home" value="${dtf.home}"/>
+		
+		<propertyset id="dtf.default.propertyset">
+			<propertyref name="dtf.properties.filename"/>
+			<propertyref name="dtf.connect.addr"/>
+			<propertyref name="dtf.connect.port"/>
+			<propertyref name="dtf.home"/>
+		</propertyset>
+	
+		<condition property="dtf.cwd" value=".">
+			<not>
+				<isset property="dtf.cwd"/>
+			</not>
+		</condition>
+
+		<condition property="dtf.home" value=".">
+			<not>
+				<isset property="dtf.home"/>
+			</not>
+		</condition>
+	
+		<tstamp>
+	    	<format property="stamp" pattern="dd-MM-yyyy.HH.mm.ss"/>
+		</tstamp>
+        
+		<property name="logdir" value="${dtf.cwd}/logs/${stamp}"/>
+		<echo>Creating log dir ${logdir}</echo>
+		<mkdir dir="${logdir}"/>
+	</target>
+
+	<target name="run_dtfa_silent"
+		    depends="init">
+		<condition property="dtfa.output" value="dtfa">
+			<not>
+				<isset property="dtfa.output"/>
+			</not>
+		</condition>
+		
+		<echo>Starting DTFA</echo>
+   	    <echo>logging to ${logdir}/${dtfa.output}.*.log</echo>
+		
+		<java classname="com.yahoo.dtf.DTFNode"
+			  fork="true"
+			  failonerror="true"
+			  output="${logdir}/${dtfa.output}.out.log"
+			  error="${logdir}/${dtfa.output}.err.log">
+			
+			<classpath refid="dtf.classpath"/>
+			<syspropertyset refid="dtf.default.propertyset"/>
+			<sysproperty key="dtf.node.type" value="dtfa"/>
+			
+		    <jvmarg line="${dtf.jvm.arg} -enableassertions -Djava.security.policy=${dtf.home}/policy.txt"/> 
+			<syspropertyset>
+				<propertyref builtin="commandline"/>
+			</syspropertyset>
+		</java>
+	</target>
+	
+	<target name="run_dtfa"
+		    depends="init"
+		    description="startup the DTFA component"
+	        >
+		<condition property="dtfa.output" value="dtfa">
+			<not>
+				<isset property="dtfa.output"/>
+			</not>
+		</condition>
+		
+		<echo>Starting DTFA</echo>
+   	    <echo>logging to ${logdir}/${dtfa.output}.*.log</echo>
+		
+		<java classname="com.yahoo.dtf.DTFNode"
+			  fork="true"
+		      dir="${dtf.cwd}"
+			  failonerror="true">
+			
+			<classpath refid="dtf.classpath"/>
+			<syspropertyset refid="dtf.default.propertyset"/>
+			<sysproperty key="dtf.node.type" value="dtfa"/>
+			
+			<jvmarg line="${dtf.jvm.arg} -enableassertions -Djava.security.policy=${dtf.home}/policy.txt"/> 
+			<syspropertyset>
+				<propertyref builtin="commandline"/>
+			</syspropertyset>
+		</java>
+	</target>
+
+	<target name="run_dtfx"
+		    depends="init"
+		    description="startup the DTFX component">
+		<java classname="com.yahoo.dtf.DTFNode"
+			  fork="true"
+		      dir="${dtf.cwd}"
+			  failonerror="true">
+			<classpath refid="dtf.classpath"/>
+			<sysproperty key="dtf.node.type" value="dtfx"/>
+			<syspropertyset refid="dtf.default.propertyset"/>
+			<sysproperty key="net.sourceforge.cobertura.datafile"
+     			         file="cobertura-dtfx.ser" />
+
+			<jvmarg line="${dtf.jvm.arg} -enableassertions -Djava.security.policy=${dtf.home}/policy.txt"/> 
+			<syspropertyset>
+				<propertyref builtin="commandline"/>
+			</syspropertyset>
+		</java>
+	</target>
+
+	<target name="run_dtfc"
+		    depends="init"
+	    	description="startup the DTFC component"
+		    >
+		<condition property="dtf.listen.port" value="20000">
+			<not>
+				<isset property="dtf.listen.port"/>
+			</not>
+		</condition>
+
+		<java classname="com.yahoo.dtf.DTFNode"
+			  fork="true"
+		      dir="${dtf.cwd}"
+			  failonerror="true">
+			<classpath refid="dtf.classpath"/>
+			<syspropertyset refid="dtf.default.propertyset"/>
+			<sysproperty key="dtf.node.name" value="dtfc"/>
+			<sysproperty key="dtf.node.type" value="dtfc"/>
+			<sysproperty key="dtf.listen.port" value="${dtf.listen.port}" />
+			<sysproperty key="net.sourceforge.cobertura.datafile"
+     			         file="cobertura-dtfc.ser" />
+			
+			<jvmarg line="${dtf.jvm.arg} -enableassertions -Djava.security.policy=${dtf.home}/policy.txt"/> 
+			<syspropertyset>
+				<propertyref builtin="commandline"/>
+			</syspropertyset>
+		</java>
+	</target>
+
+	<target name="run_components" depends="init">
+		<parallel>
+    		<sequential>
+    			<echo>Starting up dtfc</echo>
+    	   	    <echo>logging to ${logdir}/dtfc.*.log</echo>
+    			
+        		<condition property="dtf.listen.port" value="20000">
+        			<not>
+        				<isset property="dtf.listen.port"/>
+        			</not>
+        		</condition>
+        
+        		<java classname="com.yahoo.dtf.DTFNode"
+        			  fork="true"
+        			  failonerror="true"
+        			  dir="${dtf.cwd}"
+        			  output="${logdir}/dtfc.out.log"
+        			  error="${logdir}/dtfc.err.log">
+        			<classpath refid="dtf.classpath"/>
+        			<syspropertyset refid="dtf.default.propertyset"/>
+        			
+        			<sysproperty key="dtf.node.name" value="dtfc"/>
+        			<sysproperty key="dtf.node.type" value="dtfc"/>
+        			<sysproperty key="dtf.listen.port" value="${dtf.listen.port}" />
+        			<sysproperty key="dtf.heartbeat.timeout" value="10000" />
+        		    <sysproperty key="net.sourceforge.cobertura.datafile"
+     			                 file="cobertura-dtfc.ser" />
+        			
+        		    <jvmarg line="${dtf.jvm.arg} -enableassertions -Djava.security.policy=${dtf.home}/policy.txt"/> 
+        		</java>
+    		</sequential>
+			<sequential>
+				<!-- 3 seconds seems enough time to startup the DTFC -->
+				<sleep seconds="3"/>
+				<parallel>
+					<for list="${dtf.dtfa.ids}"
+						 param="id"
+						 parallel="true">
+    					<sequential>
+    						<echo>Starting DTFA@{id}...</echo>
+			    	   	    <echo>logging to ${logdir}/dtfa-@{id}.*.log</echo>
+    						<echo file="defaults.@{id}.properties">node.id=@{id}
+    						</echo>
+    						<java classname="com.yahoo.dtf.DTFNode"
+    							  fork="true"
+    							  failonerror="true"
+                     			  dir="${dtf.cwd}"
+			        			  output="${logdir}/dtfa-@{id}.out.log"
+  				      			  error="${logdir}/dtfa-@{id}.err.log">
+    							<classpath refid="dtf.classpath"/>
+    							
+    							<syspropertyset refid="dtf.default.propertyset" />
+    							<sysproperty key="dtf.node.type" value="dtfa" />
+    						    <sysproperty key="dtf.heartbeat.timeout" value="10000" />
+    							<sysproperty key="dtf.defaults" value="defaults.@{id}.properties"/>
+    							
+    						    <sysproperty key="net.sourceforge.cobertura.datafile"
+     			                             file="cobertura-dtfa.@{id}.ser" />
+    							
+    						    <jvmarg line="${dtf.jvm.arg} -enableassertions -Djava.security.policy=${dtf.home}/policy.txt"/>
+    						</java>
+    					</sequential>
+					</for>
+				</parallel>
+			</sequential>
+		</parallel>
+	</target>
+	
+	<target name="stop_dtfc" depends="init">
+		<java classname="com.yahoo.dtf.DTFNode"
+			  fork="true"
+			  failonerror="true"
+  			  dir="${dtf.cwd}"
+			  output="${logdir}/shutdown_dtfc.out.log"
+			  error="${logdir}/shutdown_dtfc.err.log">
+			
+			<classpath refid="dtf.classpath"/>
+			<syspropertyset refid="dtf.default.propertyset"/>
+			
+			<sysproperty key="dtf.node.type" value="dtfx"/>
+			<sysproperty key="dtf.xml.filename" value="tests/ut/stopdtfc.xml"/>
+			
+		    <jvmarg line="${dtf.jvm.arg} -enableassertions -Djava.security.policy=${dtf.home}/policy.txt"/> 
+		</java>
+	</target>
+			
+	<target name="run_ut"
+			depends="init"
+			description="run DTF unit tests.">
+	    <antcall target="run_test">
+	    	<param name="dtf.xml.filename" value="tests/ut/ut.xml"/>
+		</antcall>
+	</target>
+
+	<target name="run_perf"
+			depends="init"
+		    >
+	    <antcall target="run_test">
+	    	<param name="dtf.xml.filename" value="tests/perf/perf.xml"/>
+		</antcall>
+	</target>
+	
+	<target name="run_test"
+			depends="init"
+	        >
+		<parallel>
+		    <antcall target="run_components"/>
+        	
+			<trycatch>
+				<try>
+        			<sequential>
+                		<!-- XXX: temporary hack -->
+                		<sleep seconds="5"/>
+                		<ant antfile="build.xml"
+                			 target="run_dtfx"
+                		 	 output="${logdir}/dtfx.log">
+                		</ant>
+        			</sequential>
+    			</try>
+    			<finally>
+    				<echo>Shutting down background run_components task.</echo>
+    				<antcall target="stop_dtfc"/>
+    			</finally>
+    		</trycatch>
+		</parallel>
+	</target>
+	
+    <target name="results" depends="init">
+        <ant target="tohtml" antfile="build.xml">
+            <property name="dtf.xsl.filename" value="xsl/report.xsl"/>
+            <property name="dtf.xsl.in.dir" value="tests"/>
+            <property name="dtf.xsl.out.dir" value="tests"/>
+            <property name="dtf.xsl.out.filename" value="results.html"/>
+            <property name="dtf.include.pattern" value="**/*results*.xml"/>
+            <property name="dtf.exclude.pattern" value=""/>
+        </ant>
+    </target>
+	   
+    <target name="inventory" depends="init">
+        <ant target="tohtml" antfile="build.xml">
+            <property name="dtf.xsl.filename" value="xsl/inventory.xsl"/>
+            <property name="dtf.xsl.in.dir" value="tests"/>
+            <property name="dtf.xsl.out.dir" value="tests"/>
+            <property name="dtf.xsl.out.filename" value="inventory.html"/>
+            <property name="dtf.include.pattern" value="**/*.xml"/>
+            
+            <!-- exclude results output --> 
+            <property name="dtf.exclude.pattern" value="**/suite-*"/>
+        </ant>
+    </target>
+
+	<target name="clean" depends="init" description="clean target">
+		<delete dir="${dtf.build.dir}" failonerror="false"/>
+	</target>
+	
+	<!-- deployment -->
+	<target name="deploy-init">
+        <condition property="deploy.config" value="config.xml">
+            <not><isset property="deploy.config"/></not>
+        </condition>
+        <condition property="deploy.defaults" value="config.props">
+            <not><isset property="deploy.defaults"/></not>
+        </condition>
+        <condition property="deploy.user" value="N/A">
+            <not><isset property="deploy.user"/></not>
+        </condition>
+	</target>
+
+    <target name="setup-ssh" 
+    	    depends="init,deploy-init"
+		    description="sets up all machines identified in the ${deploy.config} file so that the deploy-xxx tags can SSH to those machines without any issues"
+         	>
+        <java classname="com.yahoo.dtf.deploy.DeployDTF" 
+              failonerror="true">
+            <classpath refid="dtf.classpath" />
+            <arg value="setup-ssh" />
+            <sysproperty key="dtf.home" value="."/>
+            <syspropertyset>
+                <propertyref builtin="all"/>
+            </syspropertyset>
+        </java>
+    </target>
+	
+    <target name="deploy-start"
+    	    depends="init,deploy-init" 
+            description="start the DTF setup defined in the ${deploy.config} file"
+    	    >
+        <java classname="com.yahoo.dtf.deploy.DeployDTF" 
+              failonerror="true">
+            <classpath refid="dtf.classpath"/>
+            <arg value="start" />
+            <sysproperty key="dtf.home" value="."/>
+            <syspropertyset>
+                <propertyref builtin="all"/>
+            </syspropertyset>
+        </java>
+    </target>
+	
+    <target name="deploy-wait"
+            depends="init,deploy-init" 
+            description="wait for the DTF setup defined in the ${deploy.config} file to complete running the test"
+            >
+        <java classname="com.yahoo.dtf.deploy.DeployDTF" 
+              failonerror="true">
+            <classpath refid="dtf.classpath"/>
+            <arg value="wait" />
+            <sysproperty key="dtf.home" value="."/>
+            <syspropertyset>
+                <propertyref builtin="all"/>
+            </syspropertyset>
+        </java>
+    </target>
+    
+    <target name="deploy-stop"
+    	    depends="init,deploy-init"
+            description="This target will stop the specified DTF config and collect all of the logs">
+        <java classname="com.yahoo.dtf.deploy.DeployDTF" 
+              failonerror="true">
+            <classpath refid="dtf.classpath"/>
+            <arg value="stop" />
+            <sysproperty key="dtf.home" value="."/>
+            <syspropertyset>
+                <propertyref builtin="all"/>
+            </syspropertyset>
+        </java>
+    </target>
+	
+    <target name="deploy-status"
+    	    depends="init,deploy-init" 
+            description="check the status of the DTF setup identified in the config file">
+        <java classname="com.yahoo.dtf.deploy.DeployDTF" 
+              failonerror="true">
+            <classpath refid="dtf.classpath" />
+            <arg value="status" />
+            <sysproperty key="dtf.home" value="."/>
+			<syspropertyset>
+				<propertyref builtin="all"/>
+			</syspropertyset>
+        </java>
+    </target>
+	
+    <target name="deploy-watch" 
+    	    depends="init,deploy-init" 
+		    description="sets up all machines identified in the ${deploy.config} file so they can be used by the other deploy-xxx targets">
+        <java classname="com.yahoo.dtf.deploy.DeployDTF" 
+              failonerror="true"
+        	  taskname="">
+            <classpath refid="dtf.classpath" />
+            <arg value="watch" />
+            <sysproperty key="dtf.home" value="."/>
+			<syspropertyset>
+				<propertyref builtin="all"/>
+			</syspropertyset>
+        </java>
+    </target>
+    
+	<target name="deploy-savelogs"
+	        depends="init,deploy-init"
+	        description="collect all of the logs for the DTF setup identifed by the ${deploy.config} property">
+        <java classname="com.yahoo.dtf.deploy.DeployDTF" 
+              failonerror="true">
+            <classpath refid="dtf.classpath"/>
+            <arg value="savelogs" />
+            <sysproperty key="dtf.home" value="."/>
+			<syspropertyset>
+				<propertyref builtin="all"/>
+			</syspropertyset>
+        </java>
+    </target>
+</project>

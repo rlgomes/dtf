@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="http_cleanup_test">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Smal test to validate that HTTP connection clean up is done correctly 
+        and doesn't result in the unavailability of the connection manager.
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+       
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <property name="perfrun" value="false"/>
+    </local>
+
+    <parallel>
+	    <http_server port="28080">
+            <http_listener path="/nada"/>
+        </http_server>
+        <try>
+            <sequence>
+	            <sleep time="2s"/>
+			    <for property="i" range="1..3"> 
+				    <for property="client" range="1..3"> 
+				        <local>
+				            <lockcomponent id="C${client}"/>
+				        </local>
+				    </for>
+				
+				    <for property="client" range="1..3"> 
+				        <component id="C${client}">
+				            <http_get uri="http://localhost:28080/nada"
+                                      perfrun="true"/>
+				        </component>
+				        <local>
+				            <unlockcomponent id="C${client}"/>
+				        </local>
+				    </for>
+			    </for>
+            </sequence>
+            <finally>
+                <http_server command="stop" port="28080"/>
+            </finally>
+        </try>
+    </parallel>
+
+</script>    

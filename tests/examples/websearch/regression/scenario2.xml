@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="scenario2">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>regression scenario 2 from the users's guide documentation</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/websearch.properties"/>
+    </local>
+   
+    <for property="count" range="1..100">
+	    <http_get uri="${websearch.uri}?appid=dtftest&amp;query=yahoo&amp;results=${count}"/>
+	
+	    <!-- check the status code was successful -->   
+	    <if>
+	        <neq op1="${http.get.status}" op2="200"/>
+	        <then>
+	            <fail message="Failed http request got [${http.get.status}] status"/>
+	        </then> 
+	    </if>
+	    
+        <log>Checking ResultSet for ${count} results</log>
+	    <!--  check that the first result in the ResultSet is www.yahoo.com -->
+	    <property name="result.count"
+	              value="${http.get.body:xpath:count(/ResultSet/Result)}"
+                  overwrite="true"/>
+	    <if>
+	        <neq op1="${result.count}" op2="${count}"/>
+	        <then>
+	            <fail message="Expected ${count} results but got ${result.count}"/>
+	        </then> 
+	    </if>
+    </for>
+    
+</script>

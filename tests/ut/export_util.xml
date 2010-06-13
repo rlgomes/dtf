@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="export_util">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+            Utility function with some exported functions.  
+        </description>
+    </info>
+   
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input" />
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output" />
+
+        <loadproperties uri="storage://INPUT/ut.properties" />
+    </local>
+    
+    <!-- simple function exported --> 
+    <function name="test" export="true">
+        <echo>Testing..</echo>
+    </function>
+    
+    <function name="complex" export="true">
+        <property name="prop2" value="prop2"/>
+        <log>${prop1} ${prop2} ${prop3}</log>     
+    </function>
+
+    <function name="complex2" export="true">
+        <call function="test"/>
+        <call function="complex"/>
+    </function>
+
+ </script> 

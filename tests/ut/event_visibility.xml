@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="event_visibility">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>Make sure the visibility of component events is correct.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <lockcomponent id="C1"/>
+    </local>
+
+    <!-- Local Visibility Test -->
+   
+    <log>Testing ${iterations.small} local event(s)</log> 
+    <for property="i" range="1..${iterations.small}">
+	    <event name="local_event${i}">
+	        <attribute name="attribute1" value="local_value1"/>
+	    </event>
+    </for>
+	   
+    <for property="i" range="1..${iterations.small}"> 
+	    <property name="X" 
+                  value="${local_event${i}.attribute1}"
+                  overwrite="true"/>
+    </for>
+
+    <!-- Remote Visibility Test -->
+
+    <log>Testing ${iterations.small} remote event(s)</log> 
+    <for property="i" range="1..${iterations.small}"> 
+	    <component id="C1">
+		    <event name="remote_event1${i}">
+		        <attribute name="attribute1" value="remote_value1"/>
+		    </event>
+            <event name="remote_event2${i}">
+		        <attribute name="attribute2" value="remote_value2"/>
+		    </event>
+	    </component>
+    </for>
+    
+    <for property="i" range="1..${iterations.small}"> 
+	    <property name="X" 
+                  value="${remote_event1${i}.attribute1}"
+                  overwrite="true"/>
+	    <property name="Y" 
+                  value="${remote_event2${i}.attribute2}"
+                  overwrite="true"/>
+    </for>
+
+    <component id="C1">
+        <echo>${X}</echo>
+        <echo>${Y}</echo>
+	</component>
+    
+    <!-- event visibility outside of functions -->
+    
+    <!-- XXX: make this work! --> 
+    <function name="throwsEvents">
+        <event name="myevent">
+        </event>
+    </function>
+    
+    <call function="throwsEvents"/>
+    
+    <log>myevent started at ${myevent.start}</log>
+
+</script>  

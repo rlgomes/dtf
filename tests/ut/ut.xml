@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1"
+        name="ut">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Test suite that groups the other unit tests for the DTF framework. 
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}"/>
+    </local>
+ 
+	<local>    
+       <echo>*** Executing DTF Unit Tests ***</echo>
+    </local>
+
+	<result uri="storage://OUTPUT/ut_results.xml" type="junit">
+    	<testsuite name="unittests">
+
+            <!-- DTF Feature Tests -->
+            <testscript uri="storage://INPUT/state_management.xml"/>
+            
+            <!-- Storage Tests -->
+            <testscript uri="storage://INPUT/storage.xml"/>
+               
+            <!-- Basic Tests --> 
+            <testscript uri="storage://INPUT/echo.xml"/>
+            <testscript uri="storage://INPUT/sleep.xml"/>
+            <testscript uri="storage://INPUT/loadproperties.xml"/>
+            <testscript uri="storage://INPUT/property_resolution.xml"/>
+            <testscript uri="storage://INPUT/property.xml"/>
+            <testscript uri="storage://INPUT/cat.xml"/>
+            <testscript uri="storage://INPUT/log.xml"/>
+            
+            <!-- Flow Control Tests --> 
+            <!-- Loops -->
+            <testscript uri="storage://INPUT/for.xml"/>
+            <testscript uri="storage://INPUT/parallel.xml"/>
+            <testscript uri="storage://INPUT/parallelloop.xml"/>
+            <testscript uri="storage://INPUT/sequence.xml"/>
+            <testscript uri="storage://INPUT/timer.xml"/>
+            <testscript uri="storage://INPUT/switch.xml"/>
+            <testscript uri="storage://INPUT/while.xml"/>
+            <testscript uri="storage://INPUT/break.xml"/>
+            
+            <!-- Failure Handling --> 
+            <testscript uri="storage://INPUT/try_catch_fail.xml"/>
+            <testscript uri="storage://INPUT/fail.xml"/>
+            
+			<!-- Advanced Flow Control -->
+            <testscript uri="storage://INPUT/distribute.xml"/>
+            <testscript uri="storage://INPUT/choices.xml"/>
+           
+			<!-- Conditional Tests -->
+            <testscript uri="storage://INPUT/if.xml"/>
+            
+            <!-- Range Generation Tests -->
+            <testscript uri="storage://INPUT/range.xml"/>
+            <testscript uri="storage://INPUT/range_dist.xml"/>
+            
+            <!-- Function Tests -->
+            <testscript uri="storage://INPUT/functions.xml"/>
+            <testscript uri="storage://INPUT/import.xml"/>
+            <testscript uri="storage://INPUT/export.xml"/>
+            
+            <!-- References Tests -->
+            <testscript uri="storage://INPUT/references.xml"/>
+            
+            <!-- Lockcomponent/Unlockcomponent Tests -->
+            <testscript uri="storage://INPUT/component.xml"/>
+            <testscript uri="storage://INPUT/lockcomponent.xml"/>
+            <testscript uri="storage://INPUT/remotestorage.xml"/>
+                
+            <!-- Event Tests -->
+            <testscript uri="storage://INPUT/recorder.xml"/>
+            <testscript uri="storage://INPUT/stats_recorder.xml"/>
+            <testscript uri="storage://INPUT/query.xml"/>
+            <testscript uri="storage://INPUT/event.xml"/>
+            <testscript uri="storage://INPUT/event_visibility.xml"/>
+            <testscript uri="storage://INPUT/compare.xml"/>
+            
+            <!-- Testsuite and Testscript Tests -->
+            <testscript uri="storage://INPUT/testsuite.xml"/>
+            <testscript uri="storage://INPUT/results.xml"/>
+            
+            <!-- Stats Calculation Tests -->
+            <testscript uri="storage://INPUT/stats.xml"/>
+            
+            <!-- File tags are used to move files between components -->
+            <testscript uri="storage://INPUT/file.xml"/>
+            
+            <!-- Http tags --> 
+            <testscript uri="storage://INPUT/http.xml"/>
+            <testscript uri="storage://INPUT/http_server.xml"/>
+            <testscript uri="storage://INPUT/http_cleanup_test.xml"/>
+             
+            <!-- String manipulation tags -->
+            <testscript uri="storage://INPUT/string_manipulation.xml"/>
+            <testscript uri="storage://INPUT/string_transform.xml"/>
+            <testscript uri="storage://INPUT/convert.xml"/>
+            
+            <!-- Arithmetic tags -->
+            <testscript uri="storage://INPUT/arithmetic.xml"/>
+            
+            <!-- Some different ways of generating random numbers/data -->
+            <testscript uri="storage://INPUT/random.xml"/>
+            
+            <!-- file monitoring tests -->
+            <testscript uri="storage://INPUT/monitor.xml"/>
+            <testscript uri="storage://INPUT/diff.xml"/>
+           
+            <!-- XML handling unit tests --> 
+            <testscript uri="storage://INPUT/xml_xpath.xml"/>
+            <testscript uri="storage://INPUT/xml_dynamic.xml"/>
+            
+            <!-- JSON handling unit tests -->
+            <testscript uri="storage://INPUT/json_transform.xml"/>
+            
+            <!-- Streams unit tests -->
+            <testscript uri="storage://INPUT/stream.xml"/>
+           
+            <!-- Assert unit tests -->
+            <testscript uri="storage://INPUT/assertions.xml"/>
+
+            <!-- Encoding unit tests -->
+            <testscript uri="storage://INPUT/encoding.xml"/>
+            <testscript uri="storage://INPUT/special_characters.xml"/>
+ 
+            <!-- component & testscript unit tests -->           
+            <testscript uri="storage://INPUT/testscript_component_complex.xml"/>
+            
+            <!-- Rendezvous and Share --> 
+            <testscript uri="storage://INPUT/rendezvous.xml"/>
+            <testscript uri="storage://INPUT/rendezvous_complex.xml"/>
+            <testscript uri="storage://INPUT/share.xml"/>
+            <testscript uri="storage://INPUT/share_complex.xml"/>
+            
+            <!-- Parsing -->
+            <testscript uri="storage://INPUT/scanf.xml"/>
+            <testscript uri="storage://INPUT/printf.xml"/>
+			
+      	</testsuite>
+	</result>
+</script>

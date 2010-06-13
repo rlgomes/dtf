@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="share">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description></description>
+    </info>
+   
+    <local>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+    
+        <import uri="storage://INPUT/perfutil.xml"/>
+        <property name="agents" value="1"/>
+    </local>
+  
+    <local> 
+	    <lockcomponent id="PRODUCER"/>
+	    <lockcomponent id="CONSUMER"/>
+    </local>
+    
+    <property name="remote.iterations" value="${iterations.small}"/>
+    <property name="local.iterations" value="${iterations.small}"/>
+   
+    <for property="type" range="single,queue,cumulative">	    
+	    <log>${type} share type</log>
+	    <share_create id="SHARE1" type="${type}"/>
+
+        <event name="total">
+		    <parallel>
+		        <component id="PRODUCER">
+		            <for property="i" range="1..${remote.iterations}">
+		                <share_set id="SHARE1">
+		                    <property name="iteration" value="${i}" overwrite="true"/>
+		                </share_set>
+		            </for>
+		        </component>
+	        
+		        <component id="CONSUMER">
+		            <for property="i" range="1..${remote.iterations}">
+		                <share_get id="SHARE1"/>
+		            </for>        
+		        </component>
+		    </parallel>
+        </event>
+        <call function="calcEventPerf" result="ops_per_sec">
+            <property name="iterations" value="${remote.iterations}"/>
+            <property name="event" value="total"/>
+        </call>
+        <log>${type} share gets ${ops_per_sec} remote syncs per sec</log>
+         
+	    <share_create id="SHARE2" type="${type}"/>
+        <event name="total">
+		    <parallel>
+		        <sequence>
+		            <for property="i" range="1..${local.iterations}">
+		                <share_set id="SHARE2">
+		                    <property name="iteration" value="${i}" overwrite="true"/>
+		                </share_set>
+		            </for>
+		        </sequence>
+		        
+		        <sequence>
+		            <for property="i" range="1..${local.iterations}">
+		                <share_get id="SHARE2"/>
+		            </for>
+		        </sequence>
+		    </parallel>
+        </event>
+        <call function="calcEventPerf" result="ops_per_sec">
+            <property name="iterations" value="${local.iterations}"/>
+            <property name="event" value="total"/>
+        </call>
+        <log>${type} share gets ${ops_per_sec} local syncs per sec</log>
+	    
+	    <share_destroy id="SHARE1"/>
+	    <share_destroy id="SHARE2"/>
+    </for>
+   
+    <function name="doevent" export="true">
+        <event name="test"/>
+        <log>event.start=${test.start}</log>
+        <log>event.stop=${test.stop}</log>
+    </function> 
+    
+    <share_create id="SHARE2" type="queue"/>
+    
+    <share_set id="SHARE2">
+        <call function="doevent"/> 
+    </share_set>
+    
+    <share_get id="SHARE2" blocking="true"/>
+    
+    <log>negative tests</log> 
+    <try>
+        <sequence>
+            <share_get id="inexistent"/>
+            <fail>This statement should never be reached</fail>
+        </sequence>
+        <catch exception="${dtf.ShareException}" property="message">
+            <log>Caught exception correctly [${message}]</log>
+        </catch>
+    </try>   
+    
+    <try>
+        <sequence>
+            <share_set id="inexistent"/>
+            <fail>This statement should never be reached</fail>
+        </sequence>
+        <catch exception="${dtf.ShareException}" property="message">
+            <log>Caught exception correctly [${message}]</log>
+        </catch>
+    </try>   
+    
+    <try>
+        <sequence>
+            <share_create id="okname" type="notype"/>
+            <fail>This statement should never be reached</fail>
+        </sequence>
+        <catch exception="${dtf.ShareException}" property="message">
+            <log>Caught exception correctly [${message}]</log>
+        </catch>
+    </try>   
+    
+    <try>
+        <sequence>
+            <share_destroy id="inexistent"/>
+            <fail>This statement should never be reached</fail>
+        </sequence>
+        <catch exception="${dtf.ShareException}" property="message">
+            <log>Caught exception correctly [${message}]</log>
+        </catch>
+    </try>   
+    
+    <try>
+        <sequence>
+            <share_create id="okname"/>
+            <share_create id="okname"/>
+            <fail>This statement should never be reached</fail>
+        </sequence>
+        <catch exception="${dtf.ShareException}" property="message">
+            <log>Caught exception correctly [${message}]</log>
+        </catch>
+    </try>   
+</script> 

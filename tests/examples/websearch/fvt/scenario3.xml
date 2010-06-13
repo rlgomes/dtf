@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="fvt-scenario3">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>fvt scenario 2 from the users's guide documentation</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input" />
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output" />
+       
+        <loadproperties uri="storage://INPUT/websearch.properties" />
+    </local>
+   
+    <!-- lock the number of clients we'll need for this test -->
+    <for property="client" range="1..${websearch.clients}">
+        <local>
+            <lockcomponent id="CLIENT${client}" />
+        </local>
+    </for>
+   
+    <property name="uri" value="${websearch.uri}?appid=dtftest"/>
+
+    <log>Sending requests...</log>
+    <record uri="storage://OUTPUT/scenario1_search_events.txt">
+        <parallelloop property="client" range="1..${websearch.clients}">
+            <component id="CLIENT${client}">
+                <for property="words" range="${websearch.similar.words}">
+                    <property name="last" value="" overwrite="true" />
+                    
+                    <property name="word.tolerance"
+                              value="${websearch.similar.words.${words}.tolerance}"
+                              overwrite="true"/>
+                    <log>
+                         Queries [${websearch.similar.words.${words}}] 
+                         with tolerance of ${word.tolerance}
+                    </log>
+                    
+                    <for property="word"
+                         range="${websearch.similar.words.${words}}">
+                         
+                        <!-- url encode for safety, because spaces and any
+                             special characters need to be encoded -->
+                        <urlencode source="${word}" result="word"/>
+                        <http_get uri="${uri}&amp;query=${word}" />
+                      
+                        <if>
+                            <neq op1="${last}" op2="" />
+                            <then>
+                                <call function="verifySimilarity">
+                                    <property name="prev" value="${last}" />
+                                    <property name="next" value="${http.get.body}" />
+                                    <property name="tolerance"
+                                        value="${word.tolerance}" />
+                                </call>
+                            </then>
+                        </if>
+                        
+                        <property name="last"
+                                  value="${http.get.body}"
+                                  overwrite="true" />
+                    </for>
+                </for>
+            </component>
+        </parallelloop>
+    </record>
+   
+    <function name="verifySimilarity" export="true">
+        <param name="prev"      type="required" />
+        <param name="next"      type="required" />
+        <param name="tolerance" type="required" />
+        
+        <property name="similar" value="0" overwrite="true"/>
+        <property name="missed" value="0" overwrite="true"/>
+        
+        <for property="result"
+             range="xpath(${prev},/ResultSet/Result)">
+          
+            <property name="title"
+                      value="${result:xpath:/Result/Title/text()}"
+                      overwrite="true" />
+                      
+            <property name="url"
+                      value="${result:xpath:/Result/Url/text()}"
+                      overwrite="true" />
+
+            <property name="title.escaped" 
+                      value="${title:apply:xpath-escape}"
+                      overwrite="true"/>
+                      
+            <property name="lookup_result"
+                      value="${next:xpath:/ResultSet/Result[Title[text() = ${title.escaped}]]}"
+                      overwrite="true" />
+           
+            <if>
+                <neq op1="${lookup_result}" op2=""/>
+                <then>
+                    <property name="lookup_title"
+                              value="${lookup_result:xpath:/Result/Title/text()}"
+                              overwrite="true" />
+                              
+                    <property name="lookup_url"
+                              value="${lookup_result:xpath:/Result/Url/text()}"
+                              overwrite="true" />
+                    <if>
+                        <and>
+                            <eq op1="${title}" op2="${lookup_title}" />
+                            <eq op1="${url}" op2="${lookup_url}" />
+                        </and>
+                        <then>
+                            <add op1="${similar}" op2="1" result="similar"/>
+                        </then>
+                        <else>
+                            <add op1="${missed}" op2="1" result="missed"/>
+                        </else>
+                    </if>
+                </then>
+                <else>
+                    <add op1="${missed}" op2="1" result="missed"/>
+                </else>
+            </if>
+        </for>
+      
+        <add op1="${similar}" op2="${missed}" result="total"/> 
+        <if>
+            <within op1="${similar}" op2="${total}" tolerance="${tolerance}"/>
+            <then>
+                <log>Similarity good, total: ${total} similar: ${similar}</log>
+            </then>
+            <else>
+                <fail message="Failed similarity total: ${total} similar: ${similar}"/>
+            </else>
+        </if>
+        
+    </function>
+</script>

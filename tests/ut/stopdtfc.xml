@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="stopdfc">
+    <info>
+         <author>
+             <name>Rodney Gomes</name>
+             <email>rlgomes@yahoo-inc.com</email>
+         </author> 
+         <description>
+             Test the basic functionality of the component tag which is used to
+             execute remote tasks on remote components in the DTF architecture.
+         </description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+    </local>
+    
+    <component id="DTF-DTFC">
+        <stopcomponent/>
+    </component>
+    
+</script>

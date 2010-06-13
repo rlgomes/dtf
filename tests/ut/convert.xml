@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="convert">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>Unit test for the convert tag.</description>
+    </info>
+   
+    <local>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <import uri="storage://INPUT/perfutil.xml"/>
+    </local>
+
+    <property name="int1" value="1234"/> 
+    <property name="int2" value="42"/> 
+
+    <property name="hex1" value="FFFF"/>
+    <property name="hex2" value="FFFFFFFF"/>
+
+    <property name="string1" value="Hello World!"/>
+    <property name="string2" value="rodney lopes gomes"/>
+  
+    <log>${int1:convert:to-hex}</log> 
+    <log>${int2:convert:to-hex(4)}</log> 
+
+    <log>${hex1:convert:from-hex}</log> 
+    <log>${hex2:convert:from-hex}</log> 
+
+    <log>Length of [${string1}] is ${string1:string:length}</log> 
+    <log>middle name is "${string2:string:sub-string(7,12)}"</log> 
+
+    <log>index of 'W' in "${string1}" is ${string1:string:index-of(W)}</log> 
+ 
+</script>

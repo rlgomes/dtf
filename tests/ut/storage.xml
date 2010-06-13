@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="storage">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>Unit test for the storage tag.</description>
+    </info>
+   
+   	<local> 
+  		<echo>Create a bunch of storages.</echo>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+  	</local>
+  	<for range="[1..10]" property="id">
+        <local>	
+            <createstorage id="STORAGE${id}" path="${dtf.xml.path}/output/STORE${id}"/>
+        </local>
+    </for>
+   
+   	<try> 
+        <local>
+            <createstorage id="STORAGE5" path="${dtf.xml.path}/output"/>
+            <fail>Previous statement should have failed</fail>
+        </local>
+        <catch exception="${dtf.StorageException}" property="message">
+        	<local>
+        		<echo>Caught correction exception: ${message}</echo>
+        	</local>
+        </catch>
+    </try>
+    
+    <!-- negative -->
+   	<try> 
+        <local>
+            <createstorage id="TEST" path="/inexistent/path"/>
+            <fail>Previous statement should have failed</fail>
+        </local>
+        <catch exception="${dtf.StorageException}" property="message">
+        	<local>
+        		<echo>Caught correction exception: ${message}</echo>
+        	</local>
+        </catch>
+    </try>
+
+   	<try> 
+        <local>
+            <createstorage id="INPUT" path="${dtf.xml.path}/caca"/>
+            <fail>Previous statement should have failed</fail>
+        </local>
+        <catch exception="${dtf.StorageException}" property="message">
+        	<local>
+        		<echo>Caught correction exception: ${message}</echo>
+        	</local>
+        </catch>
+    </try>
+    
+</script>

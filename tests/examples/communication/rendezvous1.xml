@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="rendezvous">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>Unit test for the rendezvous tags.</description>
+    </info>
+   
+    <local>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+
+        <property name="parties" value="5"/> 
+    </local>
+    
+    <rendezvous_create id="rv" parties="${parties}"/> 
+    <parallelloop range="1..${parties}" property="thread">
+        <sequence>
+            <for property="iter1" range="1..5">
+	            <for property="iter2" range="1..100">
+	                <!--  do something -->
+	            </for>
+	            <rendezvous_visit id="rv"/>
+            </for>
+        </sequence>
+    </parallelloop> 
+
+</script> 

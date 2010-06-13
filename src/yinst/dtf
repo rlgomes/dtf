@@ -1,0 +1,3 @@
+#!/bin/bash
+DIR=${0##*/}
+/home/y/libexec/$DIR/ant.sh -buildfile /home/y/libexec/$DIR/build.xml -Ddtf.home=/home/y/libexec/$DIR -Ddtf.cwd=`pwd` $@

@@ -1,0 +1,10 @@
+Some important details about the external packages:
+
+- Zookeeper was complied using Java 1.5 and therefore the jar in the lib 
+  directory only differs from the distribution in the zookeeper-bin because of
+  that. 
+  
+- the libraries msv,xsdlib and isorelax libraries are all used to do RNG validation
+  using the normal Java builtin JAXP but by using the the isorelax-jaxp bridge
+  supplied. (got the isorelax-jaxp-bridge from 
+  http://weblogs.java.net/blog/kohsuke/archive/2006/02/validate_xml_us.html).

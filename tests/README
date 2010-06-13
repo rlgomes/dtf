@@ -1,0 +1,25 @@
+Current Test Directory Structure
+--------------------------------
+
+examples -> holds tests that are referenced in the documentation 
+
+limits and perf -> experimental tests that are being designed to stress DTF 
+                   itself in a more system level type of testing.
+                   
+ut -> unit tests designed to run anywhere DTF does and they should always be 
+      executed before each check-in of any changes to DTF itself.
+      
+ut-dep -> they are unit tests as well but the tags being tested depend on a 
+          Webdav server or Proxy Server and therefore can't run in a normal 
+          setup. Working on making these easier to run as part of the normal 
+          unit tests.
+            
+          What test requires what ?
+          
+          - apache setup with webdav for http_streaming.xml (instructions on 
+            apache setup in the test itself)
+            
+          - proxy server somewhere (squid locally on linux would work fine) for
+            http_proxy.xml
+            
+          

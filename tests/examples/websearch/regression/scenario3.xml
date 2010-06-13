@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="scenario3">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>regression scenario 3 from the users's guide documentation</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/websearch.properties"/>
+        
+        <import uri="storage://INPUT/util.xml"/>
+    </local>
+   
+    <for property="count" range="1..10">
+        <log>Iteration ${count}</log>
+	    <http_get uri="${websearch.uri}?appid=dtftest&amp;query=yahoo&amp;results=${count}"
+                  onFailure="fail"/>
+        <call function="validate_response">
+            <property name="resultset" value="${http.get.body}"/>
+            <property name="firsturl" value="http://www.yahoo.com/"/>
+            <property name="count" value="${count}"/>
+        </call>	
+    </for>
+    
+</script>

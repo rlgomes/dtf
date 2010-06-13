@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="range">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF rang expression performance test.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+        <import uri="storage://INPUT/perf_util.xml"/>
+        
+        <property name="iterations" value="1000000"/>
+    </local>
+    
+    <createrange name="sequential" value="1..1000"/>
+    <createrange name="enumerated" 
+                 value="A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A,A"/>
+
+    <createrange name="random" value="random(${sequential})" recycle="true"/>
+   
+    <event name="total"> 
+	    <for property="i" range="1..${iterations}">
+	        <property name="test" value="${random}" overwrite="true"/>
+	    </for> 
+    </event>
+    
+    <subtract op1="${total.stop}" op2="${total.start}" result="duration_ms"/>
+    <divide op1="${duration_ms}" op2="1000" result="duration_s"/>
+    <divide op1="${iterations}" op2="${duration_s}" result="ops_per_sec"/>
+    
+    <log>Ops/sec: ${ops_per_sec}</log>
+    <call function="writeperf">
+        <property name="uri" value="storage://OUTPUT/range.perf"/>
+        <property name="value" value="${ops_per_sec}"/>
+    </call>
+    
+</script>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="functions">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+             Test the basic functionality of the function/call tag which is used 
+             to create functions and being able to call them from various points
+             in the code.
+         </description>
+    </info>
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input" />
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output" />
+        <createstorage id="TESTINPUT" path="${dtf.xml.path}" />
+        <loadproperties uri="storage://INPUT/ut.properties" />
+        <import uri="storage://TESTINPUT/util.xml" />
+        <import uri="storage://TESTINPUT/functions_util.xml" />
+        <property name="nomore" value="false" />
+        <property name="global" value="result" />
+    </local>
+  
+    <!--
+        VERY CAREFUL if you move this function even by a tiny bit you
+        need to update the import.xml file so that the test can validate
+        line,column number as well as script name during exception
+        throwing...
+    -->
+    <function name="badfunc">
+        <fail message="Failing on purpose here." />
+    </function>
+    
+    <function name="func1">
+        <param name="function" type="required" />
+        <param name="nomore" type="optional" />
+        <local>
+            <echo>In func1</echo>
+        </local>
+        <if>
+            <eq op1="${nomore}" op2="true" type="string" nullable="false" />
+            <then>
+                <local>
+                    <echo>No More.</echo>
+                </local>
+            </then>
+            <else>
+                <call function="${function}">
+                    <property name="function" value="${function}" />
+                </call>
+            </else>
+        </if>
+    </function>
+    
+    <function name="func2">
+        <local>
+            <echo>In func2</echo>
+        </local>
+        <call function="func1">
+            <property name="function" value="XXX" />
+            <property name="nomore" value="true" />
+        </call>
+    </function>
+    
+    <function name="func3">
+        <local>
+            <echo>In func3</echo>
+        </local>
+        <call function="func1">
+            <property name="function" value="XXX" />
+            <property name="nomore" value="true" />
+        </call>
+    </function>
+    
+    <function name="func_event">
+        <param name="iteration" type="required" />
+        <event name="func.event">
+            <attribute name="iteration" value="${iteration}"
+                type="string" length="64" />
+        </event>
+    </function>
+
+    <local>
+        <echo>Recursive function calling.</echo>
+    </local>
+    <call function="func1">
+        <property name="function" value="func2" />
+    </call>
+    
+    <call function="func1">
+        <property name="function" value="func3" />
+    </call>
+    
+    <local>
+        <echo>Inexistent function calling.</echo>
+    </local>
+    <try>
+        <sequence>
+            <call function="funcXXXX">
+                <property name="function" value="func2" />
+            </call>
+            <fail message="Previous function called should have failed." />
+        </sequence>
+        <catch exception="${dtf.FunctionException}" property="message">
+            <local>
+                <echo>Caught exception correctly [${message}]</echo>
+            </local>
+        </catch>
+    </try>
+    
+    <echo>Parallel stress function calling.</echo>
+    <record type="txt" uri="storage://OUTPUT/function_events.txt"
+        append="false">
+        <distribute range="1..5" iterations="100" property="iter"
+            unit="1s">
+            <call function="func_event">
+                <property name="iteration" value="${iter}" />
+            </call>
+        </distribute>
+    </record>
+    <call function="checkRecordCount">
+        <property name="recorder.location" value="storage://OUTPUT/function_events.txt" />
+        <property name="recorder.type" value="txt" />
+        <property name="event.name" value="func.event" />
+        <property name="record.count" value="100" />
+    </call>
+   
+    <property name="testprop" value="A" />
+    <function name="function1">
+        <property name="testprop" value="B" overwrite="true" />
+        <if>
+            <neq op1="${testprop}" op2="B" />
+            <then>
+                <fail message="Property value should be B" />
+            </then>
+            <else>
+                <log>Internally property has correct value.</log>
+            </else>
+        </if>
+    </function>
+    <call function="function1" />
+    <if>
+        <neq op1="${testprop}" op2="A" />
+        <then>
+            <fail message="Property value should be A" />
+        </then>
+        <else>
+            <log>Property value not changed from within function call</log>
+        </else>
+    </if>
+    <function name="f">
+        <param name="arg1" type="required" />
+        <log>f: ${arg1}</log>
+        <call function="g">
+            <property name="arg2" value="${arg1}" />
+        </call>
+    </function>
+    <function name="g">
+        <param name="arg2" type="required" />
+        <log>g: ${arg2}</log>
+    </function>
+    
+    <call function="f">
+        <property name="arg1" value="X" />
+    </call>
+    
+    <!--
+        Validate that when there is a default value for a parameter to a
+        function that it doesn't get set by the global scope.
+    -->
+    <property name="globalprop" value="globalvalue" />
+    <function name="globalfunction">
+        <param name="globalprop" default="defaultvalue" />
+        <if>
+            <neq op1="${globalprop}" op2="defaultvalue" />
+            <then>
+                <fail message="Variable does not contain default value! :(" />
+            </then>
+        </if>
+    </function>
+    <call function="globalfunction" />
+    
+    <function name="testReturn">
+        <param name="p1" type="required" />
+        <property name="myvar" value="result" /> 
+        <return>${myvar}</return>
+    </function>
+    <call function="testReturn" result="func.result">
+        <property name="p1" value="p3" />
+    </call>
+    <if>
+        <neq op1="${func.result}" op2="result" />
+        <then>
+            <fail message="Result is not correct: ${func.result}" />
+        </then>
+        <else>
+            <log>All is good got expected result: ${func.result}</log>
+        </else>
+    </if>
+    
+    <function name="functions.function1">
+        <log>
+             This will not fail and will take precedence to the other function
+             known by the same name from util.xml which would fail
+        </log>
+    </function>
+    
+    <call function="functions.function1" />
+    
+    <function name="functionWithParams">
+        <param name="p1" />
+        <param name="p2" />
+    </function>
+    
+    <call function="functionWithParams">
+        <property name="p1" value="1" />
+        <property name="p2" value="2" />
+        <property name="p3" value="3" />
+    </call>
+    
+    <!-- Calling functions with a range -->
+    <function name="functionWithRange">
+        <param name="range"/>
+       
+        <for property="p" range="1..3"> 
+            <log>${range}</log>
+        </for>
+    </function>
+    
+    <createrange name="testrange" value="1..3"/>
+    <call function="functionWithRange">
+        <property name="range" value="${testrange}"/>
+    </call>
+    
+    <for property="i" range="1..1000">
+        <property name="property${i}" value="${dtf.stream(random,10240,1234)}"/>
+    </for>
+    
+    <function name="test">
+        <!--  do nothing... -->
+    </function>
+   
+    <log>Calling function...</log>
+    <for property="i" range="1..1000">
+        <call function="test"/>
+    </for>
+    
+</script>

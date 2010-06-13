@@ -1,0 +1,99 @@
+<?xml version="1.0" ?>
+<project default="build">
+	<loadproperties srcfile="build.properties"/>
+	
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+    	<classpath>
+		<pathelement location="${dtf.dir}/external/lib/ant-contrib-1.0b3.jar"/>
+	</classpath>
+
+	</taskdef>
+
+	<target name="build_plugin" depends="init, compile, dist" description="Main target">
+		<echo>
+            Building the plugin dtf plugin.
+        </echo>
+	</target>
+
+	<target name="init" description="initialize target">
+		<mkdir dir="${build.dir}/${plugin.dist.dir}/lib"/>
+		<mkdir dir="${build.dir}/${plugin.classes.dir}"/>
+		<mkdir dir="${build.dir}/${plugin.dist.dir}"/>
+	</target>
+		
+	<target name="build" 
+		description="Build this plugin along with dtf build">
+		<ant antfile="build.xml" target="build" dir="${dtf.dir}">
+			<property name="dtf.plugins" value="${dtf.plugins}"/>
+		</ant>
+	</target>
+
+	<target name="compile" depends="init" description="Compilation target">
+		<mkdir dir="${build.dir}/${plugin.classes.dir}/plugin"/>
+		
+	    <copy todir="${build.dir}/${plugin.dist.dir}/lib">
+               <fileset dir="lib"/>
+        </copy>
+            
+        <path id="plugin.classpath">
+            <fileset id="dtf.fileset" dir="${build.dir}/${plugin.dist.dir}/lib">
+                <include name="**/*.jar"/>
+            </fileset>
+            <fileset file="${dtf.jar}"/>
+        </path>
+        
+        <javac classpathref="plugin.classpath"
+   			   srcdir="${plugin.src.dir}/java"
+  		   	   destdir="${build.dir}/${plugin.classes.dir}/plugin"
+   			   includes="**/**"
+  		       target="${plugin.target.java}"
+  		       source="${plugin.source.java}"
+   			   debug="on"
+			   encoding="ISO-8859-1"
+   			   debuglevel="lines,vars,source"/>
+		
+   		<!-- copy xsd -->
+		<copy todir="${build.dir}/${plugin.classes.dir}/plugin" 
+			  file="plugin.xsd"/>
+		<echo/>
+	</target>
+
+	<target name="dist" description="distribution target">
+		<jar jarfile="${build.dir}/${plugin.dist.dir}/lib/plugin_dtf.jar" 
+			 basedir="${build.dir}/${plugin.classes.dir}/plugin"
+			 manifest="MANIFEST.MF"
+		     includes="**/**"/>
+		
+		<copy todir="${build.dir}/${plugin.dist.dir}/tests">
+			<fileset dir="tests"/>	
+		</copy>
+
+		<!-- place the necessary files in the bin directory -->
+		<echo>Copying bin files to ${build.dir}/${plugin.dist.dir}/bin</echo>
+		<mkdir dir="${build.dir}/${plugin.dist.dir}/bin"/>
+		<for list="${plugin.external.bin.files}" delimiter="," param="file">
+			<sequential>
+				<copy todir="${build.dir}/${plugin.dist.dir}/bin" 
+				      file="@{file}"/>
+ 			</sequential>
+		</for>
+	
+		<!-- Copy the sources to the build directory so tha DTF can generate 
+		     the documentation nicely. -->
+    	<mkdir dir="${build.dir}/${plugin.dist.dir}/src"/>
+		<copy todir="${build.dir}/${plugin.dist.dir}/src">
+			<fileset dir="${plugin.src.dir}/java"/>
+		</copy>
+	</target>
+	
+	<target name="doc"
+			description="Generate DTF XML documentation for plugin-dtf.">
+		<ant antfile="build.xml" target="doc" dir="${dtf.dir}">
+			<property name="dtf.plugins" value="${dtf.plugins}"/>
+		</ant>
+	</target>
+	
+	<target name="clean" description="clean target">
+		<ant antfile="build.xml" target="clean" dir="${dtf.dir}"/>
+	</target>
+</project>

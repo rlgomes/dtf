@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="range_dist">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF rang expression unit test.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <lockcomponent id="C1"/>
+       
+        <property name="list.xml" uri="storage://INPUT/list.xml"/>
+        <property name="list.json" uri="storage://INPUT/list.json"/>
+      
+        <!-- have to be careful that every range will only generate its own 
+             events when executed on the component below, that way we can 
+             guarantee that the runner can validate the existence of all of 
+             the events for each of the ranges here tested. --> 
+        <property name="r1" value="200..400"/>
+        <property name="r2" value="9000,90001,90002,9003,9004,9005,9006,9007"/>
+        <property name="r3" value="[1..10][a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q]"/>
+        <property name="r4" value="xpath(${list.xml},//list/item/text())"/>
+        <property name="r5" value="jpath(${list.json},//list/item/text())"/>
+         
+        <property name="ranges" value="r1,r2,r3,r4,r5"/>
+    </local>
+
+    <for property="r" range="${ranges}">
+        <log>validating range ${${r}} works correctly on component</log>
+	    <createrange name="range" value="${${r}}" recycle="false"/>
+	    <component id="C1">
+	        <for property="i" range="${${r}}">
+	            <event name="event${range}"/>
+	        </for>
+	    </component> 
+	    
+	    <for property="i" range="${${r}}">
+	        <assert><isset property="event${i}.start"/></assert>
+	    </for>
+    </for>
+        
+</script>

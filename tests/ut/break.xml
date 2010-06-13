@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="break">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF unit test for break tag.</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+        <lockcomponent id="C1"/>
+    </local>
+
+    <log>validate break within a for loop</log>
+    <record type="stats">
+	    <for property="i" range="1..10">
+	        <if>
+	            <gt op1="${i}" op2="5"/>
+	            <then>
+	                <break/>
+	            </then>
+	        </if>
+	        <event name="for.event"/>
+	    </for>
+    </record>
+    <assert><eq op1="${for.event.tot_occ}" op2="5"/></assert>
+
+    <log>validate break within a timer</log>
+    <record type="stats">
+        <timer interval="30s" property="i">
+            <if>
+                <gt op1="${i}" op2="5"/>
+                <then>
+                    <break/>
+                </then>
+            </if>
+	        <event name="timer.event"/>
+        </timer>
+    </record>
+    <assert><eq op1="${timer.event.tot_occ}" op2="5"/></assert>
+
+    <log>validate break within a while</log>
+    <record type="stats">
+	    <property name="i" value="0" overwrite="true"/>
+	    <while>
+	        <eq op1="true" op2="true"/>
+	        <add op1="${i}" op2="1" result="i"/>
+	        <if>
+	            <gt op1="${i}" op2="5"/>
+	            <then>
+	                <break/>
+	            </then>
+	        </if>
+	        <event name="while.event"/>
+	    </while>
+    </record>
+    <assert><eq op1="${while.event.tot_occ}" op2="5"/></assert>
+    
+    <log>validate break within a parallelloop</log>
+    <record type="stats">
+        <parallelloop property="i" range="1..10">
+            <if>
+                <gt op1="${i}" op2="5"/>
+                <then>
+                    <break/>
+                </then>
+            </if>
+            <event name="pl.event"/>
+        </parallelloop>
+    </record>
+    <assert><eq op1="${pl.event.tot_occ}" op2="5"/></assert>
+    
+    <log>validate break within a parallel</log>
+    <record type="stats">
+        <parallel>
+            <sequence>
+                <event name="parallel.event"/>
+            </sequence>
+            <sequence>
+                <event name="parallel.event"/>
+            </sequence>
+            <sequence>
+                <break/>
+                <event name="parallel.event"/>
+            </sequence>
+            <sequence>
+                <break/>
+                <event name="parallel.event"/>
+            </sequence>
+            <sequence>
+                <break/>
+                <event name="parallel.event"/>
+            </sequence>
+        </parallel>
+    </record>
+    <assert><eq op1="${parallel.event.tot_occ}" op2="2"/></assert>
+
+    <log>validate break within a parallel on a component</log>
+    <record type="stats">
+        <component id="C1">
+            <parallel>
+                <sequence>
+                    <event name="parallel.event" />
+                </sequence>
+                <sequence>
+                    <event name="parallel.event" />
+                </sequence>
+                <sequence>
+                    <break />
+                    <event name="parallel.event" />
+                </sequence>
+                <sequence>
+                    <break />
+                    <event name="parallel.event" />
+                </sequence>
+                <sequence>
+                    <break />
+                    <event name="parallel.event" />
+                </sequence>
+            </parallel>
+            <assert>
+                <eq op1="${parallel.event.tot_occ}" op2="2" />
+            </assert>
+        </component>
+    </record>
+    
+</script>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="arithmetic">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF unit test for cat tag.</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/perf.properties"/>
+        
+        <import uri="storage://INPUT/perf_util.xml"/>
+        
+        <property name="iterations" value="200000" overwrite="true"/>
+    </local>
+    
+    <property name="count" value="0"/>
+    <record uri="storage://OUTPUT/perf_add.txt">
+        <for property="i" range="1..${iterations}">
+            <event name="dtf.add">
+                <attribute name="i" value="${i}"/>
+                <add op1="${count}" op2="1" result="count"/>
+            </event>
+        </for>
+    </record>
+    
+    <query uri="storage://OUTPUT/perf_add.txt" cursor="cursor"/>
+    <stats cursor="cursor" event="perfadd"/>
+    
+    <property name="count" value="20000"/>
+    <record uri="storage://OUTPUT/perf_sub.txt">
+        <for property="i" range="1..${iterations}">
+            <event name="dtf.sub">
+                <attribute name="i" value="${i}"/>
+                <subtract op1="${count}" op2="1" result="count"/>
+            </event>
+        </for>
+    </record>
+    
+    <query uri="storage://OUTPUT/perf_sub.txt" cursor="cursor"/>
+    <stats cursor="cursor" event="perfsub"/>
+
+    <property name="count" value="20000" overwrite="true"/>
+    <record uri="storage://OUTPUT/perf_div.txt">
+        <for property="i" range="1..${iterations}">
+            <event name="dtf.div">
+                <attribute name="i" value="${i}"/>
+                <divide op1="${count}" op2="1" result="count"/>
+            </event>
+        </for>
+    </record>
+    
+    <query uri="storage://OUTPUT/perf_div.txt" cursor="cursor"/>
+    <stats cursor="cursor" event="perfdiv"/>
+
+    <property name="count" value="20000" overwrite="true"/>
+    <record uri="storage://OUTPUT/perf_mul.txt">
+        <for property="i" range="1..${iterations}">
+            <event name="dtf.mul">
+                <attribute name="i" value="${i}"/>
+                <multiply op1="${count}" op2="1" result="count"/>
+            </event>
+        </for>
+    </record>
+    
+    <query uri="storage://OUTPUT/perf_mul.txt" cursor="cursor"/>
+    <stats cursor="cursor" event="perfmul"/>
+
+    <property name="count" value="20000" overwrite="true"/>
+    <record uri="storage://OUTPUT/perf_mod.txt">
+        <for property="i" range="1..${iterations}">
+            <event name="dtf.mod">
+                <attribute name="i" value="${i}"/>
+                <mod op1="${count}" op2="1" result="count"/>
+            </event>
+        </for>
+    </record>
+    
+    <query uri="storage://OUTPUT/perf_mod.txt" cursor="cursor"/>
+    <stats cursor="cursor" event="perfmod"/>
+
+    <property name="count" value="-20000" overwrite="true"/>
+    <record uri="storage://OUTPUT/perf_abs.txt">
+        <for property="i" range="1..${iterations}">
+            <event name="dtf.abs">
+                <attribute name="i" value="${i}"/>
+                <abs op1="${count}" result="count"/>
+            </event>
+        </for>
+    </record>
+    
+    <query uri="storage://OUTPUT/perf_abs.txt" cursor="cursor"/>
+    <stats cursor="cursor" event="perfabs"/>
+    
+    <log>
+        Arithmetic Performance:
+        **********************
+        
+        add/second:      ${perfadd.avg_occ}
+        mod/second:      ${perfmod.avg_occ}
+        abs/second:      ${perfabs.avg_occ}
+        subtract/second: ${perfsub.avg_occ}
+        divide/second:   ${perfdiv.avg_occ}
+        multiply/second: ${perfmul.avg_occ}
+    </log>
+   
+    <for property="op" range="add,mod,sub,div,mul,abs"> 
+        <call function="writeperf">
+            <property name="uri" value="storage://OUTPUT/arithmetic_${op}.perf"/>
+            <property name="value" value="${perf${op}.avg_occ}"/>
+        </call>
+    </for>
+   
+</script>

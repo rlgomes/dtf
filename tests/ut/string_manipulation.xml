@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="string_manipulation">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF unit test to validate the tags that can be used to 
+                     manipulate strings within the framework.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <property name="test" value="1:2:3:5"/>
+        <property name="email" value="user@hostname"/>
+    </local>
+   
+    <replace source="${test}" destination="newtest" expression=":" with=","/>
+
+    <replace source="${email}" destination="user" expression="([^@]+)@(.+)" with="$1"/>
+    <replace source="${email}" destination="host" expression="([^@]+)@(.+)" with="$2"/>
+
+    <log>old: ${test} new: ${newtest}</log>
+    <log>email: ${email} user: ${user}</log>
+    <log>email: ${email} host: ${host}</log>
+
+    <if>    
+        <match source="${email}" expression="[^@]+@.+"/>
+        <else>
+            <fail message="Failed to match the email regular expression"/>
+        </else>
+    </if>
+ 
+    <record uri="storage://OUTPUT/replace_perf.txt"> 
+	    <for property="i" range="1..${iterations.small}">
+            <event name="replace">
+	           <replace source="1:2:3"
+                        destination="new"
+                        expression=":"
+                        with=","/>
+            </event>
+	    </for>
+    </record>
+    
+    <query uri="storage://OUTPUT/replace_perf.txt" cursor="cursor"/>
+    <stats cursor="cursor" event="replace.perf"/>
+    
+    <record uri="storage://OUTPUT/replace_complex_perf.txt"> 
+        <for property="i" range="1..${iterations.small}">
+            <event name="replace">
+               <replace source="user@home:/path"
+                        destination="new"
+                        expression="([^@]+)@([^/]+)/(.+)"
+                        with="$2"/>
+            </event>
+        </for>
+    </record>
+    
+    <query uri="storage://OUTPUT/replace_complex_perf.txt" cursor="cursor"/>
+    <stats cursor="cursor" event="replace.complex.perf"/>
+    
+    <record uri="storage://OUTPUT/match_perf.txt"> 
+        <for property="i" range="1..${iterations.small}">
+            <event name="match">
+               <if>
+	               <match source="${email}"
+	                      expression="([^@]+)@(.+)"/>
+               </if>
+            </event>
+        </for>
+    </record>
+    
+    <query uri="storage://OUTPUT/match_perf.txt" cursor="cursor"/>
+    <stats cursor="cursor" event="match.perf"/>
+    
+    <log>
+        Simple Match
+        matches/second:  ${match.perf.avg_occ}
+        total matches:   ${match.perf.tot_occ}
+    </log>
+    
+    <log>
+        Simple Replace
+        replaces/second: ${replace.perf.avg_occ}
+        total replaces:  ${replace.perf.tot_occ}
+    </log>
+
+    <log>
+        Complex Replace (using grouping)
+        replaces/second: ${replace.complex.perf.avg_occ}
+        total replaces:  ${replace.complex.perf.tot_occ}
+    </log>
+
+    <if>
+	    <match source="http://user:password@host/path" 
+	           expression="(h|H)(t|T)(t|T)(p|P):/{1,3}[^:]+:+[^@]+@[^/]+/.+"/>
+        <else>
+            <fail message="Previous match should have succeeded."/>    
+        </else>
+    </if>
+
+    <if>
+	    <match source="httpx://user:password@host/path" 
+	           expression="(h|H)(t|T)(t|T)(p|P):/{1,3}[^:]+:+[^@]+@[^/]+/.+"/>
+        <then>
+            <fail message="Previous match should have failed."/>    
+        </then>
+    </if>
+
+    <if>
+	    <match source="http://user:password@host" 
+	           expression="(h|H)(t|T)(t|T)(p|P):/{1,3}[^:]+:+[^@]+@[^/]+/.+"/>
+        <then>
+            <fail message="Previous match should have failed."/>    
+        </then>
+    </if>
+
+    <if>
+	    <match source="http://user:password@host/" 
+	           expression="(h|H)(t|T)(t|T)(p|P):/{1,3}[^:]+:+[^@]+@[^/]+/.+"/>
+        <then>
+            <fail message="Previous match should have failed."/>    
+        </then>
+    </if>
+
+    <if>
+	    <match source="http://user:password@host/path" 
+	           expression="http:/{1,3}[^:]+:+[^@]+@[^/]+/.+"
+               insensitive="true"/>
+        <else>
+            <fail message="Previous match should have succeededd."/>    
+        </else>
+    </if>
+    
+    <if>
+	    <match source="TeStInG" expression="testing" insensitive="true"/>
+        <else>
+            <fail message="Previous match should have succeededd."/>    
+        </else>
+    </if>
+    
+    <if>
+        <match source="XXXXX?" expression=".*\?$"/>
+        <else>
+            <fail>not good.</fail>
+        </else>
+    </if>
+
+    <if>
+        <not><match source="XXX?XX" expression=".*\?$"/></not>
+        <else>
+            <fail>not good.</fail>
+        </else>
+    </if>
+
+    <if>
+        <match source="http://www.yahoo.com" expression="http" partial="true"/>
+        <else>
+            <fail>not good.</fail>
+        </else>
+    </if>
+    
+    <if>
+        <match source="http://www.yahoo.com" expression="www.yahoo.com" partial="true"/>
+        <else>
+            <fail>not good.</fail>
+        </else>
+    </if>
+    
+
+</script>

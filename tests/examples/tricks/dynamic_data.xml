@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="dyanmic_data">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        This tests is an example of what is discussed in the User's Guide on 
+        how to generate Dynamic Data in order to keep up with the product 
+        changes between releases and being able to rerun the same tests from a
+        certain version against the next with minor adjustments.
+        </description>
+    </info>
+        
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/base.properties"/>
+        <loadproperties uri="storage://INPUT/v${version}.properties"/>
+        
+        <property name="xml_data" uri="storage://INPUT/operation.xml"/>
+        <property name="json_data" uri="storage://INPUT/operation.json"/>
+    </local>
+   
+    <log>XML data:</log>
+    <log>
+    ${xml_data}
+    </log>  
+    <log>JSON data:</log>
+    <log>
+    ${json_data}
+    </log>  
+</script>

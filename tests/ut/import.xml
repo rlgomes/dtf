@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="import">
+    <info>
+         <author>
+             <name>Rodney Gomes</name>
+             <email>rlgomes@yahoo-inc.com</email>
+         </author> 
+         <description>
+             Test the basic functionality of the function/call tag which is used 
+             to create functions and being able to call them from various points
+             in the code.
+         </description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="TINPUT" path="${dtf.xml.path}"/>
+        <property name="nomore" value="false"/>
+        
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+	    <import uri="storage://TINPUT/functions.xml" loadFuncs="true" loadRefs="true"/> 
+    </local>
+   	
+   	<call function="func1">
+   		<property name="function" value="func2"/>	
+   	</call> 
+
+ 	<call function="func3">
+   		<property name="function" value="func2"/>	
+   	</call> 
+
+    <property name="expected" value="Failing on purpose here. at tests/ut/functions.xml:33:52"/>
+    <try> 
+        <call function="badfunc"/>
+        <catch exception="${dtf.FailException}" property="message">
+            <if>
+                <match source="${message}"
+                       expression="${expected}"/>
+                <then>
+                    <log>Got the correct line,column and script name</log>
+                </then>
+                <else>
+                    <log>
+                        expected ${expected}
+                        got      ${message}
+                    </log>
+                    <fail message="Failure to get correct exception message."/>
+                </else>
+            </if>
+        </catch>
+    </try>
+ 
+    <try> 
+	    <local>
+	        <import uri="storage://INPUT/badxml"/>
+            <fail message="This line should never be executed"/>
+	    </local> 
+        <catch exception="${dtf.ParseException}" property="message">
+            <assert>
+                <match source="${message}"
+                       expression="Error parsing XML. at tests/ut/import.xml:57:48"/>
+            </assert>
+        </catch>
+    </try>
+    
+</script>

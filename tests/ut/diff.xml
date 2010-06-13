@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="diff">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF unit test for cat tag.</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+    </local>
+    
+    <cat uri="storage://OUTPUT/file1" append="false">
+A
+B
+</cat>    
+    <cat uri="storage://OUTPUT/file2" append="false">
+A
+Z
+Z
+B
+</cat>  
+
+    <record uri="storage://OUTPUT/diffs">
+        <diff>
+            <input uri="storage://OUTPUT/file1"/>
+            <input uri="storage://OUTPUT/file2"/>
+        </diff>
+    </record>
+    <query uri="storage://OUTPUT/diffs" event="diffs" cursor="cursor"/>
+    <property name="count" value="0" overwrite="true"/>
+    <iterate cursor="cursor">
+        <add result="count" op2="${count}" op1="1"/>
+        <log>${cursor.uris} differ on ${cursor.diff}</log>
+    </iterate>
+    <if>
+        <neq op1="${count}" op2="2"/>
+        <then>
+            <fail>Should have found 2 differences but only found ${count}</fail>
+        </then>
+    </if>
+
+    <cat uri="storage://OUTPUT/file1" append="false">
+A
+Z
+Z
+B
+</cat>    
+    <cat uri="storage://OUTPUT/file2" append="false">
+A
+B
+</cat>  
+
+    <record uri="storage://OUTPUT/diffs">
+        <diff>
+            <input uri="storage://OUTPUT/file1"/>
+            <input uri="storage://OUTPUT/file2"/>
+        </diff>
+    </record>
+    <query uri="storage://OUTPUT/diffs" event="diffs" cursor="cursor"/>
+    <property name="count" value="0" overwrite="true"/>
+    <iterate cursor="cursor">
+        <add result="count" op2="${count}" op1="1"/>
+        <log>${cursor.uris} differ on ${cursor.diff}</log>
+    </iterate>
+    <if>
+        <neq op1="${count}" op2="2"/>
+        <then>
+            <fail>Should have found 2 differences but only found ${count}</fail>
+        </then>
+    </if>
+
+    <cat uri="storage://OUTPUT/file1" append="false">
+A
+B
+</cat>    
+    <cat uri="storage://OUTPUT/file2" append="false">
+A
+B
+</cat>  
+
+    <record uri="storage://OUTPUT/diffs">
+        <diff>
+            <input uri="storage://OUTPUT/file1"/>
+            <input uri="storage://OUTPUT/file2"/>
+        </diff>
+    </record>
+    <query uri="storage://OUTPUT/diffs" event="diffs" cursor="cursor"/>
+    <iterate cursor="cursor">
+        <fail>There shouldn't be any differences.</fail>
+    </iterate>
+
+    <log>Starting to generate file</log>
+    <cat uri="storage://OUTPUT/bigfile" append="false"></cat>
+    <for property="i" range="1..10240">
+        <cat uri="storage://OUTPUT/bigfile">
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</cat>
+    </for> 
+    <log>Done generating file</log>
+    <log>Start of diff</log>
+    <record uri="storage://OUTPUT/diffs2">
+        <diff>
+            <input uri="storage://OUTPUT/bigfile"/>
+            <input uri="storage://OUTPUT/bigfile"/>
+        </diff>
+    </record>
+    <log>End of diff</log>
+    <query uri="storage://OUTPUT/diffs2" event="diffs" cursor="cursor"/>
+    <iterate cursor="cursor">
+        <log>${cursor.uris} differ on ${cursor.diff}</log>
+    </iterate>
+
+</script>

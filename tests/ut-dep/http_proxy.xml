@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="http">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        This test validates the proxy settings for HTTP Tags works and requires
+        that you install or have access to some proxy server. On linux you can 
+        easily install squid and just configure it on your localhost.
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+       
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <property name="proxy.host" value="localhost"/>
+        <property name="proxy.port" value="3128"/>
+    </local> 
+   
+    <!-- correctness to validate that using the proxy doesn't affect 
+         the content of the page being retrieved --> 
+    <http_config id="default_config">
+        <proxy host="${proxy.host}" 
+               port="${proxy.port}"/>
+    </http_config> 
+ 
+    <http_get uri="http://www.example.com"/>
+    <property name="response1" value="${http.get.body}"/>
+              
+    <http_get uri="http://www.example.com">
+        <http_config refid="default_config"/>
+    </http_get>
+    <property name="response2" value="${http.get.body}"/>
+
+    <if>
+        <neq op1="${response1}" op2="${response2}"/>    
+        <then>
+            <fail>
+            Responses differ! 
+          
+            ${response1}
+           
+            different from:
+            
+            ${response2}
+            
+            </fail>
+        </then>
+    </if>
+    
+    <!--
+    compare the performance of direct access vs proxied access to a page
+    -->
+              
+    <record uri="storage://OUTPUT/http_get_with_proxy.txt">
+	    <for property="i" range="1..100">
+		    <http_get uri="${dtf.http.uri}">
+		        <http_config refid="default_config"/>
+		    </http_get>
+	    </for>
+    </record>
+
+    <record uri="storage://OUTPUT/http_get_without_proxy.txt">
+	    <for property="i" range="1..100">
+	        <http_get uri="${dtf.http.uri}"/>
+	    </for>
+    </record>
+    
+    <query uri="storage://OUTPUT/http_get_without_proxy.txt" cursor="withoutproxy"/>
+    <stats cursor="withoutproxy" event="get.withoutproxy"/>
+
+    <query uri="storage://OUTPUT/http_get_with_proxy.txt" cursor="withproxy"/>
+    <stats cursor="withproxy" event="get.withproxy"/>
+    
+    <log>
+        HTTP Get without proxy
+        **********************
+        Ops/sec:        ${get.withoutproxy.avg_occ}
+        Max Duration:   ${get.withoutproxy.max_dur}ms
+        Min Duration:   ${get.withoutproxy.min_dur}ms
+        Avg Duration:   ${get.withoutproxy.min_dur}ms
+
+        HTTP Get with proxy
+        **********************
+        Ops/sec:        ${get.withproxy.avg_occ}
+        Max Duration:   ${get.withproxy.max_dur}ms
+        Min Duration:   ${get.withproxy.min_dur}ms
+        Avg Duration:   ${get.withproxy.min_dur}ms
+    </log>           
+     
+</script> 

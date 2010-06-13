@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="share">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Example usage of share points in real world scenario. To setup a webdav
+        server to run this against just make sure to have the following:
+        
+        WARNING: In order to use this test you must have a webdav server running
+             locally. This can easily be acheived by setting up an apache
+             server on your setup with the following entry in the httpd.conf
+             file:
+                 
+             <![CDATA[ 
+                ## Location of the DavLock file
+                DavLockDB /usr/share/apache2/var/DavLock
+                    
+                ## Set up the myWebDAV directory to use WebDAV
+                <Directory "/var/www/webdav">
+                    Dav On
+                    Allow from all
+                </Directory>
+            ]]>
+               
+            * make sure to create the /var/www/webdav path or to change that
+              to a path that your apache user has permissions to read from 
+              and write to. 
+        </description>
+    </info>
+   
+    <local>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+
+    </local>
+
+    <rendezvous_create id="ALLDONE" parties="2" />
+    <share_create id="MYSHARE" />
+    <parallel>
+        <sequence>
+            <for property="i" range="1..1000">
+                <http_put uri="http://localhost/webdav/file${i}">
+                    <entity value="${dtf.stream(random,32,12345)}" />
+                </http_put>
+                <log>wrote file${i}</log>
+                <share_set id="MYSHARE">
+                    <createrange name="files" value="random(1..${i})"
+                        recycle="true" />
+                </share_set>
+            </for>
+            <rendezvous_visit id="ALLDONE" />
+        </sequence>
+        <sequence>
+            <try>
+                <while>
+                    <not>
+                        <rendezvous_check id="ALLDONE" />
+                    </not>
+                    <share_get id="MYSHARE" blocking="true"/>
+                    <for property="i" range="1..10">
+                        <property name="file" value="file${files}"
+                            overwrite="true" />
+                        <http_get uri="http://localhost/webdav/${file}" />
+                        <log>read ${file}</log>
+                    </for>
+                </while>
+                <finally>
+                    <rendezvous_visit id="ALLDONE" />
+                </finally>
+            </try>
+        </sequence>
+    </parallel>
+
+</script> 

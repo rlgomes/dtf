@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="random">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+            DTF unit test to validate the correctness and performance of random 
+            number generators.
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/perf.properties"/>
+        <import uri="storage://INPUT/perf_util.xml"/>
+        
+        <property name="iterations" value="500000" overwrite="true"/>
+        <property name="rand_types" value="randomInt,randomLong,randomDouble,gaussianLong"/>
+    </local>
+   
+    <log>random numbers with upper and lower limit</log>
+    <for property="type" range="${rand_types}">
+        <event name="perf">
+            <for property="i" range="1..${iterations}">
+                <property name="random" value="${dtf.${type}(0,10000)}" overwrite="true"/>
+            </for>
+        </event>
+        <subtract op1="${perf.stop}" op2="${perf.start}" result="duration_ms" />
+        <divide op1="${duration_ms}" op2="1000" result="duration_s" />
+        <divide op1="${iterations}" op2="${duration_s}" result="ops_per_sec" />
+        <log>${type}/second: ${ops_per_sec}</log>
+        <call function="writeperf">
+            <property name="uri" value="storage://OUTPUT/random_${type}.perf"/>
+            <property name="value" value="${ops_per_sec}"/>
+        </call>
+    </for>
+    
+</script>

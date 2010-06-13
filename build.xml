@@ -1,0 +1,506 @@
+<?xml version="1.0" ?>
+
+<project default="build">
+	<loadproperties srcfile="build.properties"/>
+
+	<taskdef resource="net/sf/antcontrib/antlib.xml">
+		<classpath>
+			<pathelement location="external/lib/ant-contrib-1.0b3.jar"/>
+		</classpath>
+	</taskdef>
+
+	<target name="build" depends="init,compile,dist,tar" 
+		    description="build dtf">
+		<echo>DTF build at ${basedir}/${dtf.build.dir}/${dtf.dist.dir}</echo>
+	</target>
+
+	<target name="tar">
+		<tar basedir="${dtf.build.dir}/${dtf.dist.dir}"
+		     tarfile="${dtf.build.dir}/dtf.tar.gz"
+		     compression="gzip"/>
+	</target>
+
+	<target name="init" description="initialize target">
+		<mkdir dir="${dtf.build.dir}"/>
+		<mkdir dir="${dtf.build.dir}/${dtf.classes.dir}"/>
+		<mkdir dir="${dtf.build.dir}/${dtf.dist.dir}"/>
+		<mkdir dir="${dtf.build.dir}/${dtf.dist.dir}/lib"/>
+		<mkdir dir="${dtf.build.dir}/${dtf.dist.dir}/tests"/>
+
+		<path id="dtf.classpath">
+			<fileset id="dtf.fileset" dir="${dtf.ext.lib.dir}">
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="external">
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset file="${dtf.build.dir}/${dtf.dist.dir}/lib/dtf.jar"/>
+		</path>
+	</target>
+	
+	<target name="junit.init">
+		<!-- if you don't have junit.home set then we won't compile the 
+		     junit tests -->
+		<if>
+			<equals arg1="${junit.home}" arg2="" trim="true"/>
+			<then>
+				<property name="javac.excludes" value="**/junit/**"/>
+				<path id="junit.classpath"/>
+				<echo>JUnit not tests not being compiled</echo>
+			</then>
+			<else>
+				<property name="javac.excludes" value=""/>
+				<path id="junit.classpath">
+				    <fileset dir="${junit.home}">
+				        <include name="*.jar" />
+				    </fileset>
+				</path>
+			</else>
+		</if>
+		
+	</target>
+
+	<target name="compile" depends="junit.init" description="Compilation target">
+		<javac srcdir="${dtf.src.dir}/java"
+		   	   destdir="${dtf.build.dir}/${dtf.classes.dir}"
+			   debug="on"
+			   debuglevel="lines,vars,source"
+			   encoding="ISO-8859-1"
+			   excludes="${javac.excludes}"
+			   classpath="${junit.lib}">
+			<classpath refid="dtf.classpath"/>
+			<classpath refid="junit.classpath"/>
+		</javac>
+		
+		<tstamp>
+		    <!-- build id -->
+		    <format property="build.id" pattern="yyyyMMddHHmmssSZ"/>
+	    </tstamp>
+		
+		<echo file="${dtf.build.dir}/${dtf.classes.dir}/build.id">${build.id}</echo>
+
+		<copy todir="${dtf.build.dir}/${dtf.classes.dir}">
+			<fileset dir="src">
+				<include name="xsl/**"/>
+			</fileset>
+		</copy>
+
+	</target>
+
+	<target name="distplugins" depends="init" description="distribution target">
+		<!-- Handle plugins in plugin directory -->
+		<for list="${dtf.plugins}" delimiter=":" param="plugin.location">
+			<sequential>
+				<basename property="plugin.name" file="@{plugin.location}"/>
+				<ant antfile="build.xml" 
+					 target="build_plugin" 
+					 dir="@{plugin.location}">
+					<property name="dtf.jar" 
+						      value="${dtf.dir}/${dtf.build.dir}/${dtf.dist.dir}/lib/${dtf.jar.filename}"/>
+					<property name="build.dir" 
+						      value="${dtf.dir}/${dtf.build.dir}/${plugin.name}"/>
+				</ant>
+
+				<echo>Merging plugin XSD with DTF XSD</echo>
+				<java classname="com.yahoo.dtf.plugin.PluginMerger" 
+    			 	  failonerror="true" fork="true">
+					<arg value="${dtf.build.dir}/${plugin.name}/dist"/>
+					<arg value="${dtf.xsd.filename}"/>
+					<arg value="${dtf.build.dir}/${dtf.dist.dir}"/>
+					<sysproperty key="dtf.home" value="${dtf.build.dir}/${dtf.dist.dir}"/>
+
+					<classpath refid="dtf.classpath"/>
+					<classpath>
+						<pathelement location="${dtf.build.dir}/${dtf.dist.dir}/lib/${dtf.jar.filename}"/>
+					</classpath>
+				</java>
+
+				<!-- we only copy lib directory and tests directory the other
+				     files put here by the plugin better be source files to 
+				     be picked up by the javadoc otherwise they're not part
+				     of the final distribution being built. -->
+				<echo>Copying plugin ${plugin.name} to ${dtf.dist.dir}</echo>
+				<copy todir="${dtf.build.dir}/${dtf.dist.dir}">
+					<fileset dir="${dtf.build.dir}/${plugin.name}/dist">
+						<include name="**/lib/**"/>
+					</fileset>
+				</copy>
+
+				<copy todir="${dtf.build.dir}/${dtf.dist.dir}/tests/${plugin.name}">
+					<fileset dir="@{plugin.location}/tests"/>
+				</copy>
+
+				<copy todir="${dtf.build.dir}/${dtf.dist.dir}">
+					<fileset dir="${dtf.build.dir}/${plugin.name}/dist/bin"/>
+				</copy>
+
+				<!-- set the permissions of the stuff I just copied into the 
+				     bin directory back to executable (since stupid ant task 
+				     removes the executable permissions) -->
+				<chmod perm="555"
+			    	   includes="*" 
+			    	   excludes="*.properties,*.xsd,*.xml,*.txt"
+			           dir="${dtf.build.dir}/${dtf.dist.dir}"/>
+			</sequential>
+		</for>
+	</target>
+
+	<target name="dist" description="distribution target">
+		<jar jarfile="${dtf.build.dir}/${dtf.dist.dir}/lib/${dtf.jar.filename}" 
+			 basedir="${dtf.build.dir}/${dtf.classes.dir}" 
+		 	 includes="**/**"/>
+
+		<copy todir="${dtf.build.dir}/${dtf.dist.dir}/lib">
+			<fileset refid="dtf.fileset"/>
+		</copy>
+
+		<copy todir="${dtf.build.dir}/${dtf.dist.dir}" overwrite="true">
+			<fileset dir="${dtf.src.dir}/scripts"/>
+			<fileset file="${dtf.src.dir}/config/dtf.properties"/>
+			<fileset file="${dtf.src.dir}/config/policy.txt"/>
+			<fileset file="dtf.xsd"/>
+		</copy>
+
+		<copy todir="${dtf.build.dir}/${dtf.dist.dir}/tests">
+			<fileset dir="tests"/>
+		</copy>
+
+		<copy todir="${dtf.build.dir}/${dtf.dist.dir}/xsl">
+			<fileset dir="src/xsl"/>
+		</copy>
+
+		<copy tofile="${dtf.build.dir}/${dtf.dist.dir}/build.xml" file="run.xml"/>
+
+		<!-- put the current copy of ant for distribution -->
+		<unzip src="${dtf.ant.zip}" dest="${dtf.build.dir}/${dtf.dist.dir}"/>
+
+		<!-- clean up stupid docs in apache (not necesary for distribution) -->
+		<delete>
+			<fileset dir="${dtf.build.dir}/${dtf.dist.dir}" includes="**/apache*/docs/**"/>
+		</delete>
+
+		<antcall target="distplugins"/>
+
+		<!-- permissions fixing... ugly ugly... -->
+		<chmod perm="555" includes="**/ant,**/antRun,*.sh,*.php" dir="${dtf.build.dir}/${dtf.dist.dir}"/>
+
+	</target>
+
+	<target name="clean" description="clean target">
+		<delete dir="${dtf.build.dir}" failonerror="true"/>
+	</target>
+
+	<target name="deploy" 
+    	    depends="init" 
+            description="Deploys the current build to a list of machines">
+		<property environment="env"/>
+
+		<if>
+			<not>
+				<isset property="deploy.user"/>
+			</not>
+			<then>
+				<property name="deploy.user" value="${env.USER}"/>
+			</then>
+		</if>
+
+		<if>
+			<not>
+				<isset property="deploy.pass"/>
+			</not>
+			<then>
+				<property name="deploy.pass" value="NOTSET"/>
+			</then>
+		</if>
+
+		<java classname="com.yahoo.dtf.deploy.Deploy" 
+			  failonerror="true">
+			<arg value="${deploy.user}"/>
+			<arg value="${deploy.pass}"/>
+			<arg value="${deploy.hosts}"/>
+			<arg value="${env.HOME}"/>
+			<arg value="${dtf.dir}/${dtf.build.dir}/dtf.tar.gz"/>
+			<classpath refid="dtf.classpath"/>
+		</java>
+
+		<echo>
+        DTF has been copied to your home directory on ${deploy.hosts}
+        </echo>
+	</target>
+
+	<target name="doc"
+		    depends="init,build" 
+		    description="Generate both Java and DTF XML documentation.">
+		<mkdir dir="${dtf.build.dir}/${dtf.dist.dir}/doc/html"/>
+
+		<path id="javadoc.classpath">
+			<fileset dir="${dtf.build.dir}/${dtf.dist.dir}/lib">
+				<include name="**/*.jar"/>
+			</fileset>
+		</path>
+
+		<!-- DTF XML DOCS -->
+		<javadoc destdir="${dtf.build.dir}/${dtf.dist.dir}/doc/html/dtf"
+			     access="private"
+			     classpathref="javadoc.classpath"
+			     docletpathref="javadoc.classpath">
+			<!--	
+			using the ${dtf.dir} property we can tell it the absolute location
+			of the xsd
+			-->
+			<arg line="-dtfxsd ${basedir}/${dtf.build.dir}/${dtf.dist.dir}/dtf.xsd"/>
+
+			<doclet name="com.yahoo.dtf.javadoc.DTFDoclet"
+				    path="${dtf.build.dir}/${dtf.dist.dir}/lib/${dtf.jar.filename}"/>
+
+			<fileset dir="${dtf.src.dir}" defaultexcludes="true">
+				<include name="**/**/*.java"/>
+				<exclude name="**/**/DTFDoclet.java"/>
+			</fileset>
+
+			<fileset dir="${dtf.build.dir}" defaultexcludes="true">
+				<include name="**/**/*.java"/>
+			</fileset>
+		</javadoc>
+
+		<echo>XML Documentation at ${basedir}/${dtf.build.dir}/${dtf.dist.dir}/doc</echo>
+
+		<!-- JAVA API DOCS -->
+		<!--
+		<javadoc destdir="${dtf.build.dir}/${dtf.dist.dir}/doc/html/api">
+		
+			<arg line="-tag dtf.tag:a"/>
+			<arg line="-tag dtf.tag.desc:a"/>
+		
+			<arg line="-tag dtf.author:a"/>
+			<arg line="-tag dtf.since:a"/>
+		
+			<arg line="-tag dtf.attr:a"/>
+			<arg line="-tag dtf.attr.desc:a"/>
+			
+			<arg line="-tag dtf.event:a"/>
+			<arg line="-tag dtf.event.attr:a"/>
+			<arg line="-tag dtf.event.attr.desc:a"/>
+			
+			<arg line="-tag dtf.tag.example:a"/>
+			
+    		<fileset dir="${dtf.src.dir}" defaultexcludes="true">
+        		<include name="**/actions/**/*.java"/>
+    		</fileset>
+			
+			<fileset dir="${dtf.build.dir}" defaultexcludes="true">
+        		<include name="**/actions/**/*.java"/>
+    		</fileset>
+			
+			<classpath>
+				<fileset dir="${dtf.build.dir}/${dtf.dist.dir}/lib">
+					<include name="**/*.jar"/>
+				</fileset>	
+			</classpath>
+		</javadoc> 
+		-->
+	</target>
+
+	<target name="findbugs" depends="init">
+        <!-- check findbugs is correctly setup --> 
+        <if>
+            <equals arg1="${findbugs.home}" arg2="" trim="true"/>
+            <then>
+                <fail message="Findbugs home not set, see build.properties file"/>
+            </then>
+        </if>
+		
+		<taskdef name="findbugs" 
+                 classname="edu.umd.cs.findbugs.anttask.FindBugsTask">
+			<classpath>
+				<pathelement location="${findbugs.home}/lib/findbugs-ant.jar"/>
+			</classpath>
+		</taskdef>
+
+		<property environment="env"/>
+		<findbugs home="${findbugs.home}"
+			      output="xml"
+			      outputFile="${dtf.build.dir}/${dtf.dist.dir}/findbugs.xml"
+			      jvmargs="-Xmx512m">
+			<auxclasspath refid="dtf.classpath"/>
+			<auxclasspath path="${env.JAVA_HOME}/lib/tools.jar"/>
+			<sourcePath path="${dtf.dir}/src/java"/>
+			<class location="${dtf.build.dir}/classes"/>
+		</findbugs>
+	</target>
+
+	<target name="cobertura-instrument" depends="init">
+        <!-- check cobertura is correctly setup --> 
+        <if>
+            <equals arg1="${cobertura.home}" arg2="" trim="true"/>
+            <then>
+                <fail message="Cobertura home not set, see build.properties file"/>
+            </then>
+        </if>
+		
+		<path id="cobertura.classpath">
+		    <fileset dir="${cobertura.home}">
+		        <include name="cobertura.jar" />
+		        <include name="lib/**/*.jar" />
+		    </fileset>
+		</path>
+		<taskdef classpathref="cobertura.classpath" 
+			     resource="tasks.properties" />
+
+		<delete file="cobertura.ser"/>
+		<delete dir="${dtf.build.dir}/iclasses"/>
+		<mkdir dir="${dtf.build.dir}/iclasses"/>
+
+		<cobertura-instrument todir="${dtf.build.dir}/classes">
+			<ignore regex="org.apache.log4j.*"/>
+
+			<fileset dir="${dtf.build.dir}/classes">
+				<include name="**/*.class"/>
+
+				<!-- deploy code can't be tested without a dependency on another 
+		    	     machine to deploy to -->
+				<exclude name="com/yahoo/dtf/deploy/*.class"/>
+
+				<!-- plugin merger only run at build time, no easy way to 
+		    	     integrate with unit test for the time being -->
+				<exclude name="com/yahoo/dtf/plugin/*.class"/>
+
+				<!-- exception coverage doesn't matter -->
+				<exclude name="com/yahoo/dtf/exception/*.class"/>
+
+				<!-- same as plugin merger, the javadoc is done at build time -->
+				<exclude name="com/yahoo/dtf/javadoc/*.class"/>
+
+				<!-- JSON Library is not my responsibility to unit test -->
+				<exclude name="com/yahoo/dtf/json/*.class"/>
+			</fileset >
+		</cobertura-instrument>
+
+		<!-- copy cobertura jar into this build as well -->
+		<copy todir="${dtf.build.dir}/${dtf.dist.dir}/lib">
+			<fileset dir="${cobertura.home}">
+				<include name="*.jar"/>
+			</fileset>
+		</copy>
+		<delete file="${dtf.build.dir}/${dtf.dist.dir}/lib/dtf.jar"/>
+
+		<antcall target="dist"/>
+	</target>
+
+	<target name="cobertura-report" depends="init">
+        <!-- check cobertura is correctly setup --> 
+        <if>
+            <equals arg1="${cobertura.home}" arg2="" trim="true"/>
+            <then>
+                <fail message="Cobertura home not set, see build.properties file"/>
+            </then>
+        </if>
+		
+		<path id="cobertura.classpath">
+		    <fileset dir="${cobertura.home}">
+		        <include name="cobertura.jar" />
+		        <include name="lib/**/*.jar" />
+		    </fileset>
+		</path>
+		<taskdef classpathref="cobertura.classpath"
+			     resource="tasks.properties" />
+
+		<cobertura-merge>
+			<fileset dir="${dtf.build.dir}/${dtf.dist.dir}">
+				<include name="*.ser" />
+			</fileset>
+		</cobertura-merge>
+
+		<cobertura-report format="xml" 
+			              srcdir="${dtf.build.dir}/${dtf.dist.dir}"
+		                  destdir="${dtf.build.dir}/cobertura">
+			<fileset dir="src/java">
+				<include name="**/*.java" />
+			</fileset>
+		</cobertura-report>
+
+		<cobertura-report format="html"
+			              srcdir="${dtf.build.dir}/${dtf.dist.dir}"
+		                  destdir="${dtf.build.dir}/cobertura">
+
+			<fileset dir="src/java">
+				<include name="**/*.java" />
+			</fileset>
+		</cobertura-report>
+	</target>
+
+	<target name="junit" depends="junit.init">
+		<!-- check junit is correctly setup -->	
+        <if>
+            <equals arg1="${junit.home}" arg2="" trim="true"/>
+            <then>
+            	<fail message="JUnit home not set, see build.properties file"/>
+            </then>
+        </if>
+
+		<taskdef name="junit" 
+	             classname="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask">
+			<classpath refid="junit.classpath"/>
+		</taskdef>
+
+		<mkdir dir="${dtf.build.dir}/junit_results"/>
+		<path id="dtf.classpath">
+			<fileset dir="${dtf.build.dir}/${dtf.dist.dir}/lib">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="external">
+				<include name="*.jar"/>
+			</fileset>
+		</path>
+
+		<if>
+			<isset property="junit.test"/>
+			<then>
+				<junit printsummary="yes" 
+				   	   showoutput="true" 
+					   dir="${dtf.dir}">
+					<!--<jvmarg line="-agentlib:hprof=cpu=samples,depth=30,lineno=y"/>-->
+					<sysproperty key="dtf.home"
+		    			         value="${basedir}/${dtf.build.dir}/${dtf.dist.dir}"/>
+					<sysproperty key="net.sourceforge.cobertura.datafile"
+		    			         value="${basedir}/${dtf.build.dir}/${dtf.dist.dir}/cobertura-junit.ser" />
+					<syspropertyset>
+						<propertyref builtin="commandline"/>
+					</syspropertyset>
+
+					<classpath refid="dtf.classpath"/>
+				    <classpath refid="junit.classpath"/>
+					<formatter type="xml"/>
+
+					<test name="com.yahoo.dtf.junit.${junit.test}"
+				    	  outfile="${dtf.build.dir}/junit_results/${junit.test}"
+				     	  fork="true"/>
+				</junit>
+			</then>
+			<else>
+				<junit printsummary="yes" 
+				   	   showoutput="true" 
+					   dir="${dtf.dir}">
+					<!--<jvmarg line="-agentlib:hprof=cpu=samples,depth=30,lineno=y"/>-->
+					<sysproperty key="dtf.home"
+		    			         value="${basedir}/${dtf.build.dir}/${dtf.dist.dir}"/>
+					<sysproperty key="net.sourceforge.cobertura.datafile"
+		    			         value="${basedir}/${dtf.build.dir}/${dtf.dist.dir}/cobertura-junit.ser" />
+					<syspropertyset>
+						<propertyref builtin="commandline"/>
+					</syspropertyset>
+					<classpath refid="dtf.classpath"/>
+				    <classpath refid="junit.classpath"/>
+					<formatter type="xml"/>
+					<batchtest fork="true"
+					           todir="${dtf.build.dir}/junit_results">
+						<fileset dir="${dtf.build.dir}/${dtf.classes.dir}">
+							<include name="**/junit/*.class"/>
+						</fileset>
+					</batchtest>
+				</junit>
+			</else>
+		</if>
+	</target>
+
+</project>

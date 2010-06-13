@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="scenario5">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>regression scenario 5 from the users's guide documentation</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/websearch.properties"/>
+        
+        <import uri="storage://INPUT/util.xml"/>
+    </local>
+  
+    <record uri="storage://OUTPUT/websearch_events.txt"> 
+	    <for property="count" range="1..10">
+	        <log>Iteration ${count}</log>
+		    <http_get uri="${websearch.uri}?appid=dtftest&amp;query=yahoo"
+	                  onFailure="continue"/>
+	    </for>
+    </record>
+   
+    <!-- we only want the events that were successful --> 
+    <query uri="storage://OUTPUT/websearch_events.txt" 
+           cursor="websearch"
+           event="http.get">
+        <where>
+            <eq op1="status" op2="200"/>
+        </where>
+    </query>
+           
+    <stats cursor="websearch" event="perf"/>
+    
+    <log>
+        Yahoo! Web Search Performance
+        *****************************
+        Avg Search Time: ${perf.avg_dur}ms 
+        Max Search Time: ${perf.max_dur}ms 
+        Min Search Time: ${perf.min_dur}ms 
+    </log>
+    
+</script>

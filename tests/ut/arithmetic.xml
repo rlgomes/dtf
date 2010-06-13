@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="arithmetic">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF unit test for arithmetic tags.</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+    </local>
+    
+    <!-- validate that multiplying or adding X times the same number yields 
+         the same result --> 
+    <property name="a" value="5"/>
+    <property name="a_acc" value="0"/>
+    
+    <multiply op1="${a}" op2="${a}" result="a_squared"/>
+    
+    <for property="i" range="1..5">
+        <add op1="${a_acc}" op2="${a}" result="a_acc"/>
+    </for>
+    <assert><eq op1="${a_acc}" op2="${a_squared}"/></assert>
+    
+    <!-- small check that abs works --> 
+    <abs op1="-1000" result="abs"/>
+    <assert><eq op1="${abs}" op2="1000"/></assert>
+    
+    <!-- 2 + 2 * 3 == 2 * 4 -->
+    <multiply op1="2" op2="3" result="a"/>
+    <add op1="${a}" op2="2" result="a"/>
+    <multiply op1="2" op2="4" result="b"/>
+    <assert><eq op1="${a}" op2="${b}"/></assert>
+ 
+    <createrange name="results" value="10,10.0,20,20.0,0,0.0"/> 
+    <for property="op1" range="5,10,0">
+        <for property="op2" range="2,2.0">
+            <multiply op2="${op2}" op1="${op1}" result="result"/>
+            <property name="expected" value="${results}" overwrite="true"/>
+		    <if>
+		        <not><match source="${expected}" expression="${result}"/></not>
+		        <then>
+		            <fail>
+                    Expected ${expected} got ${result},
+                    when multiplying ${op1} and ${op2}
+                    </fail>
+		        </then>
+		    </if>
+        </for> 
+    </for> 
+    
+    <divide op1="2" op2="4" result="result"/>
+    <if>
+        <neq op1="0" op2="${result}"/>
+        <then>
+            <fail>Was expecting 0 but got ${result}</fail>
+        </then>
+    </if>
+
+    <try>
+        <divide op1="3" op2="0" result="caca"/>
+        <catch exception="${dtf.ArithmeticException}">
+            <log>Correctly caught division by zero error.</log>
+        </catch>
+    </try>
+
+    <try>
+        <sequence>
+            <add op1="0" op2="a" result="caca"/>
+	        <fail>Didn't catch previous number format error.</fail>
+        </sequence>
+        <catch exception="${dtf.NumberFormatException}">
+            <log>Correctly caught a bad number</log>
+        </catch>
+    </try>
+    
+    <try>
+        <sequence>
+            <add op1="a" op2="0" result="caca"/>
+	        <fail>Didn't catch previous number format error.</fail>
+        </sequence>
+        <catch exception="${dtf.NumberFormatException}">
+            <log>Correctly caught a bad number</log>
+        </catch>
+    </try>
+
+    <try>
+        <sequence>
+            <subtract op1="0" op2="a" result="caca"/>
+	        <fail>Didn't catch previous number format error.</fail>
+        </sequence>
+        <catch exception="${dtf.NumberFormatException}">
+            <log>Correctly caught a bad number</log>
+        </catch>
+    </try>
+    
+    <try>
+        <sequence>
+            <multiply op1="a" op2="0" result="caca"/>
+	        <fail>Didn't catch previous number format error.</fail>
+        </sequence>
+        <catch exception="${dtf.NumberFormatException}">
+            <log>Correctly caught a bad number</log>
+        </catch>
+    </try>
+
+    <try>
+        <sequence>
+            <multiply op1="a" op2="0" result="caca"/>
+	        <fail>Didn't catch previous number format error.</fail>
+        </sequence>
+        <catch exception="${dtf.NumberFormatException}">
+            <log>Correctly caught a bad number</log>
+        </catch>
+    </try>
+
+    <try>
+        <sequence>
+            <divide op1="a" op2="0" result="caca"/>
+	        <fail>Didn't catch previous number format error.</fail>
+        </sequence>
+        <catch exception="${dtf.NumberFormatException}">
+            <log>Correctly caught a bad number</log>
+        </catch>
+    </try>
+
+    <try>
+        <sequence>
+            <divide op1="0" op2="a" result="caca"/>
+	        <fail>Didn't catch previous number format error.</fail>
+        </sequence>
+        <catch exception="${dtf.NumberFormatException}">
+            <log>Correctly caught a bad number</log>
+        </catch>
+    </try>
+
+    <try>
+        <sequence>
+            <mod op1="a" op2="0" result="caca"/>
+	        <fail>Didn't catch previous number format error.</fail>
+        </sequence>
+        <catch exception="${dtf.NumberFormatException}">
+            <log>Correctly caught a bad number</log>
+        </catch>
+    </try>
+
+    <try>
+        <sequence>
+            <mod op1="0" op2="a" result="caca"/>
+	        <fail>Didn't catch previous number format error.</fail>
+        </sequence>
+        <catch exception="${dtf.NumberFormatException}">
+            <log>Correctly caught a bad number</log>
+        </catch>
+    </try>
+
+    <try>
+        <sequence>
+	        <abs op1="a" result="caca"/>
+	        <fail>Didn't catch previous number format error.</fail>
+        </sequence>
+        <catch exception="${dtf.NumberFormatException}">
+            <log>Correctly caught a bad number</log>
+        </catch>
+    </try>
+    
+</script>

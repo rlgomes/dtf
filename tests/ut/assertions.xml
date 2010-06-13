@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="assertions">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF unit test for assertion tag.</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+    </local>
+
+    <assert><eq op1="0" op2="0"/></assert>
+    <assert><neq op1="0" op2="-1"/></assert>
+
+    <assert><lt op1="0" op2="1"/></assert>
+    <assert><lt op1="-1" op2="0"/></assert>
+    <assert><lt op1="-100" op2="-1"/></assert>
+    
+    <try>
+        <sequence>
+	        <assert><eq op1="-1" op2="1"/></assert>
+	        <fail>Previous assertion should have failed!</fail>
+        </sequence>
+        <catch exception="${dtf.AssertionException}" property="message">
+            <log>Caught AssertionException correctly [${message}]</log>    
+        </catch>
+    </try>
+
+    <try>
+        <sequence>
+	        <assert>
+	            <and>
+		            <eq op1="-1" op2="1"/>
+		            <neq op1="0" op2="1"/>
+	            </and>
+	        </assert>
+	        <fail>Previous assertion should have failed!</fail>
+        </sequence>
+        <catch exception="${dtf.AssertionException}" property="message">
+            <log>Caught AssertionException correctly [${message}]</log>    
+        </catch>
+    </try>
+
+    <try>
+        <sequence>
+	        <assert>
+	            <or>
+		            <eq op1="0" op2="1"/>
+		            <neq op1="1" op2="1"/>
+	            </or>
+	        </assert>
+	        <fail>Previous assertion should have failed!</fail>
+        </sequence>
+        <catch exception="${dtf.AssertionException}" property="message">
+            <log>Caught AssertionException correctly [${message}]</log>    
+        </catch>
+    </try>
+
+    <try>
+        <sequence>
+            <assert message="This is expected to fail"><eq op1="-1" op2="1"/></assert>
+	        <fail>Previous assertion should have failed!</fail>
+        </sequence>
+        <catch exception="${dtf.AssertionException}" property="message">
+            <log>Caught AssertionException correctly [${message}]</log>    
+        </catch>
+    </try>
+
+    <try>
+        <sequence>
+            <assert><match source="this" expression="a*"/></assert>
+	        <fail>Previous assertion should have failed!</fail>
+        </sequence>
+        <catch exception="${dtf.AssertionException}" property="message">
+            <log>Caught AssertionException correctly [${message}]</log>    
+        </catch>
+    </try>
+
+    <try>
+        <sequence>
+            <assert><lt op1="3" op2="2"/></assert>
+	        <fail>Previous assertion should have failed!</fail>
+        </sequence>
+        <catch exception="${dtf.AssertionException}" property="message">
+            <log>Caught AssertionException correctly [${message}]</log>    
+        </catch>
+    </try>
+
+    <try>
+        <sequence>
+            <assert><gt op1="2" op2="5"/></assert>
+	        <fail>Previous assertion should have failed!</fail>
+        </sequence>
+        <catch exception="${dtf.AssertionException}" property="message">
+            <log>Caught AssertionException correctly [${message}]</log>    
+        </catch>
+    </try>
+
+    <try>
+        <sequence>
+            <assert><within tolerance="5%" op2="2" op1="5"/></assert>
+	        <fail>Previous assertion should have failed!</fail>
+        </sequence>
+        <catch exception="${dtf.AssertionException}" property="message">
+            <log>Caught AssertionException correctly [${message}]</log>    
+        </catch>
+    </try>
+ 
+    <try>
+        <sequence>
+            <assert><isset property="inexistent.property"/></assert>
+            <fail>Previous assertion should have failed!</fail>
+        </sequence>
+        <catch exception="${dtf.AssertionException}" property="message">
+            <log>Caught AssertionException correctly [${message}]</log>    
+        </catch>
+    </try>
+    
+</script>

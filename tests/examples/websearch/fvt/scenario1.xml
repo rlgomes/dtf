@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="fvt-scenario2">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>fvt scenario 1 from the users's guide documentation</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/websearch.properties"/>
+        
+        <property name="websearch.load_timer" value="30s"/>
+        <property name="websearch.workers" value="5"/>
+    </local>
+   
+    <!-- lock the number of clients we'll need for this test --> 
+    <for property="client" range="1..${websearch.clients}">
+        <local>
+            <lockcomponent id="CLIENT${client}"/>
+        </local>
+    </for>
+    
+    <property name="uri"
+              value="${websearch.uri}?appid=dtftest&amp;query=yahoo"/>
+   
+    <log>Sending requests...</log> 
+    <record uri="storage://OUTPUT/scenario1_search_events.txt">   
+	    <parallelloop property="client" range="1..${websearch.clients}"> 
+	        <component id="CLIENT${client}">
+	            <distribute id="mydist"
+	                        workers="${websearch.workers}"
+                            timer="${websearch.load_timer}">
+				    <http_get uri="${uri}"/>
+	            </distribute>
+	        </component>
+	    </parallelloop>
+    </record>
+   
+    <log>Validating data...</log>
+    <query uri="storage://OUTPUT/scenario1_search_events.txt"
+           cursor="results">
+        <where> 
+            <!-- we only want the successful operations -->
+            <eq op1="status" op2="200"/>
+        </where>
+    </query>
+    
+    <nextresult cursor="results"/>
+    <property name="firstresult" value="${results.body}"/>
+  
+    <iterate cursor="results">
+        <call function="compareResults">
+            <property name="first" value="${firstresult}"/>
+            <property name="other" value="${results.body}"/>
+        </call>
+    </iterate>
+   
+    <!-- this function throws an exception when the data is not similar 
+         enough for our requirements --> 
+    <function name="compareResults">
+        <param name="first" type="required"/>
+        <param name="other" type="required"/>
+        
+        <!-- 
+            each of the above parameters has the following syntax:
+			<ResultSet>
+			    <Result>
+			        <Title>Title</Title>
+			        <Summary>Summary</Summary>
+			        <Url>http://some.link</Url>
+			        <ClickUrl>http://some.link</ClickUrl>
+			        <DisplayUrl>http://some.link</DisplayUrl>
+			        <ModificationDate>1234567890</ModificationDate>
+			        <MimeType>text/html</MimeType>
+			        <Cache>
+			            <Url>http://some.link</Url>
+			            <Size>1234</Size>
+			        </Cache>
+			    </Result>
+			</ResultSet>
+        -->
+        <for property="result"
+             range="xpath(${first},/ResultSet/Result)">
+            <try>
+                <sequence>
+		            <property name="title"
+		                      value="${result:xpath:/Result/Title/text()}"
+		                      overwrite="true"/>
+		            <property name="url"
+		                      value="${result:xpath:/Result/Url/text()}"
+		                      overwrite="true"/>
+                </sequence>
+                <catch property="message">
+                    <sequence>
+	                    <log>result: ${result}</log>
+	                    <fail message="${message}"/>
+                    </sequence>
+                </catch>
+            </try>
+
+            <property name="lookup_result" 
+                      value="${other:xpath:/ResultSet/Result[Title[text() = '${title}']]}"
+                      overwrite="true"/>
+            
+            <if>
+                <eq op1="${lookup_result}" op2=""/>
+                <then>
+                    <fail message="No result found for ${title} in the other ResultSet."/>
+                </then>
+            </if>
+            
+            <property name="lookup_title"
+                      value="${lookup_result:xpath:/Result/Title/text()}"
+                      overwrite="true"/>
+            <property name="lookup_url"
+                      value="${lookup_result:xpath:/Result/Url/text()}"
+                      overwrite="true"/>
+            <if>
+                <neq op1="${title}" op2="${lookup_title}"/>
+                <then>
+                    <fail message="Didn't find the result ${result} in the other ResultSet"/>
+                </then>
+            </if> 
+
+            <if>
+                <neq op1="${url}" op2="${lookup_url}"/>
+                <then>
+                    <fail message="Didn't find the result ${result} in the other ResultSet"/>
+                </then>
+            </if> 
+        </for>
+       
+    </function>
+
+</script>

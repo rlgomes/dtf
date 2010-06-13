@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="property_resolution">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF unit test for complex property resolution.</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+
+        <echo message="*** Property resolution unit test ***"/>
+        
+        <lockcomponent id="DTFA1" timeout="60s"/>
+        <lockcomponent id="DTFA2" timeout="60s"/>
+    </local>
+
+    <for property="i" range="1..10">
+        <for property="j" range="1..10">
+            <local>
+                <property name="property${i}${j}" value="${i}-${j}"/>
+            </local> 
+        </for>
+    </for>
+   
+    <for property="i" range="1..10">
+        <for property="j" range="1..10">
+            <if>
+                <neq op1="${property${i}${j}}" op2="${i}-${j}" type="string" nullable="false"/>
+                <then>
+                    <fail message="property mismatch for property${i}${j}: ${property${i}${j}} != ${i}-${j}"/>
+                </then>
+            </if>
+        </for>
+    </for>
+    
+    <for property="i" range="1..10">
+        <for property="j" range="1..10">
+            <local>
+                <property name="a${i}b${j}c" value="${i}-${j}"/>
+            </local> 
+        </for>
+    </for>
+   
+    <for property="i" range="1..10">
+        <for property="j" range="1..10">
+            <if>
+                <neq op1="${a${i}b${j}c}" op2="${i}-${j}" type="string" nullable="false"/>
+                <then>
+                    <fail message="property mismatch for [a${i}b${j}c]: ${a${i}b${j}c} != ${i}-${j}"/>
+                </then>
+            </if>
+        </for>
+    </for>
+
+    <!-- catch some issues with remote property resolution  -->
+    <property name="prop1" value="localvalue"/> 
+    <record uri="storage://OUTPUT/property_remote_value.txt">
+        <component id="DTFA1">
+            <for property="prop1" range="1..100">
+                <event name="test.event">
+                    <attribute name="iteration" value="${prop1}"/>
+                </event>
+            </for>        
+        </component>
+    </record>
+    
+    <query uri="storage://OUTPUT/property_remote_value.txt"
+           cursor="c1"
+           event="test.event"/>
+    
+    <for property="i" range="1..100"> 
+        <nextresult cursor="c1"/>
+        <if>
+            <neq op1="${c1.iteration}" op2="${i}"/> 
+            <then>
+                <fail message="${c1.iteration} != ${i}, this means there is an issue with property resolution"/>
+            </then>
+        </if>
+    </for>
+   
+    <for property="i" range="1..100"> 
+        <property name="p${i}" value="${i}"/> 
+    </for>
+    
+    <record uri="storage://OUTPUT/property_remote_resolution.txt">
+        <component id="DTFA1">
+            <for property="i" range="1..100">
+                <event name="test.event">
+                    <attribute name="iteration" value="${p${i}}"/>
+                </event>
+            </for>        
+        </component>
+    </record>
+
+    <query uri="storage://OUTPUT/property_remote_resolution.txt"
+           cursor="c1"
+           event="test.event"/>
+    
+    <for property="i" range="1..100"> 
+        <nextresult cursor="c1"/>
+        <if>
+            <neq op1="${c1.iteration}" op2="${i}"/> 
+            <then>
+                <fail message="${c1.iteration} != ${i}, this means there is an issue with property resolution"/>
+            </then>
+        </if>
+    </for>
+
+    <!--  this just validates that the iterations property can corectly 
+          be passed in as an integer even though it was defined in the runner
+          and not the agent. -->
+    <property name="iterations" value="100" overwrite="true"/>
+    <component id="DTFA1">
+        <distribute range="1" iterations="${iterations.medium}">
+        </distribute>
+    </component>
+  
+    <property name="x" value="y"/> 
+    <record uri="storage://OUTPUT/remote_resolution1.txt">
+	    <for property="i" range="1..2"> 
+		    <for property="newproperty" range="1..5">
+		        <component id="DTFA${i}">
+		            <echo>${newproperty} ${x}</echo>
+	                <event name="test.event">
+	                    <attribute name="iteration" value="${newproperty}"/>
+	                </event>
+		        </component>
+		    </for>
+	    </for>
+    </record>
+
+    <query uri="storage://OUTPUT/remote_resolution1.txt"
+           cursor="c1"
+           event="test.event"/>
+
+    <for property="i" range="1..5"> 
+        <nextresult cursor="c1"/>
+        <if>
+            <neq op1="${c1.iteration}" op2="${i}"/> 
+            <then>
+                <fail message="${c1.iteration} != ${i}, this means there is an issue with property resolution"/>
+            </then>
+        </if>
+    </for>
+   
+    <log>simple property resolution visibility for the same runner thread</log> 
+    <component id="DTFA1">
+        <property name="A" value="B"/>
+    </component>
+
+    <component id="DTFA1">
+        <log>${A}</log>
+    </component>
+    
+</script>

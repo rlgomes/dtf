@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="monitor">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF unit test for file monitoring tags.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+
+        <property name="logfile" value="log-${dtf.timestamp}"/>
+        <cat uri="storage://OUTPUT/${logfile}.exist">**** OLD DATA ****</cat>
+        <lockcomponent id="AGENT1"/>
+    </local>
+
+    <parallel>    
+        <record uri="storage://OUTPUT/matches.txt">
+		    <local>
+	            <monitor_create id="LOGS" file="tests/ut/output/${logfile}.*"/>
+		        <sleep time="3s"/>
+		        <monitor_grep id="LOGS" expression="NEW.*"/>
+		        <monitor_destroy id="LOGS"/>
+		    </local>
+        </record>   
+        
+        <sequence>
+	        <sleep time="1s"/>
+	        <for property="i" range="1..10">
+		        <local>
+		            <cat uri="storage://OUTPUT/${logfile}.exist">NEW LOG LINE${i}
+		            </cat>
+		        </local>
+	        </for>
+	        <for property="i" range="1..10">
+	            <local>
+		            <cat uri="storage://OUTPUT/${logfile}.${i}">NEW LOG LINE${i}</cat>
+	            </local>
+	        </for>
+        </sequence>
+    </parallel>
+   
+    <log>Validating data correctness</log> 
+    <query uri="storage://OUTPUT/matches.txt"
+           cursor="c1"
+           event="grep"/>
+    
+    <for property="i" range="1..10">
+        <nextresult cursor="c1"/>
+        <subtract op1="${c1.line}" op2="1" result="line"/>
+        <if>
+            <match source="${c1.file}" expression=".*exist"/>
+            <then>
+                <if>
+                    <neq op1="${c1.match}" op2="NEW LOG LINE${line}"/>
+                    <then>
+                        <log>${c1.match} != NEW LOG LINE${line}</log>
+                        <fail message="Failed to detect change."/>
+                    </then>
+                </if>
+            </then>
+            <else>
+                <!-- new files only have 1 new line add its name is built 
+                     with the same index that comes from the file name.
+                     So lets parse out the filename index and then use that
+                     to reconstruct the line. -->
+                <replace source="${c1.file}"
+                         destination="line"
+                         expression=".*log-[^\.]*\.([0-9]+)" 
+                         with="$1"/>
+                <if>
+                    <neq op1="${c1.match}" op2="NEW LOG LINE${line}"/>
+                    <then>
+                        <log>${c1.match} != NEW LOG LINE${line}</log>
+                        <fail message="Failed to detect change."/>
+                    </then>
+                </if>
+            </else>
+        </if>
+    </for>           
+   
+    <!-- usage within component --> 
+    <!-- first lets use an invalid path -->
+    <component id="AGENT1">
+        <monitor_create id="REMOTEMONITOR" file="tests/ut/output/${logfile}.*"/>
+    </component>
+
+    <!-- Detect 10 new files -->
+    <property name="prefix" value="${dtf.timestamp}"/>
+    <monitor_create id="LOGS" file="tests/ut/output/.*"/>
+    <for property="i" range="1..10">
+        <cat uri="storage://OUTPUT/newfile-${prefix}-${i}"/>
+    </for>
+    
+    <monitor_diff id="LOGS"/>
+    <createrange name="files" value="${monitor_diff.newfiles}"/> 
+    <for property="i" range="1..10">
+        <log>new ${files}</log>
+    </for>
+    <monitor_destroy id="LOGS"/>
+    
+</script> 

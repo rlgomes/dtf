@@ -1,0 +1,43 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+           
+    <xs:element name="script">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="info"/>
+            </xs:sequence>
+            <xs:attribute name="name"/>
+        </xs:complexType>
+    </xs:element> 
+
+    <xs:element name="info">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="author"/>
+                <xs:element ref="description"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element> 
+
+    <xs:element name="description">
+        <xs:complexType mixed="true"/>
+    </xs:element> 
+    
+    <xs:element name="author">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="name"/>
+                <xs:element ref="email"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element> 
+
+    <xs:element name="name">
+        <xs:complexType mixed="true"/>
+    </xs:element> 
+
+    <xs:element name="email">
+        <xs:complexType mixed="true"/>
+    </xs:element> 
+    
+</xs:schema>

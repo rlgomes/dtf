@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="rendezvousperf">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description></description>
+    </info>
+   
+    <local>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+
+        <loadproperties uri="storage://INPUT/perf.properties"/>
+        <import uri="storage://INPUT/perf_util.xml"/>
+
+        <property name="parties" value="3"/> 
+        <property name="iterations" value="100000"/>
+        <rendezvous_create id="rv1" parties="${parties}"/> 
+    </local>
+   
+    <for property="agent" range="1..${parties}"> 
+	    <local> 
+	        <lockcomponent id="A${agent}"/>
+	    </local>
+    </for>
+
+    <event name="total"> 
+	    <parallelloop range="1..${parties}" property="thread">
+	        <for property="iteration" range="1..100000">
+	            <rendezvous_visit id="rv1"/>
+	        </for>
+	    </parallelloop> 
+    </event>
+    <call function="calcEventPerf" result="ops_per_sec">
+        <property name="iterations" value="50000"/>
+        <property name="event" value="total"/>
+    </call>
+    <log>local rendezvous visits per second: ${ops_per_sec}</log>
+    <call function="writeperf">
+        <property name="uri" value="storage://OUTPUT/rendezvous_local.perf"/>
+        <property name="value" value="${ops_per_sec}"/>
+    </call> 
+
+    <event name="total"> 
+	    <parallelloop range="1..${parties}" property="agent">
+            <component id="A${agent}">
+		        <for property="iteration" range="1..2000">
+		            <rendezvous_visit id="rv1"/>
+		        </for>
+            </component>
+	    </parallelloop> 
+    </event>
+    <call function="calcEventPerf" result="ops_per_sec">
+        <property name="iterations" value="2000"/>
+        <property name="event" value="total"/>
+    </call>
+    <log>remote rendezvous visits per second: ${ops_per_sec}</log>
+    <call function="writeperf">
+        <property name="uri" value="storage://OUTPUT/rendezvous_remote.perf"/>
+        <property name="value" value="${ops_per_sec}"/>
+    </call> 
+    
+</script> 

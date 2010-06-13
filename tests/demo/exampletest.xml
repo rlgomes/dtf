@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="exampletest">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF example test that is explained in every detail within 
+                     the DTF User's Guide.</description>
+    </info>
+
+    <!-- Start by definig the stores will be using during this test as well 
+         as loading any default properties files. -->
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+        <loadproperties uri="storage://INPUT/test.properties"/>
+        
+        <property name="runid" value="${dtf.timestamp}"/>
+    </local>
+
+    <!-- Locking components -->
+    <for property="agent" range="1..${agents}">
+        <local>
+            <lockcomponent id="AGENT${agent}" timeout="60s">
+                <attrib name="type" value="${dtfa.type}"/>
+            </lockcomponent>
+        </local>
+    </for>
+
+    <record type="txt" uri="storage://OUTPUT/remote_event_perf.txt" event="dtf.perf" append="false">
+        <!-- Execute in parallel the follow actions on those agents we 
+             previously locked. -->
+        <parallelloop property="agent" range="1..${agents}">
+            <component id="AGENT${agent}">
+                <!-- On each of those agents thread this ${treads} times
+                     and then do a loop of 1..${iterations} sequentially in 
+                     each thread. The base action is just to throw the event
+                     child that you see below identifying the runid,iteration 
+                     and a timestamp value for testing purposes. -->
+                <parallelloop property="thread" range="1..${threads}">
+                    <for property="iter" range="1..${iterations}">
+                        <event name="dtf.perf.echo">
+                            <attribute name="runid" value="${runid}" type="string" length="64"/>
+                            <attribute name="iteration" value="${iter}" type="string" length="64"/>
+                            <attribute name="timestamp" value="${dtf.timestamp}" type="string" length="64"/>
+                        </event>
+                    </for>
+                </parallelloop>
+            </component>
+        </parallelloop>
+    </record>
+   
+    <!-- Querying the results generated above now we can generate statistics
+         and graph the results from the previous run for further analysis. --> 
+    <query uri="storage://OUTPUT/remote_event_perf.txt" type="txt" event="dtf.perf.echo" cursor="perfcursor"/>
+
+    <record type="object" uri="property://dbperf" append="false">
+        <stats cursor="perfcursor" event="stats"/>
+    </record>
+
+    <!-- Print the results from the previously analyzed results -->
+    <local>
+        <echo>
+            Remote Event performance on ${agents} agent(s) with ${threads} thread(s).
+            Events per second: ${dbperf.avg_occ} 
+            Total of Events:   ${dbperf.tot_occ} 
+            Total Duration:    ${dbperf.tot_dur}ms
+        </echo>
+    </local>
+    
+    <resetcursor cursor="perfcursor"/>
+   
+    <!-- Now generate a graph from the previous results and make sure to 
+         calculate the histogram of all events. The reason for the histogram
+         mode is that we have multiple agents do the same thing at the same time
+         and the only way to aggregate that information is by summing it up as 
+         the number of events that happened across the board in any instant of 
+         time. --> 
+    <graph type="png" title="Test Graph" uri="storage://OUTPUT/demo-graph.png">
+        <series cursor="perfcursor" name="Events" mode="histogram" aggfunc="average" sampleunit="1s"/>
+    </graph>
+
+</script>

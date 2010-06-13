@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="propertyperf">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF performance test for property resolution.</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/perf.properties"/>
+        <import uri="storage://INPUT/perf_util.xml"/>
+        
+        <property name="total_iterations" value="2000000"/>
+    </local>
+    
+    <!-- Value of all of the previously created properties should be the 
+         same, independently if it were generated from the value attribute or 
+         body of the text in the XML tag -->
+    <event name="total">
+	    <for property="i" range="1..${total_iterations}">
+            <property name="x" value="${total_iterations}" overwrite="true"/>    
+	    </for>
+    </event>
+    
+    <subtract op1="${total.stop}" op2="${total.start}" result="duration"/>
+    <divide op1="${duration}" op2="1000" result="duration"/>
+    <divide op1="${total_iterations}" op2="${duration}" result="ops_per_s"/>
+    
+    <log>Property resolutions per second: ${ops_per_s}</log>
+    <call function="writeperf">
+        <property name="uri" value="storage://OUTPUT/property.perf"/>
+        <property name="value" value="${ops_per_s}"/>
+    </call>
+
+</script>

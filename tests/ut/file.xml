@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="file">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+               Unit test for the getfile mechanism on remote components. The
+               Getfile extends a Returnfile class that can be used to create
+               other remote actions that can collect logs and/or return file
+               objects to the executor that later need to be processed and/or
+               verified.
+        </description>
+    </info>
+
+	<local>
+    	<createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output/dataoutput"/>
+	    <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <property name="events.expect" value="18"/>
+        <property name="events.file" value="storage://OUTPUT/totalevents-${dtf.timestamp}.txt"/>
+        
+        <lockcomponent id="DTFA1" timeout="60s"/>
+    </local>
+
+   	<component id="DTFA1"> 
+		<getfile uri="storage://OUTPUT/build.copy1.xml" 
+                 remotefile="build.xml"
+                 append="false"
+                 compress="false"/>
+                 
+		<getfile uri="${events.file}"
+                 remotefile="tests/ut/input/events_example.txt"
+                 compress="true"
+                 append="true"/>
+
+		<getfile uri="${events.file}"
+                 remotefile="tests/ut/input/events_example.txt"
+                 compress="true"
+                 append="true"/>
+	</component>
+   
+    <query type="txt" uri="${events.file}" cursor="cursor" event="event"/> 
+    <stats cursor="cursor" event="stats"/>
+   
+    <if>
+        <eq op1="${stats.tot_occ}" op2="${events.expect}"/>
+        <then>
+            <local>
+<echo>Correctly validated the number of results.</echo>
+</local>
+        </then>
+        <else>
+            <fail message="Expected ${events.expect} results but got ${stats.tot_occ}"/>
+        </else>
+    </if> 
+
+    <parallelloop property="client" range="1..10">
+       	<component id="DTFA1"> 
+            <parallelloop range="1..5" property="thread">
+                <getfile remotefile="tests/ut/input/events_example.txt"
+                         uri="storage://OUTPUT/multi-events-${client}-${thread}.txt"
+                         compress="true"
+                         append="false"/>
+            </parallelloop>
+        </component> 
+    </parallelloop> 
+    
+    <try> 
+	   	<component id="DTFA1"> 
+	        <getfile remotefile="tests/ut/input/random_bytes"
+	                 uri="storage:://OUTPUT/bad_uri"
+	                 compress="true"
+	                 append="false"/>
+	    </component> 
+        <catch exception="${dtf.ParseException}">
+            <log>Caught expected failure.</log>
+        </catch>
+    </try>
+    
+    <cat uri="storage://OUTPUT/cumulative_output.txt" append="false"/>
+    <cat uri="storage://OUTPUT/cumulative_output.txt.gz" append="false"/>
+
+    <for property="i" range="1..${iterations.small}">
+        <component id="DTFA1"> 
+            <getfile remotefile="tests/ut/input/events_example.txt"
+                     uri="storage://OUTPUT/cumulative_output.txt"
+                     compress="true"
+                     append="true"/>
+        </component> 
+    </for>
+    
+    <query uri="storage://OUTPUT/cumulative_output.txt"
+           event="event"
+           cursor="c1"/>
+           
+    <stats cursor="c1" event="event"/>
+        
+        
+    <multiply op1="${iterations.small}" op2="9" result="expected"/>
+    <if>
+        <neq op1="${event.tot_occ}" op2="${expected}"/>
+        <then>
+            <fail>Was expecting ${expected} got ${event.tot_occ}</fail>
+        </then>
+    </if> 
+    
+</script>

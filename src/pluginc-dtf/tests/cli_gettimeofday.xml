@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script name="cli_printf" xmlns="http://dtf.org/v1">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>jna_printf unit test.</description>
+    </info>
+
+    <local>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}"/>
+    </local>
+    
+    <cli_setoptions returnevents="true"/>
+    
+    <record type="stats"> 
+        <for property="i" range="1..100000">
+            <cli_gettimeofday/>
+        </for>
+    </record>
+    
+    <log>cli_gettimeofday/sec: ${cli_gettimeofday.avg_occ}</log>
+    
+</script> 

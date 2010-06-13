@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="graph_first_approach">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Example test referenced in documentation about graphing...
+        </description>
+    </info>
+        
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+        <loadproperties uri="storage://INPUT/test.properties"/>
+        
+        <property name="i" value="200000"/>
+        <property name="worker" value="1"/>
+        <property name="graph.type" value="png"/>
+        
+        <property name="execute" value="gendata,graph"/>
+    </local>
+   
+    <function name="gendata"> 
+        <cat uri="storage://OUTPUT/data.txt" append="false"/>
+        <distribute property="iter"
+                    iterations="${i}"
+                    range="1..${worker}"
+                    id="dist1"
+                    unit="1s">
+            <choices>
+                <choose howoften="50%">
+                    <property name="latency" value="10" overwrite="true"/>
+                </choose>
+                <choose howoften="20%">
+                    <property name="latency" value="50" overwrite="true"/>
+                </choose>
+                <choose howoften="20%">
+                    <property name="latency" value="100" overwrite="true"/>
+                </choose>
+                <choose howoften="10%">
+                    <property name="latency" value="500" overwrite="true"/>
+                </choose>
+            </choices>
+            
+            <multiply op1="${iter}"  op2="${dtf.randomInt(0,100)}" result="start"/>
+            <add      op1="${start}" op2="${latency}"              result="stop"/>
+            <property name="length" value="${dtf.randomInt(0,1024)}" overwrite="true"/> 
+            
+            <cat uri="storage://OUTPUT/data.txt">dtf.echo.start=${start}
+dtf.echo.stop=${stop}
+dtf.echo.iteration=${iter}
+dtf.echo.numerical1=${stop}
+dtf.echo.numerical2=${start}
+dtf.echo.field1=XXXXXXXXXXXXXXXXXXXXXXXXX
+dtf.echo.field2=XXXXXXXXXXXXXXXXXXXXXXXXX
+dtf.echo.field3=XXXXXXXXXXXXXXXXXXXXXXXXX
+dtf.echo.field4=XXXXXXXXXXXXXXXXXXXXXXXXX
+dtf.echo.field5=XXXXXXXXXXXXXXXXXXXXXXXXX
+dtf.echo.length=${length}
+
+</cat>
+       </distribute>
+	</function>
+
+    <function name="graph">
+		<query uri="storage://OUTPUT/data.txt"
+	           event="dtf.echo"
+	           cursor="perfcursor"/>
+	   		    
+	    <resetcursor cursor="perfcursor"/> 
+	    <event name="graphing.duration">
+		    <graph title="Histogram of latencies"
+		           uri="storage://OUTPUT/event_latency_histogram.${graph.type}"
+		           type="${graph.type}"
+		           xaxis="duration">
+		        <series name="Event Duration"
+		                cursor="perfcursor"
+		                mode="histogram"
+		                />
+		    </graph>
+	    </event>
+	  
+	    <subtract op1="${graphing.duration.stop}"
+	              op2="${graphing.duration.start}"
+	              result="duration_ms"/> 
+	    <divide op1="${duration_ms}" op2="1000" result="duration_s"/> 
+	    <divide op1="${i}" op2="${duration_s}" result="graphing.duration.ops_per_sec"/> 
+
+	    <log>   
+	        Graphing Latencies
+	        ******************
+	        
+	        Results/sec: ${graphing.duration.ops_per_sec}
+	        Total Time: ${duration_s}s
+	    </log>
+    </function>
+    
+    <for property="func" range="${execute}">
+        <call function="${func}"/>
+    </for>  
+</script>

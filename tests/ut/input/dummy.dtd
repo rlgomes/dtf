@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT script (info)>
+<!ATTLIST script name CDATA #REQUIRED>
+
+<!ELEMENT info (author,description)>
+<!ELEMENT author (name, author)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+
+<!ELEMENT description (#PCDATA)>

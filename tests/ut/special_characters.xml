@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="special_characters">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        DTF test to demonstrate the usage of special characters within DTF. This
+        test will go into showing how to pass whitespaces correctly to certain 
+        tags as well as the reasons why normalization is applied to the attributes
+        of XML tags.
+        
+        </description> 
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+    </local>
+   
+    <!-- how to protected XML within XML? --> 
+    <property name="xmldata">
+	    <![CDATA[
+            <myxml>
+		        <list>
+		            <element1/>
+		            <element2/>
+		            <element3/>
+		        </list>
+		    </myxml>]]>
+    </property>
+    <log>${xmldata}</log>
+    
+    <!-- As is stated in the XML Spec at 
+         http://www.w3.org/TR/REC-xml/#AVNormalize 
+        
+         "Before the value of an attribute is passed to the application or 
+          checked for validity, the XML processor MUST normalize the attribute 
+          value by applying the algorithm below ..."
+          
+         This means that if you want to pass certain characters such as a space
+         inside the attribute value then you're going to have to encode it using
+         the following special characters:
+        
+            white space characters:
+            tab             -> &#09;
+            line feed       -> &#10;
+            carriage return -> &#13;
+           
+            special XML characters:
+            <   -> &lt;
+            >   -> &gt;
+            '   -> &apos;
+            "   -> &quot; 
+    
+        Because of the above if you really need to preserve the state of text 
+        when being used within DTF then you shouldn't pass those values in the 
+        XML attributes but instead pass them in the text node of the XML tag.        
+         -->
+   
+    <!-- the broken tab will be replace with a single space by the XML parser
+         as defined in the XML specification. --> 
+    <property name="brokentab" value="	"/>
+    <property name="tab" value="&#09;"/>
+    <!-- this one works because its the child text node -->
+    <property name="another.tab">	</property>
+    <if>
+        <neq op1="${tab}" op2="${another.tab}"/>
+        <then>
+            <fail message="Property tab and property another.tab should have had the same value :("/>
+        </then>
+    </if>
+   
+    <!-- an enter in the child text node --> 
+    <property name="enter">
+</property>
+    <!-- enter encoded using XML special characters -->
+    <property name="another.enter" value="&#10;"/>
+    <if>
+        <neq op1="${enter}" op2="${another.enter}"/>
+        <then>
+            <fail message="Property enter and property another.enter should have had the same value :("/>
+        </then>
+    </if>
+
+</script> 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="perf">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF performance testsuite.</description>
+    </info>
+       
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+    </local>
+    
+    <result uri="storage://OUTPUT/perf_results.xml" type="junit">
+    	<testsuite name="perfsuite">
+        	<testscript uri="storage://INPUT/arithmetic.xml"/> 
+        	
+            <testscript uri="storage://INPUT/eventperf.xml"/> 
+            <testscript uri="storage://INPUT/recorderperf.xml"/> 
+            <testscript uri="storage://INPUT/queryperf.xml"/> 
+            <testscript uri="storage://INPUT/stats.xml"/> 
+            
+        	<testscript uri="storage://INPUT/choices.xml"/> 
+        	<testscript uri="storage://INPUT/function.xml"/> 
+            
+        	<testscript uri="storage://INPUT/propertyperf.xml"/> 
+            
+        	<testscript uri="storage://INPUT/random.xml"/> 
+        	<testscript uri="storage://INPUT/rangeperf.xml"/> 
+            
+        	<testscript uri="storage://INPUT/shareperf.xml"/> 
+        	<testscript uri="storage://INPUT/rendezvousperf.xml"/> 
+
+        	<testscript uri="storage://INPUT/httpperf.xml"/> 
+
+        	<testscript uri="storage://INPUT/xml_xpath_perf.xml"/> 
+    	</testsuite>
+    </result>
+    
+</script>

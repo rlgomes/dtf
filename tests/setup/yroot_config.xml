@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<setup xmlns="http://dtf.org/v1" >
+
+    <!-- small sample of how to run your agents in different yroots by making
+         use of the wrapcmd attribute. -->
+    <dtfc host="${host}" user="${user}">
+          
+        <dtfa host="${host}" user="${user}" wrapcmd="yroot MYROOT1 --cmd %u">
+            <property name="node.id" value="1"/>
+        </dtfa>
+
+        <dtfa host="${host}" user="${user}" wrapcmd="yroot MYROOT2 --cmd %u">
+            <property name="node.id" value="2"/>
+        </dtfa>
+
+        <dtfa host="${host}" user="${user}">
+            <property name="node.id" value="3"/>
+        </dtfa>
+    </dtfc>
+    
+</setup>

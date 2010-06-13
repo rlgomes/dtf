@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="distribute">
+	<info>
+		<author>
+			<name>Rodney Gomes</name>
+			<email>rlgomes@yahoo-inc.com</email>
+		</author>
+		<description>Unit test for the distribute tag.</description>
+	</info>
+	
+	<local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+    </local>
+    
+	<function name="runTest">
+		<param name="distribute.func" type="required"/>
+		<param name="duration" type="required"/>
+		<param name="iterations" type="required"/>
+		
+    	<record type="txt" uri="storage://OUTPUT/perf.txt" append="false">
+        	<distribute id="dist1"
+        	            property="iter"
+        	            timer="${duration}"
+        	            iterations="${iterations}"
+        	            range="1..5"
+        	            func="${distribute.func}"
+        	            unit="1s">
+        		<event name="event">
+        			<attribute name="prop1" value="${iter}" type="string" length="64"/>
+        		</event>
+        	</distribute>
+    	</record>
+    	
+    	<query uri="storage://OUTPUT/perf.txt" event="event" type="txt" cursor="cursor1"/>
+    	       
+    	<record uri="property://perf" type="object" append="false">
+    		<stats cursor="cursor1" event="stats"/>
+    	</record>
+    	
+    	<local>	
+        	<echo>
+                  Distribute Stats for ${distribute.func}
+                  
+                  Average events/second: ${perf.avg_occ}
+                  Total events:          ${perf.tot_occ}
+        	</echo>
+    	</local>
+        
+        <query uri="storage://OUTPUT/perf.txt" event="dist1" type="txt" cursor="validation"/>
+        
+        <log tag="log" level="info">Validating the workdone vs workgoal requested events</log>
+        <iterate cursor="validation">
+            <if>
+                <neq op1="${validation.workdone}"
+                     op2="${validation.workgoal}"/>
+                <then>
+                    <fail message="Work achieved not equal to the required work to be done, ${validation.workdone} != ${validation.workgoal}"/>  
+                </then>                
+            </if>
+        </iterate>
+   	</function>
+   
+    <!-- validate that all underlying children are executed at the same time -->
+  	<record type="txt" uri="storage://OUTPUT/perf-multiple.txt" append="false">
+        <distribute property="i" range="1..5" iterations="50">
+            <event name="test.event1">
+                <attribute name="iteration" value="${i}" type="string" length="64"/>
+            </event>
+            <event name="test.event2">
+                <attribute name="iteration" value="${i}" type="string" length="64"/>
+            </event>
+        </distribute>	
+    </record>
+
+    <!-- query for both events and compare their counts -->
+ 	<query uri="storage://OUTPUT/perf-multiple.txt" 
+           event="test.event1"
+           type="txt"
+           cursor="cursor1"/>
+
+ 	<query uri="storage://OUTPUT/perf-multiple.txt" 
+           event="test.event2"
+           type="txt"
+           cursor="cursor2"/>
+    	       
+    <stats cursor="cursor1" event="perf1"/>
+    <stats cursor="cursor2" event="perf2"/>
+    
+    <if>
+        <neq op1="${perf1.tot_occ}" op2="${perf2.tot_occ}"/>
+        <then>
+            <fail message="Events count is different ${perf1.tot_occ} != ${perf2.tot_occ}"/>
+        </then>
+    </if>
+   
+    <log>testing const function</log> 
+   	<call function="runTest">
+   		<property name="distribute.func" value="const(5)"/>	
+   		<property name="duration" value="-1"/>	
+   		<property name="iterations" value="10"/>	
+   	</call>
+	
+    <log>testing step function</log> 
+   	<call function="runTest">
+   		<property name="distribute.func" value="step(0,10,1)"/>	
+   		<property name="duration" value="-1"/>	
+   		<property name="iterations" value="10"/>	
+   	</call>
+
+    <log>testing list function</log> 
+   	<call function="runTest">
+   		<property name="distribute.func" value="list(10,20,10,20,10,50)"/>	
+   		<property name="duration" value="1s"/>	
+   		<property name="iterations" value="-1"/>	
+   	</call>
+   
+    <!-- test and validate the limit distribution function. -->
+    <record uri="storage://OUTPUT/dist_with_limit.txt"
+            event="dist1">
+        <distribute id="dist1"
+                    property="iter"
+                    range="1..3"
+                    func="limit(step(0,5,1),25)"
+                    iterations="50"
+                    unit="10ms">
+            <event name="event">
+                <attribute name="prop1" value="${iter}"/>
+            </event>
+            <if>
+                <and>
+                    <isset property="dist1.workgoal"/>
+                    <gt op1="${dist1.workunit}" op2="5"/>
+                </and>
+                <then>
+                    <assert message="After iteration 5 all work goals should be 25 not ${dist1.workgoal}">
+                        <eq op2="${dist1.workgoal}" op1="25"/>
+                    </assert>
+                </then>
+            </if>
+        </distribute>
+    </record>
+ 
+    <for property="i" range="1..3"> 
+        <log>Validate iterations is respected ${i}</log> 
+        <record type="stats"> 
+            <distribute iterations="1000" range="1..50">
+                <event name="fake"/>
+            </distribute> 
+        </record>
+        <assert 
+           message="Incorrect iterations count, expected 1000 got ${fake.tot_occ}">
+            <eq op1="${fake.tot_occ}" op2="1000"/>
+        </assert>
+    </for>
+
+    <log>Validate timer is respected</log> 
+    <record type="stats"> 
+	    <distribute timer="500ms" iterations="100000" range="1..10">
+	        <event name="fake"/>
+	    </distribute> 
+    </record>
+    <assert message="Duration was longer than 500ms at ${fake.tot_dur}ms">
+       <within tolerance="5%" op2="${fake.tot_dur}" op1="500"/>
+    </assert>
+      
+    <!-- negative -->
+    <try> 
+        <sequence>
+	        <distribute func="blah" range="1..3"/>
+	        <fail>Previous distribute should have failed.</fail>
+        </sequence>
+        <catch exception="${dtf.DistributionException}" property="message">
+            <log>Caught exception correctly [${message}]</log>
+        </catch> 
+    </try>
+    
+    <try> 
+        <sequence>
+            <distribute func="const(3)" range="a,b,c" iterations="a"/>
+            <fail>Previous distribute should have failed.</fail>
+        </sequence>
+        <catch exception="${dtf.ParseException}" property="message">
+            <log>Caught exception correctly [${message}]</log>
+        </catch> 
+    </try>
+    
+    <try> 
+        <sequence>
+            <distribute func="const(3)" range="a,b,c" unit="aaa"/>
+            <fail>Previous distribute should have failed.</fail>
+        </sequence>
+        <catch exception="${dtf.ParseException}" property="message">
+            <log>Caught exception correctly [${message}]</log>
+        </catch> 
+    </try>
+    
+</script>

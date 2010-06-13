@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="xml_xpath">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        DTF unit test for the XPath feature.
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="TINPUT" path="${dtf.xml.path}"/>
+
+        <property name="iterations" value="10000"/>
+        <property name="threads" value="1"/>
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <property name="test" uri="storage://INPUT/dummy.xml"/>
+        <property name="list" uri="storage://INPUT/list.xml"/>
+    </local>
+    
+    <log>Author:      ${test:xpath:/script/info/author/name/text()}</log>
+    <log>Script Name: ${test:xpath:/script/@name}</log>
+    <log>Email:       ${test:xpath:/script/info/author/email/text()}</log>
+    <log>Info XML:    ${test:xpath:/script/info}</log> 
+
+    <call function="apply_and_count">
+        <property name="xml" value="${list}"/>
+        <property name="xpath" value="//list/item/text()"/>
+        <property name="expected_count" value="6"/>
+    </call> 
+
+    <call function="apply_and_count">
+        <property name="xml" value="${list}"/>
+        <property name="xpath" value="//list/item/@att1"/>
+        <property name="expected_count" value="6"/>
+    </call> 
+    
+    <call function="apply_and_count">
+        <property name="xml" value="${list}"/>
+        <property name="xpath" value="//list/item"/>
+        <property name="expected_count" value="6"/>
+    </call> 
+
+    <call function="apply_and_count">
+        <property name="xml" value="${list}"/>
+        <property name="xpath" value="//list/item[@att1 &lt; 4]"/>
+        <property name="expected_count" value="3"/>
+    </call> 
+   
+    <function name="apply_and_count">
+        <param name="xml" type="required"/>
+        <param name="xpath" type="required"/>
+        <param name="expected_count" type="required"/>
+
+        <!--  small trick to handle the fact that you need to have the exact
+              property name inside of the ${XXX:xpath:YYY} -->        
+        <property name="data" value="${xml}" overwrite="true"/>
+
+        <property name="count" value="${data:xpath:count(${xpath})}" overwrite="true"/>
+	    <if>
+	        <neq op1="${count}" op2="${expected_count}"/>
+	        <then>
+	            <fail message="got ${count} instead of ${expected_count}."/>
+	        </then>
+	        <else>
+	            <log>Correct count of ${expected_count} for XPath: ${xpath}</log>
+	        </else>
+	    </if>
+    </function>
+    
+</script>    

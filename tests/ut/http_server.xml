@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="http_server">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF http_server unit test.</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input" />
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output" />
+
+        <loadproperties uri="storage://INPUT/ut.properties" />
+    </local>
+
+    <!-- startup an http server that can calculate if a number is odd or even
+         and return the result through the response message of the HTTP 
+         response -->
+    <parallel>    
+	    <http_server port="28080">
+	        <http_listener path="/isodd" method="PUT">
+                <mod op1="${http.put.headerin.number}" op2="2" result="result"/>
+                <if>
+                    <eq op1="${result}" op2="0"/>
+                    <then>
+    	               <http_response status="200"
+                                      message="${http.put.headerin.number} is even">
+                            <header name="result" value="false"/>
+                       </http_response>
+                    </then> 
+                    <else>
+    	               <http_response status="200" 
+                                      message="${http.put.headerin.number} is odd">
+                            <header name="result" value="true"/>
+                       </http_response>
+                    </else>
+               </if>
+	        </http_listener>
+            
+            <http_listener path="/echo-data" method="PUT">
+                <log>received [${http.put.body}] in the HTTP body</log>
+                <log>received headers [${http.put.headerin}]</log>
+            </http_listener>
+            
+            <http_listener path="/operation1" method="GET">
+                <log>in operation1</log> 
+                <http_response status="301">
+                    <header name="Location"
+                            value="http://localhost:28080/operation2"/>
+                </http_response>
+            </http_listener>
+            
+            <http_listener path="/operation2" method="GET">
+                <log>in operation2</log> 
+                <http_response status="301">
+                    <header name="Location"
+                            value="http://localhost:28080/operation3"/>
+                </http_response>
+            </http_listener>
+            
+            <http_listener path="/operation3" method="GET">
+                <log>in operation3</log> 
+                <http_response status="200">
+                    <header name="result" value="magic"/>
+                </http_response>
+            </http_listener>
+            
+            <http_listener path="/null" method="PUT"/>
+	    </http_server>
+         
+        <try>
+            <sequence>
+                <sleep time="2s"/>
+                <http_put uri="http://127.0.0.1:28080/isodd">
+                    <header name="number" value="3"/>
+                </http_put> 
+                <log>[${http.put.statusmsg}]</log>
+                
+                <if>
+                    <neq op1="${http.put.headerout.result}" op2="true"/>
+                    <then>
+                        <fail> 3 was suppose to be odd but webservice didn't agree </fail>
+                    </then>
+                </if>
+                
+                <http_put uri="http://127.0.0.1:28080/echo-data">
+                    <cookie name="header1" value="value1" path="." domain="."/>
+                    <cookie name="header1" value="value2" path="." domain="."/>
+                    <cookie name="header1" value="value3" path="." domain="."/>
+                    <header name="header1" value="value1"/>
+                    <header name="header2" value="value2"/>
+                    <header name="header3" value="value3"/>
+                    <entity value="SOME DATA FROM THE CLIENT"/>
+                </http_put> 
+                
+                <http_get uri="http://127.0.0.1:28080/operation1"/>
+                <assert>
+                    <eq op1="${http.get.headerout.result}" op2="magic"/>
+                </assert>
+
+                <log>Validating that parallel cookie manipulation doesn't hit any issues </log>
+                <distribute iterations="10000" range="1..3">
+	                <http_put uri="http://127.0.0.1:28080/null">
+	                    <cookie name="header1" value="value1" path="." domain="."/>
+	                    <header name="header1" value="value1"/>
+	                </http_put> 
+                </distribute>
+            </sequence>
+            <finally>
+                <http_server command="stop" port="28080"/>
+            </finally>
+        </try>
+    </parallel>
+
+    <!--  
+    Validating that the server has received all the messages we sent correctly.
+    We make sure to record the server HTTP events to a separate event file from 
+    that of our client HTTP events then we can easily cycle through the client 
+    side events and query them in the server HTTP events file.
+     -->
+    <parallel>    
+        <record uri="storage://OUTPUT/server_http_events.txt">
+	        <http_server port="28083">
+	            <http_listener path="/listener1" method="PUT">
+                    <http_response status="200"/>
+                </http_listener>
+            
+	            <http_listener path="/listener2" method="POST" perfrun="true">
+	                <http_response status="200"/>
+	            </http_listener>
+	        </http_server>
+        </record> 
+        
+        <try>
+            <record uri="storage://OUTPUT/client_http_events.txt">
+                <sleep time="2s"/>
+                <for property="i" range="1..3">
+		            <http_put uri="http://127.0.0.1:28083/listener1">
+                        <http_config expectcontinue="true"/>
+                        <header name="i" value="${i}"/>
+	                    <entity>${i}</entity>
+	                </http_put>
+                </for>
+                
+                <for property="i" range="1..3">
+                    <http_post uri="http://127.0.0.1:28083/listener2"
+                              perfrun="true">
+                        <http_config expectcontinue="true"/>
+                        <header name="id" value="${i}"/>
+                        <entity>${dtf.stream(random,128,${i})}</entity>
+                    </http_post>
+                </for>
+            </record>
+            
+            <finally>
+                <sequence>
+	                <http_server command="stop" port="28083"/>
+                </sequence>
+            </finally>
+        </try>
+    </parallel>
+
+    <query uri="storage://OUTPUT/client_http_events.txt"
+           event="http.put"
+           cursor="client"/>
+
+    <iterate cursor="client">
+	    <query uri="storage://OUTPUT/server_http_events.txt"
+	           event="http.put"
+	           cursor="server">
+            <where>
+                <eq op1="headerin.i" op2="${client.headerin.i}"/>
+            </where>
+        </query>
+        
+        <nextresult cursor="server"/>
+        
+        <if>
+            <neq op1="${server.body}" op2="${client.data}"/>
+            <then>
+                <fail>
+                Data did not match between server and client
+                Client: ${client.data}
+                Server: ${server.body}
+                </fail>
+            </then>
+        </if> 
+    </iterate> 
+    
+    <log>Test out hashing and perfrun functionality for both client and server.</log>
+    <compare>
+        <query uri="storage://OUTPUT/client_http_events.txt"
+               cursor="client"
+               event="http.post"/>
+               
+        <query uri="storage://OUTPUT/server_http_events.txt"
+               cursor="server"
+               event="http.post"/>
+        <where>
+            <eq op2="${server.headerin.id}" op1="${client.headerin.id}"/>
+        </where> 
+        
+        <validate>
+            <assert><eq op2="${server.hashalgo}" op1="${client.hashalgo}"/></assert>
+            <assert><eq op2="${server.bodyhash}" op1="${client.datahash}"/></assert>
+        </validate>
+    </compare>
+
+</script> 

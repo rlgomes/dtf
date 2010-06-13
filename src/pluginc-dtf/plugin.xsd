@@ -1,0 +1,43 @@
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'
+           targetNamespace="http://dtf/v1"
+           xmlns="http://dtf/v1"
+           elementFormDefault="qualified">
+
+    <xs:group name="common_commands">
+        <xs:choice>
+            <xs:element ref="plugin_action"/>
+            
+            <xs:element ref="get_cli_stats"/>
+            <xs:element ref="cli_setoptions"/>
+            <xs:element ref="cli_test"/>
+            
+            <xs:element name="cli_gettimeofday"/>
+        </xs:choice> 
+    </xs:group>
+    
+    <xs:element name="plugin_action">
+        <xs:complexType>
+            <xs:attribute name="attribute1" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="cli_test">
+        <xs:complexType>
+            <xs:attribute name="arg1" use="optional"/>
+            <xs:attribute name="arg2" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="cli_setoptions">
+        <xs:complexType>
+            <xs:attribute name="returnevents"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="get_cli_stats">
+        <xs:complexType>
+            <xs:attribute name="uri" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

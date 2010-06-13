@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="tessuite">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>regression test suite from the users's guide documentation
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="TINPUT" path="${dtf.xml.path}"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/websearch.properties"/>
+    </local>
+   
+    <result type="console"> 
+	    <testsuite name="websearch_regression_testsuite">
+	        <testscript uri="storage://TINPUT/scenario1.xml"/>
+           
+            <!--  avoiding the slower implementation of scenario 2 -->
+	        <!--  <testscript uri="storage://TINPUT/scenario2.xml"/> -->
+	        <testscript uri="storage://TINPUT/scenario2_concurrent.xml"/>
+            
+	        <testscript uri="storage://TINPUT/scenario3.xml"/>
+	        <testscript uri="storage://TINPUT/scenario4.xml"/>
+	        <testscript uri="storage://TINPUT/scenario5.xml"/>
+	    </testsuite>
+    </result>
+    
+</script>

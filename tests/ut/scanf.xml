@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="scanf">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>Unit test for the scanf tag.</description>
+    </info>
+
+	<local>
+    	<createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+	    <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <import uri="storage://INPUT/perfutil.xml"/>
+	</local> 
+
+    <scanf args="float,int,hex"
+           format="%.2f some text %5d %04x"
+           input="2.12 some text 00001 000a"/>
+    <log>float: ${float}</log>
+    <log>int: ${int}</log>
+    <log>hex: ${hex}</log>
+    
+    <scanf args="float,hex"
+           format="%.2f %x"
+           input="12.34 0xa"/>
+    <log>float: ${float}</log>
+    <log>int: ${int}</log>
+    <log>hex: ${hex}</log>
+    
+    <scanf args="c1,c2,c3,c4,c5"
+           format="%c%c%c%c%c"
+           input="hello"/>
+    <log>chars: ${c1} ${c2} ${c3} ${c4} ${c5}</log>
+
+    <for property="size" range="8,128,1024,1048576">
+        <unset property="length"/>
+        <unset property="msg"/>
+        
+        <printf args="${size}" 
+                format="%d${dtf.stream(repeat,${size},FFFF)}"
+                property="data"/>
+	    <log>
+	    Using dynamic property resolution to do it all in a single call.
+	    </log>
+	    <scanf args="length,msg"
+	           format="%d%${length}s"
+	           input="${data}"/>
+	    <log>len: ${length}</log>
+        <assert>
+            <eq op1="${dtf.stream(repeat,${size},FFFF)}" op2="${msg}"/>
+        </assert>
+        
+        <unset property="length"/>
+        <unset property="msg"/>
+	
+        <printf args="${size}" 
+                format="%08x${dtf.stream(repeat,${size},FFFF)}"
+                property="data"/>
+	    <log>
+	    Using dynamic property resolution to do it all in a single call. 
+	    This time with the length in hexa-decimal notation.
+	    </log>
+	    <scanf args="length,msg"
+	           format="%08x%${length:convert:from-hex}s"
+	           input="${data}"/>
+              
+	    <log>len: ${length}</log>
+        <assert>
+            <eq op1="${dtf.stream(repeat,${size},FFFF)}" op2="${msg}"/>
+        </assert>
+    </for>
+
+</script> 

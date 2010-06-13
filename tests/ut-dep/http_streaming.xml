@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="http_streaming">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        
+        WARNING: In order to use this test you must have a webdav server running
+                 locally. This can easily be acheived by setting up an apache
+                 server on your setup with the following entry in the httpd.conf
+                 file:
+                 
+                 <![CDATA[ 
+					## Location of the DavLock file
+					DavLockDB /usr/share/apache2/var/DavLock
+					
+					## Set up the myWebDAV directory to use WebDAV and authentication
+					<Directory "/var/www/webdav">
+					    Dav On
+					    Allow from all
+					</Directory>
+                ]]>
+               
+                * make sure to create the /var/www/webdav path or to change that
+                  to a path that your apache user has permissions to read from 
+                  and write to. 
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+       
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <property name="iterations" value="50" overwrite="true"/>
+        <property name="perfrun" value="false"/>
+    </local> 
+  
+    <property name="size" value="204857600"/>
+    <for property="hash" range="none,md5,sha1">
+	    <for property="type" range="repeat,random">
+		    <record uri="storage://OUTPUT/http_streaming_${type}_${hash}_big.txt"> 
+			    <http_put uri="http://localhost/webdav/myfile"
+		                  hash="${hash}"
+		                  perfrun="true">
+		            <entity value="${dtf.stream(${type},${size},1234567890)}"/>
+			    </http_put>
+		        
+			    <http_get uri="http://localhost/webdav/myfile"
+		                  hash="${hash}"
+		                  perfrun="true"/>
+		                  
+		        <http_delete uri="http://localhost/webdav/myfile"
+                             perfrun="true"/>
+		    </record>
+
+		    <query uri="storage://OUTPUT/http_streaming_${type}_${hash}_big.txt"
+		           cursor="putperf"
+		           event="http.put"/>
+		    <stats cursor="putperf" event="http.put.${type}.${hash}"/>
+		
+		    <query uri="storage://OUTPUT/http_streaming_${type}_${hash}_big.txt"
+		           cursor="getperf"
+		           event="http.get"/>
+		    <stats cursor="getperf" event="http.get.${type}.${hash}"/>
+	    </for>
+    </for>
+    
+    <for property="hash" range="none,md5,sha1">
+	    <for property="type" range="repeat,random">
+		    <log>
+                ${size} Objects
+                Streaming of ${type} data with hash algorithm ${hash}
+                ***************************************************** 
+		        Put bytes/sec: ${http.put.${type}.${hash}.datasize.avg_val}
+		        Get bytes/sec: ${http.get.${type}.${hash}.bodysize.avg_val}
+		    </log>
+	    </for>
+    </for>
+    
+    <property name="size" value="32" overwrite="true"/>
+    <property name="iterations" value="2000"/>
+    
+    <for property="hash" range="md5,sha1,none">
+	    <for property="type" range="repeat,random">
+		    <record uri="storage://OUTPUT/http_streaming_${type}_${hash}_small.txt"> 
+                <for property="i" range="1..${iterations}">
+				    <http_put uri="http://localhost/webdav/myfile-${i}"
+			                  hash="${hash}"
+			                  perfrun="true">
+			            <entity value="${dtf.stream(${type},${size},1234567890)}"/>
+				    </http_put>
+                </for>
+		        
+                <for property="i" range="1..${iterations}">
+				    <http_get uri="http://localhost/webdav/myfile-${i}"
+			                  hash="${hash}"
+			                  perfrun="true"/>
+                </for>
+		                  
+                <for property="i" range="1..${iterations}">
+		          <http_delete uri="http://localhost/webdav/myfile-${i}"
+                               perfrun="true"/>
+                </for>
+		    </record>
+
+		    <query uri="storage://OUTPUT/http_streaming_${type}_${hash}_small.txt"
+		           cursor="putperf"
+		           event="http.put"/>
+		    <stats cursor="putperf" event="http.put.${type}.${hash}"/>
+		
+		    <query uri="storage://OUTPUT/http_streaming_${type}_${hash}_small.txt"
+		           cursor="getperf"
+		           event="http.get"/>
+		    <stats cursor="getperf" event="http.get.${type}.${hash}"/>
+	    </for>
+    </for>
+    
+    <for property="hash" range="none,md5,sha1">
+	    <for property="type" range="repeat,random">
+		    <log>
+                ${size} Objects
+                Streaming of ${type} data with hash algorithm ${hash}
+                ***************************************************** 
+		        Put/sec: ${http.put.${type}.${hash}.avg_occ}
+		        Get/sec: ${http.get.${type}.${hash}.avg_occ}
+		    </log>
+	    </for>
+    </for>
+    
+</script> 

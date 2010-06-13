@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="validation1">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        A simple demonstration of using the compare tag in a real world 
+        scenario. This test is explained in the Users Guide in the Using Compare
+        tag to do Validation section.
+        </description>
+    </info>
+        
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <createstorage id="STORE" path="${dtf.xml.path}/output/datastore"/>
+        
+        <loadproperties uri="storage://INPUT/test.properties"/>
+       
+        <property name="host" value="localhost"/> 
+        <property name="port" value="32323"/> 
+        <property name="uri" value="http://${host}:${port}"/>
+    </local>
+
+    <parallel>
+        <sequence> 
+            <log>
+            Starting up an HTTP Server that will respond to PUT and GET requests
+            allowing the test to simulate a server node that can store and 
+            retrieve files.
+            </log>
+	        <http_server port="${port}">
+	            <http_listener path="/write_record" method="PUT">
+	                <cat uri="storage://STORE/file-${http.put.headerin.recordid}"
+                         append="false">${http.put.body}</cat>
+	            </http_listener>
+	                
+	            <http_listener path="/read_record" method="GET">
+	                <property name="data" 
+	                          uri="storage://STORE/file-${http.get.headerin.recordid}"
+	                          overwrite="true"/>
+	                <http_response status="200">
+	                    <entity value="${data}"/>
+	                </http_response>
+	            </http_listener>
+	        </http_server>
+        </sequence>
+    
+        <try>
+             <record uri="storage://OUTPUT/http_events.txt">
+                <log>
+                Will startup some client writes to the previously started HTTP
+                server that will store a few files with 1024bytes of length
+                </log>
+                <sleep time="2s"/>
+                <for property="i" range="1..100">
+                    <http_put uri="${uri}/write_record">
+                        <header name="recordid" value="${i}"/>
+                        <entity>${dtf.stream(random,1024,${i})}</entity>
+                    </http_put>
+                </for>        
+                
+                <log>
+                Now we'll retrieve those same files and record the HTTP events
+                for the second phase of this test where we will validate our 
+                writes against our reads.
+                </log>
+                <for property="i" range="1..100">
+                    <http_get uri="${uri}/read_record">
+                        <header name="recordid" value="${i}"/>
+                    </http_get>
+                </for>        
+            </record>
+	        <finally>
+	            <http_server port="${port}" command="stop"/>
+	        </finally>
+	    </try>
+    </parallel>
+  
+    <log>
+    Validating your reads against the previously recorded write events.
+    </log> 
+    <compare>
+        <query uri="storage://OUTPUT/http_events.txt"
+               cursor="writes"
+               event="http.put"/> 
+               
+        <query uri="storage://OUTPUT/http_events.txt"
+               cursor="reads"
+               event="http.get"/> 
+        <where>
+            <eq op1="${writes.headerin.recordid}"
+                op2="${reads.headerin.recordid}"/>
+        </where> 
+        
+        <validate>
+            <assert>
+                <eq op1="${reads.body}" op2="${writes.data}"/> 
+            </assert>
+        </validate> 
+    </compare>
+   
+    <log>Validating your data knowing exactly how you generated it</log> 
+    <compare>
+        <query uri="storage://OUTPUT/http_events.txt"
+               cursor="reads"
+               event="http.get"/> 
+               
+        <validate>
+            <assert>
+                <eq op1="${reads.body}"
+                    op2="${dtf.stream(random,1024,${reads.headerin.recordid})}"/> 
+            </assert>
+        </validate> 
+    </compare>
+    
+</script>

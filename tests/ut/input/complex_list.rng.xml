@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<element name="list" xmlns="http://relaxng.org/ns/structure/1.0">
+    <zeroOrMore>
+	    <element name="item">
+	        <element name="key">
+	           <text/>
+	        </element>
+	        <element name="value">
+	           <text/>
+	        </element>
+	        <element name="timestamp">
+	           <text/>
+	        </element>
+            <optional>
+                <element name="note">
+                    <text/>
+                </element>
+            </optional>
+	    </element>
+    </zeroOrMore>
+</element>

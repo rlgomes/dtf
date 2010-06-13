@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="rendezvous">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>Unit test for the rendezvous tags.</description>
+    </info>
+   
+    <local>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+
+        <!-- should be larger than 25 for the negative test to work -->
+        <property name="parties" value="50"/> 
+        <rendezvous_create id="rv1" parties="${parties}"/> 
+    </local>
+  
+    <parallelloop range="1..${parties}" property="thread">
+        <rendezvous_visit id="rv1"/>
+    </parallelloop> 
+    
+    <rendezvous_reset id="rv1"/>
+    <try>
+        <sequence>
+            <rendezvous_visit id="rv1" timeout="1ms"/>
+            <fail message="Something is really wrong the previous SyncPoint usage should have timed out."/>
+        </sequence>        
+        <catch exception="${dtf.RendezvousException}">
+            <log>Expected timeout has occured.</log>
+        </catch>
+    </try>
+    
+    <!-- Now lets calculate exactly how synchronized can you get a few threads
+         to do a specific action and how close in time these can actually be
+         executed. -->
+    <rendezvous_create id="rv2" parties="${parties}"/> 
+    <record uri="storage://OUTPUT/rendezvous_timing.txt">
+        <parallelloop range="1..${parties}" property="thread">
+            <rendezvous_visit id="rv2"/>
+            <event name="rv_event"/>
+        </parallelloop>
+    </record>
+    
+    <query uri="storage://OUTPUT/rendezvous_timing.txt"
+           cursor="cursor"/>
+           
+    <record type="object" uri="property://rvperf">
+        <stats cursor="cursor" event="rv_event"/>
+    </record>
+    <log>All ${parties} threads were executed within ${rvperf.tot_dur}ms</log>
+   
+    <log>Validating rendezvous for all ${parties} is no longer than 100ms</log>
+    <if>
+        <gt op1="${rvperf.tot_dur}" op2="100"/>
+        <then>
+            <fail message="Rendezvous delay time is ${rvperf.tot_dur}ms, this is not good."/>
+        </then>
+    </if>
+
+    <local>
+        <rendezvous_create id="rendezvous" parties="2"/> 
+    </local>
+    <!-- Use rendezvous to relay the information of one thread terminating its
+         execution to the other so the other one can also end its execution. -->
+    <record uri="storage://OUTPUT/while-rendezvous-timing.xml"> 
+        <parallel>
+            <sequence>
+                <log>Thread 1 is starting.</log>
+                <!-- While the rendezvous has not been visited lets loop and do 
+                     our thing... -->
+                <while>
+                    <not><rendezvous_check id="rendezvous" /></not>
+                </while>
+                <log>Thread 1 is done.</log>
+                <rendezvous_visit id="rendezvous" />
+            </sequence>
+                
+            <sequence>
+                <log>Thread 2 is starting.</log>
+                <sleep time="200ms"/>
+                <log>Thread 2 is done.</log>
+                <rendezvous_visit id="rendezvous" />
+            </sequence>
+        </parallel>
+    </record>
+    
+    <query uri="storage://OUTPUT/while-rendezvous-timing.xml" cursor="cursor"/>
+           
+    <record type="object" uri="property://rvperf">
+        <stats cursor="cursor" event="rv_event"/>
+    </record>
+    <log>Took ${rvperf.tot_dur} for thread 1 to notice thread 2 was gone.</log>
+    
+</script> 

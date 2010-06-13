@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="encoding">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        DTF encoding test that validates that record, query, property, and 
+        loadproperties all work well with different character sets specified by 
+        the encoding attribute.
+        
+        Needs more tests currently just makes sure that two encodings that should
+        work well together do in fact work well together.
+        </description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+       
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        <property name="encodings" value="UTF-8,ISO-8859-1"/>
+                  
+        <property name="names" value="english,noël,Où?,café au lait,niño"/>
+    </local>
+
+    <for property="encoding" range="${encodings}"> 
+        <createrange name="special_chars" value="${names}"/>
+        
+	    <record uri="storage://OUTPUT/record_${encoding}.txt"
+	            append="false"
+                encoding="${encoding}">
+	        <for property="index" range="${names}">
+			    <event name="dtf.perf.event">
+	                <attribute name="special" value="${special_chars}"/>
+                    <attribute name="encoded" value="${encoding}"/>
+			    </event>
+	        </for>
+	    </record>
+    </for>
+
+    <for property="encoding" range="${encodings}"> 
+        <createrange name="special_chars" value="${names}"/>
+                     
+	    <query uri="storage://OUTPUT/record_${encoding}.txt"
+               cursor="cursor"
+               encoding="${encoding}"/>
+               
+        <for property="index" range="${names}">
+            <nextresult cursor="cursor"/>
+            
+            <property name="expected_chars"
+                      value="${special_chars}"
+                      overwrite="true"/>
+            <if>
+                <neq op1="${expected_chars}" op2="${cursor.special}"/>
+                <then>
+                    <fail message="${cursor.special} does not match ${expected_chars} for encoding ${encoding}"/>
+                </then>
+                <else>
+                    <log>${expected_chars} was good for encoding ${encoding}</log>
+                </else>
+            </if>   
+        </for>
+    </for>
+      
+</script>

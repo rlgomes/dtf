@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="recorderperf">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF recorder performance test.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="TINPUT" path="${dtf.xml.path}"/>
+
+        <loadproperties uri="storage://INPUT/perf.properties"/>
+        <import uri="storage://INPUT/perf_util.xml"/>
+
+        <property name="timestring" value="*** The time is [${dtf.timestamp}] ***"/>
+        <import uri="storage://TINPUT/eventutil.xml" loadFuncs="true" loadRefs="true"/>
+        
+        <property name="total" value="100000"/>
+        <property name="mode" value="insert" overwrite="true"/>
+    </local>
+
+    <for property="type" range="txt,csv">
+        <event name="total">
+			<record uri="storage://OUTPUT/recorder.txt" 
+		            append="false"
+	                type="${type}"> 
+		        <for property="iter" range="1..${total}">
+		            <event name="testevent"/>
+		        </for>
+		    </record>
+        </event>
+
+	    <call function="calcEventPerf" result="ops_per_s">
+	        <property name="iterations" value="${total}" />
+	        <property name="event" value="total" /> 
+	    </call>
+        
+		<log>
+              ${type} recorder performance
+	          ***********************************
+	          Events per second: ${ops_per_s}
+	    </log> 
+        
+	    <call function="writeperf">
+	        <property name="uri" value="storage://OUTPUT/recorder_${type}.perf"/>
+	        <property name="value" value="${ops_per_s}"/>
+	    </call>
+    </for>
+
+</script>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="random">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+            DTF unit test to validate the correctness and performance of random 
+            number generators.
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        <import uri="storage://INPUT/perfutil.xml"/>
+        
+        <property name="rand_types" value="randomInt,randomLong,randomDouble,gaussianLong"/>
+    </local>
+    
+    <!-- anrandom(a..z)e correctness -->
+    <for property="type" range="${rand_types}">
+        <log>Correctness check for ${type} generator</log>
+        <event name="perf">
+            <for property="i" range="1..${iterations.medium}">
+                <property name="random" value="${dtf.${type}(10000)}" overwrite="true"/>
+                <if>
+                    <or>
+	                    <lt op1="${random}" op2="10000"/>
+	                    <eq op1="${random}" op2="10000"/>
+                    </or>
+                    <else>
+                        <fail message="random number [${random}] is greater than 10000"/>
+                    </else> 
+                </if>
+            </for>
+        </event>
+    </for>
+
+    <for property="type" range="${rand_types}">
+        <log>Correctness check for ${type} generator</log>
+        <event name="perf">
+            <for property="i" range="1..${iterations.medium}">
+                <property name="random" value="${dtf.${type}(100,200)}" overwrite="true"/>
+                <if>
+                    <and>
+                        <or>
+                            <gt op1="${random}" op2="100"/>
+                            <eq op1="${random}" op2="100"/>
+                        </or>
+                        <lt op1="${random}" op2="200"/>
+                        <not><eq op1="${random}" op2="200"/></not>
+                    </and>
+                    <else>
+                        <fail message="${random} is not in the interval [100,200[ for ${type}"/>
+                    </else> 
+                </if>
+            </for>
+        </event>
+    </for>
+
+    <for property="type" range="${rand_types}">
+        <log>Correctness check for ${type} generator</log>
+        <event name="perf">
+            <for property="i" range="1..${iterations.medium}">
+                <property name="random" value="${dtf.${type}(-100,100)}" overwrite="true"/>
+                <if>
+                    <and>
+                        <or>
+                            <gt op1="${random}" op2="-100"/>
+                            <eq op1="${random}" op2="-100"/>
+                        </or>
+                        <lt op1="${random}" op2="100"/>
+                        <not><eq op1="${random}" op2="100"/></not>
+                    </and>
+                    <else>
+                        <fail message="${random} is not in the interval [-100,100[ for ${type}"/>
+                    </else> 
+                </if>
+            </for>
+        </event>
+    </for>
+</script>

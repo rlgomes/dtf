@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="capacity">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        
+        <description>
+        This is a capacity planning test that can be used to plan out how much 
+        client hardware you may need to test out that the server side can indeed
+        hit a certain target performance number. It also serves as a simple way 
+        of finding how many threads the client machine in use can handle. There
+        are quite a few properties that can alter the behavior of this test, 
+        here are the currently available options:
+        
+        threads.start - the number of threads to start running the capacity test
+                        with.
+                        
+                        Default: 50
+       
+        threads.inc   - the amount to increase the thread count on every 
+                        iteration of this test where we find that the performance
+                        hasn't dipped yet. 
+                        
+                        Default: 10
+        
+        threads.max   - the maximum amount of threads we're willing to allow the
+                        test to run with.
+                        
+                        Default: -1 (never stop because of the thread count).
+                        
+        test.duration - this is the duration of each iteration that is being 
+                        measured for performance. This number should be equal to
+                        the minimum time to safely get a stable number from 
+                        executing a certain action. This can be anywhere from 
+                        30s to 5min depending on how your action works. I would 
+                        usually point to at least a 1-2 minutes of duration to 
+                        get a stable number from most operations that depend on 
+                        network activity. 
+                        
+                        Default: 5s (just because of the simple test scenario I 
+                                     am using by default).
+        
+        All of the above properties are defined in the test.properties file 
+        being imported below and you can set your own in that file or just by
+        passing the -Dxxx=yyy argument when running the DTFX.
+        </description>
+    </info>
+   
+    <local>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        
+        <loadproperties uri="storage://INPUT/test.properties"/>
+    </local>
+   
+    <property name="threads" value="${threads.start}"/> 
+    <property name="prev.avg_occ" value="0"/>
+    <!-- you can initialize your own global properties here or you can 
+         add them to the test.properties --> 
+         
+    <while>
+        <or>
+            <lt op1="${threads}" op2="${threads.max}"/>
+            <eq op1="${threads.max}" op2="-1"/>
+        </or>
+        
+        <!-- You can initialize your own things here before each loop of 
+             measured performance. -->
+        
+        <record type="stats">
+	        <distribute id="mydist"
+	                    timer="${test.duration}"
+	                    range="1..${threads}"
+	                    property="iteration">
+                        
+                <!-- this is the location where someone trying to use this
+                     test would replace the event tag with their own action.
+                     If you happen to need to init some other activities before
+                     you can use your action make sure to do so the distribute 
+                     tag is executed.  -->
+	            <event name="myop">
+                    <sleep time="${dtf.randomInt(1,5)}"/>
+                </event>
+                
+	        </distribute>
+        </record>
+        
+        <if>
+            <lt op1="${myop.avg_occ}" op2="${prev.avg_occ}"/>
+            <then>
+                <log>
+                Reached maximum performance of ${myop.avg_occ} ops/sec with ${threads} thread(s)
+                </log> 
+                <break/>
+            </then>
+            <else>
+                <log>
+                Performance with ${threads} thread(s) at ${myop.avg_occ} ops/sec
+                </log> 
+                <property name="prev.avg_occ" 
+                          value="${myop.avg_occ}"
+                          overwrite="true"/>
+                          
+                <add op1="${threads}" op2="${threads.inc}" result="threads"/>
+            </else>
+        </if>
+    </while>
+    
+</script>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="compareperf">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>Unit test for the compare tag.</description>
+    </info>
+   
+    <local>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+
+        <loadproperties uri="storage://INPUT/perf.properties"/>
+        
+        <import uri="storage://INPUT/perf_util.xml"/>
+        
+        <property name="iterations" value="100000" overwrite="true"/>
+    </local>
+
+    <record uri="storage://OUTPUT/compare_write_data.txt">
+        <for property="i" range="1..${iterations}">
+            <event name="write.event">
+                <attribute name="recordid" value="${i}"/>
+                <attribute name="timestamp" value="${dtf.timestamp}"/>
+                <attribute name="datestamp" value="${dtf.datestamp}"/>
+                <attribute name="uid" value="${dtf.stream(random,16,${i})}"/>
+                <attribute name="gid" value="${dtf.stream(random,16,${i})}"/>
+                <attribute name="data" value="${dtf.stream(random,32,${i})}"/>
+            </event>
+        </for>
+    </record> 
+    
+    <record uri="storage://OUTPUT/compare_read_data.txt">
+        <for property="i" range="1..${iterations}">
+            <event name="read.event">
+                <attribute name="recordid" value="${i}"/>
+                <attribute name="timestamp" value="${dtf.timestamp}"/>
+                <attribute name="datestamp" value="${dtf.datestamp}"/>
+                <attribute name="uid" value="${dtf.stream(random,16,${i})}"/>
+                <attribute name="gid" value="${dtf.stream(random,16,${i})}"/>
+                <attribute name="data" value="${dtf.stream(random,32,${i})}"/>
+            </event>
+        </for>
+    </record> 
+     
+    <log>Start comparing data</log>
+    <event name="total">
+	    <compare>
+	         <query uri="storage://OUTPUT/compare_write_data.txt"
+	                event="write.event"
+	                cursor="c1">
+                <select>
+                    <field name="recordid"/>
+                    <field name="data"/>
+                </select>
+             </query>
+	                
+	         <query uri="storage://OUTPUT/compare_read_data.txt"
+	                event="read.event"
+	                cursor="c2">
+                <select>
+                    <field name="recordid"/>
+                    <field name="data"/>
+                </select>
+             </query>
+             
+             <where>
+                <eq op1="${c1.recordid}" op2="${c2.recordid}"/>
+             </where>
+	        
+	         <validate>
+	            <assert>
+	                <eq op1="${c1.data}" op2="${c2.data}"/>
+	            </assert>
+	         </validate>
+	    </compare>
+    </event>
+    <log>Done comparing data</log>
+   
+    <call function="calcEventPerf" result="avg_occ">
+        <property name="iterations" value="${iterations}" />
+        <property name="event" value="total" /> 
+    </call>
+    <log>Compared ${avg_occ} events/s, on data from two sources.</log>
+    
+    <log>Start comparing data</log>
+    <event name="total">
+        <compare>
+             <query uri="storage://OUTPUT/compare_write_data.txt"
+                    event="write.event"
+                    cursor="c1">
+                <select>
+                    <field name="recordid"/>
+                    <field name="data"/>
+                </select>
+             </query>
+                    
+             <validate>
+                <assert>
+                    <eq op1="${c1.data}" op2="${dtf.stream(random,32,${c1.recordid})}"/>
+                </assert>
+             </validate>
+        </compare>
+    </event>
+    <log>Done comparing data</log>
+   
+    <call function="calcEventPerf" result="avg_occ">
+        <property name="iterations" value="${iterations}" />
+        <property name="event" value="total" /> 
+    </call>
+    <log>Compared ${avg_occ} events/s, on known data.</log>
+
+</script>    

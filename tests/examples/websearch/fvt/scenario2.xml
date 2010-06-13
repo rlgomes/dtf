@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="fvt-scenario1">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>fvt scenario 2 from the users's guide documentation</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/websearch.properties"/>
+        
+        <property name="websearch.load_timer" value="30s"/>
+        <property name="websearch.workers" value="5"/>
+    </local>
+   
+    <!-- lock the number of clients we'll need for this test --> 
+    <for property="client" range="1..${websearch.clients}">
+        <local>
+            <lockcomponent id="CLIENT${client}"/>
+        </local>
+    </for>
+    
+    <property name="uri"
+              value="${websearch.uri}?appid=dtftest"/>
+              
+    
+    <log>Sending requests...</log> 
+    <record uri="storage://OUTPUT/scenario1_search_events.txt">   
+	    <parallelloop property="client" range="1..${websearch.clients}"> 
+	        <component id="CLIENT${client}">
+                <createrange name="query_strings"
+                             value="yahoo,finance,mail,stocks"
+                             recycle="true"/>
+                             
+	            <distribute id="mydist"
+	                        workers="${websearch.workers}"
+                            timer="${websearch.load_timer}">
+				    <http_get uri="${uri}&amp;query=${query_strings}"/>
+                    <call function="validateCache">
+                        <property name="result.set" value="${http.get.body}"/>
+                    </call>
+	            </distribute>
+	        </component>
+	    </parallelloop>
+    </record>
+   
+    <function name="validateCache" export="true">
+        <param name="result.set" type="required"/>
+        
+        <!-- 
+            each of the above parameters has the following syntax:
+			<ResultSet>
+			    <Result>
+			        <Title>Title</Title>
+			        <Summary>Summary</Summary>
+			        <Url>http://some.link</Url>
+			        <ClickUrl>http://some.link</ClickUrl>
+			        <DisplayUrl>http://some.link</DisplayUrl>
+			        <ModificationDate>1234567890</ModificationDate>
+			        <MimeType>text/html</MimeType>
+			        <Cache>
+			            <Url>http://some.link</Url>
+			            <Size>1234</Size>
+			        </Cache>
+			    </Result>
+			</ResultSet>
+        -->
+        <property name="cached" value="0" overwrite="true"/>
+        <property name="noncached" value="0" overwrite="true"/>
+        <for property="result"
+             range="xpath(${result.set},/ResultSet/Result)">
+            <property name="cache.url" value="${result:xpath:/Result/Cache/Url/text()}"/>
+            
+            <if>
+                <neq op1="${cache.url}" op2=""/>
+                <then>
+                    <add op1="${cached}" op2="1" result="cached"/>
+                    <!-- receive the cached page, just to validate its available -->
+                    <http_get uri="${cache.url}"/>
+                </then>
+                <else>
+                    <add op1="${noncached}" op2="1" result="noncached"/>
+                </else>
+            </if>
+        </for>
+        <log>Cached: ${cached}</log>
+        <log>NonCached: ${noncached}</log>
+    </function>
+
+</script>

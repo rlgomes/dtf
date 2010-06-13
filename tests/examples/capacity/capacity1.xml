@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="capacity1">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        This test is explained in the Users Guide in the Capacity Planning 
+        section and should be a starting point when reading that section. For a
+        more flexible testcase have a look at the other capacity.xml file that
+        contains a more flexible test that can be used for real world capacity
+        planning.
+        </description>
+    </info>
+   
+    <local>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+    </local>
+   
+    <property name="threads" value="10"/> 
+    <property name="prev.avg_occ" value="0"/>
+    
+    <while>
+        <true/>
+        
+        <record type="stats">
+	        <distribute id="mydist"
+	                    timer="5s"
+	                    range="1..${threads}"
+	                    property="iteration">
+	            <event name="myop">
+                    <sleep time="${dtf.randomInt(1,5)}"/>
+                </event>
+	        </distribute>
+        </record>
+        
+        <if>
+            <lt op1="${myop.avg_occ}" op2="${prev.avg_occ}"/>
+            <then>
+                <log>
+                All done at thread count ${threads} 
+                with performance of ${myop.avg_occ}
+                </log> 
+                <break/>
+            </then>
+            <else>
+                <log>
+                Still increasing performance with ${threads} thread(s)
+                with performance of ${myop.avg_occ}
+                </log> 
+                <property name="prev.avg_occ" 
+                          value="${myop.avg_occ}"
+                          overwrite="true"/>
+                <add op1="${threads}" op2="10" result="threads"/>
+            </else>
+        </if>
+    </while>
+    
+</script>

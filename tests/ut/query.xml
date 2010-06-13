@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="query">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Unit test for the query tag, query can be used to retrieve 
+        events previously recorded by the recorder tag.
+        </description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="TINPUT" path="${dtf.xml.path}"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+    </local>
+    
+    <!-- Using more complex conditionals during querying -->
+    <local> 
+        <createrange name="data" 
+                     value="[abc][xyz][up,down,left,right]"
+                     recycle="true"/> 
+    </local>
+    <record uri="storage://OUTPUT/query_data1.txt">
+        <for property="i" range="1..5">
+            <event name="test.event">
+                <attribute name="data" value="${data}"/>
+                <attribute name="iteration" value="${i}"/>
+            </event>
+        </for>
+    </record>
+   
+    <query uri="storage://OUTPUT/query_data1.txt"
+           cursor="c1"
+           event="test.event">
+        <where>
+            <match source="data" expression=".*up.*"/>
+        </where>
+    </query>
+    
+    <iterate cursor="c1">
+        <log>${c1.iteration}: ${c1.data}</log>
+    </iterate>
+
+    <!-- Using more complex conditionals during querying with no event specified -->
+    <local> 
+        <createrange name="data" 
+                     value="[abc][xyz][up,down,left,right]"
+                     recycle="true"/> 
+    </local>
+    <record uri="storage://OUTPUT/query_data2.txt">
+        <for property="i" range="1..5">
+            <event name="test.event1">
+                <attribute name="data" value="${data}"/>
+                <attribute name="succeeded" value="false"/>
+            </event>
+            <event name="test.event2">
+                <attribute name="data" value="${data}"/>
+                <attribute name="succeeded" value="true"/>
+            </event>
+        </for>
+    </record>
+   
+    <query uri="storage://OUTPUT/query_data2.txt"
+           cursor="c1">
+        <where>
+            <eq op1="succeeded" op2="true"/>
+        </where>
+    </query>
+    
+    <stats cursor="c1" event="test"/>
+    
+    <log>Total Ops ${test.tot_occ}</log>
+
+    <record uri="storage://OUTPUT/query_data3.txt">
+        <for property="i" range="1..${iterations.medium}">
+            <event name="test.event1">
+                <attribute name="data" value="${data}"/>
+                <attribute name="succeeded" value="false"/>
+            </event>
+        </for>
+    </record>
+    
+    <parallel>
+	    <parallelloop property="query" range="1..10">
+		    <query uri="storage://OUTPUT/query_data3.txt"
+		           cursor="cursor-big${query}">
+		        <where>
+		            <eq op1="succeeded" op2="true"/>
+		        </where>
+		    </query>
+	        <iterate cursor="cursor-big${query}"/>
+	    </parallelloop>
+        
+        <parallelloop property="query" range="1..10">
+		    <query uri="storage://OUTPUT/query_data2.txt"
+		           cursor="cursor-small${query}">
+		        <where>
+		            <eq op1="succeeded" op2="true"/>
+		        </where>
+		    </query>
+	    </parallelloop>
+    </parallel>
+    
+	<testsuite name="query">
+		<property name="query.type" value="txt" overwrite="true"/>
+		<testscript uri="storage://TINPUT/query_testcase.xml"/>
+	</testsuite> 
+    
+    
+    <!-- Reopening the same query to try to hit Too many files open error -->
+    <for property="query" range="1..${iterations.medium}">
+	    <query uri="storage://OUTPUT/query_data2.txt"
+	           cursor="cursor"/>
+    </for>
+    
+    <record uri="storage://OUTPUT/small_test.txt">
+        <event name="event.name">
+            <attribute name="caca.x" value="caca"/>
+        </event>
+    </record>
+
+    <query uri="storage://OUTPUT/small_test.txt" cursor="cursor"/>
+   
+    <!-- validates that the event name is still event.name and that the 
+         attribute name can contain dots in it without confusing the recorder
+         or query mechanism --> 
+    <iterate cursor="cursor">
+        <log>${cursor.caca.x}</log>
+    </iterate>
+    
+    <!-- validate that txt query can handle event files that contains events 
+         with different event name lengths (had a bug in there that was fixed 
+         and this is just a regression check) -->
+    <record uri="storage://OUTPUT/multi_events.txt">
+        <event name="short.eventname"/>
+        <event name="much.much.longer.eventname"/>
+        <event name="short.eventname"/>
+        <event name="much.much.longer.eventname"/>
+        <event name="short.eventname"/>
+        <event name="much.much.longer.eventname"/>
+    </record> 
+
+    <for property="event" 
+         range="[short.eventname,much.much.much.longer.eventname]">
+        <query uri="storage://OUTPUT/multi_events.txt"
+               event="${event}"
+               cursor="cursor" />
+        <stats cursor="cursor" event="txtrecorder" />
+    </for>
+    
+</script>

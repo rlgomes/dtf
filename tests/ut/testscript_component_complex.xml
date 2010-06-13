@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="testscript_component_complex">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        DTF unit test to validate different usages of component and testscript
+        tags that can lead to problems or have lead to issues in the past.
+        </description>
+    </info>
+    
+    <local>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        
+        <createstorage id="TINPUT" path="${dtf.xml.path}"/>
+    </local>
+   
+    <!-- 
+        1st scenario:
+    
+        In parallel execute another test that holds onto a component for 5s 
+        while the local script tries to lock the same component, with a timeout
+        of 7s. Makes use of the component can be used by the main script.
+    --> 
+    <parallel>
+        <sequence>
+            <property name="occupy.duration" value="3s" overwrite="true"/>
+            <testscript uri="storage://INPUT/occupy_component.xml"/>
+            <log>Done executing occup_component.xml.</log>
+        </sequence>
+        
+        <local>
+            <sleep time="2s"/>
+            <lockcomponent id="C1" timeout="5s"/>
+        </local>
+    </parallel>
+    <component id="C1">
+        <log>Still HERE!</log>
+    </component>
+    <local>
+        <unlockcomponent id="C1"/>
+    </local>
+
+    <!-- 
+        2nd scenario:
+        
+        Main test locks a component, executes an external script that has its 
+        own locks and cleanups, then validates that the main test can still use
+        the original component. 
+    --> 
+    <local>
+        <lockcomponent id="C1"/>
+    </local>
+    <property name="occupy.duration" value="2s" overwrite="true"/>
+    <testscript uri="storage://INPUT/occupy_component.xml"/>
+    <component id="C1">
+        <log>Still HERE!</log>
+    </component>
+    <local>
+        <unlockcomponent id="C1"/>
+    </local>
+        
+</script>

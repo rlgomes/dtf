@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="testsuite">
+	<info>
+		<author>
+			<name>Rodney Gomes</name>
+			<email>rlgomes@yahoo-inc.com</email>
+		</author>
+		<description>Unit test for the testsuite tag.</description>
+	</info>
+	
+	<local>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}"/>
+	</local>
+
+	<result uri="storage://OUTPUT/testsuite_results.xml" type="junit">
+    	<testsuite name="testsuite1" continueOnFailure="true">
+    		<property name="testcase.name" value="testcase1"/>
+    		<testscript uri="storage://INPUT/testcase.xml"/>		
+            
+    		<property name="testcase.name" value="testcase2" overwrite="true"/>
+    		<testscript uri="storage://INPUT/testcase.xml"/>		
+            		
+    		<property name="testcase.name" value="testcase3" overwrite="true"/>
+    		<testscript uri="storage://INPUT/testcase.xml"/>
+    				
+    		<testscript uri="storage://INPUT/testsuite-sub.xml"/>
+    	</testsuite>
+    </result>
+    
+</script>

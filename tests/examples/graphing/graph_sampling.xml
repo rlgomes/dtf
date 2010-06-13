@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="graph_sampling">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Example test referenced in documentation about graphing...
+        </description>
+    </info>
+        
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+        <loadproperties uri="storage://INPUT/test.properties"/>
+        
+        <property name="i" value="300000"/>
+        <property name="samplesize" value="30000"/>
+        
+        <property name="worker" value="1"/>
+        <property name="graph.type" value="png"/>
+        <property name="sampleunit" value="10ms"/>
+        
+        <property name="execute" value="gendata,graph"/>
+    </local>
+   
+    <function name="gendata"> 
+        <cat uri="storage://OUTPUT/data.txt" append="false"/>
+        <distribute property="iter"
+                    iterations="${i}"
+                    range="1..${worker}"
+                    id="dist1"
+                    unit="1s">
+            <choices>
+                <choose howoften="50%">
+                    <property name="latency" value="${dtf.gaussianLong(0,10)}" overwrite="true"/>
+                </choose>
+                <choose howoften="10%">
+                    <property name="latency" value="${dtf.gaussianLong(10,50)}" overwrite="true"/>
+                </choose>
+                <choose howoften="35%">
+                    <property name="latency" value="${dtf.gaussianLong(50,100)}" overwrite="true"/>
+                </choose>
+                <choose howoften="5%">
+                    <property name="latency" value="${dtf.gaussianLong(100,500)}" overwrite="true"/>
+                </choose>
+            </choices>
+           
+            <property name="start" value="${iter}"/> 
+            <add      op1="${start}" op2="${latency}" result="stop"/>
+            <property name="length" value="${dtf.gaussianLong(0,1024)}" overwrite="true"/> 
+           
+            <cat uri="storage://OUTPUT/data.txt">dtf.echo.start=${start}
+dtf.echo.stop=${stop}
+dtf.echo.iteration=${iter}
+dtf.echo.numerical1=${stop}
+dtf.echo.numerical2=${start}
+dtf.echo.field1=XXXXXXXXXXXXXXXXXXXXXXXXX
+dtf.echo.field2=XXXXXXXXXXXXXXXXXXXXXXXXX
+dtf.echo.field3=XXXXXXXXXXXXXXXXXXXXXXXXX
+dtf.echo.field4=XXXXXXXXXXXXXXXXXXXXXXXXX
+dtf.echo.field5=XXXXXXXXXXXXXXXXXXXXXXXXX
+dtf.echo.length=${length}
+
+</cat>
+       </distribute>
+    </function>
+
+    <function name="graph">
+        <query uri="storage://OUTPUT/data.txt"
+               event="dtf.echo"
+               cursor="perfcursor"/>
+                
+        <resetcursor cursor="perfcursor"/> 
+        <event name="graphing.duration">
+            <graph title="Histogram of latencies"
+                   uri="storage://OUTPUT/event_latency_histogram_${sampleunit}.${graph.type}"
+                   type="${graph.type}"
+                   xaxis="duration">
+                <series name="Event Duration"
+                        cursor="perfcursor"
+                        mode="histogram"
+                        sampleunit="${sampleunit}"
+                        />
+            </graph>
+        </event>
+      
+        <subtract op1="${graphing.duration.stop}"
+                  op2="${graphing.duration.start}"
+                  result="duration_ms"/> 
+        <divide op1="${duration_ms}" op2="1000" result="duration_s"/> 
+        <divide op1="${i}" op2="${duration_s}" result="graphing.duration.ops_per_sec"/> 
+
+        <log>   
+            Graphing Latencies
+            ******************
+            
+            Results/sec: ${graphing.duration.ops_per_sec}
+            Total Time: ${duration_s}s
+        </log>
+    </function>
+
+    <function name="samplegraph">
+        <query uri="storage://OUTPUT/data.txt"
+               event="dtf.echo"
+               cursor="perfcursor"/>
+                
+        <resetcursor cursor="perfcursor"/> 
+        <event name="graphing.duration">
+            <graph title="Histogram of latencies of first ${samplesize} results"
+                   uri="storage://OUTPUT/event_latency_histogram_first_${samplesize}.${graph.type}"
+                   type="${graph.type}"
+                   xaxis="duration">
+                <series name="Event Duration"
+                        cursor="perfcursor"
+                        mode="histogram"
+                        sampleunit="${sampleunit}"
+                        offset="0"
+                        length="${samplesize}"
+                        />
+            </graph>
+        </event>
+      
+        <subtract op1="${graphing.duration.stop}"
+                  op2="${graphing.duration.start}"
+                  result="duration_ms"/> 
+        <divide op1="${duration_ms}" op2="1000" result="duration_s"/> 
+        <divide op1="${samplesize}" op2="${duration_s}" result="graphing.duration.ops_per_sec"/> 
+
+        <log>   
+            Graphing latencies of first ${samplesize}
+            *******************************
+            
+            Results/sec: ${graphing.duration.ops_per_sec}
+            Total Time: ${duration_s}s
+        </log>
+        
+        <resetcursor cursor="perfcursor"/> 
+        <subtract op1="${i}" op2="${samplesize}" result="offset"/>
+        <event name="graphing.duration">
+            <graph title="Histogram of latencies of last ${samplesize} results"
+                   uri="storage://OUTPUT/event_latency_histogram_last_${samplesize}.${graph.type}"
+                   type="${graph.type}"
+                   xaxis="duration">
+                <series name="Event Duration"
+                        cursor="perfcursor"
+                        mode="histogram"
+                        sampleunit="${sampleunit}"
+                        offset="${offset}"
+                        length="${i}"
+                        />
+            </graph>
+        </event>
+      
+        <subtract op1="${graphing.duration.stop}"
+                  op2="${graphing.duration.start}"
+                  result="duration_ms"/> 
+        <divide op1="${duration_ms}" op2="1000" result="duration_s"/> 
+        <divide op1="${samplesize}" op2="${duration_s}" result="graphing.duration.ops_per_sec"/> 
+
+        <log>   
+            Graphing latencies of last ${samplesize}
+            ******************
+            
+            Results/sec: ${graphing.duration.ops_per_sec}
+            Total Time: ${duration_s}s
+        </log>
+    </function>
+    
+    <for property="func" range="${execute}">
+        <call function="${func}"/>
+    </for>  
+</script>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="parallel_occupy_component">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description/>
+    </info>
+    
+    <local>
+        <createstorage id="TINPUT" path="${dtf.xml.path}"/>
+        
+        <property name="occupy.duration" value="10s"/>
+    </local>
+   
+    <parallelloop property="a" range="1..${agents}"> 
+	    <local>
+	        <lockcomponent id="C${a}"/>
+	    </local>
+    </parallelloop>
+</script>

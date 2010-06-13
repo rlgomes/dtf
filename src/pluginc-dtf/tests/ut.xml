@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script name="ut" xmlns="http://dtf.org/v1">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>Example unit test that will call the only existing example
+                     test.description</description>
+    </info>
+
+    <local>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="TINPUT" path="${dtf.xml.path}"/>
+    </local>
+ 
+	<local>    
+       <echo>*** Executing DTF Unit Tests ***</echo>
+    </local>
+
+	<result uri="storage://OUTPUT/ut_results-${dtf.timestamp}.xml"
+	        type="xml">
+    	<testsuite name="unittests">
+            <testscript uri="storage://TINPUT/exampletest.xml"/>
+            <testscript uri="storage://TINPUT/cli_test.xml"/>
+            <testscript uri="storage://TINPUT/cli_gettimeofday.xml"/>
+      	</testsuite>
+	</result>
+</script>

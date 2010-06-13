@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="stats_recorder">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF stats recorder unit test.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+       
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+    </local>
+
+    <record type="stats">
+        <for property="index" range="1..10000">
+		    <event name="event">
+		        <attribute name="constant" value="1"/>
+		        <attribute name="int1" value="1234567890"/>
+		    </event>
+        </for>
+    </record>
+    
+    <log>
+    Stats Recorder Numbers:
+    *************************
+    Events/second: ${event.avg_occ}
+    Min Duration:  ${event.min_dur}
+    Max Duration:  ${event.max_dur}
+    Avg Duration:  ${event.avg_dur}
+    </log>
+    
+    <cat uri="storage://OUTPUT/plot.data" append="false">${event.csv_dur}</cat>
+</script>

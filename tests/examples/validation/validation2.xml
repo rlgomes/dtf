@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="validation2">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        A simple demonstration of using the compare tag in a real world 
+        scenario. This test is explained in the Users Guide in the Using Compare
+        tag to do Validation section.
+        </description>
+    </info>
+        
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <createstorage id="STORE" path="${dtf.xml.path}/output/datastore"/>
+        
+        <import uri="storage://INPUT/perf_util.xml"/>
+        
+        <loadproperties uri="storage://INPUT/test.properties"/>
+
+        <property name="host" value="localhost"/> 
+        <property name="port" value="32323"/> 
+        <property name="uri" value="http://${host}:${port}"/>
+        
+        <property name="iterations" value="5000"/>
+        <property name="threads" value="2"/>
+        
+        <!-- 32 bytes because this is in memory in a share point -->
+        <property name="size" value="32"/>
+    </local>
+
+    <parallel>
+        <sequence> 
+            <log>
+            Starting up an HTTP Server that will respond to PUT and GET requests
+            of messages and put these into the queue you specify with the HTTP
+            header qname
+            </log>
+	        <http_server port="${port}">
+	            <http_listener path="/push" method="PUT">
+                    <property name="qname" 
+                              value="${http.put.headerin.qname}"
+                              overwrite="true"/> 
+                    <if>
+                        <share_exists id="${qname}"/>
+                        <else>  
+                            <share_create id="${qname}"
+                                          type="queue"/>
+                        </else>
+                    </if> 
+                    <share_set id="${qname}">
+                        <property name="data"
+                                  value="${http.put.body}"
+                                  overwrite="true"/>
+                    </share_set>
+	            </http_listener>
+	                
+	            <http_listener path="/pull" method="GET">
+                    <property name="qname" 
+                              value="${http.get.headerin.qname}"
+                              overwrite="true"/> 
+                    <if>
+                        <share_exists id="${qname}"/>
+                        <else>
+                            <share_create id="${qname}"
+                                          type="queue"/>
+                        </else>
+                    </if> 
+                    
+                    <share_get id="${qname}" blocking="true"/>
+                              
+	                <http_response status="200">
+	                    <entity value="${data}"/>
+	                </http_response>
+	            </http_listener>
+	        </http_server>
+        </sequence>
+    
+        <try>
+             <record uri="storage://OUTPUT/http_events.txt">
+                <log>
+                Will startup some client writes to the previously started HTTP
+                server that will store with a few parallel threads messages to 
+                a named queue.
+                
+                The messages will have the following format:
+                   
+                    "%04x%04x%04x${dtf.stream(random,1024,$i$t)}"
+                    
+                Which means 4 hex bytes dedicated to the iterations, followed by
+                4 hex bytes dedicated to the thread that created this message 
+                and then followed by the size of the data that follows and then
+                the actual data of this message which is a DTF stream generated 
+                using the i and t properties to be unique across all threads.
+                </log>
+                <sleep time="2s"/>
+                <parallelloop property="t" range="1..${threads}">
+	                <for property="i" range="1..${iterations}">
+                        <printf args="${i},${t},${size}"
+                                format="%04x%04x%04x${dtf.stream(random,${size},${i}${t})}"
+                                property="data"/>
+	                    <http_put uri="${uri}/push">
+	                        <header name="qname" value="master"/>
+	                        <entity>${data}</entity>
+	                    </http_put>
+	                </for>        
+                </parallelloop>
+                
+                <log>
+                Receive all the messages from the message server, so we can then 
+                do validation on this data in the last phase of this test.
+                </log>
+                <parallelloop property="t" range="1..${threads}">
+	                <for property="i" range="1..${iterations}">
+	                    <http_get uri="${uri}/pull">
+	                        <header name="qname" value="master"/>
+	                    </http_get>
+	                </for> 
+                </parallelloop>
+            </record>
+	        <finally>
+	            <http_server port="${port}" command="stop"/>
+	        </finally>
+	    </try>
+    </parallel>
+  
+    <log>Validating your data knowing exactly how you generated it</log> 
+    <event name="total">
+	    <compare>
+	        <query uri="storage://OUTPUT/http_events.txt"
+	               cursor="reads"
+	               event="http.get"/> 
+	               
+	        <validate>
+	            <scanf args="i,t,size,data"
+	                   format="%04x%04x%04x%${size:convert:from-hex}s"
+	                   input="${reads.body}"/>
+	            <assert>
+	                <eq op1="${data}"
+	                    op2="${dtf.stream(random,${size:convert:from-hex},${i:convert:from-hex}${t:convert:from-hex})}"/> 
+	            </assert>
+	        </validate> 
+	    </compare>
+    </event>
+  
+    <multiply op1="${threads}" op2="${iterations}" result="iter_total"/> 
+    <call function="calcEventPerf" result="avg_occ">
+        <property name="iterations" value="${iter_total}" />
+        <property name="event" value="total" /> 
+    </call>
+    <log>Compared ${avg_occ} events/s, on known data.</log> 
+ 
+<!-- 
+    <log>
+    Validating your data by comparing the reads and writes done to the system.
+    </log>
+    <event name="total">
+        <compare>
+            <query uri="storage://OUTPUT/http_events.txt"
+                   cursor="reads"
+                   event="http.get"/> 
+
+            <query uri="storage://OUTPUT/http_events.txt"
+                   cursor="writes"
+                   event="http.put"/> 
+            
+            <where>
+                <eq op1="${reads.body:string:sub-string(0,8)}"
+                    op2="${writes.data:string:sub-string(0,8)}"/>
+            </where>       
+            
+            <validate>
+                <assert>
+                    <eq op1="${reads.body}"
+                        op2="${writes.data}"/>
+                </assert>
+            </validate> 
+        </compare>
+    </event>
+  
+    <multiply op1="${threads}" op2="${iterations}" result="iter_total"/> 
+    <call function="calcEventPerf" result="avg_occ">
+        <property name="iterations" value="${iter_total}" />
+        <property name="event" value="total" /> 
+    </call>
+    <log>Compared ${avg_occ} events/s, when matching reads and writes.</log> 
+-->    
+
+</script>

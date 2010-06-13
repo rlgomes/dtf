@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="query">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Unit test for query tag that is called from the query suite parameterized
+        correctly to run against all available query types.
+        </description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <property name="multiline.property">
+            Just a multi-line property to make sure that the
+            query/recorder can handle multiple lines in a single
+            property value.
+        </property>
+    </local>
+
+    <record uri="storage://OUTPUT/query.out" append="false">
+        <for property="iteration" range="1..${iterations.medium}">
+            <event name="dtf.echo">
+                <attribute name="iteration" value="${iteration}"/>
+                <attribute name="A" value="XXXXXXXXXXXXXXXXXXXXXX"/>
+                <attribute name="B" value="XXXXXXXXXXXXXXXXXXXXXX"/>
+                <attribute name="C" value="XXXXXXXXXXXXXXXXXXXXXX"/>
+                <attribute name="D" value="XXXXXXXXXXXXXXXXXXXXXX"/>
+                <attribute name="multiline" value="${multiline.property}"/>
+                <attribute name="multiline" value="${multiline.property}"/>
+            </event>
+        </for>
+    </record>
+
+    <query uri="storage://OUTPUT/query.out"
+           event="dtf.echo"
+           cursor="cursor">
+        <select>
+            <field name="iteration"/>
+        </select>
+    </query>
+
+    <event name="query">             
+        <iterate cursor="cursor"/> 
+    </event>
+    
+    <subtract op1="${query.stop}" op2="${query.start}" result="duration_ms"/>
+    <divide op1="${duration_ms}" op2="1000" result="duration_s"/>
+    <if>
+        <eq op1="${duration_s}" op2="0"/>
+        <then>
+            <property name="queries_per_s" value="${iterations.medium}"/>
+        </then>
+        <else>
+            <divide op1="${iterations.medium}" op2="${duration_s}" result="queries_per_s"/>
+        </else>
+    </if>
+   
+    <log>Queries per second: ${queries_per_s}</log> 
+    
+    <log>Complex queries for ${query.type} format</log> 
+    <record type="${query.type}" uri="storage://OUTPUT/complex_results.txt" append="false">
+        <for property="iteration" range="1..30">
+            <event name="dtf.echo">
+                <attribute name="iteration" value="${iteration}" type="string" length="64"/>
+                <attribute name="prop1" value="AAAA" type="string" length="64"/>
+                <attribute name="prop2" value="BBBB" type="string" length="64"/>
+                <attribute name="timestamp" value="${dtf.timestamp}" type="string" length="64"/>
+            </event>
+        </for>
+    </record>
+    
+ 	<record type="${query.type}" uri="storage://OUTPUT/complex_results.txt" append="true">
+        <for property="iteration" range="5..15">
+            <event name="dtf.echo">
+                <attribute name="iteration" value="${iteration}" type="string" length="64"/>
+                <attribute name="prop1" value="AAA" type="string" length="64"/>
+                <attribute name="prop2" value="BBB" type="string" length="64"/>
+                <attribute name="timestamp" value="${dtf.timestamp}" type="string" length="64"/>
+            </event>
+        </for>
+    </record>
+    
+	<record type="${query.type}" uri="storage://OUTPUT/complex_results.txt" append="true">
+        <for property="iteration" range="5..10">
+            <event name="dtf.echo">
+                <attribute name="iteration" value="${iteration}" type="string" length="64"/>
+                <attribute name="prop1" value="AAA" type="string" length="64"/>
+                <attribute name="prop2" value="BBB" type="string" length="64"/>
+                <attribute name="timestamp" value="${dtf.timestamp}" type="string" length="64"/>
+                <attribute name="datestamp" value="${dtf.datestamp}" type="string" length="64"/>
+            </event>
+        </for>
+    </record>
+    
+	<query type="${query.type}"
+           event="dtf.echo"
+           uri="storage://OUTPUT/complex_results.txt"
+           cursor="element">
+        <select>
+            <field name="iteration"/>
+            <field name="prop2"/>
+            <field name="timestamp"/>
+        </select>
+        <where>
+       		<gt op2="iteration" op1="10"/>
+        </where>
+    </query>
+    
+    <try>
+    	<sequence>
+        	<nextresult cursor="element"/>
+    		<for property="n" range="1..26">
+				<nextresult cursor="element"/>
+    		</for>
+			<fail message="There should have been 25 results, but there were only ${n} result(s)."/>
+    	</sequence>
+    	<catch exception="${dtf.NoMoreResultsException}">
+    		<sequence>
+				<if>
+					<neq op1="${n}" op2="25" type="string" nullable="false"/>
+					<then>
+						<fail message="There should have been 25 results, but there were ${n} result(s)."/>
+					</then>
+					<else>
+						<local>
+							<echo>All done iterating correctly.</echo>	
+						</local>
+					</else>
+				</if>
+    		</sequence>
+    	</catch>
+    </try>
+    
+	<query type="${query.type}" event="dtf.echo" uri="storage://OUTPUT/complex_results.txt" cursor="element2">
+        <select>
+            <field name="iteration" type="int"/>
+    	    <field name="prop2"/>
+            <field name="timestamp"/>
+        </select>
+        <where>
+        	<and>
+       			<gt op2="iteration" op1="10" type="string" nullable="false"/>
+       			<eq op1="prop2" op2="BBB" type="string" nullable="false"/>
+       		</and>
+        </where>
+    </query>
+    
+    <try>
+    	<sequence>
+   		   <nextresult cursor="element2"/>
+    	   <for property="n" range="1..100">
+				<nextresult cursor="element2"/>
+    	   </for>
+		   <fail message="There should have been 5 results, but there were ${n} result(s)."/>
+    	</sequence>
+    	<catch exception="${dtf.NoMoreResultsException}">
+    		<sequence>
+				<if>
+					<neq op1="${n}" op2="5" type="string" nullable="false"/>
+					<then>
+						<fail message="There should have been 5 results, but there were ${n} result(s)."/>
+					</then>
+					<else>
+						<local>
+							<echo>All done iterating correctly.</echo>	
+						</local>
+					</else>
+				</if>
+    		</sequence>
+    	</catch>
+    </try>
+   
+    <!-- Just like the previous but try to query on a field that may not be 
+         there and accept that it is null  --> 
+	<query type="${query.type}" event="dtf.echo" uri="storage://OUTPUT/complex_results.txt" cursor="element2">
+        <select>
+            <field name="iteration" type="int"/>
+    	    <field name="prop2"/>
+            <field name="timestamp"/>
+            <field name="datestamp"/>
+        </select>
+        <where>
+        	<and>
+       			<gt op2="iteration" op1="10" type="string" nullable="false"/>
+       			<eq op1="prop2" op2="BBB" type="string" nullable="false"/>
+       			<gt op1="datestamp" op2="0" nullable="true" type="string"/> 
+       		</and>
+        </where>
+    </query>
+    
+    <try>
+    	<sequence>
+   		    <nextresult cursor="element2"/>
+    		<for property="n" range="1..100">
+				<nextresult cursor="element2"/>
+    		</for>
+			<fail message="There should have been 5 results, but there were ${n} result(s)."/>
+    	</sequence>
+    	<catch exception="${dtf.NoMoreResultsException}">
+    		<sequence>
+				<if>
+					<neq op1="${n}" op2="5" type="string" nullable="false"/>
+					<then>
+						<fail message="There should have been 5 results, but there were ${n} result(s)."/>
+					</then>
+					<else>
+						<local>
+							<echo>All done iterating correctly.</echo>	
+						</local>
+					</else>
+				</if>
+    		</sequence>
+    	</catch>
+    </try>
+    
+    <!-- Instead of requerying lets use the resetcursor tag -->
+    <resetcursor cursor="element2"/>
+    
+    <try>
+    	<sequence>
+   		    <nextresult cursor="element2"/>
+    		<for property="n" range="1..100">
+				<nextresult cursor="element2"/>
+    		</for>
+			<fail message="There should have been 5 results, but there were ${n} result(s)."/>
+    	</sequence>
+    	<catch exception="${dtf.NoMoreResultsException}">
+    		<sequence>
+				<if>
+					<neq op1="${n}" op2="5" type="string" nullable="false"/>
+					<then>
+						<fail message="There should have been 5 results, but there were ${n} result(s)."/>
+					</then>
+					<else>
+						<local>
+							<echo>All done iterating correctly.</echo>	
+						</local>
+					</else>
+				</if>
+    		</sequence>
+    	</catch>
+    </try>
+    
+</script>

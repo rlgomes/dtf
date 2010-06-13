@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="convert">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>Unit test for the convert tag.</description>
+    </info>
+   
+    <local>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <import uri="storage://INPUT/perfutil.xml"/>
+    </local>
+
+    <property name="int1" value="1234"/> 
+    <property name="int2" value="42"/> 
+
+    <property name="hex1" value="FFFF"/>
+    <property name="hex2" value="FFFFFFFF"/>
+
+    <property name="string1" value="Hello World!"/>
+    <property name="string2" value="rodney lopes gomes"/>
+  
+    <log>${int1:convert:to-hex}</log> 
+    <log>${int2:convert:to-hex(4)}</log> 
+
+    <log>${hex1:convert:from-hex}</log> 
+    <log>${hex2:convert:from-hex}</log> 
+
+    <log>Length of [${string1}] is ${string1:string:length}</log> 
+    <log>middle name is "${string2:string:sub-string(7,12)}"</log> 
+
+    <log>index of 'W' in "${string1}" is ${string1:string:index-of(W)}</log> 
+ 
+    <for property="expr"
+         range="int1:convert:to-hex,hex1:convert:from-hex,int2:convert:to-hex(4),string1:string:length"> 
+	    <event name="total"> 
+		    <for property="i" range="1..${iterations.huge}">
+                <property name="caca" value="${expr}"/>
+		    </for>
+	    </event>
+        
+        <call function="calcEventPerf" result="avg_occ">
+	        <property name="iterations" value="${iterations.huge}" />
+	        <property name="event" value="total" /> 
+	    </call>
+	    <log>${avg_occ} conv/s with ${expr}</log>
+    </for>
+    
+</script>

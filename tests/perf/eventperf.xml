@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="eventperf">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF local and remote event performance test.</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+        <loadproperties uri="storage://INPUT/perf.properties"/>
+        <import uri="storage://INPUT/perf_util.xml"/>
+        
+        <property name="agents" value="1"/>
+        <property name="threads" value="1"/>
+    </local>
+
+    <for property="agent" range="1..${agents}">
+        <local>
+            <lockcomponent id="AGENT${agent}" timeout="60s"/>
+        </local>
+    </for>
+
+    <record uri="storage://OUTPUT/remote_record_event.txt"
+            event="dtf.perf"
+            append="false">
+        <parallelloop property="agent" range="1..${agents}">
+            <component id="AGENT${agent}">
+                <parallelloop property="thread" range="1..${threads}">
+                    <for property="iter" range="1..100000">
+                        <event name="dtf.perf">
+                            <attribute name="iteration" value="${iter}"/>
+                            <attribute name="agent" value="${agent}"/>
+                        </event>
+                    </for>
+                </parallelloop>
+            </component>
+        </parallelloop>
+    </record>
+
+    <record uri="storage://OUTPUT/local_record_event.txt"
+            event="dtf.perf"
+            append="false">
+        <parallelloop property="agent" range="1..${agents}">
+            <parallelloop property="thread" range="1..${threads}">
+                <for property="iter" range="1..1000">
+                    <component id="AGENT${agent}">
+                        <event name="dtf.perf">
+                            <attribute name="iteration" value="${iter}"/>
+                            <attribute name="agent" value="${agent}"/>
+                        </event>
+                    </component>
+                </for>
+            </parallelloop>
+        </parallelloop>
+    </record>
+
+    <query uri="storage://OUTPUT/remote_record_event.txt" 
+           event="dtf.perf"
+           cursor="cursor"/>
+    <stats cursor="cursor" event="dbperf"/>
+    <log>
+        Remote record events with ${agents} agent(s) with ${threads} thread(s)
+        Events per second: ${dbperf.avg_occ}
+        Total of Events:   ${dbperf.tot_occ}
+        Total Duration:    ${dbperf.tot_dur}ms
+    </log>
+
+    <call function="writeperf">
+        <property name="uri" value="storage://OUTPUT/events_remote.perf"/>
+        <property name="value" value="${dbperf.avg_occ}"/>
+    </call>
+    
+    <query uri="storage://OUTPUT/local_record_event.txt"
+           event="dtf.perf"
+           cursor="cursor"/>
+    <stats cursor="cursor" event="dbperf"/>
+    <log>
+        Local record events with ${agents} agent(s) with ${threads} thread(s)
+        Events per second: ${dbperf.avg_occ}
+        Total of Events:   ${dbperf.tot_occ}
+        Total Duration:    ${dbperf.tot_dur}ms
+    </log>
+
+    <call function="writeperf">
+        <property name="uri" value="storage://OUTPUT/events_local.perf"/>
+        <property name="value" value="${dbperf.avg_occ}"/>
+    </call>
+</script>

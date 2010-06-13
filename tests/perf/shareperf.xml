@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="shareperf">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description></description>
+    </info>
+   
+    <local>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+
+        <import uri="storage://INPUT/perf_util.xml"/>
+        <property name="agents" value="1"/>
+  
+	    <lockcomponent id="PRODUCER"/>
+	    <lockcomponent id="CONSUMER"/>
+        
+        <property name="queuetypes" value="single,queue,cumulative"/>
+    </local>
+    
+    <property name="remote.iterations" value="2000"/>
+    <property name="local.iterations" value="50000"/>
+
+    <for property="type" range="${queuetypes}">	    
+	    <share_create id="SHARE1.${type}" type="${type}"/>
+	    <share_create id="SHARE2.${type}" type="${type}"/>
+    </for>
+    
+    <for property="type" range="${queuetypes}">	    
+        <event name="total">
+		    <parallel>
+		        <component id="PRODUCER">
+		            <for property="i" range="1..${remote.iterations}">
+		                <share_set id="SHARE1.${type}">
+		                    <property name="iteration" value="${i}" overwrite="true"/>
+		                </share_set>
+		            </for>
+		        </component>
+	        
+		        <component id="CONSUMER">
+		            <for property="i" range="1..${remote.iterations}">
+		                <share_get id="SHARE1.${type}"/>
+		            </for>        
+		        </component>
+		    </parallel>
+        </event>
+        <call function="calcEventPerf" result="ops_per_sec">
+            <property name="iterations" value="${remote.iterations}"/>
+            <property name="event" value="total"/>
+        </call>
+        <log>${type} share gets ${ops_per_sec} remote syncs per sec</log>
+	    <call function="writeperf">
+	        <property name="uri" value="storage://OUTPUT/share_${type}_remote.perf"/>
+	        <property name="value" value="${ops_per_sec}"/>
+	    </call>
+         
+        <event name="total">
+		    <parallel>
+	            <for property="i" range="1..${local.iterations}">
+	                <share_set id="SHARE2.${type}">
+	                    <property name="iteration" value="${i}" overwrite="true"/>
+	                </share_set>
+	            </for>
+		        
+	            <for property="i" range="1..${local.iterations}">
+	                <share_get id="SHARE2.${type}"/>
+	            </for>
+		    </parallel>
+        </event>
+        <call function="calcEventPerf" result="ops_per_sec">
+            <property name="iterations" value="${local.iterations}"/>
+            <property name="event" value="total"/>
+        </call>
+        <log>${type} share gets ${ops_per_sec} local syncs per sec</log>
+	    <call function="writeperf">
+	        <property name="uri" value="storage://OUTPUT/share_${type}_local.perf"/>
+	        <property name="value" value="${ops_per_sec}"/>
+	    </call>
+    </for>
+
+    <for property="type" range="${queuetypes}">	    
+	    <share_destroy id="SHARE1.${type}"/>
+	    <share_destroy id="SHARE2.${type}"/>
+    </for>
+
+</script> 

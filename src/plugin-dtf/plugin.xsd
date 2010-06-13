@@ -1,0 +1,19 @@
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'
+           targetNamespace="http://dtf/v1"
+           xmlns="http://dtf/v1"
+           elementFormDefault="qualified">
+
+    <xs:group name="common_commands">
+        <xs:choice>
+            <xs:element ref="plugin_action"/>
+            <xs:element name="jna_gettimeofday"/>
+        </xs:choice> 
+    </xs:group>
+    
+    <xs:element name="plugin_action">
+        <xs:complexType>
+            <xs:attribute name="attribute1" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>

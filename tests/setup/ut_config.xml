@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<setup xmlns="http://dtf.org/v1" >
+
+    <dtfc host="${host}" user="${user}" path="dtf/dtfc">
+          
+        <dtfa host="${host}" user="${user}" path="dtf/dtfa1">
+            <property name="node.id" value="1"/>
+        </dtfa>
+
+        <dtfa host="${host}" user="${user}" path="dtf/dtfa2">
+            <property name="node.id" value="2"/>
+        </dtfa>
+
+        <dtfa host="${host}" user="${user}" path="dtf/dtfa3">
+            <property name="node.id" value="3"/>
+        </dtfa>
+        
+        <dtfx host="${host}"
+              user="${user}"
+              path="dtf/dtfx"
+              test="tests/ut/ut.xml"
+              logs="tests/ut/output/ut_results.xml">
+        </dtfx>
+    </dtfc>
+    
+</setup>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="stream">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF unit test for streaming feature.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+    </local>
+
+    <log>Validate we always generate the same message for the same signature.</log>
+    <createrange name="seeds" value="${dtf.timestamp},ABRACADABRA"/>    
+    <for property="type" range="random,repeat"> 
+        <property name="seed" value="${seeds}" overwrite="true"/>
+        
+	    <for property="i" range="1..${iterations.medium}">    
+		    <property name="data1"
+		              value="${dtf.stream(${type},32,${seed})}" 
+		              overwrite="true"/>
+		
+		    <property name="data2"
+		              value="${dtf.stream(${type},32,${seed})}" 
+		              overwrite="true"/>
+                      
+            <if>
+                <neq op1="${data1}" op2="${data2}"/>
+                <then>
+                    <log>${data1} != ${data2}</log>
+                    <fail message="Messages differ!"/>
+                </then>
+            </if>
+	    </for> 
+    </for>
+
+    <record uri="storage://OUTPUT/stream.txt">
+	    <for property="type" range="random,repeat">
+		    <createrange name="iterations" value="${iterations.huge}"/>
+		    <for property="size" range="32">
+		        <property name="iteration"
+                          value="${iterations.huge}"
+                          overwrite="true"/>
+			    <log>Generate ${iterations.huge} ${size} pieces of ${type} data.</log>
+		        
+			    <event name="generate.${size}">
+				    <for property="i" range="1..${iterations.large}"> 
+				        <property name="test"
+				                  value="${dtf.stream(${type},${size},12345)}" 
+				                  overwrite="true"/>
+				    </for>
+			    </event>
+			    
+			    <subtract op1="${generate.${size}.stop}"
+			              op2="${generate.${size}.start}"
+			              result="duration_ms"/> 
+			              
+			    <divide op1="${duration_ms}"
+			            op2="1000"
+			            result="duration_s"/> 
+			   
+		        <multiply op1="${size}"
+                          op2="${iteration}"
+                          result="bytes"/> 
+  
+                <if>
+                    <eq op1="${duration_s}" op2="0"/>
+                    <then>
+                        <multiply op1="${bytes}"
+                                  op2="${iterations.large}"
+                                  result="bytes_per_sec"/>
+                        <property name="ops_per_sec"
+                                  value="${iterations.large}"/>
+                    </then>
+                    <else>
+					    <divide op1="${bytes}"
+		                        op2="${duration_s}"
+		                        result="bytes_per_sec"/>
+		                        
+					    <divide op1="${iterations.large}"
+		                        op2="${duration_s}"
+		                        result="ops_per_sec"/>
+                    </else>
+                </if>
+			   
+		        <log>
+		        Generating ${size} byte ${type} streams
+			    ${bytes_per_sec} bytes/s
+			    ${ops_per_sec} ops/s
+		        </log>
+		    </for>
+	    </for> 
+    </record>
+</script> 

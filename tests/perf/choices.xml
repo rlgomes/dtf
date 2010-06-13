@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="choices">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>Unit test for the choices tag.</description>
+    </info>
+   
+    <local>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+
+        <loadproperties uri="storage://INPUT/perf.properties"/>
+        <import uri="storage://INPUT/perf_util.xml"/>
+    
+        <property name="iterations" value="100000" overwrite="true"/> 
+    </local>
+    
+    <record uri="storage://OUTPUT/choices.txt">
+        <for range="1..${iterations}" property="i">
+            <choices>
+                <choose howoften="25%">
+                    <event name="test.event2"/>
+                </choose>
+                <choose howoften="25%">
+                    <event name="test.event1"/>
+                </choose>
+                <choose howoften="50%">
+                    <event name="test.event3"/>
+                </choose>
+            </choices>
+        </for> 
+    </record>     
+       
+    <query uri="storage://OUTPUT/choices.txt" cursor="event_cursor"/>
+    <stats cursor="event_cursor" event="perf"/>
+        
+    <log>Number of iterations: ${iterations}</log>
+    <log>********************************</log>
+    <log>Choices/second: ${perf.avg_occ}</log>
+
+    <call function="writeperf">
+        <property name="uri" value="storage://OUTPUT/choices.perf"/>
+        <property name="value" value="${perf.avg_occ}"/>
+    </call>
+</script> 

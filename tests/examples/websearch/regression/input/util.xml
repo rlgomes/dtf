@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="util">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>some useful testing utilities</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/websearch.properties"/>
+    </local>
+  
+    <function name="validate_response"> 
+        <param name="resultset" type="required"/>
+        <param name="count" type="required"/>
+        <param name="firsturl" default="NONE"/>
+	   
+        <!-- check the resultset count --> 
+	    <property name="result.count"
+	              value="${resultset:xpath:count(/ResultSet/Result)}"
+                  overwrite="true"/>
+	    <if>
+	        <neq op1="${result.count}" op2="${count}"/>
+	        <then>
+	            <fail message="Expected ${count} results but got ${result.count}"/>
+	        </then> 
+	    </if>
+
+        <if>
+            <neq op1="firsturl" op2="NONE"/>
+            <then>
+			    <!--  check that the first result in the ResultSet is ${firsturl} -->
+			    <property name="firstresult.url" 
+			              value="${resultset:xpath:/ResultSet/Result[1]/Url/text()}"/>
+			    <if>
+			        <neq op1="${firstresult.url}" op2="${firsturl}"/>
+			        <then>
+			            <fail message="Result was not [${firsturl}] got [${firstresult.url}]."/>
+			        </then> 
+			    </if>
+            </then>
+        </if>
+    </function>
+    
+</script>

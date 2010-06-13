@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="json">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF JSON utilities unit test.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+    </local>
+   
+    <property name="caca" value="caca"/> 
+    <property name="sizes" value="512,1024"/>
+   
+    <!-- random:seed:size:fields:depth:key_length --> 
+    <log>${caca:json:random:12345:128:3:1}</log>
+   
+    <cat uri="storage://OUTPUT/test.json" append="false">${caca:json:random:12345:128:3:1}</cat>
+   
+    <for property="size" range="${sizes}"> 
+	    <record uri="storage://OUTPUT/json_stats.txt"> 
+	        <for property="i" range="1..${iterations.medium}">
+	            <event name="json"> 
+	                <attribute name="i" value="${i}"/>
+	                <property name="data" 
+	                          value="${caca:json:random:12345:${size}:2:1}"/>
+	            </event>
+	        </for>
+	    </record>
+	    
+	    <query uri="storage://OUTPUT/json_stats.txt"
+	           cursor="c1"
+	           event="json"/> 
+	           
+	    <stats cursor="c1" event="json"/>
+	    <log>
+	        JSON Stats for ${size} byte object.
+	        
+	        operations/s: ${json.avg_occ}
+	        max duration: ${json.max_dur}ms
+	        min duration: ${json.min_dur}ms
+	        total time:   ${json.tot_dur}s
+	    </log>
+    </for>
+    
+</script> 

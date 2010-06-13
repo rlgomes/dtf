@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="export">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+             Test the basic functionality of the export tag that allows you to 
+             export well behaved functions to any of the locked components. A 
+             well behaved component is one that does not reference the local tag.
+             This is because we can't have the agents running things such as
+             createstorage,loadproperties,etc.
+         </description>
+    </info>
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input" />
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output" />
+        <createstorage id="TINPUT" path="${dtf.xml.path}" />
+
+        <loadproperties uri="storage://INPUT/ut.properties" />
+        <import uri="storage://TINPUT/export_util.xml"/>
+        
+        <lockcomponent id="DTFA1"/>
+    </local>
+
+    <try>
+        <sequence>
+		    <component id="DTFA1">
+		        <call function="inexistent"/>
+		    </component>
+	        <fail message="previous function call should have failed"/>
+        </sequence>
+        <catch exception="${dtf.FunctionException}">
+            <log>Got exception as expected.</log>
+        </catch>
+    </try>
+   
+    <component id="DTFA1">
+        <call function="test"/>
+    </component>
+    
+    <!-- complex function with references to properties from this file -->
+    <property name="prop1" value="prop1"/>
+    <property name="prop3" value="prop3"/>
+    <component id="DTFA1">
+        <call function="complex"/>
+    </component>
+    
+    <!-- complex function with a recursive call to another function -->    
+    <component id="DTFA1">
+        <call function="complex2"/>
+    </component>
+    
+ </script> 

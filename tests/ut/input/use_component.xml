@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="use_component">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Utility test that can be used to try to reference a component.
+        </description>
+    </info>
+    
+    <local>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="TINPUT" path="${dtf.xml.path}"/>
+        
+        <property name="component.id" value="C1"/>
+    </local>
+    
+    <component id="${component.id}">
+        <event name="fake.event">
+            <sleep time="${occupy.duration}"/>
+        </event>
+    </component>
+</script>

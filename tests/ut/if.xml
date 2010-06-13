@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="if">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF If unit test.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <property name="test1" value="true"/>
+        <property name="test2" value="true"/>
+    </local>
+
+    <function name="validateTolerance">
+        <param name="op1" type="required"/>
+        <param name="op2" type="required"/>
+        <param name="tolerance" type="required"/>
+        <param name="expected.result" type="required"/>
+
+        <if>
+            <within op1="${op1}" op2="${op2}" tolerance="${tolerance}"/>
+            <then>
+                <if>
+                    <eq op1="${expected.result}" op2="true" type="string" nullable="false"/>
+                    <then>
+                        <local>
+                            <echo>${op1} within ${op2} by ${tolerance} as expected.</echo>
+                        </local>
+                    </then>
+                    <else>
+                        <fail message="${op1} not within ${op2} by ${tolerance} not expected."/>
+                    </else>
+                </if>
+            </then>
+            <else>
+                <if>
+                    <eq op1="${expected.result}" op2="false" type="string" nullable="false"/>
+                    <then>
+                        <local>
+                            <echo>${op1} not within ${op2} by ${tolerance} as expected.</echo>
+                        </local>
+                    </then>
+                    <else>
+                        <fail message="${op1} within ${op2} by ${tolerance} not expected."/>
+                    </else>
+                </if>
+            </else>
+        </if>
+    </function>
+
+    <function name="validateEquality">
+        <param name="op1" type="required"/>
+        <param name="op2" type="required"/>
+
+        <if>
+            <eq op1="${op1}" op2="${op2}"/>
+            <then>
+                <log>${op1} equal to ${op2} as expected.</log>
+            </then>
+            <else>
+                <fail message="${op1} not equal to ${op2} as expected."/>
+            </else>
+        </if>
+    </function>
+
+   
+    <call function="validateTolerance">
+        <property name="op1" value="95"/>
+        <property name="op2" value="100"/>
+        <property name="tolerance" value="5%"/>
+        <property name="expected.result" value="true"/>
+    </call>
+    
+    <call function="validateTolerance">
+        <property name="op1" value="95"/>
+        <property name="op2" value="100"/>
+        <property name="tolerance" value="[5,1]%"/>
+        <property name="expected.result" value="true"/>
+    </call>
+     
+    <call function="validateTolerance">
+        <property name="op1" value="110"/>
+        <property name="op2" value="100"/>
+        <property name="tolerance" value="[1,10]%"/>
+        <property name="expected.result" value="true"/>
+    </call>
+    
+    <call function="validateTolerance">
+        <property name="op1" value="94"/>
+        <property name="op2" value="100"/>
+        <property name="tolerance" value="5%"/>
+        <property name="expected.result" value="false"/>
+    </call>
+    
+    <if>
+   		<eq op1="${test1}" op2="${test2}" type="string" nullable="false"/>
+   		
+   		<then>
+   			<local>
+   				<echo>${test1} equals ${test2}</echo>
+   			</local>
+   		</then> 
+   		<else>
+   			<local>
+   				<fail message="CRAP!"/>
+   			</local>
+   		</else>
+    </if>
+
+	<if>
+   		<neq op1="${test1}" op2="${test2}" type="string" nullable="false"/>
+   		
+   		<then>
+   			<local>
+   				<fail message="CRAP!"/>
+   			</local>
+   		</then> 
+   		<else>
+			<local>
+   				<echo>${test1} equals ${test2}</echo>
+   			</local>
+   		</else>
+    </if>
+
+	<if>
+   		<gt op1="12345z" op2="12345a"/>
+   		<then>
+   			<local>
+   				<echo>12345z greater than 12345a</echo>
+   			</local>
+   		</then> 
+   		<else>
+   			<local>
+   				<fail message="CRAP!"/>
+   			</local>
+   		</else>
+    </if>
+    
+	<if>
+   		<lt op1="abc12345z" op2="abc12345a" type="string" nullable="false"/>
+   		
+   		<then>
+   			<local>
+   				<fail message="CRAP!"/>
+   			</local>
+   		</then> 
+   		<else>
+   			<local>
+   				<echo>abc12345z greater than abc12345a</echo>
+   			</local>
+   		</else>
+    </if>
+    
+	<if>
+   		<lt op1="3.1459" op2="3.1458" type="string" nullable="false"/>
+   		
+   		<then>
+   			<local>
+   				<fail message="CRAP!"/>
+   			</local>
+   		</then> 
+   		<else>
+   			<local>
+   				<echo>3.1459 greater than 3.1458</echo>
+   			</local>
+   		</else>
+    </if>
+    
+    <!-- Validate the comparison of 18 with 18.000 works fine -->
+    
+    <if>
+        <eq op1="18" op2="18.000"/>
+        <then>
+            <log>Comparison between 18 and 18.000 succeeded correctly</log>
+        </then>
+        <else>
+            <fail message="Comparison between 18 and 18.000 failed :("/>
+        </else>
+    </if>
+    
+    
+    <!-- Validate comparison of empty strings -->
+    <if>
+        <eq op1="" op2=""/>
+        <then>
+            <log>Comparison worked correctly.</log>
+        </then>
+        <else>
+            <fail message="Empty string comparison has failed."/>
+        </else>
+    </if>
+
+    <if>
+        <eq op1="" op2="test"/>
+        <then>
+            <fail message="Empty string comparison has failed."/>
+        </then>
+        <else>
+            <log>Comparison worked correctly.</log>
+        </else>
+    </if>
+
+    <if>
+        <eq op1="8.1.2.b" op2="8.1.2.b"/>
+        <then>
+            <log>Passed as expected.</log>
+        </then>
+        <else>
+            <fail message="Unexpected failure."/>
+        </else>
+    </if>
+
+    <if>
+        <eq op1="127.0.0.1:3080" op2="127.0.0.1:3080"/>
+        <then>
+            <log>Passed as expected.</log>
+        </then>
+        <else>
+            <fail message="Unexpected failure."/>
+        </else>
+    </if>
+
+    <if>
+        <eq op1="127.0.0.1:3080" op2="127.0.0.1:3081"/>
+        <then>
+            <fail message="Unexpected equality."/>
+        </then>
+        <else>
+            <log>Failed as expected.</log>
+        </else>
+    </if>
+
+    <if>
+        <eq op1="host.domain.ext:3080" op2="host.domain.ext:3081"/>
+        <then>
+            <fail message="Unexpected equality."/>
+        </then>
+        <else>
+            <log>Failed as expected.</log>
+        </else>
+    </if>
+
+    <if>
+        <lt op1="18.001" op2="18.002"/>
+        <then>
+            <log>Passed as expected.</log>
+        </then>
+        <else>
+            <fail message="Unexpected failure."/>
+        </else>
+    </if>
+
+    <if>
+        <lt op1="0.00199999" op2="0.002"/>
+        <then>
+            <log>Passed as expected.</log>
+        </then>
+        <else>
+            <fail message="Unexpected failure."/>
+        </else>
+    </if>
+    
+    <if>
+        <eq op1="A01" op2="A1"/>
+        <then>
+            <fail message="Unexpected failure."/>
+        </then>
+        <else>
+            <log>Passed as expected.</log>
+        </else>
+    </if>
+    
+    <if>
+        <lt op1="A1" op2="A10"/>
+        <then>
+            <log>Passed as expected.</log>
+        </then>
+        <else>
+            <fail message="Unexpected failure."/>
+        </else>
+    </if>
+
+    <if>
+        <lt op1="A0001" op2="A10"/>
+        <then>
+            <log>Passed as expected.</log>
+        </then>
+        <else>
+            <fail message="Unexpected failure."/>
+        </else>
+    </if>
+
+    <if>
+        <eq op1="01" op2="0001"/>
+        <then>
+            <log>Passed as expected.</log>
+        </then>
+        <else>
+            <fail message="Unexpected failure."/>
+        </else>
+    </if>
+
+    <if>
+        <lt op1="-100" op2="-0.55"/>
+        <then>
+            <log>Passed as expected.</log>
+        </then>
+        <else>
+            <fail message="Unexpected failure."/>
+        </else>
+    </if>
+   
+    <assert message="true should always be true"><true/></assert> 
+    <assert message="not(false) should always be true"><not><false/></not></assert> 
+</script>

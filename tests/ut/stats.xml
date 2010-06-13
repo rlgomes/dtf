@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="stats">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF stats unit test.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+       
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+         
+        <property name="runid" value="${dtf.timestamp}"/>
+    </local>
+
+	<function name="recorderTest1">
+		<param name="recorder.type" type="required"/>
+		<param name="recorder.filename" type="required"/>
+		
+    	<record type="${recorder.type}" uri="storage://OUTPUT/${recorder.filename}" append="false">
+            <parallelloop property="client" range="1..${clients}">
+                <for property="index" range="1..${iterations.medium}">
+                    <event name="dtf.event">
+                        <attribute name="iteration" value="${index}" type="string" length="64"/>
+                        <attribute name="client" value="${client}" type="string" length="64"/>
+                        <attribute name="runid" value="${runid}" type="string" length="64"/>
+                    </event>
+                </for>
+           </parallelloop>
+        </record>
+     
+        <query uri="storage://OUTPUT/${recorder.filename}" type="${recorder.type}" event="dtf.event" cursor="cursor1">
+           <where>
+           		<eq op1="runid" op2="${runid}" type="string" nullable="false"/>
+           </where>
+        </query>
+               
+        <record type="object" uri="property://txtrecorder" append="false"> 
+        	<stats cursor="cursor1" event="stats"/>
+        </record>
+        
+        <local>
+       		<echo>
+                  ${recorder.type} Performance Stats 
+                  -----------------
+                  Events per second: ${txtrecorder.avg_occ}
+                  Total of Events:   ${txtrecorder.tot_occ}
+                  Total Duration:    ${txtrecorder.tot_dur}ms
+            </echo> 
+        </local>
+    </function>
+   
+    <!-- 
+        This function records the runid at the recorder level instead of the
+      	event level. 
+     --> 
+    <function name="recorderTest2">
+		<param name="recorder.type" type="required"/>
+		<param name="recorder.filename" type="required"/>
+		
+    	<record type="${recorder.type}" uri="storage://OUTPUT/${recorder.filename}" append="false">
+            <attribute name="runid" value="${runid}" type="string" length="64"/>
+            <parallelloop property="client" range="1..${clients}">
+                <for property="index" range="1..${iterations.medium}">
+                    <event name="dtf.event">
+                        <attribute name="iteration" value="${index}" type="string" length="64"/>
+                        <attribute name="client" value="${client}" type="string" length="64"/>
+                    </event>
+                </for>
+           </parallelloop>
+        </record>
+     
+        <query uri="storage://OUTPUT/${recorder.filename}" type="${recorder.type}" event="dtf.event" cursor="cursor1">
+           <where>
+           		<eq op1="runid" op2="${runid}" type="string" nullable="false"/>
+           </where>
+        </query>
+               
+        <record type="object" uri="property://txtrecorder" append="false"> 
+        	<stats cursor="cursor1" event="stats"/>
+        </record>
+        
+        <local>
+       		<echo>
+                  ${recorder.type} Performance Stats 
+                  -----------------
+                  Events per second: ${txtrecorder.avg_occ}
+                  Total of Events:   ${txtrecorder.tot_occ}
+                  Total Duration:    ${txtrecorder.tot_dur}ms
+            </echo> 
+        </local>
+    </function>
+
+    <call function="recorderTest1">
+   		<property name="recorder.type" value="txt"/> 
+   		<property name="recorder.filename" value="recorder_stats.txt"/> 
+    </call>
+
+    <call function="recorderTest2">
+   		<property name="recorder.type" value="txt"/> 
+   		<property name="recorder.filename" value="recorder_stats2.txt"/> 
+    </call>
+ 
+	<record uri="storage://OUTPUT/record_intervals.txt" append="false">
+        <for property="j" range="1..5">
+            <for property="index" range="1..1000">
+                <event name="dtf.event">
+                    <attribute name="iteration" value="${j}${index}"/>
+                    <attribute name="runid" value="${runid}"/>
+                    <attribute name="constant" value="constant"/>
+                    <attribute name="status" value="ok"/>
+                </event>
+            </for>
+            <for property="index" range="1000..2000">
+                <event name="dtf.event">
+                    <attribute name="iteration" value="${j}${index}"/>
+                    <attribute name="runid" value="${runid}"/>
+                    <attribute name="constant" value="constant"/>
+                    <attribute name="status" value="fail"/>
+                </event>
+            </for>
+       </for>
+    </record>
+     
+    <query uri="storage://OUTPUT/record_intervals.txt" 
+           event="dtf.event"
+           cursor="cursor1"/>
+               
+    <record type="object" uri="property://txtrecorder" append="false"> 
+    	<stats cursor="cursor1" event="stats" monitor="status"/>
+    </record>
+        
+    <local>
+   		<echo>
+              Performance Stats 
+              -----------------
+              Events per second:     ${txtrecorder.avg_occ}
+              Total of Events:       ${txtrecorder.tot_occ}
+              Total Duration:        ${txtrecorder.tot_dur}ms
+              
+              States: ${txtrecorder.status_states}
+        </echo>           
+    </local>
+    
+    <for property="field" range="${txtrecorder.status_states}">
+        <local>
+            <echo>         
+              Biggest  Interval of ${field}: ${txtrecorder.status_${field}.max_int}ms
+              Smallest Interval of ${field}: ${txtrecorder.status_${field}.min_int}ms
+              Total    Interval of ${field}: ${txtrecorder.status_${field}.tot_int}ms
+              Average  Interval of ${field}: ${txtrecorder.status_${field}.avg_int}ms
+	        </echo> 
+	    </local>
+    </for>
+    
+    <!-- test out constant field for changes -->
+    <resetcursor cursor="cursor1"/>
+               
+    <record type="object" uri="property://const" append="false"> 
+    	<stats cursor="cursor1" event="stats" monitor="constant"/>
+    </record>
+   
+    <for property="field" range="${const.constant_states}">
+        <local>
+            <echo>         
+              Biggest  Interval of ${field}: ${const.status_${field}.max_int}ms
+              Smallest Interval of ${field}: ${const.status_${field}.min_int}ms
+              Total    Interval of ${field}: ${const.status_${field}.tot_int}ms
+              Average  Interval of ${field}: ${const.status_${field}.avg_int}ms
+	        </echo> 
+	    </local>
+    </for>
+
+	<record uri="storage://OUTPUT/stats_perf_test.txt" append="false">
+        <for property="index" range="1..${iterations.medium}">
+            <event name="dtf.event">
+                <attribute name="iteration" value="${index}"/>
+                <attribute name="attr1" value="YYYYYYYYYYYYYYYYYYYY"/>
+                <attribute name="attr2" value="XXXXXXXXXXXXXXXXXXXX"/>
+                <attribute name="attr3" value="ZZZZZZZZZZZZZZZZZZZZ"/>
+            </event>
+        </for>
+    </record>
+     
+    <query uri="storage://OUTPUT/stats_perf_test.txt" 
+           event="dtf.event"
+           cursor="cursor1"/>
+               
+	<stats cursor="cursor1" event="stats" monitor="status"/>
+        
+
+    <cat uri="storage://OUTPUT/stats_latencies.data" 
+         append="false">${stats.csv_dur}</cat>
+
+	<log>
+    Performance Stats 
+    -----------------
+    Events per second:     ${stats.avg_occ}
+    Total of Events:       ${stats.tot_occ}
+    Total Duration:        ${stats.tot_dur}ms
+    Latency CSV output at ${OUTPUT.dir}/stats_latencies.data
+    </log>           
+    
+    <!-- negative testing -->
+    <try>
+        <stats cursor="inexistent" event="blah"/>
+        <catch exception="${dtf.DTFException}" property="message">
+            <log>Caught exception correctly [${message}]</log>
+        </catch>
+    </try>
+
+    <!-- exhausted cursor -->
+    <stats cursor="cursor1" event="blah"/>
+    
+</script>

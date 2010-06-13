@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="stats">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF stats performance test.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+      
+        <import uri="storage://INPUT/perf_util.xml"/> 
+        
+        <property name="iterations" value="400000" overwrite="true"/>
+    </local>
+
+    <for property="type" range="txt">	
+	    <record uri="storage://OUTPUT/stats_perf_${type}.txt"
+	            type="${type}"
+	            append="false">
+	            
+	        <for property="index" range="1..${iterations}">
+	            <event name="dtf.event">
+	                <attribute name="iteration" value="${index}" />
+	                <attribute name="runid" value="1234567890" />
+	            </event>
+	        </for>
+	    </record>
+     
+        <query uri="storage://OUTPUT/stats_perf_${type}.txt"
+               type="${type}"
+               cursor="cursor1"/>
+      
+        <event name="total"> 
+            <stats cursor="cursor1" event="whatever"/>
+        </event>
+        
+        <subtract op1="${total.stop}" op2="${total.start}" result="duration"/>
+        <divide op1="${duration}" op2="1000" result="duration"/>
+        <divide op1="${iterations}" op2="${duration}" result="ops_per_s"/>
+        
+        <log>${type} stats operations/s: ${ops_per_s}</log>
+        <call function="writeperf">
+            <property name="uri" value="storage://OUTPUT/stats_${type}.perf"/>
+            <property name="value" value="${ops_per_s}"/>
+        </call>
+    </for>
+    
+</script>
