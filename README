@@ -1,5 +1,23 @@
-Building Requiremnts:
+Building Requirements
+---------------------
 
  * Ant   1.6.5 and up (1.7 recommended)
  * Java  1.5 and up   (1.6 recommended)
 
+Checking Out
+------------
+
+$ mkdir dtf
+$ cd dtf
+$ git clone git@github.com:rlgomes/dtf.git 
+
+Building
+--------
+
+ant build
+
+Run A Test
+----------
+
+cd build/dtf/dist
+./ant.sh run_dtfx -Ddtf.xml.filename=tests/ut/arithmetic.xml
