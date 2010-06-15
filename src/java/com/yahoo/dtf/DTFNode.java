@@ -304,60 +304,9 @@ public class DTFNode {
             System.exit(-1);
         }
        
-        wipeTraces();
         writeNodeState(false, true, null);
     }
     
-    public static void wipeTraces() throws DTFException { 
-        String name = DTFNode.getType();
-        if ( name.equals("dtfa") ) name = Action.getLocalID();
-      
-        File statedir = new File("state");
-        if ( !statedir.exists() ) {
-            if ( !statedir.mkdirs() )
-                throw new DTFException("Unable to mkdir [" + statedir + "]");
-        }
-
-        File file = new File(statedir, name + ".trace");
-        if ( file.exists() && !file.delete() )
-            throw new DTFException("Unable to delete [" + file + "]");
-    }
-    
-    public static void updateTraces(DTFException dtfe) throws DTFException { 
-        FileOutputStream fos = null;
-        PrintWriter pw = null;
-        
-        String name = DTFNode.getType();
-        if ( name.equals("dtfa") ) name = Action.getLocalID();
-      
-        File statedir = new File("state");
-        if ( !statedir.exists() ) {
-            if ( !statedir.mkdirs() )
-                throw new DTFException("Unable to mkdir [" + statedir + "]");
-        }
-        
-        /*
-         * Keep the stack trace safely hidden away in the .trace file 
-         */
-        try { 
-	        if ( dtfe != null ) { 
-	            try { 
-	                File file = new File(statedir, name + ".trace");
-	                fos = new FileOutputStream(file, true);
-	                pw = new PrintWriter(fos);
-	                dtfe.printOriginalStackTrace(pw);
-	                pw.println();
-	                pw.flush();
-	            } finally { 
-	                if ( fos != null ) fos.close();
-	                if ( pw != null ) pw.close();
-	            }
-	        }
-        } catch (IOException e) { 
-            throw new DTFException("Unable to create node trace file.",e);
-        }
-    }
-   
     /**
      * State file can be used by other external tools to know where each of 
      * the components is running and what certain port numbers and id's are for
@@ -380,8 +329,6 @@ public class DTFNode {
                     throw new DTFException("Unable to mkdir [" + statedir + "]");
                 }
             }
-            
-            updateTraces(dtfe);
             
             fos = new FileOutputStream(new File(statedir, name + ".state"));
             pw = new PrintWriter(fos);

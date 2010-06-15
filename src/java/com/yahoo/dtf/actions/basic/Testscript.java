@@ -92,7 +92,6 @@ public class Testscript extends Action {
                             registerGlobalContext(TESTSCRIPT_FAILED_CTX, exceptions); 
                         }
                         
-                        DTFNode.updateTraces(e);
                         exceptions.add(e);
                     }
                 }
