@@ -1,0 +1,10 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Getfile</h3></dt><dd><p align='justify'>this file can be used to retrieve a file from a component and
+               place it in a storage identified on the runner side.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>append</b></td><td><p align='justify'>Specifies if you would like the file to append to any 
+                existing data in the uri specified.</p></td></tr><tr valign='top'><td width='100px'><b>compress</b></td><td><p align='justify'>Specifies if you would want the file to be compressed at 
+                the destination. This also speeds up the copy because the
+                compression is done on the agent side.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>uri</b></td></tr><tr valign='top'><td width='100px'><b>remotefile</b></td><td><p align='justify'>The fullpath to the remote file relative to where the 
+                DTFA was started.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;getfile remotefile="build.xml" uri="storage://OUTPUT/build.copy1.xml"/&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;getfile remotefile="/etc/hosts" uri="storage://OUTPUT/hosts1"/&gt;
+</pre></dd></body></html>

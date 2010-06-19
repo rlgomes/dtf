@@ -1,0 +1,46 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Diff</h3></dt><dd><p align='justify'>This tag is used for calculating the differences between two 
+               or more files. The tag will throw events of the type diffs.XXX 
+               that will contain the various differences between the files and
+               will throw one final diff.XXX event that contains the 
+               summarized information for all of the differences between those
+               files. See the Event information below for more detalis.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='input.html'>input</a>){0,*} </b><br/><br/><br/><dt><b>Events</b></dt><dd><table border=1><CAPTION><b>diff</b> Event</CAPTION><tr valign='top'><td width='120px'><b>uri[0-totalfiles].path</b></td><td><p align='justify'><p align='justify'>The full path for each of of the files that were 
+                      compared during the diff calculation.</p></p></td></tr><tr valign='top'><td width='120px'><b>difflines</b></td><td><p align='justify'><p align='justify'>The total number of lines that are different between 
+                      the files being diffed.</p></p></td></tr><tr valign='top'><td width='120px'><b>totallines</b></td><td><p align='justify'><p align='justify'>The total number of lines in that were compared during
+                      the diff calculation.</p></p></td></tr><tr valign='top'><td width='120px'><b>totalfiles</b></td><td><p align='justify'><p align='justify'>The total number of files that were compared during the 
+                       diff calculation.</p></p></td></tr></dd></table><br/><dd><table border=1><CAPTION><b>diffs</b> Event</CAPTION><tr valign='top'><td width='120px'><b>linenumber</b></td><td><p align='justify'><p align='justify'>The line number of where the two files identified by 
+                      the uris attribute differ.</p></p></td></tr><tr valign='top'><td width='120px'><b>uris</b></td><td><p align='justify'><p align='justify'>the ids of the URI's that differed (0-totafiles).</p></p></td></tr><tr valign='top'><td width='120px'><b>line[0-totalfiles]</b></td><td><p align='justify'><p align='justify'>There will exist two of these per diffs event that is 
+                      thrown and they will be numbered based on the uris 
+                      attribute so that you can easily identify which file
+                      contained which line.</p></p></td></tr></dd></table><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;diff&gt;
+     &lt;input uri="storage://OUTPUT/file1"/&gt;
+     &lt;input uri="storage://OUTPUT/file2"/&gt;
+     &lt;input uri="storage://OUTPUT/file3"/&gt;
+ &lt;/diff&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;diff&gt;
+     &lt;input uri="storage://OUTPUT/basedata"/&gt;
+     &lt;input uri="storage://OUTPUT/currentdata"/&gt;
+ &lt;/diff&gt;
+</pre></dd><br/><dd><b>Example #3</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;sequence&gt;
+      &lt;record uri="storage://OUTPUT/diffs"&gt;
+          &lt;diff&gt;
+               &lt;input uri="storage://OUTPUT/file1"/&gt;
+               &lt;input uri="storage://OUTPUT/file2"/&gt;
+               &lt;input uri="storage://OUTPUT/file3"/&gt;
+          &lt;/diff&gt;
+      &lt;/record&gt;
+     
+      &lt;log&gt;number of lines that differ: ${diff.difflines}&lt;/log&gt;
+      
+      &lt;query cursor="differences" event="diffs" uri="storage://OUTPUT/diffs"/&gt;
+             
+      &lt;iterate cursor="differences"&gt;
+          &lt;log&gt;files differ at line: ${differences.linenumber}&lt;/log&gt;
+          &lt;for property="id" range="${differences.uris}"&gt;
+              &lt;log&gt;file ${diff.uri${id}.path} has ${differences.line${id}}&lt;/log&gt;
+          &lt;/for&gt;
+      &lt;/iterate&gt;
+ &lt;/sequence&gt;
+</pre></dd></body></html>

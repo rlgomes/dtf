@@ -1,0 +1,137 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Distribute</h3></dt><dd><p align='justify'>The distribute tag allows you to efficiently distribute action
+               execution over time. This tag will simulate execution 
+               distributions and record events when desired distributions were
+               not achieved during the execution of underlying actions. When
+               you use the id attribute you'll be able to get events back from
+               this tag during its execution as to what interval of time failed
+               to met the requested work goal.
+               <br/><br/>
+               Distribute can be used to create load patterns because the func
+               attribute allows you to define precisely what type of load 
+               you want this tag to generate. The currently available functions
+               are defined below and more can be added upon request.
+               <br/><br/></p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='sequence.html'>sequence</a> | <a href='parallel.html'>parallel</a> | <a href='for.html'>for</a> | <a href='parallelloop.html'>parallelloop</a> | <a href='switch.html'>switch</a> | <a href='distribute.html'>distribute</a> | <a href='try.html'>try</a> | <a href='timer.html'>timer</a> | <a href='if.html'>if</a> | <a href='local.html'>local</a> | <a href='component.html'>component</a> | <a href='fail.html'>fail</a> | <a href='choices.html'>choices</a> | <a href='while.html'>while</a> | <a href='result.html'>result</a> | <a href='testsuite.html'>testsuite</a> | <a href='testscript.html'>testscript</a> | <a href='testproperty.html'>testproperty</a> | <a href='record.html'>record</a> | <a href='event.html'>event</a> | <a href='query.html'>query</a> | <a href='nextresult.html'>nextresult</a> | <a href='resetcursor.html'>resetcursor</a> | <a href='iterate.html'>iterate</a> | <a href='compare.html'>compare</a> | <a href='log.html'>log</a> | <a href='stats.html'>stats</a> | <a href='function.html'>function</a> | <a href='call.html'>call</a> | <a href='sleep.html'>sleep</a> | <a href='property.html'>property</a> | <a href='replace.html'>replace</a> | <a href='diffproperty.html'>diffproperty</a> | <a href='createrange.html'>createrange</a> | <a href='unset.html'>unset</a> | <a href='sleep.html'>sleep</a> | <a href='echo.html'>echo</a> | <a href='fail.html'>fail</a> | <a href='break.html'>break</a> | <a href='log.html'>log</a> | <a href='cat.html'>cat</a> | <a href='monitor_create.html'>monitor_create</a> | <a href='monitor_destroy.html'>monitor_destroy</a> | <a href='monitor_grep.html'>monitor_grep</a> | <a href='monitor_diff.html'>monitor_diff</a> | <a href='event.html'>event</a> | <a href='attribute.html'>attribute</a> | <a href='http_get.html'>http_get</a> | <a href='http_post.html'>http_post</a> | <a href='http_put.html'>http_put</a> | <a href='http_head.html'>http_head</a> | <a href='http_delete.html'>http_delete</a> | <a href='http_request.html'>http_request</a> | <a href='http_server.html'>http_server</a> | <a href='http_response.html'>http_response</a> | <a href='urlencode.html'>urlencode</a> | <a href='replace.html'>replace</a> | <a href='add.html'>add</a> | <a href='mod.html'>mod</a> | <a href='abs.html'>abs</a> | <a href='subtract.html'>subtract</a> | <a href='multiply.html'>multiply</a> | <a href='divide.html'>divide</a> | <a href='share_create.html'>share_create</a> | <a href='share_destroy.html'>share_destroy</a> | <a href='share_get.html'>share_get</a> | <a href='share_set.html'>share_set</a> | <a href='share_wait.html'>share_wait</a> | <a href='rendezvous_create.html'>rendezvous_create</a> | <a href='rendezvous_destroy.html'>rendezvous_destroy</a> | <a href='rendezvous_check.html'>rendezvous_check</a> | <a href='rendezvous_visit.html'>rendezvous_visit</a> | <a href='rendezvous_reset.html'>rendezvous_reset</a> | <a href='printf.html'>printf</a> | <a href='scanf.html'>scanf</a> | <a href='headergroup.html'>headergroup</a> | <a href='cookiegroup.html'>cookiegroup</a> | <a href='http_config.html'>http_config</a> | <a href='assert.html'>assert</a>){0,*} </b><br/><br/><br/><dt><b>Events</b></dt><dd><table border=1><CAPTION><b>WORKER_ID</b> Event</CAPTION><tr valign='top'><td width='120px'><b>workdone</b></td><td><p align='justify'><p align='justify'>this field will contain the exact amount of work that 
+                      was done during the unit of time identified by the 
+                      workunit field.</p></p></td></tr><tr valign='top'><td width='120px'><b>workunit</b></td><td><p align='justify'><p align='justify'>this counts the number of units of work that were done 
+                      and also lets you know for each event which unit of 
+                      work was being handled.</p></p></td></tr><tr valign='top'><td width='120px'><b>workgoal</b></td><td><p align='justify'><p align='justify'>this field will contain the exact amount of work that 
+                      was the goal during the unit of time identified by the 
+                      workunit field.</p></p></td></tr></dd></table><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>workers</b></td><td><p align='justify'>number of worker threads to use to try to guarantee the 
+                distribution specified. This value is under the control
+                of the user and should be used wisely. If you start too 
+                many threads you can hose the system you're running the
+                distribution on, but if you don't start enough then you
+                can't meet your distribution requirements.</p></td></tr><tr valign='top'><td width='100px'><b>range</b></td><td><p align='justify'>Similar to the way ranges are used in the </p><a href='for.html'>for</a><p align='justify'>
+                and </p><a href='parallelloop.html'>parallelloop</a><p align='justify'> tags. Ranges are used here to
+                identify the number of underlying threads used and assign
+                them a unique id based on the ids in the range.</p></td></tr><tr valign='top'><td width='100px'><b>func</b></td><td><p align='justify'>the actual distribution function to use during the 
+                execution of this test. The currently available 
+                distribution functions are:
+                <br/>
+                <b>Func Types</b>
+                <table border="1">
+                    <tr>
+                        <th>Type</th> 
+                        <th>Description</th> 
+                        <th>Example</th> 
+                    </tr>
+                    <tr>
+                        <td>const</td> 
+                        <td>defines a constant distribution where the 
+                            first argument to this function is the number
+                            of operations to guarantee for each unit of
+                            time.</td>
+                        <td>
+                          <ul>
+                              <li>const(10) would try to execute 10 
+                                  operations per unit of time specified 
+                                  with the attribute unit.
+                              </li>
+                          </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>step</td> 
+                        <td>defines a step function for the distribution, 
+                            where the first argument is the starting 
+                            value, the second argument is the stepping size
+                            and the 3rd argument is the duration of each
+                            step.</td>
+                        <td>
+                           <ul>
+                              <li>step(1,1,10) would start by executing 1 
+                                  operation per unit of time and then up
+                                  by 1 operation every 10 units of time. 
+                              </li>
+                              <li>step(0,10,1) would start by executing 0 
+                                  operation per unit of time and then up
+                                  by 10 operation every 1 units of time. 
+                              </li>
+                          </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>list</td> 
+                        <td>defines a list of the values, where each value
+                            is the exact amount of operations per unit of
+                            time to do in each unit of time. The values of 
+                            this list are used once per unit of time till
+                            we reach the end and then we just jump back to
+                            the start of the list.</td>
+                        <td>
+                          <ul>
+                              <li>list(0,20,25,20) would try to execute
+                                  0 operations for the unit of time 0 and 
+                                  then 20 at time 1, 25 at time 2 and then
+                                  20 at unit of time 3, followed by
+                                  starting from the beginning of the list.
+                              </li>
+                          </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>limit</td> 
+                        <td>this function will limit the underlying 
+                            distribution function to a certain number so 
+                            that it can't go over that.</td>
+                        <td>
+                          <ul>
+                              <li>limit(step(0,20,1),60) would basically 
+                                  start at 0 operations per unit of time 
+                                  and then increases by 20 operations 
+                                  every unit of time until we hit 60 at
+                                  which will just stay constant at 60 
+                                  operations per unit of time. 
+                              </li>
+                          </ul>
+                        </td>
+                    </tr>
+                </table></p></td></tr><tr valign='top'><td width='100px'><b>iterations</b></td><td><p align='justify'>the number of iterations to run for. Once reached the test
+                will come to an end even if there is a value for the timer
+                property.</p></td></tr><tr valign='top'><td width='100px'><b>timer</b></td><td><p align='justify'>time based execution can be achieved with this property, 
+                just put a value in the format of 1s, 2h or 3d (3 days) 
+                and the distribute tag will keep executing the underlying 
+                action till at least that much time has gone by.</p></td></tr><tr valign='top'><td width='100px'><b>unit</b></td><td><p align='justify'>the units to measure the current execution in, the units 
+                can be specified in the same foramt you would specify the
+                timer property using the syntax 1s (1 second), 2d (2 days)
+                and can't be smaller than 1 second because of precision
+                requirements.</p></td></tr><tr valign='top'><td width='100px'><b>property</b></td><td><p align='justify'>the property to save the current iteartion value in. This
+                is useful for generate unique identifiers in each of the
+                underlying executions. This property is guaranteed to be
+                unique throughout the whole run even with parallelized 
+                access to the value. The iteration property always starts
+                at 1.</p></td></tr><tr valign='top'><td width='100px'><b>id</b></td><td><p align='justify'>the id attribute is used to generate the events being 
+                thrown about the work that was and wasn't completed during
+                the execution of this distribution. Those events are 
+                defined in the previous event section. The id also makes 
+                the property ${[your distribute id].worker} available and
+                allows you to identify during each execution which worker 
+                (i.e. thread) was handling the request....</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;distribute func="const(20)" id="dist1" property="iter" range="1..5" timer="5m" unit="1m"&gt;
+      &lt;log&gt;Executing action from thread ${dist1.worker}!&lt;/log&gt;
+ &lt;/distribute&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;distribute func="list(10,20,50,20,10)" id="dist1" property="iter" range="1..32" timer="5m"&gt;
+      &lt;log&gt;Executing action from thread ${dist1.worker}!&lt;/log&gt;
+ &lt;/distribute&gt;
+</pre></dd></body></html>

@@ -1,0 +1,33 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Attribute</h3></dt><dd><p align='justify'>Attribute tag identifies attributes that are recorded by the 
+               event tag. Attributes have at least a name and value and can 
+               also carry information about the type of the attribute and its
+               length.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>type</b></td><td><p align='justify'><p>Identifies the type of attribute being recorded.</p>
+                <b>Supported DTF types:</br>
+                <ul>
+                <table border="1">
+                    <tr>
+                        <th>Type</th> 
+                        <th>Description</th> 
+                    </tr>
+                    <tr>
+                         <td>int</td>
+                         <td>Integer type</td>
+                    </tr>
+                    <tr>
+                         <td>long</td>
+                         <td>Long type</td>
+                    </tr>
+                    <tr>
+                         <td>string</td>
+                         <td>String type</td>
+                    </tr>
+               </table> 
+               </ul></p></td></tr><tr valign='top'><td width='100px'><b>index</b></td><td><p align='justify'>Identifies if this attribute is indexable or not.</p></td></tr><tr valign='top'><td width='100px'><b>length</b></td><td><p align='justify'>The length of this property is used by the by recorders 
+                and only has real significance for the database recorder 
+                that needs to specify the column length when creating the 
+                schema for recording events.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>name</b></td><td><p align='justify'>name of the property to define.</p></td></tr><tr valign='top'><td width='100px'><b>value</b></td><td><p align='justify'>value to give the property defined.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;event name="logevent"&gt;
+     &lt;attribute name="iteration" value="${iter}"/&gt;
+     &lt;log&gt;xxxx&lt;/log&gt;
+ &lt;/event&gt;
+</pre></dd></body></html>

@@ -1,0 +1,10 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Testscript</h3></dt><dd><p align='justify'>The testscript tag allows you to execute an external XML script
+               by identifying where it is with the <code>uri</code> attribute.
+               The properties,references are inherited from the parent script, 
+               but all components and storages are not inherited from the 
+               parent script.</p></dd><dd><p align='justify'>This tag generates test result events that can be recorded with
+               the results tag and later processed to keep track of test 
+               results over of time or builds.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='testproperty.html'>testproperty</a>){0,*} </b><br/><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>uri</b></td><td><p align='justify'>The uri identifies the location of the script to be 
+                executed.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;testscript uri="storage://INPUT/storage.xml"/&gt;
+</pre></dd></body></html>

@@ -1,0 +1,26 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Createstorage</h3></dt><dd><p align='justify'><p>
+               Identifies and creates a storage to be used by various other 
+               tags within the DTF framework.
+               </p>
+               <p>
+               This tag also creates a new property constructed with the ID 
+               of this storage and the suffix .dir. So for a createstorage 
+               with an ID OUTPUT the property ${OUTPUT.dir} will be created. 
+               This property can be used to reference the physical location 
+               of the storage.
+               </p></p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>export</b></td><td><p align='justify'>With export set to true this storage will be visible and
+                usable from any agent locked by the current runner. This
+                of course has a small overhead when communicating with 
+                the component but the benefit is that all input and 
+                outputs done on either side are pulled back to the storage
+                on the runner side, making the writing of tests easier to
+                read. The default of this attribute is set to false since
+                in most scenarios users don't need to share the storages
+                with all of their agents.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>id</b></td><td><p align='justify'>This specifies the unique identifier by which all other 
+                tags can refer to this storage.</p></td></tr><tr valign='top'><td width='100px'><b>path</b></td><td><p align='justify'>File system path to a directory that we wish to reference 
+                from other tags in this test case.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;local&gt;
+     &lt;createstorage id="INPUT" path="${dtf.path}/tests/ut/input"/&gt;
+     &lt;createstorage id="OUTPUT" path="${dtf.path}/tests/ut/output"/&gt;
+ &lt;/local&gt;
+</pre></dd></body></html>

@@ -1,0 +1,35 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>HTTP SSL Certification Chain</h3></dt><dd><p align='justify'><p>
+ Currently there is only an Apache Client HTTP implementation for the DTF 
+ HTTP tags. This implementation uses the Java X.509 Certificate Management 
+ layer for all certificates related with HTTPS requests. So in order to add 
+ your own certificate to this chain you'll have to use Java specific tools for
+ this effect. 
+ 
+ The certification chain with Java has its keystore located at:
+ <ul> 
+     <li>Unix: ${user.home}/.java/deployment/security.</li>
+     <li>Windows: ${deployment.user.home}\security</li>
+ </ul>
+
+ <p>
+ Other locations, such as system level certificates and the ability to even 
+ change the keystore location  is documented <a href="http://java.sun.com/j2se/1.5.0/docs/guide/deployment/deployment-guide/jcp.html">here</a>.
+ To manage the certificates int these keystores you must use the keytool tool 
+ supplied with the Java JDK and has some usage instructions <a href="http://java.sun.com/j2se/1.5.0/docs/tooldocs/windows/keytool.html">here</a>.
+ The usage of the tool is very straightforward if you already have an existing
+ X.509 certificate you want to add to your keystore you just use the 
+ following:
+ </p>
+ 
+ <pre>
+ keytool -import -alias alias_for_your_ca -file newCA.cer
+ </pre>
+ 
+ <p>
+ So on the agent systems where you'd like to issue HTTPS requests you'll have 
+ to add this new certification authority to your chain, either at the user 
+ level (keystore location mentioned above) or you can do it at the system 
+ level for the machine by using the keytool to add this same certificate 
+ authority to the chain that everyone using that JDK would trust in (be aware 
+ this may not be the most secure way of doing things).
+ </p></p></dd></body></html>

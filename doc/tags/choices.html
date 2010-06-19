@@ -1,0 +1,33 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Choices</h3></dt><dd><p align='justify'>Choices tag can be used at any point you want to execute a 
+               group of different actions with a probability associated with
+               executing each of the actions. This way you can generate a load
+               pattern that is a bit more complex than just the number of 
+               operations per second.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='choose.html'>choose</a>){1,*} </b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;distribute iterations="1..10" workers="3"&gt;
+     &lt;choices&gt;
+         &lt;choose howoften="25%"&gt;
+             &lt;event name="test.event2"/&gt;
+         &lt;/choose&gt;
+         &lt;choose howoften="25%"&gt;
+             &lt;event name="test.event1"/&gt;
+         &lt;/choose&gt;
+         &lt;choose howoften="50%"&gt;
+             &lt;event name="test.event3"/&gt;
+         &lt;/choose&gt;
+     &lt;/choices&gt; 
+ &lt;/distribute&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;for property="i" range="1..1000"&gt;
+     &lt;choices&gt;
+         &lt;choose howoften="5%"&gt;
+             &lt;event name="test.event2"/&gt;
+         &lt;/choose&gt;
+         &lt;choose howoften="5%"&gt;
+             &lt;event name="test.event1"/&gt;
+         &lt;/choose&gt;
+         &lt;choose howoften="90%"&gt;
+             &lt;event name="test.event3"/&gt;
+         &lt;/choose&gt;
+     &lt;/choices&gt; 
+ &lt;/for&gt;
+</pre></dd></body></html>

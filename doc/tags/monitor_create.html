@@ -1,0 +1,18 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Monitor_create</h3></dt><dd><p align='justify'>This tag is used to monitor a set of files for changes, it 
+               can detect new files that have appeared since after the time 
+               you said to create the monitor that fit the same pattern. There
+               are two other tags that can be used in conjunction with this one
+               they are </p><a href='monitor_grep.html'>monitor_grep</a><p align='justify'> and </p><a href='monitor_destroy.html'>monitor_destroy</a><p align='justify'>.
+               <br/>
+               <br/>
+               After you're done with a monitor make sure to clean it up using
+               the </p><a href='monitor_destroy.html'>monitor_destroy</a><p align='justify'> tag. The other grep tag will 
+               allow you to take all of the files that have changed since the
+               time of the monitor_create to the time of the monitor_grep is 
+               called and to check if there are any new lines that match a 
+               specific pattern. For more information on using 
+               </p><a href='monitor_grep.html'>monitor_grep</a><p align='justify'> read its documentation.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>id</b></td><td><p align='justify'>The unique identifier for this monitor that is being 
+                created.</p></td></tr><tr valign='top'><td width='100px'><b>file</b></td><td><p align='justify'>The file pattern to monitor, you can use a syntax like so:
+                /var/log/syslog.* or just a plain /var/log/my.log.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;monitor_create file="tests/ut/output/${logfile}.*" id="LOGS"/&gt;
+</pre></dd></body></html>

@@ -1,0 +1,33 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>String Conversion</h3></dt><dd><p align='justify'><p>
+                   This is the DTF string conversion transformer and it can be 
+                   used to convert between various formats such as hex to 
+                   string and string to hex. In the currently available 
+                   functions are:
+                   </p>
+                   <p> 
+                   <b>to-hex([padding])</b><br/>
+                   The to-hex function obviously converts an integer to a hex 
+                   format. The padding argument is optional and if set will 
+                   pad the resulting number with 0's on the left side.
+                   </p>
+                   <p>
+                   <b>from-hex</b><br/>
+                   The from-hex does the opposite of to-hex and converts a 
+                   hexa-decimal number back to its decimal representation.
+                   </p></p></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;sequence&gt;
+     &lt;property name="int1" value="1234"/&gt; 
+     &lt;property name="int2" value="42"/&gt; 
+
+     &lt;log&gt;${int1:convert:to-hex}&lt;/log&gt; 
+     &lt;log&gt;${int2:convert:to-hex(4)}&lt;/log&gt; 
+ &lt;/sequence&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;sequence&gt;
+     &lt;property name="hex1" value="FFFF"/&gt;
+     &lt;property name="hex2" value="FFFFFFFF"/&gt;
+     
+     &lt;log&gt;${hex1:convert:from-hex}&lt;/log&gt; 
+     &lt;log&gt;${hex2:convert:from-hex}&lt;/log&gt; 
+ &lt;/sequence&gt;
+</pre></dd></body></html>

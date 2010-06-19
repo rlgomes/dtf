@@ -1,0 +1,25 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Loading Default Properties</h3></dt><dd><p align='justify'><p>
+ Because sometimes agent command lines can get pretty long including the 
+ tunneling properties, agent specific attributes and other settings and 
+ writing that out every time on the command line can be bothersome, there 
+ is now a single property that can be used to load default properties into
+ the current component about to be executed. This property name is 
+ dtf.defaults and it will load a Java Properties file with key=value 
+ lines. There is a default behavior of making all properties available to
+ all the code within DTF but also any properties that do not start with 
+ dtf.* prefix will be loaded as Agent attributes that can later be used to
+ lock the components. In other words, if you have a property named 
+ cli.type=xxx in your default properties file and load it using this 
+ property you can then use the lockcomponent tag like so:
+ </p> 
+ 
+ </p><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;lockcomponent id="AGENT${agent}"&gt;
+     &lt;attrib name="client.type" value="xxx"/&gt;
+ &lt;/lockcomponent&gt;
+</pre><p align='justify'>
+ 
+ And you know you'd be locking the component who had that property and 
+ not any other one. This is useful for the user of the framework to setup 
+ agents with properties that define location, build and even APIs available 
+ from that agent for executing tests.</p></dd></body></html>

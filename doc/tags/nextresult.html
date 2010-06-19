@@ -1,0 +1,26 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Nextresult</h3></dt><dd><p align='justify'>This tag is used to move the cursor of a previously executed 
+               query tag. By moving the cursor we will get new results from 
+               the collection of previously recorded events that obey the 
+               previously defined query.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>recycle</b></td><td><p align='justify'>If this value is true then when the result set identified 
+                by the cursor hits the end of its results the cursor is 
+                reopened. If this value is false once there are no more 
+                results this tag will throw a NoMoreResultsException.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>cursor</b></td><td><p align='justify'>Identifies the cursor name that will be used to fetch the
+                next result.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;try&gt; 
+     &lt;sequence&gt;
+         &lt;query cursor="cursor1" uri="storage://OUTPUT/myevents.txt"/&gt;
+         
+         &lt;nextresult cursor="cursor1"/&gt;
+         &lt;while&gt;
+             &lt;eq op1="true" op2="true"/&gt;
+             &lt;sequence&gt;
+                 &lt;nextresult cursor="cursor1"/&gt;
+                 &lt;log&gt;${cursor1.field}&lt;/log&gt;
+             &lt;/sequence&gt;
+         &lt;/while&gt;
+     &lt;/sequence&gt;
+     &lt;catch exception="com.yahoo.dtf.exceptions.NoMoreResultsException"&gt;
+          &lt;log&gt;All done.&lt;/log&gt;
+     &lt;/catch&gt;
+ &lt;/try&gt;
+</pre></dd></body></html>

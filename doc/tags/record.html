@@ -1,0 +1,109 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Record</h3></dt><dd><p align='justify'>This tag is used to record DTF events thrown within the code 
+               and also thrown from the test case using the event tag. These 
+               events can be recorded to the following output formats: XML, 
+               Text file. Then the query tag can be used to get data back out 
+               of the recorded medium for later to be used by other test cases 
+               or the same one.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/><a href='attribute.html'>attribute</a>(<a href='sequence.html'>sequence</a> | <a href='parallel.html'>parallel</a> | <a href='for.html'>for</a> | <a href='parallelloop.html'>parallelloop</a> | <a href='switch.html'>switch</a> | <a href='distribute.html'>distribute</a> | <a href='try.html'>try</a> | <a href='timer.html'>timer</a> | <a href='if.html'>if</a> | <a href='local.html'>local</a> | <a href='component.html'>component</a> | <a href='fail.html'>fail</a> | <a href='choices.html'>choices</a> | <a href='while.html'>while</a> | <a href='result.html'>result</a> | <a href='testsuite.html'>testsuite</a> | <a href='testscript.html'>testscript</a> | <a href='testproperty.html'>testproperty</a> | <a href='record.html'>record</a> | <a href='event.html'>event</a> | <a href='query.html'>query</a> | <a href='nextresult.html'>nextresult</a> | <a href='resetcursor.html'>resetcursor</a> | <a href='iterate.html'>iterate</a> | <a href='compare.html'>compare</a> | <a href='log.html'>log</a> | <a href='stats.html'>stats</a> | <a href='function.html'>function</a> | <a href='call.html'>call</a> | <a href='sleep.html'>sleep</a> | <a href='property.html'>property</a> | <a href='replace.html'>replace</a> | <a href='diffproperty.html'>diffproperty</a> | <a href='createrange.html'>createrange</a> | <a href='unset.html'>unset</a> | <a href='sleep.html'>sleep</a> | <a href='echo.html'>echo</a> | <a href='fail.html'>fail</a> | <a href='break.html'>break</a> | <a href='log.html'>log</a> | <a href='cat.html'>cat</a> | <a href='monitor_create.html'>monitor_create</a> | <a href='monitor_destroy.html'>monitor_destroy</a> | <a href='monitor_grep.html'>monitor_grep</a> | <a href='monitor_diff.html'>monitor_diff</a> | <a href='event.html'>event</a> | <a href='attribute.html'>attribute</a> | <a href='http_get.html'>http_get</a> | <a href='http_post.html'>http_post</a> | <a href='http_put.html'>http_put</a> | <a href='http_head.html'>http_head</a> | <a href='http_delete.html'>http_delete</a> | <a href='http_request.html'>http_request</a> | <a href='http_server.html'>http_server</a> | <a href='http_response.html'>http_response</a> | <a href='urlencode.html'>urlencode</a> | <a href='replace.html'>replace</a> | <a href='add.html'>add</a> | <a href='mod.html'>mod</a> | <a href='abs.html'>abs</a> | <a href='subtract.html'>subtract</a> | <a href='multiply.html'>multiply</a> | <a href='divide.html'>divide</a> | <a href='share_create.html'>share_create</a> | <a href='share_destroy.html'>share_destroy</a> | <a href='share_get.html'>share_get</a> | <a href='share_set.html'>share_set</a> | <a href='share_wait.html'>share_wait</a> | <a href='rendezvous_create.html'>rendezvous_create</a> | <a href='rendezvous_destroy.html'>rendezvous_destroy</a> | <a href='rendezvous_check.html'>rendezvous_check</a> | <a href='rendezvous_visit.html'>rendezvous_visit</a> | <a href='rendezvous_reset.html'>rendezvous_reset</a> | <a href='printf.html'>printf</a> | <a href='scanf.html'>scanf</a> | <a href='headergroup.html'>headergroup</a> | <a href='cookiegroup.html'>cookiegroup</a> | <a href='http_config.html'>http_config</a> | <a href='assert.html'>assert</a>){0,*} </b><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>uri</b></td><td><p align='justify'>output URI used by all the record types except the 
+                console recorder.</p></td></tr><tr valign='top'><td width='100px'><b>type</b></td><td><p align='justify'>Identifies the type of recorder to instantiate to record
+                events that are thrown child tags of this recorder tag.
+                
+           <b>Recorder Types</b>
+           <table border="1">
+               <tr>
+                   <th>Name</th> 
+                   <th>Description</th> 
+               </tr>
+               <tr>
+                   <td>txt</td> 
+                   <td>
+                       Text recorder will record events to a file in a human readable format like so: 
+                       <pre>
+                       dtf.perf.action.component.start=1166719862514 
+                       dtf.perf.action.component.stop=1166719862690
+                       </pre>
+                   </td> 
+               </tr>
+               <tr>
+                   <td>console</td> 
+                   <td>
+                       Outputs in the same format as the txt type but 
+                       instead of to a file it will output the 
+                       results to the STDOUT of the process from 
+                       where you execute your test case.
+                            
+                       Output on screen would look like this: 
+                       <pre>
+                       INFO  27/12/2006 00:12:31 Echo - Testing...
+                       INFO  27/12/2006 00:12:31 ConsoleRecorder - dtf.echo.start=1167208531453 
+                       INFO  27/12/2006 00:12:31 ConsoleRecorder - dtf.echo.stop=1167208531453
+                       </pre>
+                   </td>
+               </tr>
+               <tr>
+                   <td>object</td> 
+                   <td>
+                       <b>DEPRECATED: there is no reason to use this 
+                       anymore since all of the events are available as 
+                       a property immediately after their execution.</b>
+                       <br/> 
+                       <br/> 
+                       Will output the results of an event to an in memory
+                       property that can be accessed after the event to 
+                       get important information about the event.
+                   </td>
+               </tr>
+               <tr>
+                   <td>stats</td> 
+                   <td>
+                      This recorder will calculate your statistics as they
+                      are being thrown within the framework. It will give 
+                      you the same statistics that you'd get using the 
+                      </p><a href='stats.html'>Stats</a><p align='justify'> tag but they're immediately available after all
+                      actions within the recorder are done executing. The
+                      </p><a href='stats.html'>Stats</a><p align='justify'> are recorded using the event name followed by 
+                      the usual properties for each stat calculated with 
+                      the </p><a href='stats.html'>Stats</a><p align='justify'> tag (see the </p><a href='stats.html'>Stats</a><p align='justify'> for more
+                      information on the available statistics).
+                      <br/> 
+                      <br/> 
+                      <b>Remember:</b> if you want to be able to record the same
+                      events to a file just wrap this record tag with 
+                      another and you'll have the recording of events to a
+                      file along with the immediate calculation of
+                      statistics.
+                   </td>
+               </tr>
+          </table></p></td></tr><tr valign='top'><td width='100px'><b>event</b></td><td><p align='justify'>prefix of the events you intend to recorder.</p></td></tr><tr valign='top'><td width='100px'><b>append</b></td><td><p align='justify'>This value indicates if the events should be appended to
+                the existing output file or start the recording from 
+                scratch eliminating any previous results. Accepted values
+                are "true" and "false".</p></td></tr><tr valign='top'><td width='100px'><b>encoding</b></td><td><p align='justify'>See </p><a href='loadproperties.html'>Loadproperties</a><p align='justify'> for more information on the
+                encoding attribute.</p></td></tr><tr valign='top'><td width='100px'><b>refid</b></td><td><p align='justify'>Reference ID should reference an existing element with an 
+                ID set to this same value, otherwise an exception will be
+                thrown.</p></td></tr><tr valign='top'><td width='100px'><b>id</b></td><td><p align='justify'>Unique ID by which this XML tag will be known to all other
+                elements that which to reference it through the refid 
+                attribute.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;record event="dtf.perf.*" type="txt" uri="storage://OUTPUT/dtf.internals.txt"&gt;
+     &lt;local&gt; 
+         &lt;testscript uri="storage://INPUT/parallel.xml"/&gt; 
+     &lt;/local&gt;
+ &lt;/record&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;record type="txt" uri="storage://OUTPUT/recorder2.txt"&gt;
+     &lt;for property="index" range="1,2,3,4,5,6,7,8,9,10"&gt;
+         &lt;event name="dtf.echo.outter"&gt;
+             &lt;local&gt;
+                 &lt;echo&gt;Testing...&lt;/echo&gt;
+             &lt;/local&gt;
+         &lt;/event&gt;
+      &lt;/for&gt;
+      &lt;record type="txt" uri="storage://OUTPUT/recorder3.txt"&gt;
+          &lt;for property="index" range="1,2,3,4,5,6,7,8,9,10"&gt;
+              &lt;event name="dtf.echo.inner"&gt;
+                  &lt;local&gt;
+                      &lt;echo&gt;Testing...&lt;/echo&gt;
+                  &lt;/local&gt;
+              &lt;/event&gt;
+          &lt;/for&gt;
+      &lt;/record&gt;
+ &lt;/record&gt;
+</pre></dd></body></html>

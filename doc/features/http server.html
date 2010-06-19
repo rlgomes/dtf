@@ -1,0 +1,31 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>HTTP Server</h3></dt><dd><p align='justify'><p>
+ Within DTF it is possible to start your own HTTP server that will respond 
+ to any type of HTTP method and be able to construct an HTTP response to your
+ required needs. You'll find that you have to be a bit careful when starting
+ and shutting down the httpserver because otherwise you may create a test that
+ gets stuck waiting for a parallel executed http_server that doesn't end 
+ because you haven't issued the shutdown correctly. A simple receip to follow
+ is in the next few lines of XML code:
+ </p>
+ 
+ </p><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;parallel&gt;    
+     &lt;http_server port="28080"&gt;
+         &lt;http_listener method="PUT" path="/testpath"/&gt;
+     &lt;/http_server&gt;
+        
+     &lt;try&gt;
+         &lt;log&gt;Do something...&lt;/log&gt;
+         &lt;finally&gt;
+             &lt;http_server command="stop" port="28080"/&gt;
+         &lt;/finally&gt;
+     &lt;/try&gt;
+ &lt;/parallel&gt;
+</pre><p align='justify'>
+ 
+ <p>
+ The previous template works well because after staring the HTTP server we're 
+ very careful to protect the stop command within a try/finally statement
+ that guarantees we'll always stop the server before proceeding from whatever 
+ client activity we have tried to execute.
+ </p></p></dd></body></html>

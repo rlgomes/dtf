@@ -1,0 +1,35 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Call</h3></dt><dd><p align='justify'>Execute functions that were defined in this test case or
+               imported using the </p><a href='import.html'>Import</a><p align='justify'> tag. Any properties 
+               created/altered within a function will not be visible after 
+               this function has terminated its execution.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='property.html'>property</a>){0,*} </b><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>result</b></td><td><p align='justify'>the property to store the return value from this function.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>function</b></td><td><p align='justify'>The unique name of the function to call from this point 
+                in the XML testcase.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;sequence&gt;
+     &lt;function name="func3"&gt;
+         &lt;param name="nomore" type="optional"/&gt;  
+         &lt;local&gt;
+            &lt;echo&gt;In func3&lt;/echo&gt;
+        &lt;/local&gt;
+     &lt;/function&gt;
+     
+     &lt;call function="func3"/&gt;
+     
+     &lt;call function="func3"&gt;
+         &lt;property name="nomore" value="true"/&gt;
+     &lt;/call&gt;
+ &lt;/sequence&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;sequence&gt;
+     &lt;function name="func3"&gt;
+         &lt;param name="flag" type="required"/&gt;  
+         &lt;!-- function does its thing and sets the succeeded property with a 
+              boolean value of the success or insuccess of this function --&gt;
+         &lt;return&gt;${succeeded}&lt;/return&gt;
+     &lt;/function&gt;
+     
+     &lt;call function="func3" result="result"&gt;
+         &lt;property name="flag" value="true"/&gt;
+     &lt;/call&gt;
+      
+     &lt;log&gt;func3 returned ${result}&lt;/log&gt;
+ &lt;/sequence&gt;
+</pre></dd></body></html>

@@ -1,0 +1,103 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Stats</h3></dt><dd><p align='justify'>The stats tag is capable of calculating some statistical 
+               analysis over the events identified in the result set of the 
+               attribute <code>cursor</code>. The calculated statistics are 
+               thrown as events to be used by the testcase as it best sees fit.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Events</b></dt><dd><table border=1><CAPTION><b>cursor</b> Event</CAPTION><tr valign='top'><td width='120px'><b>csv_dur</b></td><td><p align='justify'><p align='justify'>This property contains a CSV contents for all of the 
+                      latencies for the events sampled including the number
+                      of times it occurred like so:
+                     
+                      <pre> 
+                      23,455
+                      50,412
+                      100,20
+                      </pre>
+                     
+                      Where the first column is the latency (duration in ms)
+                      and the second column is the number of events that had
+                      this duration. With this you can easily generate a 
+                      graph using gnuplot, with the following gnuplot script
+                      and having outputted the property into a file called
+                      "latency.data":
+                     
+                      <pre>
+                      set title "Latency graph of some sample data"
+                     
+                      set xdata time
+                      set timefmt "%s"
+                     
+                      set terminal png
+                      set output "graph.png"
+                     
+                      set xlabel 'Number of events'
+                      set ylabel 'Duration (ms)'
+                     
+                      plot 'latency.data' using 1:2 with linespoints title 'latencies'
+                      </pre>
+                      
+                      You can also easily import the CSV file into your 
+                      favorite spreadsheet software and generate any graphs 
+                      you'd like.</p></p></td></tr><tr valign='top'><td width='120px'><b>MONITOR_states</b></td><td><p align='justify'><p align='justify'>Generated only when you have used the monitor attribute
+                      and will contain a comma separated list of the various
+                      states that specific field had. the MONITOR name is 
+                      replaced with the name of the fields you were monitoring.</p></p></td></tr><tr valign='top'><td width='120px'><b>max_dur</b></td><td><p align='justify'><p align='justify'>The maximum duration of any event in milliseconds 
+                      recorded will be saved in this attribute.</p></p></td></tr><tr valign='top'><td width='120px'><b>avg_dur</b></td><td><p align='justify'><p align='justify'>The average duration of any event in milliseconds 
+                      recorded will be saved in this attribute.</p></p></td></tr><tr valign='top'><td width='120px'><b>tot_dur</b></td><td><p align='justify'><p align='justify'>The total duration of any event in milliseconds recorded 
+                      will be saved in this attribute.</p></p></td></tr><tr valign='top'><td width='120px'><b>tot_occ</b></td><td><p align='justify'><p align='justify'>The total occurrences of this event will be saved in 
+                      this attribute.</p></p></td></tr><tr valign='top'><td width='120px'><b>min_dur</b></td><td><p align='justify'><p align='justify'>The minimum duration of any event in milliseconds 
+                      recorded will be saved in this attribute.</p></p></td></tr><tr valign='top'><td width='120px'><b>avg_occ</b></td><td><p align='justify'><p align='justify'>The number of occurrences of this event per second over 
+                      the duration of all events is recorded in this attribute.</p></p></td></tr></dd></table><br/><dd><table border=1><CAPTION><b>cursor.FIELD_VALUE</b> Event</CAPTION><tr valign='top'><td width='120px'><b>avg_int</b></td><td><p align='justify'><p align='justify'>this event will be generated for every FIELD in the 
+                      monitors attribute and it will have the format 
+                      FIELD_VALUE.avg_int being that the VALUE is one of the
+                      various values that FIELD had. So for each VALUE that
+                      the FIELD can assume there will be another event 
+                      generated containing the average amount of time that the
+                      specified field was in the VALUE state.</p></p></td></tr><tr valign='top'><td width='120px'><b>min_int</b></td><td><p align='justify'><p align='justify'>this event will be generated for every FIELD in the 
+                      monitors attribute and it will have the format 
+                      FIELD_VALUE.min_int being that the VALUE is one of the
+                      various values that FIELD had. So for each VALUE that
+                      the FIELD can assume there will be another event 
+                      generated containing the minimum interval during which
+                      that VALUE occurred without any changes.</p></p></td></tr><tr valign='top'><td width='120px'><b>max_int</b></td><td><p align='justify'><p align='justify'>this event will be generated for every FIELD in the 
+                      monitors attribute and it will have the format 
+                      FIELD_VALUE.max_int being that the VALUE is one of the
+                      various values that field had. So for each VALUE that
+                      the FIELD can assume there will be another event 
+                      generated containing the maximum interval during which
+                      that VALUE occurred without any changes.</p></p></td></tr><tr valign='top'><td width='120px'><b>tot_int</b></td><td><p align='justify'><p align='justify'>this event will be generated for every FIELD in the 
+                      monitors attribute and it will have the format 
+                      FIELD_VALUE.avg_int being that the VALUE is one of the
+                      various values that FIELD had. So for each VALUE that
+                      the FIELD can assume there will be another event 
+                      generated containing the total amount of time that the
+                      specified field was in the VALUE state.</p></p></td></tr></dd></table><br/><dd><table border=1><CAPTION><b>cursor.fieldname</b> Event</CAPTION><tr valign='top'><td width='120px'><b>tot_val</b></td><td><p align='justify'><p align='justify'>Each field of the specified event that is of a number 
+                      type will have its total value calculated and recorded
+                      in this attribute.</p></p></td></tr><tr valign='top'><td width='120px'><b>max_val</b></td><td><p align='justify'><p align='justify'>Each field of the specified event that is of a number 
+                      type will have its maximum value calculated and recorded
+                      in this attribute.</p></p></td></tr><tr valign='top'><td width='120px'><b>avg_val</b></td><td><p align='justify'><p align='justify'>Each field of the specified event that is of a number 
+                      type will have its average value calculated and recorded
+                      in this attribute.</p></p></td></tr><tr valign='top'><td width='120px'><b>min_val</b></td><td><p align='justify'><p align='justify'>Each field of the specified event that is of a number 
+                      type will have its minimum value calculated and recorded
+                      in this attribute.</p></p></td></tr></dd></table><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>monitor</b></td><td><p align='justify'>specify a field to monitor the value changes and generate 
+                statistic about the amount of time spent in each state. 
+                When you use this attribute there are some new events that
+                are generated, they are mentioned above.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>cursor</b></td><td><p align='justify'>Identifies the cursor to use when calculating statistics.</p></td></tr><tr valign='top'><td width='100px'><b>event</b></td><td><p align='justify'>Specifies the event name to attach the statistics that 
+                are calculated.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;script&gt;
+     &lt;query cursor="cursor1" event="dtf.event" type="${recorder.type}" uri="storage://OUTPUT/${recorder.filename}"&gt;
+         &lt;where&gt;
+             &lt;eq op1="runid" op2="${runid}"/&gt;
+         &lt;/where&gt;
+     &lt;/query&gt;
+                 
+     &lt;record type="object" uri="property://txtrecorder"&gt; 
+         &lt;stats cursor="cursor1" event="stats"/&gt;
+     &lt;/record&gt;
+ &lt;/script&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;script&gt;
+     &lt;query cursor="cursor1" event="dtf.event" type="${recorder.type}" uri="storage://OUTPUT/${recorder.filename}"/&gt;
+                 
+     &lt;record type="object" uri="property://txtrecorder"&gt; 
+         &lt;stats cursor="cursor1" event="stats"/&gt;
+     &lt;/record&gt;
+ &lt;/script&gt;
+</pre></dd></body></html>

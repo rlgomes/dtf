@@ -1,0 +1,123 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Http_listener</h3></dt><dd><p align='justify'>This tag is used to setup an HTTP listener for the HTTP server
+               created with the http_server tag. Without this the HTTP server
+               will not respond to any requests. When using this tag you can
+               easily identify how to handle each type of request and even 
+               process each of the requests individually depending on the 
+               requests headers/body/etc.
+               <br/>
+               Within the http_listener tag you have special properties that
+               will identify the list of headers that were passed to this 
+               listener along with the method name. Other attributes can be
+               added later such as client IP, etc.  See event information 
+               below for more information. For each method you'll have the
+               same events you had if you were on the client side using the 
+               HTTP tags available in DTF. So you'll have the 
+               ${http.get.headerin.[headername]} and you have ${http.get.uri}.
+               See all other HTTP tags for event information: 
+               </p><a href='http_put.html'>Http_put</a><p align='justify'>,</p><a href='http_get.html'>Http_get</a><p align='justify'>,</p><a href='http_head.html'>Http_head</a><p align='justify'>,
+               </p><a href='http_post.html'>Http_post</a><p align='justify'>,</p><a href='http_delete.html'>Http_delete</a><p align='justify'>,
+               </p><a href='http_request.html'>Http_request</a><p align='justify'>,etc.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='getfile.html'>getfile</a> | <a href='stopcomponent.html'>stopcomponent</a> | <a href='callproperty.html'>callproperty</a> | <a href='createrange.html'>createrange</a> | <a href='unset.html'>unset</a> | <a href='sleep.html'>sleep</a> | <a href='echo.html'>echo</a> | <a href='fail.html'>fail</a> | <a href='break.html'>break</a> | <a href='log.html'>log</a> | <a href='cat.html'>cat</a> | <a href='monitor_create.html'>monitor_create</a> | <a href='monitor_destroy.html'>monitor_destroy</a> | <a href='monitor_grep.html'>monitor_grep</a> | <a href='monitor_diff.html'>monitor_diff</a> | <a href='event.html'>event</a> | <a href='attribute.html'>attribute</a> | <a href='http_get.html'>http_get</a> | <a href='http_post.html'>http_post</a> | <a href='http_put.html'>http_put</a> | <a href='http_head.html'>http_head</a> | <a href='http_delete.html'>http_delete</a> | <a href='http_request.html'>http_request</a> | <a href='http_server.html'>http_server</a> | <a href='http_response.html'>http_response</a> | <a href='urlencode.html'>urlencode</a> | <a href='replace.html'>replace</a> | <a href='add.html'>add</a> | <a href='mod.html'>mod</a> | <a href='abs.html'>abs</a> | <a href='subtract.html'>subtract</a> | <a href='multiply.html'>multiply</a> | <a href='divide.html'>divide</a> | <a href='share_create.html'>share_create</a> | <a href='share_destroy.html'>share_destroy</a> | <a href='share_get.html'>share_get</a> | <a href='share_set.html'>share_set</a> | <a href='share_wait.html'>share_wait</a> | <a href='rendezvous_create.html'>rendezvous_create</a> | <a href='rendezvous_destroy.html'>rendezvous_destroy</a> | <a href='rendezvous_check.html'>rendezvous_check</a> | <a href='rendezvous_visit.html'>rendezvous_visit</a> | <a href='rendezvous_reset.html'>rendezvous_reset</a> | <a href='printf.html'>printf</a> | <a href='scanf.html'>scanf</a> | <a href='sequence.html'>sequence</a> | <a href='parallel.html'>parallel</a> | <a href='for.html'>for</a> | <a href='parallelloop.html'>parallelloop</a> | <a href='while.html'>while</a> | <a href='timer.html'>timer</a> | <a href='distribute.html'>distribute</a> | <a href='choices.html'>choices</a> | <a href='switch.html'>switch</a> | <a href='if.html'>if</a> | <a href='try.html'>try</a> | <a href='assert.html'>assert</a>) {0,*} </b><br/><br/><br/><dt><b>Events</b></dt><dd><table border=1><CAPTION><b>http.[methodname]</b> Event</CAPTION><tr valign='top'><td width='120px'><b>headerin</b></td><td><p align='justify'><p align='justify'>A comma separated list of the header names that were 
+                      sent with the current HTTP request. You can then use 
+                      these names to reference the 
+                      ${http.[method_name].headerin.[headername]} properties.</p></p></td></tr></dd></table><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>method</b></td><td><p align='justify'>The method name for which this listener will actually be
+                handling the HTTP request. All other method names will 
+                result in an HTTP Bad Request response. In order to allow
+                any HTTP method just use the name * in place of the method
+                name.</p></td></tr><tr valign='top'><td width='100px'><b>perfrun</b></td><td><p align='justify'>the perfrun attribute controls the amount of data that is
+                recorded about each HTTP request. When set to 'true' the 
+                HTTP request will only log the start and stop timestamp
+                for the request as well as the status code and message. 
+                <br/><br/>
+                The data sent and the data received through the body 
+                response is not going to be recorded unless the perfrun 
+                attribute is set to false.
+                <br/><br/>
+                <b>Additional attributes recorded when perfrun is set 
+                   to true:</b>
+                <ul>
+                  <li>bodyhash</li>
+                  <li>datahash</li>
+                </ul>
+                
+                Currently the bodyhash and datahash are recorded instead
+                of the contents of the body or data being used by the 
+                current http request. This performs really well and still
+                allows the test case writer to validate the data 
+                correctness by comparing hash values.
+                
+                Note: you can disable hash calculation all together for 
+                performance testing by using the hash attribute and 
+                setting that to 'none'.</p></td></tr><tr valign='top'><td width='100px'><b>hash</b></td><td><p align='justify'>specifies the hash algorithm to use, by default sha1.
+                Can be set to md5, none, etc. 
+                
+                The hashing algorithm used has a minimal effect on the 
+                amount of operations per second you can do for very small
+                objects but has some impact on the through put that you 
+                can do per single stream on PUT,POST activities. So be 
+                aware when designing performance tests that disabling
+                SHA1 may be a needed option when getting official 
+                performance numbers.</p></td></tr><tr valign='top'><td width='100px'><b>bandwidth</b></td><td><p align='justify'>This attribute will limit the bandwidth when sending or 
+                receiving data in the body of the HTTP request or 
+                response. This means the headers will still be streamed
+                at network speed but the body of the request/response will
+                only have the bandwidth specified by this attribute. The 
+                bandwidth value can be defined with the follow suffixes: 
+                <table border="1">
+                  <tr>
+                      <th>Value</th> 
+                      <th>Description</th> 
+                  </tr>
+                  <tr>
+                      <td>b</td>
+                      <td>bit</td>
+                  </tr>
+                  <tr>
+                      <td>Kb</td>
+                      <td>Kilobit</td>
+                  </tr>
+                  <tr>
+                      <td>Mb</td>
+                      <td>Megabit</td>
+                  </tr>
+                  <tr>
+                      <td>Gb</td>
+                      <td>Gigabit</td>
+                  </tr>
+                  <tr>
+                      <td>B</td>
+                      <td>Byte</td>
+                  </tr>
+                  <tr>
+                      <td>KB</td>
+                      <td>KiloByte</td>
+                  </tr>
+                  <tr>
+                      <td>MB</td>
+                      <td>MegaByte</td>
+                  </tr>
+                  <tr>
+                      <td>GB</td>
+                      <td>GigaByte</td>
+                  </tr>
+                </table></p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>path</b></td><td><p align='justify'>The URl path that will lead to this listener being called.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;http_server port="8082"&gt;
+      &lt;http_listener method="PUT" path="/echo-data"&gt;
+           &lt;log&gt;received [${http.put.body}] in the HTTP body&lt;/log&gt;
+           &lt;log&gt;received headers [${http.headerin}]&lt;/log&gt;
+      &lt;/http_listener&gt;
+ &lt;/http_server&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;http_server port="8083"&gt;
+      &lt;http_listener method="PUT" path="/write"&gt;
+           &lt;log&gt;received a write operation&lt;/log&gt;
+      &lt;/http_listener&gt;
+      &lt;http_listener method="GET" path="/read"&gt;
+           &lt;log&gt;received a read operation&lt;/log&gt;
+      &lt;/http_listener&gt;
+ &lt;/http_server&gt;
+</pre></dd><br/><dd><b>Example #3</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;http_server port="8080"&gt;
+      &lt;http_listener method="*" path="*"&gt;
+      &lt;/http_listener&gt;
+ &lt;/http_server&gt;
+</pre></dd></body></html>

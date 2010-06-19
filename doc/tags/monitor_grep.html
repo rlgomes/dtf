@@ -1,0 +1,24 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Monitor_grep</h3></dt><dd><p align='justify'>With this tag you can grep for any lines in the files that you 
+               monitored for changes since the moment you created the monitor.
+               The expression for matching is just a normal regular expression
+               and all of the lines that match this expression will generate
+               an event as specified below.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Events</b></dt><dd><table border=1><CAPTION><b>grep</b> Event</CAPTION><tr valign='top'><td width='120px'><b>file</b></td><td><p align='justify'><p align='justify'>The full path name and filename of the file that contains
+                      the line that was matched.</p></p></td></tr><tr valign='top'><td width='120px'><b>line</b></td><td><p align='justify'><p align='justify'>The line number at which the match was found.</p></p></td></tr><tr valign='top'><td width='120px'><b>match</b></td><td><p align='justify'><p align='justify'>The line contents that matched the regular expression 
+                      defined above.</p></p></td></tr></dd></table><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>insensitive</b></td><td><p align='justify'>defines if the comparison should be done with case 
+                senstivity enabled or disabled.</p></td></tr><tr valign='top'><td width='100px'><b>update</b></td><td><p align='justify'>defines if we should move the current pointer in the file 
+                forward or if we should keep analyzing all files from the 
+                same point that we already picked at the beginning of the
+                test. The default is to not update and stay at the same 
+                point since this allows for you to run multiple expressions
+                against the same file. By setting this attribute to true
+                you can move the files virtual "pointer" forward and keep
+                checking only the latest data for changes.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>id</b></td><td><p align='justify'>The unique identifier for this monitor that is being 
+                created.</p></td></tr><tr valign='top'><td width='100px'><b>expression</b></td><td><p align='justify'>the regular expression to match each of the lines of the
+                monitored files against.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;sequence&gt;
+     &lt;monitor_create file="tests/ut/output/${logfile}.*" id="LOGS"/&gt;
+     &lt;sleep time="3s"/&gt;
+     &lt;monitor_grep expression="NEW.*" id="LOGS"/&gt;
+     &lt;monitor_destroy id="LOGS"/&gt;
+ &lt;/sequence&gt;
+</pre></dd></body></html>

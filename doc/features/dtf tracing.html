@@ -1,0 +1,35 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>DTF Tracing</h3></dt><dd><p align='justify'><p>
+                   The tracing feature built into DTF allows you to easily be
+                   able to trace all of the actions that are executed at 
+                   runtime as well as any property resolving that happens at
+                   runtime will be printed. Turning this on is as easy as 
+                   setting the property <b>dtf.tracing</b> to true and results 
+                   in the appearance of the following type of log lines:
+                   </p>
+                   <pre>
+                   Trace           - EXEC main If {} at tests/ut/if.xml:100:9
+                   </pre>
+                   <p> 
+                   The above line shows that the tag If was being executed by
+                   the thread "main" and that this action came from the line
+                   100 from the test at tests/ut/if.xml. The {} brackets don't
+                   contain any properties because the If tag doesn't have any
+                   properties associated with it. 
+                   </p>
+                   <pre>
+                   Trace           - PROP main If "${test1}" to "true"
+                   </pre>
+                   <p>
+                   The above line shows a property being resolved in the 
+                   string ${test1} and that the result is true. We currently
+                   only show the values of the properties that are resolved 
+                   because this way you can easily tell if a property was used
+                   by a previous tag or not. 
+                   </p>
+                   <p> 
+                   This feature can be extended to include other information 
+                   in the near future but for the time being lets keep this 
+                   simple enough that any new user to DTF can easily understand
+                   what is going on in their test when things are not running
+                   as expected.
+                   </p></p></dd></body></html>

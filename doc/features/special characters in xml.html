@@ -1,0 +1,57 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Special Characters in XML</h3></dt><dd><p align='justify'><p>
+ You can't write everything you would in a text file in an XML file. Sometimes 
+ because certain characters such as <,> or – are used in the XML language 
+ itself and other times because the XML specification 
+ (http://www.w3.org/TR/xml/) has been very careful to normalize some strings 
+ and not others. So lets cover some of the basics of using special characters 
+ in XML and in the comments within an XML document.
+ </p>
+ <p>
+ So firstly lets figure out how to have XML written inside of XML that isn't 
+ interpreted by DTF. This is achieved quite easily using the CDATA encoding 
+ like so:
+ </p>
+ 
+ </p><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;property name="xmldata"&gt;
+      &lt;![CDATA[
+          &lt;myxml&gt;
+              &lt;list&gt;
+                  &lt;element1/&gt;
+                  &lt;element2/&gt;
+                  &lt;element3/&gt;
+              &lt;/list&gt;
+          &lt;/myxml&gt;]]&gt;
+  &lt;/property&gt;
+</pre><p align='justify'>
+  
+ <p>
+ Anything written between <![CDATA[ and ]]> is preserved exactly as is and can
+ contain any characters you'd like. Another situation that sometimes comes up 
+ is when you want to write special characters into the attribute value of a 
+ given tag. Here is where the XML specification gives us some trouble, because
+ they have defined that attribute values must be normalized. This 
+ normalization basically converts tabs into a single space which can be quite 
+ annoying and unexpected. In order to work around this you can do the 
+ following:
+ </p>
+ 
+ </p><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;sequence&gt;
+      &lt;property name="tab" value="&amp;#09;"/&gt;   
+      &lt;property name="another.enter" value="&amp;#10;"/&gt;
+  &lt;/sequence&gt;
+</pre><p align='justify'>
+ 
+ <p> 
+ So you basically have to use the XML special characters when dealing with 
+ attribute values. This means that if you wanted to have more complicated 
+ data with different whitespace characters you should probably use an 
+ underlying text node to your tag and not store this data in the XML attribute.
+ </p>
+ <p>
+ The only thing really missing is special characters within comments and the 
+ only characters that you can't use inside of an XML comment are the – 
+ characters because they confuse most parsers when it comes to knowing where 
+ the comment starts and ends. XML comments are contained between <-- and -->.
+ </p></p></dd></body></html>

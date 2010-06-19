@@ -1,0 +1,36 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Log</h3></dt><dd><p align='justify'>Logging ability to be able to place messages in the test run 
+               that are similar to the ones that are logged within the test
+               code itself.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>tag</b></td><td><p align='justify'>The tag will be used when logging as the first tag in the 
+                logline that is being logged. 
+                
+                For example:
+                <pre>
+                [java] ERROR 15/04/2008 09:05:33 YOURTAGHERE          - your message
+                [java] INFO  15/04/2008 09:05:33 YOURTAGHERE          - your message
+                </pre></p></td></tr><tr valign='top'><td width='100px'><b>level</b></td><td><p align='justify'>Specifies the level of logging to be printed, this can 
+                be one of the 3 following:
+                
+                <table border="1">
+                  <tr>
+                      <th>Log Level</th> 
+                      <th>Description</th> 
+                  </tr>
+                  <tr>
+                      <td>info</td>
+                      <td>Info log level is used in normal conditions.</td>
+                  </tr>
+                  <tr>
+                      <td>warn</td>
+                      <td>Warning log level is used in conditions that may require attention.</td>
+                  </tr>
+                  <tr>
+                      <td>error</td>
+                      <td>Error log level is used in error conditions, and usually require attention.</td>
+                  </tr>
+                </table></p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;log level="warn"&gt;Attention!&lt;/log&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;log level="debug" tag="MYDEBUG"&gt;Attention!&lt;/log&gt;
+</pre></dd><br/><dd><b>Example #3</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;log level="error"&gt;Something has gone horribly wrong.&lt;/log&gt;
+</pre></dd></body></html>

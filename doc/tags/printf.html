@@ -1,0 +1,29 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Printf</h3></dt><dd><p align='justify'>The printf tag will mimic the behavior of the well known C land
+               function but will output your results to the name of the 
+               property identified by the attribute property. In the future we
+               may allow for direct outputting to files but for now processing
+               of the data to another property is what is needed.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>format</b></td><td><p align='justify'>The printf format string that follows a syntax compliant 
+                with the C land implementation of printf. For all of the 
+                details on the format attribute just follow the existing 
+                Java documentation on the String.format() function, 
+                <a href="http://java.sun.com/j2se/1.5.0/docs/api/java/util/Formatter.html#syntax">here</a>.</p></td></tr><tr valign='top'><td width='100px'><b>property</b></td><td><p align='justify'>This proprety will contain the formatted output.</p></td></tr><tr valign='top'><td width='100px'><b>args</b></td><td><p align='justify'>The args contains a comma separated list of the content 
+                to push to apply in order to the format string. Be aware
+                that additional commas in the arguments themselves can 
+                break the formatting, but if you want to output a simple
+                list of elements to another property then just put that 
+                property directly into the format string (see the 1st 
+                example given for this tag above).</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;sequence&gt;
+      &lt;property name="float" value="1.23456789"/&gt; 
+      &lt;property name="list" value="1,2,3,4"/&gt; 
+      &lt;printf args="23,Hello There!,${float}" format="INTEGER[%d] STRING[%s] FLOAT [%.2f] LIST [${list}]" property="result"/&gt;
+ &lt;/sequence&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;sequence&gt;
+     &lt;printf args="10" format="%04x" property="result"/&gt;
+     &lt;log&gt;10 -- convert to hex and pad to 4 digits -&gt; ${result}&lt;/log&gt;
+     &lt;assert&gt;
+        &lt;eq op1="${result}" op2="000a"/&gt;
+    &lt;/assert&gt;
+ &lt;/sequence&gt;
+</pre></dd></body></html>

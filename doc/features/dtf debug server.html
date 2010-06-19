@@ -1,0 +1,72 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>DTF Debug Server</h3></dt><dd><p align='justify'><p>
+ Debugging a running component in DTF is done by connecting to the DebugServer
+ that is started on each and every component at startup. You'll see a log line
+ like so at the startup that will give you the information you need to debug 
+ what is going on inside that component:
+ </p>
+ 
+ <pre>
+ DebugServer     - Listening at localhost:40000 
+ </pre>
+ 
+ <p>
+ With the above port you can now "telnet localhost 40000" and you'll be 
+ greeted with the following prompt:
+ </p>
+ 
+ <pre> 
+ > telnet localhost 40000 
+ Trying 127.0.0.1... 
+ Connected to localhost. 
+ Escape character is '^]'.
+ DTF DebugServer, type ? for help 
+ </pre>
+ 
+ <p>
+ Some of the commands include, the <i>xmltrace</> command that will give you 
+ the following output that basically lets you know where in the XML you're 
+ currently executing Actions:
+ </p>
+ 
+ <pre>
+ --------------------------------------------------------------------------------
+  Thread ID   |              XML Trace              |      Action State      
+ --------------------------------------------------------------------------------
+    main      |      tests/ut/mytest.xml:23,55      | Component  {id=DTFA1}
+ --------------------------------------------------------------------------------
+ </pre>
+ 
+ <p>
+ This trace as expected shows that the runner is currently waiting on the 
+ action component which is talking to the component you previously locked 
+ called DTFA1. Now we can connect the DebugServer on that component and check 
+ out what the xmltrace looks like on that side:
+ </p>
+ 
+ <pre>
+ --------------------------------------------------------------------------------
+   Thread ID   |              XML Trace              |      Action State      
+ --------------------------------------------------------------------------------
+   Thread-35   |      tests/ut/mytest.xml:24,55      | Parallel  {}
+   Thread-36   |      tests/ut/mytest.xml:25,55      | Sleep  {duration=5m}
+   Thread-37   |      tests/ut/mytest.xml:26,55      | Sleep  {duration=5m}
+ --------------------------------------------------------------------------------
+ </pre>
+ 
+ <p>
+ So on the component side we can easily see that the component is waiting on 
+ two sleeps that were in a parallel on line 24 of our test. With this any DTF 
+ user can easily identify at what point the their test is running and which 
+ threads are doing what. This ability makes it possibly to identify which 
+ actions are actually stuck and easily identify if there is a certain pattern 
+ as to the actions that are getting stuck to better understand if the problem
+ at hand is in the client libraries being tested or in the server side of the 
+ product being tested.
+ </p>
+ 
+ <p>
+ You can also control the logging level for the whole JVM or set the logging 
+ level per class name, this is extremely useful since you can change the 
+ logging level to see what is going on in case of issues and easily change it 
+ back at runtime.
+ </p></p></dd></body></html>

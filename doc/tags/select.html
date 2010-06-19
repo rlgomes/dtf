@@ -1,0 +1,15 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Select</h3></dt><dd><p align='justify'>This child tag of query allows for you to define what you want 
+               to get back from the query. The fields specified in the select
+               are the only ones you can then refer to in the where tag as 
+               well as the only fields available afterwards on the cursor. 
+               This is useful to avoid loading fields that may have binary
+               blobs that would otherwise hurt the querying performance.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='field.html'>field</a>){0,*} </b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;query event="hc.*" property="obj1" type="txt" uri="storage://OUTPUT/perf.db"&gt;
+     &lt;select&gt;
+         &lt;field name="myfield"/&gt;
+     &lt;/select&gt;
+     &lt;where&gt;
+         &lt;eq field="myfield" value="${myvalue}"/&gt;
+     &lt;/where&gt;
+ &lt;/query&gt;
+</pre></dd></body></html>

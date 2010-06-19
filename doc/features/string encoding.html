@@ -1,0 +1,26 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>String Encoding</h3></dt><dd><p align='justify'><p>
+                   This is the DTF string encoding transformer and it can be 
+                   used to apply encoding functions to the properties to apply
+                   certain types of encoding to the property values.
+                   </p> 
+                   <p>The following are the availble encoding functions 
+                   currently implemented.</p>
+                   <p>
+                   <b>xpath-escape</b><br/>
+                   Used to escape XPATH expressions that may contain special 
+                   characters such as " and '. This then allows you to use 
+                   that expression without worries within the application of 
+                   an XPATH expression.
+                   </p> 
+                   <p> 
+                   <b>url-encode</b><br/>
+                   Used to encode any string into a URL safe format, mainly 
+                   converting characters such as spaces, slashes into the 
+                   right format so that they don't break URL parsing.
+                   </p> 
+                   <p> 
+                   <b>url-decode</b><br/>
+                   Used to do the inverse of url-encode.
+                   </p></p></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;log&gt;${prop1:apply:url-encode}&lt;/log&gt;
+</pre></dd></body></html>

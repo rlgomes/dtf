@@ -1,0 +1,29 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Rendezvous_check</h3></dt><dd><p align='justify'>a conditional tag that can be used in the existing conditional 
+               situations such as in if, while, switch tags to make a decision
+               of taking a certain path based on a more complex condition than
+               equality. This tag validates that the currently specified 
+               rendezvous point has been visited by all the desired parties, 
+               including myself as the current visitor.
+               <br/>
+               <br/>
+               Always important to note that if you use this tag to check if
+               the rendezvous has been visited by all of the parties and it
+               returns true then you need to use the </p><a href='rendezvous_visit.html'>rendezvous_visit</a><p align='justify'>
+               tag to visit the actual rendezvous point and release the 
+               currently waiting parties.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>id</b></td><td><p align='justify'>the unique identifier used to reference this particular
+                rendezvous point within a DTF testcase.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;while&gt;
+     &lt;not&gt;
+          &lt;rendezvous_check id="rendezvous"/&gt;
+     &lt;/not&gt;
+     &lt;log&gt;Thread 1 doing its thing...&lt;/log&gt;
+ &lt;/while&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;if&gt;
+     &lt;rendezvous_check id="rendezvous"/&gt;
+     &lt;then&gt;
+          &lt;log&gt;Rendezvous point has been visited by all the parties...&lt;/log&gt;
+          &lt;rendezvous_visit id="rendezvous"/&gt;
+     &lt;/then&gt;
+ &lt;/if&gt;
+</pre></dd></body></html>

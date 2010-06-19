@@ -1,0 +1,22 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Not</h3></dt><dd><p align='justify'>Evaluates the underlying child and returns the inverse value.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='false.html'>false</a> | <a href='true.html'>true</a> | <a href='not.html'>not</a> | <a href='and.html'>and</a> | <a href='eq.html'>eq</a> | <a href='gt.html'>gt</a> | <a href='lt.html'>lt</a> | <a href='neq.html'>neq</a> | <a href='or.html'>or</a> | <a href='within.html'>within</a> | <a href='match.html'>match</a> | <a href='isset.html'>isset</a> | <a href='rendezvous_check.html'>rendezvous_check</a> | <a href='rendezvous_exists.html'>rendezvous_exists</a> | <a href='share_exists.html'>share_exists</a>) </b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;if&gt;
+     &lt;not&gt;
+         &lt;eq op1="${ready}" op2="false"/&gt;
+     &lt;/not&gt;
+     &lt;then&gt;
+         &lt;log&gt;not ready yet...&lt;/log&gt;
+     &lt;/then&gt;
+ &lt;/if&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;if&gt;
+     &lt;not&gt;
+         &lt;and&gt;
+             &lt;eq op1="${value2}" op2="${test.value2}"/&gt;
+             &lt;eq op1="${value3}" op2="${test.value3}"/&gt;
+         &lt;/and&gt;
+     &lt;/not&gt;
+     &lt;then&gt;
+         &lt;log&gt;Ready to go!&lt;/log&gt;
+     &lt;/then&gt;
+ &lt;/if&gt;
+</pre></dd></body></html>

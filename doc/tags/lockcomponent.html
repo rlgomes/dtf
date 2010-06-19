@@ -1,0 +1,21 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Lockcomponent</h3></dt><dd><p align='justify'>This tag is used to identify and lock the components required 
+               for the execution of the current test case. When you lock a 
+               </p><a href='component.html'>Component</a><p align='justify'> you can then define a global alias 
+               by which it will be known for use by other tags such as the 
+               </p><a href='component.html'>Component</a><p align='justify'> tag.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='attrib.html'>attrib</a>){0,*} </b><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>name</b></td><td><p align='justify'>Specifies the exact name of the component we want to lock,
+                this name will identify one and only one component that
+                has been registered with the DTFC.</p></td></tr><tr valign='top'><td width='100px'><b>timeout</b></td><td><p align='justify'>The timeout in seconds to wait for the component to 
+                become available to the DTFC. This timeout is useful when
+                automating testing and wanting to start up the framework 
+                along with the test driver (DTFX) and not knowing when 
+                the necessary components are available. Using the timeout
+                you can estimate the component will be come available with
+                in X amount of time.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>id</b></td><td><p align='justify'>Specifies the internal ID that will be used to identify 
+                this component in the test case.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;local&gt;
+     &lt;echo&gt;Remote counter retrieval&lt;/echo&gt;
+     &lt;lockcomponent id="DTFA1"&gt;
+         &lt;attrib name="type" value="DTFA"/&gt;
+     &lt;/lockcomponent&gt;
+ &lt;/local&gt;
+</pre></dd></body></html>

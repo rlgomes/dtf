@@ -1,0 +1,134 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Http_get</h3></dt><dd><p align='justify'>The http_get tag is used to generate HTTP GET requests and
+               can test webservices quite well. At the moment you can't handle 
+               cookies, but you do have the ability to add headers to the
+               request 
+               <br/> 
+               There are varous attributes to control if we use keepalives and
+               also to control redirects in http. One important attribute is 
+               the perfrun attribute which when set to false will only log
+               the necessary information to calculate performance statistics
+               for this run but wont' log the data that was sent or recevied
+               by the request. So for those cases in which you you want to 
+               measure the performance you should set that value to true so 
+               that you can get more precise performance numbers.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='http_config.html'>http_config</a> | <a href='headergroup.html'>headergroup</a> | <a href='cookiegroup.html'>cookiegroup</a> | <a href='cookie.html'>cookie</a> | <a href='header.html'>header</a>) {0,*} </b><br/><br/><br/><dt><b>Events</b></dt><dd><table border=1><CAPTION><b>http.get</b> Event</CAPTION><tr valign='top'><td width='120px'><b>body</b></td><td><p align='justify'><p align='justify'>the HTTP get data that was received along with the 
+                      HTTP response.</p></p></td></tr><tr valign='top'><td width='120px'><b>headerout</b></td><td><p align='justify'><p align='justify'>each of the output headers received from the HTTP request
+                      response will generate an event with this attribute name 
+                      as the prefix to the header attribute name. So if you 
+                      had a header with the name X then your resulting event 
+                      would be named event.headerout.x</p></p></td></tr><tr valign='top'><td width='120px'><b>bodysize</b></td><td><p align='justify'><p align='justify'>the size in bytes of the data that was received in the
+                      HTTP response.</p></p></td></tr><tr valign='top'><td width='120px'><b>status</b></td><td><p align='justify'><p align='justify'>the status code for the HTTP request.</p></p></td></tr><tr valign='top'><td width='120px'><b>bodyhash</b></td><td><p align='justify'><p align='justify'>the hash of the http.get data that was received along 
+                      with the HTTP response.</p></p></td></tr><tr valign='top'><td width='120px'><b>headerin</b></td><td><p align='justify'><p align='justify'>each of the input headers for the HTTP request will have
+                      an event with this attribute name as the prefix to the
+                      header attribute name. So if you had a header with the
+                      name X then your resulting event would be named 
+                      event.headerin.x</p></p></td></tr><tr valign='top'><td width='120px'><b>statusmsg</b></td><td><p align='justify'><p align='justify'>the status code for the HTTP request.</p></p></td></tr><tr valign='top'><td width='120px'><b>uri</b></td><td><p align='justify'><p align='justify'>the exact uri passed to the http request.</p></p></td></tr></dd></table><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>perfrun</b></td><td><p align='justify'>the perfrun attribute controls the amount of data that is
+                recorded about each HTTP request. When set to 'true' the 
+                HTTP request will only log the start and stop timestamp
+                for the request as well as the status code and message. 
+                <br/><br/>
+                The data sent and the data received through the body 
+                response is not going to be recorded unless the perfrun 
+                attribute is set to false.
+                <br/><br/>
+                <b>Additional attributes recorded when perfrun is set 
+                   to true:</b>
+                <ul>
+                  <li>bodyhash</li>
+                  <li>datahash</li>
+                </ul>
+                
+                Currently the bodyhash and datahash are recorded instead
+                of the contents of the body or data being used by the 
+                current http request. This performs really well and still
+                allows the test case writer to validate the data 
+                correctness by comparing hash values.
+                
+                Note: you can disable hash calculation all together for 
+                performance testing by using the hash attribute and 
+                setting that to 'none'.</p></td></tr><tr valign='top'><td width='100px'><b>acceptredirects</b></td><td><p align='justify'>this attribute will dictate if the http client should 
+                accept redirects. When set to 'false' if the server requests
+                an http redirect then the client will fail because it was
+                set to not follow redirects.
+                <b>Redirects are only automatically followed for GET and 
+                   HEAD methods, the HTTP spec says these are simply 
+                   followed while other methods can't just be re-issued
+                   to a subsequent URL.</b>
+                <br/>
+                By default the redirects are accepted since most http 
+                servers use this feature to do some form of load balancing
+                or to recover from temporary service inavailability.</p></td></tr><tr valign='top'><td width='100px'><b>onFailure</b></td><td><p align='justify'>this attribute maybe used to control the behavior of when
+                operations return an http status code != 200. When set to 
+                'continue' even if an operation fails the test will continue
+                to execute and will just log the request has having a 
+                status code != 200. This is useful when running performance
+                tests or long running tests that may hit timeouts or other
+                acceptable errors that we later need to triage. 
+                <br/>
+                When set to 'fail' the http request will throw an exception
+                if the request returns with an http status code != 200. 
+                This is useful in a scenario where we dont' have a huge 
+                amount of load pointed at the http server being tested and
+                we know that a failure at this point would just be 
+                unacceptable.</p></td></tr><tr valign='top'><td width='100px'><b>connecttimeout</b></td><td><p align='justify'>the connect timeout for this http request. The default is
+                5 seconds. The value of this attribute can be any of the 
+                following exampels 5s - 5 seconds, 5m - 5 minutes. etc.</p></td></tr><tr valign='top'><td width='100px'><b>hash</b></td><td><p align='justify'>specifies the hash algorithm to use, by default sha1.
+                Can be set to md5, none, etc. 
+                
+                The hashing algorithm used has a minimal effect on the 
+                amount of operations per second you can do for very small
+                objects but has some impact on the through put that you 
+                can do per single stream on PUT,POST activities. So be 
+                aware when designing performance tests that disabling
+                SHA1 may be a needed option when getting official 
+                performance numbers.</p></td></tr><tr valign='top'><td width='100px'><b>bandwidth</b></td><td><p align='justify'>This attribute will limit the bandwidth when sending or 
+                receiving data in the body of the HTTP request or 
+                response. This means the headers will still be streamed
+                at network speed but the body of the request/response will
+                only have the bandwidth specified by this attribute. The 
+                bandwidth value can be defined with the follow suffixes: 
+                <table border="1">
+                  <tr>
+                      <th>Value</th> 
+                      <th>Description</th> 
+                  </tr>
+                  <tr>
+                      <td>b</td>
+                      <td>bit</td>
+                  </tr>
+                  <tr>
+                      <td>Kb</td>
+                      <td>Kilobit</td>
+                  </tr>
+                  <tr>
+                      <td>Mb</td>
+                      <td>Megabit</td>
+                  </tr>
+                  <tr>
+                      <td>Gb</td>
+                      <td>Gigabit</td>
+                  </tr>
+                  <tr>
+                      <td>B</td>
+                      <td>Byte</td>
+                  </tr>
+                  <tr>
+                      <td>KB</td>
+                      <td>KiloByte</td>
+                  </tr>
+                  <tr>
+                      <td>MB</td>
+                      <td>MegaByte</td>
+                  </tr>
+                  <tr>
+                      <td>GB</td>
+                      <td>GigaByte</td>
+                  </tr>
+                </table></p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>uri</b></td><td><p align='justify'>the uri is the exact hostname, port and path to where the
+                following http request should be sent. The format looks 
+                like so: http://server:port/path</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;http_get onFailure="fail" perfrun="true" uri="${dtf.http.uri}"&gt;
+      &lt;header name="header" value="XXXXX"/&gt;
+ &lt;/http_get&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;http_get uri="${dtf.http.uri}"/&gt;
+</pre></dd></body></html>

@@ -1,0 +1,35 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>String Manipulation</h3></dt><dd><p align='justify'><p>
+                   This is the DTF Transformer and it can be used to apply 
+                   string functions to the properties to apply certain types 
+                   of encoding to the property values.
+                   </p>
+                   <p>
+                   <b>length</b><br/>
+                   This function will calculate the length of the properties 
+                   value.
+                   </p>
+                   <p>
+                   <b>sub-string(a,b)</b><br/>
+                   This function can extract a sub string from an existing 
+                   property value.
+                   </p>
+                   <p>
+                   <b>index-of(str)</b><br/>
+                   This function will find the index of an existing string 
+                   within the property's value.
+                   </p></p></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;sequence&gt;
+     &lt;property name="string1" value="Hello World!"/&gt;
+     &lt;log&gt;Length of [${string1}] is ${string1:string:length}&lt;/log&gt; 
+ &lt;/sequence&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;sequence&gt;
+     &lt;property name="string2" value="rodney lopes gomes"/&gt;
+     &lt;log&gt;middle name is "${string2:string:sub-string(7,12)}"&lt;/log&gt; 
+ &lt;/sequence&gt;
+</pre></dd><br/><dd><b>Example #3</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;sequence&gt;
+     &lt;property name="string1" value="Hello World!"/&gt;
+     &lt;log&gt;index of 'W' in "${string1}" is ${string1:string:index-of(W)}&lt;/log&gt; 
+ &lt;/sequence&gt;
+</pre></dd></body></html>

@@ -1,0 +1,38 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Break</h3></dt><dd><p align='justify'>The break tag can be used to end an iterative (for, while,
+               etc.) execution and exit from it at any point other than the 
+               logical end of execution. The break tag only works within the 
+               execution tags:
+               <br/>
+               <br/>
+               <b>Sequential Tags</b>
+               <br/>
+               Within the context of the following sequential tags the break 
+               tag results in stopping the looping and returning to the point
+               of execution immediately after the parent tag of the break tag
+               that is one of the following:
+               <br/>
+               <ul>
+                  <li></p><a href='for.html'>for</a><p align='justify'></li>
+                  <li></p><a href='while.html'>while</a><p align='justify'></li>
+                  <li></p><a href='timer.html'>timer</a><p align='justify'></li>
+               </ul>
+               <br/>
+               <b>Concurrent Tags</b>
+               <br/>
+               Within the context of the following concurrent tags you'll find
+               that the break will only break the execution of that one thread
+               that hits the break point. All other threads will continue to 
+               execute till they hit the break or end execution through a 
+               different condition.
+               <br/>
+               <ul>
+                  <li></p><a href='parallelloop.html'>parallelloop</a><p align='justify'></li>
+                  <li></p><a href='parallel.html'>parallel</a><p align='justify'></li>
+               </ul>
+               <br/>
+               <br/>
+               <b>NOTE</b><br/>
+               Using a break point outside of the context of the previous tags
+               will result in breaking execution all the way to the root of
+               your test. The test will still execute any try/finally clauses
+               but will end execution immediately after that.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><dt><b>Usage Examples</b></dt></body></html>

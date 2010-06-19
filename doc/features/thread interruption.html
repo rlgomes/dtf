@@ -1,0 +1,45 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Thread Interruption</h3></dt><dd><p align='justify'><p>
+ Thread interruption is a necessary evil in the DTF framework that must be
+ considered by all developers of any tags. You have to think about the 
+ issue of having a long running tag that can't be interrupted in Java 
+ unless you allow it to be. You can call the utility method on Action called
+ checkInterruption() and it will automatically validate if the currently 
+ running thread was interrupted and if so will throw an DTF specific 
+ exception InterruptionException that will be handled by the framework 
+ accordingly. So now in your code you can easily call this method where 
+ you feel you could interrupt your execution without leaving your code in 
+ a state that you can't continue to issue actions from.
+ </p>
+ <p>
+ All of the flow control tags such as for, parallelloop, etc within DTF 
+ are already interruptable and will correctly clean up their underlying
+ spawned threads. Now that your threads are interruptable you only need 
+ to register them with the </p><a href='thread management.html'>Thread Management</a><p align='justify'> layer so that you
+ can have the DTF framework interrupt your threads when necessary. As an 
+ example you can see here the code for a the for tag that checks for 
+ interruption during its normal execution:
+ </p>
+ <pre>
+  public class For extends Loop {
+      public For() { }
+      
+      public void execute() throws DTFException {
+          Range range = RangeFactory.getRange(getRange());
+          try { 
+              while (range.hasMoreElements()) {
+                  getConfig().setProperty(getProperty(), range.nextElement());
+                  executeChildren();
+                  checkInterruption();
+              }
+          } catch (InterruptionException e) { 
+              if ( getLogger().isDebugEnabled() )
+                  getLogger().debug("execution interrupted.");
+          } catch (BreakException e) { 
+              // break point
+              if ( getLogger().isDebugEnabled() )
+                  getLogger().debug("break point hit",e);
+          }
+          getConfig().remove(getProperty());
+     }
+ }
+ </pre></p></dd></body></html>

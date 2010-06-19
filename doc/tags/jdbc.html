@@ -1,0 +1,32 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Jdbc</h3></dt><dd><p align='justify'>This tag can be used to talk to a database over JDBC, it 
+               currently allows you to do so for MYSQL databases using their
+               3.0 JDBC drivers. If you want to use other drivers for a different
+               database make sure that those jars are in the classpath and 
+               that you specify the driver class and name to the tag before
+               attempting to connect to your database.
+               </br> 
+               </br> 
+               Currently this tag has only be used to retrieve values and may
+               not work as expected to issue create,insert or delete statements.
+               In order to support those operations we may need to make some 
+               fixes.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Events</b></dt><dd><table border=1><CAPTION><b>jdbc</b> Event</CAPTION><tr valign='top'><td width='120px'><b>affectedrows</b></td><td><p align='justify'><p align='justify'>for update and delete returns the number of affected
+                      rows during that operation. For a select statement this 
+                      attribute holds the number of return results. Be aware
+                      that the results are returned in the previously thrown
+                      events to this last jdbc event. So you should use a
+                      record tag inorder to record all previously thrown 
+                      events. In other words when using a select you can get
+                      N events thrown being the last one this jdbc event.</p></p></td></tr><tr valign='top'><td width='120px'><b>columns</b></td><td><p align='justify'><p align='justify'><b>This only applies to each row returned in a select 
+                      statement.</b> This attribute would contain a comma 
+                      separated list of the names of the columns returned 
+                      during a select statement.</p></p></td></tr><tr valign='top'><td width='120px'><b>[column name]</b></td><td><p align='justify'><p align='justify'><b>This only applies to each row returned in a select 
+                      statement.</b> This attribute would contain each column 
+                      mentioned in columns attribute will have its own 
+                      attribute that can easily be referenced like so:
+                      ${jdbc.column_name}. This allows you to check each of 
+                      the fields of the returned results from your select
+                      statement.</p></p></td></tr></dd></table><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;jdbc database="ydht" hostname="localhost" password="" port="3306" sql="DROP TABLE test" user="root"/&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;jdbc driverclass="oracle.jdbc.driver.OracleDriver" sql="SELECT * FROM refcount" url="jdbc:oracle:thin:asown/asown@masora104v.mail.re3.yahoo.com:1521/MASASV2"/&gt;
+</pre></dd></body></html>

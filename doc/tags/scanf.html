@@ -1,0 +1,67 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Scanf</h3></dt><dd><p align='justify'>The scanf tag can be used to process data from the input 
+               attribute and parse/extract different elements from this 
+               property while following the syntax of the scanf function found
+               in the C programming language.
+               </br>
+               </br>
+               <b>
+               One thing to note that is important with scanf is that it will
+               read exactly what you tell it, so if you say read back "%2.2f"
+               it will try to read back a float that has 2 digits in the whole
+               part of the number and two fractional digits. So be aware
+               because it wont' consume any extra digits or do any type of 
+               conversion.</b>
+               </br></p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>format</b></td><td><p align='justify'>The scanf format string that follows a syntax compliant 
+                with the C land implementation of scanf. Note that the 
+                format you specify has to be the format the input is in 
+                otherwise you won't get the right values out of your data.
+                Right now here are the available options:
+               
+                <pre>
+                %[flags][width][.precision]type
+                </pre>
+                
+                <b>flags</b>
+                <ul>
+                  <li>0 - will pad the numerical values using 0's</li>
+                </ul>
+
+                <b>width</b>
+                <ul>
+                  <li>[0-9]* - integer value representing the amount of
+                               digits to read for the numerical value 
+                               being processed by the scanf tag</li>
+                </ul>
+
+                <b>precision</b>
+                <ul>
+                  <li>.[0-9]* - a dot followed by an integer value 
+                                representing the amount of digits to read 
+                                for the fractional part of the number 
+                                being processed by the scanf tag</li>
+                </ul>
+              
+                <b>type</b>
+                <ul>
+                  <li>% - matches the literal character %.</li>
+                  <li>d,D,i matches with an integer which can be in
+                            hexa-decimal format.</li>
+                  <li>x,X matches a hexa-decimal number.</li>
+                  <li>f,e,E,g matches an optionally signed floating-point
+                              number.</li>
+                  <li>s matches a sequence of non-white-space characters;
+                        The input string stops at white space or at the
+                        maximum field width, whichever occurs first.<li>
+                  <li>c matches a sequence of characters whose length is 
+                        specified by the maximum field width (default 1);
+                  <li>[ matches a non-empty sequence of characters from 
+                        the specified set of accepted characters.</li>
+                </ul></p></td></tr><tr valign='top'><td width='100px'><b>input</b></td><td><p align='justify'>The input string to process using the format specified by 
+                the format attribute.</p></td></tr><tr valign='top'><td width='100px'><b>args</b></td><td><p align='justify'>A comma separated list of the property names to use when
+                storing the various elements specified in the format string
+                so that the test writer can access those values after the
+                tag has completed execution.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;scanf args="float,int,hex" format="%.2f some text %5d %04x" input="2.12 some text 00001 000a"/&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;scanf args="float,hex" format="%.2f %x" input="12.3456789 0x"/&gt;
+</pre></dd></body></html>

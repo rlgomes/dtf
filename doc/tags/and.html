@@ -1,0 +1,15 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>And</h3></dt><dd><p align='justify'>Evaluates if all of the underlying sub conditional tags 
+               have a conditional evaluation of true.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='false.html'>false</a> | <a href='true.html'>true</a> | <a href='not.html'>not</a> | <a href='and.html'>and</a> | <a href='eq.html'>eq</a> | <a href='gt.html'>gt</a> | <a href='lt.html'>lt</a> | <a href='neq.html'>neq</a> | <a href='or.html'>or</a> | <a href='within.html'>within</a> | <a href='match.html'>match</a> | <a href='isset.html'>isset</a> | <a href='rendezvous_check.html'>rendezvous_check</a> | <a href='rendezvous_exists.html'>rendezvous_exists</a> | <a href='share_exists.html'>share_exists</a>){0,*} </b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;if&gt;
+     &lt;and&gt;
+         &lt;neq op1="value1" op2="${test.value}"/&gt;
+         &lt;eq op1="value2" op2="${test.value2}"/&gt;
+     &lt;/and&gt;
+     &lt;then&gt;
+         &lt;log&gt;The previous conditions are true.&lt;/log&gt;
+     &lt;/then&gt;
+     &lt;else&gt;
+         &lt;log&gt;The previous conditions are false.&lt;/log&gt;
+     &lt;/else&gt;
+ &lt;/if&gt;
+</pre></dd></body></html>

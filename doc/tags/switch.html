@@ -1,0 +1,20 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Switch</h3></dt><dd><p align='justify'>The switch tag does what you would expect of a switch tag and
+               that is give you the possibility to do a determined action 
+               based on the value of a single property without having to write
+               multiple nested if/else conditions. So it will make the end 
+               result of having multiple possible conditions a lot easier to 
+               read as well as easier to maintain by the testwriter.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/><a href='case.html'>case</a> . <a href='default.html'>default</a></b><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>property</b></td><td><p align='justify'>property to test the next case for equality. If none of 
+                the following case tags match then the default tag will
+                be executed(if it is present).</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;switch property="${test}"&gt;
+     &lt;case value="1"&gt;
+          &lt;log&gt;Switch case #1&lt;/log&gt;
+     &lt;/case&gt; 
+     &lt;case value="2"&gt;
+         &lt;log&gt;Switch case #2&lt;/log&gt;
+     &lt;/case&gt;
+     &lt;default&gt;
+         &lt;log&gt;Default case called&lt;/log&gt;
+     &lt;/default&gt;         
+ &lt;/switch&gt;
+</pre></dd></body></html>

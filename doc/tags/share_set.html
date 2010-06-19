@@ -1,0 +1,15 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Share_set</h3></dt><dd><p align='justify'>This tag will set some information on the share point identified
+               by the attribute id. This tag is not blocking and will return
+               as soon as the actions have been set.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='callproperty.html'>callproperty</a> | <a href='createrange.html'>createrange</a> | <a href='unset.html'>unset</a> | <a href='sleep.html'>sleep</a> | <a href='echo.html'>echo</a> | <a href='fail.html'>fail</a> | <a href='break.html'>break</a> | <a href='log.html'>log</a> | <a href='cat.html'>cat</a> | <a href='monitor_create.html'>monitor_create</a> | <a href='monitor_destroy.html'>monitor_destroy</a> | <a href='monitor_grep.html'>monitor_grep</a> | <a href='monitor_diff.html'>monitor_diff</a> | <a href='event.html'>event</a> | <a href='attribute.html'>attribute</a> | <a href='http_get.html'>http_get</a> | <a href='http_post.html'>http_post</a> | <a href='http_put.html'>http_put</a> | <a href='http_head.html'>http_head</a> | <a href='http_delete.html'>http_delete</a> | <a href='http_request.html'>http_request</a> | <a href='http_server.html'>http_server</a> | <a href='http_response.html'>http_response</a> | <a href='urlencode.html'>urlencode</a> | <a href='replace.html'>replace</a> | <a href='add.html'>add</a> | <a href='mod.html'>mod</a> | <a href='abs.html'>abs</a> | <a href='subtract.html'>subtract</a> | <a href='multiply.html'>multiply</a> | <a href='divide.html'>divide</a> | <a href='share_create.html'>share_create</a> | <a href='share_destroy.html'>share_destroy</a> | <a href='share_get.html'>share_get</a> | <a href='share_set.html'>share_set</a> | <a href='share_wait.html'>share_wait</a> | <a href='rendezvous_create.html'>rendezvous_create</a> | <a href='rendezvous_destroy.html'>rendezvous_destroy</a> | <a href='rendezvous_check.html'>rendezvous_check</a> | <a href='rendezvous_visit.html'>rendezvous_visit</a> | <a href='rendezvous_reset.html'>rendezvous_reset</a> | <a href='printf.html'>printf</a> | <a href='scanf.html'>scanf</a>){0,1} </b><br/><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>id</b></td><td><p align='justify'>Unique id for this share point</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;share_set id="SHARE1"&gt;
+     &lt;property name="X" overwrite="true" value="Y"/&gt;
+     &lt;createrange name="R" recycle="true" value="1..10"/&gt;
+ &lt;/share_set&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;share_set id="SHARE1"&gt;
+      &lt;share_set id="ANOTHERSHARE"&gt;
+          &lt;property name="someone.got.our.data" overwrite="true" value="true"/&gt;
+      &lt;/share_set&gt; 
+      &lt;property name="somedata" value="X"/&gt;
+ &lt;/share_set&gt;
+</pre></dd></body></html>

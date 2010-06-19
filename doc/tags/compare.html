@@ -1,0 +1,61 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Compare</h3></dt><dd><p align='justify'>The compare tag is used to compare events from different event
+               files that contain related data. Such as the event file from 
+               writing data to a service and the event file from reading that
+               same data from the service. There has to be a way to relate 
+               the data from both event files, either with a sequence id, 
+               record id, etc. Once you're able to identify that two events
+               are relevant to the same data then you can use the validate
+               child tag of compare to validate what needs to be similar or
+               equal in order for these two events to be correct.
+               <br/><br/>
+               <b>
+               Be aware that this tag is still experimental and is going to 
+               suffer some changes soon. These will be focused on making the
+               tag more efficient but may require more drastic changes to 
+               the way the tag is used. 
+               </b>
+               <br/><br/></p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/><a href='query.html'>query</a> . <a href='where.html'>where</a> . <a href='validate.html'>validate</a></b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;compare&gt;
+    &lt;query cursor="c1" event="write.event" uri="storage://OUTPUT/compare_write_data.txt"&gt;
+       &lt;select&gt;
+           &lt;field name="recordid"/&gt;
+           &lt;field name="data"/&gt;
+       &lt;/select&gt;
+    &lt;/query&gt;
+           
+    &lt;query cursor="c2" event="read.event" uri="storage://OUTPUT/compare_read_data.txt"&gt;
+       &lt;select&gt;
+           &lt;field name="recordid"/&gt;
+           &lt;field name="data"/&gt;
+       &lt;/select&gt;
+    &lt;/query&gt;
+    
+    &lt;where&gt;
+        &lt;eq op1="${c1.recordid}" op2="${c2.recordid}"/&gt;
+    &lt;/where&gt;
+   
+    &lt;validate&gt;
+       &lt;assert&gt;
+            &lt;eq op1="${c1.data}" op2="${c2.data}"/&gt;
+        &lt;/assert&gt;
+    &lt;/validate&gt;
+ &lt;/compare&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;compare&gt;
+    &lt;query cursor="c1" event="write.event" uri="storage://OUTPUT/read_data.txt"/&gt;
+    &lt;!-- We know that our data was generated in a certain way based on a 
+         sequence ID that we used so we can easily validate our read data 
+         without the original data to validate against and instead using the 
+         attributes from the event --&gt;
+    &lt;validate&gt;
+        &lt;if&gt;
+            &lt;neq op1="${c1.data}" op2="${dtf.stream(random,${c1.size},${c1.recordid})}"/&gt;
+            &lt;then&gt;
+                &lt;log level="warn"&gt;
+                Data was not equal!!! For recordid [${recordid}]
+                &lt;/log&gt; 
+            &lt;/then&gt;
+        &lt;/if&gt;
+    &lt;/validate&gt;
+ &lt;/compare&gt;
+</pre></dd></body></html>
