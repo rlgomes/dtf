@@ -269,8 +269,15 @@
     <assert><eq op1="${http.put.status}" op2="901"/></assert>
 
     <log>validate unknown host error</log>
-    <http_put uri="http://cacacacaca/" onFailure="continue"/>
-    <assert><eq op1="${http.put.status}" op2="902"/></assert>
+    <http_put uri="http://unknown.com.pt.blah.host/" onFailure="continue"/>
+    <assert>
+        <or>
+            <eq op1="${http.put.status}" op2="902"/>
+            <!-- on public wifi networks you sometimes get a 302 back from the
+                 public router because its doing the wrong thing! :( -->
+            <eq op1="${http.put.status}" op2="302"/>
+        </or>
+    </assert>
  
     <log>validate connection timeout error</log>
     <http_put uri="http://www.yahoo.com"
