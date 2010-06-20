@@ -48,44 +48,6 @@ public class DTFException extends Exception {
         }
     }
     
-    @Override
-    public void printStackTrace(PrintStream s) { printStackTrace(this, s, 0); }
-    private void printStackTrace(Throwable cause, PrintStream s, int depth) {
-        if ( DTFNode.getType().equals("dtfx") ) {
-	        if (cause != null) {
-		        synchronized (s) {
-	                s.println("\tCaused by: " + cause.getLocalizedMessage());
-	
-	                if (cause.getCause() != null) 
-	                    printStackTrace(cause.getCause(), s, ++depth);
-		        }
-	        }
-        } else { 
-            super.printStackTrace(s);
-        }
-    }
-    
-    @Override
-    public void printStackTrace(PrintWriter s) { printStackTrace(this, s, 0); }
-    private void printStackTrace(Throwable cause, PrintWriter s, int depth) {
-        if ( DTFNode.getType().equals("dtfx") ) { 
-	        if (cause != null) {
-	            synchronized (s) {
-	                s.println("\tCaused by: " + cause.getLocalizedMessage());
-	
-	                if (cause.getCause() != null)
-	                    printStackTrace(cause.getCause(), s, ++depth);
-	            }
-	        }
-        } else { 
-            super.printStackTrace(s);
-        }
-    }
-    
-    public void printOriginalStackTrace(PrintWriter pw) { 
-        super.printStackTrace(pw);
-    }
-    
     public void setComponent(String id) { this.id = id; }
     
     public boolean wasLogged() { return alreadyReported; }

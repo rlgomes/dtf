@@ -31,15 +31,26 @@
     homepage    => homepage url
     public      => 1 for public, 0 for private
     --> 
+    <function name="create_repository">
+        <param name="user"      default="${github.user}"/>
+        <param name="token"     default="${github.token}"/>
+        <param name="name"      type="required"/>
+        <param name="desc"      type="required"/>
+        <param name="homepage"  type="required"/>
+        <param name="public"    default="1"/>
+       
+        <urlencode source="${desc}" result="desc"/> 
+        <urlencode source="${homepage}" result="homepage"/> 
+        
+        <property name="args"
+                  value="name=${name}&amp;description=${desc}&amp;homepage=${homepage}&amp;public=${public}"/>
 
-    <property name="args"
-              value="name=test&amp;description=description&amp;homepage=test&amp;public=1"/>
-              
-    <http_post uri="${github.baseuri}/xml/repos/create?${args}">
-        <entity>login=${github.user}&amp;token=${github.token}</entity>
-    </http_post>
-    
-        <!-- 
+        <http_post uri="${github.baseuri}/xml/repos/create?${args}">
+            <entity>login=${user}&amp;token=${token}</entity>
+        </http_post>
+    </function>
+   
+    <!-- 
     list all public repositories for a given user
     
     http://github.com/api/v2/[format]/repos/show/[user]
@@ -67,14 +78,17 @@
             <has-downloads type="boolean">true</has-downloads>
         </repository>
     </repositories>
+    
+    This function returns the XML listing of the repositories as seen in the 
+    example result above.
     --> 
-   
-    <http_get uri="${github.baseuri}/xml/repos/show/${github.user}"/>
-
-    <for property="repository"
-         range="xpath(${http.get.body},//repository/name)">
-        <log>existing repository: ${repository}</log>  
-    </for>
+    <function name="list_public_repositories">
+        <param name="user"      default="${github.user}"/>
+       
+        <http_get uri="${github.baseuri}/xml/repos/show/${user}"/>
+        
+        <return>${http.get.body}</return>
+    </function> 
     
     <!-- 
     delete a repositories for a given user
@@ -91,16 +105,25 @@
     POST request with the delete_token POST argument set to that token.
     --> 
 
-    <http_post uri="${github.baseuri}/xml/repos/delete/test">
-        <entity>login=${github.user}&amp;token=${github.token}</entity>
-    </http_post>
-   
-    <property name="dtoken" 
-              value="${http.post.body:xpath:/delete-token/delete-token/text()}"/>
-              
-    <!-- confirm deletion --> 
-    <http_post uri="${github.baseuri}/xml/repos/delete/test?delete_token=${dtoken}">
-        <entity>login=${github.user}&amp;token=${github.token}</entity>
-    </http_post>
+    <function name="delete_repository">
+        <param name="user"      default="${github.user}"/>
+        <param name="token"     default="${github.token}"/>
+        <param name="name"      type="required"/>
+      
+        <property name="authdata" value="login=${user}&amp;token=${token}"/>
+        
+        <http_post uri="${github.baseuri}/xml/repos/delete/${name}">
+            <entity>${authdata}</entity>
+        </http_post>
+       
+        <property name="dtoken" 
+                  value="${http.post.body:xpath:/delete-token/delete-token/text()}"/>
+                  
+        <!-- confirm deletion --> 
+        <http_post uri="${github.baseuri}/xml/repos/delete/${name}?delete_token=${dtoken}">
+            <entity>${authdata}</entity>
+        </http_post>
+    </function>
+
     
 </script>

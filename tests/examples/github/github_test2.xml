@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="github_test2">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        A simple example of how to use the built in HTTP tags to test the
+        GitHub Repositories APIs. Documentation for these API's available
+        at http://develop.github.com/p/repo.html. This test differes from 
+        github_test1 by using a shared library of functions that give this test
+        access to the Github Repositories APIs.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <loadproperties uri="storage://INPUT/github.properties"/>        
+        <import uri="storage://INPUT/util.xml"/>
+        
+        <property name="repository.name" value="test.${dtf.timestamp}"/>
+    </local> 
+
+    <call function="create_repository">
+        <property name="name"      value="${repository.name}"/>
+        <property name="desc"      value="simple repository description"/>
+        <property name="homepage"  value="http://example.com"/>
+    </call>
+    
+    <call function="list_public_repositories" result="repositories"/>
+    
+    <assert>
+        <eq op1="${repositories:xpath://repository/name[text()='${repository.name}']/text()}"
+            op2="${repository.name}"/>
+    </assert> 
+    
+    <!-- seems like there maybe some caching by intermediate network machines
+         or maybe github has a small window during which the repository still
+         appears in the users repository list. With this 5 second wait it seems
+         that the repository no longer appears --> 
+    <log>5s sleep, since github shows the repository for a small window after deletion</log>
+    <sleep time="5s"/>
+    
+    <call function="delete_repository">
+        <property name="name"      value="${repository.name}"/>
+    </call> 
+    
+    <call function="list_public_repositories" result="repositories"/>
+
+    <assert>
+        <eq op1="${repositories:xpath://repository/name[text()='${repository.name}']/text()}"
+            op2=""/>
+    </assert> 
+    
+</script>
