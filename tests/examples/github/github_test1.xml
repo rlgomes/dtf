@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="github_test1">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        A simple example of how to use the built in HTTP tags to test the
+        GitHub Repositories APIs. Documentation for these API's available
+        at http://develop.github.com/p/repo.html</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        
+        <loadproperties uri="storage://INPUT/github.properties"/>        
+        <property name="repository.name" value="test.${dtf.timestamp}"/>
+    </local> 
+
+    <!-- create a new repository with the name ${repository.name} -->
+    <log>creating the repository ${repository.name} on github</log>
+    <property name="args"
+              value="name=${repository.name}&amp;description=description"/>
+              
+    <http_post uri="${github.baseuri}/xml/repos/create?${args}">
+        <entity>login=${github.user}&amp;token=${github.token}</entity>
+    </http_post>
+    
+    <!-- find the new repository in the list of available repositories -->
+    <log>asserting that this repository is visible publically for this user</log>
+    <http_get uri="${github.baseuri}/xml/repos/show/${github.user}"/>
+    <assert>
+        <eq op1="${http.get.body:xpath://repository/name[text()='${repository.name}']/text()}"
+            op2="${repository.name}"/>
+    </assert>
+   
+    <log>deleting the newly created repository</log>
+    <http_post uri="${github.baseuri}/xml/repos/delete/${repository.name}">
+        <entity>login=${github.user}&amp;token=${github.token}</entity>
+    </http_post>
+   
+    <property name="dtoken" 
+              value="${http.post.body:xpath:/delete-token/delete-token/text()}"/>
+              
+    <!-- confirm deletion --> 
+    <http_post uri="${github.baseuri}/xml/repos/delete/${repository.name}?delete_token=${dtoken}">
+        <entity>login=${github.user}&amp;token=${github.token}</entity>
+    </http_post>
+  
+    <!-- seems like there maybe some caching by intermediate network machines
+         or maybe github has a small window during which the repository still
+         appears in the users repository list. With this 5 second wait it seems
+         that the repository no longer appears --> 
+    <log>5s sleep, since github shows the repository for a small window after deletion</log>
+    <sleep time="5s"/>
+     
+    <log>assert the previously created repository is no longer visible</log>
+    <http_get uri="${github.baseuri}/xml/repos/show/${github.user}"/>
+    <assert>
+        <eq op1="${http.get.body:xpath://repository/name[text()='${repository.name}']/text()}"
+            op2=""/>
+    </assert>
+</script>

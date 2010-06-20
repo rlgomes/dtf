@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="github_util">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description></description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        
+        <loadproperties uri="storage://INPUT/github.properties"/>        
+    </local> 
+   
+    <!-- 
+    create a repositories for a given user
+    
+    Form Variables:
+    login=xxx
+    token=yyy
+    
+    http://github.com/api/v2/[format]repos/create
+
+    format - one of various repsonse formats: yaml,xml,json  
+    
+    POST args:
+    name        => name of the repository
+    description => repo description
+    homepage    => homepage url
+    public      => 1 for public, 0 for private
+    --> 
+
+    <property name="args"
+              value="name=test&amp;description=description&amp;homepage=test&amp;public=1"/>
+              
+    <http_post uri="${github.baseuri}/xml/repos/create?${args}">
+        <entity>login=${github.user}&amp;token=${github.token}</entity>
+    </http_post>
+    
+        <!-- 
+    list all public repositories for a given user
+    
+    http://github.com/api/v2/[format]/repos/show/[user]
+   
+    format - one of various repsonse formats: yaml,xml,json  
+    user   - github username
+    
+    XML response:
+    
+    <repositories type="array">
+        <repository>
+            <description>caca2</description>
+            <has-wiki type="boolean">true</has-wiki>
+            <open-issues type="integer">0</open-issues>
+            <url>http://github.com/dtftest/caca</url>
+            <homepage>caca</homepage>
+            <has-issues type="boolean">true</has-issues>
+            <fork type="boolean">false</fork>
+            <created-at type="datetime">2010-06-19T22:23:38-07:00</created-at>
+            <watchers type="integer">1</watchers>
+            <forks type="integer">0</forks>
+            <private type="boolean">false</private>
+            <name>caca</name>
+            <owner>dtftest</owner>
+            <has-downloads type="boolean">true</has-downloads>
+        </repository>
+    </repositories>
+    --> 
+   
+    <http_get uri="${github.baseuri}/xml/repos/show/${github.user}"/>
+
+    <for property="repository"
+         range="xpath(${http.get.body},//repository/name)">
+        <log>existing repository: ${repository}</log>  
+    </for>
+    
+    <!-- 
+    delete a repositories for a given user
+
+    Form Variables:
+    login=xxx
+    token=yyy
+    
+    http://github.com/api/v2/[format]repos/delete/[repository]
+
+    format - one of various repsonse formats: yaml,xml,json  
+    
+    response contains a delete-token which you need to send in a subsequente
+    POST request with the delete_token POST argument set to that token.
+    --> 
+
+    <http_post uri="${github.baseuri}/xml/repos/delete/test">
+        <entity>login=${github.user}&amp;token=${github.token}</entity>
+    </http_post>
+   
+    <property name="dtoken" 
+              value="${http.post.body:xpath:/delete-token/delete-token/text()}"/>
+              
+    <!-- confirm deletion --> 
+    <http_post uri="${github.baseuri}/xml/repos/delete/test?delete_token=${dtoken}">
+        <entity>login=${github.user}&amp;token=${github.token}</entity>
+    </http_post>
+    
+</script>

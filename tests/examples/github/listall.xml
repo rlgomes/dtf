@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="httptest1">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Simple delete all repositories for a specified user on github
+        </description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        
+        <loadproperties uri="storage://INPUT/github.properties"/>        
+    </local> 
+    
+    <!-- find the new repository in the list of available repositories -->
+    <http_get uri="${github.baseuri}/xml/repos/show/${github.user}"/>
+   
+    <if>
+        <eq op1="${http.get.body:xpath:count(//repository)}" op2="0"/>
+        <then>
+            <log>${github.user} has 0 public repositories.</log>
+        </then>   
+        <else>
+		    <log>${github.user} has the following public repositories:</log> 
+		    <for property="repository" range="xpath(${http.get.body},//repository/name/text())">
+		        <log> * ${repository}</log>
+		    </for>
+        </else> 
+    </if>
+</script>
