@@ -189,6 +189,15 @@
 	<target name="clean" description="clean target">
 		<delete dir="${dtf.build.dir}" failonerror="true"/>
 	</target>
+	
+    <target name="unittests"
+            depends="build"
+            description="run dtf unit tests">
+    	<ant antfile="build.xml"
+    		 dir="${dtf.build.dir}/${dtf.dist.dir}"
+    		 target="run_ut"
+    		 />
+    </target>
 
 	<target name="deploy" 
     	    depends="init" 
