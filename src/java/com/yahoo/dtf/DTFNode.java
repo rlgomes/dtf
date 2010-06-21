@@ -484,11 +484,6 @@ public class DTFNode {
                 _logger.error("Failure during test execution.",failure);
             
             writeNodeState(true, false, failure);
-
-            String name = DTFNode.getType();
-            if ( name.equals("dtfa") ) name = Action.getLocalID();
-            _logger.warn("See state/" + name + ".trace file for stacktrace.");
-            
             System.exit(-1);
         } else { 
             writeNodeState(true, true, failure);
