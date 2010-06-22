@@ -23,11 +23,13 @@
         <property name="agents" value="1"/>
     </local>
 
-    <for property="i" range="1..3"> 
-	    <local> 
-		    <lockcomponent id="C${i}"/>
-	    </local>
-    </for>
+    <local> 
+        <lockgroup>
+		    <lockcomponent id="C1"/>
+		    <lockcomponent id="C2"/>
+		    <lockcomponent id="C3"/>
+        </lockgroup>
+    </local>
     
     <share_create id="RV1"/>
     <parallel>

@@ -28,8 +28,11 @@ public class Rendezvous_destroy extends RendezvousOperation {
         
         if ( !rs.containsKey(getId()) ) 
             throw new RendezvousException("[" + getId() + "] does not exist.");
-       
-        rs.remove(getId());
+  
+        synchronized (rs) {
+            rs.remove(getId());
+        }
+        
         RendezvousComponentHook.removeRendezvous(getId());
     }
 }

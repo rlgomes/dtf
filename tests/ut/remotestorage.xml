@@ -13,7 +13,7 @@
         <createstorage id="OUTPUT" path="${dtf.xml.path}/remote-output" export="true"/>
         <createstorage id="OUTPUT2" path="${dtf.xml.path}/remote-output/D1" />
     </local>
-
+   
     <for property="i" range="1..10">
         <cat uri="storage://OUTPUT/file-${i}">caca</cat> 
     </for> 
@@ -21,28 +21,30 @@
     <for property="i" range="1..10">
         <cat uri="storage://OUTPUT2/file-${i}">caca</cat> 
     </for> 
-
+    
     <local>     
         <createstorage id="EXPORTED_OUTPUT" 
                        path="${dtf.xml.path}/exported_output"
                        export="true"/>
         <createstorage id="NOT_EXPORTED_OUTPUT"
                        path="${dtf.xml.path}/not_exported_output"/>
-        
-        <lockcomponent id="DTFA1"/>
-        <lockcomponent id="DTFA2"/>
-        <lockcomponent id="DTFA3"/>
+        <lockgroup>
+	        <lockcomponent id="DTFA1"/>
+	        <lockcomponent id="DTFA2"/>
+	        <lockcomponent id="DTFA3"/>
+        </lockgroup>               
     </local>
 
+    <log>DTFA1</log>
     <component id="DTFA1">
         <cat uri="storage://OUTPUT/remotefile1" append="false">remote1</cat>
     </component> 
-    
+    <log>DTFA2</log>
     <component id="DTFA2">
         <property name="test1" uri="storage://OUTPUT/remotefile1"/>
         <cat uri="storage://OUTPUT/remotefile2" append="false">remote2</cat>
     </component> 
-    
+    <log>DTFA3</log>
     <component id="DTFA3">
         <property name="test1" uri="storage://OUTPUT/remotefile1"/>
         <property name="test2" uri="storage://OUTPUT/remotefile2"/>
@@ -58,6 +60,7 @@
     <property name="test3" uri="storage://OUTPUT/remotefile3"/>
     <assert><eq op2="${test3}" op1="remote3"/></assert> 
     
+    <log>Parallel Overwrites</log> 
     <for property="i" range="1..5">
 	    <parallel>
 		    <component id="DTFA1">
@@ -73,21 +76,13 @@
 		    </component> 
 	    </parallel>
 	
-	    <property name="test" uri="storage://OUTPUT/remotefile" overwrite="true"/>
-	    <switch>
-	        <case>
-	            <eq op2="${test}" op1="remote1"/>
-	        </case>
-	        <case>
-	            <eq op2="${test}" op1="remote2"/>
-	        </case>
-	        <case>
-	            <eq op2="${test}" op1="remote3"/>
-	        </case>
-	        <default>
-	            <fail>${test} not equal to remote1, remote2 or remote3</fail>
-	        </default>
-	    </switch>
+	    <property name="test"
+                  uri="storage://OUTPUT/remotefile"
+                  overwrite="true"/>
+                  
+        <assert>
+            <match source="${test}" expression="remote1|remote2|remote3"/>
+        </assert>
     </for>
   
     <log>Sequential Appends</log> 
@@ -106,16 +101,13 @@
 	        <cat uri="storage://OUTPUT/remotefile">[3:${i}]</cat>
 	    </component>
          
-	    <property name="test" uri="storage://OUTPUT/remotefile" overwrite="true"/>
-	    <switch>
-	        <case>
-	            <match source="${test}" 
-                       expression="\[1:${i}\]\[2:${i}\]\[3:${i}\]"/>
-	        </case>
-	        <default>
-	            <fail>${test} does not match regular expression.</fail>
-	        </default>
-	    </switch>
+	    <property name="test"
+                  uri="storage://OUTPUT/remotefile"
+                  overwrite="true"/>
+        
+        <assert>
+            <match source="${test}" expression="\[1:${i}\]\[2:${i}\]\[3:${i}\]"/>
+        </assert>              
     </for>
    
     <log>Parallel Appends</log> 
@@ -147,5 +139,5 @@
             </default>
         </switch>
     </for>
-     
+
 </script>

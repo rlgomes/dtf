@@ -47,7 +47,7 @@ public class RendezvousPoint {
 	            visit.setId(getId());
 	            visit.setTimeout(""+timeout);
 	            
-	            Action.getComm().sendAction(_cid, visit).execute();
+	            Action.getComm().sendActionToCaller(_cid, visit).execute();
 	        } else { 
 	            if ( _logger.isDebugEnabled() )
 	                _logger.debug("Local rendezvous visit [" +  getId() + 
@@ -94,7 +94,7 @@ public class RendezvousPoint {
                 RendezvousCheck check = new RendezvousCheck();
                 check.setId(getId());
 
-                Action result = Action.getComm().sendAction(_cid, check);
+                Action result = Action.getComm().sendActionToCaller(_cid, check);
                 RemoteResult rr = (RemoteResult) result
                         .findFirstAction(RemoteResult.class);
                 assert (rr != null) : "Fatal error no RemoteResults.";
@@ -126,7 +126,7 @@ public class RendezvousPoint {
                 Rendezvous_reset reset = new Rendezvous_reset();
                 reset.setId(getId());
 
-                Action.getComm().sendAction(_cid, reset).execute();
+                Action.getComm().sendActionToCaller(_cid, reset).execute();
             } else {
                 synchronized (this) {
                     _current = 0;

@@ -69,9 +69,12 @@ public class Rendezvous_create extends RendezvousOperation {
 	        /*
 	         * Create and store the new rendez-vous point
 	         */
-	        rs.put(getId(), new RendezvousPoint(getId(),
-	                                            getParties(),
-	                                            getLocalID()));
+           
+            synchronized(rs) { 
+		        rs.put(getId(), new RendezvousPoint(getId(),
+		                                            getParties(),
+		                                            getLocalID()));
+	        }
 	        
             /*
              * Any locked components should just receive the creation of this

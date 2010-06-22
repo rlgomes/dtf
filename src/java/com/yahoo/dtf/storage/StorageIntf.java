@@ -81,4 +81,11 @@ public abstract class StorageIntf {
      * @throws StorageException
      */
     public abstract void wipe() throws StorageException;
+   
+    /**
+     * delete the resource within this storage with the specified filename
+     *  
+     * @param filename
+     */
+    public abstract void delete(String filename) throws StorageException;
 }

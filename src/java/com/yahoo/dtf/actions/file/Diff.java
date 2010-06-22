@@ -154,6 +154,7 @@ public class Diff extends Action {
 	                            haslines = true;
 	                            clines.add(line);
 	                        }
+	                        
 	                        if ( line != null )
 	                            clines.add(line);
 	                        
@@ -211,6 +212,7 @@ public class Diff extends Action {
                         a = 0;
                         b = 0;
                         while (a < alines.size() && b < blines.size()) {
+                            count++;
                             if ( alines.get(a).equals(blines.get(b)) ) {
                                 a++;
                                 b++;
@@ -240,6 +242,7 @@ public class Diff extends Action {
                         }
 
                         while (a < alines.size() || b < blines.size()) {
+                            count++;
                             if (a == alines.size()) {
                                 Event aux = new Event("diffs");
                                 aux.start();
@@ -340,8 +343,9 @@ public class Diff extends Action {
                                 a++;
                             }
                         }
-                       
+                      
                         diffs = (diffs1.size() > diffs2.size() ? diffs2 : diffs1);
+                        
                         for (int x = 0; x < a; x++)
                             alines.remove(0);
                     }

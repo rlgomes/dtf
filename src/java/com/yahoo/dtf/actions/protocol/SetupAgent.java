@@ -1,9 +1,6 @@
 package com.yahoo.dtf.actions.protocol;
 
-import java.io.IOException;
 import java.util.Hashtable;
-
-import org.apache.http.ConnectionClosedException;
 
 import com.yahoo.dtf.actions.protocol.Lock;
 import com.yahoo.dtf.DTFNode;

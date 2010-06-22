@@ -250,12 +250,15 @@ public class DTFNode {
         
         // Register default component hooks
         // this hook manages the property state between runner and agents.
-        Component.registerComponentHook(new PropertyState());
+        PropertyState ps = new PropertyState();
+        Component.registerComponentHook(ps);
+        
         StorageState ss = new StorageState();
         Component.registerComponentHook(ss);
        
         // Register default unlock component hooks
         Component.registerComponentUnlockHook(ss);
+        Component.registerComponentUnlockHook(ps);
 
         // Register component return hooks
         Component.registerComponentReturnHook(ss);
@@ -348,8 +351,6 @@ public class DTFNode {
             }
         } catch (FileNotFoundException e) {
             throw new DTFException("Unable to create node state file.",e);
-        } catch (IOException e) {
-            throw new DTFException("Unable to determine cwd.",e);
         } finally { 
             if ( pw != null ) pw.close();
         }
@@ -482,8 +483,9 @@ public class DTFNode {
         if (failure != null) {
             if (!failure.wasLogged())
                 _logger.error("Failure during test execution.",failure);
-            
+           
             writeNodeState(true, false, failure);
+
             System.exit(-1);
         } else { 
             writeNodeState(true, true, failure);
@@ -591,8 +593,7 @@ public class DTFNode {
     }
     
     public static void main(String[] args) throws DTFException {
-        DTFNode node = null;
-        node = new DTFNode();
+        DTFNode node = new DTFNode();
         node.run();
     }
 }

@@ -107,4 +107,9 @@ public class StreamStorage extends StorageIntf {
     public long lastOpenedOffset(String filename) {
         throw new RuntimeException("Not supported method.");
     }
+    
+    @Override
+    public void delete(String filename) throws StorageException {
+        throw new RuntimeException("Not supported method.");
+    }
 }

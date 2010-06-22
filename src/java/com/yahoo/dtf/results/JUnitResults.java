@@ -158,24 +158,10 @@ public class JUnitResults extends ResultsBase {
 
     private void printResultNode(Result result, PrintStream ps) {
         if (result.isFailResult()) {
-            ps.print("<failed>");
+            ps.print("<failure>");
             if (result.getOutput() != null)
                 ps.print(result.getOutput());
-            ps.println("</failed>");
-        }
-
-        if (result.isPassResult()) {
-            ps.print("<passed>");
-            if (result.getOutput() != null)
-                ps.print(result.getOutput());
-            ps.println("</passed>");
-        }
-
-        if (result.isSkipResult()) {
-            ps.print("<passed>");
-            if (result.getOutput() != null)
-                ps.print(result.getOutput());
-            ps.println("</passed>");
+            ps.println("</failure>");
         }
     }
 }

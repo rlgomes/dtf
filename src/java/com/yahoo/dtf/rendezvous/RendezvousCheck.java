@@ -11,10 +11,7 @@ public class RendezvousCheck extends Rendezvous_check {
     public void execute() throws DTFException {
         RemoteResult rr = new RemoteResult();
         rr.setBool(evaluate());
-        
-        ActionResult ar = (ActionResult) 
-                                   getGlobalContext(Node.ACTION_RESULT_CONTEXT);
-        
+        ActionResult ar = (ActionResult) getContext(Node.ACTION_RESULT_CONTEXT);
         ar.addAction(rr);
     }
 

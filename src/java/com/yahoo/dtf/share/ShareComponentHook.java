@@ -57,7 +57,7 @@ public class ShareComponentHook implements ComponentHook {
                 Lock lock = components.getComponent(cid);
                 Share_destroy sd = new Share_destroy();
                 sd.setId(id);
-                comm.sendAction(lock.getId(), sd).execute();
+                comm.sendActionToCaller(lock.getId(), sd).execute();
                 sent.remove(id);
             }
         }

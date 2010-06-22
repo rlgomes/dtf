@@ -21,9 +21,7 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.yahoo.dtf.actions.Action;
 import com.yahoo.dtf.DTFConstants;
-import com.yahoo.dtf.actions.flowcontrol.Loop;
 import com.yahoo.dtf.actions.protocol.SerializationException;
 import com.yahoo.dtf.actions.reference.RefWrapper;
 import com.yahoo.dtf.comm.Comm;
@@ -32,7 +30,6 @@ import com.yahoo.dtf.config.Config;
 import com.yahoo.dtf.config.DTFStream;
 import com.yahoo.dtf.config.transform.TransformerFactory;
 import com.yahoo.dtf.debug.Trace;
-import com.yahoo.dtf.exception.BreakException;
 import com.yahoo.dtf.exception.DTFException;
 import com.yahoo.dtf.exception.InterruptionException;
 import com.yahoo.dtf.exception.ParseException;
@@ -43,8 +40,6 @@ import com.yahoo.dtf.functions.Functions;
 import com.yahoo.dtf.logger.DTFLogger;
 import com.yahoo.dtf.logger.RemoteLogger;
 import com.yahoo.dtf.query.Cursor;
-import com.yahoo.dtf.range.Range;
-import com.yahoo.dtf.range.RangeFactory;
 import com.yahoo.dtf.recorder.Recorder;
 import com.yahoo.dtf.recorder.RecorderBase;
 import com.yahoo.dtf.references.References;
@@ -223,6 +218,13 @@ abstract public class Action implements Externalizable {
             getState().setAction(current);
         }
     }
+    
+    public void executeSelf() throws DTFException {
+        getState().setAction(this);
+        if ( Trace.isEnabled() ) 
+            Trace.trace(this);
+        this.execute();
+    }
    
     /*
      * Internally used by ActionResult.
@@ -325,7 +327,6 @@ abstract public class Action implements Externalizable {
      *     }
      * }
      * </pre>
-     * 
      */
     public static void checkInterruption() throws InterruptionException { 
         if ( Thread.currentThread().isInterrupted() ) {
@@ -398,6 +399,12 @@ abstract public class Action implements Externalizable {
         } 
     
         return "";
+    }
+    
+    public void setXMLLocation(Action action) { 
+        setFilename(action.getFilename());
+        setLine(action.getLine());
+        setColumn(action.getColumn());
     }
     
     public static void registerContext(String key, Object value) {
@@ -980,7 +987,7 @@ abstract public class Action implements Externalizable {
         Iterator<Entry<String,String>> entries = attributes.entrySet().iterator();
         out.writeInt(attributes.size());
         while (entries.hasNext()) {
-            Entry<String,String> entry = entries.next();
+	        Entry<String,String> entry = entries.next();
             out.writeUTF(entry.getKey());
             String value = entry.getValue();
             out.writeObject(value.getBytes("UTF-8"));

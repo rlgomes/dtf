@@ -15,7 +15,7 @@
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
         <echo>Inside testcase ${testcase.name}</echo>
 	</local>
-   
+    
     <result type="xml"  uri="storage://OUTPUT/testcase_result1.xml">
         <testproperty name="testcase.testproperty" value="${testcase.name}"/>
 	</result>

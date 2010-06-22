@@ -8,6 +8,7 @@ import com.yahoo.dtf.exception.ParseException;
 import com.yahoo.dtf.results.Result;
 import com.yahoo.dtf.results.Results;
 import com.yahoo.dtf.results.TestSuiteResults;
+import com.yahoo.dtf.state.DTFState;
 
 /**
  * @dtf.tag testsuite
@@ -81,10 +82,12 @@ public class Testsuite extends Action {
         ArrayList<DTFException> dtfes = null;
         
         Results parent = getResults();
+        DTFState state = getState();
+        
         try { 
             Results resulter = new Results(results);
-            getState().setResults(resulter);
-           
+            state.setResults(resulter);
+          
             registerGlobalContext(TESTSUITE_CTX, this);
             try { 
                 executeChildren();
@@ -95,7 +98,7 @@ public class Testsuite extends Action {
                 unRegisterGlobalContext(TESTSUITE_CTX);
             }
         } finally { 
-            getState().setResults(parent);
+            state.setResults(parent);
             if (dtfes != null) {
                 result.stop();
                 

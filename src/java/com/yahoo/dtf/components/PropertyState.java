@@ -29,7 +29,7 @@ import com.yahoo.dtf.exception.ParseException;
  * 
  * @author rlgomes
  */
-public class PropertyState implements ComponentHook {
+public class PropertyState implements ComponentHook,ComponentUnlockHook {
     
     private final static String SENT_PROPS = "dtf.sendprops.";
 
@@ -121,7 +121,7 @@ public class PropertyState implements ComponentHook {
                     
                     if ( hash != null && hash.equals(value) )
                         continue;
-
+                  
                     prop.setName(key);
                     prop.setValue(value);
                     result.add(prop);
@@ -132,5 +132,14 @@ public class PropertyState implements ComponentHook {
         }
 
         return result;
+    }
+
+    /**
+     * We need to make sure that when a component is unlocked we free up all 
+     * of the property state information we may have had for that component.
+     */
+    public void unlockComponent(String id) throws DTFException {
+        Hashtable<String, String> sent = getSentProperties(id);
+        sent.clear();
     }
 }

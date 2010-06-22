@@ -18,21 +18,22 @@
        
         <loadproperties uri="storage://INPUT/ut.properties"/>
         
+        <property name="dtf.http.port" value="44555"/>
         <property name="perfrun" value="false"/>
     </local> 
  
-    <for property="protocol" range="http,https"> 
-	    <record uri="storage://OUTPUT/https.out"> 
-	        <for property="i" range="1..${iterations.tiny}">
-			    <http_get uri="${protocol}://mail.google.com"
-			              onFailure="continue"/>
-	        </for>
-	    </record>
-	    
-	    <query uri="storage://OUTPUT/https.out"
-	           cursor="events"/> 
-	    
-	    <stats cursor="events" event="http.get"/>
-	    <log>${protocol} gets/s: ${http.get.avg_occ}</log>
-    </for>
+    <try>
+        <parallel>
+            <sequence>
+                <http_server command="start" port="${dtf.http.port}" socket="ssl"/>
+            </sequence>  
+            <sequence>
+                <log>here</log>
+            </sequence>  
+        </parallel> 
+        <finally>
+            <http_server command="stop" port="${dtf.http.port}"/>
+        </finally>
+    </try> 
+    
 </script>

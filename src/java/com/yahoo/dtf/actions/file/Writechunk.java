@@ -2,6 +2,7 @@ package com.yahoo.dtf.actions.file;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URI;
 
 import com.yahoo.dtf.actions.file.Returnfile;
 import com.yahoo.dtf.exception.DTFException;
@@ -16,10 +17,11 @@ public class Writechunk extends Returnfile {
     
     public void execute() throws DTFException {
         StorageFactory sf = getStorageFactory();
-        OutputStream os = sf.getOutputStream(parseURI(getUri()), getAppend());
+        URI uri = parseURI(getUri());
+        OutputStream os = sf.getOutputStream(uri, getAppend());
        
-        if ( getLogger().isDebugEnabled() ) 
-            getLogger().debug("Writing file [" + getUri() + "]");
+        if ( getLogger().isDebugEnabled() )
+            getLogger().debug("Writing file to [" + sf.getPath(uri) + "]");
 
         registerContext("noreturnhooks", true);
         try {

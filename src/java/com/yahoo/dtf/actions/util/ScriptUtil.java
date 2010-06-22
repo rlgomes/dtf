@@ -11,7 +11,6 @@ import com.yahoo.dtf.actions.ActionFactory;
 import com.yahoo.dtf.actions.basic.Script;
 import com.yahoo.dtf.actions.component.Component;
 import com.yahoo.dtf.actions.protocol.Lock;
-import com.yahoo.dtf.comm.Comm;
 import com.yahoo.dtf.comm.rpc.Node;
 import com.yahoo.dtf.components.ComponentUnlockHook;
 import com.yahoo.dtf.exception.BreakException;
@@ -27,7 +26,7 @@ public class ScriptUtil {
      * 
      * 
      * @param xmlFile
-     * @param state
+     * @param state 
      * @throws DTFException
      */
     public static void executeScript(String filename,
@@ -66,8 +65,13 @@ public class ScriptUtil {
         } finally {
             // clean up unlocked components
             try { 
-	            if ( Comm.isConnected() ) 
+	            if ( Action.getComm().isConnected() )  {
+	                //XXX: disconnecting null doesn't seem right! :(
+	                if ( Action.getLogger().isDebugEnabled() )
+	                    Action.getLogger().debug("Disconnecting [" + 
+	                                             Action.getLocalID() + "]");
 	                Action.getComm().getCommClient("dtfc").unregister(state);
+	            }
             } finally { 
                 HashMap<String, Lock> components = Action.getComponents()._elems;
                 Iterator<Entry<String,Lock>> entries = components.entrySet().iterator();

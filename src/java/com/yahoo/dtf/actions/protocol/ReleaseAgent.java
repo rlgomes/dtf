@@ -28,6 +28,7 @@ public class ReleaseAgent extends Action {
     }
     
     public void execute() throws DTFException {
+        getLogger().info("releasing this agent");
         /*
          * Call all CleanUp hooks.
          */
@@ -54,7 +55,9 @@ public class ReleaseAgent extends Action {
         
         if ( contexts.length() != 0 )
             getLogger().warn("Unfreed global contexts [" + contexts + "]");
+       
         globalCtx.clear();
+
         
         // now lets make sure there's only 2 state objects left, 1 from the main 
         // thread and the other from this thread that is executing right now.
@@ -106,7 +109,7 @@ public class ReleaseAgent extends Action {
        
         // clean up rmi clients
         Comm.removeClient(DTFNode.getOwner().getId());
-        
+       
         DTFNode.setOwner(null);
         getLogger().info("This agent is no longer in use by anyone.");
     }

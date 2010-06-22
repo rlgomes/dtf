@@ -26,34 +26,36 @@ public class RendezvousComponentHook implements ComponentHook,
             ArrayList<Action> result = new ArrayList<Action>();
             HashMap<String, RendezvousPoint> rps = 
                                       RendezvousOperation.getRendezvousPoints();
-            
-            ArrayList<String> sent = getSentRendezvous(id);
-            Iterator<Entry<String,RendezvousPoint>> entries = 
-                                                      rps.entrySet().iterator();
            
-            ArrayList<String> addme = new ArrayList<String>();
-            while ( entries.hasNext() ) { 
-                Entry<String,RendezvousPoint> entry = entries.next();
-                String key = entry.getKey();
-                
-                if ( !sent.contains(key) ) {
-                    RendezvousPoint rp = entry.getValue();
-                    RendezvousCreate rc = new RendezvousCreate();
-                    if (Action.getLogger().isDebugEnabled()) {
-                        Action.getLogger().debug("Sending [" + rp.getId() + 
-                                                 "] to [" + id + "]");
-                    }
-                    rc.setId(rp.getId());
-                    rc.setParties(""+rp.getParties());
-                    rc.setCid(Action.getLocalID());
-                    result.add(rc);
-                    
-                    addme.add(rp.getId());
-                }
-            }
-            sent.addAll(addme);
-            
-            return result;
+            synchronized (rps) { 
+	            ArrayList<String> sent = getSentRendezvous(id);
+	            Iterator<Entry<String,RendezvousPoint>> entries = 
+	                                                      rps.entrySet().iterator();
+	           
+	            ArrayList<String> addme = new ArrayList<String>();
+	            while ( entries.hasNext() ) { 
+	                Entry<String,RendezvousPoint> entry = entries.next();
+	                String key = entry.getKey();
+	                
+	                if ( !sent.contains(key) ) {
+	                    RendezvousPoint rp = entry.getValue();
+	                    RendezvousCreate rc = new RendezvousCreate();
+	                    if (Action.getLogger().isDebugEnabled()) {
+	                        Action.getLogger().debug("Sending [" + rp.getId() + 
+	                                                 "] to [" + id + "]");
+	                    }
+	                    rc.setId(rp.getId());
+	                    rc.setParties(""+rp.getParties());
+	                    rc.setCid(Action.getLocalID());
+	                    result.add(rc);
+	                    
+	                    addme.add(rp.getId());
+	                }
+	            }
+	            sent.addAll(addme);
+	            
+	            return result;
+	        }
         }
     }
 

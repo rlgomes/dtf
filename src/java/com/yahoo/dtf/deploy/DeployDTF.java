@@ -65,6 +65,7 @@ public class DeployDTF {
 	        String user = conf.getProperty("deploy.user");
 	        String script = conf.getProperty("deploy.init.script");
 	        
+	        
 	        _logger.info("Reading [" + config + "] config file");
 	
 	        if ( command.equals("setup-ssh") ) { 
@@ -170,6 +171,10 @@ public class DeployDTF {
     
     private static void waitForCompletion(Setup setup) throws DTFException {
         ArrayList<Dtfc> dtfcs = setup.findAllActions(Dtfc.class);
+       
+        Config conf = Action.getConfig();
+       
+        int check_interval = conf.getPropertyAsInt("deploy.wait.interval",60000);
         
         for (int i = 0; i < dtfcs.size(); i++) { 
             Dtfc dtfc = dtfcs.get(i);
@@ -234,6 +239,7 @@ public class DeployDTF {
                 
             boolean done = false;
             while ( !done ) { 
+                ThreadUtil.pause(check_interval);
                 Dtfx dtfx = (Dtfx) dtfc.findFirstAction(Dtfx.class);
                 if ( dtfx != null ) { 
                     String dtfx_host = dtfx.getHost();
@@ -261,7 +267,6 @@ public class DeployDTF {
                             }
                             done = true;
                         } 
-                        ThreadUtil.pause(15000);
                     } catch (IOException e) { 
                         _logger.info("DTFX on " + dtfx_host + " not running.",e);
                     } catch (JSchException e) {

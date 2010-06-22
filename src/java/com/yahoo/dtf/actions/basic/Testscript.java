@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import com.yahoo.dtf.DTFNode;
 import com.yahoo.dtf.DTFProperties;
 import com.yahoo.dtf.actions.Action;
-import com.yahoo.dtf.actions.properties.Testproperty;
 import com.yahoo.dtf.actions.util.ScriptUtil;
 import com.yahoo.dtf.components.Components;
 import com.yahoo.dtf.exception.ActionException;
@@ -49,7 +48,7 @@ public class Testscript extends Action {
 
     public Testscript() { }
  
-    private Object _lock = new Object();
+    private static Object _lock = new Object();
     
     public void execute() throws DTFException {
         getLogger().info("Executing testscript " + uri);
@@ -67,7 +66,7 @@ public class Testscript extends Action {
         
         // Execute testproperty tags that will automatically record their value
         // for the next test result generated.
-        executeChildren(Testproperty.class);
+        executeChildren();
 
         try { 
             StorageFactory sf = getStorageFactory();
@@ -95,6 +94,8 @@ public class Testscript extends Action {
                         exceptions.add(e);
                     }
                 }
+            } else { 
+                throw e;
             }
         }
     }

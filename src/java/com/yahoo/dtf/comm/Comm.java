@@ -200,9 +200,9 @@ public class Comm extends Thread {
         }
     }
    
-    private static boolean _connected = false;
-    private static Object _lockComm = new Object();
-    public static boolean isConnected() { return _connected; }
+    private boolean _connected = false;
+    private Object _lockComm = new Object();
+    public boolean isConnected() { return _connected; }
     public synchronized void checkAndConnectToDTFC() throws DTFException { 
         synchronized(_lockComm) { 
 	        if (!_connected) { 
@@ -222,8 +222,11 @@ public class Comm extends Thread {
 		        _connected = true;
 	        }
 
-	        if ( Action.getLocalID() == null )
+	        if ( Action.getLocalID() == null ) {
 		         getCommClient("dtfc").register();
+	        }
+
+	        Action.getLogger().info("connected [" + Action.getLocalID() + "]");
         }
     }
     
@@ -406,7 +409,11 @@ public class Comm extends Thread {
         try { 
             execution.incrementAndGet();
 	        Sequence sequence = new Sequence();
-	        sequence.setThreadID((String)Action.getContext(Node.ACTION_DTFX_THREADID)); 
+	       
+	        String tid = (String)Action.getContext(Node.ACTION_DTFX_THREADID);
+	        if ( tid == null ) { tid = Thread.currentThread().getName(); }
+	        
+	        sequence.setThreadID(tid);
 	        sequence.addAction(action);
 	        return sendAction(id, sequence);
         } finally { 

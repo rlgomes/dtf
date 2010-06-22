@@ -12,20 +12,23 @@
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
         <createstorage id="INPUT" path="${dtf.xml.path}"/>
 	</local>
-
+    
 	<result uri="storage://OUTPUT/testsuite_results.xml" type="junit">
     	<testsuite name="testsuite1" continueOnFailure="true">
-    		<property name="testcase.name" value="testcase1"/>
-    		<testscript uri="storage://INPUT/testcase.xml"/>		
+    		<testscript uri="storage://INPUT/testcase.xml">
+        		<property name="testcase.name" value="testcase1"/>
+            </testscript>		
             
-    		<property name="testcase.name" value="testcase2" overwrite="true"/>
-    		<testscript uri="storage://INPUT/testcase.xml"/>		
+    		<testscript uri="storage://INPUT/testcase.xml">
+        		<property name="testcase.name" value="testcase2" overwrite="true"/>
+            </testscript>		
             		
-    		<property name="testcase.name" value="testcase3" overwrite="true"/>
-    		<testscript uri="storage://INPUT/testcase.xml"/>
+    		<testscript uri="storage://INPUT/testcase.xml">
+        		<property name="testcase.name" value="testcase3" overwrite="true"/>
+            </testscript>
     				
     		<testscript uri="storage://INPUT/testsuite-sub.xml"/>
     	</testsuite>
     </result>
-    
+
 </script>

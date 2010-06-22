@@ -163,7 +163,7 @@
 	    </distribute> 
     </record>
     <assert message="Duration was longer than 500ms at ${fake.tot_dur}ms">
-       <within tolerance="5%" op2="${fake.tot_dur}" op1="500"/>
+       <within tolerance="+10%" op1="500" op2="${fake.tot_dur}"/>
     </assert>
       
     <!-- negative -->

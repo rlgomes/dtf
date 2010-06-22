@@ -55,8 +55,8 @@ public class Getfile extends Returnfile {
             throw new DTFException("Remote file does not exist [" + 
                                    getRemotefile() + "]");
         }
-   
-        if ( getOwner() == null )
+        
+        if ( getOwner() == null ) 
             setOwner(DTFNode.getOwner().getOwner());
         
         pushFile(getOwner(),
@@ -87,4 +87,5 @@ public class Getfile extends Returnfile {
 
     public String getOwner() { return owner; }
     public void setOwner(String owner) { this.owner = owner; }
-}
+    
+}  

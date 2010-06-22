@@ -20,8 +20,10 @@
     </local>
   
     <local> 
-	    <lockcomponent id="PRODUCER"/>
-	    <lockcomponent id="CONSUMER"/>
+        <lockgroup>
+		    <lockcomponent id="PRODUCER"/>
+		    <lockcomponent id="CONSUMER"/>
+        </lockgroup>
     </local>
     
     <property name="remote.iterations" value="${iterations.small}"/>

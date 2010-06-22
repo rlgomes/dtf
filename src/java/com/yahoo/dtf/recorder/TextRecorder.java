@@ -61,7 +61,8 @@ public class TextRecorder extends RecorderBase {
                 result.append(eventName);
                 result.append(attribute.getName());
                 result.append("=");
-                result.append(URLEncoder.encode(attribute.getValue(),"UTF-8"));
+                result.append(URLEncoder.encode(attribute.getValue(),
+                                                getEncoding()));
                 result.append("\n");
             }
         } catch (ParseException e) {

@@ -7,11 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.channels.Channels;
 import java.util.zip.GZIPOutputStream;
-
-import org.jfree.io.FileUtilities;
 
 import com.yahoo.dtf.DTFNode;
 import com.yahoo.dtf.actions.Action;
@@ -106,7 +102,8 @@ public abstract class Returnfile extends Action {
         String sourcefile = null;
 
         if ( getLogger().isDebugEnabled() )
-            getLogger().debug("Push file [" + remotefile + "] to " + id + " append: " + append);
+            getLogger().debug("Push file [" + remotefile + "] to " + id + 
+                              " append: " + append);
 
         try {
             if (compress) {
@@ -140,7 +137,7 @@ public abstract class Returnfile extends Action {
                     
                     if ( getLogger().isDebugEnabled() ) {
 	                    getLogger().debug("Creating directory [" + rpath + 
-	                                      "] to [" + uri + "]");
+	                                      "] at [" + uri + "] on [" + id + "]");
                     }
 
                     String[] files = storage.getFiles(rpath);
@@ -163,8 +160,8 @@ public abstract class Returnfile extends Action {
             }
 
             if ( getLogger().isDebugEnabled() ) {
-                getLogger().debug("Writing [" + sourcefile + "] to [" + uri + 
-                                  "] append: " + append);
+                getLogger().debug("Pushing [" + sourcefile + "] to [" + id + 
+                                  "] at [" + uri + "] append [" + append + "]");
             }
 
             long length = fis.getChannel().size();

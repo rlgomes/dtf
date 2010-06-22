@@ -1,9 +1,6 @@
 package com.yahoo.dtf.actions.component;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
 
 import com.yahoo.dtf.actions.Action;
 import com.yahoo.dtf.actions.protocol.Lock;
@@ -11,7 +8,6 @@ import com.yahoo.dtf.actions.protocol.Unlock;
 import com.yahoo.dtf.comm.Comm;
 import com.yahoo.dtf.comm.CommClient;
 import com.yahoo.dtf.components.ComponentUnlockHook;
-import com.yahoo.dtf.components.StorageState;
 import com.yahoo.dtf.exception.DTFException;
 import com.yahoo.dtf.exception.ParseException;
 
@@ -56,7 +52,7 @@ public class Unlockcomponent extends Action {
 
         //TODO: best effort no executing the return child ? 
         //Action result = getComm().sendAction("dtfc", unlock);
-        getComm().sendAction("dtfc", unlock);
+        getComm().sendActionToCaller("dtfc", unlock);
         getComponents().unregisterComponent(getId());
         
         ArrayList<ComponentUnlockHook> hooks = 

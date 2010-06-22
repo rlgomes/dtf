@@ -20,12 +20,12 @@
         
         <property name="perfrun" value="false"/>
         
-        <property name="dtf.http.server.port" value="44444"/>
-        <property name="dtf.http.uri" value="http://localhost:${dtf.http.server.port}/"/>
+        <property name="dtf.http.port" value="55555"/>
+        <property name="dtf.http.uri" value="http://localhost:${dtf.http.port}/"/>
     </local> 
 
     <parallel>
-	    <http_server port="${dtf.http.server.port}">
+	    <http_server port="${dtf.http.port}" >
 	        <http_listener path="*" method="*"/>
 	    </http_server>
     
@@ -207,7 +207,7 @@
                 </http_post>
             </sequence>
             <finally>
-                <http_server port="${dtf.http.server.port}" command="stop"/>
+                <http_server port="${dtf.http.port}" command="stop"/>
             </finally>
         </try>
     </parallel>
@@ -261,7 +261,7 @@
     </call>
     
     <log>validate connection refused error</log>
-    <http_put uri="http://localhost:33333" onFailure="continue"/>
+    <http_put uri="http://localhost:11111" onFailure="continue"/>
     <assert><eq op1="${http.put.status}" op2="900"/></assert>
     
     <log>validate connection reset error</log>
@@ -269,15 +269,8 @@
     <assert><eq op1="${http.put.status}" op2="901"/></assert>
 
     <log>validate unknown host error</log>
-    <http_put uri="http://unknown.com.pt.blah.host/" onFailure="continue"/>
-    <assert>
-        <or>
-            <eq op1="${http.put.status}" op2="902"/>
-            <!-- on public wifi networks you sometimes get a 302 back from the
-                 public router because its doing the wrong thing! :( -->
-            <eq op1="${http.put.status}" op2="302"/>
-        </or>
-    </assert>
+    <http_put uri="http://cacacacaca/" onFailure="continue"/>
+    <assert><eq op1="${http.put.status}" op2="902"/></assert>
  
     <log>validate connection timeout error</log>
     <http_put uri="http://www.yahoo.com"

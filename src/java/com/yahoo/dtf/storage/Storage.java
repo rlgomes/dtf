@@ -11,6 +11,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 
 import com.yahoo.dtf.storage.Storage;
+import com.yahoo.dtf.actions.Action;
 import com.yahoo.dtf.exception.StorageException;
 import com.yahoo.dtf.logger.DTFLogger;
 import com.yahoo.dtf.util.MultiMemberGZIPInputStream;
@@ -220,5 +221,18 @@ public class Storage extends StorageIntf {
 
         mo.append = append;
         mo.modified++;
+    }
+    
+    @Override
+    public void delete(String filename) throws StorageException {
+        File file = new File(_fpath, filename);
+      
+        if ( !file.exists() ) { 
+            throw new StorageException("File [" + filename + "] does not exist");
+        }
+        
+        if ( !file.delete() ) { 
+            throw new StorageException("Unable to delete [" + filename + "]");
+        }
     }
 }

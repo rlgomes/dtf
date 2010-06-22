@@ -81,6 +81,7 @@
             <event name="test.event1">
                 <attribute name="data" value="${data}"/>
                 <attribute name="succeeded" value="false"/>
+                <attribute name="CaseSensitiveField" value="blah"/>
             </event>
         </for>
     </record>
@@ -90,7 +91,10 @@
 		    <query uri="storage://OUTPUT/query_data3.txt"
 		           cursor="cursor-big${query}">
 		        <where>
-		            <eq op1="succeeded" op2="true"/>
+                    <and>
+			            <eq op1="succeeded" op2="true"/>
+	                    <eq op1="CaseSensitiveField" op2="true"/>
+                    </and>
 		        </where>
 		    </query>
 	        <iterate cursor="cursor-big${query}"/>
@@ -107,8 +111,9 @@
     </parallel>
     
 	<testsuite name="query">
-		<property name="query.type" value="txt" overwrite="true"/>
-		<testscript uri="storage://TINPUT/query_testcase.xml"/>
+		<testscript uri="storage://TINPUT/query_testcase.xml">
+    		<property name="query.type" value="txt" overwrite="true"/>
+        </testscript>
 	</testsuite> 
     
     

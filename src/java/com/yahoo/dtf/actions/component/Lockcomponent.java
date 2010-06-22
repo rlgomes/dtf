@@ -65,22 +65,25 @@ public class Lockcomponent extends Action {
     private String timeout = null;
    
     public Lockcomponent() { }
-  
-    // tricky code not for anyone to change.. :) 
-    public void execute() throws DTFException { 
-        /*
-         * Whenever we haven't been named lets make sure to register first.
-         */
-        getComm().checkAndConnectToDTFC();
+   
+    /**
+     * internal method which is responsible for assembling the the Lock
+     * to be sent to the DTFC.
+     * 
+     * @return
+     * @throws ParseException 
+     */
+    protected Lock assembleLock() throws DTFException { 
         Lock lock = new Lock(getName(),getId(),getTimeout());
-      
-        /*
-         * Add all Attribs that we're looking for in a component
-         * 
-         * make sure to resolve all properties before shipping this off...
-         */
+        lock.setXMLLocation(this);
+        
         ArrayList aux = findActions(Attrib.class);
         ArrayList<Attrib> attribs = new ArrayList<Attrib>();
+        
+        /*
+         * Add all Attribs that we're looking for in a component
+         * make sure to resolve all properties before shipping this off...
+         */
         for (int i = 0; i < aux.size(); i++) { 
             Attrib cur = (Attrib)aux.get(i);
             Attrib tmp = new Attrib(cur.getName(),
@@ -90,61 +93,81 @@ public class Lockcomponent extends Action {
         }
         lock.addActions(attribs);
         
-        Action result = getComm().sendAction("dtfc", lock);
+        return lock;
+    }
+    
+    /**
+     * internal method which is responsible for handling the returned lock and
+     * calling the required lock hooks.
+     * 
+     * @param lock
+     * @throws DTFException
+     */
+    protected void handleLockResponse(Lock lock) throws DTFException { 
+        /*
+         * If the connection from the controller is tunneled then we have
+         * no other choice but to connect through the controller.
+         */
+        if (!lock.getTunneled()) { 
+            CommClient client = new CommRMIClient(lock.getAddress(),
+                    lock.getPort());
+           
+            if (client.heartbeat().booleanValue()) { 
+                if (getLogger().isDebugEnabled())
+                    getLogger().debug("Direct connection to component " +
+                                      "being used.");
+
+                Comm.addClient(lock.getId(), client);
+            }
+        } else {
+            if (getLogger().isDebugEnabled()) {
+                getLogger().debug("Tunneling detected, talking to the "  +
+                                  "component throught the controller");
+            }
+        }
+        
+        /*
+         * Record  the right attributes as test properties in the record 
+         * and set the right test properties for the others.
+         */
+        ArrayList<Attrib> attribs = lock.findActions(Attrib.class);
+        Config config = getConfig();
+        for(int i = 0; i < attribs.size(); i++) { 
+            Attrib attrib = (Attrib)attribs.get(i);
+            
+            if (attrib.isTestProp())
+                config.setProperty(getId() + "." + attrib.getName(),
+                                   attrib.getValue());
+            
+            getResults().recordProperty(getId() + "." + attrib.getName(), 
+                                        attrib.getValue());
+        }
+
+        getComponents().registerComponent(getId(), lock);
+        getLogger().info("Component locked " + lock + " as " + getId());
+
+        // execute LockHooks!
+        for (int i = 0; i < _lockhooks.size(); i++) {
+            ArrayList<Action> actions = _lockhooks.get(i).init(this.getId());
+            Sequence sequence = new Sequence();
+            sequence.addActions(actions);
+            getComm().executeOnComponent(id, sequence);
+        } 
+    }
+  
+    // tricky code not for anyone to change.. :) 
+    public void execute() throws DTFException { 
+        // Whenever we haven't been named lets make sure to register first.
+        getComm().checkAndConnectToDTFC();
+        
+        Lock lock = assembleLock();
+        
+        Action result = getComm().sendActionToCaller("dtfc", lock);
         
         // TODO: why not execute the result ? 
-        if (result != null) { 
-            Lock returnedLock = (Lock)result.findActions(Lock.class).get(0);
-            
-            /*
-             * If the connection from the controller is tunneled then we have
-             * no other choice but to connect through the controller.
-             */
-            if (!returnedLock.getTunneled()) { 
-                CommClient client = new CommRMIClient(returnedLock.getAddress(),
-                                                      returnedLock.getPort());
-               
-                if (client.heartbeat().booleanValue()) { 
-                    if (getLogger().isDebugEnabled())
-                        getLogger().debug("Direct connection to component " +
-                                          "being used.");
-    
-                    Comm.addClient(returnedLock.getId(), client);
-                }
-            } else {
-                if (getLogger().isDebugEnabled()) {
-                    getLogger().debug("Tunneling detected, talking to the "  +
-                                      "component throught the controller");
-                }
-            }
-            
-            /*
-             * Record  the right attributes as test properties in the record 
-             * and set the right test properties for the others.
-             */
-            attribs = returnedLock.findActions(Attrib.class);
-            Config config = getConfig();
-            for(int i = 0; i < attribs.size(); i++) { 
-                Attrib attrib = (Attrib)attribs.get(i);
-                
-                if (attrib.isTestProp())
-                    config.setProperty(getId() + "." + attrib.getName(),
-                    		           attrib.getValue());
-                
-                getResults().recordProperty(getId() + "." + attrib.getName(), 
-                                            attrib.getValue());
-            }
-
-            getComponents().registerComponent(getId(), returnedLock);
-            getLogger().info("Component locked " + returnedLock + " as " + getId());
-
-            // execute LockHooks!
-            for (int i = 0; i < _lockhooks.size(); i++) {
-                ArrayList<Action> actions = _lockhooks.get(i).init(this.getId());
-                Sequence sequence = new Sequence();
-                sequence.addActions(actions);
-                getComm().executeOnComponent(id, sequence);
-            }
+        if (result != null) {
+            Lock returnedLock = (Lock)result.findAllActions(Lock.class).get(0);
+            handleLockResponse(returnedLock);
         } else { 
             throw new DTFException("Unable to register component :(.");
         }

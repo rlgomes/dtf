@@ -20,12 +20,14 @@
         <!-- should be larger than 25 for the negative test to work -->
         <property name="parties" value="50"/> 
     </local>
-   
-    <for property="i" range="1..3"> 
-	    <local> 
-	        <lockcomponent id="C${i}"/>
-	    </local>
-    </for>
+  
+    <local> 
+        <lockgroup>
+            <lockcomponent id="C1"/>
+            <lockcomponent id="C2"/>
+            <lockcomponent id="C3"/>
+        </lockgroup>
+    </local>
     
     <!-- local access to a rendezvous point before using any components to 
          validate we can handle local rendezvous points correctly with locked

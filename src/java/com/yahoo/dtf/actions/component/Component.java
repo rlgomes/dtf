@@ -93,10 +93,6 @@ public class Component extends Action {
         Lock lock = state.getComponents().getComponent(getId());
        
         Sequence sequence = new Sequence();
-        // very important, this thread id is used to create a base config for 
-        // this thread on the agent side that is used to store the unchanged
-        // properties, ranges, etc.
-        sequence.setThreadID(Thread.currentThread().getName());
       
         String id = getId();
         state.disableReplace();
@@ -122,7 +118,7 @@ public class Component extends Action {
 	        }
 
 	        sequence.addActions(children());
-	        Action result = getComm().sendAction(lock.getId(), sequence);
+	        Action result = getComm().sendActionToCaller(lock.getId(), sequence);
                 
             if ( result != null ) result.execute();
         } catch (DTFException e) { 

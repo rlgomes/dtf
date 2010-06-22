@@ -12,7 +12,7 @@ public class PullFile extends Getfile {
     
     public void execute() throws DTFException {
         Getfile gf = new Getfile();
-
+       
         gf.setOwner(Action.getLocalID());
         gf.setUri(getUri());
         gf.setRemotefile(getRemotefile());
@@ -21,10 +21,10 @@ public class PullFile extends Getfile {
 
         if ( getLogger().isDebugEnabled() ) {
             getLogger().debug("Pulling file " + getRemotefile() + 
-                              " from " + gf.getOwner() + " to " + getTo() + 
-                              " append: " + getAppend());
+                              " from [" + getTo() + "] to [" + getOwner() + 
+                              "] append: " + getAppend());
         }
-
+        
         getComm().sendActionToCaller(getTo(), gf).execute();
     }
     

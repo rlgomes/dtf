@@ -24,7 +24,7 @@
     <parallelloop property="thread" range="1..3">
         <for property="iteration" range="0..5">
             <local>
-                <lockcomponent id="DTFA${thread}" timeout="10s">
+                <lockcomponent id="DTFA${thread}">
                     <attrib name="node.id" value="${ids}"/>
                 </lockcomponent>
                 <unlockcomponent id="DTFA${thread}"/>
@@ -34,34 +34,16 @@
 
     <!-- creating a testsuite here so that we avoid counting the N calls to 
          occupy_component as individual results -->
-    <testsuite name="lockcomponent">
-	    <log>now locking/unlocking in another script...</log>
-	    <parallelloop property="thread" range="1..3">
-	        <for property="iteration" range="1..10">
-	            <property name="occupy.duration" value="0s"/>
-	            <testscript uri="storage://INPUT/occupy_component.xml"/>
-	        </for>
-	    </parallelloop>
-    </testsuite>
-    
-    <!-- Make sure the round-robin locking/unlocking is working  -->
-    <property name="previous" value="none"/>
-    <for property="iteration" range="1..10">
-        <local>
-            <lockcomponent id="DTFA" timeout="10s"/>
-        </local>
-        <if>
-            <eq op1="${previous}" op2="${DTFA.node.id}"/>
-            <then>
-                <fail>Locked the same component twice in a row!</fail>
-            </then>
-        </if>
-        <property name="previous" value="${DTFA.node.id}" overwrite="true"/>
-        
-        <local>
-            <unlockcomponent id="DTFA"/>
-        </local>
-    </for>
+    <log>now locking/unlocking in another script...</log>
+    <parallelloop property="thread" range="1..3">
+        <for property="iteration" range="1..10">
+            <testsuite name="lockcomponent">
+	            <testscript uri="storage://INPUT/occupy_component.xml">
+                    <property name="occupy.duration" value="0s"/>
+                </testscript>
+            </testsuite>
+        </for>
+    </parallelloop>
     
     <!-- call other script that locks all 3 available components in a 
          parallelloop and validate this script can still lock components
@@ -70,7 +52,7 @@
     <testscript uri="storage://INPUT/parallel_occupy_component.xml"/>
 
     <local>
-        <lockcomponent id="C1" timeout="2s"/>     
+        <lockcomponent id="C1"/>     
         <unlockcomponent id="C1"/>
     </local>
 
@@ -81,7 +63,7 @@
     <testscript uri="storage://INPUT/function_occupy_component.xml"/>
 
     <local>
-        <lockcomponent id="C1" timeout="5s"/>     
+        <lockcomponent id="C1"/>     
         <unlockcomponent id="C1"/>
     </local>
     

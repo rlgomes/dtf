@@ -1,51 +1,50 @@
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://dtf.org/v1"
-           xmlns="http://dtf.org/v1"
-           elementFormDefault="qualified">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns="http://dtf.org/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://dtf.org/v1">
 
     <!-- tags that are used on the runner -->
     <xs:group name="script_tags">
         <xs:choice>
             <!-- aggregations -->
-            <xs:element ref="sequence" />
-            <xs:element ref="parallel" />
-            <xs:element ref="for" />
-            <xs:element ref="parallelloop" />
-            <xs:element ref="switch" />
-            <xs:element ref="distribute" />
-            <xs:element ref="try" />
-            <xs:element ref="timer" />
-            <xs:element ref="if" />
-            <xs:element ref="local" />
-            <xs:element ref="component" />
-            <xs:element ref="fail" />
-            <xs:element ref="choices" />
-            <xs:element ref="while" />
+            <xs:element ref="sequence"/>
+            <xs:element ref="parallel"/>
+            <xs:element ref="for"/>
+            <xs:element ref="parallelloop"/>
+            <xs:element ref="switch"/>
+            <xs:element ref="distribute"/>
+            <xs:element ref="try"/>
+            <xs:element ref="timer"/>
+            <xs:element ref="if"/>
+            <xs:element ref="local"/>
+            <xs:element ref="component"/>
+            <xs:element ref="fail"/>
+            <xs:element ref="choices"/>
+            <xs:element ref="while"/>
             
             <!-- results tags -->
-            <xs:element ref="result" />
-            <xs:element ref="testsuite" />
-            <xs:element ref="testscript" />
-            <xs:element ref="testproperty" />
+            <xs:element ref="result"/>
+            <xs:element ref="testsuite"/>
+            <xs:element ref="testscript"/>
+            <xs:element ref="testproperty"/>
            
             <!-- event tags --> 
-            <xs:element ref="record" />
-            <xs:element ref="event" />
-            <xs:element ref="query" />
-            <xs:element ref="nextresult" />
-            <xs:element ref="resetcursor" />
-            <xs:element ref="iterate" />
-            <xs:element ref="compare" />
+            <xs:element ref="record"/>
+            <xs:element ref="event"/>
+            <xs:element ref="query"/>
+            <xs:element ref="nextresult"/>
+            <xs:element ref="resetcursor"/>
+            <xs:element ref="iterate"/>
+            <xs:element ref="compare"/>
+            <xs:element ref="filter"/>
           
             <!-- logging tags --> 
             <xs:element ref="log"/>
             
             <!-- statistics tags --> 
-            <xs:element ref="stats" />
+            <xs:element ref="stats"/>
             
             <!-- function tags -->
-            <xs:element ref="function" />
-            <xs:element ref="call" />
+            <xs:element ref="function"/>
+            <xs:element ref="call"/>
             
             <!--  basic tags -->
             <xs:element ref="sleep"/>
@@ -71,14 +70,14 @@
     <xs:group name="common_commands">
         <xs:choice>
             <!-- property & range tags -->
-            <xs:element ref="property" />
-            <xs:element ref="createrange" />
+            <xs:element ref="property"/>
+            <xs:element ref="createrange"/>
             <xs:element ref="unset"/>
             
             <!-- basic command tags --> 
-            <xs:element ref="sleep" />
-            <xs:element ref="echo" />
-            <xs:element ref="fail" />
+            <xs:element ref="sleep"/>
+            <xs:element ref="echo"/>
+            <xs:element ref="fail"/>
             <xs:element ref="break"/>
            
             <!-- logging tags --> 
@@ -92,19 +91,19 @@
             <xs:element ref="monitor_diff"/>
            
             <!-- event command tags --> 
-            <xs:element ref="event" />
-            <xs:element ref="attribute" />
+            <xs:element ref="event"/>
+            <xs:element ref="attribute"/>
 
             <!-- http tags -->
-            <xs:element ref="http_get" />
-            <xs:element ref="http_post" />
-            <xs:element ref="http_put" />
-            <xs:element ref="http_head" />
-            <xs:element ref="http_delete" />
-            <xs:element ref="http_request" />
-            <xs:element ref="http_server" />
-            <xs:element ref="http_response" />
-            <xs:element ref="urlencode" />
+            <xs:element ref="http_get"/>
+            <xs:element ref="http_post"/>
+            <xs:element ref="http_put"/>
+            <xs:element ref="http_head"/>
+            <xs:element ref="http_delete"/>
+            <xs:element ref="http_request"/>
+            <xs:element ref="http_server"/>
+            <xs:element ref="http_response"/>
+            <xs:element ref="urlencode"/>
 
             <!-- string manipulation tags -->
             <xs:element ref="replace"/>
@@ -140,24 +139,24 @@
     <xs:group name="component_commands">
         <xs:choice>
             <!-- component specific tags -->
-            <xs:element ref="getfile" />
-            <xs:element ref="stopcomponent" />
-            <xs:element ref="call" />
+            <xs:element ref="getfile"/>
+            <xs:element ref="stopcomponent"/>
+            <xs:element ref="call"/>
             
             <xs:group ref="common_commands"/>
 
 		    <xs:element name="sequence">
 		        <xs:complexType>
-		            <xs:choice minOccurs="0" maxOccurs="unbounded">
-		                <xs:group ref="component_commands" />
+		            <xs:choice maxOccurs="unbounded" minOccurs="0">
+		                <xs:group ref="component_commands"/>
 		            </xs:choice>
 		        </xs:complexType>
 		    </xs:element>
 
 		    <xs:element name="parallel">
 		        <xs:complexType>
-		            <xs:choice minOccurs="0" maxOccurs="unbounded">
-		                <xs:group ref="component_commands" />
+		            <xs:choice maxOccurs="unbounded" minOccurs="0">
+		                <xs:group ref="component_commands"/>
 		            </xs:choice>
 		        </xs:complexType>
 		    </xs:element>
@@ -165,7 +164,7 @@
             <xs:element name="for">
                 <xs:complexType>
                     <xs:choice maxOccurs="unbounded">
-                        <xs:group ref="component_commands" />
+                        <xs:group ref="component_commands"/>
                     </xs:choice>
                     <xs:attributeGroup ref="aggregation_properties"/>
                 </xs:complexType>
@@ -174,7 +173,7 @@
             <xs:element name="parallelloop">
                 <xs:complexType>
                     <xs:choice maxOccurs="unbounded">
-                        <xs:group ref="component_commands" />
+                        <xs:group ref="component_commands"/>
                     </xs:choice>
                     <xs:attributeGroup ref="aggregation_properties"/>
                 </xs:complexType>
@@ -183,9 +182,9 @@
 		    <xs:element name="while">
 		        <xs:complexType>
 		            <xs:sequence>
-		                <xs:group ref="conditionals" minOccurs="0" maxOccurs="1" />
-		                <xs:choice minOccurs="0" maxOccurs="unbounded">
-                            <xs:group ref="component_commands" />
+		                <xs:group maxOccurs="1" minOccurs="0" ref="conditionals"/>
+		                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                            <xs:group ref="component_commands"/>
 		                </xs:choice>
 		            </xs:sequence>
 		        </xs:complexType>
@@ -194,17 +193,17 @@
             <xs:element name="timer">
                 <xs:complexType>
                     <xs:choice maxOccurs="unbounded">
-                        <xs:group ref="component_commands" />
+                        <xs:group ref="component_commands"/>
                     </xs:choice>
-                    <xs:attribute name="interval" type="xs:string" use="required" />
-                    <xs:attribute name="property" type="xs:string" use="optional" />
+                    <xs:attribute name="interval" type="xs:string" use="required"/>
+                    <xs:attribute name="property" type="xs:string" use="optional"/>               
                 </xs:complexType>
             </xs:element>
             
             <xs:element name="distribute">
                 <xs:complexType>
-                    <xs:choice minOccurs="0" maxOccurs="unbounded">
-                        <xs:group ref="component_commands" />
+                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                        <xs:group ref="component_commands"/>
                     </xs:choice>
                     <xs:attributeGroup ref="distribute_attribs"/>
                 </xs:complexType>
@@ -212,11 +211,11 @@
             
             <xs:element name="choices">
                 <xs:complexType>
-                    <xs:choice minOccurs="1" maxOccurs="unbounded">
+                    <xs:choice maxOccurs="unbounded" minOccurs="1">
                         <xs:element name="choose">
                             <xs:complexType>
                                 <xs:choice maxOccurs="unbounded">
-                                    <xs:group ref="component_commands" />
+                                    <xs:group ref="component_commands"/>
                                 </xs:choice>
                                 <xs:attribute name="howoften" use="required"/>
                             </xs:complexType>
@@ -228,26 +227,26 @@
             <xs:element name="switch">
                 <xs:complexType>
                     <xs:sequence>
-                       <xs:element name="case" minOccurs="0" maxOccurs="unbounded">
+                       <xs:element maxOccurs="unbounded" minOccurs="0" name="case">
                             <xs:complexType>
                                 <xs:sequence>
-                                    <xs:group ref="conditionals" minOccurs="0" maxOccurs="1" />
-                                    <xs:choice minOccurs="0" maxOccurs="unbounded">
-                                        <xs:group ref="component_commands" />
+                                    <xs:group maxOccurs="1" minOccurs="0" ref="conditionals"/>
+                                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                        <xs:group ref="component_commands"/>
                                     </xs:choice>
                                 </xs:sequence>
-                                <xs:attribute name="value" type="xs:string" use="optional" />
+                                <xs:attribute name="value" type="xs:string" use="optional"/>
                             </xs:complexType>
                         </xs:element>
-                        <xs:element name="default" minOccurs="0" maxOccurs="unbounded">
+                        <xs:element maxOccurs="unbounded" minOccurs="0" name="default">
                             <xs:complexType>
-                                <xs:choice minOccurs="0" maxOccurs="unbounded">
-                                    <xs:group ref="component_commands" />
+                                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                    <xs:group ref="component_commands"/>
                                 </xs:choice>
                             </xs:complexType>
                         </xs:element>
                     </xs:sequence>
-                    <xs:attribute name="property" type="xs:string" use="optional" />
+                    <xs:attribute name="property" type="xs:string" use="optional"/>
                 </xs:complexType>
             </xs:element>
            
@@ -255,17 +254,17 @@
 		        <xs:complexType>
 		            <xs:sequence>
 		                <xs:group ref="conditionals"/>
-                        <xs:element name="then" minOccurs="0" maxOccurs="1">
+                        <xs:element maxOccurs="1" minOccurs="0" name="then">
                             <xs:complexType>
-                                <xs:choice minOccurs="0" maxOccurs="unbounded">
-                                    <xs:group ref="component_commands" />
+                                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                    <xs:group ref="component_commands"/>
                                 </xs:choice>
                             </xs:complexType>
                         </xs:element>
-                        <xs:element name="else" minOccurs="0" maxOccurs="1">
+                        <xs:element maxOccurs="1" minOccurs="0" name="else">
                             <xs:complexType>
-                                <xs:choice minOccurs="0" maxOccurs="unbounded">
-                                    <xs:group ref="component_commands" />
+                                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                    <xs:group ref="component_commands"/>
                                 </xs:choice>
                             </xs:complexType>
                         </xs:element> 
@@ -277,22 +276,18 @@
 		        <xs:complexType>
 		            <xs:sequence>
 		                <xs:choice>
-		                    <xs:group ref="component_commands" />
+		                    <xs:group ref="component_commands"/>
 		                </xs:choice>
-                	    <xs:element name="catch" 
-                                    minOccurs="0"
-                                    maxOccurs="unbounded">
+                	    <xs:element maxOccurs="unbounded" minOccurs="0" name="catch">
                 	        <xs:complexType>
                 	            <xs:choice>
                 	                <xs:group ref="component_commands"/>
                 	            </xs:choice>
-                	            <xs:attribute name="exception" type="xs:string" use="optional" />
-                	            <xs:attribute name="property" type="xs:string" use="optional" />
+                	            <xs:attribute name="exception" type="xs:string" use="optional"/>
+                	            <xs:attribute name="property" type="xs:string" use="optional"/>
                 	        </xs:complexType>
                 	    </xs:element>
-                        <xs:element name="finally"
-                                    minOccurs="0"
-                                    maxOccurs="1">
+                        <xs:element maxOccurs="1" minOccurs="0" name="finally">
                             <xs:complexType>
                                 <xs:choice>
                                     <xs:group ref="component_commands"/>
@@ -308,7 +303,7 @@
 		            <xs:sequence>
 		                <xs:group ref="conditionals"/>
 		            </xs:sequence>
-                    <xs:attribute name="message" type="xs:string" use="optional" />
+                    <xs:attribute name="message" type="xs:string" use="optional"/>
 		        </xs:complexType>
 		    </xs:element>
         </xs:choice>
@@ -317,15 +312,16 @@
     <xs:group name="local_commands">
         <xs:choice>
             <!-- property and function definition tags -->
-            <xs:element ref="createstorage" />
-            <xs:element ref="loadproperties" />
-            <xs:element ref="import" />
+            <xs:element ref="createstorage"/>
+            <xs:element ref="loadproperties"/>
+            <xs:element ref="import"/>
 
-            <xs:element ref="cat" />
+            <xs:element ref="cat"/>
            
             <!-- component locking tags --> 
-            <xs:element ref="lockcomponent" />
-            <xs:element ref="unlockcomponent" />
+            <xs:element ref="lockgroup"/>
+            <xs:element ref="lockcomponent"/>
+            <xs:element ref="unlockcomponent"/>
             
             <xs:group ref="common_commands"/>
         </xs:choice>
@@ -335,20 +331,20 @@
     <xs:element name="script">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="info" />
-                <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:group ref="script_tags" />
+                <xs:element ref="info"/>
+                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                    <xs:group ref="script_tags"/>
                 </xs:choice>
             </xs:sequence>
-            <xs:attribute name="name" type="xs:string" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
 
     <xs:group name="info_tags">
         <xs:choice>
             <xs:sequence>
-	            <xs:element ref="author" />
-	            <xs:element ref="description" minOccurs="0"/>
+	            <xs:element ref="author"/>
+	            <xs:element minOccurs="0" ref="description"/>
             </xs:sequence>
         </xs:choice>
     </xs:group>
@@ -362,8 +358,8 @@
     <xs:element name="author">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="name" />
-                <xs:element ref="email" />
+                <xs:element ref="name"/>
+                <xs:element ref="email"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -375,14 +371,14 @@
     <xs:element name="function">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="param" minOccurs="0" maxOccurs="unbounded" />
-                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="param"/>
+                <xs:choice maxOccurs="unbounded" minOccurs="0">
                     <xs:group ref="script_tags"/>
                 </xs:choice>
-                <xs:element ref="return" minOccurs="0" maxOccurs="1"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="return"/>
             </xs:sequence>
-            <xs:attribute name="name"   type="xs:string" use="required" />
-            <xs:attribute name="export" type="xs:string" default="false"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute default="false" name="export" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     
@@ -392,13 +388,13 @@
     
     <xs:element name="param">
         <xs:complexType>
-            <xs:attribute name="name" type="xs:string" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required"/>
             <xs:attribute name="default"/>
-            <xs:attribute name="type" default="optional">
+            <xs:attribute default="optional" name="type">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
-                        <xs:enumeration value="optional" />
-                        <xs:enumeration value="required" />
+                        <xs:enumeration value="optional"/>
+                        <xs:enumeration value="required"/>
                     </xs:restriction>
                 </xs:simpleType>
             </xs:attribute>
@@ -407,19 +403,19 @@
     
     <xs:element name="call">
         <xs:complexType>
-            <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                <xs:element ref="property" />
+            <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="property"/>
             </xs:sequence>
-            <xs:attribute name="function" type="xs:string" use="required" />
-            <xs:attribute name="result" type="xs:string" use="optional" />
+            <xs:attribute name="function" type="xs:string" use="required"/>
+            <xs:attribute name="result" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="import">
         <xs:complexType>
-            <xs:attribute name="uri" type="xs:string" use="required" />
-            <xs:attribute name="loadFuncs" type="xs:string" default="true" />
-            <xs:attribute name="loadRefs" type="xs:string" default="true" />
+            <xs:attribute name="uri" type="xs:string" use="required"/>
+            <xs:attribute default="true" name="loadFuncs" type="xs:string"/>
+            <xs:attribute default="true" name="loadRefs" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 
@@ -429,24 +425,24 @@
             <xs:choice minOccurs="0" maxOccurs="unbounded">
                 <xs:group ref="script_tags"/> 
             </xs:choice>
-            <xs:attribute name="name" type="xs:string" use="required" />
-            <xs:attribute name="continueOnFailure" type="xs:string" default="true" />
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute default="true" name="continueOnFailure" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="testscript">
         <xs:complexType>
-            <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                <xs:element ref="testproperty" />
+            <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="script_tags"/>
             </xs:sequence>
-            <xs:attribute name="uri" type="xs:string" use="required" />
+            <xs:attribute name="uri" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="testproperty">
         <xs:complexType>
-            <xs:attribute name="name" type="xs:string" use="required" />
-            <xs:attribute name="value" type="xs:string" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="value" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
    
@@ -454,25 +450,25 @@
     <xs:element name="timer">
         <xs:complexType>
             <xs:choice maxOccurs="unbounded">
-                <xs:group ref="script_tags" />
+                <xs:group ref="script_tags"/>
             </xs:choice>
-            <xs:attribute name="interval" type="xs:string" use="required" />
-            <xs:attribute name="property" type="xs:string" use="optional" />
+            <xs:attribute name="interval" type="xs:string" use="required"/>
+            <xs:attribute name="property" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="sequence">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">
-                <xs:group ref="script_tags" />
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="script_tags"/>
             </xs:choice>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="parallel">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">
-                <xs:group ref="script_tags" />
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="script_tags"/>
             </xs:choice>
         </xs:complexType>
     </xs:element>
@@ -481,10 +477,10 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:choice>
-                    <xs:group ref="script_tags" />
+                    <xs:group ref="script_tags"/>
                 </xs:choice>
-                <xs:element ref="catch" minOccurs="0" maxOccurs="unbounded" />
-                <xs:element ref="finally" minOccurs="0" maxOccurs="1" />
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="catch"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="finally"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -492,24 +488,24 @@
     <xs:element name="catch">
         <xs:complexType>
             <xs:choice>
-                <xs:group ref="script_tags" />
+                <xs:group ref="script_tags"/>
             </xs:choice>
-            <xs:attribute name="exception" type="xs:string" use="optional" />
-            <xs:attribute name="property" type="xs:string" use="optional" />
+            <xs:attribute name="exception" type="xs:string" use="optional"/>
+            <xs:attribute name="property" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="finally">
         <xs:complexType>
             <xs:choice>
-                <xs:group ref="script_tags" />
+                <xs:group ref="script_tags"/>
             </xs:choice>
         </xs:complexType>
     </xs:element>
    
     <xs:element name="local">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
                 <xs:group ref="local_commands"/>
             </xs:choice>
         </xs:complexType>
@@ -517,127 +513,136 @@
     
     <xs:element name="component">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
                 <xs:group ref="component_commands"/>
             </xs:choice>
-            <xs:attribute name="id" type="xs:string" use="required" />
+            <xs:attribute name="id" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="loadproperties">
         <xs:complexType>
-            <xs:attribute name="uri"       type="xs:string" use="required" />
-            <xs:attribute name="overwrite" type="xs:string" use="optional" />
-            <xs:attribute name="encoding"  type="xs:string" default="UTF-8" />
+            <xs:attribute name="uri" type="xs:string" use="required"/>
+            <xs:attribute name="overwrite" type="xs:string" use="optional"/>
+            <xs:attribute default="UTF-8" name="encoding" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="cat">
         <xs:complexType mixed="true">
-            <xs:attribute name="uri" type="xs:string" use="required" />
-            <xs:attribute name="append" type="xs:string" default="true" />
+            <xs:attribute name="uri" type="xs:string" use="required"/>
+            <xs:attribute default="true" name="append" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="log">
         <xs:complexType mixed="true">
-            <xs:attribute name="tag" type="xs:string" default="log" />
-            <xs:attribute name="level" type="xs:string" default="info" />
+            <xs:attribute default="log" name="tag" type="xs:string"/>
+            <xs:attribute default="info" name="level" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="echo">
         <xs:complexType mixed="true">
-            <xs:attribute name="message" type="xs:string" use="optional" />
+            <xs:attribute name="message" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="lockgroup">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="lockcomponent"/>
+            </xs:sequence>
+            <xs:attribute default="-1" name="timeout" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="lockcomponent">
         <xs:complexType>
-            <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                <xs:element ref="attrib" />
+            <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="attrib"/>
             </xs:sequence>
-            <xs:attribute name="id" type="xs:string" use="required" />
-            <xs:attribute name="name" type="xs:string" use="optional" />
-            <xs:attribute name="timeout" type="xs:string" default="60s" />
+            <xs:attribute name="id" type="xs:string" use="required"/>
+            <xs:attribute name="name" type="xs:string" use="optional"/>
+            <xs:attribute default="60s" name="timeout" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="attrib">
         <xs:complexType>
-            <xs:attribute name="name" type="xs:string" use="optional" />
-            <xs:attribute name="value" type="xs:string" use="optional" />
+            <xs:attribute name="name" type="xs:string" use="optional"/>
+            <xs:attribute name="value" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="unlockcomponent">
         <xs:complexType>
-            <xs:attribute name="id" type="xs:string" use="required" />
+            <xs:attribute name="id" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="stopcomponent">
-        <xs:complexType />
+        <xs:complexType/>
     </xs:element>
     
     <xs:element name="createstorage">
         <xs:complexType>
-            <xs:attribute name="id" type="xs:string" use="required" />
-            <xs:attribute name="path" type="xs:string" use="required" />
-            <xs:attribute name="export" type="xs:string" default="false" />
+            <xs:attribute name="id" type="xs:string" use="required"/>
+            <xs:attribute name="path" type="xs:string" use="required"/>
+            <xs:attribute default="false" name="export" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="createrange">
         <xs:complexType>
-            <xs:attribute name="name" type="xs:string" use="required" />
-            <xs:attribute name="value" type="xs:string" use="required" />
-            <xs:attribute name="recycle" type="xs:string" use="optional" />
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="value" type="xs:string" use="required"/>
+            <xs:attribute name="recycle" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="putfile">
         <xs:complexType>
-            <xs:attribute name="uri" type="xs:string" use="required" />
-            <xs:attribute name="remotefile" type="xs:string" use="required" />
+            <xs:attribute name="uri" type="xs:string" use="required"/>
+            <xs:attribute name="remotefile" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="getfile">
         <xs:complexType>
-            <xs:attribute name="uri" type="xs:string" use="required" />
-            <xs:attribute name="remotefile" type="xs:string" use="required" />
-            <xs:attribute name="append" type="xs:string" default="false" />
-            <xs:attribute name="compress" type="xs:string" default="false" />
+            <xs:attribute name="uri" type="xs:string" use="required"/>
+            <xs:attribute name="remotefile" type="xs:string" use="required"/>
+            <xs:attribute default="false" name="append" type="xs:string"/>
+            <xs:attribute default="false" name="compress" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="monitor_create">
         <xs:complexType>
-            <xs:attribute name="id"         type="xs:string" use="required" />
-            <xs:attribute name="file"       type="xs:string" use="required" />
+            <xs:attribute name="id" type="xs:string" use="required"/>
+            <xs:attribute name="file" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="monitor_destroy">
         <xs:complexType>
-            <xs:attribute name="id"         type="xs:string" use="required" />
+            <xs:attribute name="id" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="monitor_diff">
         <xs:complexType>
-            <xs:attribute name="id"         type="xs:string" use="required" />
-            <xs:attribute name="update"      type="xs:string" default="false" />
+            <xs:attribute name="id" type="xs:string" use="required"/>
+            <xs:attribute default="false" name="update" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="monitor_grep">
         <xs:complexType>
-            <xs:attribute name="id"          type="xs:string" use="required" />
-            <xs:attribute name="expression"  type="xs:string" use="required" />
-            <xs:attribute name="insensitive" type="xs:string" default="false" />
-            <xs:attribute name="update"      type="xs:string" default="false" />
+            <xs:attribute name="id" type="xs:string" use="required"/>
+            <xs:attribute name="expression" type="xs:string" use="required"/>
+            <xs:attribute default="false" name="insensitive" type="xs:string"/>
+            <xs:attribute default="false" name="update" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 
@@ -648,14 +653,14 @@
     </xs:element>
    
     <xs:attributeGroup name="aggregation_properties">
-        <xs:attribute name="property" type="xs:string" use="required" />
-        <xs:attribute name="range" type="xs:string" use="required" />
+        <xs:attribute name="property" type="xs:string" use="required"/>
+        <xs:attribute name="range" type="xs:string" use="required"/>
     </xs:attributeGroup> 
     
     <xs:element name="for">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">
-                <xs:group ref="script_tags" />
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="script_tags"/>
             </xs:choice>
             <xs:attributeGroup ref="aggregation_properties"/>
         </xs:complexType>
@@ -664,21 +669,21 @@
     <xs:attributeGroup name="distribute_attribs">
         <!-- can't make either range or workers attribute till I can completely
              deprecate and remove the workers attribute. -->
-        <xs:attribute name="workers"    type="xs:string" use="optional" />
-        <xs:attribute name="range"      type="xs:string" use="optional" />
+        <xs:attribute name="workers" type="xs:string" use="optional"/>
+        <xs:attribute name="range" type="xs:string" use="optional"/>
         
-        <xs:attribute name="func"       type="xs:string" use="optional" />
-        <xs:attribute name="iterations" type="xs:string" use="optional" />
-        <xs:attribute name="timer"      type="xs:string" use="optional" />
-        <xs:attribute name="unit"       type="xs:string" default="1s" />
-        <xs:attribute name="property"   type="xs:string" use="optional" />
-        <xs:attribute name="id"         type="xs:string" use="optional" />
+        <xs:attribute name="func" type="xs:string" use="optional"/>
+        <xs:attribute name="iterations" type="xs:string" use="optional"/>
+        <xs:attribute name="timer" type="xs:string" use="optional"/>
+        <xs:attribute default="1s" name="unit" type="xs:string"/>
+        <xs:attribute name="property" type="xs:string" use="optional"/>
+        <xs:attribute name="id" type="xs:string" use="optional"/>
     </xs:attributeGroup> 
     
     <xs:element name="distribute">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">
-                <xs:group ref="script_tags" />
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="script_tags"/>
             </xs:choice>
             <xs:attributeGroup ref="distribute_attribs"/>
         </xs:complexType>
@@ -687,7 +692,7 @@
     <xs:element name="parallelloop">
         <xs:complexType>
             <xs:choice maxOccurs="unbounded">
-                <xs:group ref="script_tags" />
+                <xs:group ref="script_tags"/>
             </xs:choice>
             <xs:attributeGroup ref="aggregation_properties"/>
         </xs:complexType>
@@ -696,7 +701,7 @@
     <xs:element name="choose">
         <xs:complexType>
             <xs:choice maxOccurs="unbounded">
-                <xs:group ref="script_tags" />
+                <xs:group ref="script_tags"/>
             </xs:choice>
             <xs:attribute name="howoften" use="required"/>
         </xs:complexType>
@@ -704,7 +709,7 @@
     
     <xs:element name="choices">
         <xs:complexType>
-            <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:choice maxOccurs="unbounded" minOccurs="1">
                 <xs:element ref="choose"/>
             </xs:choice>
         </xs:complexType>
@@ -712,15 +717,15 @@
     
     <xs:element name="fetchresult">
         <xs:complexType>
-            <xs:attribute name="cursor" type="xs:string" use="required" />
-            <xs:attribute name="recycle" type="xs:string" use="optional" />
-            <xs:attribute name="fetchsize" type="xs:string" use="optional" />
+            <xs:attribute name="cursor" type="xs:string" use="required"/>
+            <xs:attribute name="recycle" type="xs:string" use="optional"/>
+            <xs:attribute name="fetchsize" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="sleep">
         <xs:complexType>
-            <xs:attribute name="time" type="xs:string" use="required" />
+            <xs:attribute name="time" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
     
@@ -729,56 +734,56 @@
             <xs:choice maxOccurs="unbounded">
                 <xs:any namespace="##any"/> 
             </xs:choice>    
-            <xs:attribute name="uri" type="xs:string" use="optional" />
-            <xs:attribute name="type" type="xs:string" default="xml" />
+            <xs:attribute name="uri" type="xs:string" use="optional"/>
+            <xs:attribute default="xml" name="type" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="record">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="attribute" minOccurs="0" maxOccurs="unbounded" />
-                <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:group ref="script_tags" />
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="attribute"/>
+                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                    <xs:group ref="script_tags"/>
                 </xs:choice>
             </xs:sequence>
-            <xs:attribute name="uri"        type="xs:string" use="optional" />
-            <xs:attribute name="type"       type="xs:string" default="txt" />
-            <xs:attribute name="event"      type="xs:string" use="optional" />
-            <xs:attribute name="append"     type="xs:string" default="false" />
-            <xs:attribute name="encoding"   type="xs:string" default="UTF-8"/>
+            <xs:attribute name="uri" type="xs:string" use="optional"/>
+            <xs:attribute default="txt" name="type" type="xs:string"/>
+            <xs:attribute name="event" type="xs:string" use="optional"/>
+            <xs:attribute default="false" name="append" type="xs:string"/>
+            <xs:attribute default="UTF-8" name="encoding" type="xs:string"/>
 
-            <xs:attribute name="refid"      type="xs:string" use="optional" />
-            <xs:attribute name="id"      type="xs:string" use="optional" />
+            <xs:attribute name="refid" type="xs:string" use="optional"/>
+            <xs:attribute name="id" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="event">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
                 <xs:any namespace="##any"/> 
             </xs:choice>    
-            <xs:attribute name="name"  type="xs:string" use="optional" />
-            <xs:attribute name="id"    type="xs:string" use="optional" />
-            <xs:attribute name="refid" type="xs:string" use="optional" />
+            <xs:attribute name="name" type="xs:string" use="optional"/>
+            <xs:attribute name="id" type="xs:string" use="optional"/>
+            <xs:attribute name="refid" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="stats">
         <xs:complexType>
-            <xs:attribute name="cursor"  type="xs:string" use="required" />
-            <xs:attribute name="event"   type="xs:string" use="required" />
-            <xs:attribute name="monitor" type="xs:string" />
+            <xs:attribute name="cursor" type="xs:string" use="required"/>
+            <xs:attribute name="event" type="xs:string" use="required"/>
+            <xs:attribute name="monitor" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="property">
         <xs:complexType mixed="true">
-            <xs:attribute name="name" type="xs:string" use="required" />
-            <xs:attribute name="value" type="xs:string" use="optional" />
-            <xs:attribute name="uri" type="xs:string" use="optional" />
-            <xs:attribute name="overwrite" type="xs:string" use="optional" />
-            <xs:attribute name="encoding" type="xs:string" default="UTF-8" />
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="value" type="xs:string" use="optional"/>
+            <xs:attribute name="uri" type="xs:string" use="optional"/>
+            <xs:attribute name="overwrite" type="xs:string" use="optional"/>
+            <xs:attribute default="UTF-8" name="encoding" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 
@@ -790,62 +795,62 @@
     
     <xs:element name="attribute">
         <xs:complexType>
-            <xs:attribute name="name" type="xs:string" use="required" />
-            <xs:attribute name="value" type="xs:string" use="required" />
-            <xs:attribute name="type" type="xs:string" default="string" />
-            <xs:attribute name="index" type="xs:string" use="optional" />
-            <xs:attribute name="length" type="xs:string" use="optional" />
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="value" type="xs:string" use="required"/>
+            <xs:attribute default="string" name="type" type="xs:string"/>
+            <xs:attribute name="index" type="xs:string" use="optional"/>
+            <xs:attribute name="length" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="nextresult">
         <xs:complexType>
-            <xs:attribute name="cursor" type="xs:string" use="required" />
-            <xs:attribute name="recycle" type="xs:string" use="optional" />
+            <xs:attribute name="cursor" type="xs:string" use="required"/>
+            <xs:attribute name="recycle" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="iterate">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">
-                <xs:group ref="script_tags" />
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="script_tags"/>
             </xs:choice>
-            <xs:attribute name="cursor" type="xs:string" use="required" />
+            <xs:attribute name="cursor" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="resetcursor">
         <xs:complexType>
-            <xs:attribute name="cursor" type="xs:string" use="required" />
+            <xs:attribute name="cursor" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="query">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="select" minOccurs="0" maxOccurs="1" />
-                <xs:element ref="where" minOccurs="0" maxOccurs="1" />
+                <xs:element maxOccurs="1" minOccurs="0" ref="select"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="where"/>
             </xs:sequence>
-            <xs:attribute name="uri"      type="xs:string" use="required" />
-            <xs:attribute name="cursor"   type="xs:string" use="required" />
-            <xs:attribute name="type"     type="xs:string" default="txt" />
-            <xs:attribute name="event"    type="xs:string" use="optional" />
-            <xs:attribute name="encoding" default="UTF-8"/>
+            <xs:attribute name="uri" type="xs:string" use="required"/>
+            <xs:attribute name="cursor" type="xs:string" use="required"/>
+            <xs:attribute default="txt" name="type" type="xs:string"/>
+            <xs:attribute name="event" type="xs:string" use="optional"/>
+            <xs:attribute default="UTF-8" name="encoding"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="select">
         <xs:complexType>
-            <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                <xs:element ref="field" />
+            <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="field"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="field">
         <xs:complexType>
-            <xs:attribute name="name" type="xs:string" use="required" />
-            <xs:attribute name="type" type="xs:string" use="optional" />
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="type" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
     
@@ -858,16 +863,30 @@
     <xs:element name="compare">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="query" minOccurs="1" maxOccurs="2"/>
-	            <xs:element ref="where" minOccurs="0"/>
+                <xs:element maxOccurs="2" minOccurs="1" ref="query"/>
+	            <xs:element minOccurs="0" ref="where"/>
 	            <xs:element ref="validate"/>
             </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="filter">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="1" minOccurs="0" ref="select"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="where"/>
+            </xs:sequence>
+            <xs:attribute name="srcuri" use="required"/>
+            <xs:attribute name="dsturi" use="required"/>
+            <xs:attribute default="txt" name="type"/>
+            <xs:attribute name="event" use="required"/>
+            <xs:attribute default="UTF-8" name="encoding" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="validate">
         <xs:complexType>
-            <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:sequence maxOccurs="unbounded" minOccurs="1">
                 <xs:group ref="script_tags"/>
             </xs:sequence>
         </xs:complexType>
@@ -875,7 +894,7 @@
     
     <xs:element name="and">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
                 <xs:group ref="conditionals"/>
             </xs:choice>
         </xs:complexType>
@@ -883,7 +902,7 @@
     
    <xs:element name="not">
         <xs:complexType>
-            <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:choice maxOccurs="1" minOccurs="1">
                 <xs:group ref="conditionals"/>
             </xs:choice>
         </xs:complexType>
@@ -891,7 +910,7 @@
     
     <xs:element name="or">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
                 <xs:group ref="conditionals"/>
             </xs:choice>
         </xs:complexType>
@@ -899,81 +918,80 @@
     
     <xs:element name="gt">
         <xs:complexType>
-            <xs:attribute name="op1" type="xs:string" use="required" />
-            <xs:attribute name="op2" type="xs:string" use="required" />
-            <xs:attribute name="type" type="xs:string" default="string" />
-            <xs:attribute name="nullable" type="xs:string" default="false" />
+            <xs:attribute name="op1" type="xs:string" use="required"/>
+            <xs:attribute name="op2" type="xs:string" use="required"/>
+            <xs:attribute default="string" name="type" type="xs:string"/>
+            <xs:attribute default="false" name="nullable" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="lt">
         <xs:complexType>
-            <xs:attribute name="op1" type="xs:string" use="required" />
-            <xs:attribute name="op2" type="xs:string" use="required" />
-            <xs:attribute name="type" type="xs:string" default="string" />
-            <xs:attribute name="nullable" type="xs:string" default="false" />
+            <xs:attribute name="op1" type="xs:string" use="required"/>
+            <xs:attribute name="op2" type="xs:string" use="required"/>
+            <xs:attribute default="string" name="type" type="xs:string"/>
+            <xs:attribute default="false" name="nullable" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="eq">
         <xs:complexType>
-            <xs:attribute name="op1" type="xs:string" use="required" />
-            <xs:attribute name="op2" type="xs:string" use="required" />
-            <xs:attribute name="type" type="xs:string" default="string" />
-            <xs:attribute name="nullable" type="xs:string" default="false" />
+            <xs:attribute name="op1" type="xs:string" use="required"/>
+            <xs:attribute name="op2" type="xs:string" use="required"/>
+            <xs:attribute default="string" name="type" type="xs:string"/>
+            <xs:attribute default="false" name="nullable" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="neq">
         <xs:complexType>
-            <xs:attribute name="op1" type="xs:string" use="required" />
-            <xs:attribute name="op2" type="xs:string" use="required" />
-            <xs:attribute name="type" type="xs:string" default="string" />
-            <xs:attribute name="nullable" type="xs:string" default="false" />
+            <xs:attribute name="op1" type="xs:string" use="required"/>
+            <xs:attribute name="op2" type="xs:string" use="required"/>
+            <xs:attribute default="string" name="type" type="xs:string"/>
+            <xs:attribute default="false" name="nullable" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="within">
         <xs:complexType>
-            <xs:attribute name="op1" type="xs:string" use="required" />
-            <xs:attribute name="op2" type="xs:string" use="required" />
-            <xs:attribute name="tolerance" type="xs:string" use="required" />
+            <xs:attribute name="op1" type="xs:string" use="required"/>
+            <xs:attribute name="op2" type="xs:string" use="required"/>
+            <xs:attribute name="tolerance" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="isset">
         <xs:complexType>
-            <xs:attribute name="property" type="xs:string" use="required" />
+            <xs:attribute name="property" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
    
     <xs:group name="conditionals">
         <xs:choice>
             <xs:group ref="comparison_conditionals"/>
-            <xs:element ref="rendezvous_check" />
-            <xs:element ref="rendezvous_exists" />
-            <xs:element ref="share_exists" />
+            <xs:element ref="rendezvous_check"/>
+            <xs:element ref="rendezvous_exists"/>
+            <xs:element ref="share_exists"/>
         </xs:choice>
     </xs:group>
     
     <xs:group name="comparison_conditionals">
         <xs:choice>
-             <xs:element name="false" />
-             <xs:element name="true" />
+             <xs:element name="false"/>
+             <xs:element name="true"/>
              
-             <xs:element ref="not" />
-             <xs:element ref="and" />
-             <xs:element ref="eq" />
-             <xs:element ref="gt" />
-             <xs:element ref="lt" />
-             <xs:element ref="neq" />
-             <xs:element ref="or" />
-             <xs:element ref="within" />
+             <xs:element ref="not"/>
+             <xs:element ref="and"/>
+             <xs:element ref="eq"/>
+             <xs:element ref="gt"/>
+             <xs:element ref="lt"/>
+             <xs:element ref="neq"/>
+             <xs:element ref="or"/>
+             <xs:element ref="within"/>
             
-             <xs:element ref="match" />
+             <xs:element ref="match"/>
              
-             <xs:element ref="isset" />
-             
+             <xs:element ref="isset"/>
         </xs:choice>
     </xs:group>
     
@@ -981,8 +999,8 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:group ref="conditionals"/>
-                <xs:element ref="then" minOccurs="0" maxOccurs="1" />
-                <xs:element ref="else" minOccurs="0" maxOccurs="1" />
+                <xs:element maxOccurs="1" minOccurs="0" ref="then"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="else"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -992,22 +1010,22 @@
             <xs:sequence>
                 <xs:group ref="conditionals"/>
             </xs:sequence>
-            <xs:attribute name="message" type="xs:string" use="optional" />
+            <xs:attribute name="message" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="then">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">
-                <xs:group ref="script_tags" />
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="script_tags"/>
             </xs:choice>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="else">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">
-                <xs:group ref="script_tags" />
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="script_tags"/>
             </xs:choice>
         </xs:complexType>
     </xs:element>
@@ -1015,29 +1033,29 @@
     <xs:element name="switch">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="case" minOccurs="0" maxOccurs="unbounded" />
-                <xs:element ref="default" minOccurs="0" maxOccurs="1" />
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="case"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="default"/>
             </xs:sequence>
-            <xs:attribute name="property" type="xs:string" use="optional" />
+            <xs:attribute name="property" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="case">
         <xs:complexType>
             <xs:sequence>
-                <xs:group ref="conditionals" minOccurs="0" maxOccurs="1" />
-                <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:group ref="script_tags" />
+                <xs:group maxOccurs="1" minOccurs="0" ref="conditionals"/>
+                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                    <xs:group ref="script_tags"/>
                 </xs:choice>
             </xs:sequence>
-            <xs:attribute name="value" type="xs:string" use="optional" />
+            <xs:attribute name="value" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="default">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">
-                <xs:group ref="script_tags" />
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="script_tags"/>
             </xs:choice>
         </xs:complexType>
     </xs:element>
@@ -1045,9 +1063,9 @@
     <xs:element name="while">
         <xs:complexType>
             <xs:sequence>
-                <xs:group ref="conditionals" minOccurs="0" maxOccurs="1" />
-                <xs:choice minOccurs="0" maxOccurs="unbounded">
-                    <xs:group ref="script_tags" />
+                <xs:group maxOccurs="1" minOccurs="0" ref="conditionals"/>
+                <xs:choice maxOccurs="unbounded" minOccurs="0">
+                    <xs:group ref="script_tags"/>
                 </xs:choice>
             </xs:sequence>
         </xs:complexType>
@@ -1057,67 +1075,67 @@
 
     <xs:element name="replace">
         <xs:complexType>
-            <xs:attribute name="source"      type="xs:string" use="required" />
-            <xs:attribute name="destination" type="xs:string" use="required" />
-            <xs:attribute name="expression"  type="xs:string" use="required" />
-            <xs:attribute name="with"        type="xs:string" use="required" />
+            <xs:attribute name="source" type="xs:string" use="required"/>
+            <xs:attribute name="destination" type="xs:string" use="required"/>
+            <xs:attribute name="expression" type="xs:string" use="required"/>
+            <xs:attribute name="with" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="match">
         <xs:complexType>
-            <xs:attribute name="source"      type="xs:string" use="required" />
-            <xs:attribute name="expression"  type="xs:string" use="required" />
-            <xs:attribute name="insensitive" type="xs:string" default="false" />
-            <xs:attribute name="partial"     type="xs:string" default="false" />
+            <xs:attribute name="source" type="xs:string" use="required"/>
+            <xs:attribute name="expression" type="xs:string" use="required"/>
+            <xs:attribute default="false" name="insensitive" type="xs:string"/>
+            <xs:attribute default="false" name="partial" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 
     <!-- http tags --> 
     <xs:attributeGroup name="http_attributes">
-        <xs:attribute name="uri" type="xs:string" use="required" />
-        <xs:attribute name="perfrun" type="xs:string" default="false" />
-        <xs:attribute name="acceptredirects" type="xs:string" default="true" />
-        <xs:attribute name="onFailure" type="xs:string" default="fail" />
-        <xs:attribute name="connecttimeout" type="xs:string" default="5s" />
-        <xs:attribute name="hash" default="SHA-1"/>
-        <xs:attribute name="bandwidth" />
+        <xs:attribute name="uri" type="xs:string" use="required"/>
+        <xs:attribute default="false" name="perfrun" type="xs:string"/>
+        <xs:attribute default="true" name="acceptredirects" type="xs:string"/>
+        <xs:attribute default="fail" name="onFailure" type="xs:string"/>
+        <xs:attribute default="5s" name="connecttimeout" type="xs:string"/>
+        <xs:attribute default="SHA-1" name="hash"/>
+        <xs:attribute name="bandwidth"/>
     </xs:attributeGroup>
     
     <xs:group name="http_tags">
           <xs:choice>
-            <xs:element ref="http_config" />
-            <xs:element ref="headergroup" />
-            <xs:element ref="cookiegroup" />
-            <xs:element ref="cookie"      />
-            <xs:element ref="header"      />
+            <xs:element ref="http_config"/>
+            <xs:element ref="headergroup"/>
+            <xs:element ref="cookiegroup"/>
+            <xs:element ref="cookie"/>
+            <xs:element ref="header"/>
         </xs:choice>
     </xs:group>
     
     <xs:element name="http_config">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="proxy" minOccurs="0" maxOccurs="1" />
+                <xs:element maxOccurs="1" minOccurs="0" ref="proxy"/>
             </xs:sequence>
-            <xs:attribute name="id"    type="xs:string" />
-            <xs:attribute name="refid" type="xs:string" />
-            <xs:attribute name="expectcontinue" default="false"/>
+            <xs:attribute name="id" type="xs:string"/>
+            <xs:attribute name="refid" type="xs:string"/>
+            <xs:attribute default="false" name="expectcontinue"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="proxy">
         <xs:complexType>
             <xs:attribute name="host" type="xs:string" use="required"/>
-            <xs:attribute name="port" type="xs:string" default="3128"/>
+            <xs:attribute default="3128" name="port" type="xs:string"/>
 
-            <xs:attribute name="username" type="xs:string" />
-            <xs:attribute name="password" type="xs:string" />
+            <xs:attribute name="username" type="xs:string"/>
+            <xs:attribute name="password" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="http_get">
         <xs:complexType>
-            <xs:group ref="http_tags" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="http_tags"/>
             <xs:attributeGroup ref="http_attributes"/>
         </xs:complexType>
     </xs:element>
@@ -1125,8 +1143,8 @@
     <xs:element name="http_post">
         <xs:complexType>
             <xs:sequence>
-                <xs:group   ref="http_tags" minOccurs="0" maxOccurs="unbounded"/>
-	            <xs:element ref="entity"    minOccurs="0" maxOccurs="1" />
+                <xs:group maxOccurs="unbounded" minOccurs="0" ref="http_tags"/>
+	            <xs:element maxOccurs="1" minOccurs="0" ref="entity"/>
             </xs:sequence>
             <xs:attributeGroup ref="http_attributes"/>
         </xs:complexType>
@@ -1135,8 +1153,8 @@
     <xs:element name="http_put">
         <xs:complexType>
             <xs:sequence>
-                <xs:group   ref="http_tags" minOccurs="0" maxOccurs="unbounded"/>
-	            <xs:element ref="entity"    minOccurs="0" maxOccurs="1" />
+                <xs:group maxOccurs="unbounded" minOccurs="0" ref="http_tags"/>
+	            <xs:element maxOccurs="1" minOccurs="0" ref="entity"/>
             </xs:sequence>
             <xs:attributeGroup ref="http_attributes"/>
         </xs:complexType>
@@ -1144,14 +1162,14 @@
     
     <xs:element name="http_head">
         <xs:complexType>
-            <xs:group ref="http_tags" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="http_tags"/>
             <xs:attributeGroup ref="http_attributes"/>
         </xs:complexType>
     </xs:element>
    
     <xs:element name="http_delete">
         <xs:complexType>
-            <xs:group ref="http_tags" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="http_tags"/>
             <xs:attributeGroup ref="http_attributes"/>
         </xs:complexType>
     </xs:element>
@@ -1159,8 +1177,8 @@
     <xs:element name="http_request">
         <xs:complexType>
             <xs:sequence>
-                <xs:group   ref="http_tags" minOccurs="0" maxOccurs="unbounded"/>
-	            <xs:element ref="entity"    minOccurs="0" maxOccurs="1" />
+                <xs:group maxOccurs="unbounded" minOccurs="0" ref="http_tags"/>
+	            <xs:element maxOccurs="1" minOccurs="0" ref="entity"/>
             </xs:sequence>
             <xs:attributeGroup ref="http_attributes"/>
             <xs:attribute name="method" use="required"/>
@@ -1169,100 +1187,96 @@
 
     <xs:element name="urlencode">
         <xs:complexType>
-            <xs:attribute name="source" type="xs:string" use="required" />
-            <xs:attribute name="result" type="xs:string" use="required" />
+            <xs:attribute name="source" type="xs:string" use="required"/>
+            <xs:attribute name="result" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="header">
         <xs:complexType>
-            <xs:attribute name="name" type="xs:string" use="required" />
-            <xs:attribute name="value" type="xs:string" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="value" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="headergroup">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="header" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="header"/>
             </xs:sequence>
-            <xs:attribute name="id" type="xs:string" use="optional" />
-            <xs:attribute name="refid" type="xs:string" use="optional" />
+            <xs:attribute name="id" type="xs:string" use="optional"/>
+            <xs:attribute name="refid" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="cookie">
         <xs:complexType>
-            <xs:attribute name="name"   type="xs:string" use="required" />
-            <xs:attribute name="value"  type="xs:string" use="required" />
-            <xs:attribute name="domain" type="xs:string" use="required" />
-            <xs:attribute name="path"   type="xs:string" use="required" />
+            <xs:attribute name="name" type="xs:string" use="required"/>
+            <xs:attribute name="value" type="xs:string" use="required"/>
+            <xs:attribute name="domain" type="xs:string" use="required"/>
+            <xs:attribute name="path" type="xs:string" use="required"/>
             
-            <xs:attribute name="comment"    type="xs:string" default=""/>
-            <xs:attribute name="version"    type="xs:string" default="0" />
-            <xs:attribute name="expirydate" type="xs:string" default="Mon Jan 01 00:00:00 PDT 2038" />
-            <xs:attribute name="secure"     type="xs:string" default="false" />
+            <xs:attribute default="" name="comment" type="xs:string"/>
+            <xs:attribute default="0" name="version" type="xs:string"/>
+            <xs:attribute default="Mon Jan 01 00:00:00 PDT 2038" name="expirydate" type="xs:string"/>
+            <xs:attribute default="false" name="secure" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="cookiegroup">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="cookie" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="cookie"/>
             </xs:sequence>
-            <xs:attribute name="id" type="xs:string" use="optional" />
-            <xs:attribute name="refid" type="xs:string" use="optional" />
+            <xs:attribute name="id" type="xs:string" use="optional"/>
+            <xs:attribute name="refid" type="xs:string" use="optional"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="entity">
         <xs:complexType mixed="true">
-            <xs:attribute name="value" type="xs:string" />
+            <xs:attribute name="value" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="http_server">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="http_listener" minOccurs="0" maxOccurs="unbounded" />
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="http_listener"/>
             </xs:sequence>
-            <xs:attribute name="host" type="xs:string" default="127.0.0.1"/>
-            <xs:attribute name="port" type="xs:string" default="80"/>
-            <xs:attribute name="command" type="xs:string" default="start"/>
-            <xs:attribute name="threads" default="4"/>
+            <xs:attribute default="127.0.0.1" name="host" type="xs:string"/>
+            <xs:attribute default="80" name="port" type="xs:string"/>
+            <xs:attribute default="start" name="command" type="xs:string"/>
+            <xs:attribute default="4" name="threads"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="http_listener">
         <xs:complexType>
-            <xs:group ref="component_commands" minOccurs="0" maxOccurs="unbounded" />
+            <xs:group maxOccurs="unbounded" minOccurs="0" ref="component_commands"/>
             <xs:attribute name="path" type="xs:string" use="required"/>
-            <xs:attribute name="method" type="xs:string" default="*"/>
-            <xs:attribute name="perfrun" type="xs:string" default="false"/>
-            <xs:attribute name="hash" type="xs:string" default="SHA-1"/>
+            <xs:attribute default="*" name="method" type="xs:string"/>
+            <xs:attribute default="false" name="perfrun" type="xs:string"/>
+            <xs:attribute default="SHA-1" name="hash" type="xs:string"/>
             <xs:attribute name="bandwidth"/>
         </xs:complexType>
     </xs:element>
 
     <xs:group name="http_server_tags">
           <xs:choice>
-            <xs:element ref="headergroup" />
-            <xs:element ref="cookiegroup" />
-            <xs:element ref="cookie"      />
-            <xs:element ref="header"      />
+            <xs:element ref="headergroup"/>
+            <xs:element ref="cookiegroup"/>
+            <xs:element ref="cookie"/>
+            <xs:element ref="header"/>
         </xs:choice>
     </xs:group>
 
     <xs:element name="http_response">
         <xs:complexType>
             <xs:sequence>
-                <xs:group ref="http_server_tags"
-                          minOccurs="0"
-                          maxOccurs="unbounded"/>
+                <xs:group maxOccurs="unbounded" minOccurs="0" ref="http_server_tags"/>
                             
-	            <xs:element ref="entity"
-                            minOccurs="0"
-                            maxOccurs="1" />
+	            <xs:element maxOccurs="1" minOccurs="0" ref="entity"/>
             </xs:sequence>
             <xs:attribute name="status" type="xs:integer" use="required"/>
             <xs:attribute name="message" type="xs:string"/>
@@ -1273,39 +1287,39 @@
     <!-- rendezvous tags -->
     <xs:element name="rendezvous_create">
         <xs:complexType>
-            <xs:attribute name="id"      type="xs:string" use="required" />
-            <xs:attribute name="parties" type="xs:string" use="required" />
+            <xs:attribute name="id" type="xs:string" use="required"/>
+            <xs:attribute name="parties" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="rendezvous_destroy">
         <xs:complexType>
-            <xs:attribute name="id"      type="xs:string" use="required" />
+            <xs:attribute name="id" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="rendezvous_check">
         <xs:complexType>
-            <xs:attribute name="id"      type="xs:string" use="required" />
+            <xs:attribute name="id" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="rendezvous_exists">
         <xs:complexType>
-            <xs:attribute name="id"      type="xs:string" use="required" />
+            <xs:attribute name="id" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
     
     <xs:element name="rendezvous_visit">
         <xs:complexType>
-            <xs:attribute name="id"      type="xs:string" use="required" />
-            <xs:attribute name="timeout" type="xs:string" default="-1" />
+            <xs:attribute name="id" type="xs:string" use="required"/>
+            <xs:attribute default="-1" name="timeout" type="xs:string"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="rendezvous_reset">
         <xs:complexType>
-            <xs:attribute name="id"      type="xs:string" use="required" />
+            <xs:attribute name="id" type="xs:string" use="required"/>
         </xs:complexType>
     </xs:element>
     
@@ -1356,7 +1370,7 @@
     <xs:element name="share_create">
         <xs:complexType>
             <xs:attribute name="id" use="required"/>
-            <xs:attribute name="type" default="single"/>
+            <xs:attribute default="single" name="type"/>
         </xs:complexType>
     </xs:element>
 
@@ -1369,20 +1383,20 @@
     <xs:element name="share_get">
         <xs:complexType>
             <xs:attribute name="id" use="required"/>
-            <xs:attribute name="blocking" default="false"/>
+            <xs:attribute default="false" name="blocking"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="share_wait">
         <xs:complexType>
             <xs:attribute name="id" use="required"/>
-            <xs:attribute name="timeout" default="0"/>
+            <xs:attribute default="0" name="timeout"/>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="share_set">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="1">
+            <xs:choice maxOccurs="1" minOccurs="0">
                 <xs:element ref="call"/>
                 <xs:group ref="common_commands"/>
             </xs:choice>
@@ -1398,7 +1412,7 @@
     
     <xs:element name="diff">
         <xs:complexType>
-            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:sequence maxOccurs="unbounded" minOccurs="0">
                 <xs:element ref="input"/>
             </xs:sequence>
         </xs:complexType>
@@ -1430,17 +1444,17 @@
     <xs:element name="setup">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="dtfc" minOccurs="1"/>
+                <xs:element minOccurs="1" ref="dtfc"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
     <xs:element name="dtfc">
         <xs:complexType>
-            <xs:choice minOccurs="0" maxOccurs="unbounded">
-                <xs:element ref="property" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element ref="dtfa" minOccurs="0" maxOccurs="unbounded"/>
-                <xs:element ref="dtfx" minOccurs="0" maxOccurs="1"/>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="property"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="dtfa"/>
+                <xs:element maxOccurs="1" minOccurs="0" ref="dtfx"/>
             </xs:choice>
             <xs:attribute name="host"/>
             <xs:attribute name="user"/>
@@ -1453,7 +1467,7 @@
     <xs:element name="dtfa">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="property" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="property"/>
             </xs:sequence>
             <xs:attribute name="user"/>
             <xs:attribute name="host"/>
@@ -1466,7 +1480,7 @@
     <xs:element name="dtfx">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="property" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="property"/>
             </xs:sequence>
             <xs:attribute name="user"/>
             <xs:attribute name="host"/>

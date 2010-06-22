@@ -15,9 +15,11 @@
         <loadproperties uri="storage://INPUT/ut.properties"/>
 
         <echo message="*** Property resolution unit test ***"/>
-        
-        <lockcomponent id="DTFA1" timeout="60s"/>
-        <lockcomponent id="DTFA2" timeout="60s"/>
+       
+        <lockgroup>
+	        <lockcomponent id="DTFA1" timeout="60s"/>
+	        <lockcomponent id="DTFA2" timeout="60s"/>
+        </lockgroup>
     </local>
 
     <for property="i" range="1..10">

@@ -101,8 +101,9 @@
     <monitor_diff id="LOGS"/>
     <createrange name="files" value="${monitor_diff.newfiles}"/> 
     <for property="i" range="1..10">
-        <log>new ${files}</log>
+        <assert>
+            <match source="${files}" expression=".*newfile\-${prefix}\-[0-9]*"/>
+        </assert>
     </for>
     <monitor_destroy id="LOGS"/>
-    
 </script> 

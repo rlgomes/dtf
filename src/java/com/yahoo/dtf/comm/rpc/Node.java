@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.yahoo.dtf.comm.rpc.ActionResult;
@@ -51,22 +52,35 @@ public class Node implements NodeInterface,CleanUpHook {
         ActionState as = ActionState.getInstance();
      
         executions.incrementAndGet();
+        
+        String threadId = null;
+        
+        if (action instanceof Sequence) 
+            threadId = ((Sequence)action).getThreadid();
+        
         try { 
             if (DTFNode.getType().equals("dtfc")) { 
                 if (id.equals("dtfc")) {
-                    action.execute();
-                    if (action instanceof Lock)
-                        result.addAction(action);
+                    DTFState state = as.getState(threadId).duplicate();
+                    state.resetContext();
+                    as.setState(state);
+                    
+                    state.setConfig(as.getState(threadId).getConfig());
+                    state.registerContext(ACTION_DTFX_THREADID, threadId);
+                    state.registerContext(ACTION_RESULT_CONTEXT, result);
+                    
+                    try {
+                        action.execute();
+                    } finally { 
+                        state.unRegisterContext(ACTION_DTFX_THREADID);
+                        state.unRegisterContext(ACTION_RESULT_CONTEXT);
+                        as.delState();
+                    }
                 } else {
                     NodeInfo node = NodeState.getInstance().getNodeInfo(id);
                     return node.getClient().sendAction(id, action);
                 }
             } else { 
-                String threadId = null;
-               
-                if (action instanceof Sequence) 
-                    threadId = ((Sequence)action).getThreadid();
-               
                 if (DTFNode.getType().equals(DTFConstants.DTFX_ID) && 
                     threadId != null) { 
                     /*
@@ -82,15 +96,20 @@ public class Node implements NodeInterface,CleanUpHook {
                      * 
                      */
                     DTFState state = as.getState(threadId).duplicate();
+                    state.resetContext();
                     as.setState(state);
+                    
                     // by default clone also clones the Config but in this case we 
                     // want callbacks to affect the currently running Config for that
                     // specific threadid
                     state.setConfig(as.getState(threadId).getConfig());
+                    state.registerContext(ACTION_DTFX_THREADID, threadId);
                     state.registerContext(ACTION_RESULT_CONTEXT, result);
+                    
                     try {
                         action.execute();
                     } finally { 
+                        state.unRegisterContext(ACTION_DTFX_THREADID);
                         state.unRegisterContext(ACTION_RESULT_CONTEXT);
                         as.delState();
                     }
@@ -126,14 +145,21 @@ public class Node implements NodeInterface,CleanUpHook {
 	                   
 	                    if ( threadId != null ) {
 	                        as.setState(rkey, state);
-	                        
-	                        synchronized(ctx) { 
-	                            ctx.add(rkey);
-	                        }
+	                        synchronized(ctx) { ctx.add(rkey); }
 	                    }
                     }
                     as.setState(state);
-                   
+                    
+                    if ( action instanceof Lock ) { 
+                        state.registerContext(ACTION_RESULT_CONTEXT, result);
+                        try { 
+                            action.execute();
+                        } finally { 
+                            state.unRegisterContext(ACTION_RESULT_CONTEXT);
+                        }
+                        return result;
+                    }
+                    
                     RemoteRecorder rrecorder = null;
                     // create the remote recorder only after setting the state 
                     // so that this recorder can now save state related changes
@@ -141,6 +167,8 @@ public class Node implements NodeInterface,CleanUpHook {
                     if ( threadId != null ) {
                         rrecorder = new RemoteRecorder(result, true, threadId);
                     	state.registerContext(ACTION_DTFX_THREADID, threadId);
+                    } else { 
+                        //Action.getLogger().info("threadid shouldn't be null " + action);
                     }
                     
                     state.registerContext(ACTION_RESULT_CONTEXT, result);
@@ -159,11 +187,26 @@ public class Node implements NodeInterface,CleanUpHook {
                         if ( owner != null && !nohooks ) { 
 	                        // call ComponentReturnHooks
 	                        ArrayList<ComponentReturnHook> rhooks = 
-	                                            Component.getComponentReturnHooks();
+                                            Component.getComponentReturnHooks();
 	                        
 	                        for (int i = 0; i < rhooks.size(); i++) { 
 	                            ComponentReturnHook crh = rhooks.get(i);
-	                            result.addActions(crh.returnToRunner(owner));
+	                            //result.addActions(crh.returnToRunner(owner));
+	                            
+	                            Comm comm = Action.getComm();
+	                            List<Action> results = crh.returnToRunner(owner);
+	                            
+	                            Sequence sequence = new Sequence();
+	                            sequence.setThreadID(threadId);
+	                            sequence.addActions(results);
+	                            
+	                            comm.sendAction(owner, sequence);
+	                       
+//	                            Action.getLogger().info("about to send [" + 
+//	                                                    threadId + "]");
+//	                            for (Action a : results) {
+//	                                comm.sendActionToCaller(owner, a);
+//	                            }
 	                        }
                         }
                     } finally { 
@@ -173,6 +216,7 @@ public class Node implements NodeInterface,CleanUpHook {
                         
                         if ( threadId != null ) {
                             Action.popRecorder();
+                            
 	                        if ( as.hasState(threadId) )
 	                            as.delState();
                         }

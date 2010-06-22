@@ -21,9 +21,9 @@
         
         <property name="perfrun" value="false"/>
         
-        <property name="dtf.http.server.port" value="44444"/>
+        <property name="dtf.http.port" value="22222"/>
         <property name="dtf.http.uri"
-                  value="http://localhost:${dtf.http.server.port}/"/>
+                  value="http://localhost:${dtf.http.port}/"/>
     </local>
    
     <multiply result="bytes" op2="1024" op1="40"/> 
@@ -31,7 +31,7 @@
     <property name="tolerance" value="10%"/>
     
     <parallel> 
-        <http_server port="22222">
+        <http_server port="${dtf.http.port}">
             <http_listener path="/void" method="*"/>
             
             <http_listener path="/getdata" method="*">
@@ -46,7 +46,7 @@
                 <sleep time="2s"/>
                 <log>Throttling sending data on client side</log>
 	            <record type="stats">
-		            <http_post uri="http://localhost:22222/void"
+		            <http_post uri="http://localhost:${dtf.http.port}/void"
                                bandwidth="${bandwidth}">
 		                <entity value="${dtf.stream(random,${bytes},1234)}"/>
 		            </http_post>
@@ -61,7 +61,7 @@
                 
                 <log>Throttling receiving data on client side</log>
 	            <record type="stats">
-		            <http_get uri="http://localhost:22222/getdata"
+		            <http_get uri="http://localhost:${dtf.http.port}/getdata"
                               bandwidth="${bandwidth}"/>
 	            </record>
                 
@@ -73,13 +73,13 @@
                 </assert>
             </sequence>
             <finally>
-                <http_server port="22222" command="stop"/> 
+                <http_server port="${dtf.http.port}" command="stop"/> 
             </finally>
         </try>
     </parallel>
 
     <parallel> 
-        <http_server port="22223">
+        <http_server port="${dtf.http.port}">
             <http_listener path="*" method="*" bandwidth="${bandwidth}"/>
         </http_server>
     
@@ -88,7 +88,7 @@
                 <sleep time="2s"/>
                 <log>Throttling on the server server receiving</log>
 	            <record type="stats">
-		            <http_post uri="http://localhost:22223">
+		            <http_post uri="http://localhost:${dtf.http.port}">
 		                <entity value="${dtf.stream(random,${bytes},1234)}"/>
 		            </http_post>
 	            </record>
@@ -101,7 +101,7 @@
                 </assert>
             </sequence>
             <finally>
-                <http_server port="22223" command="stop"/> 
+                <http_server port="${dtf.http.port}" command="stop"/> 
             </finally>
         </try>
     </parallel>

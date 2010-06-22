@@ -19,7 +19,6 @@ import com.yahoo.dtf.exception.CommException;
 import com.yahoo.dtf.exception.DTFException;
 import com.yahoo.dtf.logger.DTFLogger;
 import com.yahoo.dtf.state.DTFState;
-import com.yahoo.dtf.util.ThreadUtil;
 
 public class CommRMIClient extends CommClient {
 
@@ -73,34 +72,6 @@ public class CommRMIClient extends CommClient {
 
     }
 
-    public void register() throws DTFException {
-        String id = Action.getLocalID();
-
-        Connect connect;
-        connect = new Connect(id);
-        
-        /*
-         * Put default Attribs into connect message.
-         */
-        Iterator objs = _attribs.values().iterator();
-        while (objs.hasNext()) {
-            Attrib attrib = (Attrib) objs.next();
-            connect.addAttrib(attrib);
-        }
-
-        connect.setAddress(_server.getAddress());
-        connect.setPort(_server.getPort());
-        connect.setBuildid(DTFNode.getBuildID());
-        
-        _logger.info("Registering " + connect);
-        try {
-            _node.register(connect).execute();
-            _logger.info("Connected to DTFC");
-        } catch (RemoteException e) {
-            convertException(e, "Unable to register.");
-        }
-    }
-   
     /**
      * This little method tries to do its best to only throw exceptions that
      * are important to the person running the test. This avoids all of the
@@ -171,11 +142,38 @@ public class CommRMIClient extends CommClient {
             connect.addAttrib(attrib);
         }
         
-
         try {
             _node.unregister(connect).execute();
         } catch (RemoteException e) {
             convertException(e,"Unable to register node.");
+        }
+    }
+    
+    public void register() throws DTFException {
+        String id = Action.getLocalID();
+
+        Connect connect;
+        connect = new Connect(id);
+        
+        /*
+         * Put default Attribs into connect message.
+         */
+        Iterator objs = _attribs.values().iterator();
+        while (objs.hasNext()) {
+            Attrib attrib = (Attrib) objs.next();
+            connect.addAttrib(attrib);
+        }
+
+        connect.setAddress(_server.getAddress());
+        connect.setPort(_server.getPort());
+        connect.setBuildid(DTFNode.getBuildID());
+        
+        _logger.info("Registering " + connect);
+        try {
+            _node.register(connect).execute();
+            _logger.info("Connected to DTFC");
+        } catch (RemoteException e) {
+            convertException(e, "Unable to register.");
         }
     }
 }

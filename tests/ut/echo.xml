@@ -28,14 +28,15 @@
         <echo message="Echoing some properties from ut.properties"/>
         <echo>dtf.test.property1 = ${dtf.test.property1}</echo>
         <echo>dtf.test.property2 = ${dtf.test.property2}</echo>
-        
+      
+        <property name="echo.clients" value="3"/> 
+       
+        <lockgroup>
+            <lockcomponent id="DTFA1" timeout="60s"/>
+            <lockcomponent id="DTFA2" timeout="60s"/>
+            <lockcomponent id="DTFA3" timeout="60s"/>
+        </lockgroup>     
     </local>
-    
-    <for property="i" range="1..${ut.clients}">
-        <local>
-            <lockcomponent id="DTFA${i}" timeout="60s"/>
-        </local>
-    </for>
    
     <local>
         <property name="local.data">
@@ -92,7 +93,7 @@ Yiddish         אײן לשון איז קײנמאָל נישט גענוג
     Transporting special characters in a property and comparing with the same
     data generated on the component side
     </log>
-    <for property="i" range="1..${ut.clients}">
+    <for property="i" range="1..${echo.clients}">
 	    <component id="DTFA${i}">
 	        <property name="remote.data">
 Breton          ur yezh hepken n'eo ket a-walc'h

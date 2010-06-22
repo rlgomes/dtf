@@ -8,6 +8,7 @@ import com.yahoo.dtf.NodeState;
 import com.yahoo.dtf.actions.Action;
 import com.yahoo.dtf.comm.Comm;
 import com.yahoo.dtf.comm.rpc.ActionResult;
+import com.yahoo.dtf.comm.rpc.Node;
 import com.yahoo.dtf.exception.DTFException;
 import com.yahoo.dtf.exception.LockException;
 import com.yahoo.dtf.util.ThreadUtil;
@@ -44,7 +45,7 @@ public class Lock extends Connect {
             getLogger().debug("Attemtping to lock: " + this);
 
         NodeState ns = NodeState.getInstance();
-        NodeInfo ni = null;
+        NodeInfo[] nis = null;
        
         long start = System.currentTimeMillis();
         LockException excep = null;
@@ -59,7 +60,7 @@ public class Lock extends Connect {
 	                    getLogger().debug("Lock owner disconnected, throwing lock request away.");
 	                return;
 	            }
-                ni = ns.lockNode(this);
+	            nis = ns.lockNodes(new Lock[]{this});
                 break;
             } catch (LockException e) { 
                 //if (getLogger().isDebugEnabled())
@@ -69,9 +70,14 @@ public class Lock extends Connect {
             }
         } while (System.currentTimeMillis() - start < getTimeout());
         
-        if (excep != null && ni == null) 
+        if (excep != null && nis == null) 
             throw excep;
-               
+              
+        for (NodeInfo ni : nis) 
+            setupLock(ni);
+    }
+    
+    protected void setupLock(NodeInfo ni) throws DTFException { 
         /*
          * Communicate with locked component to register the owner information
          * that can be later used to identify who locked this component as well 
@@ -83,7 +89,7 @@ public class Lock extends Connect {
         // set the tunneled attribute.
         sa.setTunneled(Comm.isTunneled());
         setTunneled(Comm.isTunneled());
-        
+       
         ActionResult ar = ni.getClient().sendAction(ni.getId(), sa); 
         // must check that we did in fact succeed to send the action.
         ar.execute();
@@ -97,7 +103,10 @@ public class Lock extends Connect {
         setPort(ni.getPort());
         
         copy(ni);
-        getLogger().info("Locked node " + ni);
+        getLogger().info("Locked node " + ni + " for " + ni.getOwner());
+        
+        ar = (ActionResult) getContext(Node.ACTION_RESULT_CONTEXT);
+        ar.addAction(this);
     }
     
     public void setName(String name) { this.name = name; } 

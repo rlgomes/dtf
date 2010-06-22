@@ -17,14 +17,17 @@
 		<result uri="storage://OUTPUT/results_output.${results.type}"
                 type="${results.type}">
 	    	<testsuite name="testsuite1" continueOnFailure="true">
-	    		<property name="testcase.name" value="testcase1"/>
-	    		<testscript uri="storage://INPUT/testcase.xml"/>		
+	    		<testscript uri="storage://INPUT/testcase.xml">		
+    	    		<property name="testcase.name" value="testcase1"/>
+                </testscript>
 	            
-	    		<property name="testcase.name" value="testcase2" overwrite="true"/>
-	    		<testscript uri="storage://INPUT/testcase.xml"/>		
+	    		<testscript uri="storage://INPUT/testcase.xml">		
+    	    		<property name="testcase.name" value="testcase2" overwrite="true"/>
+                </testscript>
 	            		
-	    		<property name="testcase.name" value="testcase3" overwrite="true"/>
-	    		<testscript uri="storage://INPUT/testcase.xml"/>
+	    		<testscript uri="storage://INPUT/testcase.xml">
+    	    		<property name="testcase.name" value="testcase3" overwrite="true"/>
+                </testscript>
 	    				
 	    		<testscript uri="storage://INPUT/testsuite-sub.xml"/>
 	    	</testsuite>

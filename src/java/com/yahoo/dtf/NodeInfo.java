@@ -3,11 +3,14 @@ package com.yahoo.dtf;
 import java.util.ArrayList;
 
 import com.yahoo.dtf.NodeInfo;
+import com.yahoo.dtf.actions.Action;
 import com.yahoo.dtf.actions.component.Attrib;
+import com.yahoo.dtf.actions.flowcontrol.Sequence;
 import com.yahoo.dtf.actions.protocol.Connect;
 import com.yahoo.dtf.actions.protocol.Lock;
 import com.yahoo.dtf.actions.protocol.ReleaseAgent;
 import com.yahoo.dtf.comm.CommClient;
+import com.yahoo.dtf.comm.rpc.Node;
 import com.yahoo.dtf.exception.DTFException;
 import com.yahoo.dtf.exception.ParseException;
 import com.yahoo.dtf.util.StringUtil;
@@ -79,11 +82,25 @@ public class NodeInfo extends Connect {
         _owner = owner;
     }
     
+    public void unlockWithoutRelease() { 
+        assert locked == true;
+        locked = false;
+    }
+    
     public void unlock() throws DTFException { 
         assert locked == true;
         
         ReleaseAgent release = new ReleaseAgent();
-        getClient().sendAction(getId(), release);
+        Sequence sequence = new Sequence();
+        
+        if ( getContext(Node.ACTION_DTFX_THREADID) == null ) { 
+            sequence.setThreadID("main");
+        } else { 
+            sequence.setThreadID((String)getContext(Node.ACTION_DTFX_THREADID));
+        }
+        sequence.addAction(release);
+        
+        getClient().sendAction(getId(), sequence);
         
         locked = false;
     }

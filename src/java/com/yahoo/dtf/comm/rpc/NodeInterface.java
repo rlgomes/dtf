@@ -35,7 +35,7 @@ public interface NodeInterface extends Remote {
      * 
      * @param connect
      * @return
-     * @throws DTFException
+     * @throws RemoteException
      */
     public ActionResult unregister(Connect connect) throws RemoteException;
 }

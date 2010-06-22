@@ -94,14 +94,14 @@ public class Properties extends java.util.Properties {
     }
 
     @Override
-    public String getProperty(String key) {
+    public synchronized String getProperty(String key) {
         for (int i = props.length-1; i >= 0; i--) { 
             String result = props[i].get(key).toString();
             
             if ( result == REMOVED )
                 return null;
             
-            if ( result != null )
+            if ( result != null ) 
                 return result;
         }
         

@@ -1,5 +1,6 @@
 package com.yahoo.dtf.results;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -50,12 +51,7 @@ public class Results {
                             ".out";
                 URI loguri =  new URI(uri.getScheme(), 
                                       uri.getHost(),
-                                      /*
-                                       * necessary because on windows platform
-                                       * the File.separatorChar becomes a funky
-                                       * character
-                                       */
-                                      "/" + output,
+                                      File.separatorChar + output,
                                       null);
                 
                 _logfile = Action.getStorageFactory().getPath(loguri);

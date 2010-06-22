@@ -175,6 +175,7 @@ public class TxtQuery extends QueryIntf {
                         String keyString = key.substring(eventName.length() + 1);
                         if (_fieldNames == null || _fieldNames.contains(keyString)) {
 	                        String value = line.substring(index+1);
+	                        value = URLDecoder.decode(value,_encoding);
 	                        props.put(key, value);
                         }
                     }
@@ -224,10 +225,9 @@ public class TxtQuery extends QueryIntf {
                      */
                     String keyString = key.substring(eventName.length() + 1);
                     if (_property != null) {
-                        result.put(prop + keyString,
-                                   URLDecoder.decode(value, "UTF-8"));
+                        result.put(prop + keyString, value);
                     } else {
-                        result.put(key, URLDecoder.decode(value, "UTF-8"));
+                        result.put(key, value);
                     }
                 }
                 return result;
@@ -301,7 +301,7 @@ public class TxtQuery extends QueryIntf {
             
             for(int i = 0 ; i < _fields.size(); i++) { 
                 try {
-                    _fieldNames.add(((Field)_fields.get(i)).getName().toLowerCase());
+                    _fieldNames.add(((Field)_fields.get(i)).getName());
                 } catch (ParseException e) {
                     throw new QueryException("Unable to get field name.",e);
                 }

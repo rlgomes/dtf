@@ -49,8 +49,8 @@ public class StorageState implements ComponentHook,
                                                       getGlobalContext(SSFILES);
 
         if ( sent == null ) { 
-           sent = new HashMap<String,HashMap<String,HashMap<String,Long>>>();
-           registerGlobalContext(SSFILES, sent);
+            sent = new HashMap<String,HashMap<String,HashMap<String,Long>>>();
+            registerGlobalContext(SSFILES, sent);
         }
 
         HashMap<String, HashMap<String,Long>> sentfiles = sent.get(id);
@@ -144,6 +144,13 @@ public class StorageState implements ComponentHook,
           
             String[] files = storage.getFiles(); 
             if ( files != null ) { 
+                
+                if ( files.length == 0 ) { 
+                    if ( Action.getLogger().isDebugEnabled() )
+                        Action.getLogger().debug("[" + storage + 
+                                                 "] storage is empty."); 
+                }
+                
 	            for (int i = 0; i < files.length; i++) { 
 	                Long l = sfiles.get(files[i]);
 	                Long m = storage.getLastModified(files[i]);
@@ -152,6 +159,10 @@ public class StorageState implements ComponentHook,
 	                    String sid = storage.getId();
 	                    String uri = "storage://" + sid + "/" + files[i];
 	                    PullFile pf = new PullFile();
+	                   
+	                    if ( DTFNode.getType().equals("dtfa") ) 
+	                        pf.setOwner(DTFNode.getOwner().getOwner());
+	                    
 	                    pf.setRemotefile(storage.getFullPath() + "/" + files[i]);
 	                    pf.setUri(uri);
 	                    pf.setTo(Action.getLocalID());
@@ -170,22 +181,34 @@ public class StorageState implements ComponentHook,
 	                    result.add(sfu);
 	
 	                    if ( Action.getLogger().isDebugEnabled() ) {
-	                        Action.getLogger().debug("Sending file [" + files[i] + 
+	                        Action.getLogger().debug("sending file [" + uri + 
 	                                                 "] to [" + id +
-	                                                 "] modified at " + m + 
-	                                                 " append: " + pf.getAppend());
+	                                                 "] modified [" + m + 
+	                                                 "] append [" + 
+	                                                 pf.getAppend() + "]");
 	                    }
-
 	                    sfiles.put(files[i], m);
+	                } else { 
+	                    if ( Action.getLogger().isDebugEnabled() ) {
+	                        Action.getLogger().debug("not sending file [" +
+	                                                 files[i] +  "] to [" +
+	                                                 id + "] modified [" + m + 
+	                                                 "] synced at [" + l + "]");
+	                    }
 	                }
 	            }
+            } else { 
+                if ( Action.getLogger().isDebugEnabled() ) {
+                    Action.getLogger().debug("[" + storage + 
+                                             "] storage is empty."); 
+                }
             }
         }
         
         long stop = System.currentTimeMillis();
         if ( Action.getLogger().isDebugEnabled() && exported ) {
-            Action.getLogger().debug("Time to sync storages: " + 
-                                     (stop-start) + "ms");
+            long dur = (stop-start);
+            Action.getLogger().debug("Time to sync storages: " + dur + "ms");
         }
 
         return result;
@@ -228,7 +251,7 @@ public class StorageState implements ComponentHook,
         if ( Action.getLogger().isDebugEnabled() ) { 
 	        Action.getLogger().debug("Updating [" + storageid + ": " + 
 	                                 filename + "] for [" + componentid + 
-	                                 "] " + m);
+	                                 "] modified at [" + m + "]");
         }
 
         // simply update the last modified so we have a starting point

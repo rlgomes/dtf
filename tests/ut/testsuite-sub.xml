@@ -14,13 +14,16 @@
 	</local>
 	
 	<testsuite name="testsuite2" continueOnFailure="true">
-		<property name="testcase.name" value="testcase-sub1"/>
-		<testscript uri="storage://INPUT/testcase.xml"/>		
+		<testscript uri="storage://INPUT/testcase.xml">		
+		  <property name="testcase.name" value="testcase-sub1"/>
+        </testscript>
 
-		<property name="testcase.name" value="testcase-sub2" overwrite="true"/>
-		<testscript uri="storage://INPUT/testcase.xml"/>		
+		<testscript uri="storage://INPUT/testcase.xml">		
+    		<property name="testcase.name" value="testcase-sub2" overwrite="true"/>
+        </testscript>
 		
-		<property name="testcase.name" value="testcase-sub3" overwrite="true"/>
-		<testscript uri="storage://INPUT/testcase.xml"/>		
+		<testscript uri="storage://INPUT/testcase.xml">
+    		<property name="testcase.name" value="testcase-sub3" overwrite="true"/>
+        </testscript>
 	</testsuite>
 </script>

@@ -110,6 +110,7 @@ public class DTFState {
     public void registerContext(String key, Object value) { context.put(key, value); }
     public void unRegisterContext(String key) { context.remove(key); }
     public Object getContext(String key) { return context.get(key); }
+    public void resetContext() { context = new Hashtable(); }
 
     public void registerGlobalContext(String key, Object value) { globalContext.put(key, value); }
     public void unRegisterGlobalContext(String key) { globalContext.remove(key); }
