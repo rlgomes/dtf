@@ -79,10 +79,11 @@ public class RangeJoin extends Range {
     }
     
     public int size() {
-        int result = 0;
+        int result = 1;
        
-        for (int i = 0; i < _ranges.size(); i++)
-            result += ((Range) _ranges.get(i)).size();
+        for (int i = 0; i < _ranges.size(); i++) {
+            result *= ((Range) _ranges.get(i)).size();
+        }
         
         return result;
     }

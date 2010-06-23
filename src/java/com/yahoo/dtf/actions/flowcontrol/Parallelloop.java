@@ -43,7 +43,7 @@ public class Parallelloop extends Loop {
         
         Sequence children = new Sequence();
         children.addActions(children());
-        
+       
         Worker[] workers =  new Worker[workerCount];
        
         int i = 0;
@@ -53,7 +53,7 @@ public class Parallelloop extends Loop {
             state.getConfig().setProperty(getProperty(), value);
             workers[i++] = new Worker(children, state, value);
         }
-       
+        
         for(i = 0; i < workerCount; i++) 
             workers[i].start();
       

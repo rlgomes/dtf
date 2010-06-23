@@ -261,7 +261,7 @@
     </call>
     
     <log>validate connection refused error</log>
-    <http_put uri="http://localhost:11111" onFailure="continue"/>
+    <http_put uri="http://localhost:65535" onFailure="continue"/>
     <assert><eq op1="${http.put.status}" op2="900"/></assert>
     
     <log>validate connection reset error</log>
