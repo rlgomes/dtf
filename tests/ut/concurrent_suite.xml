@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="concurrent_suite">
+	<info>
+		<author>
+			<name>Rodney Gomes</name>
+			<email>rlgomes@yahoo-inc.com</email>
+		</author>
+		<description>Unit test for the testsuite tag.</description>
+	</info>
+	
+	<local>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}"/>
+
+        <createstorage id="TINPUT" path="${dtf.xml.path}/input"/>
+	</local>
+    
+	<result uri="storage://OUTPUT/parallel_testsuite_results.xml" type="junit">
+    	<testsuite name="testsuite1" continueOnFailure="true">
+            <parallelloop property="tc" range="[testsuite][1..10]">
+	    		<testscript uri="storage://TINPUT/empty.xml">
+	        		<property name="testcase.name" value="${tc}"/>
+	            </testscript>		
+            </parallelloop>
+    	</testsuite>
+    </result>
+
+    <createrange name="tests" value="[testsuite][1..10]"/>
+    
+	<result uri="storage://OUTPUT/distribute_testsuite_results.xml"
+            type="junit">
+    	<testsuite name="testsuite1" continueOnFailure="true">
+            <!-- with this distribute we can parallelize 3 tests at a time
+                 while pulling the name of the test to execute from the range
+                 specified --> 
+            <distribute iterations="10"
+                        workers="3">
+	    		<testscript uri="storage://TINPUT/empty.xml">
+	        		<property name="testcase.name"
+                              value="${tests}"
+                              overwrite="true"/>
+	            </testscript>		
+            </distribute>
+    	</testsuite>
+    </result>
+
+</script>
