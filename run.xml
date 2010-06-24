@@ -321,10 +321,6 @@
             <property name="dtf.exclude.pattern" value="**/suite-*"/>
         </ant>
     </target>
-
-	<target name="clean" depends="init" description="clean target">
-		<delete dir="${dtf.build.dir}" failonerror="false"/>
-	</target>
 	
 	<!-- deployment -->
 	<target name="deploy-init">

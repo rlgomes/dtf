@@ -64,6 +64,7 @@
 		<javac srcdir="${dtf.src.dir}/java"
 		   	   destdir="${dtf.build.dir}/${dtf.classes.dir}"
 			   debug="on"
+               target="${dtf.java.target}"
 			   debuglevel="lines,vars,source"
 			   encoding="ISO-8859-1"
 			   excludes="${javac.excludes}"
@@ -200,7 +201,7 @@
     </target>
 
 	<target name="deploy" 
-    	    depends="init" 
+    	    depends="init,tar" 
             description="Deploys the current build to a list of machines">
 		<property environment="env"/>
 
@@ -271,6 +272,11 @@
 				<include name="**/**/*.java"/>
 			</fileset>
 		</javadoc>
+		
+		<tar basedir="${dtf.build.dir}/${dtf.dist.dir}/doc/html/dtf"
+		     destfile="${dtf.build.dir}/${dtf.dist.dir}/doc.tgz"
+		     compression="gzip"
+		     includes="**/**"/>
 
 		<echo>XML Documentation at ${basedir}/${dtf.build.dir}/${dtf.dist.dir}/doc</echo>
 
@@ -372,19 +378,19 @@
 
 				<!-- plugin merger only run at build time, no easy way to 
 		    	     integrate with unit test for the time being -->
-				<exclude name="com/yahoo/dtf/plugin/*.class"/>
+		    	<exclude name="com/yahoo/dtf/plugin/*.class"/>
 
-				<!-- exception coverage doesn't matter -->
-				<exclude name="com/yahoo/dtf/exception/*.class"/>
-
-				<!-- same as plugin merger, the javadoc is done at build time -->
-				<exclude name="com/yahoo/dtf/javadoc/*.class"/>
-
-				<!-- JSON Library is not my responsibility to unit test -->
-				<exclude name="com/yahoo/dtf/json/*.class"/>
-			</fileset >
+		    	<!-- exception coverage doesn't matter -->
+		    	<exclude name="com/yahoo/dtf/exception/*.class"/>
+		    	
+		    	<!-- same as plugin merger, the javadoc is done at build time -->
+		    	<exclude name="com/yahoo/dtf/javadoc/*.class"/>
+		    	
+		    	<!-- JSON Library is not my responsibility to unit test -->
+		    	<exclude name="com/yahoo/dtf/json/*.class"/>
+		    </fileset >
 		</cobertura-instrument>
-
+		
 		<!-- copy cobertura jar into this build as well -->
 		<copy todir="${dtf.build.dir}/${dtf.dist.dir}/lib">
 			<fileset dir="${cobertura.home}">
@@ -468,7 +474,8 @@
 				<junit printsummary="yes" 
 				   	   showoutput="true" 
 					   dir="${dtf.dir}">
-					<!--<jvmarg line="-agentlib:hprof=cpu=samples,depth=30,lineno=y"/>-->
+				    <jvmarg line="${dtf.jvm.arg} -enableassertions"/>
+					
 					<sysproperty key="dtf.home"
 		    			         value="${basedir}/${dtf.build.dir}/${dtf.dist.dir}"/>
 					<sysproperty key="net.sourceforge.cobertura.datafile"
@@ -490,7 +497,7 @@
 				<junit printsummary="yes" 
 				   	   showoutput="true" 
 					   dir="${dtf.dir}">
-					<!--<jvmarg line="-agentlib:hprof=cpu=samples,depth=30,lineno=y"/>-->
+				    <jvmarg line="${dtf.jvm.arg} -enableassertions"/>
 					<sysproperty key="dtf.home"
 		    			         value="${basedir}/${dtf.build.dir}/${dtf.dist.dir}"/>
 					<sysproperty key="net.sourceforge.cobertura.datafile"
