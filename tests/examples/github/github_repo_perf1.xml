@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="github_repo_perf1">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+            A simple test that shows how easy it is to measure the performance of
+            an API that can be called with in DTF. This test will show how to use
+            the various features at your disposal in DTF that allows you to quickly
+            and efficiently write up a complicated multi-node performance test.
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output" />
+        <createstorage id="INPUT" path="${dtf.xml.path}/input" />
+        <loadproperties uri="storage://INPUT/github.properties" />
+        <import uri="storage://INPUT/util.xml" />
+
+        <property name="repository" value="test.${dtf.timestamp}" />
+        <property name="iterations" value="5" />
+        <property name="threads" value="3" />
+        <property name="nodes" value="1" />
+    </local>
+
+    <for property="c" range="1..${nodes}">
+        <local>
+            <lockcomponent id="C${c}" />
+        </local>
+    </for>
+
+    <record uri="storage://OUTPUT/create_repos.txt">
+        <parallelloop property="c" range="1..${nodes}">
+            <component id="C${c}">
+                <distribute id="dist"
+                            iterations="${iterations}"
+                            range="1..${threads}"
+                            property="i"
+                            timer="300s">
+                    <call function="create_repository">
+                        <property name="name" value="${repository}-${i}.${dist.worker}" />
+                        <property name="desc" value="simple description" />
+                        <property name="homepage" value="http://example.com" />
+                    </call>
+                </distribute>
+            </component>
+        </parallelloop>
+    </record>
+
+    <query uri="storage://OUTPUT/create_repos.txt" cursor="creates" />
+    <stats cursor="creates" event="stats" />
+
+    <log>creates/sec: ${stats.avg_occ}</log>
+</script>

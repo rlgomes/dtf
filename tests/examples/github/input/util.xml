@@ -31,23 +31,51 @@
     homepage    => homepage url
     public      => 1 for public, 0 for private
     --> 
-    <function name="create_repository">
-        <param name="user"      default="${github.user}"/>
-        <param name="token"     default="${github.token}"/>
-        <param name="name"      type="required"/>
-        <param name="desc"      type="required"/>
-        <param name="homepage"  type="required"/>
-        <param name="public"    default="1"/>
-       
-        <urlencode source="${desc}" result="desc"/> 
-        <urlencode source="${homepage}" result="homepage"/> 
-        
+    <function name="create_repository" export="true">
+        <param name="user" default="${github.user}" />
+        <param name="token" default="${github.token}" />
+        <param name="name" type="required" />
+        <param name="desc" type="required" />
+        <param name="homepage" type="required" />
+        <param name="public" default="1" />
+    
+        <urlencode source="${desc}" result="desc" />
+        <urlencode source="${homepage}" result="homepage" />
+    
         <property name="args"
-                  value="name=${name}&amp;description=${desc}&amp;homepage=${homepage}&amp;public=${public}"/>
-
-        <http_post uri="${github.baseuri}/xml/repos/create?${args}">
-            <entity>login=${user}&amp;token=${token}</entity>
-        </http_post>
+            value="name=${name}&amp;description=${desc}&amp;homepage=${homepage}&amp;public=${public}" />
+    
+        <property name="http.post.status" value="" overwrite="true" />
+        <property name="wait" value="5" overwrite="true" />
+        <while>
+            <neq op1="${http.post.status}" op2="200" />
+            <http_post uri="${github.baseuri}/xml/repos/create?${args}"
+                onFailure="continue">
+                <entity>login=${user}&amp;token=${token}</entity>
+            </http_post>
+            <if>
+                <eq op1="${http.post.body:xpath://error/error/error/text()}"
+                    op2="too many requests" />
+                <then>
+                    <log>Too many requests... waiting ${wait}s</log>
+                    <sleep time="${wait}s" />
+                    <multiply op1="${wait}" op2="2" result="wait" />
+                </then>
+                <else>
+                    <if>
+                        <neq op2="${http.post.status}" op1="200"/>
+	                    <then>
+		                    <log>
+		                        Unexpected failure, status: ${http.post.status}
+		                        With response body:
+		                        ${http.post.body}
+		                    </log>
+                            <break/>
+	                    </then>
+                    </if>
+                </else>
+            </if>
+        </while>
     </function>
    
     <!-- 
@@ -82,7 +110,7 @@
     This function returns the XML listing of the repositories as seen in the 
     example result above.
     --> 
-    <function name="list_public_repositories">
+    <function name="list_public_repositories" export="true">
         <param name="user"      default="${github.user}"/>
        
         <http_get uri="${github.baseuri}/xml/repos/show/${user}"/>
@@ -105,25 +133,55 @@
     POST request with the delete_token POST argument set to that token.
     --> 
 
-    <function name="delete_repository">
+    <function name="delete_repository" export="true">
         <param name="user"      default="${github.user}"/>
         <param name="token"     default="${github.token}"/>
         <param name="name"      type="required"/>
       
         <property name="authdata" value="login=${user}&amp;token=${token}"/>
         
-        <http_post uri="${github.baseuri}/xml/repos/delete/${name}">
-            <entity>${authdata}</entity>
-        </http_post>
+        <property name="http.post.status" value="" overwrite="true"/> 
+        <property name="wait" value="5" overwrite="true"/> 
+        <while>
+            <neq op1="${http.post.status}" op2="200"/>
+	        <http_post uri="${github.baseuri}/xml/repos/delete/${name}"
+	                   onFailure="continue"
+	                   >
+	            <entity>${authdata}</entity>
+	        </http_post>
+            <if>
+                <eq op1="${http.post.body:xpath://error/error/error/text()}"
+                    op2="too many requests"/>
+                <then>
+                    <log>Too many requests... waiting ${wait}s</log>
+                    <sleep time="${wait}s"/>
+                    <multiply op1="${wait}" op2="2" result="wait"/>
+                </then>
+                <else>
+                    <if>
+                        <neq op2="${http.post.status}" op1="200"/>
+                        <then>
+                            <log>
+                                Unexpected failure, status: ${http.post.status}
+                                With response body:
+                                ${http.post.body}
+                            </log>
+                            <break/>
+                        </then>
+                    </if>
+                </else>
+            </if>
+        </while> 
        
         <property name="dtoken" 
                   value="${http.post.body:xpath:/delete-token/delete-token/text()}"/>
                   
         <!-- confirm deletion --> 
-        <http_post uri="${github.baseuri}/xml/repos/delete/${name}?delete_token=${dtoken}">
+        <http_post uri="${github.baseuri}/xml/repos/delete/${name}?delete_token=${dtoken}"
+                   onFailure="continue"
+                   > 
             <entity>${authdata}</entity>
         </http_post>
+        
     </function>
-
-    
 </script>

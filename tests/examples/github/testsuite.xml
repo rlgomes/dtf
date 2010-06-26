@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="testsuite">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        A simple testsuite to execute all of the example test cases created
+        for the wiki documentation.
+        </description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+    </local> 
+    
+    <result uri="storage://OUTPUT/TEST_github_results.xml"
+            type="junit">
+        <testsuite name="github_suite">
+            <!-- run the clean up script for the testing github account -->
+            <testscript uri="storage://INPUT/cleanall.xml"/>
+            
+            <testscript uri="storage://INPUT/github_test1.xml"/>
+            <testscript uri="storage://INPUT/github_test2.xml"/>
+            <testscript uri="storage://INPUT/github_repo_perf1.xml"/>
+            <testscript uri="storage://INPUT/listall.xml"/>
+
+            <!-- run the clean up script for the testing github account -->
+            <testscript uri="storage://INPUT/cleanall.xml"/>
+        </testsuite> 
+    </result>
+    
+</script> 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<script xmlns="http://dtf.org/v1" name="httptest1">
+
+<script xmlns="http://dtf.org/v1" name="cleanall">
     <info>
         <author>
             <name>Rodney Gomes</name>
@@ -12,36 +13,19 @@
     
     <local>
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
-        
+    
+        <import uri="storage://INPUT/util.xml"/>    
         <loadproperties uri="storage://INPUT/github.properties"/>        
     </local> 
     
-    <log>
-    This test will delete all repositories for the user ${github.user} you have
-    5 seconds to ctrl+c this test before the deletes go through.
-    </log>
-    <for property="i" range="1..5">
-        <sleep time="1s"/>
-        <log>${i}</log>
-    </for>
-
     <!-- find the new repository in the list of available repositories -->
     <http_get uri="${github.baseuri}/xml/repos/show/${github.user}"/>
     
     <for property="repository" range="xpath(${http.get.body},//repository/name/text())">
-	    <!-- delete the repository --> 
-	    <http_post uri="${github.baseuri}/xml/repos/delete/${repository}">
-	        <entity>login=${github.user}&amp;token=${github.token}</entity>
-	    </http_post>
-	   
-	    <property name="dtoken" 
-	              value="${http.post.body:xpath:/delete-token/delete-token/text()}"
-                  overwrite="true"/>
-	              
-	    <!-- confirm deletion --> 
-	    <http_post uri="${github.baseuri}/xml/repos/delete/${repository}?delete_token=${dtoken}">
-	        <entity>login=${github.user}&amp;token=${github.token}</entity>
-	    </http_post>
+        <log>deleting ${repository} repository...</log>
+        <call function="delete_repository">
+            <property name="name" value="${repository}"/>
+        </call>
     </for>
    
 </script>

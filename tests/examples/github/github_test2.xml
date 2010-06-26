@@ -19,11 +19,11 @@
         <loadproperties uri="storage://INPUT/github.properties"/>        
         <import uri="storage://INPUT/util.xml"/>
         
-        <property name="repository.name" value="test.${dtf.timestamp}"/>
+        <property name="repository" value="test.${dtf.timestamp}" overwrite="true"/>
     </local> 
 
     <call function="create_repository">
-        <property name="name"      value="${repository.name}"/>
+        <property name="name"      value="${repository}"/>
         <property name="desc"      value="simple repository description"/>
         <property name="homepage"  value="http://example.com"/>
     </call>
@@ -31,25 +31,20 @@
     <call function="list_public_repositories" result="repositories"/>
     
     <assert>
-        <eq op1="${repositories:xpath://repository/name[text()='${repository.name}']/text()}"
-            op2="${repository.name}"/>
+        <eq op1="${repositories:xpath://repository/name[text()='${repository}']/text()}"
+            op2="${repository}"/>
     </assert> 
     
-    <!-- seems like there maybe some caching by intermediate network machines
-         or maybe github has a small window during which the repository still
-         appears in the users repository list. With this 5 second wait it seems
-         that the repository no longer appears --> 
+    <call function="delete_repository">
+        <property name="name" value="${repository}"/>
+    </call> 
+
     <log>5s sleep, since github shows the repository for a small window after deletion</log>
     <sleep time="5s"/>
     
-    <call function="delete_repository">
-        <property name="name"      value="${repository.name}"/>
-    </call> 
-    
     <call function="list_public_repositories" result="repositories"/>
-
     <assert>
-        <eq op1="${repositories:xpath://repository/name[text()='${repository.name}']/text()}"
+        <eq op1="${repositories:xpath://repository/name[text()='${repository}']/text()}"
             op2=""/>
     </assert> 
     
