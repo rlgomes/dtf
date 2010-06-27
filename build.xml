@@ -39,25 +39,24 @@
 	</target>
 	
 	<target name="junit.init">
-		<!-- if you don't have junit.home set then we won't compile the 
-		     junit tests -->
-		<if>
-			<equals arg1="${junit.home}" arg2="" trim="true"/>
+		<!-- check junit is correctly setup --> 
+        <available file="${junit.home}" type="dir" property="junit.ready"/>
+        <if>
+            <isset property="junit.ready"/>
 			<then>
-				<property name="javac.excludes" value="**/junit/**"/>
-				<path id="junit.classpath"/>
-				<echo>JUnit not tests not being compiled</echo>
-			</then>
-			<else>
 				<property name="javac.excludes" value=""/>
 				<path id="junit.classpath">
 				    <fileset dir="${junit.home}">
 				        <include name="*.jar" />
 				    </fileset>
 				</path>
+			</then>
+			<else>
+				<property name="javac.excludes" value="**/junit/**"/>
+				<path id="junit.classpath"/>
+				<echo>JUnit not tests not being compiled</echo>
 			</else>
 		</if>
-		
 	</target>
 
 	<target name="compile" depends="junit.init" description="Compilation target">
@@ -318,205 +317,213 @@
 
 	<target name="findbugs" depends="init">
         <!-- check findbugs is correctly setup --> 
+		<available file="${findbugs.home}" type="dir" property="finbugs.ready"/>
         <if>
-            <equals arg1="${findbugs.home}" arg2="" trim="true"/>
+            <isset property="findbugs.ready"/>
             <then>
-                <fail message="Findbugs home not set, see build.properties file"/>
-            </then>
-        </if>
+				<taskdef name="findbugs" 
+		                 classname="edu.umd.cs.findbugs.anttask.FindBugsTask">
+					<classpath>
+						<pathelement location="${findbugs.home}/lib/findbugs-ant.jar"/>
+					</classpath>
+				</taskdef>
 		
-		<taskdef name="findbugs" 
-                 classname="edu.umd.cs.findbugs.anttask.FindBugsTask">
-			<classpath>
-				<pathelement location="${findbugs.home}/lib/findbugs-ant.jar"/>
-			</classpath>
-		</taskdef>
-
-		<property environment="env"/>
-		<findbugs home="${findbugs.home}"
-			      output="xml"
-			      outputFile="${dtf.build.dir}/${dtf.dist.dir}/findbugs.xml"
-			      jvmargs="-Xmx512m">
-			<auxclasspath refid="dtf.classpath"/>
-			<auxclasspath path="${env.JAVA_HOME}/lib/tools.jar"/>
-			<sourcePath path="${dtf.dir}/src/java"/>
-			<class location="${dtf.build.dir}/classes"/>
-		</findbugs>
+				<property environment="env"/>
+				<findbugs home="${findbugs.home}"
+					      output="xml"
+					      outputFile="${dtf.build.dir}/${dtf.dist.dir}/findbugs.xml"
+					      jvmargs="-Xmx512m">
+					<auxclasspath refid="dtf.classpath"/>
+					<auxclasspath path="${env.JAVA_HOME}/lib/tools.jar"/>
+					<sourcePath path="${dtf.dir}/src/java"/>
+					<class location="${dtf.build.dir}/classes"/>
+				</findbugs>
+            </then>
+        	<else>
+                <fail message="Findbugs home not set, see build.properties file"/>
+        	</else>
+        </if>
 	</target>
 
 	<target name="cobertura-instrument" depends="init">
         <!-- check cobertura is correctly setup --> 
+		<available file="${cobertura.home}" type="dir" property="cobertura.ready"/>
         <if>
-            <equals arg1="${cobertura.home}" arg2="" trim="true"/>
-            <then>
-                <fail message="Cobertura home not set, see build.properties file"/>
-            </then>
+            <isset property="cobertura.ready"/>
+        	<then>	
+	    		<path id="cobertura.classpath">
+	    		    <fileset dir="${cobertura.home}">
+	    		        <include name="cobertura.jar" />
+	    		        <include name="lib/**/*.jar" />
+	    		    </fileset>
+	    		</path>
+	    		<taskdef classpathref="cobertura.classpath" 
+	    			     resource="tasks.properties" />
+	    
+	    		<delete file="cobertura.ser"/>
+	    		<delete dir="${dtf.build.dir}/iclasses"/>
+	    		<mkdir dir="${dtf.build.dir}/iclasses"/>
+	    
+	    		<cobertura-instrument todir="${dtf.build.dir}/classes">
+	    			<ignore regex="org.apache.log4j.*"/>
+	    
+	    			<fileset dir="${dtf.build.dir}/classes">
+	    				<include name="**/*.class"/>
+	    
+	    				<!-- deploy code can't be tested without a dependency on another 
+	    		    	     machine to deploy to -->
+	    				<exclude name="com/yahoo/dtf/deploy/*.class"/>
+	    
+	    				<!-- plugin merger only run at build time, no easy way to 
+	    		    	     integrate with unit test for the time being -->
+	    		    	<exclude name="com/yahoo/dtf/plugin/*.class"/>
+	    
+	    		    	<!-- exception coverage doesn't matter -->
+	    		    	<exclude name="com/yahoo/dtf/exception/*.class"/>
+	    		    	
+	    		    	<!-- same as plugin merger, the javadoc is done at build time -->
+	    		    	<exclude name="com/yahoo/dtf/javadoc/*.class"/>
+	    		    	
+	    		    	<!-- JSON Library is not my responsibility to unit test -->
+	    		    	<exclude name="com/yahoo/dtf/json/*.class"/>
+	    		    </fileset >
+	    		</cobertura-instrument>
+	    		
+	    		<!-- copy cobertura jar into this build as well -->
+	    		<copy todir="${dtf.build.dir}/${dtf.dist.dir}/lib">
+	    			<fileset dir="${cobertura.home}">
+	    				<include name="*.jar"/>
+	    			</fileset>
+	    		</copy>
+	    		<delete file="${dtf.build.dir}/${dtf.dist.dir}/lib/dtf.jar"/>
+	    
+	    		<antcall target="dist"/>
+        	</then>
+            <else>
+                <fail message="Cobertura home not set correctly, see build.properties file"/>
+            </else>
         </if>
-		
-		<path id="cobertura.classpath">
-		    <fileset dir="${cobertura.home}">
-		        <include name="cobertura.jar" />
-		        <include name="lib/**/*.jar" />
-		    </fileset>
-		</path>
-		<taskdef classpathref="cobertura.classpath" 
-			     resource="tasks.properties" />
-
-		<delete file="cobertura.ser"/>
-		<delete dir="${dtf.build.dir}/iclasses"/>
-		<mkdir dir="${dtf.build.dir}/iclasses"/>
-
-		<cobertura-instrument todir="${dtf.build.dir}/classes">
-			<ignore regex="org.apache.log4j.*"/>
-
-			<fileset dir="${dtf.build.dir}/classes">
-				<include name="**/*.class"/>
-
-				<!-- deploy code can't be tested without a dependency on another 
-		    	     machine to deploy to -->
-				<exclude name="com/yahoo/dtf/deploy/*.class"/>
-
-				<!-- plugin merger only run at build time, no easy way to 
-		    	     integrate with unit test for the time being -->
-		    	<exclude name="com/yahoo/dtf/plugin/*.class"/>
-
-		    	<!-- exception coverage doesn't matter -->
-		    	<exclude name="com/yahoo/dtf/exception/*.class"/>
-		    	
-		    	<!-- same as plugin merger, the javadoc is done at build time -->
-		    	<exclude name="com/yahoo/dtf/javadoc/*.class"/>
-		    	
-		    	<!-- JSON Library is not my responsibility to unit test -->
-		    	<exclude name="com/yahoo/dtf/json/*.class"/>
-		    </fileset >
-		</cobertura-instrument>
-		
-		<!-- copy cobertura jar into this build as well -->
-		<copy todir="${dtf.build.dir}/${dtf.dist.dir}/lib">
-			<fileset dir="${cobertura.home}">
-				<include name="*.jar"/>
-			</fileset>
-		</copy>
-		<delete file="${dtf.build.dir}/${dtf.dist.dir}/lib/dtf.jar"/>
-
-		<antcall target="dist"/>
 	</target>
 
 	<target name="cobertura-report" depends="init">
         <!-- check cobertura is correctly setup --> 
-        <if>
-            <equals arg1="${cobertura.home}" arg2="" trim="true"/>
+	    <available file="${cobertura.home}" type="dir" property="cobertura.ready"/>
+	    <if>
+            <isset property="cobertura.ready"/>
             <then>
-                <fail message="Cobertura home not set, see build.properties file"/>
-            </then>
+        		<path id="cobertura.classpath">
+        		    <fileset dir="${cobertura.home}">
+        		        <include name="cobertura.jar" />
+        		        <include name="lib/**/*.jar" />
+        		    </fileset>
+        		</path>
+        		<taskdef classpathref="cobertura.classpath"
+        			     resource="tasks.properties" />
+        
+        		<cobertura-merge>
+        			<fileset dir="${dtf.build.dir}/${dtf.dist.dir}">
+        				<include name="*.ser" />
+        			</fileset>
+        		</cobertura-merge>
+        
+        		<cobertura-report format="xml" 
+        			              srcdir="${dtf.build.dir}/${dtf.dist.dir}"
+        		                  destdir="${dtf.build.dir}/cobertura">
+        			<fileset dir="src/java">
+        				<include name="**/*.java" />
+        			</fileset>
+        		</cobertura-report>
+        
+        		<cobertura-report format="html"
+        			              srcdir="${dtf.build.dir}/${dtf.dist.dir}"
+        		                  destdir="${dtf.build.dir}/cobertura">
+        
+        			<fileset dir="src/java">
+        				<include name="**/*.java" />
+        			</fileset>
+        		</cobertura-report>
+        	</then>
+	        <else>
+                <fail message="Cobertura home not set correctly, see build.properties file"/>
+	    	</else>
         </if>
-		
-		<path id="cobertura.classpath">
-		    <fileset dir="${cobertura.home}">
-		        <include name="cobertura.jar" />
-		        <include name="lib/**/*.jar" />
-		    </fileset>
-		</path>
-		<taskdef classpathref="cobertura.classpath"
-			     resource="tasks.properties" />
-
-		<cobertura-merge>
-			<fileset dir="${dtf.build.dir}/${dtf.dist.dir}">
-				<include name="*.ser" />
-			</fileset>
-		</cobertura-merge>
-
-		<cobertura-report format="xml" 
-			              srcdir="${dtf.build.dir}/${dtf.dist.dir}"
-		                  destdir="${dtf.build.dir}/cobertura">
-			<fileset dir="src/java">
-				<include name="**/*.java" />
-			</fileset>
-		</cobertura-report>
-
-		<cobertura-report format="html"
-			              srcdir="${dtf.build.dir}/${dtf.dist.dir}"
-		                  destdir="${dtf.build.dir}/cobertura">
-
-			<fileset dir="src/java">
-				<include name="**/*.java" />
-			</fileset>
-		</cobertura-report>
 	</target>
 
 	<target name="junit" depends="junit.init">
 		<!-- check junit is correctly setup -->	
-        <if>
-            <equals arg1="${junit.home}" arg2="" trim="true"/>
-            <then>
-            	<fail message="JUnit home not set, see build.properties file"/>
-            </then>
-        </if>
-
-		<taskdef name="junit" 
-	             classname="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask">
-			<classpath refid="junit.classpath"/>
-		</taskdef>
-
-		<mkdir dir="${dtf.build.dir}/junit_results"/>
-		<path id="dtf.classpath">
-			<fileset dir="${dtf.build.dir}/${dtf.dist.dir}/lib">
-				<include name="*.jar"/>
-			</fileset>
-			<fileset dir="external">
-				<include name="*.jar"/>
-			</fileset>
-		</path>
-
-		<if>
-			<isset property="junit.test"/>
-			<then>
-				<junit printsummary="yes" 
-				   	   showoutput="true" 
-					   dir="${dtf.dir}">
-				    <jvmarg line="-enableassertions"/>
-					
-					<sysproperty key="dtf.home"
-		    			         value="${basedir}/${dtf.build.dir}/${dtf.dist.dir}"/>
-					<sysproperty key="net.sourceforge.cobertura.datafile"
-		    			         value="${basedir}/${dtf.build.dir}/${dtf.dist.dir}/cobertura-junit.ser" />
-					<syspropertyset>
-						<propertyref builtin="commandline"/>
-					</syspropertyset>
-
-					<classpath refid="dtf.classpath"/>
-				    <classpath refid="junit.classpath"/>
-					<formatter type="xml"/>
-
-					<test name="com.yahoo.dtf.junit.${junit.test}"
-				    	  outfile="${dtf.build.dir}/junit_results/${junit.test}"
-				     	  fork="true"/>
-				</junit>
+	    <available file="${junit.home}" type="dir" property="junit.ready"/>
+	    <if>
+	        <isset property="junit.ready"/>
+	        <then>
+        		<taskdef name="junit" 
+        	             classname="org.apache.tools.ant.taskdefs.optional.junit.JUnitTask">
+        			<classpath refid="junit.classpath"/>
+        		</taskdef>
+        
+        		<mkdir dir="${dtf.build.dir}/junit_results"/>
+        		<path id="dtf.classpath">
+        			<fileset dir="${dtf.build.dir}/${dtf.dist.dir}/lib">
+        				<include name="*.jar"/>
+        			</fileset>
+        			<fileset dir="external">
+        				<include name="*.jar"/>
+        			</fileset>
+        		</path>
+        
+        		<if>
+        			<isset property="junit.test"/>
+        			<then>
+        				<junit printsummary="yes" 
+        				   	   showoutput="true" 
+        					   dir="${dtf.dir}">
+        				    <jvmarg line="-enableassertions"/>
+        					
+        					<sysproperty key="dtf.home"
+        		    			         value="${basedir}/${dtf.build.dir}/${dtf.dist.dir}"/>
+        					<sysproperty key="net.sourceforge.cobertura.datafile"
+        		    			         value="${basedir}/${dtf.build.dir}/${dtf.dist.dir}/cobertura-junit.ser" />
+        					<syspropertyset>
+        						<propertyref builtin="commandline"/>
+        					</syspropertyset>
+        
+        					<classpath refid="dtf.classpath"/>
+        				    <classpath refid="junit.classpath"/>
+        					<formatter type="xml"/>
+        
+        					<test name="com.yahoo.dtf.junit.${junit.test}"
+        				    	  outfile="${dtf.build.dir}/junit_results/${junit.test}"
+        				     	  fork="true"/>
+        				</junit>
+        			</then>
+        			<else>
+        				<junit printsummary="yes" 
+        				   	   showoutput="true" 
+        					   dir="${dtf.dir}">
+        				    <jvmarg line="-enableassertions"/>
+        					<sysproperty key="dtf.home"
+        		    			         value="${basedir}/${dtf.build.dir}/${dtf.dist.dir}"/>
+        					<sysproperty key="net.sourceforge.cobertura.datafile"
+        		    			         value="${basedir}/${dtf.build.dir}/${dtf.dist.dir}/cobertura-junit.ser" />
+        					<syspropertyset>
+        						<propertyref builtin="commandline"/>
+        					</syspropertyset>
+        					<classpath refid="dtf.classpath"/>
+        				    <classpath refid="junit.classpath"/>
+        					<formatter type="xml"/>
+        					<batchtest fork="true"
+        					           todir="${dtf.build.dir}/junit_results">
+        						<fileset dir="${dtf.build.dir}/${dtf.classes.dir}">
+        							<include name="**/junit/*.class"/>
+        						</fileset>
+        					</batchtest>
+        				</junit>
+        			</else>
+        		</if>
 			</then>
-			<else>
-				<junit printsummary="yes" 
-				   	   showoutput="true" 
-					   dir="${dtf.dir}">
-				    <jvmarg line="-enableassertions"/>
-					<sysproperty key="dtf.home"
-		    			         value="${basedir}/${dtf.build.dir}/${dtf.dist.dir}"/>
-					<sysproperty key="net.sourceforge.cobertura.datafile"
-		    			         value="${basedir}/${dtf.build.dir}/${dtf.dist.dir}/cobertura-junit.ser" />
-					<syspropertyset>
-						<propertyref builtin="commandline"/>
-					</syspropertyset>
-					<classpath refid="dtf.classpath"/>
-				    <classpath refid="junit.classpath"/>
-					<formatter type="xml"/>
-					<batchtest fork="true"
-					           todir="${dtf.build.dir}/junit_results">
-						<fileset dir="${dtf.build.dir}/${dtf.classes.dir}">
-							<include name="**/junit/*.class"/>
-						</fileset>
-					</batchtest>
-				</junit>
-			</else>
-		</if>
+	    	<else>
+            	<fail message="junit home not set correctly, see build.properties file"/>
+	    	</else>
+        </if>
 	</target>
 
 </project>
