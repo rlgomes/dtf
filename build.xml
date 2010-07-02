@@ -95,6 +95,8 @@
 				<ant antfile="build.xml" 
 					 target="build_plugin" 
 					 dir="@{plugin.location}">
+					<property name="dtf.dist" 
+						      value="${dtf.dir}/${dtf.build.dir}/${dtf.dist.dir}"/>
 					<property name="dtf.jar" 
 						      value="${dtf.dir}/${dtf.build.dir}/${dtf.dist.dir}/lib/${dtf.jar.filename}"/>
 					<property name="build.dir" 
@@ -130,7 +132,9 @@
 					<fileset dir="@{plugin.location}/tests"/>
 				</copy>
 
-				<copy todir="${dtf.build.dir}/${dtf.dist.dir}">
+				<!-- overwrite is set to true so that plugins can easily 
+				     overwrite existing files in DTF -->
+				<copy todir="${dtf.build.dir}/${dtf.dist.dir}" overwrite="true">
 					<fileset dir="${dtf.build.dir}/${plugin.name}/dist/bin"/>
 				</copy>
 
@@ -182,7 +186,9 @@
 		<antcall target="distplugins"/>
 
 		<!-- permissions fixing... ugly ugly... -->
-		<chmod perm="555" includes="**/ant,**/antRun,*.sh,*.php" dir="${dtf.build.dir}/${dtf.dist.dir}"/>
+		<chmod perm="555"
+			   includes="**/ant,**/antRun,*.sh,*.php"
+			   dir="${dtf.build.dir}/${dtf.dist.dir}"/>
 
 	</target>
 

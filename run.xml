@@ -436,4 +436,20 @@
 			</syspropertyset>
         </java>
     </target>
+	
+    <target name="setup-script"
+    	    depends="init,deploy-init"
+            description="execute a script on all machines identified in the ${deploy.config} file"
+            >
+        <java classname="com.yahoo.dtf.deploy.DeployDTF" 
+              failonerror="true">
+            <classpath refid="dtf.classpath" />
+            <arg value="script" />
+            <sysproperty key="dtf.home" value="."/>
+            <syspropertyset>
+                <propertyref builtin="all"/>
+            </syspropertyset>
+        </java>
+    </target>
+	
 </project>

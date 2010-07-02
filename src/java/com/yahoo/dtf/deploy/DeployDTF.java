@@ -63,7 +63,7 @@ public class DeployDTF {
 	        Config conf = Action.getConfig();
 	        String config = conf.getProperty("deploy.config");
 	        String user = conf.getProperty("deploy.user");
-	        String script = conf.getProperty("deploy.init.script");
+	        String script = conf.getProperty("deploy.script");
 	        
 	        
 	        _logger.info("Reading [" + config + "] config file");
@@ -1124,7 +1124,7 @@ public class DeployDTF {
                             String wrapcmd)
            throws JSchException, IOException, SftpException, DTFException { 
         Session session = DTFSSHSetup.setupSSH(host, user, _logger);
-        String escript = wrap(wrapcmd, "cd " + path + "; " + script);
+        String escript = wrap(wrapcmd, "cd " + path + "; ./" + script);
         
         String hostkey = user + "@" + host + "{" + script + "} in [" + wrapcmd + "]" ;
         
@@ -1144,7 +1144,8 @@ public class DeployDTF {
 	            rc = SSHUtil.execute(session, cmd, _logger.isDebugEnabled());
 	            
 		        if ( rc != 0 ) { 
-		            throw new DTFException("Unable to create [" + path + "] rc " + rc);
+		            throw new DTFException("Unable to create [" + path + 
+		                                   "] rc " + rc);
 		        }
 		        
 		        fis = new FileInputStream(script);
