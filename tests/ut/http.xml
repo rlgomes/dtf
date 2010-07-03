@@ -273,7 +273,7 @@
     <assert><eq op1="${http.put.status}" op2="902"/></assert>
  
     <log>validate connection timeout error</log>
-    <http_put uri="http://www.yahoo.com"
+    <http_get uri="http://www.wikipedia.com"
               onFailure="continue"
               connecttimeout="1ms"/>
     <assert><eq op1="${http.put.status}" op2="903"/></assert>
