@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 
+import org.apache.xerces.jaxp.DocumentBuilderFactoryImpl;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -22,12 +23,25 @@ public class XMLUtil {
     private static ArrayList<DocumentBuilder> _dbs = 
                                                new ArrayList<DocumentBuilder>();
     
-    private static void checkIn(DocumentBuilder db) { 
+    static { 
+        try {
+            // need to set the factory to the sun internal one otherwise it will
+            // pick up the xerces which doesn't work correctly at the moment.
+            // using the property because of jdk 1.5 compatibility
+            System.setProperty("javax.xml.parsers.DocumentBuilderFactory",
+                           DocumentBuilderFactoryImpl.class.getCanonicalName());
+            dbf = DocumentBuilderFactory.newInstance();
+            dbf.setNamespaceAware(true);
+        } catch (TransformerFactoryConfigurationError e) {
+            throw new RuntimeException("Error intializing transformer.",e);
+        }
+    }
+    
+    public static void checkIn(DocumentBuilder db) { 
        synchronized(_dbs) { 
            _dbs.add(db);
        }
        
-       dbf.setNamespaceAware(true);
     }
     
     public static Document newDocument() throws ParseException { 
@@ -38,7 +52,7 @@ public class XMLUtil {
         }
     }
     
-    private static DocumentBuilder checkOut() { 
+    public static DocumentBuilder checkOut() { 
         synchronized(_dbs) { 
 	        if ( _dbs.size() != 0 ) { 
 	            return _dbs.remove(0);

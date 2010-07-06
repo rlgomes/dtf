@@ -6,36 +6,25 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
 
 import org.apache.commons.jxpath.JXPathContext;
 import org.apache.xerces.dom.AttrImpl;
-import org.apache.xerces.jaxp.DocumentBuilderFactoryImpl;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
-import com.yahoo.dtf.range.Range;
 import com.yahoo.dtf.exception.RangeException;
+import com.yahoo.dtf.xml.XMLTransformerCache;
+import com.yahoo.dtf.xml.XMLUtil;
 
 public class XMLDataRange extends Range {
-    
-    private static TransformerFactory tf = TransformerFactory.newInstance();
     
     private String expression = null;
 
@@ -45,21 +34,7 @@ public class XMLDataRange extends Range {
     
     private List<Node> _nodes = null;
     private ArrayList<Node> _copy = null;
-    
-    private static DocumentBuilderFactory dbf = null;
-    
-    static { 
-        try {
-            // need to set the factory to the sun internal one otherwise it will
-            // pick up the xerces which doesn't work correctly at the moment.
-            // using the property because of jdk 1.5 compatibility
-            System.setProperty("javax.xml.parsers.DocumentBuilderFactory",
-                           DocumentBuilderFactoryImpl.class.getCanonicalName());
-            dbf = DocumentBuilderFactory.newInstance();
-        } catch (TransformerFactoryConfigurationError e) {
-            throw new RuntimeException("Error intializing transformer.",e);
-        }
-    }
+
 
     public static boolean matches(String expression) throws RangeException {
         if  ( expression.startsWith("xpath(") ) { 
@@ -78,23 +53,6 @@ public class XMLDataRange extends Range {
         
     }
 
-    private static HashMap<String, XPathExpression> _compiledExpression = 
-                                         new HashMap<String, XPathExpression>();
-    
-    private synchronized XPathExpression compile(String expression) 
-            throws XPathExpressionException { 
-        XPathExpression xpath = _compiledExpression.get(expression);
-        
-        if ( xpath == null ) { 
-            XPathFactory factory = XPathFactory.newInstance();            
-            XPath x = factory.newXPath();
-            xpath = x.compile(expression);
-            _compiledExpression.put(expression, xpath);
-        }
-        
-        return xpath;
-    } 
-    
     public XMLDataRange(String expression) throws RangeException {
         this.expression = expression;
         init();
@@ -113,31 +71,33 @@ public class XMLDataRange extends Range {
         
         ByteArrayInputStream bais = new ByteArrayInputStream(xml.getBytes());
         try {
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            Document doc = db.parse(bais);
-            JXPathContext ctx = JXPathContext.newContext(doc);    
-            String aux = args[1].substring(0,args[1].length()-1);
-           
-            if ( aux.contains(",[") ) { 
-                String[] parts = aux.split(",\\[");
-                xpath = "/" + parts[0];
-                String[] maps = parts[1].replace("]", "").split(",");
-                
-                for ( String map : maps ) { 
-                    String[] nsMap = map.split("=>");
-                    ctx.registerNamespace(nsMap[0], nsMap[1]);
-                }
-            } else { 
-                xpath = "/" + aux;
+            DocumentBuilder db = XMLUtil.checkOut();
+            try { 
+	            Document doc = db.parse(bais);
+	            JXPathContext ctx = JXPathContext.newContext(doc);    
+	            String aux = args[1].substring(0,args[1].length()-1);
+	           
+	            if ( aux.contains(",[") ) { 
+	                String[] parts = aux.split(",\\[");
+	                xpath = "/" + parts[0];
+	                String[] maps = parts[1].replace("]", "").split(",");
+	                
+	                for ( String map : maps ) { 
+	                    String[] nsMap = map.split("=>");
+	                    ctx.registerNamespace(nsMap[0], nsMap[1]);
+	                }
+	            } else { 
+	                xpath = "/" + aux;
+	            }
+	            
+	            _nodes = ctx.selectNodes(xpath);
+            } finally { 
+                XMLUtil.checkIn(db);
             }
-           
-            _nodes = ctx.selectNodes(xpath);
         } catch (SAXException e) {
             throw new RangeException("Unable to parse xml.",e);
         } catch (IOException e) {
             throw new RangeException("Unable to parse xml.",e);
-        } catch (ParserConfigurationException e) {
-            throw new RangeException("Unable to get a new DocumentBuilder.",e);
         }
             
         _copy = new ArrayList<Node>();
@@ -160,14 +120,13 @@ public class XMLDataRange extends Range {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             StreamResult result = new StreamResult(baos);
             DOMSource source = new DOMSource(item);
+            Transformer transformer = XMLTransformerCache.checkOut();
             try {
-                javax.xml.transform.Transformer transformer = null;
-                transformer = tf.newTransformer();
-                transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION,
-                                              "yes");
                 transformer.transform(source, result);
             } catch (TransformerException e) {
                 throw new RangeException("Unable to handle XML.",e);
+            } finally { 
+                XMLTransformerCache.checkIn(transformer);
             }
             return new String(baos.toByteArray());
         }
