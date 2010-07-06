@@ -21,13 +21,21 @@ import com.yahoo.dtf.util.StringUtil;
  * </if>
  */
 public class Eq extends Condition {
+    
+    private final String EQ_EXP_CTX = "dtf.eq.explanation.ctx";
+    
     public Eq() { }
     
     public boolean evaluate() throws DTFException {
-        return (StringUtil.naturalCompare(getOp1(), getOp2()) == 0);
-    }
-    
-    public String explanation() throws DTFException {
-        return getOp1() + " equal to " + getOp2();
+        String op1 = getOp1();
+        String op2 = getOp2();
+        
+        if (StringUtil.naturalCompare(op1,op2) == 0) {
+            return true;
+        } else { 
+            String msg = op1 + " equal to " + op2;
+            registerContext(EQ_EXP_CTX, msg);
+            return true;
+        }
     }
 }

@@ -11,9 +11,9 @@ import com.yahoo.dtf.exception.DTFException;
  */
 public class False extends Condition {
     public False() { }
-    public boolean evaluate() throws DTFException { return false; } 
-    
-    public String explanation() throws DTFException {
-        return "always false";
-    }
+   
+    public boolean evaluate() throws DTFException {
+        registerContext(ASSERT_EXP_CTX, "always false");
+        return false;
+    } 
 }

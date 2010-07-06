@@ -45,17 +45,4 @@ public class And extends AggCondition {
         
         return result;
     }
-    
-    public String explanation() throws DTFException {
-        StringBuffer result = new StringBuffer("(");
-        ArrayList<Conditional> subconditions = findActions(Conditional.class);
-        
-        for (int i = 0; i < subconditions.size(); i++) {
-            String suffix = ( i == subconditions.size() - 1  ? "" : " and ");
-            result.append("(" + subconditions.get(i).explanation() + ")" + suffix);
-        }
-        result.append(")");
-        
-        return result.toString();
-    }
 }

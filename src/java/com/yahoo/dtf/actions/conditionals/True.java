@@ -12,7 +12,4 @@ import com.yahoo.dtf.exception.DTFException;
 public class True extends Condition {
     public True() { }
     public boolean evaluate() throws DTFException { return true; } 
-    public String explanation() throws DTFException {
-        return "always true";
-    }
 }

@@ -27,18 +27,16 @@ public class Isset extends Condition {
     public Isset() { }
     
     public boolean evaluate() throws DTFException {
+        String property = getProperty();
         try { 
-            replaceProperties("${" + getProperty() + "}");
+            replaceProperties("${" + property + "}");
             return true;
         } catch (DTFException e) { 
+            registerContext(ASSERT_EXP_CTX, property + " is set");
             return false;
         }
     }
     
     public String getProperty() throws ParseException { return replaceProperties(property); }
     public void setProperty(String property) { this.property = property; } 
-    
-    public String explanation() throws DTFException {
-        return getProperty() + " is set";
-    }
 }

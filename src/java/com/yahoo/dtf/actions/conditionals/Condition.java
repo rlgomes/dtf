@@ -6,6 +6,8 @@ import com.yahoo.dtf.exception.ParseException;
 
 public abstract class Condition extends Action implements Conditional {
 
+    protected final String ASSERT_EXP_CTX = "dtf.assert.explanation.ctx";
+    
     /**
      * @dtf.attr op1
      * @dtf.attr.desc Identifies the first operand of a conditional tag.
@@ -63,4 +65,12 @@ public abstract class Condition extends Action implements Conditional {
     
     public boolean getNullable() throws ParseException { return toBoolean("nullable", nullable); }
     public void setNullable(String nullable) { this.nullable = nullable; }
+   
+    /**
+     * By registering the context ASSERT_EXP_CTX you can set the message to 
+     * be returned explaining the failure to assert a certain condition.
+     */
+    public final String explanation() throws DTFException {
+        return getContext(ASSERT_EXP_CTX).toString();
+    }
 }

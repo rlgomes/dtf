@@ -24,10 +24,15 @@ public class Neq extends Condition {
     public Neq() { }
     
     public boolean evaluate() throws DTFException {
-        return (StringUtil.naturalCompare(getOp1(), getOp2()) != 0);
-    }
-    
-    public String explanation() throws DTFException {
-        return getOp1() + " not equal to " + getOp2();
+        String op1 = getOp1();
+        String op2 = getOp2();
+        
+        if (StringUtil.naturalCompare(op1,op2) != 0) {
+            return true;
+        } else { 
+            String msg = op1 + " not equal to " + op2;
+            registerContext(ASSERT_EXP_CTX, msg);
+            return true;
+        }
     }
 }

@@ -31,30 +31,14 @@ public class Or extends AggCondition {
     public Or() { }
 
     public boolean evaluate() throws DTFException {
-        boolean result = false;
         ArrayList subconditions = findActions(Conditional.class);
         
         for (int i = 0; i < subconditions.size(); i++) { 
-            result |= ((Conditional)subconditions.get(i)).evaluate();
-           
             // lazy evaluation ;)
-            if (result) 
+            if (((Conditional)subconditions.get(i)).evaluate());
                 return true;
         }
         
-        return result;
-    }
-    
-    public String explanation() throws DTFException {
-        StringBuffer result = new StringBuffer("(");
-        ArrayList<Conditional> subconditions = findActions(Conditional.class);
-        
-        for (int i = 0; i < subconditions.size(); i++) {
-            String suffix = ( i == subconditions.size() - 1  ? "" : " or ");
-            result.append("(" + subconditions.get(i).explanation() + ")" + suffix);
-        }
-        result.append(")");
-        
-        return result.toString();
+        return false;
     }
 }

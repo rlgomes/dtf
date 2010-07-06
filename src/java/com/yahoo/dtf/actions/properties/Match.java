@@ -81,6 +81,9 @@ public class Match extends Condition {
     public boolean evaluate() throws DTFException {
         Pattern myPattern;
         Matcher myMatcher;
+        String source = getSource();
+        String expression = getExpression();
+        boolean result = false;
 
         /*
          * XXX: easy optimization here if we keep a HashMap of the hash code of 
@@ -88,18 +91,26 @@ public class Match extends Condition {
          *      and not have to compile a new Pattern object every time.
          */
         if (getInsensitive()) {
-            myPattern = Pattern.compile(getExpression().toLowerCase());
-            myMatcher = myPattern.matcher(getSource().toLowerCase());
+            myPattern = Pattern.compile(expression.toLowerCase());
+            myMatcher = myPattern.matcher(source.toLowerCase());
         } else {
-            myPattern = Pattern.compile(getExpression());
-            myMatcher = myPattern.matcher(getSource());
+            myPattern = Pattern.compile(expression);
+            myMatcher = myPattern.matcher(source);
         }
         
         if ( getPartial() ) {
-            return myMatcher.find();
+            result = myMatcher.find();
         } else {
-            return myMatcher.matches();
+            result = myMatcher.matches();
         }
+        
+        if ( !result ) { 
+	        String msg = "\"" + source + "\" matches the regular expression \"" + 
+	               expression + "\"";
+	        registerContext(ASSERT_EXP_CTX, msg);
+        }
+       
+        return result;
     }
     
     public String getOp1() throws ParseException { return getSource(); }
@@ -119,9 +130,4 @@ public class Match extends Condition {
     
     public boolean getPartial() throws ParseException { return toBoolean("partial",partial); }
     public void setPartial(String partial) { this.partial = partial; }
-    
-    public String explanation() throws DTFException {
-        return "\"" + getSource() + "\" matches the regular expression \"" + 
-               getExpression() + "\"";
-    }
 }

@@ -54,13 +54,22 @@ public class Within extends Condition {
     public boolean evaluate() throws DTFException {
         double op1 = toDouble("op1", getOp1());
         double op2 = toDouble("op2", getOp2());
-        Tolerance tolerance = getPercentage(getTolerance());
-        
+        String tol = getTolerance();
+        Tolerance tolerance = getPercentage(tol);
+        boolean result = false;
+            
         if (op1 < op2) { 
-            return Math.abs(op1 - op2) / op2 <= tolerance.lower;
+            result = Math.abs(op1 - op2) / op2 <= tolerance.lower;
         } else { 
-            return Math.abs(op2 - op1) / op1 <= tolerance.upper;
+            result = Math.abs(op2 - op1) / op1 <= tolerance.upper;
         }
+        
+        if ( !result ) { 
+            String msg = op1 + " within " + tol  + " of " + op2;
+            registerContext(ASSERT_EXP_CTX, msg);
+        }
+        
+        return result;
     }
     
     private static class Tolerance { 
@@ -91,14 +100,10 @@ public class Within extends Condition {
             result.lower = toDouble("tolerance", perc);
             result.upper = toDouble("tolerance", perc);
         }
-        
+
         return result;
     }
     
     public String getTolerance() throws ParseException { return replaceProperties(tolerance); } 
     public void setTolerance(String tolerance) { this.tolerance = tolerance; } 
-    
-    public String explanation() throws DTFException {
-        return getOp1() + " within " + getTolerance() + " of " + getOp2();
-    }
 }

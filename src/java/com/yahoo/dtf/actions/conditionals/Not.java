@@ -39,11 +39,11 @@ public class Not extends AggCondition {
     
     public boolean evaluate() throws DTFException {
         Conditional condition = (Conditional) findFirstAction(Conditional.class);
-        return !condition.evaluate();
-    }
-    
-    public String explanation() throws DTFException {
-        Conditional condition = (Conditional) findFirstAction(Conditional.class);
-        return "not (" + condition.explanation() + ")";
+        if ( condition.evaluate() ) { 
+            registerContext(ASSERT_EXP_CTX, "not (" + condition.explanation() + ")");
+            return false;
+        }
+
+        return true; 
     }
 }
