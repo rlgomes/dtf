@@ -15,7 +15,7 @@ import org.xml.sax.SAXException;
 
 import com.yahoo.dtf.exception.ParseException;
 
-public class XMLUtil {
+public abstract class XMLUtil {
     
     private static DocumentBuilderFactory dbf = 
                                            DocumentBuilderFactory.newInstance();

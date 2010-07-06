@@ -6,6 +6,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -21,6 +22,7 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import com.yahoo.dtf.exception.RangeException;
+import com.yahoo.dtf.xml.JXPathHelper;
 import com.yahoo.dtf.xml.XMLTransformerCache;
 import com.yahoo.dtf.xml.XMLUtil;
 
@@ -80,12 +82,8 @@ public class XMLDataRange extends Range {
 	            if ( aux.contains(",[") ) { 
 	                String[] parts = aux.split(",\\[");
 	                xpath = "/" + parts[0];
-	                String[] maps = parts[1].replace("]", "").split(",");
-	                
-	                for ( String map : maps ) { 
-	                    String[] nsMap = map.split("=>");
-	                    ctx.registerNamespace(nsMap[0], nsMap[1]);
-	                }
+	                JXPathHelper.registerNamespaces(ctx,
+	                                                parts[1].replace("]", ""));
 	            } else { 
 	                xpath = "/" + aux;
 	            }

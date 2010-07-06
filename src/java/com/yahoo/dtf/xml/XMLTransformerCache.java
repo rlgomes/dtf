@@ -14,7 +14,7 @@ import javax.xml.transform.TransformerFactory;
  * 
  * @author rlgomes
  */
-public class XMLTransformerCache {
+public abstract class XMLTransformerCache {
 
     private static TransformerFactory tf = TransformerFactory.newInstance();
    

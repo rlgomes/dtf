@@ -13,6 +13,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import com.yahoo.dtf.exception.ParseException;
+import com.yahoo.dtf.xml.JXPathHelper;
 import com.yahoo.dtf.xml.XMLTransformerCache;
 import com.yahoo.dtf.xml.XMLUtil;
 
@@ -27,12 +28,8 @@ public class XPathTransformer implements Transformer {
         if ( expression.contains(",[") ) { 
             String[] parts = expression.split(",\\[");
             expression = parts[0];
-            String[] maps = parts[1].replace("]", "").split(",");
-           
-            for ( String map : maps ) { 
-                String[] nsMap = map.split("=>");
-                ctx.registerNamespace(nsMap[0], nsMap[1]);
-            }
+            JXPathHelper.registerNamespaces(ctx,
+	                                        parts[1].replace("]", ""));
         }
        
         List<Node> nodes = ctx.selectNodes(expression);
