@@ -22,20 +22,18 @@ import com.yahoo.dtf.util.StringUtil;
  */
 public class Eq extends Condition {
     
-    private final String EQ_EXP_CTX = "dtf.eq.explanation.ctx";
-    
     public Eq() { }
     
     public boolean evaluate() throws DTFException {
         String op1 = getOp1();
         String op2 = getOp2();
         
-        if (StringUtil.naturalCompare(op1,op2) == 0) {
+        if (StringUtil.naturalCompare(op1, op2) == 0) {
             return true;
         } else { 
             String msg = op1 + " equal to " + op2;
-            registerContext(EQ_EXP_CTX, msg);
-            return true;
+            registerContext(ASSERT_EXP_CTX, msg);
+            return false;
         }
     }
 }

@@ -32,7 +32,7 @@ public class Lt extends Condition {
         } else { 
             String msg = op1 + " less than " + op2;
             registerContext(ASSERT_EXP_CTX, msg);
-            return true;
+            return false;
         }
     }
 }

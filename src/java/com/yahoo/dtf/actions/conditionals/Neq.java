@@ -32,7 +32,7 @@ public class Neq extends Condition {
         } else { 
             String msg = op1 + " not equal to " + op2;
             registerContext(ASSERT_EXP_CTX, msg);
-            return true;
+            return false;
         }
     }
 }

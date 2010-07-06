@@ -39,11 +39,6 @@ public class Not extends AggCondition {
     
     public boolean evaluate() throws DTFException {
         Conditional condition = (Conditional) findFirstAction(Conditional.class);
-        if ( condition.evaluate() ) { 
-            registerContext(ASSERT_EXP_CTX, "not (" + condition.explanation() + ")");
-            return false;
-        }
-
-        return true; 
+        return !condition.evaluate();
     }
 }

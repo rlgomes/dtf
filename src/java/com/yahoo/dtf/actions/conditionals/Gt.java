@@ -32,7 +32,7 @@ public class Gt extends Condition {
         } else { 
             String msg = op1 + " greater than " + op2;
             registerContext(ASSERT_EXP_CTX, msg);
-            return true;
+            return false;
         }
     }
 }
