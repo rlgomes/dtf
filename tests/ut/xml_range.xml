@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="xml_range">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF XML range expression unit test.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+
+        <property name="xml">
+        <![CDATA[
+	    <list>
+		    <item value="1"/>
+		    <item value="2"/>
+		    <item value="3"/>
+		    <item value="4"/>
+		    <item value="5"/>
+		    <item value="6"/>
+		</list> 
+        ]]> 
+        </property>
+
+        <property name="xml-with-ns">
+        <![CDATA[
+        <h:html xmlns:h="http://www.w3.org/HTML/1998/html4">
+            <h:head><h:title>A List in HTML</h:title></h:head>
+            <h:body>
+                <h:ul>
+                    <h:li>1</h:li>
+                    <h:li>2</h:li>
+                    <h:li>3</h:li>
+                    <h:li>4</h:li>
+                    <h:li>5</h:li>
+                    <h:li>6</h:li>
+                </h:ul>
+            </h:body>
+        </h:html>
+        ]]> 
+        </property>
+        
+        <property name="xml-with-default-ns">
+        <![CDATA[
+        <list xmlns="urn:dtf:list">
+            <item>1</item>
+            <item>2</item>
+            <item>3</item>
+            <item>4</item>
+            <item>5</item>
+            <item>6</item>
+        </list>
+        ]]> 
+        </property>
+	    
+        <createrange name="testrange" value="random(0..5)"/>
+    </local>
+    
+    <log>XPath range validation</log> 
+    <createrange name="testrange" value="1..6"/>
+    <property name="count" value="0" overwrite="true"/>
+    <for property="prop" range="xpath(${xml},/list/item/@value)">
+        <assert><eq op1="${testrange}" op2="${prop}"/></assert>
+        <add op1="${count}" op2="1" result="count"/>
+    </for>
+    <assert><eq op1="${count}" op2="6"/></assert>
+    
+    <log>XPath range validation on XML with namespace</log> 
+    <createrange name="testrange" value="1..6"/>
+    <property name="count" value="0" overwrite="true"/>
+    <for property="prop" range="xpath(${xml-with-ns},//h:li/text())">
+        <assert><eq op1="${testrange}" op2="${prop}"/></assert>
+        <add op1="${count}" op2="1" result="count"/>
+    </for>
+    <assert><eq op1="${count}" op2="6"/></assert>
+
+    <log>XPath range validation on XML with default namespace</log> 
+    <createrange name="testrange" value="1..6"/>
+    <property name="count" value="0" overwrite="true"/>
+    <for property="prop"
+         range="xpath(${xml-with-default-ns},//ns:item/text(),[ns=>urn:dtf:list])">
+        <assert><eq op1="${testrange}" op2="${prop}"/></assert>
+        <add op1="${count}" op2="1" result="count"/>
+    </for>
+    <assert><eq op1="${count}" op2="6"/></assert>
+    
+    <log>negative tests</log>  
+    <try>
+        <for property="node" range="xpath(${xml},/script/list/*">
+            <fail>This line should never be executed.</fail>
+        </for>
+        <catch exception="${dtf.RangeException}">
+            <log>Failed correctly</log>
+        </catch>
+    </try>
+</script>

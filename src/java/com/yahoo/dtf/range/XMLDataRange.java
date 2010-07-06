@@ -7,6 +7,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -18,16 +19,15 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import org.apache.commons.jxpath.JXPathContext;
 import org.apache.xerces.dom.AttrImpl;
 import org.apache.xerces.jaxp.DocumentBuilderFactoryImpl;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.yahoo.dtf.range.Range;
@@ -43,7 +43,7 @@ public class XMLDataRange extends Range {
     private long nextcalled = 0;
     private String xml = null;
     
-    private NodeList _nodes = null;
+    private List<Node> _nodes = null;
     private ArrayList<Node> _copy = null;
     
     private static DocumentBuilderFactory dbf = null;
@@ -72,7 +72,7 @@ public class XMLDataRange extends Range {
     }
    
     /*
-     * used when transferring ranges between runner and agents.
+     * Used when transferring ranges between runner and agents.
      */
     public XMLDataRange() { 
         
@@ -110,29 +110,39 @@ public class XMLDataRange extends Range {
             throw new RangeException("XPath expression is invalid [" + 
                                      expression + "]");
         }
-            
-        xpath = "/" + args[1].substring(0,args[1].length()-1);
-            
+        
         ByteArrayInputStream bais = new ByteArrayInputStream(xml.getBytes());
         try {
             DocumentBuilder db = dbf.newDocumentBuilder();
-                
             Document doc = db.parse(bais);
-            XPathExpression expr = compile(xpath);
-            _nodes = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
+            JXPathContext ctx = JXPathContext.newContext(doc);    
+            String aux = args[1].substring(0,args[1].length()-1);
+           
+            if ( aux.contains(",[") ) { 
+                String[] parts = aux.split(",\\[");
+                xpath = "/" + parts[0];
+                String[] maps = parts[1].replace("]", "").split(",");
+                
+                for ( String map : maps ) { 
+                    String[] nsMap = map.split("=>");
+                    ctx.registerNamespace(nsMap[0], nsMap[1]);
+                }
+            } else { 
+                xpath = "/" + aux;
+            }
+           
+            _nodes = ctx.selectNodes(xpath);
         } catch (SAXException e) {
             throw new RangeException("Unable to parse xml.",e);
         } catch (IOException e) {
             throw new RangeException("Unable to parse xml.",e);
-        } catch (XPathExpressionException e) {
-            throw new RangeException("Unable to handle xpath transform.",e);
         } catch (ParserConfigurationException e) {
             throw new RangeException("Unable to get a new DocumentBuilder.",e);
         }
             
         _copy = new ArrayList<Node>();
-        for (int i = 0; i < _nodes.getLength(); i++) { 
-            _copy.add(_nodes.item(i));
+        for (int i = 0; i < _nodes.size(); i++) { 
+            _copy.add(_nodes.get(i));
         }
     }
     

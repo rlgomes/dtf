@@ -15,14 +15,6 @@ import org.xml.sax.SAXException;
 import com.yahoo.dtf.exception.ParseException;
 
 public class XMLUtil {
-   
-    public static Document newDocument() throws ParseException { 
-        try {
-            return DocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
-        } catch (ParserConfigurationException e) {
-            throw new ParseException("Unable to create new Document.",e);
-        }
-    }
     
     private static DocumentBuilderFactory dbf = 
                                            DocumentBuilderFactory.newInstance();
@@ -34,6 +26,16 @@ public class XMLUtil {
        synchronized(_dbs) { 
            _dbs.add(db);
        }
+       
+       dbf.setNamespaceAware(true);
+    }
+    
+    public static Document newDocument() throws ParseException { 
+        try {
+            return dbf.newDocumentBuilder().newDocument();
+        } catch (ParserConfigurationException e) {
+            throw new ParseException("Unable to create new Document.",e);
+        }
     }
     
     private static DocumentBuilder checkOut() { 

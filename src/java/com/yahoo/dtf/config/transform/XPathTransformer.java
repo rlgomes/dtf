@@ -2,7 +2,9 @@ package com.yahoo.dtf.config.transform;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.TransformerConfigurationException;
@@ -13,6 +15,9 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.apache.commons.jxpath.JXPathContext;
+import org.apache.commons.jxpath.ri.NamespaceResolver;
+import org.apache.commons.jxpath.ri.QName;
+import org.apache.commons.jxpath.ri.model.dom.DOMNodePointer;
 import org.apache.xerces.dom.DeferredAttrImpl;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -29,7 +34,7 @@ public class XPathTransformer implements Transformer {
 
 	private void checkIn(javax.xml.transform.Transformer transformer) { 
 		synchronized(_transformers) { 
-		_transformers.add(transformer);
+		    _transformers.add(transformer);
 		}
 	}
     private javax.xml.transform.Transformer checkOut() { 
@@ -55,8 +60,21 @@ public class XPathTransformer implements Transformer {
     public String apply(String data, String expression) throws ParseException {
         Document document = XMLUtil.parseXML(data);
         JXPathContext ctx = JXPathContext.newContext(document);
-        List<Node> nodes = ctx.selectNodes(expression);
         javax.xml.transform.Transformer transformer = checkOut();
+
+        if ( expression.contains(",[") ) { 
+            String[] parts = expression.split(",\\[");
+            expression = parts[0];
+            String[] maps = parts[1].replace("]", "").split(",");
+           
+            for ( String map : maps ) { 
+                String[] nsMap = map.split("=>");
+                ctx.registerNamespace(nsMap[0], nsMap[1]);
+            }
+        }
+       
+        List<Node> nodes = ctx.selectNodes(expression);
+        
 	    try { 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             StreamResult result = new StreamResult(baos);
@@ -66,9 +84,6 @@ public class XPathTransformer implements Transformer {
                 if ( obj instanceof DeferredAttrImpl ) { 
 	                return ((DeferredAttrImpl)obj).getValue();
                 } else if ( !(obj instanceof Node) ) { 
-                    /*
-                     * Basically Integer, Doubles will be handled here
-                     */
                     return obj.toString();
                 }
             } 

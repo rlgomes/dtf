@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="json_range">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF JSON range expression unit test.</description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+
+        <property name="json">
+        {
+            "list": { 
+		        "item":[
+                    { "value": 1 },
+		            { "value": 2 }, 
+		            { "value": 3 }, 
+		            { "value": 4 },
+		            { "value": 5 },
+		            { "value": 6 } 
+               ]
+		    }
+		}
+        </property>
+        
+        <createrange name="testrange" value="random(0..5)"/>
+    </local>
+    
+    <log>JPath range validation</log> 
+    <createrange name="testrange" value="1..6"/>
+    <property name="count" value="0" overwrite="true"/>
+    <for property="prop" range="jpath(${json},/list/item/@value)">
+        <assert><eq op1="${testrange}" op2="${prop}"/></assert>
+        <add op1="${count}" op2="1" result="count"/>
+    </for>
+    <assert><eq op1="${count}" op2="6"/></assert>
+
+    <log>Negative Tests</log> 
+    <try>
+        <for property="node" range="jpath(${json},/list/*">
+            <fail>This line should never be executed.</fail>
+        </for>
+        <catch exception="${dtf.RangeException}">
+            <log>Failed correctly</log>
+        </catch>
+    </try>
+</script>

@@ -33,7 +33,7 @@
         <urlencode result="term" source="${term}"/>
         <http_get uri="${uri}&amp;query=${term}"/>
         <property name="clickurl"
-                  value="${http.get.body:xpath://*[local-name()='Result']/*[local-name()='ClickUrl']/text()}"
+                  value="${http.get.body:xpath://ns:Result/ns:ClickUrl/text(),[ns=>urn:yahoo:srch]}"
                   overwrite="true"/>
         <assert>
             <match source="${clickurl}" expression=".*${expected_link}.*"/>

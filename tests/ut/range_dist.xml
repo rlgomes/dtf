@@ -43,5 +43,26 @@
 	        <assert><isset property="event${i}.start"/></assert>
 	    </for>
     </for>
+    
+    <log>Testing ranges across components</log> 
+    <createrange name="a" value="1..5"/> 
+    <component id="C1"> 
+        <for property="i" range="1..5">
+            <event name="a${a}"/>
+        </for>
+    </component>
+    <for property="i" range="1..5">
+        <assert><isset property="a${i}.start"/></assert>
+    </for>
+    
+    <createrange name="b" value="1..5"/> 
+    <for property="i" range="1..5">
+        <component id="C1"> 
+           <event name="b${b}"/>
+        </component>
+    </for>
+    <for property="i" range="1..5">
+        <assert><isset property="b${i}.start"/></assert>
+    </for>
         
 </script>
