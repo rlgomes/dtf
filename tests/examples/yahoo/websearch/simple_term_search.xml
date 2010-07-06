@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="simple_term_search">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        A simple term search test that will try to look up a few simple terms
+        that would always originate in the first result returned being the
+        expected service because of the term being used.
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/websearch.properties"/>
+    </local>
+
+    <property name="uri" value="${websearch.uri}?appid=dtftest&amp;results=1"/>  
+    
+    <property name="simple_terms"
+              value="github,yahoo mail,google finance,wikipedia encyclopedia"/>
+             
+    <createrange name="expected_link"
+                 value="github.com,mail.yahoo.com,google.com/finance,wikipedia.org"/>
+
+    <for property="term" range="${simple_terms}">
+        <log>searching [${term}]</log>
+        <urlencode result="term" source="${term}"/>
+        <http_get uri="${uri}&amp;query=${term}"/>
+        <property name="clickurl"
+                  value="${http.get.body:xpath://*[local-name()='Result']/*[local-name()='ClickUrl']/text()}"
+                  overwrite="true"/>
+        <assert>
+            <match source="${clickurl}" expression=".*${expected_link}.*"/>
+        </assert>
+    </for>
+  
+</script> 
