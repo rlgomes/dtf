@@ -68,9 +68,9 @@ public abstract class Condition extends Action implements Conditional {
    
     /**
      * By registering the context ASSERT_EXP_CTX you can set the message to 
-     * be returned explaining the failure to assert a certain condition.
+     * be returned explaining the failure to assert a condition.
      */
-    public final String explanation() throws DTFException {
+    public String explanation() throws DTFException {
         return getContext(ASSERT_EXP_CTX).toString();
     }
 }
