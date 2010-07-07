@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="validate_result_count">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        This test validates that the result count returned is the same as the 
+        one specified with the query parameter 'result' for values between 1 and
+        42.
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/websearch.properties"/>
+    </local>
+
+    <property name="uri" value="${websearch.uri}?appid=dtftest"/>  
+    
+    <for property="i" range="1..42">
+        <log>checking ${i} result count</log>
+        <http_get uri="${uri}&amp;query=github&amp;results=${i}"/>
+        <property name="count"
+                  value="${http.get.body:xpath:count(//ns:Result),[ns=>urn:yahoo:srch]}"
+                  overwrite="true"/>
+        <assert><eq op1="${count}" op2="${i}"/></assert>
+    </for>
+  
+</script> 
