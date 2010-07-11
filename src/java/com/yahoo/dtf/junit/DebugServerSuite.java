@@ -106,43 +106,6 @@ public class DebugServerSuite extends DTFJUnitTest {
             getLogger().info(response);
             
             /*
-             * turn on the shell mode and poke at some of the existing
-             * functionality.
-             */
-            getLogger().info("Will now interact with the shell mode and run some commands.");
-            String[] commands = new String[]{"shell",
-                                             "dtf.help()",
-                                             "dtf.threads()",
-                                             "main = dtf.thread('main')",
-                                             "dtf.methods(main)",
-                                             "dtf.dmethods(main,'get.*')",
-                                             "dtf.dmethods(main,'set.*')",
-                                             "state = dtf.state('main')",
-                                             "dtf.dmethods(state,'get.*')"
-                                            };
-
-            for (int i = 0; i < commands.length; i++) { 
-	            writer.println(commands[i]);
-	            writer.flush();
-	            response = readTillPrompt(reader, '#');
-	            System.out.println("# " + commands[i]);
-	           
-	            if ( response.charAt(response.length()-1) == '\n' ) 
-	                response = response.substring(0,response.length()-1);
-	            
-	            System.out.println(response);
-            }
-
-            /*
-             * quit shell mode
-             */
-            writer.println("//end");
-            System.out.println("# //end");
-            writer.flush();
-            response = readTillPrompt(reader,'#');
-            System.out.println(response);
-            
-            /*
              * quit the debug server session.
              */
             writer.println("quit");
