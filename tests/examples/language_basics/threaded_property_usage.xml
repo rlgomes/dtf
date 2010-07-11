@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="thread_property_usage">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Simple for threaded property test used in the Language Basics 
+        documentation section.
+        </description>
+    </info>
+  
+    <property name="iterations" value="1000"/>
+    <property name="count" value="0"/>
+    
+    <parallelloop property="t" range="1..5">
+        <for property="i" range="1..${iterations}">
+            <add op1="${count}" op2="1" result="count"/>
+        </for> 
+        <assert><eq op1="${count}" op2="${iterations}"/></assert>
+        <log>thread ${t} is done.</log>
+    </parallelloop>
+    
+</script>

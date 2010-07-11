@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="component_usage">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        </description>
+    </info>
+  
+    <local>
+        <lockcomponent id="C1"/>
+        <createrange name="range" value="1,2,3,4,5"/>
+    </local>    
+   
+    <for property="i" range="1..5">
+	    <component id="C1">
+            <assert><eq op1="${i}" op2="${range}"/></assert>
+	    </component>
+    </for>
+   
+</script>

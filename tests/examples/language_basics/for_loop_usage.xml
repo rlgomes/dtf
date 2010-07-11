@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="for_loop_usage">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        </description>
+    </info>
+   
+	<for property="i" range="[0..5]">
+        <log>${i}</log>
+	</for>
+
+	<for property="i" range="[a,b,c,d]">
+        <log>${i}</log>
+	</for>
+	
+    <for property="i" range="[0..1][0..1][0..1]">
+        <log>${i}</log>
+	</for>
+	
+    <for property="i" range="[0..3][a,b,c,d,e]">
+        <log>${i}</log>
+	</for>
+
+    <for property="i" range="random([0..10])">
+        <log>${i}</log>
+	</for>
+</script>

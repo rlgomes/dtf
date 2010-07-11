@@ -17,10 +17,9 @@
     <local>
         <createstorage id="INPUT" path="${dtf.xml.path}/input" />
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output" />
-        <createstorage id="TINPUT" path="${dtf.xml.path}" />
 
         <loadproperties uri="storage://INPUT/ut.properties" />
-        <import uri="storage://TINPUT/export_util.xml"/>
+        <import uri="storage://INPUT/export_util.xml"/>
         
         <lockcomponent id="DTFA1"/>
     </local>

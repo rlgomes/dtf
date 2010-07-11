@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="try_catch_finally">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        </description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <loadproperties uri="storage://INPUT/test.properties"/>
+    </local>
+    
+    <try>
+        <sequence>
+            <fail message="failing from here!"/>
+        </sequence>
+        <catch exception="${dtf.FailException}">
+            <sequence>
+                <local>
+                    <echo>The previous statement has failed correctly.</echo>
+                </local>
+            </sequence>
+        </catch>
+        <finally>
+            <log>This line will appear no matter what</log>
+        </finally>
+    </try>
+
+</script> 

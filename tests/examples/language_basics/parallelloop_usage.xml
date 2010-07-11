@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="parallelloop_usage">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        </description>
+    </info>
+  
+    <parallelloop property="t" range="1..5">
+        <log>from thread ${t}</log>
+    </parallelloop> 
+
+    <parallelloop property="i" range="1..3">
+        <parallelloop property="j" range="1..3">
+            <log>from thread ${i}.${j}</log>
+        </parallelloop>  
+    </parallelloop> 
+    
+</script>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="http_event_usage">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        </description>
+    </info>
+    
+    <local>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+    </local>
+
+    <for property="i" range="[0..5]">
+        <http_get uri="http://github.com" onFailure="continue" />
+        <log>status code: ${http.get.status}</log>
+    </for>
+    
+    <http_get uri="http://api.search.yahoo.com/WebSearchService/V1/webSearch?appid=dtftest&amp;results=1&amp;query=Yahoo!"/>
+        
+    <assert>
+        <match source="${http.get.body}"
+               expression="&lt;ClickUrl&gt;http://www.yahoo.com/&lt;/ClickUrl&gt;"
+               partial="true"/>
+    </assert>
+   
+    <record uri="storage://OUTPUT/http_get.txt">
+        <for property="i" range="1..100">
+            <http_get uri="http://gist.github.com/raw/471044/e3ccbdc209157714625dc76e97dcc6b6d583f771/recording_events.xml" onFailure="continue"/>
+        </for>
+    </record>
+    
+    <query uri="storage://OUTPUT/http_get.txt"
+           cursor="data"/>
+    
+    <stats event="stats" cursor="data"/>
+    
+    <log>
+    Stats from Gist GET Requests:
+    ops/sec:        ${stats.avg_occ}
+    min duration:   ${stats.min_dur}ms
+    max duration:   ${stats.max_dur}ms 
+    avg duration:   ${stats.avg_dur}ms 
+    </log>
+    
+</script>

@@ -13,7 +13,6 @@
     
     <local>
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
-        <createstorage id="TINPUT" path="${dtf.xml.path}"/>
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
         
         <loadproperties uri="storage://INPUT/ut.properties"/>
@@ -111,7 +110,7 @@
     </parallel>
     
 	<testsuite name="query">
-		<testscript uri="storage://TINPUT/query_testcase.xml">
+		<testscript uri="storage://INPUT/query_testcase.xml">
     		<property name="query.type" value="txt" overwrite="true"/>
         </testscript>
 	</testsuite> 

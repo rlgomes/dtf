@@ -1122,6 +1122,7 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="proxy" minOccurs="0" maxOccurs="1" />
+                <xs:element ref="credentials" minOccurs="0" maxOccurs="1" />
             </xs:sequence>
             <xs:attribute name="id"    type="xs:string" />
             <xs:attribute name="refid" type="xs:string" />
@@ -1134,6 +1135,13 @@
             <xs:attribute name="host" type="xs:string" use="required"/>
             <xs:attribute name="port" type="xs:string" default="3128"/>
 
+            <xs:attribute name="username" type="xs:string" />
+            <xs:attribute name="password" type="xs:string" />
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="credentials">
+        <xs:complexType>
             <xs:attribute name="username" type="xs:string" />
             <xs:attribute name="password" type="xs:string" />
         </xs:complexType>

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <script xmlns="http://dtf.org/v1" name="createrange">
     <info>
         <author>
@@ -24,6 +25,7 @@
 	    <createrange name="enumerated.range" value="c1,c2,c3,c4,c5" recycle="true"/>
 	    <createrange name="sequential.range" value="c[1..5]" recycle="true"/>
 	</local>
+    
 	<for property="var" range="1..100000">
 		<if>
 			<neq op1="${var}" op2="${range.var}" type="string" nullable="false"/>

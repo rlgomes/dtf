@@ -39,6 +39,8 @@
 	                <entity value="${dtf.stream(random,${bytes},1234)}"/>
                 </http_response>
             </http_listener>
+
+            <http_listener path="/throttled" method="*" bandwidth="${bandwidth}"/>
         </http_server>
     
         <try>
@@ -71,29 +73,15 @@
                             op2="${http.get.bodysize.avg_val}"
                             op1="${bandwidth}"/>
                 </assert>
-            </sequence>
-            <finally>
-                <http_server port="${dtf.http.port}" command="stop"/> 
-            </finally>
-        </try>
-    </parallel>
-
-    <parallel> 
-        <http_server port="${dtf.http.port}">
-            <http_listener path="*" method="*" bandwidth="${bandwidth}"/>
-        </http_server>
-    
-        <try>
-            <sequence>
-                <sleep time="2s"/>
-                <log>Throttling on the server server receiving</log>
-	            <record type="stats">
-		            <http_post uri="http://localhost:${dtf.http.port}">
-		                <entity value="${dtf.stream(random,${bytes},1234)}"/>
-		            </http_post>
-	            </record>
                 
-	            <log>bps: ${http.post.datasize.avg_val}</log>
+                <log>Throttling sending data on server side</log>
+                <record type="stats">
+                    <http_post uri="http://localhost:${dtf.http.port}/throttled">
+                        <entity value="${dtf.stream(random,${bytes},1234)}"/>
+                    </http_post>
+                </record>
+                
+                <log>bps: ${http.post.datasize.avg_val}</log>
                 <assert>
                     <within tolerance="${tolerance}"
                             op2="${http.post.datasize.avg_val}"

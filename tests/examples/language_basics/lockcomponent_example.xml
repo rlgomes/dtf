@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="lockcomponent_example">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        </description>
+    </info>
+  
+    <local>
+        <lockcomponent id="CS">
+            <attrib name="agent.type" value="primary"/>
+        </lockcomponent>
+        
+        <lockcomponent id="CP">
+            <attrib name="agent.type" value="secondary"/>
+        </lockcomponent>
+    </local>    
+    
+    <component id="CS">
+        <log>This is the Secondary Agent</log>
+    </component>
+
+    <component id="CP">
+        <log>This is the Primary Agent</log>
+    </component>
+</script>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="ranges_and_components">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        </description>
+    </info>
+  
+    <local>
+        <lockcomponent id="C1"/>
+        <createrange name="range" value="1,2,3,4,5"/>
+    </local>    
+    
+    <component id="C1">
+        <for property="i" range="1..5">
+            <log>value ${range}</log>
+        </for> 
+    </component>
+   
+    <!-- the range is still in the same position on the dtfx side --> 
+    <assert><eq op1="${range}" op2="1"/></assert>
+    
+</script>

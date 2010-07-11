@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="recursive_property_resolution">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Simple for recursive property resolution test used in the Language 
+        Basics documentation section.
+        </description>
+    </info>
+  
+    <property name="iterations" value="10"/>
+    <createrange name="range1" value="1,2,3,4,5"/>
+    <createrange name="range2" value="10,11" recycle="true"/>
+    <createrange name="range3" value="32,33,34,35,36"/>
+    
+    <parallelloop property="t" range="1..5">
+        <for property="i" range="1..3">
+            <log>Thread ${t} has ${range${i}}</log>
+        </for> 
+    </parallelloop>
+    
+</script>

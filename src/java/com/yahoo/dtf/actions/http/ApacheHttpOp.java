@@ -9,6 +9,7 @@ import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.httpclient.ConnectTimeoutException;
 import org.apache.commons.httpclient.HttpClient;
@@ -17,7 +18,9 @@ import org.apache.commons.httpclient.HttpState;
 import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.ProxyHost;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
+import org.apache.commons.httpclient.auth.AuthPolicy;
 import org.apache.commons.httpclient.auth.AuthScope;
+import org.apache.commons.httpclient.auth.BasicScheme;
 import org.apache.commons.httpclient.cookie.CookiePolicy;
 import org.apache.commons.httpclient.methods.DeleteMethod;
 import org.apache.commons.httpclient.methods.EntityEnclosingMethod;
@@ -29,6 +32,7 @@ import org.apache.commons.httpclient.methods.PutMethod;
 import org.apache.commons.httpclient.params.HttpMethodParams;
 
 import com.yahoo.dtf.actions.Action;
+import com.yahoo.dtf.actions.http.config.Credentials;
 import com.yahoo.dtf.actions.http.config.Http_config;
 import com.yahoo.dtf.actions.http.config.Proxy;
 import com.yahoo.dtf.actions.http.cookies.Cookie;
@@ -110,43 +114,67 @@ public class ApacheHttpOp extends HttpOp {
     
     /*
      * Remember that this is called in every execution to make sure the
-     * configuration of the current action is correctly applied, so only 
+     * configuration of the current action is correctly applied, so only
      * configure the actual things that can change dynamically in the test.
      */
-    private void config(HttpMethodBase method, HttpBase op) throws DTFException { 
-        Http_config config = (Http_config) op.findFirstAction(Http_config.class);
-        if ( config != null ) { 
+    private void config(HttpMethodBase method, HttpBase op) throws DTFException {
+        Http_config config = (Http_config)op.findFirstAction(Http_config.class);
+        
+        if (config != null) {
             /*
              * Proxy settings
              */
             Proxy proxy = (Proxy) config.findFirstAction(Proxy.class);
-            if ( proxy != null ) { 
+            if (proxy != null) {
                 String host = proxy.getHost();
                 int port = proxy.getPort();
                 String username = proxy.getUsername();
                 String password = proxy.getPassword();
-               
-                ProxyHost proxyhost = new ProxyHost(host,port);
+
+                ProxyHost proxyhost = new ProxyHost(host, port);
                 client.getHostConfiguration().setProxyHost(proxyhost);
-                
-                if ( username != null ) { 
+
+                if (username != null) {
                     HttpState state = client.getState();
-                    UsernamePasswordCredentials upc = 
-                             new UsernamePasswordCredentials(username,password);
-                   
-                    AuthScope as = new AuthScope(host,port);
+
+                    UsernamePasswordCredentials upc = new UsernamePasswordCredentials(
+                            username, password);
+
+                    AuthScope as = new AuthScope(host, port);
                     state.setProxyCredentials(as, upc);
-                    
+
                     client.setState(state);
                 }
             }
             
-            if ( config.getExpectcontinue() ) {
-                method.getParams().setBooleanParameter(HttpMethodParams.USE_EXPECT_CONTINUE, true);
-            }
-        } 
+            /*
+             * Credentials
+             */
+            Credentials creds = (Credentials) config.findFirstAction(Credentials.class);
+            if (creds != null) {
+                String username = creds.getUsername();
+                String password = creds.getPassword();
 
-        client.getHttpConnectionManager().getParams().setConnectionTimeout(op.getConnecttimeout());
+                if (username != null) {
+                    HttpState state = client.getState();
+
+                    UsernamePasswordCredentials upc = 
+                            new UsernamePasswordCredentials(username, password);
+                   
+                    state.setCredentials(AuthScope.ANY, upc);
+
+                    client.setState(state);
+                }
+            }
+
+            if (config.getExpectcontinue()) {
+                method.getParams().setBooleanParameter(
+                        HttpMethodParams.USE_EXPECT_CONTINUE, true);
+            }
+        }
+
+        client.getHttpConnectionManager().getParams()
+                .setConnectionTimeout(op.getConnecttimeout());
     }
     
     private static String HTTP_DTFIS_CTX = "dtf.http.dtfis.ctx";
