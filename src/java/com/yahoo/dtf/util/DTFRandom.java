@@ -163,10 +163,8 @@ public class DTFRandom extends Random {
             for (int rnd = nextInt(),
                  n = Math.min(len - i, Integer.SIZE/Byte.SIZE);
                  n-- > 0; rnd >>= Byte.SIZE) {
-                // not allowing $ because then a property could be accidentally
-                // created, and this would lead to unnecessary issues.
                 byte b = (byte)rnd;
-                if ( b == '$') continue;
+                if ( b == '{' && bytes[i-1] == '$') continue;
                 bytes[i++] = b;
             }
         }

@@ -45,6 +45,11 @@ unsigned int nextBoolean() {
 	return next(1) != 0;
 }
 
+/*
+ * The only special thing being done in this function is that we're skipping
+ * to generate the sequence ${ because this could result in a property
+ * being generated that DTF would later try to resolve.
+ */
 void nextBytes(char* bytes, int length) {
 	int i,rnd,len,n;
 
@@ -52,10 +57,8 @@ void nextBytes(char* bytes, int length) {
         for (rnd = nextInt(),
              n = min(len - i, INTEGER_SIZE/BYTE_SIZE);
              n-- > 0; rnd >>= BYTE_SIZE) {
-            // not allowing $ because then a property could be accidentally
-            // created, and this would lead to unnecessary issues.
             char b = (char)rnd;
-            if ( b == '$' ) continue;
+            if ( b == '{' && bytes[i-1] == '$') continue;
             bytes[i++] = b;
         }
     }
