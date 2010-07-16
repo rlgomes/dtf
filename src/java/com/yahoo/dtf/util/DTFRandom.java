@@ -159,13 +159,14 @@ public class DTFRandom extends Random {
      * being generated that DTF would later try to resolve.
      */
     public void nextBytes(byte[] bytes) {
-        for (int i = 0, len = bytes.length; i < len; ) {
+        for (int i = 0, prev = 0, len = bytes.length; i < len; ) {
             for (int rnd = nextInt(),
                  n = Math.min(len - i, Integer.SIZE/Byte.SIZE);
                  n-- > 0; rnd >>= Byte.SIZE) {
                 byte b = (byte)rnd;
-                if ( b == '{' && bytes[i-1] == '$') continue;
+                if ( b == '{' && prev == '$' ) continue;
                 bytes[i++] = b;
+                prev = b;
             }
         }
     }

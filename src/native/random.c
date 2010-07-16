@@ -51,14 +51,14 @@ unsigned int nextBoolean() {
  * being generated that DTF would later try to resolve.
  */
 void nextBytes(char* bytes, int length) {
-	int i,rnd,len,n;
+	int i,rnd,len,n,prev;
 
-    for (i = 0, len = length; i < len; ) {
+    for (i = 0, prev = 0, len = length; i < len; ) {
         for (rnd = nextInt(),
              n = min(len - i, INTEGER_SIZE/BYTE_SIZE);
              n-- > 0; rnd >>= BYTE_SIZE) {
             char b = (char)rnd;
-            if ( b == '{' && bytes[i-1] == '$') continue;
+            if ( b == '{' && prev == '$' ) continue;
             bytes[i++] = b;
         }
     }
