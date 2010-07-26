@@ -77,6 +77,7 @@ public class ConvertTransformer implements Transformer {
         Converter converter = converters.get(operator);
 
         if ( converter != null ) { 
+            result = converter.convert(data);
            return "" + StringUtil.padString(result, padding, '0');
         } 
         
