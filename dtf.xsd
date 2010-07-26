@@ -969,14 +969,6 @@
         </xs:complexType>
     </xs:element>
     
-    <xs:element name="similar">
-        <xs:complexType>
-            <xs:attribute name="op1" type="xs:string" use="required" />
-            <xs:attribute name="op2" type="xs:string" use="required" />
-            <xs:attribute name="value" type="xs:string" use="required" />
-        </xs:complexType>
-    </xs:element>
-
     <xs:element name="isset">
         <xs:complexType>
             <xs:attribute name="property" type="xs:string" use="required" />
@@ -1005,7 +997,6 @@
              <xs:element ref="neq" />
              <xs:element ref="or" />
              <xs:element ref="within" />
-             <xs:element ref="similar" />
             
              <xs:element ref="match" />
              
