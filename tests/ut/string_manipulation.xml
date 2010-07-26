@@ -20,10 +20,20 @@
         <property name="email" value="user@hostname"/>
     </local>
    
-    <replace source="${test}" destination="newtest" expression=":" with=","/>
+    <replace source="${test}"
+             destination="newtest"
+             expression=":"
+             with=","/>
 
-    <replace source="${email}" destination="user" expression="([^@]+)@(.+)" with="$1"/>
-    <replace source="${email}" destination="host" expression="([^@]+)@(.+)" with="$2"/>
+    <replace source="${email}"
+             destination="user"
+             expression="([^@]+)@(.+)"
+             with="$1"/>
+             
+    <replace source="${email}"
+             destination="host"
+             expression="([^@]+)@(.+)"
+             with="$2"/>
 
     <log>old: ${test} new: ${newtest}</log>
     <log>email: ${email} user: ${user}</log>

@@ -40,14 +40,15 @@
 	    </for> 
     </for>
 
-    <record uri="storage://OUTPUT/stream.txt">
+    <record uri="storage://OUTPUT/small_stream.txt">
 	    <for property="type" range="random,repeat">
-		    <createrange name="iterations" value="${iterations.huge}"/>
 		    <for property="size" range="32">
 		        <property name="iteration"
                           value="${iterations.huge}"
                           overwrite="true"/>
-			    <log>Generate ${iterations.huge} ${size} pieces of ${type} data.</log>
+			    <log>
+                Generate ${iterations.huge} ${size} pieces of ${type} data.
+                </log>
 		        
 			    <event name="generate.${size}">
 				    <for property="i" range="1..${iterations.large}"> 
@@ -96,5 +97,61 @@
 		        </log>
 		    </for>
 	    </for> 
+    </record>
+    
+    <record uri="storage://OUTPUT/large_stream.txt">
+        <for property="type" range="random,repeat">
+            <for property="size" range="1048576">
+                <log>
+                Generate 32 ${size} pieces of ${type} data.
+                </log>
+                
+                <event name="generate.${size}">
+                    <for property="i" range="1..32"> 
+                        <property name="test"
+                                  value="${dtf.stream(${type},${size},${dtf.randomInt})}" 
+                                  overwrite="true"/>
+                    </for>
+                </event>
+                
+                <subtract op1="${generate.${size}.stop}"
+                          op2="${generate.${size}.start}"
+                          result="duration_ms"/> 
+                          
+                <divide op1="${duration_ms}"
+                        op2="1000"
+                        result="duration_s"/> 
+               
+                <multiply op1="${size}"
+                          op2="32"
+                          result="bytes"/> 
+  
+                <if>
+                    <eq op1="${duration_s}" op2="0"/>
+                    <then>
+                        <multiply op1="${bytes}"
+                                  op2="32"
+                                  result="bytes_per_sec"/>
+                        <property name="ops_per_sec"
+                                  value="32"/>
+                    </then>
+                    <else>
+                        <divide op1="${bytes}"
+                                op2="${duration_s}"
+                                result="bytes_per_sec"/>
+                                
+                        <divide op1="32"
+                                op2="${duration_s}"
+                                result="ops_per_sec"/>
+                    </else>
+                </if>
+               
+                <log>
+                Generating ${size} byte ${type} streams
+                ${bytes_per_sec} bytes/s
+                ${ops_per_sec} ops/s
+                </log>
+            </for>
+        </for> 
     </record>
 </script> 

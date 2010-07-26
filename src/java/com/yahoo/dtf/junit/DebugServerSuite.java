@@ -14,10 +14,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.yahoo.dtf.DTFNode;
-import com.yahoo.dtf.DTFProperties;
 import com.yahoo.dtf.exception.DTFException;
 import com.yahoo.dtf.exception.DebugServerException;
-import com.yahoo.dtf.util.ThreadUtil;
 
 /**
  *

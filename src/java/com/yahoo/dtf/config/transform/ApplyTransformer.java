@@ -8,9 +8,7 @@ import com.yahoo.dtf.exception.ParseException;
 
 /**
  * @dtf.feature String Encoding
- *
  * @dtf.feature.group Transformers
- * 
  * @dtf.feature.desc <p>
  *                   This is the DTF string encoding transformer and it can be 
  *                   used to apply encoding functions to the properties to apply

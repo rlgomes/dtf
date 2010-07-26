@@ -9,7 +9,6 @@ import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.commons.httpclient.ConnectTimeoutException;
 import org.apache.commons.httpclient.HttpClient;
@@ -18,9 +17,7 @@ import org.apache.commons.httpclient.HttpState;
 import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 import org.apache.commons.httpclient.ProxyHost;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
-import org.apache.commons.httpclient.auth.AuthPolicy;
 import org.apache.commons.httpclient.auth.AuthScope;
-import org.apache.commons.httpclient.auth.BasicScheme;
 import org.apache.commons.httpclient.cookie.CookiePolicy;
 import org.apache.commons.httpclient.methods.DeleteMethod;
 import org.apache.commons.httpclient.methods.EntityEnclosingMethod;
@@ -363,9 +360,11 @@ public class ApacheHttpOp extends HttpOp {
              */
             try { 
                 InputStream is = method.getResponseBodyAsStream();
-               
+              
                 if ( op.getBandwidth() != null )
                     is = Throttler.wrapInputStream(is, op.getBandwidth());
+               
+                String charset = method.getResponseCharSet();
                 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 // getResponseBodyAsStream returns null when there was an error
@@ -374,12 +373,13 @@ public class ApacheHttpOp extends HttpOp {
                 if ( is != null ) { 
                     int read = 0;
                     byte[] buffer = new byte[4*1024];
-                    while (( read = is.read(buffer)) != -1) { 
+                    while ((read = is.read(buffer)) != -1) { 
                         baos.write(buffer,0,read);
                         totalRead+=read;
                     }
                 }
-                event.addAttribute(HttpBase.HTTP_EVENT_BODY, baos.toString());
+                
+                event.addAttribute(HttpBase.HTTP_EVENT_BODY, baos.toString(charset));
                 event.addAttribute(HttpBase.HTTP_EVENT_BODY_SIZE, totalRead);
             } catch (IOException e) { 
                 throw new DTFException("Error handling output stream.",e);
@@ -404,7 +404,7 @@ public class ApacheHttpOp extends HttpOp {
 
                 if ( op.getBandwidth() != null )
                     is = Throttler.wrapInputStream(is,op.getBandwidth());
-                
+
                 MessageDigest md = null;
                 boolean calchash = false;
                 if ( op.isPerfrun() && !op.getHash().equals("none") ) {

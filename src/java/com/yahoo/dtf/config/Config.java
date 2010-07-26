@@ -23,7 +23,6 @@ import com.yahoo.dtf.logger.DTFLogger;
 /**
  * 
  * @author Rodney Gomes
- *
  */
 public final class Config implements Cloneable {
     
@@ -46,7 +45,7 @@ public final class Config implements Cloneable {
     public static void registerDynamicProperty(String key, DynamicProperty dyn) throws DTFException {
         if ( _dynamic.containsKey(key) )
             throw new DTFException("Dynamic property with the name [" + key + 
-                                   "] alreayd exits");
+                                   "] already exists");
         
         if ( _log.isDebugEnabled() ) 
             _log.debug("Registering dynamic property [" + key + "]");

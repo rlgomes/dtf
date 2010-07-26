@@ -298,6 +298,39 @@
 		</parallel>
 	</target>
 	
+	<target name="applyxsl" depends="init">
+	    <!-- check saxon is correctly setup --> 
+        <available file="${saxon.home}"
+        	       type="dir"
+                   property="saxon.ready"/>
+		<!--
+		currently this only works if you use the ant.sh which points the
+		classpath to the ${saxon.home} directory (bug in ant)
+		-->
+	    <path id="saxon.classpath">
+	        <fileset dir="${saxon.home}">
+	            <include name="*.jar"/>
+	        </fileset>
+		</path>
+        <if>
+            <isset property="saxon.ready"/>
+            <then>
+        		<xslt basedir="${dtf.xsl.in.dir}"
+        			  destdir="${dtf.xsl.out.dir}"
+        			  includes="**/*.xml"
+        			  style="${dtf.xsl.filename}"
+        			  extension=".xml"
+        			  classpathref="saxon.classpath" 
+        			  >
+        			<factory name="net.sf.saxon.TransformerFactoryImpl"/>
+        		</xslt>
+            </then>
+            <else>
+                <fail message="saxon home not set correctly, see build.properties file"/>
+            </else>
+        </if>
+	</target>	
+	
     <target name="results" depends="init">
         <ant target="tohtml" antfile="build.xml">
             <property name="dtf.xsl.filename" value="xsl/report.xsl"/>

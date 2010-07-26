@@ -45,4 +45,9 @@ public class RandomInputStream extends DTFInputStream {
         _random.nextBytes(bytes);
         return new String(bytes);
     }
+    
+    @Override
+    public synchronized void reset() throws IOException {
+        _read = 0;
+    }
 }

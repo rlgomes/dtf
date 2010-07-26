@@ -317,4 +317,9 @@
    
     <assert message="true should always be true"><true/></assert> 
     <assert message="not(false) should always be true"><not><false/></not></assert> 
+    
+    <assert><similar op1="AAAAAAA" op2="AAAAAAB" value="75%"/></assert>
+    <assert><similar op1="AAA" op2="AAB" value="66%"/></assert>
+    <assert><not><similar op1="AAA" op2="AAB" value="67%"/></not></assert>
+    <assert><not><similar op1="AAA" op2="AAB" value="67%"/></not></assert>
 </script>

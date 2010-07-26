@@ -3,7 +3,7 @@ package com.yahoo.dtf.config.transform;
 import com.yahoo.dtf.exception.ParseException;
 
 /**
- * Remember to keep your class stateless, because instead of having hundreds of
+ * Remember to keep your class state-less, because instead of having hundreds of
  * instantiated classes of your transformer we only have a single implementation
  * and feed it the current data and expression to handle.
  * 
@@ -11,5 +11,13 @@ import com.yahoo.dtf.exception.ParseException;
  * Action.getState.registerContext() or registerGlobalContext() for your needs.
  */
 public interface Transformer {
+  
+    /**
+     * 
+     * @param data
+     * @param expression
+     * @return
+     * @throws ParseException
+     */
     public String apply(String data, String expression) throws ParseException;
 }

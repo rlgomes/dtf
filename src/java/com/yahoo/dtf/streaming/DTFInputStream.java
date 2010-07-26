@@ -165,8 +165,21 @@ public abstract class DTFInputStream extends InputStream {
         throw new RuntimeException("This shouldn't be called.");
     }
    
+    @Override
+    public void close() throws IOException {
+        _read = 0;
+        _count = 0;
+        i = 0;
+        super.close();
+        reset();
+    }
     
-    public String getAsString() { 
+    /**
+     * 
+     * @return
+     * @throws ParseException
+     */
+    public String getAsString() throws ParseException { 
         long size = getSize();
         StringBuffer result = new StringBuffer((int)size);
      
@@ -176,15 +189,18 @@ public abstract class DTFInputStream extends InputStream {
                                     "There are better ways of streaming large" + 
                                     " amounts of data in DTF.");
         }
-    
+   
         byte[] buffer = new byte[BUFFER_SIZE];
-        int read = 0;
         try {
-            while ((read = super.read(buffer)) != -1) { 
-                result.append(new String(buffer,0,read));
+            int read = 0;
+            while ( (read = super.read(buffer)) != -1 ) { 
+                result.append(new String(buffer, 0, read));
             }
+            // closing actually resets the underlying buffers and internally
+            // maintained counters
+            close();
         } catch (IOException e) {
-            throw new RuntimeException("Unable to read InputStream.",e);
+            throw new ParseException("Unable to read InputStream.",e);
         }
         
         return result.toString();

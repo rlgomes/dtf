@@ -21,6 +21,7 @@
             <xs:element ref="fail" />
             <xs:element ref="choices" />
             <xs:element ref="while" />
+            <xs:element ref="assert"/>
             
             <!-- results tags -->
             <xs:element ref="result" />
@@ -64,8 +65,9 @@
             <xs:element ref="headergroup"/>
             <xs:element ref="cookiegroup"/>
             <xs:element ref="http_config"/>
-            
-            <xs:element ref="assert"/>
+
+            <!-- image tags -->
+            <xs:element ref="read_image"/>
         </xs:choice>
     </xs:group>  
    
@@ -538,6 +540,7 @@
         <xs:complexType mixed="true">
             <xs:attribute name="uri" type="xs:string" use="required" />
             <xs:attribute name="append" type="xs:string" default="true" />
+            <xs:attribute name="encoding"  type="xs:string" default="UTF-8" />
         </xs:complexType>
     </xs:element>
     
@@ -965,6 +968,14 @@
             <xs:attribute name="tolerance" type="xs:string" use="required" />
         </xs:complexType>
     </xs:element>
+    
+    <xs:element name="similar">
+        <xs:complexType>
+            <xs:attribute name="op1" type="xs:string" use="required" />
+            <xs:attribute name="op2" type="xs:string" use="required" />
+            <xs:attribute name="value" type="xs:string" use="required" />
+        </xs:complexType>
+    </xs:element>
 
     <xs:element name="isset">
         <xs:complexType>
@@ -994,6 +1005,7 @@
              <xs:element ref="neq" />
              <xs:element ref="or" />
              <xs:element ref="within" />
+             <xs:element ref="similar" />
             
              <xs:element ref="match" />
              
@@ -1459,8 +1471,17 @@
             <xs:attribute name="args"/>
         </xs:complexType>
     </xs:element>
+  
+    <!-- image tags -->
+    
+    <xs:element name="read_image">
+        <xs:complexType>
+            <xs:attribute name="uri" type="xs:string" use="required" />
+            <xs:attribute name="event" type="xs:string" />
+        </xs:complexType>
+    </xs:element>
 
-<!-- START deploy config elements -->
+    <!-- START deploy config elements -->
     <xs:element name="setup">
         <xs:complexType>
             <xs:sequence>
@@ -1511,5 +1532,6 @@
             <xs:attribute name="wrapcmd"/>
         </xs:complexType>
     </xs:element>
-<!--END deploy config elements -->
+    
+    <!--END deploy config elements -->
 </xs:schema>

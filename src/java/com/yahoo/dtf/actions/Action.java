@@ -584,8 +584,7 @@ abstract public class Action implements Externalizable {
         }
     }
     
-    protected static String replaceProperties(String string, 
-                                              boolean relaxed)
+    protected static String replaceProperties(String string, boolean relaxed)
               throws ParseException {
         
         if (string == null) 
@@ -601,7 +600,6 @@ abstract public class Action implements Externalizable {
         Config config = getConfig();
         boolean hasMatch = true;
         ArrayList<MatchKey> replacements = new ArrayList<MatchKey>();
-        String original = string.substring(0,(string.length() > 1024 ? 1024 : string.length()));
         
         while ( hasMatch ) { 
             hasMatch = false;
@@ -620,7 +618,7 @@ abstract public class Action implements Externalizable {
 
                 int tindex = key.indexOf(':');
                 int findex = key.indexOf('(');
-                
+           
                 /*
                  * XXX: This could use some cleaning up in the near future. 
                  *      probably move all of this into a PropertyResolver class
@@ -632,7 +630,7 @@ abstract public class Action implements Externalizable {
                     String expr_data = expr.substring(expr.indexOf(":")+1);
                     String auxkey = "${" + key.substring(0,tindex) + "}";
                     String aux = replaceProperties(auxkey,relaxed);
-                  
+                    
                     if ( !aux.equals(auxkey) ) {
 	                    value = TransformerFactory.
 	                                 getTransformer(expr).apply(aux, expr_data);
@@ -665,8 +663,10 @@ abstract public class Action implements Externalizable {
             }
         }
 
-        if ( Trace.isEnabled() ) 
+        if ( Trace.isEnabled() )  {
+            String original = string.substring(0,(string.length() > 1024 ? 1024 : string.length()));
             Trace.tracePropertyResolution(original, string);
+        }
         
         return string;
     }

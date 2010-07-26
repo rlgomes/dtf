@@ -1,12 +1,16 @@
 package com.yahoo.dtf.config.transform;
 
+import java.util.HashMap;
+
 import com.yahoo.dtf.config.transform.Transformer;
+import com.yahoo.dtf.config.transform.converters.Converter;
+import com.yahoo.dtf.config.transform.converters.FromHexConverter;
+import com.yahoo.dtf.config.transform.converters.ToHexConverter;
 import com.yahoo.dtf.exception.ParseException;
 import com.yahoo.dtf.util.StringUtil;
 
 /**
- * @dtf.feature String Conversion
- * 
+ * @dtf.feature Convert Transformer
  * @dtf.feature.group Transformers
  * 
  * @dtf.feature.desc <p>
@@ -48,10 +52,19 @@ import com.yahoo.dtf.util.StringUtil;
  */
 public class ConvertTransformer implements Transformer {
     
+    private static HashMap<String, Converter> converters = 
+                                               new HashMap<String, Converter>();
+    
+    static { 
+        converters.put("to-hex", new ToHexConverter());
+        converters.put("from-hex", new FromHexConverter());
+    }
+    
     public String apply(String data, String expression) throws ParseException {
         int bracketIndex = expression.indexOf('(');
-        int padding = 0;
         String operator = null;
+        String result = null;
+        int padding = 0;
         
         if ( bracketIndex != -1 ) {
             operator = expression.substring(0,bracketIndex);
@@ -60,19 +73,12 @@ public class ConvertTransformer implements Transformer {
         } else { 
             operator = expression;
         }
-
-        if ( operator.equals("to-hex") ) {
-	        try { 
-	            Long tmp = Long.valueOf(data);
-	            return "" + StringUtil.padString(Long.toHexString(tmp), padding, '0');
-	        } catch ( NumberFormatException e ) { 
-	            throw new ParseException("[" + data + "] is not an integer.");
-	        }
-        }
         
-        if ( operator.equals("from-hex") ) { 
-            return "" + Long.valueOf(data, 16);
-        }
+        Converter converter = converters.get(operator);
+
+        if ( converter != null ) { 
+           return "" + StringUtil.padString(result, padding, '0');
+        } 
         
         throw new ParseException("Unkown convert expression [" + operator + "]");
     }

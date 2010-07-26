@@ -17,6 +17,53 @@ import com.yahoo.dtf.xml.JXPathHelper;
 import com.yahoo.dtf.xml.XMLTransformerCache;
 import com.yahoo.dtf.xml.XMLUtil;
 
+/**
+ * @dtf.feature XPath Transformer 
+ * @dtf.feature.group Transformers
+ * @dtf.feature.desc 
+ * 
+ * <p>
+ * We've already seen that properties can be identified by using the following 
+ * syntax ${propertyname}. Now this is simple and straightforward but sometimes 
+ * the contents the property may contain more than just plain text and in those 
+ * cases we may want to only reference certain elements within the structured 
+ * data. For this we currently have the ability to apply transformations on the 
+ * property's data using various  data query languages. Currently we support 
+ * XPath on the any XML data within a property and here's a simple example of 
+ * how this works:
+ * </p>
+ * 
+ * <p> 
+ * So lets say we have the property myxml that contains the following xml 
+ * snipplet:
+ * </p>
+ * 
+ * <pre>
+ *  <list>
+ *      <item>1</item>
+ *      <item>2</item>
+ *      <item>3</item>
+ *      <item>4</item>
+ *      <item>5</item>
+ *      <item>6</item>
+ *  </list>
+ * </pre>
+ * 
+ * <p>
+ * Now lets say we wanted to reference the myxml property but we only want the 
+ * forth value of the child item in the XML data. This is how we would achieve 
+ * that:
+ * </p>
+ * 
+ * <pre>
+ * <log>${myxml:xpath://list/item[3]}</log>
+ * </pre>
+ * 
+ * <p> 
+ * The Xpath language is a standard and all of the information on this standard 
+ * can be easily found by searching for XPath examples online. 
+ * </p>
+ */
 public class XPathTransformer implements Transformer {
     
     public String apply(String data, String expression) throws ParseException {

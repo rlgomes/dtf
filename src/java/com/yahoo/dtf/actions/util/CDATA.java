@@ -25,7 +25,6 @@ public class CDATA extends Action {
     @Override
     protected Hashtable<String, Object> getAttribs(Class actionClass) {
         Hashtable<String, Object> attribs = super.getAttribs(actionClass);
-        String cdata;
         
         if ( CDATA != null ) 
             attribs.put("CDATA", CDATA);

@@ -59,11 +59,16 @@ public class RepeatInputStream extends DTFInputStream {
         return length;
     }
     
-    public String getAsString() {
+    public String getAsString() throws ParseException {
         if ( getSize() == _buffer.length ) {
             return new String(_buffer);
         } else { 
             return super.getAsString();
         }
+    }
+    
+    @Override
+    public synchronized void reset() throws IOException {
+        _read = 0;
     }
 }

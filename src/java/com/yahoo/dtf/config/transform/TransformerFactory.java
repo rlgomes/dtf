@@ -5,6 +5,28 @@ import java.util.HashMap;
 import com.yahoo.dtf.exception.DTFException;
 import com.yahoo.dtf.exception.ParseException;
 
+
+/**
+ * @dtf.feature Introduction
+ * @dtf.feature.group Transformers
+ * @dtf.feature.desc 
+ * <p>
+ * DTF has a very simple and powerful way of transforming your property data at 
+ * resolution time that allows you to extract/append/encode/escape your data so 
+ * that it can be used by another tag in a different way. The syntax for the 
+ * property transformation is the following:
+ * </p>
+ * 
+ * <pre> 
+ * ${property_name:transformer:arguments for transformer}
+ * </pre>
+ * 
+ * <p>
+ * All of the existing Transformers should have their DTF Documentation created
+ * and be under the "Transformers" documentation group so they can easily be 
+ * looked up.
+ * </p>
+ */
 public final class TransformerFactory {
 
     private static HashMap<String, Transformer> _transformers = 
