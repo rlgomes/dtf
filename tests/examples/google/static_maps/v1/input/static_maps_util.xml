@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="static_maps_util">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Function library for interacting with the Google Static Maps API V1
+        </description>
+    </info>
+  
+    <function name="get_map">
+        <param name="center"    type="required"/>
+        <param name="key"       type="required"/>
+        <param name="format"    default="png"/>
+        <param name="maptype"   default="roadmap"/>
+        <param name="size"      default="128x128"/>
+        <param name="zoom"      default="12"/>
+        <param name="markers"      default=""/>
+    
+        <http_get uri="${static.maps.url}?center=${sf-ll}&amp;zoom=12&amp;size=${size}&amp;key=${static.maps.key}&amp;format=${format}&amp;maptype=${maptype}&amp;markers=${markers}"/>
+    </function>
+</script>   

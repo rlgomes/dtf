@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="simple_map_get">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Simple map retrieval test that does nothing more than retrieve the 
+        various formats and maptypes available for a specific map location.
+        </description>
+    </info>
+  
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+        <loadproperties uri="storage://INPUT/maps.properties"/>
+        <import uri="storage://INPUT/static_maps_util.xml"/>
+      
+        <property name="sf-ll" value="37.77445,-122.41885"/>
+    </local> 
+    
+    <for property="maptype" range="${static.maps.maptypes}">
+	    <for property="format" range="${static.maps.formats}">
+            <call function="get_map">
+            <property name="center" value="${sf-ll}"/>
+            <property name="format" value="${format}"/>
+            <property name="maptype" value="${maptype}"/>
+         </call>
+	        <log>downloaded sf_map_${maptype}.${format}</log>
+            <log>from ${http.get.uri}</log>
+	    </for>
+    </for>
+    
+</script>

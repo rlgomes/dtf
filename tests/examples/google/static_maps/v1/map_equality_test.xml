@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="map_equality_test">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+            This test validates that for lossless image formats the resulting image
+            RGBA data does not depend on the format and therefore the maps are
+            exactly the same when compared at the RGBA level of data in the image. 
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input" />
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output" />
+
+        <loadproperties uri="storage://INPUT/maps.properties" />
+        <import uri="storage://INPUT/static_maps_util.xml" />
+
+        <property name="sf-ll" value="37.77445,-122.41885" />
+    </local>
+
+    <for property="maptype" range="${static.maps.maptypes}">
+        <for property="format" range="${static.maps.lossless-formats}">
+            <call function="get_map">
+                <property name="center" value="${sf-ll}" />
+                <property name="key" value="${static.maps.key}" />
+                <property name="format" value="${format}" />
+                <property name="maptype" value="${maptype}" />
+            </call>
+            <cat uri="storage://OUTPUT/sf_map_${maptype}.${format}"
+                 append="false">${http.get.body}</cat>
+        </for>
+    </for>
+
+    <log>Validate lossless image formats are equal</log>
+    <for property="maptype" range="${static.maps.maptypes}">
+        <read_image uri="storage://OUTPUT/sf_map_${maptype}.png8"
+                    event="base" />
+
+        <for property="format" range="${static.maps.lossless-formats}">
+            <log>validating ${maptype} maptype with format ${format}</log>
+            <read_image uri="storage://OUTPUT/sf_map_${maptype}.${format}"
+                        event="image" />
+            <assert>
+                <eq op1="${image.data}" op2="${base.data}" />
+            </assert>
+        </for>
+    </for>
+</script>
