@@ -37,7 +37,9 @@ import com.yahoo.dtf.recorder.Event;
  * @dtf.event.attr data
  * @dtf.event.attr.desc the data that represents the images RGBA values with 8
  *                      bits of precision per color component. This value is then
- *                      encoded in Base64 to be easily represented as a string.
+ *                      encoded in Base64 to be easily represented as a string
+ *                      and compare different image types directly as their
+ *                      RGBA data.
  *                      
  * @dtf.tag.example
  * <read_image event="blue.jpg" uri="storage://INPUT/blue.jpg"/>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="similar">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        A set of simple unit tests to validate the functionality of the similar
+        conditional tag. These tests will try to validate the usual uses of this
+        tag and also serve as a few good example of how to use the tag.
+        </description>
+    </info>
+
+	<local>
+    	<createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+	    <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <property name="formats" value="png,gif,bmp"/> 
+    </local>
+    
+    <for property="format" range="${formats}">
+        <read_image event="blue.${format}" uri="storage://INPUT/blue.${format}"/>
+    </for>
+    
+    <for property="format" range="${formats}">
+	    <log>${format}: being checked</log>
+        
+        <if>
+            <similar op1="${blue.${format}.data}"
+                     op2="${blue.png.data}"
+                     value="100%"/>
+            <then>
+                <log>images are within 100% similarity</log>
+            </then> 
+            <else>
+                <fail>images are not within 100% similarity</fail>
+            </else>
+        </if>
+    </for>
+    
+    <property name="data1" value="XXXX"/>
+    <property name="data2" value="XXXB"/>
+    <assert><similar op1="${data1}" op2="${data2}" value="75%"/></assert>
+
+    <property name="data1" value="XXXX"/>
+    <property name="data2" value="ABCD"/>
+    <assert><similar op1="${data1}" op2="${data2}" value="0%"/></assert>
+
+    <property name="data1" value="XXXX"/>
+    <property name="data2" value="XAAA"/>
+    <assert><similar op1="${data1}" op2="${data2}" value="5%"/></assert>
+    
+</script>

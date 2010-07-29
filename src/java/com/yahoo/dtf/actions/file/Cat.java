@@ -1,9 +1,7 @@
 package com.yahoo.dtf.actions.file;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.URI;
 
 import com.yahoo.dtf.actions.util.CDATA;

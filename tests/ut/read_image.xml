@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="read_image">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        </description>
+    </info>
+
+	<local>
+    	<createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+    	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+	    <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <property name="formats" value="png,gif,bmp"/> 
+    </local>
+    
+    <for property="format" range="${formats}">
+        <read_image event="blue.${format}" uri="storage://INPUT/blue.${format}"/>
+    </for>
+    
+    <for property="format" range="${formats}">
+	    <log>${format}: being checked</log>
+        <assert><eq op1="${blue.${format}.data}" op2="${blue.png.data}"/></assert>
+    </for>
+    
+</script>
