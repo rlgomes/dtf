@@ -7,8 +7,11 @@ rm -fr $BASE/build
 mkdir $BASE/build
 mkdir $BASE/build/logs
 
-cd $BASE/build
+rm -fr $BASE/gh-pages
+echo "Pulling gh-pages..."
+git clone ssh://git@github.com/rlgomes/dtf.git -b gh-pages gh-pages
 
+cd $BASE/build
 echo "Pulling DTF..."
 git clone ssh://git@github.com/rlgomes/dtf.git > $BASE/build/logs/clone.log 2>&1
 
@@ -42,4 +45,7 @@ git add results
 git commit -m "test results for $DATE"
 git push origin gh-pages
 
+echo "Downloading tools..."
+wget http://github.com/rlgomes/ec2-tools/raw/master/src/ec2-api.py -o ec2-api.py
+chmod +x ec2-api.py
 
