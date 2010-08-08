@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="ip-10-212-98-48" name="com.yahoo.dtf.junit.EventSuite" tests="3" time="28.145" timestamp="2010-08-08T19:26:33">
+<testsuite errors="0" failures="0" hostname="ip-10-212-98-48" name="com.yahoo.dtf.junit.EventSuite" tests="3" time="28.064" timestamp="2010-08-08T19:40:43">
   <properties>
     <property name="java.vendor" value="Sun Microsystems Inc." />
     <property name="sun.java.launcher" value="SUN_STANDARD" />
@@ -82,33 +82,34 @@
     <property name="file.encoding" value="UTF-8" />
     <property name="java.specification.version" value="1.6" />
   </properties>
-  <testcase classname="com.yahoo.dtf.junit.EventSuite" name="simpleRecordAndQuery" time="0.204" />
-  <testcase classname="com.yahoo.dtf.junit.EventSuite" name="smallEventsRecordQueryPerformance" time="5.816" />
-  <testcase classname="com.yahoo.dtf.junit.EventSuite" name="largeEventsRecordQueryPerformance" time="21.562" />
-  <system-out><![CDATA[WARN  08/08/2010 19:26:33 Storage         - Storage path does not exist [/tmp/junit] will create.
-INFO  08/08/2010 19:26:33 EventSuite      - Validating recorder [txt]
-INFO  08/08/2010 19:26:34 EventSuite      - Record [stats] Op/sec: 263852
-WARN  08/08/2010 19:26:34 EventSuite      - No query handler for [stats]
-INFO  08/08/2010 19:26:35 EventSuite      - Record [csv] Op/sec: 116618
-WARN  08/08/2010 19:26:35 EventSuite      - No query handler for [csv]
-INFO  08/08/2010 19:26:35 RecorderFactory - Wiped [/tmp/junit/events_txt.txt]
-INFO  08/08/2010 19:26:37 EventSuite      - Record [txt] Op/sec: 105263
-INFO  08/08/2010 19:26:39 EventSuite      - Query  [txt] Op/sec: 139372
-INFO  08/08/2010 19:26:39 EventSuite      - Event size 5263 bytes.
-INFO  08/08/2010 19:26:39 EventSuite      - Record [stats] Op/sec: 125000
-INFO  08/08/2010 19:26:39 EventSuite      - Record [stats] MB/sec: 627
-WARN  08/08/2010 19:26:39 EventSuite      - No query handler for [stats]
-INFO  08/08/2010 19:26:39 RecorderFactory - Wiped [/tmp/junit/events_csv.txt]
-INFO  08/08/2010 19:26:39 EventSuite      - Event size 5263 bytes.
-INFO  08/08/2010 19:26:45 EventSuite      - Record [csv] Op/sec: 3361
-INFO  08/08/2010 19:26:45 EventSuite      - Record [csv] MB/sec: 16
-WARN  08/08/2010 19:26:45 EventSuite      - No query handler for [csv]
-INFO  08/08/2010 19:26:45 RecorderFactory - Wiped [/tmp/junit/events_txt.txt]
-INFO  08/08/2010 19:26:45 EventSuite      - Event size 5263 bytes.
-INFO  08/08/2010 19:26:55 EventSuite      - Record [txt] Op/sec: 2002
-INFO  08/08/2010 19:26:55 EventSuite      - Record [txt] MB/sec: 10
-INFO  08/08/2010 19:27:00 EventSuite      - Query  [txt] Op/sec: 3690
-INFO  08/08/2010 19:27:00 EventSuite      - Query  [txt] MB/sec: 18
+  <testcase classname="com.yahoo.dtf.junit.EventSuite" name="simpleRecordAndQuery" time="0.226" />
+  <testcase classname="com.yahoo.dtf.junit.EventSuite" name="smallEventsRecordQueryPerformance" time="5.768" />
+  <testcase classname="com.yahoo.dtf.junit.EventSuite" name="largeEventsRecordQueryPerformance" time="21.511" />
+  <system-out><![CDATA[INFO  08/08/2010 19:40:43 EventSuite      - Validating recorder [txt]
+INFO  08/08/2010 19:40:43 RecorderFactory - Wiped [/tmp/junit/events_txt.txt]
+INFO  08/08/2010 19:40:44 EventSuite      - Record [stats] Op/sec: 257731
+WARN  08/08/2010 19:40:44 EventSuite      - No query handler for [stats]
+INFO  08/08/2010 19:40:44 RecorderFactory - Wiped [/tmp/junit/events_csv.txt]
+INFO  08/08/2010 19:40:46 EventSuite      - Record [csv] Op/sec: 122473
+WARN  08/08/2010 19:40:46 EventSuite      - No query handler for [csv]
+INFO  08/08/2010 19:40:46 RecorderFactory - Wiped [/tmp/junit/events_txt.txt]
+INFO  08/08/2010 19:40:47 EventSuite      - Record [txt] Op/sec: 108283
+INFO  08/08/2010 19:40:49 EventSuite      - Query  [txt] Op/sec: 135777
+INFO  08/08/2010 19:40:49 EventSuite      - Event size 5263 bytes.
+INFO  08/08/2010 19:40:49 EventSuite      - Record [stats] Op/sec: 133333
+INFO  08/08/2010 19:40:49 EventSuite      - Record [stats] MB/sec: 669
+WARN  08/08/2010 19:40:49 EventSuite      - No query handler for [stats]
+INFO  08/08/2010 19:40:49 RecorderFactory - Wiped [/tmp/junit/events_csv.txt]
+INFO  08/08/2010 19:40:49 EventSuite      - Event size 5263 bytes.
+INFO  08/08/2010 19:40:55 EventSuite      - Record [csv] Op/sec: 3420
+INFO  08/08/2010 19:40:55 EventSuite      - Record [csv] MB/sec: 17
+WARN  08/08/2010 19:40:55 EventSuite      - No query handler for [csv]
+INFO  08/08/2010 19:40:55 RecorderFactory - Wiped [/tmp/junit/events_txt.txt]
+INFO  08/08/2010 19:40:55 EventSuite      - Event size 5263 bytes.
+INFO  08/08/2010 19:41:05 EventSuite      - Record [txt] Op/sec: 2004
+INFO  08/08/2010 19:41:05 EventSuite      - Record [txt] MB/sec: 10
+INFO  08/08/2010 19:41:10 EventSuite      - Query  [txt] Op/sec: 3667
+INFO  08/08/2010 19:41:10 EventSuite      - Query  [txt] MB/sec: 18
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
