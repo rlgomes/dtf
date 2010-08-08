@@ -531,5 +531,17 @@
 	    	</else>
         </if>
 	</target>
+	
+	<target name="junit-reports">
+		<mkdir dir="${dtf.build.dir}/reports"/>
+		<mkdir dir="${dtf.build.dir}/reports/html"/>
+		
+        <junitreport todir="${dtf.build.dir}/reports">
+            <fileset dir="${dtf.build.dir}">
+                 <include name="**/TEST*.xml"/>
+            </fileset>
+            <report format="frames" todir="${dtf.build.dir}/reports/html"/>
+        </junitreport>
+	</target>
 
 </project>
