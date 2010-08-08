@@ -33,19 +33,20 @@ echo "Generating test reports..."
 ant junit-reports > $BASE/build/logs/junit-reports.log 2>&1
 
 echo "Copying logs/results to results repository..."
-
 cp -fr $BASE/build/logs $BASE/gh-pages/results/
 cp -fr $BASE/build/dtf/build/dtf/reports/* $BASE/gh-pages/results/
 cp -fr $BASE/build/dtf/build/dtf/junit_results $BASE/gh-pages/results/
 cp $BASE/build/dtf/build/dtf/dist/tests/ut/output/TEST_ut_results.xml $BASE/gh-pages/results/
 cp $BASE/build/dtf/build/dtf/dist/tests/ut/output/script-ut.out $BASE/gh-pages/results/
 
+echo "Uploading results to github..."
 cd $BASE/gh-pages
-git add results
-git commit -m "test results for $DATE"
-git push origin gh-pages
+git add results > $BASE/build/logs/upload.log 2>&1
+git commit -m "test results for $DATE" > $BASE/build/logs/upload.log 2>&1
+git push origin gh-pages > $BASE/build/logs/upload.log 2>&1
 
+cd $BASE
 echo "Downloading tools..."
-wget http://github.com/rlgomes/ec2-tools/raw/master/src/ec2-api.py -o ec2-api.py
+wget http://github.com/rlgomes/ec2-tools/raw/master/src/ec2-api.py -O ec2-api.py
 chmod +x ec2-api.py
 
