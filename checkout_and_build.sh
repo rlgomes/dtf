@@ -9,7 +9,7 @@ mkdir $BASE/build/logs
 
 rm -fr $BASE/gh-pages
 echo "Pulling gh-pages..."
-git clone ssh://git@github.com/rlgomes/dtf.git -b gh-pages gh-pages
+git clone ssh://git@github.com/rlgomes/dtf.git -b gh-pages gh-pages > $BASE/build/logs/gh-pages-pull.log 2>&1
 
 cd $BASE/build
 echo "Pulling DTF..."
@@ -42,8 +42,8 @@ cp $BASE/build/dtf/build/dtf/dist/tests/ut/output/script-ut.out $BASE/gh-pages/r
 echo "Uploading results to github..."
 cd $BASE/gh-pages
 git add results > $BASE/build/logs/upload.log 2>&1
-git commit -m "test results for $DATE" > $BASE/build/logs/upload.log 2>&1
-git push origin gh-pages > $BASE/build/logs/upload.log 2>&1
+git commit -m "test results for $DATE" >> $BASE/build/logs/upload.log 2>&1
+git push origin gh-pages >> $BASE/build/logs/upload.log 2>&1
 
 cd $BASE
 echo "Downloading tools..."
