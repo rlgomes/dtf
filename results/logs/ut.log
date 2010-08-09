@@ -1,1 +1,1251 @@
-./checkout_and_build.sh: line 28: ./ant.sh: No such file or directory
+Buildfile: build.xml
+
+init:
+     [echo] Creating log dir ./logs/09-08-2010.23.28.29
+    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf/dist/logs/09-08-2010.23.28.29
+
+run_ut:
+
+init:
+     [echo] Creating log dir ./logs/09-08-2010.23.28.29
+
+run_test:
+
+init:
+     [echo] Creating log dir ./logs/09-08-2010.23.28.29
+
+run_components:
+     [echo] Starting up dtfc
+     [echo] logging to ./logs/09-08-2010.23.28.29/dtfc.*.log
+     [echo] Starting DTFA1...
+     [echo] logging to ./logs/09-08-2010.23.28.29/dtfa-1.*.log
+     [echo] Starting DTFA2...
+     [echo] logging to ./logs/09-08-2010.23.28.29/dtfa-2.*.log
+     [echo] Starting DTFA3...
+     [echo] logging to ./logs/09-08-2010.23.28.29/dtfa-3.*.log
+
+init:
+     [echo] Creating log dir ./logs/09-08-2010.23.28.29
+
+run_dtfx:
+     [java] INFO  09/08/2010 23:28:35 DebugServer     - Listening at 127.0.0.1:40004
+     [java] INFO  09/08/2010 23:28:36 Comm            - Host address [10.210.31.19]
+     [java] INFO  09/08/2010 23:28:36 CommRMIServer   - Listening at [30003]
+     [java] INFO  09/08/2010 23:28:36 Comm            - DTFX Setup.
+     [java] INFO  09/08/2010 23:28:37 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] WARN  09/08/2010 23:28:37 Storage         - Storage path does not exist [tests/ut/output] will create.
+     [java] INFO  09/08/2010 23:28:37 Createstorage   - Creating storage: INPUT at tests/ut
+     [java] INFO  09/08/2010 23:28:37 Echo            - *** Executing DTF Unit Tests ***
+     [java] INFO  09/08/2010 23:28:37 Result          - Starting Result recording: Result {type=junit,uri=storage://OUTPUT/TEST_ut_results...}
+     [java] INFO  09/08/2010 23:28:37 Testsuite       - Starting testsuite: unittests
+     [java] INFO  09/08/2010 23:28:37 Testscript      - Executing testscript storage://INPUT/state_management.xml
+     [java] INFO  09/08/2010 23:28:38 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:28:38 Createstorage   - Creating storage: OUTPUT at tests/ut/remote-output
+     [java] WARN  09/08/2010 23:28:38 Storage         - Storage path does not exist [tests/ut/remote-output] will create.
+     [java] INFO  09/08/2010 23:28:38 Createstorage   - Creating storage: OUTPUT2 at tests/ut/remote-output/D1
+     [java] WARN  09/08/2010 23:28:38 Storage         - Storage path does not exist [tests/ut/remote-output/D1] will create.
+     [java] INFO  09/08/2010 23:28:59 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:29:20 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/state_management.xml:21:20
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockgroup.execute(Lockgroup.java:67)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:73)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.DTFNode.run(DTFNode.java:448)
+     [java] 	at com.yahoo.dtf.DTFNode.main(DTFNode.java:597)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 17 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 24 more
+     [java] ERROR 09/08/2010 23:29:20 Testscript      - Testscript failed [storage://INPUT/state_management.xml]
+     [java] INFO  09/08/2010 23:29:20 Testscript      - Executing testscript storage://INPUT/storage.xml
+     [java] INFO  09/08/2010 23:29:20 Echo            - Create a bunch of storages.
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: STORAGE1 at tests/ut/output/STORE1
+     [java] WARN  09/08/2010 23:29:20 Storage         - Storage path does not exist [tests/ut/output/STORE1] will create.
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: STORAGE2 at tests/ut/output/STORE2
+     [java] WARN  09/08/2010 23:29:20 Storage         - Storage path does not exist [tests/ut/output/STORE2] will create.
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: STORAGE3 at tests/ut/output/STORE3
+     [java] WARN  09/08/2010 23:29:20 Storage         - Storage path does not exist [tests/ut/output/STORE3] will create.
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: STORAGE4 at tests/ut/output/STORE4
+     [java] WARN  09/08/2010 23:29:20 Storage         - Storage path does not exist [tests/ut/output/STORE4] will create.
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: STORAGE5 at tests/ut/output/STORE5
+     [java] WARN  09/08/2010 23:29:20 Storage         - Storage path does not exist [tests/ut/output/STORE5] will create.
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: STORAGE6 at tests/ut/output/STORE6
+     [java] WARN  09/08/2010 23:29:20 Storage         - Storage path does not exist [tests/ut/output/STORE6] will create.
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: STORAGE7 at tests/ut/output/STORE7
+     [java] WARN  09/08/2010 23:29:20 Storage         - Storage path does not exist [tests/ut/output/STORE7] will create.
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: STORAGE8 at tests/ut/output/STORE8
+     [java] WARN  09/08/2010 23:29:20 Storage         - Storage path does not exist [tests/ut/output/STORE8] will create.
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: STORAGE9 at tests/ut/output/STORE9
+     [java] WARN  09/08/2010 23:29:20 Storage         - Storage path does not exist [tests/ut/output/STORE9] will create.
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: STORAGE10 at tests/ut/output/STORE10
+     [java] WARN  09/08/2010 23:29:20 Storage         - Storage path does not exist [tests/ut/output/STORE10] will create.
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: STORAGE5 at tests/ut/output
+     [java] INFO  09/08/2010 23:29:20 Echo            - Caught correction exception: Storage already exists with id: STORAGE5 at tests/ut/storage.xml:24:73
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: TEST at /inexistent/path
+     [java] WARN  09/08/2010 23:29:20 Storage         - Storage path does not exist [/inexistent/path] will create.
+     [java] INFO  09/08/2010 23:29:20 Echo            - Caught correction exception: Unable to create storage path [/inexistent/path], check folder permissions/ownership at tests/ut/storage.xml:37:63
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: INPUT at tests/ut/caca
+     [java] WARN  09/08/2010 23:29:20 Storage         - Storage path does not exist [tests/ut/caca] will create.
+     [java] INFO  09/08/2010 23:29:20 Echo            - Caught correction exception: Storage already exists with id: INPUT at tests/ut/storage.xml:49:68
+     [java] INFO  09/08/2010 23:29:20 Testscript      - Executing testscript storage://INPUT/echo.xml
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:29:20 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:29:20 Echo            - *** Echo Unit Test ***
+     [java] INFO  09/08/2010 23:29:20 Echo            - a : b : c
+     [java] INFO  09/08/2010 23:29:20 Echo            - Echoing some System properties
+     [java] INFO  09/08/2010 23:29:20 Echo            - Os: Linux
+     [java] INFO  09/08/2010 23:29:20 Echo            - Arch: i386
+     [java] INFO  09/08/2010 23:29:20 Echo            -  
+     [java] INFO  09/08/2010 23:29:20 Echo            - Echoing some properties from ut.properties
+     [java] INFO  09/08/2010 23:29:20 Echo            - dtf.test.property1 = property value1
+     [java] INFO  09/08/2010 23:29:20 Echo            - dtf.test.property2 = property value2
+     [java] INFO  09/08/2010 23:29:20 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:29:41 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/echo.xml:34:20
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockgroup.execute(Lockgroup.java:67)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:73)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.DTFNode.run(DTFNode.java:448)
+     [java] 	at com.yahoo.dtf.DTFNode.main(DTFNode.java:597)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 17 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 24 more
+     [java] ERROR 09/08/2010 23:29:41 Testscript      - Testscript failed [storage://INPUT/echo.xml]
+     [java] INFO  09/08/2010 23:29:41 Testscript      - Executing testscript storage://INPUT/sleep.xml
+     [java] INFO  09/08/2010 23:29:41 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:29:41 Echo            - *** Sleep Unit Test ***
+     [java] INFO  09/08/2010 23:29:41 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:30:02 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/sleep.xml:18:33
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockcomponent.execute(Lockcomponent.java:161)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:73)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.DTFNode.run(DTFNode.java:448)
+     [java] 	at com.yahoo.dtf.DTFNode.main(DTFNode.java:597)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 17 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 24 more
+     [java] ERROR 09/08/2010 23:30:02 Testscript      - Testscript failed [storage://INPUT/sleep.xml]
+     [java] INFO  09/08/2010 23:30:02 Testscript      - Executing testscript storage://INPUT/loadproperties.xml
+     [java] INFO  09/08/2010 23:30:03 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:30:03 Echo            - The previous loadproperties should succeed.
+     [java] INFO  09/08/2010 23:30:03 Echo            - dtf.test.property1 = property value1
+     [java] INFO  09/08/2010 23:30:03 Echo            - The previous loadproperties has failed correctly.
+     [java] INFO  09/08/2010 23:30:03 Testscript      - Executing testscript storage://INPUT/property_resolution.xml
+     [java] INFO  09/08/2010 23:30:03 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:30:03 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:30:03 Echo            - *** Property resolution unit test ***
+     [java] INFO  09/08/2010 23:30:03 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:30:24 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/property_resolution.xml:19:20
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockgroup.execute(Lockgroup.java:67)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:73)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.DTFNode.run(DTFNode.java:448)
+     [java] 	at com.yahoo.dtf.DTFNode.main(DTFNode.java:597)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 17 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 24 more
+     [java] ERROR 09/08/2010 23:30:24 Testscript      - Testscript failed [storage://INPUT/property_resolution.xml]
+     [java] INFO  09/08/2010 23:30:24 Testscript      - Executing testscript storage://INPUT/property.xml
+     [java] INFO  09/08/2010 23:30:24 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:30:24 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:30:24 Echo            - value1
+     [java] INFO  09/08/2010 23:30:24 Echo            - {
+     [java] 	"ydht": {  
+     [java]     	"fields": { 
+     [java]             "hello": { "value": "world2" }, 
+     [java]             "somearray1": {  
+     [java]                 "value" : {
+     [java]                     "v1": { "value": 1 }, 
+     [java]                     "v2": { "value": 2 }, 
+     [java]                     "v3": { "value": 3 } 
+     [java]             	}
+     [java]             }
+     [java]         }
+     [java]     }
+     [java] }
+
+     [java] INFO  09/08/2010 23:30:24 Echo            - 
+     [java]         Contents of the property come from the child text node like this one,
+     [java]         which will continue to look just like this in the property itself.
+     [java]         
+     [java]         test1: value1
+     [java]         
+     [java] INFO  09/08/2010 23:30:24 Log             - Data matches!
+     [java] INFO  09/08/2010 23:30:24 Log             - Caught property recursion correctly.
+     [java] INFO  09/08/2010 23:30:24 Log             - Caught nested property recursion correctly.
+     [java] INFO  09/08/2010 23:30:24 Log             - value2value2value2
+     [java] INFO  09/08/2010 23:30:24 Testscript      - Executing testscript storage://INPUT/cat.xml
+     [java] INFO  09/08/2010 23:30:24 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:30:24 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:30:24 Log             - Caught exception correctly [Unable to find storage: CACA at tests/ut/cat.xml:28:10]
+     [java] INFO  09/08/2010 23:30:24 Testscript      - Executing testscript storage://INPUT/log.xml
+     [java] INFO  09/08/2010 23:30:24 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:30:24 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:30:24 Log             - Just testing the logging functionality
+     [java] INFO  09/08/2010 23:30:24 Log             - INFO INFO INFO
+     [java] ERROR 09/08/2010 23:30:24 Log             - ERROR ERROR ERROR
+     [java] WARN  09/08/2010 23:30:24 Log             - WARNING WARNING WARNING
+     [java] INFO  09/08/2010 23:30:24 Log             - INFO with tag TESTING
+     [java] ERROR 09/08/2010 23:30:24 Log             - ERROR with tag TESTING
+     [java] WARN  09/08/2010 23:30:24 Log             - WARNING with tag TESTING
+     [java] INFO  09/08/2010 23:30:24 Testscript      - Executing testscript storage://INPUT/for.xml
+     [java] INFO  09/08/2010 23:30:25 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:30:25 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:30:25 Createstorage   - Creating storage: TINPUT at tests/ut
+     [java] INFO  09/08/2010 23:30:25 Import          - Importing elements from Import {loadFuncs=true,loadRefs=true,uri=storage://TINPUT/util.xml}
+     [java] INFO  09/08/2010 23:30:25 Echo            - Loop from [0..5]
+     [java] INFO  09/08/2010 23:30:25 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:30:46 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/for.xml:21:36
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockcomponent.execute(Lockcomponent.java:161)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:73)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.DTFNode.run(DTFNode.java:448)
+     [java] 	at com.yahoo.dtf.DTFNode.main(DTFNode.java:597)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 17 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 24 more
+     [java] ERROR 09/08/2010 23:30:46 Testscript      - Testscript failed [storage://INPUT/for.xml]
+     [java] INFO  09/08/2010 23:30:46 Testscript      - Executing testscript storage://INPUT/parallel.xml
+     [java] INFO  09/08/2010 23:30:46 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:31:07 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/parallel.xml:12:44
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockcomponent.execute(Lockcomponent.java:161)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:73)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.DTFNode.run(DTFNode.java:448)
+     [java] 	at com.yahoo.dtf.DTFNode.main(DTFNode.java:597)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 17 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 24 more
+     [java] ERROR 09/08/2010 23:31:07 Testscript      - Testscript failed [storage://INPUT/parallel.xml]
+     [java] INFO  09/08/2010 23:31:07 Testscript      - Executing testscript storage://INPUT/parallelloop.xml
+     [java] INFO  09/08/2010 23:31:07 Testscript      - Executing testscript storage://INPUT/sequence.xml
+     [java] INFO  09/08/2010 23:31:07 Echo            - HERE
+     [java] INFO  09/08/2010 23:31:07 Echo            - HERE
+     [java] INFO  09/08/2010 23:31:07 Testscript      - Executing testscript storage://INPUT/timer.xml
+     [java] INFO  09/08/2010 23:31:07 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:31:07 Echo            - Looping and creating events for 100ms.
+     [java] INFO  09/08/2010 23:31:07 Timer           - Timer took 119ms of 100ms.
+     [java] INFO  09/08/2010 23:31:07 Testscript      - Executing testscript storage://INPUT/switch.xml
+     [java] INFO  09/08/2010 23:31:07 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:31:07 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:31:07 Createstorage   - Creating storage: TINPUT at tests/ut
+     [java] INFO  09/08/2010 23:31:07 Import          - Importing elements from Import {loadFuncs=true,loadRefs=true,uri=storage://TINPUT/util.xml}
+     [java] INFO  09/08/2010 23:31:07 Log             - Switch case #1
+     [java] INFO  09/08/2010 23:31:07 Log             - Switch case #2
+     [java] INFO  09/08/2010 23:31:07 Log             - Looped through switch and function call correctly.
+     [java] INFO  09/08/2010 23:31:07 Log             - Switch case #2
+     [java] INFO  09/08/2010 23:31:07 Log             - Looped through switch and function call correctly.
+     [java] INFO  09/08/2010 23:31:07 Log             - Looped through switch and function call correctly.
+     [java] INFO  09/08/2010 23:31:07 Log             - Switch went into the failure case correctly.
+     [java] INFO  09/08/2010 23:31:07 Echo            - Counted 33 elements correctly.
+     [java] INFO  09/08/2010 23:31:07 Echo            - Counted 33 elements correctly.
+     [java] INFO  09/08/2010 23:31:07 Echo            - Counted 33 elements correctly.
+     [java] INFO  09/08/2010 23:31:07 Testscript      - Executing testscript storage://INPUT/while.xml
+     [java] INFO  09/08/2010 23:31:08 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:31:08 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:31:08 Log             - Thread 1 is starting.
+     [java] INFO  09/08/2010 23:31:08 Log             - Thread 2 is starting.
+     [java] INFO  09/08/2010 23:31:09 Log             - Thread 2 is done.
+     [java] INFO  09/08/2010 23:31:09 Log             - Thread 1 is done.
+     [java] INFO  09/08/2010 23:31:09 Testscript      - Executing testscript storage://INPUT/break.xml
+     [java] INFO  09/08/2010 23:31:09 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:31:09 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:31:09 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:31:30 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/break.xml:16:33
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockcomponent.execute(Lockcomponent.java:161)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:73)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.DTFNode.run(DTFNode.java:448)
+     [java] 	at com.yahoo.dtf.DTFNode.main(DTFNode.java:597)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 17 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 24 more
+     [java] ERROR 09/08/2010 23:31:30 Testscript      - Testscript failed [storage://INPUT/break.xml]
+     [java] INFO  09/08/2010 23:31:30 Testscript      - Executing testscript storage://INPUT/try_catch_fail.xml
+     [java] INFO  09/08/2010 23:31:30 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:31:30 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:31:51 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/try_catch_fail.xml:15:44
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockcomponent.execute(Lockcomponent.java:161)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:73)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.DTFNode.run(DTFNode.java:448)
+     [java] 	at com.yahoo.dtf.DTFNode.main(DTFNode.java:597)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 17 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 24 more
+     [java] ERROR 09/08/2010 23:31:51 Testscript      - Testscript failed [storage://INPUT/try_catch_fail.xml]
+     [java] INFO  09/08/2010 23:31:51 Testscript      - Executing testscript storage://INPUT/fail.xml
+     [java] INFO  09/08/2010 23:31:51 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:31:51 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:32:12 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/fail.xml:15:49
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockcomponent.execute(Lockcomponent.java:161)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:73)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.DTFNode.run(DTFNode.java:448)
+     [java] 	at com.yahoo.dtf.DTFNode.main(DTFNode.java:597)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 17 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 24 more
+     [java] ERROR 09/08/2010 23:32:12 Testscript      - Testscript failed [storage://INPUT/fail.xml]
+     [java] INFO  09/08/2010 23:32:12 Testscript      - Executing testscript storage://INPUT/distribute.xml
+     [java] INFO  09/08/2010 23:32:13 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:32:13 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:32:13 Log             - testing const function
+     [java] INFO  09/08/2010 23:32:15 Echo            - 
+     [java]                   Distribute Stats for const(5)
+     [java]                   
+     [java]                   Average events/second: 9.980
+     [java]                   Total events:          10
+     [java]         	
+     [java] INFO  09/08/2010 23:32:15 Log             - Validating the workdone vs workgoal requested events
+     [java] INFO  09/08/2010 23:32:15 Log             - testing step function
+     [java] INFO  09/08/2010 23:32:15 RecorderFactory - Wiped [tests/ut/output/perf.txt]
+     [java] INFO  09/08/2010 23:32:17 Echo            - 
+     [java]                   Distribute Stats for step(0,10,1)
+     [java]                   
+     [java]                   Average events/second: 10000.000
+     [java]                   Total events:          10
+     [java]         	
+     [java] INFO  09/08/2010 23:32:17 Log             - Validating the workdone vs workgoal requested events
+     [java] INFO  09/08/2010 23:32:17 Log             - testing list function
+     [java] INFO  09/08/2010 23:32:17 RecorderFactory - Wiped [tests/ut/output/perf.txt]
+     [java] INFO  09/08/2010 23:32:18 Echo            - 
+     [java]                   Distribute Stats for list(10,20,10,20,10,50)
+     [java]                   
+     [java]                   Average events/second: 10000.000
+     [java]                   Total events:          10
+     [java]         	
+     [java] INFO  09/08/2010 23:32:18 Log             - Validating the workdone vs workgoal requested events
+     [java] INFO  09/08/2010 23:32:18 Log             - Validate iterations is respected 1
+     [java] INFO  09/08/2010 23:32:18 Log             - Validate iterations is respected 2
+     [java] INFO  09/08/2010 23:32:18 Log             - Validate iterations is respected 3
+     [java] INFO  09/08/2010 23:32:18 Log             - Validate timer is respected
+     [java] INFO  09/08/2010 23:32:19 Log             - Caught exception correctly [Unable to parse distribution [blah] at tests/ut/distribute.xml:172:48]
+     [java] INFO  09/08/2010 23:32:19 Log             - Caught exception correctly [Value of property [iterations] is not an long, got [a] at tests/ut/distribute.xml:182:71]
+     [java] INFO  09/08/2010 23:32:19 Log             - Caught exception correctly [Unable to parse property [unit] as a long at tests/ut/distribute.xml:192:67]
+     [java] INFO  09/08/2010 23:32:19 Testscript      - Executing testscript storage://INPUT/choices.xml
+     [java] INFO  09/08/2010 23:32:19 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:32:19 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:32:19 Log             - Caught choices exception correctly.
+     [java] INFO  09/08/2010 23:32:19 RecorderFactory - Wiped [tests/ut/output/single-thread-choices.txt]
+     [java] INFO  09/08/2010 23:32:19 RecorderFactory - Wiped [tests/ut/output/single-thread-choices.txt]
+     [java] INFO  09/08/2010 23:32:19 RecorderFactory - Wiped [tests/ut/output/mult-thread-choices.txt]
+     [java] INFO  09/08/2010 23:32:20 Testscript      - Executing testscript storage://INPUT/if.xml
+     [java] INFO  09/08/2010 23:32:20 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:32:20 Echo            - 95 within 100 by 5% as expected.
+     [java] INFO  09/08/2010 23:32:20 Echo            - 95 within 100 by [5,1]% as expected.
+     [java] INFO  09/08/2010 23:32:20 Echo            - 110 within 100 by [1,10]% as expected.
+     [java] INFO  09/08/2010 23:32:20 Echo            - 94 not within 100 by 5% as expected.
+     [java] INFO  09/08/2010 23:32:20 Echo            - true equals true
+     [java] INFO  09/08/2010 23:32:20 Echo            - true equals true
+     [java] INFO  09/08/2010 23:32:20 Echo            - 12345z greater than 12345a
+     [java] INFO  09/08/2010 23:32:20 Echo            - abc12345z greater than abc12345a
+     [java] INFO  09/08/2010 23:32:20 Echo            - 3.1459 greater than 3.1458
+     [java] INFO  09/08/2010 23:32:20 Log             - Comparison between 18 and 18.000 succeeded correctly
+     [java] INFO  09/08/2010 23:32:20 Log             - Comparison worked correctly.
+     [java] INFO  09/08/2010 23:32:20 Log             - Comparison worked correctly.
+     [java] INFO  09/08/2010 23:32:20 Log             - Passed as expected.
+     [java] INFO  09/08/2010 23:32:20 Log             - Passed as expected.
+     [java] INFO  09/08/2010 23:32:20 Log             - Failed as expected.
+     [java] INFO  09/08/2010 23:32:20 Log             - Failed as expected.
+     [java] INFO  09/08/2010 23:32:20 Log             - Passed as expected.
+     [java] INFO  09/08/2010 23:32:20 Log             - Passed as expected.
+     [java] INFO  09/08/2010 23:32:20 Log             - Passed as expected.
+     [java] INFO  09/08/2010 23:32:20 Log             - Passed as expected.
+     [java] INFO  09/08/2010 23:32:20 Log             - Passed as expected.
+     [java] INFO  09/08/2010 23:32:20 Log             - Passed as expected.
+     [java] INFO  09/08/2010 23:32:20 Log             - Passed as expected.
+     [java] INFO  09/08/2010 23:32:20 Testscript      - Executing testscript storage://INPUT/similar.xml
+     [java] INFO  09/08/2010 23:32:20 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:32:20 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:32:21 Log             - png: being checked
+     [java] INFO  09/08/2010 23:32:21 Log             - images are within 100% similarity
+     [java] INFO  09/08/2010 23:32:21 Log             - gif: being checked
+     [java] INFO  09/08/2010 23:32:21 Log             - images are within 100% similarity
+     [java] INFO  09/08/2010 23:32:21 Log             - bmp: being checked
+     [java] INFO  09/08/2010 23:32:21 Log             - images are within 100% similarity
+     [java] INFO  09/08/2010 23:32:21 Testscript      - Executing testscript storage://INPUT/range.xml
+     [java] INFO  09/08/2010 23:32:21 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:32:21 Log             - Validating long enumerations work well
+     [java] INFO  09/08/2010 23:32:21 Log             - Validate sequential ranges work backwords
+     [java] INFO  09/08/2010 23:32:21 Log             - Validate sequential ranges work for characters in ascending order
+     [java] INFO  09/08/2010 23:32:21 Log             - Validate sequential ranges work for characters in descending order
+     [java] INFO  09/08/2010 23:32:21 Testscript      - Executing testscript storage://INPUT/range_dist.xml
+     [java] INFO  09/08/2010 23:32:22 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:32:22 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:32:43 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/range_dist.xml:15:33
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockcomponent.execute(Lockcomponent.java:161)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:73)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.DTFNode.run(DTFNode.java:448)
+     [java] 	at com.yahoo.dtf.DTFNode.main(DTFNode.java:597)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 17 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 24 more
+     [java] ERROR 09/08/2010 23:32:43 Testscript      - Testscript failed [storage://INPUT/range_dist.xml]
+     [java] INFO  09/08/2010 23:32:43 Testscript      - Executing testscript storage://INPUT/xml_range.xml
+     [java] INFO  09/08/2010 23:32:43 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:32:43 Log             - XPath range validation
+     [java] INFO  09/08/2010 23:32:43 Log             - XPath range validation on XML with namespace
+     [java] INFO  09/08/2010 23:32:43 Log             - XPath range validation on XML with default namespace
+     [java] INFO  09/08/2010 23:32:43 Log             - negative tests
+     [java] INFO  09/08/2010 23:32:43 Log             - Failed correctly
+     [java] INFO  09/08/2010 23:32:43 Testscript      - Executing testscript storage://INPUT/json_range.xml
+     [java] INFO  09/08/2010 23:32:43 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:32:43 Log             - JPath range validation
+     [java] INFO  09/08/2010 23:32:43 Log             - Negative Tests
+     [java] INFO  09/08/2010 23:32:43 Log             - Failed correctly
+     [java] INFO  09/08/2010 23:32:43 Testscript      - Executing testscript storage://INPUT/functions.xml
+     [java] INFO  09/08/2010 23:32:43 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:32:43 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:32:43 Createstorage   - Creating storage: TESTINPUT at tests/ut
+     [java] INFO  09/08/2010 23:32:43 Import          - Importing elements from Import {loadFuncs=true,loadRefs=true,uri=storage://TESTINPUT/util.xml}
+     [java] INFO  09/08/2010 23:32:43 Import          - Importing elements from Import {loadFuncs=true,loadRefs=true,uri=storage://TESTINPUT/functions_ut...}
+     [java] INFO  09/08/2010 23:32:44 Echo            - Recursive function calling.
+     [java] INFO  09/08/2010 23:32:44 Echo            - In func1
+     [java] WARN  09/08/2010 23:32:44 Function        - Argument [function] not being used by the function [func2]
+     [java] INFO  09/08/2010 23:32:44 Echo            - In func2
+     [java] INFO  09/08/2010 23:32:44 Echo            - In func1
+     [java] INFO  09/08/2010 23:32:44 Echo            - No More.
+     [java] INFO  09/08/2010 23:32:44 Echo            - In func1
+     [java] WARN  09/08/2010 23:32:44 Function        - Argument [function] not being used by the function [func3]
+     [java] INFO  09/08/2010 23:32:44 Echo            - In func3
+     [java] INFO  09/08/2010 23:32:44 Echo            - In func1
+     [java] INFO  09/08/2010 23:32:44 Echo            - No More.
+     [java] INFO  09/08/2010 23:32:44 Echo            - Inexistent function calling.
+     [java] INFO  09/08/2010 23:32:44 Echo            - Caught exception correctly [Unable to find function: funcXXXX at tests/ut/functions.xml:101:39]
+     [java] INFO  09/08/2010 23:32:44 Echo            - Parallel stress function calling.
+     [java] INFO  09/08/2010 23:32:44 Echo            - Counted 100 elements correctly.
+     [java] INFO  09/08/2010 23:32:44 Log             - Internally property has correct value.
+     [java] INFO  09/08/2010 23:32:44 Log             - Property value not changed from within function call
+     [java] INFO  09/08/2010 23:32:44 Log             - f: X
+     [java] INFO  09/08/2010 23:32:44 Log             - g: X
+     [java] INFO  09/08/2010 23:32:44 Log             - All is good got expected result: result
+     [java] INFO  09/08/2010 23:32:44 Log             - 
+     [java]              This will not fail and will take precedence to the other function
+     [java]              known by the same name from util.xml which would fail
+     [java]         
+     [java] WARN  09/08/2010 23:32:44 Function        - Argument [p3] not being used by the function [functionWithParams]
+     [java] INFO  09/08/2010 23:32:44 Log             - 1
+     [java] INFO  09/08/2010 23:32:44 Log             - 1
+     [java] INFO  09/08/2010 23:32:44 Log             - 1
+     [java] INFO  09/08/2010 23:32:47 Log             - Calling function...
+     [java] INFO  09/08/2010 23:32:47 Testscript      - Executing testscript storage://INPUT/import.xml
+     [java] INFO  09/08/2010 23:32:47 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:32:47 Createstorage   - Creating storage: TINPUT at tests/ut
+     [java] INFO  09/08/2010 23:32:47 Import          - Importing elements from Import {loadFuncs=true,loadRefs=true,uri=storage://TINPUT/functions.xml}
+     [java] INFO  09/08/2010 23:32:47 Echo            - In func1
+     [java] WARN  09/08/2010 23:32:47 Function        - Argument [function] not being used by the function [func2]
+     [java] INFO  09/08/2010 23:32:47 Echo            - In func2
+     [java] INFO  09/08/2010 23:32:47 Echo            - In func1
+     [java] INFO  09/08/2010 23:32:47 Echo            - No More.
+     [java] WARN  09/08/2010 23:32:47 Function        - Argument [function] not being used by the function [func3]
+     [java] INFO  09/08/2010 23:32:47 Echo            - In func3
+     [java] INFO  09/08/2010 23:32:47 Echo            - In func1
+     [java] INFO  09/08/2010 23:32:47 Echo            - No More.
+     [java] INFO  09/08/2010 23:32:47 Log             - Got the correct line,column and script name
+     [java] INFO  09/08/2010 23:32:47 Import          - Importing elements from Import {loadFuncs=true,loadRefs=true,uri=storage://INPUT/badxml}
+     [java] INFO  09/08/2010 23:32:47 Testscript      - Executing testscript storage://INPUT/export.xml
+     [java] INFO  09/08/2010 23:32:47 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:32:47 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:32:47 Import          - Importing elements from Import {loadFuncs=true,loadRefs=true,uri=storage://INPUT/export_util.xml}
+     [java] INFO  09/08/2010 23:32:48 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:33:09 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/export.xml:24:36
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockcomponent.execute(Lockcomponent.java:161)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:73)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.DTFNode.run(DTFNode.java:448)
+     [java] 	at com.yahoo.dtf.DTFNode.main(DTFNode.java:597)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 17 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 24 more
+     [java] ERROR 09/08/2010 23:33:09 Testscript      - Testscript failed [storage://INPUT/export.xml]
+     [java] INFO  09/08/2010 23:33:09 Testscript      - Executing testscript storage://INPUT/references.xml
+     [java] INFO  09/08/2010 23:33:09 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:33:09 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:33:09 Createstorage   - Creating storage: TINPUT at tests/ut
+     [java] INFO  09/08/2010 23:33:09 Import          - Importing elements from Import {loadFuncs=true,loadRefs=true,uri=storage://TINPUT/util.xml}
+     [java] INFO  09/08/2010 23:33:09 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:33:30 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/references.xml:20:50
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockcomponent.execute(Lockcomponent.java:161)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:73)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.DTFNode.run(DTFNode.java:448)
+     [java] 	at com.yahoo.dtf.DTFNode.main(DTFNode.java:597)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 17 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 24 more
+     [java] ERROR 09/08/2010 23:33:30 Testscript      - Testscript failed [storage://INPUT/references.xml]
+     [java] INFO  09/08/2010 23:33:30 Testscript      - Executing testscript storage://INPUT/component.xml
+     [java] INFO  09/08/2010 23:33:30 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:33:30 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:33:30 Echo            - Iteration 0: Locking and Unlocking one DTFA
+     [java] INFO  09/08/2010 23:33:30 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:33:51 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/component.xml:25:58
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockcomponent.execute(Lockcomponent.java:161)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.flowcontrol.Sequence.execute(Sequence.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.flowcontrol.For.execute(For.java:47)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:73)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.DTFNode.run(DTFNode.java:448)
+     [java] 	at com.yahoo.dtf.DTFNode.main(DTFNode.java:597)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 21 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 28 more
+     [java] ERROR 09/08/2010 23:33:51 Testscript      - Testscript failed [storage://INPUT/component.xml]
+     [java] INFO  09/08/2010 23:33:51 Testscript      - Executing testscript storage://INPUT/lockcomponent.xml
+     [java] INFO  09/08/2010 23:33:51 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:33:51 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:33:51 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] INFO  09/08/2010 23:34:12 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] INFO  09/08/2010 23:34:33 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:34:54 Child failed.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/lockcomponent.xml:27:51
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockcomponent.execute(Lockcomponent.java:161)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.flowcontrol.For.execute(For.java:47)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.flowcontrol.Sequence.execute(Sequence.java:31)
+     [java] 	at com.yahoo.dtf.distribution.Worker.run(Worker.java:39)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 9 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 16 more
+     [java] ERROR 09/08/2010 23:34:54 Child failed.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/lockcomponent.xml:27:51
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockcomponent.execute(Lockcomponent.java:161)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.flowcontrol.For.execute(For.java:47)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.flowcontrol.Sequence.execute(Sequence.java:31)
+     [java] 	at com.yahoo.dtf.distribution.Worker.run(Worker.java:39)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 9 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 16 more
+     [java] ERROR 09/08/2010 23:34:54 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/lockcomponent.xml:27:51
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockcomponent.execute(Lockcomponent.java:161)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.flowcontrol.For.execute(For.java:47)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.flowcontrol.Sequence.execute(Sequence.java:31)
+     [java] 	at com.yahoo.dtf.distribution.Worker.run(Worker.java:39)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 9 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 16 more
+     [java] ERROR 09/08/2010 23:34:54 Testscript      - Testscript failed [storage://INPUT/lockcomponent.xml]
+     [java] INFO  09/08/2010 23:34:54 Testscript      - Executing testscript storage://INPUT/lockgroup.xml
+     [java] INFO  09/08/2010 23:34:54 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:34:54 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:34:54 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] INFO  09/08/2010 23:35:15 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:35:36 Child failed.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/lockgroup.xml:24:22
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockgroup.execute(Lockgroup.java:67)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.flowcontrol.Sequence.execute(Sequence.java:31)
+     [java] 	at com.yahoo.dtf.distribution.Worker.run(Worker.java:39)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 7 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 14 more
+     [java] ERROR 09/08/2010 23:35:36 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/lockgroup.xml:24:22
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockgroup.execute(Lockgroup.java:67)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.flowcontrol.Sequence.execute(Sequence.java:31)
+     [java] 	at com.yahoo.dtf.distribution.Worker.run(Worker.java:39)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 7 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 14 more
+     [java] ERROR 09/08/2010 23:35:36 Testscript      - Testscript failed [storage://INPUT/lockgroup.xml]
+     [java] INFO  09/08/2010 23:35:36 Testscript      - Executing testscript storage://INPUT/remotestorage.xml
+     [java] INFO  09/08/2010 23:35:36 Createstorage   - Creating storage: OUTPUT at tests/ut/remote-output
+     [java] INFO  09/08/2010 23:35:36 Createstorage   - Creating storage: OUTPUT2 at tests/ut/remote-output/D1
+     [java] INFO  09/08/2010 23:35:36 Createstorage   - Creating storage: EXPORTED_OUTPUT at tests/ut/exported_output
+     [java] WARN  09/08/2010 23:35:36 Storage         - Storage path does not exist [tests/ut/exported_output] will create.
+     [java] INFO  09/08/2010 23:35:36 Createstorage   - Creating storage: NOT_EXPORTED_OUTPUT at tests/ut/not_exported_output
+     [java] WARN  09/08/2010 23:35:36 Storage         - Storage path does not exist [tests/ut/not_exported_output] will create.
+     [java] INFO  09/08/2010 23:35:36 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+     [java] ERROR 09/08/2010 23:35:57 Error running script.
+     [java] com.yahoo.dtf.exception.CommException: Unable to register. at tests/ut/remotestorage.xml:31:20
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.convertException(CommRMIClient.java:101)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:176)
+     [java] 	at com.yahoo.dtf.comm.Comm.checkAndConnectToDTFC(Comm.java:226)
+     [java] 	at com.yahoo.dtf.actions.component.Lockgroup.execute(Lockgroup.java:67)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.component.Local.execute(Local.java:31)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:73)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
+     [java] 	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:211)
+     [java] 	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:51)
+     [java] 	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
+     [java] 	at com.yahoo.dtf.DTFNode.run(DTFNode.java:448)
+     [java] 	at com.yahoo.dtf.DTFNode.main(DTFNode.java:597)
+     [java] Caused by: java.rmi.ConnectException: Connection refused to host: 10.210.31.19; nested exception is: 
+     [java] 	java.net.ConnectException: Connection timed out
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:601)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.createConnection(TCPChannel.java:198)
+     [java] 	at sun.rmi.transport.tcp.TCPChannel.newConnection(TCPChannel.java:184)
+     [java] 	at sun.rmi.server.UnicastRef.invoke(UnicastRef.java:110)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invokeRemoteMethod(RemoteObjectInvocationHandler.java:178)
+     [java] 	at java.rmi.server.RemoteObjectInvocationHandler.invoke(RemoteObjectInvocationHandler.java:132)
+     [java] 	at $Proxy1.register(Unknown Source)
+     [java] 	at com.yahoo.dtf.comm.CommRMIClient.register(CommRMIClient.java:173)
+     [java] 	... 17 more
+     [java] Caused by: java.net.ConnectException: Connection timed out
+     [java] 	at java.net.PlainSocketImpl.socketConnect(Native Method)
+     [java] 	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:333)
+     [java] 	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:195)
+     [java] 	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:182)
+     [java] 	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:366)
+     [java] 	at java.net.Socket.connect(Socket.java:529)
+     [java] 	at java.net.Socket.connect(Socket.java:478)
+     [java] 	at java.net.Socket.<init>(Socket.java:375)
+     [java] 	at java.net.Socket.<init>(Socket.java:189)
+     [java] 	at com.yahoo.dtf.comm.RMITunnelSF.createSocket(RMITunnelSF.java:121)
+     [java] 	at sun.rmi.transport.tcp.TCPEndpoint.newSocket(TCPEndpoint.java:595)
+     [java] 	... 24 more
+     [java] ERROR 09/08/2010 23:35:57 Testscript      - Testscript failed [storage://INPUT/remotestorage.xml]
+     [java] INFO  09/08/2010 23:35:57 Testscript      - Executing testscript storage://INPUT/recorder.xml
+     [java] INFO  09/08/2010 23:35:57 Createstorage   - Creating storage: INPUT at tests/ut/input
+     [java] INFO  09/08/2010 23:35:57 Createstorage   - Creating storage: OUTPUT at tests/ut/output
+     [java] INFO  09/08/2010 23:35:57 CommRMIClient   - Registering Connect {port=30003,dtf.debug.port=40004,dtf.os.version=2.6.32-305-ec2,dtf.node.user=dtftest,dtf.tunneled=false,dtf.os.arch=i386,dtf.node.home=/home/dtftest/build/dtf/build/dt...,dtf.node.type=dtfx,hostname=10.210.31.19,dtf.node.host=10.210.31.19,dtf.os.name=Linux}
+
+
+     [java] java.lang.reflect.InvocationTargetException
+     [java] 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     [java] 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:597)
+     [java] 	at org.apache.tools.ant.taskdefs.ProcessDestroyer.removeShutdownHook(ProcessDestroyer.java:153)
+     [java] 	at org.apache.tools.ant.taskdefs.ProcessDestroyer.remove(ProcessDestroyer.java:223)
+     [java] 	at org.apache.tools.ant.taskdefs.Execute.execute(Execute.java:526)
+     [java] 	at org.apache.tools.ant.taskdefs.Java.fork(Java.java:740)
+     [java] 	at org.apache.tools.ant.taskdefs.Java.executeJava(Java.java:199)
+     [java] 	at org.apache.tools.ant.taskdefs.Java.execute(Java.java:115)
+     [java] 	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:306)
+     [java] 	at org.apache.tools.ant.Task.perform(Task.java:401)
+     [java] 	at org.apache.tools.ant.Target.execute(Target.java:338)
+     [java] 	at org.apache.tools.ant.Target.performTasks(Target.java:365)
+     [java] 	at org.apache.tools.ant.Project.executeTarget(Project.java:1237)
+     [java] 	at org.apache.tools.ant.taskdefs.Ant.execute(Ant.java:420)
+     [java] 	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:306)
+     [java] 	at org.apache.tools.ant.Task.perform(Task.java:401)
+     [java] 	at org.apache.tools.ant.taskdefs.Sequential.execute(Sequential.java:102)
+     [java] 	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:306)
+     [java] 	at org.apache.tools.ant.Task.perform(Task.java:401)
+     [java] 	at org.apache.tools.ant.taskdefs.Sequential.execute(Sequential.java:102)
+     [java] 	at org.apache.tools.ant.Task.perform(Task.java:401)
+     [java] 	at net.sf.antcontrib.logic.TryCatchTask.execute(TryCatchTask.java:207)
+     [java] 	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:306)
+     [java] 	at org.apache.tools.ant.Task.perform(Task.java:401)
+     [java] 	at org.apache.tools.ant.taskdefs.Parallel$TaskRunnable.run(Parallel.java:457)
+     [java] 	at java.lang.Thread.run(Thread.java:619)
+     [java] Caused by: java.lang.IllegalStateException: Shutdown in progress
+     [java] 	at java.lang.ApplicationShutdownHooks.remove(ApplicationShutdownHooks.java:55)
+     [java] 	at java.lang.Runtime.removeShutdownHook(Runtime.java:220)
+     [java] 	... 28 more
+     [echo] Shutting down background run_components task.
