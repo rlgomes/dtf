@@ -1,11 +1,222 @@
 Buildfile: build.xml
 
 junit.init:
-     [echo] JUnit not tests not being compiled
 
 junit:
+    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf/junit_results
+    [junit] Running com.yahoo.dtf.junit.ByteUtilSuite
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.205 sec
+    [junit] Running com.yahoo.dtf.junit.CompHookSuite
+    [junit] INFO  09/08/2010 04:25:40 Comm            - Host address [10.206.23.127]
+    [junit] INFO  09/08/2010 04:25:40 CommRMIServer   - Listening at [30000]
+    [junit] INFO  09/08/2010 04:25:40 Comm            - DTFC Setup.
+    [junit] INFO  09/08/2010 04:25:40 DebugServer     - Listening at 127.0.0.1:40000
+    [junit] INFO  09/08/2010 04:25:41 CompHookSuite   - 
+    [junit] INFO  09/08/2010 04:25:41 CompHookSuite   - Testing ComponentHooks with:
+    [junit] INFO  09/08/2010 04:25:41 CompHookSuite   -  * 10000 properties created.
+    [junit] INFO  09/08/2010 04:25:41 CompHookSuite   -  * 128 components locked.
+    [junit] INFO  09/08/2010 04:25:41 CompHookSuite   -  * dummy communication layer being used.
+    [junit] INFO  09/08/2010 04:25:41 CompHookSuite   - 
+    [junit] INFO  09/08/2010 04:25:43 CompHookSuite   - PropertyState hook took 20ms on average.
+    [junit] INFO  09/08/2010 04:25:43 CompHookSuite   - StorageState hook took 0ms on average.
+    [junit] INFO  09/08/2010 04:25:43 CompHookSuite   - StateComponentHook hook took 0ms on average.
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 3.07 sec
+    [junit] Running com.yahoo.dtf.junit.DTFJUnitTest
+    [junit] Tests run: 0, Failures: 0, Errors: 0, Time elapsed: 0.165 sec
+    [junit] Running com.yahoo.dtf.junit.DTFPropertiesSuite
+    [junit] puts/sec: 93457.94392523365
+    [junit] Puts/sec: 625000.0
+    [junit] clones/sec: 256410.2564102564
+    [junit] elem a
+    [junit] elem b
+    [junit] elem c
+    [junit] elem d
+    [junit] elem z
+    [junit] Tests run: 8, Failures: 0, Errors: 0, Time elapsed: 0.428 sec
+    [junit] Running com.yahoo.dtf.junit.DebugServerSuite
+    [junit] INFO  09/08/2010 04:25:46 DebugServer     - Listening at 127.0.0.1:40000
+    [junit] INFO  09/08/2010 04:25:46 Comm            - Host address [10.206.23.127]
+    [junit] INFO  09/08/2010 04:25:46 CommRMIServer   - Listening at [30000]
+    [junit] INFO  09/08/2010 04:25:46 Comm            - DTFC Setup.
+    [junit] INFO  09/08/2010 04:25:49 DebugServerSuite - Help Menu: 
+    [junit] INFO  09/08/2010 04:25:49 DebugServerSuite - Available commands:
+    [junit]     ?     - displays this help menu.
+    [junit] 
+    [junit]    quit   - quits this session.
+    [junit] 
+    [junit]  xmltrace - displays the DTF XML trace for all currently executing DTF Actions.
+    [junit] 
+    [junit]  loglevel info|error|debug|warn [x.y.z.Class]
+    [junit]           - set the current loglevel, levels are info, debug, warn, error.
+    [junit]             ex: loglevel info
+    [junit] 
+    [junit]   status  - the status of this DTF node (dtfc shows all node statuses).
+    [junit] 
+    [junit] 
+    [junit] INFO  09/08/2010 04:25:49 DebugServerSuite - Current xmltrace: 
+    [junit] INFO  09/08/2010 04:25:49 DebugServerSuite - 
+    [junit] --------------------------------------------------------------------------------
+    [junit]   Thread ID    |              XML Trace                |      Action State      
+    [junit] --------------------------------------------------------------------------------
+    [junit] --------------------------------------------------------------------------------
+    [junit] 
+    [junit] INFO  09/08/2010 04:25:49 DebugServerSuite - loglevel response: 
+    [junit] INFO  09/08/2010 04:25:49 DebugServerSuite - Log level set to [debug]
+    [junit] 
+    [junit] INFO  09/08/2010 04:25:49 DebugServerSuite - loglevel response: 
+    [junit] INFO  09/08/2010 04:25:49 DebugServerSuite - Log level set to [info]
+    [junit] 
+    [junit] INFO  09/08/2010 04:25:49 DebugServerSuite - loglevel response: 
+    [junit] INFO  09/08/2010 04:25:49 DebugServerSuite - Bye
+    [junit] 
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 3.698 sec
+    [junit] Running com.yahoo.dtf.junit.DummyComm
+    [junit] Tests run: 0, Failures: 0, Errors: 0, Time elapsed: 0.171 sec
+    [junit] Running com.yahoo.dtf.junit.EventSuite
+    [junit] WARN  09/08/2010 04:25:52 Storage         - Storage path does not exist [/tmp/junit] will create.
+    [junit] INFO  09/08/2010 04:25:52 EventSuite      - Validating recorder [txt]
+    [junit] INFO  09/08/2010 04:25:53 EventSuite      - Record [stats] Op/sec: 345423
+    [junit] WARN  09/08/2010 04:25:53 EventSuite      - No query handler for [stats]
+    [junit] INFO  09/08/2010 04:25:54 EventSuite      - Record [csv] Op/sec: 154440
+    [junit] WARN  09/08/2010 04:25:54 EventSuite      - No query handler for [csv]
+    [junit] INFO  09/08/2010 04:25:54 RecorderFactory - Wiped [/tmp/junit/events_txt.txt]
+    [junit] INFO  09/08/2010 04:25:55 EventSuite      - Record [txt] Op/sec: 168491
+    [junit] INFO  09/08/2010 04:25:56 EventSuite      - Query  [txt] Op/sec: 175901
+    [junit] INFO  09/08/2010 04:25:56 EventSuite      - Event size 5263 bytes.
+    [junit] INFO  09/08/2010 04:25:56 EventSuite      - Record [stats] Op/sec: 199999
+    [junit] INFO  09/08/2010 04:25:56 EventSuite      - Record [stats] MB/sec: 1003
+    [junit] WARN  09/08/2010 04:25:56 EventSuite      - No query handler for [stats]
+    [junit] INFO  09/08/2010 04:25:56 RecorderFactory - Wiped [/tmp/junit/events_csv.txt]
+    [junit] INFO  09/08/2010 04:25:56 EventSuite      - Event size 5263 bytes.
+    [junit] INFO  09/08/2010 04:25:58 EventSuite      - Record [csv] Op/sec: 9483
+    [junit] INFO  09/08/2010 04:25:58 EventSuite      - Record [csv] MB/sec: 47
+    [junit] WARN  09/08/2010 04:25:58 EventSuite      - No query handler for [csv]
+    [junit] INFO  09/08/2010 04:25:58 RecorderFactory - Wiped [/tmp/junit/events_txt.txt]
+    [junit] INFO  09/08/2010 04:25:58 EventSuite      - Event size 5263 bytes.
+    [junit] INFO  09/08/2010 04:26:02 EventSuite      - Record [txt] Op/sec: 6518
+    [junit] INFO  09/08/2010 04:26:02 EventSuite      - Record [txt] MB/sec: 32
+    [junit] INFO  09/08/2010 04:26:05 EventSuite      - Query  [txt] Op/sec: 6759
+    [junit] INFO  09/08/2010 04:26:05 EventSuite      - Query  [txt] MB/sec: 33
+    [junit] Tests run: 3, Failures: 0, Errors: 0, Time elapsed: 12.939 sec
+    [junit] Running com.yahoo.dtf.junit.HashUtilSuite
+    [junit] INFO  09/08/2010 04:26:07 HashUtilSuite   - sha1/s: 92549
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 2.407 sec
+    [junit] Running com.yahoo.dtf.junit.LockHookSuite
+    [junit] INFO  09/08/2010 04:26:08 Comm            - Host address [10.206.23.127]
+    [junit] INFO  09/08/2010 04:26:08 CommRMIServer   - Listening at [30000]
+    [junit] INFO  09/08/2010 04:26:08 Comm            - DTFC Setup.
+    [junit] INFO  09/08/2010 04:26:08 DebugServer     - Listening at 127.0.0.1:40000
+    [junit] INFO  09/08/2010 04:26:08 LockHookSuite   - 
+    [junit] INFO  09/08/2010 04:26:08 LockHookSuite   - Testing LockHooks with:
+    [junit] INFO  09/08/2010 04:26:08 LockHookSuite   -  * 1000 functions registered.
+    [junit] INFO  09/08/2010 04:26:08 LockHookSuite   -  * 1000 references created.
+    [junit] INFO  09/08/2010 04:26:08 LockHookSuite   -  * 128 components locked.
+    [junit] INFO  09/08/2010 04:26:08 LockHookSuite   -  * dummy communication layer being used.
+    [junit] INFO  09/08/2010 04:26:08 LockHookSuite   - 
+    [junit] INFO  09/08/2010 04:26:08 LockHookSuite   - ReferencesLockHook hook took 0ms on average.
+    [junit] INFO  09/08/2010 04:26:08 LockHookSuite   - FunctionsLockHook hook took 0ms on average.
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.506 sec
+    [junit] Running com.yahoo.dtf.junit.NodeRunner
+    [junit] Tests run: 0, Failures: 0, Errors: 0, Time elapsed: 0.181 sec
+    [junit] Running com.yahoo.dtf.junit.NumberUtilSuite
+    [junit] INFO  09/08/2010 04:26:10 NumberUtilSuite - Testing [1000000]
+    [junit] INFO  09/08/2010 04:26:10 NumberUtilSuite - NumberUtil.isLong() took: 50ms
+    [junit] INFO  09/08/2010 04:26:10 NumberUtilSuite - Regular expression took:  366ms
+    [junit] INFO  09/08/2010 04:26:10 NumberUtilSuite - Long.valueOf() took:      103ms
+    [junit] INFO  09/08/2010 04:26:10 NumberUtilSuite - regular expression matching: true
+    [junit] INFO  09/08/2010 04:26:10 NumberUtilSuite - NumberUtil.isLong:           true
+    [junit] INFO  09/08/2010 04:26:10 NumberUtilSuite - isLong using Long.valueOf(): true
+    [junit] INFO  09/08/2010 04:26:10 NumberUtilSuite - Testing [1233334a]
+    [junit] INFO  09/08/2010 04:26:10 NumberUtilSuite - NumberUtil.isLong() took: 22ms
+    [junit] INFO  09/08/2010 04:26:11 NumberUtilSuite - Regular expression took:  285ms
+    [junit] INFO  09/08/2010 04:26:14 NumberUtilSuite - Long.valueOf() took:      3687ms
+    [junit] INFO  09/08/2010 04:26:14 NumberUtilSuite - regular expression matching: false
+    [junit] INFO  09/08/2010 04:26:14 NumberUtilSuite - NumberUtil.isLong:           false
+    [junit] INFO  09/08/2010 04:26:14 NumberUtilSuite - isLong using Long.valueOf(): false
+    [junit] INFO  09/08/2010 04:26:14 NumberUtilSuite - Testing [100.123]
+    [junit] INFO  09/08/2010 04:26:14 NumberUtilSuite - NumberUtil.isDouble() took: 64ms
+    [junit] INFO  09/08/2010 04:26:15 NumberUtilSuite - Regular expression took:  476ms
+    [junit] INFO  09/08/2010 04:26:15 NumberUtilSuite - Double.valueOf() took:      222ms
+    [junit] INFO  09/08/2010 04:26:15 NumberUtilSuite - regular expression matching: true
+    [junit] INFO  09/08/2010 04:26:15 NumberUtilSuite - NumberUtil.isdouble:           true
+    [junit] INFO  09/08/2010 04:26:15 NumberUtilSuite - isDouble using Double.valueOf(): true
+    [junit] INFO  09/08/2010 04:26:15 NumberUtilSuite - Testing [123.334a]
+    [junit] INFO  09/08/2010 04:26:15 NumberUtilSuite - NumberUtil.isDouble() took: 31ms
+    [junit] INFO  09/08/2010 04:26:16 NumberUtilSuite - Regular expression took:  627ms
+    [junit] INFO  09/08/2010 04:26:20 NumberUtilSuite - Double.valueOf() took:      3909ms
+    [junit] INFO  09/08/2010 04:26:20 NumberUtilSuite - regular expression matching: false
+    [junit] INFO  09/08/2010 04:26:20 NumberUtilSuite - NumberUtil.isdouble:           false
+    [junit] INFO  09/08/2010 04:26:20 NumberUtilSuite - isDouble using Double.valueOf(): false
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 10.156 sec
+    [junit] Running com.yahoo.dtf.junit.RandomGenSuite
+    [junit] INFO  09/08/2010 04:26:20 RandomGenSuite  - Small Dataset Distribution
+    [junit] INFO  09/08/2010 04:26:20 RandomGenSuite  - Random offby 13.00%
+    [junit] INFO  09/08/2010 04:26:20 RandomGenSuite  - DTFRandom offby 9.00%
+    [junit] INFO  09/08/2010 04:26:20 RandomGenSuite  - Large Dataset Distribution
+    [junit] INFO  09/08/2010 04:26:21 RandomGenSuite  - Random offby .18%
+    [junit] INFO  09/08/2010 04:26:21 RandomGenSuite  - DTFRandom offby .46%
+    [junit] INFO  09/08/2010 04:26:21 RandomGenSuite  - Random ops/sec: 35971223
+    [junit] INFO  09/08/2010 04:26:21 RandomGenSuite  - DTFRandom ops/sec: 285714284
+    [junit] INFO  09/08/2010 04:26:22 RandomGenSuite  - Random ops/sec: 19120458
+    [junit] INFO  09/08/2010 04:26:22 RandomGenSuite  - DTFRandom ops/sec: 107526879
+    [junit] INFO  09/08/2010 04:26:23 RandomGenSuite  - Random bytes/sec: 142481668
+    [junit] INFO  09/08/2010 04:26:23 RandomGenSuite  - DTFRandom bytes/sec: 257615587
+    [junit] INFO  09/08/2010 04:26:23 RandomGenSuite  - Validating data for DTFRandom.
+    [junit] INFO  09/08/2010 04:26:28 RandomGenSuite  - Generating nextInt() sequence from seed 1234567890
+    [junit] INFO  09/08/2010 04:26:28 RandomGenSuite  - 782593066,746941499,577072204,541420637,639986798,604335231,1004891264,969239697,1067805858,1032154291,
+    [junit] INFO  09/08/2010 04:26:28 RandomGenSuite  - randomString [�le3�lE1�l%7�l5]
+    [junit] Tests run: 7, Failures: 0, Errors: 0, Time elapsed: 7.691 sec
+    [junit] Running com.yahoo.dtf.junit.ShareSuite$SimpleGetter
+    [junit] Tests run: 0, Failures: 0, Errors: 0, Time elapsed: 0.154 sec
+    [junit] Running com.yahoo.dtf.junit.ShareSuite$SimpleSetter
+    [junit] Tests run: 0, Failures: 0, Errors: 0, Time elapsed: 0.166 sec
+    [junit] Running com.yahoo.dtf.junit.ShareSuite
+    [junit] INFO  09/08/2010 04:26:29 ShareSuite      - Testing [cumulative]
+    [junit] INFO  09/08/2010 04:26:35 ShareSuite      - Testing [queue]
+    [junit] INFO  09/08/2010 04:26:39 ShareSuite      - Testing [single]
+    [junit] INFO  09/08/2010 04:26:43 ShareSuite      - Testing [queue]
+    [junit] Tests run: 3, Failures: 0, Errors: 0, Time elapsed: 14.176 sec
+    [junit] Running com.yahoo.dtf.junit.StreamUtilSuite
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 0.193 sec
+    [junit] Running com.yahoo.dtf.junit.StreamingSuite
+    [junit] INFO  09/08/2010 04:26:44 StreamingSuite  - Validating [random] with [random,0,1234]
+    [junit] INFO  09/08/2010 04:26:44 StreamingSuite  - Validating [repeat] with [repeat,0,1234]
+    [junit] INFO  09/08/2010 04:26:44 StreamingSuite  - Validating [random] with [random,1024,1234]
+    [junit] INFO  09/08/2010 04:26:44 StreamingSuite  - Validating [repeat] with [repeat,1024,1234]
+    [junit] INFO  09/08/2010 04:26:44 StreamingSuite  - Validating [random] with [random,2000000,1234]
+    [junit] INFO  09/08/2010 04:26:44 StreamingSuite  - Validating [repeat] with [repeat,2000000,1234]
+    [junit] INFO  09/08/2010 04:26:44 StreamingSuite  - Validating [random] with [random,0,1234] buffersize 1
+    [junit] INFO  09/08/2010 04:26:44 StreamingSuite  - Validating [repeat] with [repeat,0,1234] buffersize 1
+    [junit] INFO  09/08/2010 04:26:44 StreamingSuite  - Validating [random] with [random,1024,1234] buffersize 1
+    [junit] INFO  09/08/2010 04:26:44 StreamingSuite  - Validating [repeat] with [repeat,1024,1234] buffersize 1
+    [junit] INFO  09/08/2010 04:26:44 StreamingSuite  - Validating [random] with [random,2000000,1234] buffersize 1
+    [junit] INFO  09/08/2010 04:26:45 StreamingSuite  - Validating [repeat] with [repeat,2000000,1234] buffersize 1
+    [junit] INFO  09/08/2010 04:26:45 StreamingSuite  - Validating [random] with [random,0,1234] buffersize 1026
+    [junit] INFO  09/08/2010 04:26:45 StreamingSuite  - Validating [repeat] with [repeat,0,1234] buffersize 1026
+    [junit] INFO  09/08/2010 04:26:45 StreamingSuite  - Validating [random] with [random,1024,1234] buffersize 1026
+    [junit] INFO  09/08/2010 04:26:45 StreamingSuite  - Validating [repeat] with [repeat,1024,1234] buffersize 1026
+    [junit] INFO  09/08/2010 04:26:45 StreamingSuite  - Validating [random] with [random,2000000,1234] buffersize 1026
+    [junit] INFO  09/08/2010 04:26:45 StreamingSuite  - Validating [repeat] with [repeat,2000000,1234] buffersize 1026
+    [junit] INFO  09/08/2010 04:26:45 StreamingSuite  - Validating [random] with [random,0,1234] buffersize 65472
+    [junit] INFO  09/08/2010 04:26:45 StreamingSuite  - Validating [repeat] with [repeat,0,1234] buffersize 65472
+    [junit] INFO  09/08/2010 04:26:45 StreamingSuite  - Validating [random] with [random,1024,1234] buffersize 65472
+    [junit] INFO  09/08/2010 04:26:45 StreamingSuite  - Validating [repeat] with [repeat,1024,1234] buffersize 65472
+    [junit] INFO  09/08/2010 04:26:45 StreamingSuite  - Validating [random] with [random,2000000,1234] buffersize 65472
+    [junit] INFO  09/08/2010 04:26:45 StreamingSuite  - Validating [repeat] with [repeat,2000000,1234] buffersize 65472
+    [junit] INFO  09/08/2010 04:26:45 StreamingSuite  - Generating 32 byte objects.
+    [junit] INFO  09/08/2010 04:26:46 StreamingSuite  - random	Op/sec:	185185
+    [junit] INFO  09/08/2010 04:26:46 StreamingSuite  - repeat	Op/sec:	359066
+    [junit] INFO  09/08/2010 04:26:46 StreamingSuite  - Generating 100MB byte objects.
+    [junit] INFO  09/08/2010 04:26:49 StreamingSuite  - random	MB/sec:	205
+    [junit] INFO  09/08/2010 04:26:49 StreamingSuite  - repeat	MB/sec:	7042
+    [junit] Tests run: 5, Failures: 0, Errors: 0, Time elapsed: 4.901 sec
+    [junit] Running com.yahoo.dtf.junit.SystemUtilSuite
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.184 sec
+    [junit] Running com.yahoo.dtf.junit.ThrottledStreamSuite
+    [junit] INFO  09/08/2010 04:26:55 ThrottledStreamSuite - bps: 1852.7229962004703 off by 9%
+    [junit] Tests run: 1, Failures: 0, Errors: 0, Time elapsed: 5.776 sec
+    [junit] Running com.yahoo.dtf.junit.TimeUtilSuite
+    [junit] Tests run: 2, Failures: 0, Errors: 0, Time elapsed: 0.211 sec
 
-BUILD FAILED
-/home/dtftest/build/dtf/build.xml:530: junit home not set correctly, see build.properties file
-
-Total time: 0 seconds
+BUILD SUCCESSFUL
+Total time: 1 minute 17 seconds
