@@ -1,2 +1,23 @@
-Buildfile: build.xml does not exist!
-Build failed
+Unable to locate tools.jar. Expected to find it in /usr/lib/jvm/java-6-openjdk/lib/tools.jar
+Buildfile: build.xml
+
+init:
+    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf
+    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf/classes
+    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf/dist
+    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf/dist/lib
+    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf/dist/tests
+
+junit.init:
+     [echo] JUnit not tests not being compiled
+
+compile:
+    [javac] Compiling 387 source files to /home/dtftest/build/dtf/build/dtf/classes
+
+BUILD FAILED
+/home/dtftest/build/dtf/build.xml:70: Unable to find a javac compiler;
+com.sun.tools.javac.Main is not on the classpath.
+Perhaps JAVA_HOME does not point to the JDK.
+It is currently set to "/usr/lib/jvm/java-6-openjdk/jre"
+
+Total time: 0 seconds
