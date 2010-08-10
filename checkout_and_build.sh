@@ -1,5 +1,6 @@
 #!/bin/bash
 
+DATE=`date +%d-%m-%Y.%H:%M:%S`
 BASE=/home/dtftest
 
 rm -fr $BASE/build
@@ -42,7 +43,7 @@ cp $BASE/build/dtf/build/dtf/dist/tests/ut/output/script-ut.out $BASE/gh-pages/r
 echo "Uploading results to github..."
 cd $BASE/gh-pages
 git add results > $BASE/build/logs/upload.log 2>&1
-git commit -m "test results for $DATE" >> $BASE/build/logs/upload.log 2>&1
+git commit -m "Test results for $DATE" >> $BASE/build/logs/upload.log 2>&1
 git push origin gh-pages >> $BASE/build/logs/upload.log 2>&1
 
 cd $BASE
@@ -50,3 +51,6 @@ echo "Downloading tools..."
 wget http://github.com/rlgomes/ec2-tools/raw/master/src/ec2-api.py -O ec2-api.py
 chmod +x ec2-api.py
 
+echo "Sleeping for 10 minutes in case someone wants to login to do maintenance"
+sleep 600
+./stop.sh
