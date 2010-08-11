@@ -14,7 +14,10 @@ import com.yahoo.dtf.share.ShareComponentHook;
  * @dtf.author Rodney Gomes
  * 
  * @dtf.tag.desc Frees this share points resource which is always a good 
- *               practice.
+ *               practice. If there are any threads waiting on a share_get that
+ *               is blocking then this tag will also release all of those 
+ *               threads so that they can detect that the share is no longer
+ *               available.
  *               
  * @dtf.tag.example 
  * <share_destroy id="SHARE1"/>
@@ -30,7 +33,8 @@ public class Share_destroy extends ShareOperation {
             throw new ShareException("Share with name [" + getId() + 
                                      "] does not exist.");
         }
-        
+       
+        sp.releaseAll();
         ShareComponentHook.removeShare(getId());
     }
 }

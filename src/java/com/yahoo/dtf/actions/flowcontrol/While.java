@@ -1,5 +1,7 @@
 package com.yahoo.dtf.actions.flowcontrol;
 
+import java.util.ArrayList;
+
 import com.yahoo.dtf.actions.Action;
 import com.yahoo.dtf.actions.conditionals.Conditional;
 import com.yahoo.dtf.exception.BreakException;
@@ -38,8 +40,13 @@ public class While extends Action {
         Conditional condition = (Conditional)findFirstAction(Conditional.class);
        
         try { 
+            ArrayList<Action> children = new ArrayList<Action>();
+            children.addAll(children());
+            // remove the condition from the executable actions
+            children.remove(0);
+            
 	        while (condition.evaluate()) { 
-	            executeChildren();
+	            executeChildren(children);
 	            checkInterruption();
 	        }
         } catch (InterruptionException e) { 

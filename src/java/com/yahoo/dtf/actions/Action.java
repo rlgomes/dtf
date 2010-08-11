@@ -267,6 +267,31 @@ abstract public class Action implements Externalizable {
     }
 
     /**
+     * 
+     * @param <T>
+     * @param children
+     * @throws DTFException
+     */
+    public <T extends Action> void executeChildren(ArrayList<Action> children) throws DTFException {
+        Action current = getState().getAction();
+        try {
+            for (int i = 0; i < children.size(); i++) {
+                Action action = children.get(i);
+                getState().setAction(action);
+                if ( Trace.isEnabled() ) 
+                    Trace.trace(action);
+                action.execute();
+            }
+        } catch (DTFException e) { 
+            throw e;
+        } catch (Throwable t) { 
+            throw new DTFException("Uncaught Exception",t);
+        } finally { 
+            getState().setAction(current);
+        }
+    }
+
+    /**
      * Simple utility method to be used in your own thread implementations or 
      * if you create flow control tags that have a loop like behaviour where 
      * they iterate a certain number of times. You can easily call this method

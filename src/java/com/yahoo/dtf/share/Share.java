@@ -3,6 +3,7 @@ package com.yahoo.dtf.share;
 import java.util.concurrent.Semaphore;
 
 import com.yahoo.dtf.actions.Action;
+import com.yahoo.dtf.actions.flowcontrol.Sequence;
 import com.yahoo.dtf.actions.share.Share_set;
 import com.yahoo.dtf.exception.DTFException;
 import com.yahoo.dtf.exception.ParseException;
@@ -12,11 +13,14 @@ public abstract class Share {
 
     private static DTFLogger _logger = DTFLogger.getLogger(Share.class);
     
+    private static Action DONOTHING = new Sequence();
+    
     private String _id = null;
     private String _type = null;
     private String _cid = null;
     
     private Semaphore _semaphore = null;
+    
     
     public Share(String type, String id) throws DTFException {
         _id = id;
@@ -108,6 +112,15 @@ public abstract class Share {
 	            return getAction();
 	        }
         }
+    }
+  
+    /**
+     * This method will release all currently waiting threads on this share 
+     * because the share has been destroyed and there is no reason to wait on 
+     * a share_set to be done at all.
+     */
+    public void releaseAll() { 
+        _semaphore.release(Integer.MAX_VALUE);
     }
     
     public void setType(String type) { _type = type; }
