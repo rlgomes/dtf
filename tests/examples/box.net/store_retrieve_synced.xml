@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="store_retrieve_synced">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+            Example rendezvous test that shows how to use rendezvous tags to
+            synchronize activities between two different threads in a way that
+            allows you to make sure that a reader thread will only check an
+            available directory once the writer has created it. 
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input" />
+        <loadproperties uri="storage://INPUT/box.net.properties" />
+    </local>
+
+    <http_config id="CONFIG">
+        <credentials username="dtftesting@gmail.com" password="pass4dtftesting" />
+    </http_config>
+
+    <rendezvous_create id="STARTREADER" parties="2" />
+    <rendezvous_create id="STOPREADER" parties="2" />
+
+    <parallel>
+        <sequence>
+            <try>
+                <sequence>
+                    <log>creating test directory</log>
+                    <http_request method="MKCOL"
+                                  uri="http://www.box.net/dav/dtf-test">
+                        <http_config refid="CONFIG" />
+                    </http_request>
+                </sequence>
+                <catch exception="*">
+                    <sequence>
+                        <log>failed to create directory</log>
+                    </sequence>
+                </catch>
+                <finally>
+                    <!-- trigger reader to start -->
+                    <rendezvous_visit id="STARTREADER" />
+                </finally>
+            </try>
+
+            <log>starting writer thread</log>
+            <try>
+                <for property="i" range="1..10">
+                    <http_put uri="http://www.box.net/dav/dtf-test/file${i}">
+                        <http_config refid="CONFIG" />
+                    </http_put>
+                    <log>created file${i}</log>
+                </for>
+                <finally>
+                    <sequence>
+                        <!-- trigger reader to stop -->
+                        <rendezvous_visit id="STOPREADER" />
+                        <log>stopping writer thread</log>
+                    </sequence>
+                </finally>
+            </try>
+        </sequence>
+
+        <sequence>
+            <!-- wait for signal to start -->
+            <rendezvous_visit id="STARTREADER" />
+            <log>starting reader thread</log>
+            <try>
+                <while>
+                    <not>
+                        <rendezvous_check id="STOPREADER" />
+                    </not>
+                    <http_get uri="http://www.box.net/dav/dtf-test">
+                        <http_config refid="CONFIG" />
+                    </http_get>
+                    <log>there are ${http.get.body:xpath:count(//ns:a/text()),[ns=>http://www.w3.org/1999/xhtml]} files.</log>
+                    <sleep time="500ms" />
+                </while>
+                <finally>
+                    <sequence>
+                        <!-- allow the other thread to terminate -->
+                        <rendezvous_visit id="STOPREADER" />
+                        <log>stopping reader thread</log>
+                    </sequence>
+                </finally>
+            </try>
+        </sequence>
+    </parallel>
+
+    <!-- clean up -->
+    <for property="i" range="1..10">
+        <http_delete uri="http://www.box.net/dav/dtf-test/file${i}">
+            <http_config refid="CONFIG" />
+        </http_delete>
+        <log>deleted file${i}</log>
+    </for>
+
+    <log>removing test directory</log>
+    <http_delete uri="http://www.box.net/dav/dtf-test">
+        <http_config refid="CONFIG" />
+    </http_delete>
+
+</script>

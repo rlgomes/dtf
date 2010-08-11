@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="store_retrieve">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Example test used to show how to share information between concurrently
+        executing threads in a way that allows a very simple producer/consumer
+        model that shows how easy it is to exchange information between 
+        multiple threads in DTF. 
+        </description>
+    </info>
+  
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <loadproperties uri="storage://INPUT/box.net.properties"/>
+    </local> 
+      
+    <http_config id="CONFIG">
+        <credentials username="dtftesting@gmail.com"
+                     password="pass4dtftesting"/>
+    </http_config>
+
+    <log>creating test directory</log>
+    <http_request method="MKCOL"
+                  uri="http://www.box.net/dav/dtf-test">
+        <http_config refid="CONFIG"/>
+    </http_request>
+
+    <share_create id="SHARE1"/>
+    <property name="count" value="0"/>
+    <parallel>
+	    <for property="i" range="1..10">
+		    <http_put uri="http://www.box.net/dav/dtf-test/file${i}">
+		        <http_config refid="CONFIG"/>
+		    </http_put>
+	        <log>created file${i}</log>
+            <share_set id="SHARE1">
+                <property name="count" value="${i}" overwrite="true"/>
+            </share_set>
+	    </for>
+
+        <sequence>
+	        <share_get id="SHARE1" blocking="true"/>
+	        <while>
+	            <neq op1="${count}" op2="10"/>
+     	        <log>reading up to file${count}</log>
+	    	    <for property="i" range="1..${count}">
+				    <http_get uri="http://www.box.net/dav/dtf-test/file${i}">
+				        <http_config refid="CONFIG"/>
+				    </http_get>
+			    </for>
+    	        <share_get id="SHARE1"/>
+	        </while>
+        </sequence>
+    </parallel>
+
+    <!-- clean up -->
+    <for property="i" range="1..10">
+	    <http_delete uri="http://www.box.net/dav/dtf-test/file${i}">
+	        <http_config refid="CONFIG"/>
+	    </http_delete>
+        <log>deleted file${i}</log>
+    </for>
+
+    <log>removing test directory</log>
+    <http_delete uri="http://www.box.net/dav/dtf-test">
+        <http_config refid="CONFIG"/>
+    </http_delete>
+
+</script>

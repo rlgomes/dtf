@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="store_10_files">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Simple test that creates 10 files on box.net and then removes them.
+        </description>
+    </info>
+  
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <loadproperties uri="storage://INPUT/box.net.properties"/>
+    </local> 
+      
+    <http_config id="CONFIG">
+        <credentials username="dtftesting@gmail.com"
+                     password="pass4dtftesting"/>
+    </http_config>
+
+    <log>creating test directory</log>
+    <http_request method="MKCOL"
+                  uri="http://www.box.net/dav/dtf-test">
+        <http_config refid="CONFIG"/>
+    </http_request>
+
+    <for property="i" range="1..10">
+	    <http_put uri="http://www.box.net/dav/dtf-test/file${i}">
+	        <http_config refid="CONFIG"/>
+	    </http_put>
+        <log>created file${i}</log>
+    </for>
+
+    <!-- clean up -->
+    <for property="i" range="1..10">
+	    <http_delete uri="http://www.box.net/dav/dtf-test/file${i}">
+	        <http_config refid="CONFIG"/>
+	    </http_delete>
+        <log>deleted file${i}</log>
+    </for>
+
+    <log>removing test directory</log>
+    <http_delete uri="http://www.box.net/dav/dtf-test">
+        <http_config refid="CONFIG"/>
+    </http_delete>
+
+</script>

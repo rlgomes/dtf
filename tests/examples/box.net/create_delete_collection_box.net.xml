@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="create_delete_collection_box.net">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description></description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input" />
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output" />
+        <loadproperties uri="storage://INPUT/box.net.properties" />
+    </local>
+
+    <http_config id="CONFIG">
+        <credentials username="dtftesting@gmail.com" password="pass4dtftesting" />
+    </http_config>
+
+    <record uri="storage://OUTPUT/mkcol_events.txt">
+        <for property="i" range="1..3">
+            <http_request method="MKCOL" uri="http://www.box.net/dav/test${i}">
+                <http_config refid="CONFIG" />
+            </http_request>
+            <log>created ${http.MKCOL.uri}</log>
+        </for>
+    </record>
+
+    <query uri="storage://OUTPUT/mkcol_events.txt" cursor="events" />
+
+    <iterate cursor="events">
+        <http_delete uri="${events.uri}">
+            <http_config refid="CONFIG" />
+        </http_delete>
+        <log>deleted ${events.uri}</log>
+    </iterate>
+
+</script>

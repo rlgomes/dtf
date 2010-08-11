@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="accessing_box.net">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>A simple Hello World in DTF</description>
+    </info>
+  
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <loadproperties uri="storage://INPUT/box.net.properties"/>
+    </local> 
+      
+    <http_config id="CONFIG">
+        <credentials username="dtftesting@gmail.com"
+                     password="pass4dtftesting"/>
+    </http_config>
+
+    <http_request method="DELETE"
+                  uri="http://www.box.net/dav/test">
+        <http_config refid="CONFIG"/>
+    </http_request>
+      
+    <http_request method="MKCOL"
+                  uri="http://www.box.net/dav/test">
+        <http_config refid="CONFIG"/>
+    </http_request>
+
+    <log>${http.MKCOL.status} ${http.MKCOL.statusmsg}</log>    
+</script>

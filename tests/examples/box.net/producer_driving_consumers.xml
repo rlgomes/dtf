@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="producer_driving_consumers">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+            Example test used to show how to share information between concurrently
+            executing threads in a way that allows a producer thread to drive the
+            execution of some consumer threads.
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input" />
+        <loadproperties uri="storage://INPUT/box.net.properties" />
+    </local>
+   
+    <http_config id="CONFIG">
+        <credentials username="dtftesting@gmail.com" password="pass4dtftesting" />
+    </http_config>
+    
+    <!-- cleanup before testing --> 
+    <http_delete uri="http://www.box.net/dav/dtf-test" onFailure="continue">
+        <http_config refid="CONFIG" />
+    </http_delete>
+
+    <log>creating test directory</log>
+    <http_request method="MKCOL" uri="http://www.box.net/dav/dtf-test">
+        <http_config refid="CONFIG" />
+    </http_request>
+
+    <share_create id="SHARE1" type="queue"/>
+    <parallel>
+        <sequence>
+	        <for property="i" range="1..10">
+	            <http_put uri="http://www.box.net/dav/dtf-test/file${i}">
+	                <http_config refid="CONFIG" />
+	            </http_put>
+	            <log>created file${i}</log>
+	
+	            <if>
+	                <lt op1="50" op2="${dtf.randomInt(0,100)}" />
+	                <then>
+	                    <share_set id="SHARE1">
+	                        <log>retrieving the file${i}</log>
+	                        <http_get uri="http://www.box.net/dav/dtf-test/file${i}">
+	                            <http_config refid="CONFIG" />
+	                        </http_get>
+	                    </share_set>
+	                </then>
+	                <else>
+	                    <share_set id="SHARE1">
+	                        <log>metadata for file${i}</log>
+	                        <http_head uri="http://www.box.net/dav/dtf-test/file${i}">
+	                            <http_config refid="CONFIG" />
+	                        </http_head>
+	                    </share_set>
+	                </else>
+	            </if>
+	        </for>
+            <share_destroy id="SHARE1"/> 
+        </sequence>
+
+        <parallelloop property="i" range="1..3">
+            <while>
+                <share_exists id="SHARE1" />
+                
+                <log>thread${i} is waiting for work</log>
+                <share_get id="SHARE1" blocking="true"/>
+            </while>
+        </parallelloop>
+    </parallel>
+
+    <!-- clean up -->
+    <for property="i" range="1..10">
+        <http_delete uri="http://www.box.net/dav/dtf-test/file${i}">
+            <http_config refid="CONFIG" />
+        </http_delete>
+        <log>deleted file${i}</log>
+    </for>
+
+    <log>removing test directory</log>
+    <http_delete uri="http://www.box.net/dav/dtf-test">
+        <http_config refid="CONFIG" />
+    </http_delete>
+</script>
