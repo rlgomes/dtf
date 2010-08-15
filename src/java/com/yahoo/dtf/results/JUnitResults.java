@@ -53,7 +53,7 @@ public class JUnitResults extends ResultsBase {
   
     private void startTestSuite(Result result, PrintStream ps) throws ResultsException { 
         ps.print("<testsuite");
-        ps.print(" name=\"" + result.getName() + "\"");
+        ps.print(" name=\"dtf." + result.getName() + "\"");
         ps.print(" classname=\"dtf." + result.getName() + "\"");
         ps.print(" tests=\"" + result.getTotalTests() + "\"");
         
