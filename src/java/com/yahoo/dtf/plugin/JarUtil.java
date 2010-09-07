@@ -42,11 +42,13 @@ public class JarUtil {
 
         try {
             JarFile jarfile = new JarFile(jarFile);
-            Attributes attributes = jarfile.getManifest().getMainAttributes();
-            
-            if (attributes.containsKey(attributeName)) {
-                String filename = attributes.getValue(attributeName);
-                return filename;
+            if (jarfile.getManifest() != null ) { 
+	            Attributes attributes = jarfile.getManifest().getMainAttributes();
+	            
+	            if (attributes.containsKey(attributeName)) {
+	                String filename = attributes.getValue(attributeName);
+	                return filename;
+	            }
             }
         } catch (IOException e) { }
         

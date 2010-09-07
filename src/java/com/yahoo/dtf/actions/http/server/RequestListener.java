@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -91,8 +90,8 @@ public class RequestListener extends Thread {
     public boolean isDown() { return _down; }
     
     public void shutdown() { 
-        interrupt();
         _down = true;
+        interrupt();
         try {
             serversocket.close();
             executors.shutdown();

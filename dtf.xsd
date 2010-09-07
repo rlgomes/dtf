@@ -68,6 +68,11 @@
 
             <!-- image tags -->
             <xs:element ref="read_image"/>
+            
+            <!-- selenium tags -->
+            <xs:element ref="selenium"/>
+            <xs:group ref="selenium_commands"/>
+            
         </xs:choice>
     </xs:group>  
    
@@ -837,7 +842,13 @@
     <xs:element name="query">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="select" minOccurs="0" maxOccurs="1" />
+                <xs:element name="select" minOccurs="0" maxOccurs="1">
+			        <xs:complexType>
+			            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+			                <xs:element ref="field" />
+			            </xs:sequence>
+			        </xs:complexType>
+                </xs:element>
                 <xs:element ref="where" minOccurs="0" maxOccurs="1" />
             </xs:sequence>
             <xs:attribute name="uri"      type="xs:string" use="required" />
@@ -845,14 +856,6 @@
             <xs:attribute name="type"     type="xs:string" default="txt" />
             <xs:attribute name="event"    type="xs:string" use="optional" />
             <xs:attribute name="encoding" default="UTF-8"/>
-        </xs:complexType>
-    </xs:element>
-    
-    <xs:element name="select">
-        <xs:complexType>
-            <xs:sequence minOccurs="0" maxOccurs="unbounded">
-                <xs:element ref="field" />
-            </xs:sequence>
         </xs:complexType>
     </xs:element>
     
@@ -882,7 +885,13 @@
     <xs:element name="filter">
         <xs:complexType>
             <xs:sequence>
-                <xs:element maxOccurs="1" minOccurs="0" ref="select"/>
+                <xs:element name="select" maxOccurs="1" minOccurs="0" >
+			        <xs:complexType>
+			            <xs:sequence minOccurs="0" maxOccurs="unbounded">
+			                <xs:element ref="field" />
+			            </xs:sequence>
+			        </xs:complexType>
+                </xs:element> 
                 <xs:element maxOccurs="1" minOccurs="0" ref="where"/>
             </xs:sequence>
             <xs:attribute name="srcuri" use="required"/>
@@ -985,31 +994,32 @@
    
     <xs:group name="conditionals">
         <xs:choice>
+            <xs:group ref="selenium_conditionals" />
             <xs:group ref="comparison_conditionals"/>
             <xs:element ref="rendezvous_check" />
             <xs:element ref="rendezvous_exists" />
             <xs:element ref="share_exists" />
         </xs:choice>
     </xs:group>
-    
+
     <xs:group name="comparison_conditionals">
         <xs:choice>
-             <xs:element name="false" />
-             <xs:element name="true" />
-             
-             <xs:element ref="not" />
-             <xs:element ref="and" />
-             <xs:element ref="eq" />
-             <xs:element ref="gt" />
-             <xs:element ref="lt" />
-             <xs:element ref="neq" />
-             <xs:element ref="or" />
-             <xs:element ref="within" />
-             <xs:element ref="similar" />
-            
-             <xs:element ref="match" />
-             
-             <xs:element ref="isset" />
+            <xs:element name="false" />
+            <xs:element name="true" />
+
+            <xs:element ref="not" />
+            <xs:element ref="and" />
+            <xs:element ref="eq" />
+            <xs:element ref="gt" />
+            <xs:element ref="lt" />
+            <xs:element ref="neq" />
+            <xs:element ref="or" />
+            <xs:element ref="within" />
+            <xs:element ref="similar" />
+
+            <xs:element ref="match" />
+
+            <xs:element ref="isset" />
         </xs:choice>
     </xs:group>
     
@@ -1535,4 +1545,681 @@
     </xs:element>
     
     <!--END deploy config elements -->
+    
+    <!-- selenium tags -->
+    <xs:element name="selenium">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="selenium_group"/>
+            </xs:sequence>
+            <xs:attribute name="host"    default="localhost"/>
+            <xs:attribute name="port"    default="44444"/>
+            <xs:attribute name="browser" default="*firefox"/>
+            <xs:attribute name="baseurl" use="required"/>
+        </xs:complexType>
+    </xs:element>
+  
+    <xs:group name="selenium_group">
+        <xs:choice>
+            <xs:group ref="common_commands"/>
+
+            <xs:element ref="call" />
+            
+            <xs:element name="parallel">
+                <xs:complexType>
+                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:group ref="selenium_group" />
+                        <xs:group ref="common_commands"/>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+            
+            <xs:element name="for">
+                <xs:complexType>
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:group ref="selenium_group" />
+                        <xs:group ref="common_commands"/>
+                    </xs:choice>
+                    <xs:attributeGroup ref="aggregation_properties"/>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="parallelloop">
+                <xs:complexType>
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:group ref="selenium_group" />
+                        <xs:group ref="common_commands"/>
+                    </xs:choice>
+                    <xs:attributeGroup ref="aggregation_properties"/>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="while">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:group ref="conditionals" minOccurs="0" maxOccurs="1" />
+                        <xs:choice minOccurs="0" maxOccurs="unbounded">
+                            <xs:group ref="selenium_group" />
+                            <xs:group ref="common_commands"/>
+                        </xs:choice>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="timer">
+                <xs:complexType>
+                    <xs:choice maxOccurs="unbounded">
+                        <xs:group ref="selenium_group" />
+                        <xs:group ref="common_commands"/>
+                    </xs:choice>
+                    <xs:attribute name="interval" type="xs:string" use="required" />
+                    <xs:attribute name="property" type="xs:string" use="optional" />
+                </xs:complexType>
+            </xs:element>
+            
+            <xs:element name="distribute">
+                <xs:complexType>
+                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                        <xs:group ref="selenium_group" />
+                        <xs:group ref="common_commands"/>
+                    </xs:choice>
+                    <xs:attributeGroup ref="distribute_attribs"/>
+                </xs:complexType>
+            </xs:element>
+            
+            <xs:element name="choices">
+                <xs:complexType>
+                    <xs:choice minOccurs="1" maxOccurs="unbounded">
+                        <xs:element name="choose">
+                            <xs:complexType>
+                                <xs:choice maxOccurs="unbounded">
+                                    <xs:group ref="selenium_group" />
+                                    <xs:group ref="common_commands"/>
+                                </xs:choice>
+                                <xs:attribute name="howoften" use="required"/>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:choice>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="switch">
+                <xs:complexType>
+                    <xs:sequence>
+                       <xs:element name="case" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:group ref="conditionals" minOccurs="0" maxOccurs="1" />
+                                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                        <xs:group ref="selenium_group" />
+                                        <xs:group ref="common_commands"/>
+                                    </xs:choice>
+                                </xs:sequence>
+                                <xs:attribute name="value" type="xs:string" use="optional" />
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="default" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                    <xs:group ref="component_commands" />
+                                    <xs:group ref="common_commands"/>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                    <xs:attribute name="property" type="xs:string" use="optional" />
+                </xs:complexType>
+            </xs:element>
+           
+            <xs:element name="if">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:group ref="conditionals"/>
+                        <xs:element name="then" minOccurs="0" maxOccurs="1">
+                            <xs:complexType>
+                                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                    <xs:group ref="selenium_group" />
+                                    <xs:group ref="common_commands"/>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="else" minOccurs="0" maxOccurs="1">
+                            <xs:complexType>
+                                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                    <xs:group ref="selenium_group" />
+                                    <xs:group ref="common_commands"/>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element> 
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            
+            <xs:element name="try">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:choice>
+                            <xs:group ref="selenium_group" />
+                            <xs:group ref="common_commands"/>
+                        </xs:choice>
+                        <xs:element name="catch" 
+                                    minOccurs="0"
+                                    maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:choice>
+                                    <xs:group ref="selenium_group"/>
+                                    <xs:group ref="common_commands"/>
+                                </xs:choice>
+                                <xs:attribute name="exception" type="xs:string" use="optional" />
+                                <xs:attribute name="property" type="xs:string" use="optional" />
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="finally"
+                                    minOccurs="0"
+                                    maxOccurs="1">
+                            <xs:complexType>
+                                <xs:choice>
+                                    <xs:group ref="selenium_group"/>
+                                    <xs:group ref="common_commands"/>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="assert">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:group ref="conditionals"/>
+                    </xs:sequence>
+                    <xs:attribute name="message" type="xs:string" use="optional" />
+                </xs:complexType>
+            </xs:element>
+            
+            <xs:group ref="selenium_commands"/>
+        </xs:choice> 
+    </xs:group>
+
+    <xs:group name="selenium_conditionals">
+        <xs:choice>
+            <!-- conditional tags -->
+            <xs:element ref="isAlertPresent"/>
+            <xs:element ref="isChecked"/>
+            <xs:element ref="isConfirmationPresent"/>
+            <xs:element ref="isEditable"/>
+            <xs:element ref="isElementPresent"/>
+            <xs:element ref="isOrdered"/>
+            <xs:element ref="isPromptPresent"/>
+            <xs:element ref="isSomethingSelected"/>
+            <xs:element ref="isTextPresent"/>
+            <xs:element ref="isVisible"/>
+        </xs:choice>     
+    </xs:group>
+    
+    <xs:group name="selenium_commands">
+        <xs:choice> 
+            <!-- base commands -->
+            <xs:element ref="open"/>
+            <xs:element ref="openWindow"/>
+            <xs:element ref="close"/>
+            <xs:element ref="type"/>
+            <xs:element ref="submit"/>
+            <xs:element ref="runScript"/>
+            <xs:element ref="select"/>
+            <xs:element ref="selectFrame"/>
+            <xs:element ref="selectWindow"/>
+            
+            <!-- mouse interaction tags -->
+            <xs:element ref="click"/>
+            <xs:element ref="clickAt"/>
+            <xs:element ref="doubleClick"/>
+            <xs:element ref="doubleClickAt"/>
+            <xs:element ref="dragAndDrop"/>
+            <xs:element ref="dragAndDropToObject"/>
+            <xs:element ref="mouseDown"/>
+            <xs:element ref="mouseDownAt"/>
+            <xs:element ref="mouseMove"/>
+            <xs:element ref="mouseMoveAt"/>
+            <xs:element ref="mouseOut"/>
+            <xs:element ref="mouseOver"/>
+            <xs:element ref="mouseUp"/>
+            <xs:element ref="mouseUpAt"/>
+            
+            <!-- cookie tags -->
+            <xs:element ref="createCookie"/>
+            <xs:element ref="deleteCookie"/>
+            
+            <!-- prompt tags -->
+            <xs:element ref="answerOnNextPrompt"/>
+            
+            <!-- confirmation tags -->
+            <xs:element ref="chooseCancelOnNextConfirmation"/>
+            <xs:element ref="chooseOkOnNextConfirmation"/>
+            
+            <!-- keyboard tags -->
+            <xs:element ref="altKeyDown"/>
+            <xs:element ref="altKeyUp"/>
+            <xs:element ref="controlKeyDown"/>
+            <xs:element ref="controlKeyUp"/>
+            <xs:element ref="shiftKeyDown"/>
+            <xs:element ref="shiftKeyUp"/>
+            <xs:element ref="metaKeyDown"/>
+            <xs:element ref="metaKeyUp"/>
+            <xs:element ref="keyDown"/>
+            <xs:element ref="keyUp"/>
+           
+            <!-- browser tags --> 
+            <xs:element ref="refresh"/>
+            <xs:element ref="goBack"/>
+            <xs:element ref="windowMaximize"/>
+            
+            <!-- get state tags -->
+            <xs:element ref="getAlert"/>
+            <xs:element ref="getAllButtons"/>
+            <xs:element ref="getAllFields"/>
+            <xs:element ref="getAllLinks"/>
+            <xs:element ref="getAllWindowIds"/>
+            <xs:element ref="getAllWindowNames"/>
+            <xs:element ref="getAllWindowTitles"/>
+            <xs:element ref="getAttribute"/>
+            <xs:element ref="getAttributeFromAllWindows"/>
+            <xs:element ref="getBodyText"/>
+            <xs:element ref="getConfirmation"/>
+            <xs:element ref="getCookie"/>
+            <xs:element ref="getCursorPosition"/>
+            <xs:element ref="getElementHeight"/>
+            <xs:element ref="getElementIndex"/>
+            <xs:element ref="getElementPositionLeft"/>
+            <xs:element ref="getElementPositionTop"/>
+            <xs:element ref="getElementWidth"/>
+            <xs:element ref="getEval"/>
+            <xs:element ref="getExpression"/>
+            <xs:element ref="getHtmlSource"/>
+            <xs:element ref="getLocation"/>
+            <xs:element ref="getMouseSpeed"/>
+            <xs:element ref="getPrompt"/>
+            <xs:element ref="getSelectedId"/>
+            <xs:element ref="getSelectedIds"/>
+            <xs:element ref="getSelectedIndex"/>
+            <xs:element ref="getSelectedLabel"/>
+            <xs:element ref="getSelectedLabels"/>
+            <xs:element ref="getSelectedValue"/>
+            <xs:element ref="getSelectedValues"/>
+            <xs:element ref="getSelectOptions"/>
+            <xs:element ref="getTable"/>
+            <xs:element ref="getText"/>
+            <xs:element ref="getTitle"/>
+            <xs:element ref="getValue"/>
+            <xs:element ref="getWhetherThisFrameMatchFrameExpression"/>
+            <xs:element ref="getWhetherThisWindowMatchWindowExpression"/>
+            <xs:element ref="getXpathCount"/>
+           
+            <!-- set state tags  --> 
+            <xs:element ref="setContext"/>
+            <xs:element ref="setCursorPosition"/>
+            <xs:element ref="setExtensionJs"/>
+            <xs:element ref="setMouseSpeed"/>
+            <xs:element ref="setSpeed"/>
+            <xs:element ref="setTimeout"/>
+            
+            <!-- selection tags -->
+            <xs:element ref="addSelection"/>
+            <xs:element ref="removeSelection"/>
+            <xs:element ref="removeAllSelections"/>
+            
+            <!-- checkbox tags -->
+            <xs:element ref="check"/>
+            <xs:element ref="uncheck"/>
+            
+            <!-- waitfor tags -->
+            <xs:element ref="waitForCondition"/>
+            <xs:element ref="waitForFrameToLoad"/>
+            <xs:element ref="waitForPageToLoad"/>
+            <xs:element ref="waitForPopUp"/>
+            
+        </xs:choice>
+    </xs:group>
+
+    <xs:complexType name="ltag">
+        <xs:attribute name="locator" use="required"/>
+    </xs:complexType>
+    
+    <!-- base commands -->
+    <xs:element name="open">
+        <xs:complexType>
+            <xs:attribute name="url" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="openWindow">
+        <xs:complexType>
+            <xs:attribute name="url" use="required"/>
+            <xs:attribute name="windowID" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="close"/>
+    <xs:element name="type">
+        <xs:complexType>
+            <xs:attribute name="locator" use="required"/>
+            <xs:attribute name="value" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="submit" type="ltag"/>
+    <xs:element name="runScript">
+        <xs:complexType>
+            <xs:attribute name="script" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="select">
+        <xs:annotation>
+            <xs:documentation>
+            Testing this out... another line
+            blah blah blah
+            http://www.google.com
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:attribute name="selectLocator" use="required"/>
+            <xs:attribute name="optionLocator" use="required"/>
+            
+            <xs:attribute name="class" 
+                          fixed="com.yahoo.dtf.actions.selenium.commands.base.Select"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="selectFrame">
+        <xs:complexType>
+            <xs:attribute name="locator" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="selectWindow">
+        <xs:complexType>
+            <xs:attribute name="windowID"/>
+        </xs:complexType>
+    </xs:element>
+        
+    <!-- mouse interaction tags -->
+    <xs:complexType name="lctag">
+        <xs:attribute name="locator" use="required"/>
+        <xs:attribute name="coordstring" use="required"/>
+    </xs:complexType>
+    <xs:element name="click" type="ltag"/>
+    <xs:element name="clickAt" type="lctag"/>
+    <xs:element name="doubleClick" type="ltag"/>
+    <xs:element name="doubleClickAt" type="lctag"/>
+    <xs:element name="dragAndDrop">
+        <xs:complexType>
+            <xs:attribute name="locator" use="required"/>
+            <xs:attribute name="movementsString" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="dragAndDropToObject">
+        <xs:complexType>
+            <xs:attribute name="locatorOfObjectToBeDragged" use="required"/>
+            <xs:attribute name="locatorOfDragDestinationObject" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="mouseDown" type="ltag"/>
+    <xs:element name="mouseDownAt" type="lctag"/>
+    <xs:element name="mouseMove" type="ltag"/>
+    <xs:element name="mouseMoveAt" type="lctag"/>
+    <xs:element name="mouseOver" type="ltag"/>
+    <xs:element name="mouseOut" type="ltag"/>
+    <xs:element name="mouseUp" type="ltag"/>
+    <xs:element name="mouseUpAt" type="lctag"/>
+            
+    <!-- cookie tags -->
+    <xs:element name="createCookie">
+        <xs:complexType>
+            <xs:attribute name="nameValuePair" use="required"/>
+            <xs:attribute name="optionsString" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteCookie">
+        <xs:complexType>
+            <xs:attribute name="name" use="required"/>
+            <xs:attribute name="path" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getCookie" type="ptag"/>
+    
+    <!-- prompt tags -->
+    <xs:element name="answerOnNextPrompt">
+        <xs:complexType>
+            <xs:attribute name="answer" use="required"/>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- confirmation tags -->
+    <xs:element name="chooseCancelOnNextConfirmation"/>
+    <xs:element name="chooseOkOnNextConfirmation"/>
+        
+    <!-- keyboard tags -->
+    <xs:element name="altKeyDown"/>
+    <xs:element name="altKeyUp"/>
+    <xs:element name="controlKeyDown"/>
+    <xs:element name="controlKeyUp"/>
+    <xs:element name="shiftKeyDown"/>
+    <xs:element name="shiftKeyUp"/>
+    <xs:element name="metaKeyDown"/>
+    <xs:element name="metaKeyUp"/>
+    <xs:element name="keyDown">
+        <xs:complexType>
+            <xs:attribute name="locator" use="required"/>
+            <xs:attribute name="keySequence" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="keyUp">
+        <xs:complexType>
+            <xs:attribute name="locator" use="required"/>
+            <xs:attribute name="keySequence" use="required"/>
+        </xs:complexType>
+    </xs:element>
+       
+    <!-- browser tags -->
+    <xs:element name="refresh"/>
+    <xs:element name="goBack"/>
+    <xs:element name="windowMaximize"/>
+    
+    <!-- get state tags -->
+   
+    <xs:complexType name="ptag">
+        <xs:attribute name="property" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="lptag">
+        <xs:attribute name="locator" use="required"/>
+        <xs:attribute name="property" use="required"/>
+    </xs:complexType>
+    
+    <xs:element name="getAlert" type="ptag"/>
+    <xs:element name="getAllButtons" type="ptag"/>
+    <xs:element name="getAllFields" type="ptag"/>
+    <xs:element name="getAllLinks" type="ptag"/>
+    <xs:element name="getAllWindowIds" type="ptag"/>
+    <xs:element name="getAllWindowNames" type="ptag"/>
+    <xs:element name="getAllWindowTitles" type="ptag"/>
+    <xs:element name="getAttribute">
+        <xs:complexType>
+            <xs:attribute name="attributeLocator" use="required"/>
+            <xs:attribute name="property" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getAttributeFromAllWindows">
+        <xs:complexType>
+            <xs:attribute name="name" use="required"/>
+            <xs:attribute name="property" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getBodyText" type="ptag"/>
+    <xs:element name="getConfirmation" type="ptag"/>
+    <xs:element name="getCoookie" type="ptag"/>
+    <xs:element name="getCursorPosition" type="lptag"/>
+    <xs:element name="getElementHeight" type="lptag"/>
+    <xs:element name="getElementIndex" type="lptag"/>
+    <xs:element name="getElementPositionLeft" type="lptag"/>
+    <xs:element name="getElementPositionTop" type="lptag"/>
+    <xs:element name="getElementWidth" type="lptag"/>
+    <xs:element name="getEval">
+        <xs:complexType>
+            <xs:attribute name="property" use="required"/>
+            <xs:attribute name="script" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getExpression">
+        <xs:complexType>
+            <xs:attribute name="expression" use="required"/>
+            <xs:attribute name="property" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getHtmlSource" type="ptag"/>
+    <xs:element name="getLocation" type="ptag"/>
+    <xs:element name="getMouseSpeed" type="ptag"/>
+    <xs:element name="getPrompt" type="ptag"/>
+
+    <xs:complexType name="slptag">
+        <xs:attribute name="selectLocator" use="required"/>
+        <xs:attribute name="property" use="required"/>
+    </xs:complexType>
+    
+    <xs:element name="getSelectedId" type="slptag"/>
+    <xs:element name="getSelectedIds" type="slptag"/>
+    <xs:element name="getSelectedIndex" type="slptag"/>
+    <xs:element name="getSelectedLabel" type="slptag"/>
+    <xs:element name="getSelectedLabels" type="slptag"/>
+    <xs:element name="getSelectedValue" type="slptag"/>
+    <xs:element name="getSelectedValues" type="slptag"/>
+    <xs:element name="getSelectOptions" type="slptag"/>
+    <xs:element name="getTable">
+	    <xs:complexType>
+	        <xs:attribute name="tableCellAddress" use="required"/>
+	        <xs:attribute name="property" use="required"/>
+	    </xs:complexType>
+    </xs:element>
+    <xs:element name="getText" type="lptag"/>
+    <xs:element name="getTitle" type="ptag"/>
+    <xs:element name="getValue" type="lptag"/>
+    
+    <xs:element name="getWhetherThisFrameMatchFrameExpression">
+	    <xs:complexType>
+	        <xs:attribute name="currentFrameString" use="required"/>
+	        <xs:attribute name="target" use="required"/>
+	        <xs:attribute name="property" use="required"/>
+	    </xs:complexType>
+    </xs:element>
+    <xs:element name="getWhetherThisWindowMatchWindowExpression">
+	    <xs:complexType>
+	        <xs:attribute name="currentWindowString" use="required"/>
+	        <xs:attribute name="target" use="required"/>
+	        <xs:attribute name="property" use="required"/>
+	    </xs:complexType>
+    </xs:element>
+    <xs:element name="getXpathCount">
+	    <xs:complexType>
+	        <xs:attribute name="xpath" use="required"/>
+	        <xs:attribute name="property" use="required"/>
+	    </xs:complexType>
+    </xs:element>
+   
+    <!-- set state tags --> 
+    <xs:element name="setContext">
+	    <xs:complexType>
+	        <xs:attribute name="context" use="required"/>
+	    </xs:complexType>
+    </xs:element>
+    <xs:element name="setCursorPosition">
+	    <xs:complexType>
+	        <xs:attribute name="locator" use="required"/>
+	        <xs:attribute name="position" use="required"/>
+	    </xs:complexType>
+    </xs:element>
+    <xs:element name="setExtensionJs">
+	    <xs:complexType>
+	        <xs:attribute name="extensionJs" use="required"/>
+	    </xs:complexType>
+    </xs:element>
+    <xs:element name="setMouseSpeed">
+	    <xs:complexType>
+	        <xs:attribute name="pixels" use="required"/>
+	    </xs:complexType>
+    </xs:element>
+    <xs:element name="setSpeed">
+	    <xs:complexType>
+	        <xs:attribute name="value" use="required"/>
+	    </xs:complexType>
+    </xs:element>
+    <xs:element name="setTimeout">
+	    <xs:complexType>
+	        <xs:attribute name="timeout" use="required"/>
+	    </xs:complexType>
+    </xs:element>
+    
+    <!-- selection tags -->
+    <xs:element name="addSelection">
+        <xs:complexType>
+            <xs:attribute name="locator" use="required"/>
+            <xs:attribute name="optionLocator" use="required"/>
+        </xs:complexType>
+    </xs:element> 
+    <xs:element name="removeSelection">
+        <xs:complexType>
+            <xs:attribute name="locator" use="required"/>
+            <xs:attribute name="optionLocator" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="removeAllSelections" type="ltag"/>
+        
+    <!-- checkbox tags -->
+    <xs:element name="check" type="ltag"/>
+    <xs:element name="uncheck" type="ltag"/>
+
+    <!-- waitfor tags -->
+    <xs:element name="waitForCondition">
+        <xs:complexType>
+            <xs:attribute name="script" use="required"/>
+            <xs:attribute name="timeout" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="waitForFrameToLoad">
+        <xs:complexType>
+            <xs:attribute name="frameAddress" use="required"/>
+            <xs:attribute name="timeout" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="waitForPageToLoad">
+        <xs:complexType>
+            <xs:attribute name="timeout" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="waitForPopUp">
+        <xs:complexType>
+            <xs:attribute name="windowID" use="required"/>
+            <xs:attribute name="timeout" use="required"/>
+        </xs:complexType>
+    </xs:element>
+        
+    <!-- conditional tags -->
+    <xs:element name="isAlertPresent"/>
+    <xs:element name="isChecked" type="ltag"/>
+    <xs:element name="isConfirmationPresent"/>
+    <xs:element name="isEditable" type="ltag"/>
+    <xs:element name="isElementPresent" type="ltag"/>
+    <xs:element name="isOrdered">
+        <xs:complexType>
+            <xs:attribute name="locator1" use="required"/>
+            <xs:attribute name="locator2" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="isPromptPresent"/>
+    <xs:element name="isSomethingSelected">
+        <xs:complexType>
+            <xs:attribute name="selectLocator" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="isTextPresent">
+        <xs:complexType>
+            <xs:attribute name="pattern" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="isVisible" type="ltag"/>
+
 </xs:schema>

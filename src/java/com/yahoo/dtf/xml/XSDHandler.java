@@ -35,37 +35,6 @@ public class XSDHandler {
         }
     }
     
-    private ArrayList<String> findAllAttributes(Node element) {
-        ArrayList<String> result = new ArrayList<String>();
-        Node aux = element.getFirstChild();
-            
-        while ( aux != null ) {
-                
-            if (aux.getNodeName().equals("xs:attribute")) { 
-                NamedNodeMap attributes = aux.getAttributes(); 
-                Node name = attributes.getNamedItem("name");
-                if ( name != null ) {
-                    result.add(name.getNodeValue());
-                }
-            } else if (aux.getNodeName().equals("xs:attributeGroup")) { 
-                NamedNodeMap attributes = aux.getAttributes(); 
-                Node name = attributes.getNamedItem("ref");
-                if ( name != null ) {
-                    Node group = findAttributeGroup(name.getNodeValue());
-                    if ( group != null ) { 
-                        result.addAll(findAllAttributes(group));
-                    }
-                }
-            } else {
-                result.addAll(findAllAttributes(aux));
-            }
-                
-            aux = aux.getNextSibling();
-        }
-       
-        return result;
-    }
-   
     public synchronized String generateChildrenString(String elementName) {
         elementName = elementName.toLowerCase();
         Node element = findElement(elementName);
@@ -209,11 +178,46 @@ public class XSDHandler {
      
         return result.toString();
     }
-    
+
     private ArrayList<String> findRequiredAttributes(Node element) {
+        return findAttributes(element, "required");
+    }
+
+    private ArrayList<String> findOptionalAttributes(Node element) {
+        return findAttributes(element, "optional");
+    }
+
+    private ArrayList<String> findFixedAttributes(Node element) {
+        return findAttributes(element, "fixed");
+    }
+    
+    private ArrayList<String> findAttributes(Node element,String use) {
         ArrayList<String> result = new ArrayList<String>();
         Node aux = element.getFirstChild();
-            
+        NamedNodeMap attribs = element.getAttributes();
+        
+        if ( attribs != null ) { 
+            Node type = attribs.getNamedItem("type");
+	        
+	        if ( type != null ) { 
+	            // need to find correct complextType with this name
+	            String typeName = type.getNodeValue();
+	            
+	            NodeList types = _document.getElementsByTagName("xs:complexType");
+	            for (int i = 0; i < types.getLength(); i++) { 
+	                Node node = types.item(i);
+	                NamedNodeMap attribs2 = node.getAttributes();
+	                Node name = attribs2.getNamedItem("name");
+	                if ( name != null ) {
+	                    if ( name.getNodeValue().equals(typeName) ) { 
+		                    aux = node.getFirstChild();
+		                    break;
+	                    }
+	                }
+	            }
+	        }
+        }
+        
         while ( aux != null ) {
             if (aux.getNodeName().equals("xs:attribute")) { 
                 NamedNodeMap attributes = aux.getAttributes(); 
@@ -222,8 +226,10 @@ public class XSDHandler {
                 if ( name != null ) { 
 	                Node attrib = attributes.getNamedItem("use");
 	                                
-	                if (attrib != null && attrib.getNodeValue().equals("required"))
+	                if (attrib != null && 
+	                    (use == null || attrib.getNodeValue().equals(use))) {
 	                    result.add(name.getNodeValue());
+	                }
                 }
             } else if (aux.getNodeName().equals("xs:attributeGroup")) { 
                 NamedNodeMap attributes = aux.getAttributes(); 
@@ -231,11 +237,11 @@ public class XSDHandler {
                 if ( name != null ) {
                     Node group = findAttributeGroup(name.getNodeValue());
                     if ( group != null ) { 
-                        result.addAll(findRequiredAttributes(group));
+                        result.addAll(findAttributes(group,use));
                     }
                 }
             } else {
-                result.addAll(findRequiredAttributes(aux));
+                result.addAll(findAttributes(aux,use));
             }
                 
             aux = aux.getNextSibling();
@@ -245,24 +251,20 @@ public class XSDHandler {
     }
     
     public synchronized ArrayList<String> getAttributes(String elementName) {
-        ArrayList<String> result = null; 
+        ArrayList<String> result = new ArrayList<String>(); 
        
         elementName = elementName.toLowerCase();
         Node element = findElement(elementName);
         
         if (element != null) { 
-            result = findAllAttributes(element);
+            result = findAttributes(element,null);
         }
        
-        if (result != null && result.size() == 0) { 
-            return null;
-        }
-        
         return result;
     }
 
     public synchronized ArrayList<String> getRequiredAttributes(String elementName) {
-        ArrayList<String> result = null; 
+        ArrayList<String> result = new ArrayList<String>(); 
        
         elementName = elementName.toLowerCase();
         Node element = findElement(elementName);
@@ -270,9 +272,31 @@ public class XSDHandler {
         if (element != null) { 
             result = findRequiredAttributes(element);
         }
+        
+        return result;
+    }    
+    
+    public synchronized ArrayList<String> getOptionalAttributes(String elementName) {
+        ArrayList<String> result = new ArrayList<String>(); 
        
-        if (result != null && result.size() == 0) { 
-            return null;
+        elementName = elementName.toLowerCase();
+        Node element = findElement(elementName);
+        
+        if (element != null) { 
+            result = findOptionalAttributes(element);
+        }
+       
+        return result;
+    }
+   
+    public synchronized ArrayList<String> getFixedAttributes(String elementName) {
+        ArrayList<String> result = new ArrayList<String>();
+       
+        elementName = elementName.toLowerCase();
+        Node element = findElement(elementName);
+        
+        if (element != null) { 
+            result = findFixedAttributes(element);
         }
         
         return result;
@@ -321,7 +345,7 @@ public class XSDHandler {
 	            if (attributes != null) { 
 	                Node attribute = attributes.getNamedItem("name");
 	                if (attribute != null && 
-	                    attribute.getNodeValue().equals(elementName)) { 
+	                    attribute.getNodeValue().equalsIgnoreCase(elementName)) { 
 	                    return list.item(i);
 	                }
 	            }

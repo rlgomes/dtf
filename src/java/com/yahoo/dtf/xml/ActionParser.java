@@ -277,6 +277,11 @@ public class ActionParser implements ContentHandler {
         for (int i = 0; i < atts.getLength(); i++) { 
             String attrName = atts.getQName(i);
             String attrValue = atts.getValue(i);
+          
+            // skip class attribute as its part of DTF special attributes
+            if ( attrName.equals("class") || attrName.equals("xmlns") )  
+                continue;
+            
             Method[] method = _current.getClass().getMethods();
 
             boolean found = false;
@@ -339,35 +344,33 @@ public class ActionParser implements ContentHandler {
                 }
             }
             
-            if ( !attrName.equals("xmlns") ) { 
-	            if ( !found ) {
-	                throw new SAXException("Unable to find setter for attribute [" + 
-	                                       attrName + "] on class [" + 
-	                                       _current.getClass() +"]" );
-	            }
+            if ( !found ) {
+                throw new SAXException("Unable to find setter for attribute [" + 
+                                       attrName + "] on class [" + 
+                                       _current.getClass() +"]" );
+            }
 
-	            /*
-	             * We need to make sure that all fields are name the right way. That
-	             * is that the field name matches the defined attribute name in the 
-	             * XSD.
-	             */
-	            ArrayList<Field> fields = Action.getAllFields(_current.getClass());
-	            found = false;
-	            for(int f = 0; f < fields.size(); f++) { 
-	                if ( fields.get(f).getName().equalsIgnoreCase(attrName) ) {
-	                    found = true;
-	                    break;
-	                }
-	            }
-	            
-	            if ( !found ) { 
-	                throw new SAXException("Unable to find class attribute [" + 
-	                                       attrName + "] on class [" + 
-	                                       _current.getClass() +"] make sure " +
-	                                       " the class has all the attributes" +
-	                                       " with the same name as the attributes " +
-	                                       " of the XML tag defined in the XSD.");
-	            }
+            /*
+             * We need to make sure that all fields are name the right way. That
+             * is that the field name matches the defined attribute name in the 
+             * XSD.
+             */
+            ArrayList<Field> fields = Action.getAllFields(_current.getClass());
+            found = false;
+            for(int f = 0; f < fields.size(); f++) { 
+                if ( fields.get(f).getName().equalsIgnoreCase(attrName) ) {
+                    found = true;
+                    break;
+                }
+            }
+            
+            if ( !found ) { 
+                throw new SAXException("Unable to find class attribute [" + 
+                                       attrName + "] on class [" + 
+                                       _current.getClass() +"] make sure " +
+                                       " the class has all the attributes" +
+                                       " with the same name as the attributes " +
+                                       " of the XML tag defined in the XSD.");
             }
         }
      

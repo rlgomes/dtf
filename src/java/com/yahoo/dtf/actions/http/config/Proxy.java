@@ -6,6 +6,7 @@ import com.yahoo.dtf.exception.ParseException;
 
 /**
  * @dtf.tag proxy
+ * @dtf.skip.index
  * 
  * @dtf.since 1.0
  * @dtf.author Rodney Gomes

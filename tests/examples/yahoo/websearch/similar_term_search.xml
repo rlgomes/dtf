@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="similar_term_search">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+            A similar term search test that will try to look up a few similar terms
+            that should give back similar results. The idea is to lookup words such
+            as misspellings of the same word or two different spellings of the same
+            word, ie. color vs colour
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input" />
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output" />
+
+        <loadproperties uri="storage://INPUT/websearch.properties" />
+    </local>
+
+    <property name="uri" value="${websearch.uri}?appid=dtftest" />
+   
+    <property name="similarity.tolerance" value="50%"/>
+    <property name="similar_words" value="gray,colour,theater,coupe,moustache" />
+    <property name="similar_colour" value="color,colour" />
+    <property name="similar_gray" value="gray,grey" />
+    <property name="similar_theater" value="theater,theatre" />
+    <property name="similar_coupe" value="coupé,coupe" />
+    <property name="similar_moustache" value="moustache,mustache" />
+    
+    <function name="compare_result_sets">
+        <param name="xml1" type="required"/>
+        <param name="xml2" type="required"/>
+        
+        <property name="matches" value="0.0" overwrite="true" />
+        <property name="total" value="0.0" overwrite="true" />
+         
+        <for property="clickurl"
+             range="xpath(${xml1},//ns:Result/ns:ClickUrl/text(),[ns=>urn:yahoo:srch])">
+                         
+            <property name="exists"
+                      value="${xml2:xpath://ns:Result/ns:ClickUrl[text()='${clickurl}']/text(),[ns=>urn:yahoo:srch]}"
+                      overwrite="true"/>
+            <if>
+                <neq op1="${exists}" op2=""/>
+                <then>
+                    <add result="matches" op2="${matches}" op1="1" />
+                </then>
+            </if>
+            <add result="total" op1="${total}" op2="1" />
+        </for> 
+
+        <divide result="similarity" op1="${matches}" op2="${total}"/> 
+        <return>${similarity}</return>
+    </function>
+
+    <for property="word" range="${similar_words}">
+        <property name="first" value="none" overwrite="true" />
+        <property name="count" value="0" overwrite="true" />
+        <property name="total" value="0" overwrite="true" />
+        <property name="total_similarity" value="1.0" overwrite="true" />
+
+        <for property="term" range="${similar_${word}}">
+            <urlencode result="term" source="${term}" />
+            <http_get uri="${uri}&amp;query=${term}" />
+
+            <property name="clickurl"
+                      value="${http.get.body:xpath://ns:Result/ns:ClickUrl/text(),[ns=>urn:yahoo:srch]}"
+                      overwrite="true" />
+
+            <if>
+                <neq op1="${first}" op2="none" />
+                <then>
+                    <call function="compare_result_sets" result="similarity">
+                        <property name="xml1" value="${first}"/>
+                        <property name="xml2" value="${http.get.body}"/>
+                    </call>
+                    <add result="total_similarity"
+                         op1="${total_similarity}"
+                         op2="${similarity}"/>      
+                </then>
+                <else>
+                    <property name="first"
+                              value="${http.get.body}"
+                              overwrite="true" />
+                </else>
+            </if>
+            
+            <add result="total" op2="${total}" op1="1" />
+        </for>
+        <divide result="similarity" op1="${total_similarity}" op2="${total}"/>
+        <log>${word} at ${similarity}</log>
+        <assert>
+            <within tolerance="${similarity.tolerance}"
+                    op1="${similarity}"
+                    op2="1.0"/>
+        </assert>
+    </for>
+
+</script> 

@@ -6,7 +6,7 @@ import com.yahoo.dtf.exception.ParseException;
 
 public abstract class Condition extends Action implements Conditional {
 
-    protected final String ASSERT_EXP_CTX = "dtf.assert.explanation.ctx";
+    public static final String ASSERT_EXP_CTX = "dtf.assert.explanation.ctx";
     
     /**
      * @dtf.attr op1

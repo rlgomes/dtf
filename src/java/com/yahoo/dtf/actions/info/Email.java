@@ -4,6 +4,7 @@ import com.yahoo.dtf.actions.util.CDATA;
 
 /**
  * @dtf.tag email
+ * @dtf.skip.index
  * 
  * @dtf.since 1.0
  * @dtf.author Rodney Gomes

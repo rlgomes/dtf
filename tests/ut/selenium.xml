@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="selenium">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>DTF unit test for selenium tags.</description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input" />
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output" />
+
+        <loadproperties uri="storage://INPUT/ut.properties" />
+    </local>
+   
+    <!-- simple function to validate that the current selenium session is 
+         on the google websearch page at www.google.com --> 
+    <function name="validateOnGoogleSearch">
+        <getTitle property="title"/>  
+        <assert><eq op1="${title}" op2="Google"/></assert> 
+        <assert>
+            <isElementPresent locator="xpath=//input[@name='btnG']"/>
+        </assert>
+        <assert>
+            <isElementPresent locator="xpath=//input[@name='btnI']"/>
+        </assert>
+    </function>
+
+    <sequence>
+        <for property="browser" range="${browsers}">
+		    <selenium baseurl="http://www.google.com" browser="*${browser}">
+		        <open url="/"/>
+
+	            <waitForPageToLoad timeout="30000"/>
+	            <windowMaximize/>
+                
+                <call function="validateOnGoogleSearch"/>
+	               
+                <assert><isEditable locator="q"/></assert>
+	            <type locator="q" value="google"/>
+	            <click locator="btnI"/>
+	            <waitForPageToLoad timeout="30000"/>
+
+                <call function="validateOnGoogleSearch"/>
+
+                <click locator="link=Advanced Search"/>
+	            <waitForPageToLoad timeout="30000"/>
+                
+	            <type locator="as_q" value="google"/>
+	            <type locator="as_epq" value="google"/>
+	            <type locator="as_oq0" value="google"/>
+	            <type locator="as_oq1" value="google"/>
+	            <type locator="as_oq2" value="google"/>
+	            
+                <click locator="//input[@value='Advanced Search']"/>
+	            <waitForPageToLoad timeout="30000"/>
+                
+                <click locator="link=Google"/> 
+	            <waitForPageToLoad timeout="30000"/>
+                <call function="validateOnGoogleSearch"/>
+              
+                <openWindow url="/finance" windowID="test"/>
+                
+                <selectWindow windowID="test"/>
+                <waitForPageToLoad timeout="30000"/>
+                
+                <assert>
+                    <and>
+	                    <isTextPresent pattern="Market"/>
+	                    <isTextPresent pattern="Portfolio"/>
+	                    <isTextPresent pattern="Stock"/>
+                    </and>
+                </assert>
+               
+                <property name="tornadoscript">
+                javascript:R=0; x1=.1; y1=.05; x2=.25; y2=.24; x3=1.6; y3=.24; x4=300; y4=200; x5=300; y5=200; DI=document.getElementsByTagName("img"); DIL=DI.length; function A(){for(i=0; i-DIL; i++){DIS=DI[ i ].style; DIS.position='absolute'; DIS.left=(Math.sin(R*x1+i*x2+x3)*x4+x5)+"px"; DIS.top=(Math.cos(R*y1+i*y2+y3)*y4+y5)+"px"}R++}setInterval('A()',5); void(0);
+                </property> 
+                <runScript script="${tornadoscript}"/>
+                <sleep time="1s"/>
+                
+                <refresh/>
+                <waitForPageToLoad timeout="30000"/>
+                <type locator="q" value="GOOG"/>
+                <click locator="//input[@value='Get quotes']"/>
+                <waitForPageToLoad timeout="30000"/>
+               
+                <log>Toggling between a few drop down options</log> 
+                <select selectLocator="id=related-select"
+                        optionLocator="Most Recent Annual"/>
+                <select selectLocator="id=related-select"
+                        optionLocator="Most Recent Quarter"/>
+                <select selectLocator="id=related-select"
+                        optionLocator="Most Recent Annual"/>
+                       
+                <assert>
+                    <isSomethingSelected selectLocator="id=related-select"/>
+                </assert> 
+                        
+                <assert>
+                    <isOrdered locator1="q"
+                               locator2="//input[@value='Get quotes']"/>
+                </assert>
+                       
+                <for property="i" range="0..6">
+	                <check locator="//input[@name='gf-chart-ticker${i}']"/>
+                    <assert>
+                        <isChecked locator="//input[@name='gf-chart-ticker${i}']"/>
+                    </assert>
+                </for>
+                <for property="i" range="0..6">
+	                <uncheck locator="//input[@name='gf-chart-ticker${i}']"/>
+                    <assert>
+                        <not>
+                            <isChecked locator="//input[@name='gf-chart-ticker${i}']"/>
+                        </not>
+                    </assert>
+                </for>
+            
+		        <openWindow url="http://www.yahoo.com" windowID="yahoo_window"/>
+                <selectWindow windowID="yahoo_window"/>
+                <waitForPageToLoad timeout="30000"/>
+	            <windowMaximize/>
+                
+                <refresh/>   
+                <!-- like a waitForPageToLoad but done with javascript -->             
+                <waitForCondition script="selenium.browserbot.getCurrentWindow().document.getElementById('search-submit')"
+                                  timeout="30000"/>
+                
+                <type locator="//input[@name='p']" value="finance"/>
+                <click locator="//button[@value='Web Search']"/> 
+                <waitForPageToLoad timeout="30000"/>
+                
+                <createCookie nameValuePair="C=D" optionsString="path=/"/>
+                <deleteCookie name="C=D" path="/"/>
+
+                <close/>
+                <selectWindow windowID="test"/> 
+                <close/>
+                <selectWindow/> 
+                <chooseOkOnNextConfirmation/>
+                <runScript script="window.confirm('Are you sure?')"/>
+                <assert><isConfirmationPresent/></assert>
+                <getConfirmation property="confirm.msg"/>
+                <assert><eq op1="${confirm.msg}" op2="Are you sure?"/></assert>
+
+                <chooseOkOnNextConfirmation/>
+                <runScript script="window.alert('alerte rouge!')"/>
+                <assert><isAlertPresent/></assert>
+                <getAlert property="alert.msg"/>
+                <assert><eq op1="${alert.msg}" op2="alerte rouge!"/></assert>
+               
+                <answerOnNextPrompt answer="superduper"/> 
+                <getEval script="window.prompt('Secret code word?', '')" 
+                         property="response"/>
+                <assert><isPromptPresent/></assert>
+                <assert><eq op1="${response}" op2="superduper"/></assert>
+                
+                <openWindow windowID="other" url="http://www.yahoo.com"/>
+                <waitForPopUp windowID="other" timeout="30000"/>
+		    </selenium>
+        </for>
+    </sequence>
+    
+
+</script>

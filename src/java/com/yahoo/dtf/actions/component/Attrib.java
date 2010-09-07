@@ -8,6 +8,7 @@ import com.yahoo.dtf.util.StringUtil;
 
 /**
  * @dtf.tag attrib
+ * @dtf.skip.index
  * 
  * @dtf.since 1.0
  * @dtf.author Rodney Gomes

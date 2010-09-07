@@ -105,6 +105,8 @@ public class DTFHttpHandler implements HttpRequestHandler {
         }
         event.addAttribute(HttpBase.HTTP_EVENT_HEADER_IN, 
                            headerlist.toString());
+        
+        event.addAttribute("path", request.getRequestLine().getUri());
        
         if (request instanceof HttpEntityEnclosingRequest) {
             HttpEntity entity = ((HttpEntityEnclosingRequest) request).getEntity();

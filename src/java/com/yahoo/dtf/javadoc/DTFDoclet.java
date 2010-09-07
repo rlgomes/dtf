@@ -38,22 +38,11 @@ import com.yahoo.dtf.util.StringUtil;
 import com.yahoo.dtf.xml.XSDHandler;
 
 /**
- * This class generates the DTF XML documentation directly from the Java source
- * code of the available tags. It also uses the DTF XSD to construct additional
- * information about each of the tags and its usage.
- *
- * XXX: this class needs some cleaning up because their are plenty of copy and
- *      pasted methods that could be merged. As well as some extra documentation 
- *      tweaks that could be made here to make the generated documentation 
- *      more helpful. Such as:
- *      
- *          * syntax coloring of the XML
- *          * links to the parent tags of each tag, so its easier to navigate
- *            the tags as an XML Tree.
  *            
  * @dtf.feature XML Documentation
  * @dtf.feature.group Tag Development
  * @dtf.feature.desc 
+ * 
  * <p>
  * When writing tests you can document those tests using JavaDoc tags, that are 
  * then transformed into this document you are reading right now. Using these 
@@ -64,10 +53,11 @@ import com.yahoo.dtf.xml.XSDHandler;
  * </p>
  * <p>
  * For examples on using these tags just have a look at any source file with 
- * @dtf.feature or @dtf.tag taglets in them and you'll find various examples on 
- * how to use this feature to better the documentation of your code.
+ * '@dtf.feature' or '@dtf.tag' taglets in them and you'll find various examples 
+ * on how to use this feature to better the documentation of your code.
  * </p>
- * <p><h3>Tag Documentation</h3>
+ * 
+ * <h3>Tag Documentation</h3>
  * <table border="1" width="75%">
  *      <tr><th colspan="2">Class Taglets</th></tr>
  *      <tr><th width="200px">Taglet</th><th>Description</th></tr>
@@ -106,99 +96,115 @@ import com.yahoo.dtf.xml.XSDHandler;
  *          </td>
  *      </tr>
  *      <tr>
- *                          <td><b>@dtf.event.attr name</b></td>
- *                          <td>With this taglet you can identify all the names of
- *                              attributes that an event has so that the test
- *                              writer knows exactly what he/she can get back 
- *                              from executing your tag. This tag depends on the
- *                              previously documented event name so be sure to 
- *                              use the @dtf.event taglet before this one.</td>
- *                      </tr>
- *                      <tr>
- *                          <td><b>@dtf.event.attr.desc desc</b></td>
- *                          <td>This taglet is used to describe the previously
- *                              identified attribute using the @dtf.event.attr
- *                              taglet. So be sure to use that taglet previous
- *                              to this one otherwise logically the documentation 
- *                              won't make sense.</td>
- *                      </tr>
- *                      <tr>
- *                          <td><b>@dtf.example example</b></td>
- *                          <td>This tag can be used to identify example XML
- *                              documentation that shows exact XML samples of 
- *                              how to use the tag being documented. So the body 
- *                              of this taglet can be any XML you'd like just be 
- *                              sure to place a single root element around your 
- *                              XML.</td>
- *                      </tr>
- *                   </table>
- *                   <br/> 
- *                   <table border="1" width="75%">
- *                      <tr><th colspan="2">Attribute Taglets</th></tr>
- *                      <tr><th width="200px">Taglet</th><th>Description</th></tr>
- *                      <tr>
- *                          <td><b>@dtf.attr name</b></td>
- *                          <td>This identifies the name of the attribute 
- *                              being documented here.</td>
- *                      </tr>
- *                      <tr>
- *                          <td><b>@dtf.attr.desc desc</b></td>
- *                          <td>This is where you can place the description
- *                              of the attribute being documented.You can place 
- *                              almost any HTML elements in this section which 
- *                              allows you to format your documentation nicely 
- *                              using tables and lists. </td>
- *                      </tr>
- *                   </table>
- *                   <br/>
- *                   <table border="1" width="75%">
- *                      <tr><th colspan="2">Utility Taglets</th></tr>
- *                      <tr><th width="200px">Taglet</th><th>Description</th></tr>
- *                      <tr>
- *                          <td><b>@dtf.link name</b></td>
- *                          <td>This tag allows you to create a link to another
- *                              tag just by having the correct tag name 
- *                              specified.</td>
- *                      </tr>
- *                   </table>
- *                   </p>
- *                   <p><h3>Feature Documentation</h3>
- *                   <table border="1" width="75%">
- *                      <tr><th colspan="2">Feature Taglets</th></tr>
- *                      <tr><th width="200px">Taglet</th><th>Description</th></tr>
- *                      <tr>
- *                          <td><b>@dtf.feature name</b></td>
- *                          <td>The name of the feature being documented.</td>
- *                      </tr>
- *                      <tr>
- *                          <td><b>@dtf.feature.group group</b></td>
- *                          <td>The logical group belongs to within the 
- *                              documentation being generated. This is going to 
- *                              be used to display this feature within the same
- *                              group as as other features with the same group 
- *                              name.</td>
- *                      </tr>
- *                      <tr>
- *                          <td><b>@dtf.feature.desc desc</b></td>
- *                          <td>The description of this feature along with any
- *                              information that might be useful for the test 
- *                              writers that may find this feature to be useful.
- *                              You can place almost any HTML elements in this 
- *                              section which allows you to format your 
- *                              documentation nicely using tables and lists.
- *                          </td>
- *                      </tr>
- *                      <tr>
- *                          <td><b>@dtf.example example</b></td>
- *                          <td>This tag can be used to identify example XML
- *                              documentation that shows exact XML samples of 
- *                              how to use the feature being documented. So
- *                              the body of this taglet can be any XML you'd like
- *                              just be sure to place a single root element
- *                              around your XML.</td>
- *                      </tr>
- *                   </table>
- *                   </p>
+ *          <td><b>@dtf.event.attr name</b></td>
+ *          <td>With this taglet you can identify all the names of attributes 
+ *              that an event has so that the test writer knows exactly what 
+ *              he/she can get back from executing your tag. This tag depends on
+ *              the previously documented event name so be sure to use the 
+ *              '@dtf.event' taglet before this one.</td>
+ *          </tr>
+ *      <tr>
+ *          <td><b>@dtf.event.attr.desc desc</b></td>
+ *          <td>This taglet is used to describe the previously identified 
+ *              attribute using the @dtf.event.attr taglet. So be sure to use 
+ *              that taglet previous to this one otherwise logically the
+ *              documentation won't make sense.
+ *          </td>
+ *      </tr>
+ *      <tr>
+ *          <td><b>@dtf.example example</b></td>
+ *          <td>This tag can be used to identify example XML documentation that
+ *              shows exact XML samples of how to use the tag being documented.
+ *              So the body of this taglet can be any XML you'd like just be 
+ *              sure to place a single root element around your XML.
+ *          </td>
+ *      </tr>
+ *  </table>
+ *  <br/> 
+ *  
+ *  <table border="1" width="75%">
+ *      <tr><th colspan="2">Attribute Taglets</th></tr>
+ *      <tr><th width="200px">Taglet</th><th>Description</th></tr>
+ *      <tr>
+ *          <td><b>@dtf.attr name</b></td>
+ *          <td>This identifies the name of the attribute being documented here.</td>
+ *      </tr>
+ *      <tr>
+ *          <td><b>@dtf.attr.desc desc</b></td>
+ *          <td>
+ *          This is where you can place the description of the attribute being 
+ *          documented.You can place almost any HTML elements in this section 
+ *          which allows you to format your documentation nicely using tables 
+ *          and lists.
+ *          </td>
+ *      </tr>
+ *  </table>
+ *  <br/>
+ *  
+ *  <table border="1" width="75%">
+ *      <tr><th colspan="2">Utility Taglets</th></tr>
+ *      <tr><th width="200px">Taglet</th><th>Description</th></tr>
+ *      <tr>
+ *          <td><b>@dtf.link name</b></td>
+ *          <td>
+ *          This tag allows you to create a link to another tag/feature just by
+ *          having the correct name specified. The name is case insensitive so 
+ *          that you don't have to know the exact case spelling of the tag or 
+ *          feature you're trying to link to.
+ *          </td>
+ *      </tr>
+ *  </table>
+ *  <br/>
+ *
+ *  <h2>Feature Documentation</h2>
+ *  <p>
+ *  The feature documentation allows the developer to document features that may 
+ *  not be a simple XML tag and instead could be the documentation of how 
+ *  certain dynamic properties work or the documentation on how ranges work.
+ *  </p>
+ *  <p>
+ *  The only two things you need to define for a feature is what the name of
+ *  the feature is and which feature group it belongs to. The name of the feature
+ *  will appear as a link underneat the feature group. There are some already 
+ *  existing groups that you can attach your documentation to or you can build
+ *  your own group name and that will be added to the list of documented 
+ *  features in the generated feature documentation.
+ *  </p>
+ *  <table border="1" width="75%">
+ *      <tr><th colspan="2">Feature Taglets</th></tr>
+ *      <tr><th width="200px">Taglet</th><th>Description</th></tr>
+ *      <tr>
+ *          <td><b>@dtf.feature name</b></td>
+ *          <td>The name of the feature being documented.</td>
+ *      </tr>
+ *      <tr>
+ *          <td><b>@dtf.feature.group group</b></td>
+ *          <td>
+ *          The logical group belongs to within the documentation being 
+ *          generated. This is going to be used to display this feature within
+ *          the same group as as other features with the same group name.
+ *          </td>
+ *      </tr>
+ *      <tr>
+ *          <td><b>@dtf.feature.desc desc</b></td>
+ *          <td>
+ *          The description of this feature along with any information that 
+ *          might be useful for the test writers that may find this feature to 
+ *          be useful. You can place almost any HTML elements in this section 
+ *          which allows you to format your documentation nicely using tables 
+ *          and lists.
+ *          </td>
+ *      </tr>
+ *      <tr>
+ *          <td><b>@dtf.example example</b></td>
+ *          <td>
+ *          This tag can be used to identify example XML documentation that 
+ *          shows exact XML samples of how to use the feature being documented.
+ *          So the body of this taglet can be any XML you'd like just be sure to
+ *          place a single root element around your XML.
+ *          </td>
+ *     </tr>
+ * </table>
  */
 public class DTFDoclet {
    
@@ -225,6 +231,13 @@ public class DTFDoclet {
     public static final String DTF_FEATURE_GROUP    = "dtf.feature.group";
     public static final String DTF_FEATURE_DESC     = "dtf.feature.desc";
     public static final String DTF_EXAMPLE          = "dtf.example";
+
+    /*
+     * Used to basically flag that a specific tag should not be added to the 
+     * main page indexed tags. This is useful if you have tags that only apply
+     * within certain other tags and shouldn't be seen as root level tags.
+     */
+    public static final String DTF_SKIP_INDEX       = "dtf.skip.index";
     
     private static class DTFDoc { 
         public String name = null;
@@ -281,7 +294,9 @@ public class DTFDoclet {
         
         PrintStream psIndex = createFile(destination + File.separatorChar + "index.html");
         psIndex.print("<html><head></head><body><center><h1>DTF Documentation</h1></center>");
-        
+       
+        ArrayList<String> tnames = new ArrayList<String>();
+        ArrayList<String> fnames = new ArrayList<String>();
         /*
          * 1st phase
          * 
@@ -298,6 +313,8 @@ public class DTFDoclet {
             if (classdoc.tags(DTF_TAG).length != 0) {
                 String classname = classdoc.qualifiedName();
                 String packagename = classname.substring(0, classname.lastIndexOf("."));
+              
+                tnames.add(classname.replace(packagename + ".", "").toLowerCase());
                 
                 if (!packages.containsKey(packagename)) {
                     packages.put(packagename, new ArrayList<ClassDoc>());
@@ -342,6 +359,8 @@ public class DTFDoclet {
                 dtfdoc.name = classdoc.tags(DTF_FEATURE)[0].text();
                 dtfdoc.descriptions = classdoc.tags(DTF_FEATURE_DESC);
                 dtfdoc.examples = classdoc.tags(DTF_EXAMPLE);
+
+                fnames.add(dtfdoc.name.toLowerCase());
                 
                 fgroups.get(fgroup).add(dtfdoc);
             }
@@ -380,7 +399,7 @@ public class DTFDoclet {
         Collections.sort(packagenames);
         iter = packagenames.iterator();
        
-        psIndex.print("</td><td>");
+        psIndex.print("</td><td valign='top'>");
         psIndex.print("<table>");
         while (iter.hasNext()) {
             psIndex.print("<tr>");
@@ -391,15 +410,23 @@ public class DTFDoclet {
             aux = aux.replaceAll("\\."," ");
             aux = StringUtil.capitalize(aux);  
             
-            psIndex.print("<td width='100px'><b>" + aux + " </b></td><td>");
+            StringBuffer buffer = new StringBuffer();
             for (int i = 0; i < tags.size(); i++) { 
                 ClassDoc classdoc = (ClassDoc)tags.get(i);
-                String tagname = classdoc.name().toLowerCase();
-            
-                psIndex.print("<a href='" + TAGS_DIRECOTRY + "/" + 
-                              tagname + ".html'>" + tagname + "</a> ");
+               
+                if ( classdoc.tags(DTF_SKIP_INDEX).length == 0 ) {
+	                String tagname = classdoc.name().toLowerCase();
+	            
+	                buffer.append("<a href='" + TAGS_DIRECOTRY + "/" + 
+	                              tagname + ".html'>" + tagname + "</a> ");
+                }
             }
-            psIndex.print("</td></tr>");
+            
+            if ( buffer.length() != 0 ) { 
+	            psIndex.print("<td><b>" + aux + " </b></td><td>");
+	            psIndex.print(buffer.toString());
+	            psIndex.print("</td></tr>");
+            }
         }
         psIndex.print("</table>");
        
@@ -444,7 +471,8 @@ public class DTFDoclet {
                 Tag[] descriptions = classdoc.tags(DTF_TAG_DESC);
                 if (descriptions.length != 0) { 
                     for (int d = 0; d < descriptions.length; d++) { 
-                        ps.print("<dd>" + treatTag(descriptions[d]) + "</dd>");
+                        ps.print("<dd>" + treatTag(descriptions[d],tnames,fnames) 
+                                 + "</dd>");
                     }
                 }
                 
@@ -524,7 +552,7 @@ public class DTFDoclet {
                             }
 
                             String attrName = eventsAttrs[a].text();
-                            String attrDesc = treatTag(eventsDesc[a]);
+                            String attrDesc = treatTag(eventsDesc[a],tnames,fnames);
                            
                             ((HashMap)eventMap.get(eventNames[e])).put(attrName, attrDesc);
                         }
@@ -569,6 +597,7 @@ public class DTFDoclet {
                
                 ArrayList<String> attributes = dtfXSD.getAttributes(tagname);
                 ArrayList<String> required = dtfXSD.getRequiredAttributes(tagname);
+                ArrayList<String> optional = dtfXSD.getOptionalAttributes(tagname);
                 
                 if ( attributes != null ) {
                     boolean someopt = false;
@@ -576,7 +605,7 @@ public class DTFDoclet {
                     
                     boolean somereq = false;
                     StringBuffer req = new StringBuffer();
-                    
+
                     opt.append("<br/><br/><dt><b>Optional Attributes</b></dt>");
                     opt.append("<dd><br/><table border=1>");
     
@@ -589,26 +618,28 @@ public class DTFDoclet {
                         String aName = keys.next();
                         StringBuffer which = null;
                         
-                        if ( required != null && required.contains(aName) ) {
+                        if ( required.contains(aName) ) {
                             which = req;
                             somereq = true;
-                        } else {
+                        } else if ( optional.contains(aName) ) { 
                             which = opt;
                             someopt = true;
                         }
-                       
-                        which.append("<tr valign='top'>");
-                        which.append("<td width='100px'><b>" + aName + "</b></td>");
-                        
-                        FieldDoc doc = (FieldDoc)attrs.get(aName);
-                        if (doc != null) { 
-                            Tag[] descs = doc.tags(DTF_ATTR_DESC);
-                                    
-                            if (descs.length != 0) {
-                                which.append("<td>" + treatTag(descs[0]) + "</td>");
-                            }
+                      
+                        if ( which != null ) { 
+	                        which.append("<tr valign='top'>");
+	                        which.append("<td width='100px'><b>" + aName + "</b></td>");
+	                        
+	                        FieldDoc doc = (FieldDoc)attrs.get(aName);
+	                        if (doc != null) { 
+	                            Tag[] descs = doc.tags(DTF_ATTR_DESC);
+	                                    
+	                            if (descs.length != 0) {
+	                                which.append("<td>" + treatTag(descs[0],tnames,fnames) + "</td>");
+	                            }
+	                        }
+	                        which.append("</tr>");
                         }
-                        which.append("</tr>");
                     }
     
                     if (someopt) { 
@@ -680,7 +711,7 @@ public class DTFDoclet {
                 Tag[] descriptions = dtfdoc.descriptions;
                 if (descriptions.length != 0) { 
                     for (int d = 0; d < descriptions.length; d++) { 
-                        ps.print("<dd>" + treatTag(descriptions[d]) + "</dd>");
+                        ps.print("<dd>" + treatTag(descriptions[d],tnames,fnames) + "</dd>");
                     }
                 }
                 
@@ -729,22 +760,38 @@ public class DTFDoclet {
         return new PrintStream(fos);
     }
     
-    public static String treatTag(Tag tag) throws Exception { 
+    public static String treatTag(Tag tag,
+                                  ArrayList<String> tnames,
+                                  ArrayList<String> fnames) throws Exception { 
         StringBuffer result = new StringBuffer();
         
         Tag[] tags = tag.inlineTags();
-        
+       
+        result.append("<p align='justify'>");
         for (int i = 0; i < tags.length; i++) { 
             Tag aux = tags[i];
             if (aux.name().equalsIgnoreCase("text")) { 
-                result.append("<p align='justify'>" + aux.text() + "</p>");
+                result.append(aux.text());
             } else if (aux.name().equals("@"+DTF_LINK)) { 
-                result.append("<a href='" + aux.text().trim().toLowerCase() + 
+                String name = aux.text().trim().toLowerCase();
+                String loc = null;
+                
+                if ( tnames.contains(name) ) { 
+                    loc = "tags";
+                } else if ( fnames.contains(name) ) { 
+                    loc = "features";
+                } else { 
+                    throw new Exception("Unable to find link to [" + 
+                                           name + "].");
+                }
+                
+                result.append("<a href='../" + loc + "/" + name + 
                               ".html'>" + aux.text() + "</a>");
             } else if (aux.name().equals("@"+DTF_XML)) { 
                 result.append("<pre>" + treatXML(aux.text()) + "</pre>");
             }
         }
+        result.append("</p>");
         
         return result.toString();
     }
@@ -776,10 +823,6 @@ public class DTFDoclet {
         }
     }
     
-    public static String createLink(String tagname) { 
-        return "<a href='" + tagname + ".html'>" + tagname + "</a>"; 
-    }
-   
     public static int optionLength(String option) {
         
         if (option.equals("-d"))

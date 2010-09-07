@@ -7,6 +7,7 @@ import com.yahoo.dtf.exception.ParseException;
 
 /**
  * @dtf.tag case
+ * @dtf.skip.index
  * 
  * @dtf.since 1.0
  * @dtf.author Rodney Gomes

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="rendezvous_test">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>Simple rendezvous test used in presentations. :)</description>
+    </info>
+
+    <local>
+        <lockcomponent id="C1"/>
+        <lockcomponent id="C2"/>
+    </local>
+    
+    <rendezvous_create parties="2" id="R1"/>
+
+    <parallel>
+	    <component id="C1">
+	        <rendezvous_visit id="R1"/> 
+            <log>Synchronized!</log>
+	    </component>
+	    <component id="C2">
+	        <rendezvous_visit id="R1"/> 
+            <log>Synchronized!</log>
+	    </component>
+    </parallel>
+</script>

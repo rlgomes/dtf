@@ -2,9 +2,9 @@ package com.yahoo.dtf.actions.conditionals;
 
 import com.yahoo.dtf.exception.DTFException;
 
-
 /**
  * @dtf.tag not
+ * @dtf.skip.index
  * 
  * @dtf.since 1.0
  * @dtf.author Rodney Gomes

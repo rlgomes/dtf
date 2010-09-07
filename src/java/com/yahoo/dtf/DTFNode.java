@@ -14,6 +14,7 @@ import java.util.Enumeration;
 import java.util.Properties;
 
 import org.apache.commons.jxpath.JXPathIntrospector;
+import org.openqa.selenium.server.SeleniumServer;
 
 import com.yahoo.dtf.actions.Action;
 import com.yahoo.dtf.actions.component.Component;
@@ -21,6 +22,7 @@ import com.yahoo.dtf.actions.component.Lockcomponent;
 import com.yahoo.dtf.actions.component.Stopcomponent;
 import com.yahoo.dtf.actions.protocol.Lock;
 import com.yahoo.dtf.actions.protocol.ReleaseAgent;
+import com.yahoo.dtf.actions.selenium.server.SeleniumServerFactory;
 import com.yahoo.dtf.actions.util.ScriptUtil;
 import com.yahoo.dtf.comm.Comm;
 import com.yahoo.dtf.comm.CommClient;
@@ -471,6 +473,7 @@ public class DTFNode {
         } finally { 
             _state.getCursors().close();
             _comm.shutdown();
+            SeleniumServerFactory.shutdown();
             DebugServer.shutdown();
             _logger.info("Shutting down " + getType());
         }
