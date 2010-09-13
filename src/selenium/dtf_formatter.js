@@ -71,7 +71,7 @@ function format(testCase, name) {
   
     result += tab + '<selenium host="' + options.host + '" ' + 
                               'port="' + options.port + '" ' +
-                              'baseurl="' + testCase.baseURL + '" >\n';
+                              'baseurl="' + options.url + '" >\n';
     tab += '    ';
 
     var id = 0;
@@ -173,7 +173,7 @@ options = {
     // Selenium Server Options
     host : 'localhost',
     port : '44444',
-    url  : null,
+    url  : "${baseURL}" ,
    
     // Default Values
     wait : '30000'
