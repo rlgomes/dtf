@@ -173,7 +173,7 @@ options = {
     // Selenium Server Options
     host : 'localhost',
     port : '44444',
-    url  : "${baseURL}" ,
+    url  : "http://${baseURL}" ,
    
     // Default Values
     wait : '30000'
