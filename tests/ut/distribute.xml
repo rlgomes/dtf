@@ -158,12 +158,12 @@
 
     <log>Validate timer is respected</log> 
     <record type="stats"> 
-	    <distribute timer="500ms" iterations="100000" range="1..10">
+	    <distribute timer="1000ms" iterations="100000" range="1..10">
 	        <event name="fake"/>
 	    </distribute> 
     </record>
-    <assert message="Duration was longer than 500ms at ${fake.tot_dur}ms">
-       <within tolerance="+10%" op1="500" op2="${fake.tot_dur}"/>
+    <assert message="Duration was longer than 1000ms at ${fake.tot_dur}ms">
+       <within tolerance="+10%" op1="1000" op2="${fake.tot_dur}"/>
     </assert>
       
     <!-- negative -->
