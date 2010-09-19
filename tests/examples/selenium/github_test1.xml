@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="github_test1">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        Sample test that uses github selenium functions to create/destroy
+        repositories in parallel using the same account from multiple threads.
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input" />
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output" />
+
+        <import uri="storage://INPUT/github_utils.xml"/>
+        
+        <loadproperties uri="storage://INPUT/test.properties" />
+        <property name="timeout" value="30000"/>
+    </local>
+
+    <parallelloop property="t" range="1..5">
+	    <selenium baseurl="http://github.com" browser="${browser}">
+	        <call function="home"/>
+	        <call function="login"/>
+            <for property="i" range="1..5">
+		        <call function="create_repository">
+		            <property name="repository" value="repo-t${i}-i${t}"/>
+		        </call>
+		        <call function="delete_repository">
+		            <property name="repository" value="repo-t${i}-i${t}"/>
+		        </call>
+            </for>
+	    </selenium>
+    </parallelloop>
+
+</script>   

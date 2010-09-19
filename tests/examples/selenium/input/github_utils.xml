@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="github_utils">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        </description>
+    </info>
+
+    <function name="login">
+        <click locator="link=Login" />
+        <waitForPageToLoad timeout="${timeout}" />
+        <type locator="login_field" value="dtftesting@gmail.com" />
+        <type locator="password" value="pass4dtftesting" />
+        <click locator="commit" />
+        <waitForPageToLoad timeout="${timeout}" />
+        <windowMaximize/>
+    </function>
+    
+    <function name="home">
+        <open url="/"/> 
+        <waitForPageToLoad timeout="${timeout}" />
+    </function>
+
+    <function name="create_repository">
+        <param name="repository" type="required"/>
+        
+        <click locator="link=New Repository" />
+        <waitForPageToLoad timeout="${timeout}" />
+        <type locator="repository_name" value="${repository}" />
+        <type locator="repository_description"
+              value="just a simple test project" />
+        <click locator="//button[@type='submit']" />
+        <waitForPageToLoad timeout="${timeout}" />
+    </function>
+    
+    <function name="delete_repository">   
+        <param name="repository" type="required"/>
+       
+        <click locator="link=${repository}" />
+        <waitForPageToLoad timeout="${timeout}" />
+        <click locator="//div[@id='main']/div[2]/div[1]/ul[1]/li[2]/a/span/span" />
+        <waitForPageToLoad timeout="${timeout}" />
+        <click locator="//div[@id='addons_bucket']/div[4]/div[1]/a/span" />
+        <click locator="//div[@id='addons_bucket']/div[4]/div[3]/form/button" />
+        <waitForPageToLoad timeout="${timeout}" />
+    </function>
+    
+    <function name="search_repository">
+        <param name="repository" type="required"/>
+        <param name="link" type="required"/>
+    
+        <open url="/"/>
+        <click locator="link=Browse Interesting Repos"/>
+        <waitForPageToLoad timeout="30000"/>
+        <type locator="q" value="${repository}"/>
+        <click locator="//input[@value='Search']"/>
+        <waitForPageToLoad timeout="30000"/>
+        <assert><isElementPresent locator="link=${link}"/></assert>
+    </function>
+    
+    <function name="create_gist">
+        <param name="gist.name" type="required"/>
+        <param name="gist.data" type="required"/>
+         
+        <open url="/"/>
+        <click locator="link=Gist"/>
+        <waitForPageToLoad timeout="30000"/>
+        <type locator="file_name[gistfile1]" value="dummy1.xml"/>
+        <type locator="file_contents[gistfile1]" value="${gist.data}"/>
+        <click locator="//div[@id='main']/div[2]/form/div[3]/div[2]/button[2]"/>
+        <waitForPageToLoad timeout="30000"/>
+       
+        <getLocation property="url"/> 
+        <return>${url}</return>
+    </function>
+    
+    <function name="delete_gist">
+        <param name="gist" type="required"/>
+        
+        <open url="/"/>
+        <click locator="link=Gist"/>
+        <waitForPageToLoad timeout="30000"/>
+        
+        <click locator="link=My Gists"/>
+        <waitForPageToLoad timeout="30000"/>
+
+        <click locator="link=gist: ${gist}"/>
+        <waitForPageToLoad timeout="30000"/>
+        
+        <click locator="link=delete this gist"/>
+        <getConfirmation property="sel.getconfirmation-0"/>
+        <assert><eq op1="${sel.getconfirmation-0}" op2="Are you sure?"/></assert>
+    </function>
+
+</script>   

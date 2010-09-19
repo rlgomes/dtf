@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="github_sys_test1">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input" />
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output" />
+
+        <import uri="storage://INPUT/github_utils.xml"/>
+        
+        <loadproperties uri="storage://INPUT/test.properties" />
+        <property name="timeout" value="30000"/>
+    </local>
+    
+    <parallelloop property="t" range="1..5">
+        <for property="i" range="1..3">
+		    <selenium baseurl="http://github.com" browser="${browser}">
+		        <call function="home"/>
+		        <call function="login"/>
+                
+                <!-- now pick one of the follow interactions to do on the 
+                     currently logged in github account -->
+		        <choices>
+               
+                    <!-- search for the dtf repository --> 
+		            <choose howoften="33%">
+                        <log>search</log>
+				        <call function="search_repository">
+				            <property name="repository" value="dtf"/>
+				            <property name="link" value="rlgomes / dtf"/>
+				        </call>
+		            </choose> 
+                    
+                    <!-- create and delete a gist -->
+		            <choose howoften="33%">
+                        <log>gists</log>
+				        <call function="create_gist" result="gist.url">
+				            <property name="gist.name" value="testing.xml"/>
+				            <property name="gist.data"><![CDATA[
+				            <root>
+				                <p1>
+				                    <p2>
+				                    </p2>
+				                </p1>
+				            </root>]]>
+				            </property>
+				        </call>
+				        
+				        <replace source="${gist.url}"
+				                 destination="gist.id"
+				                 expression="http://gist.github.com/([0-9]+)"
+				                 with="$1"/>
+				                 
+				        <call function="delete_gist">
+				            <property name="gist" value="${gist.id}"/>
+				        </call>
+		            </choose>
+                    
+                    <!-- create and delete a repository -->
+		            <choose howoften="33%">
+                        <log>repository</log>
+		                <call function="create_repository">
+		                    <property name="repository" value="repo-t${i}-i${t}"/>
+		                </call>
+		                <call function="delete_repository">
+		                    <property name="repository" value="repo-t${i}-i${t}"/>
+		                </call>
+		            </choose>
+		        </choices>
+		    </selenium>
+        </for>
+    </parallelloop>
+
+</script>   
