@@ -27,7 +27,7 @@ public class SeleniumServerFactory {
      * @param port
      * @throws DTFException 
      */
-    public static void startServer(int port) throws DTFException { 
+    public synchronized static void startServer(int port) throws DTFException { 
         if ( !ssmap.containsKey(""+port) ) {
 	        RemoteControlConfiguration rcc = new RemoteControlConfiguration();
 	        rcc.setPort(port);

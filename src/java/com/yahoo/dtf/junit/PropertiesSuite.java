@@ -20,7 +20,7 @@ import com.yahoo.dtf.exception.DTFException;
  *
  * @author rlgomes
  */
-public class DTFPropertiesSuite extends DTFJUnitTest {
+public class PropertiesSuite extends DTFJUnitTest {
 
     private static int CLONE_DEPTH = 20;
     
@@ -132,7 +132,7 @@ public class DTFPropertiesSuite extends DTFJUnitTest {
         }
     }
     
-    private static double ITERATIONS = 10000;
+    private static double ITERATIONS = 1000000;
    
     /**
      * Put performance test for comparison if anyone tries to make a better 
@@ -152,7 +152,7 @@ public class DTFPropertiesSuite extends DTFJUnitTest {
         double duration = (stop-start)/1000;
         double ops_per_s = ITERATIONS/duration;
        
-        System.out.println("puts/sec: " + ops_per_s);
+        info("puts/sec: " + ops_per_s);
     }
 
     /**
@@ -181,7 +181,7 @@ public class DTFPropertiesSuite extends DTFJUnitTest {
         double duration = (stop-start)/1000;
         double ops_per_s = ITERATIONS/duration;
        
-        System.out.println("Puts/sec: " + ops_per_s);
+        info("puts/sec: " + ops_per_s);
     }
    
     /**
@@ -205,7 +205,7 @@ public class DTFPropertiesSuite extends DTFJUnitTest {
         double duration = (stop-start)/1000;
         double ops_per_s = ITERATIONS/duration;
        
-        System.out.println("clones/sec: " + ops_per_s);
+        info("clones/sec: " + ops_per_s);
     }
    
     /**
@@ -266,7 +266,6 @@ public class DTFPropertiesSuite extends DTFJUnitTest {
         while ( elements.hasMoreElements() ) { 
             String elem = elements.nextElement().toString();
             expected_elements.get(elem).incrementAndGet();
-            System.out.println("elem " + elem);
         }
         
         for (Entry<String, AtomicInteger> entry : expected_elements.entrySet()) { 
@@ -278,6 +277,6 @@ public class DTFPropertiesSuite extends DTFJUnitTest {
     }
     
     public static junit.framework.Test suite() {
-        return new JUnit4TestAdapter(DTFPropertiesSuite.class);
+        return new JUnit4TestAdapter(PropertiesSuite.class);
     }
 }

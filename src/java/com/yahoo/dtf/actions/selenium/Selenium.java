@@ -182,12 +182,12 @@ public class Selenium extends Action {
      * @throws DTFException
      */
     protected DefaultSelenium getSelenium() throws DTFException { 
-        DefaultSelenium sel = (DefaultSelenium) getGlobalContext("dtf.selenium");
-        
+        DefaultSelenium sel = (DefaultSelenium) getContext("dtf.selenium");
+ 
         if ( sel == null ) { 
             throw new DTFException("There is no selenium instance initialized.");
         }
-        
+
         return sel;
     }
     
@@ -195,21 +195,21 @@ public class Selenium extends Action {
     public void execute() throws DTFException {
         // start up server if its not already running
         SeleniumServerFactory.startServer(getPort());
-        
+
         DefaultSelenium selenium = new DefaultSelenium(getHost(),
                                                        getPort(),
                                                        getBrowser(),
                                                        getBaseurl());
-        
+
         selenium.start();
-        registerGlobalContext("dtf.selenium", selenium);
-        try { 
+        registerContext("dtf.selenium", selenium);
+        try {
             executeChildren();
         } catch (SeleniumException e) { 
             throw new DTFException("Selenium error.",e);
         } finally { 
             selenium.stop();
-            unRegisterGlobalContext("dtf.selenium");
+            unRegisterContext("dtf.selenium");
         }
     }
     

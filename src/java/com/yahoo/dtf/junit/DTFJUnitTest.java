@@ -29,4 +29,8 @@ public class DTFJUnitTest {
     public static Config getConfig() { 
         return Action.getConfig();
     }
+    
+    public void info(String message) { 
+        System.out.println(message);
+    }
 }

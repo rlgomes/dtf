@@ -8,6 +8,7 @@ import java.net.URI;
 import com.yahoo.dtf.actions.util.DTFProperty;
 import com.yahoo.dtf.exception.DTFException;
 import com.yahoo.dtf.exception.ParseException;
+import com.yahoo.dtf.exception.StorageException;
 
 /**
  * @dtf.tag property
@@ -63,9 +64,20 @@ public class Property extends DTFProperty {
     }
 
     public void execute() throws DTFException {
-        URI uri = getUri();
         String value = getValue();
-        String cdata = getCDATA();
+        
+        if ( value == null ) 
+            value = "";
+        
+        getConfig().setProperty(getName(), value, getOverwrite());
+    }
+    
+    @Override
+    public String getValue() throws ParseException {
+        URI uri = getUri();
+        String value = super.getValue();
+        String cdata = super.getCDATA();
+        String result = null;
         
         if ( (value != null && uri != null) || 
              (value != null && cdata != null) || 
@@ -74,36 +86,38 @@ public class Property extends DTFProperty {
                                      + "a single text child node per property " 
                                      + "tag.");
         }
+
+        if ( value != null ) 
+            result = value;
+
+        if ( cdata != null )
+            result = cdata;
         
         if (uri != null) { 
-            InputStream is = getStorageFactory().getInputStream(uri);
-          
-            /*
-             * Copy back the contents into the value string and later make this
-             * the value of the specific property name.
-             */
             try {
-                value = "";
+	            /*
+	             * Copy back the contents into the value string and later make 
+	             * this the value of the specific property name.
+	             */
+                InputStream is = getStorageFactory().getInputStream(uri);
+                
                 int read = 0;
                 byte[] buffer = new byte[32*1024];
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 while (( read = is.read(buffer)) != -1) {
                     baos.write(buffer,0,read);
                 }
-                value = baos.toString(getEncoding());
+                result = baos.toString(getEncoding());
             } catch (IOException e) {
-                throw new DTFException("Error reading file contents [" + uri + 
-                                       "]",e);
+                throw new ParseException("Error reading file contents [" + uri 
+                                         + "]",e);
+            } catch (StorageException e) {
+                throw new ParseException("Error reading file contents [" + uri 
+                                         + "]",e);
             }
         } 
-        
-        if ( cdata != null ) 
-            value = cdata;
-        
-        if ( value == null ) 
-            value = "";
-        
-        getConfig().setProperty(getName(), value, getOverwrite());
+      
+        return result;
     }
 
     public boolean getOverwrite() throws ParseException { return toBoolean("overwrite",overwrite); }
