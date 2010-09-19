@@ -114,6 +114,14 @@ function format(testCase, name) {
                 result += tab + tagA(tagL('isElementPresent', command)) + '\n';
             } else if (command.command == 'assertTextPresent') {
                 result += tab + tagA(tagP('isTextPresent', command)) + '\n';
+            } else if (command.command == 'assertConfirmation') {
+                result += tab;
+                result += '<getConfirmation property="sel.getconfirmation-' + 
+                          id + '"/>\n';
+                result += tab;
+                result += '<assert><eq op1="${sel.getconfirmation-' + id + 
+                          '}" op2="' + command.target + '"/></assert>\n';
+                id++;
                 
             // verify commands
             } else if (command.command == 'verifyTextPresent') {
