@@ -39,7 +39,7 @@ public class DTFSSHSetup {
                                      String user,
                                      DTFLogger logger) 
            throws JSchException, FileNotFoundException, IOException, SftpException, DTFException { 
-        Session session = SSHUtil.connectToHost(host, user, null);
+        Session session = SSHUtil.connectToHost(host, user, null, null);
         DeployUI ui = (DeployUI) session.getUserInfo();
         
         String dtfssh = getDTFSSHLocation();
@@ -96,7 +96,11 @@ public class DTFSSHSetup {
         String user = node.getUser();
         String wrapcmd = node.getWrapcmd();
         
-        Session session = SSHUtil.connectToHost(host, user, node.getRsakey());
+        Session session = SSHUtil.connectToHost(host,
+                                                user,
+                                                node.getRsakey(),
+                                                node.getPassphrase());
+        
         DeployUI ui = (DeployUI) session.getUserInfo();
         
         String dtfssh = getDTFSSHLocation();
@@ -155,7 +159,7 @@ public class DTFSSHSetup {
                 }
                 
                 logger.info("Setting up DTF at [" + setupkey + "] as a " + component);
-                if ( component.equals("dtfc") ) { 
+                if ( component.equals("dtfc") && node.getRsakey() != null ) { 
 	                // if its the controller then it should also get the private
 	                // key made accessible so it can easily then deploy 
 	                // components on the other machines using this key to ssh 

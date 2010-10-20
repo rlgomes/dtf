@@ -271,10 +271,25 @@
     <log>validate unknown host error</log>
     <http_put uri="http://cacacacaca/" onFailure="continue"/>
     <assert><eq op1="${http.put.status}" op2="902"/></assert>
- 
+
     <log>validate connection timeout error</log>
-    <http_get uri="http://www.yahoo.com"
-              onFailure="continue"
-              connecttimeout="1ms"/>
-    <assert><eq op1="${http.get.status}" op2="903"/></assert>
+    <parallel>
+	    <http_server port="12345" >
+	        <http_listener path="/toolong" method="GET">
+                <sleep time="1s"/>
+            </http_listener>
+	    </http_server>
+       
+        <try>
+            <sequence>
+			    <http_get uri="http://www.yahoo.com"
+			              onFailure="continue"
+			              connecttimeout="1ms"/>
+			    <assert><eq op1="${http.get.status}" op2="903"/></assert>
+            </sequence> 
+            <finally>
+                <http_server port="12345" command="stop"/>
+            </finally>
+        </try>
+    </parallel> 
 </script>

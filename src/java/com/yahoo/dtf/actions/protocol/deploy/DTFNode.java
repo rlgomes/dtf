@@ -14,6 +14,8 @@ public class DTFNode extends Action {
     
     private String rsakey = null;
 
+    private String passphrase = null;
+
     private String wrapcmd = null;
     
     @Override
@@ -35,6 +37,9 @@ public class DTFNode extends Action {
 
     public String getRsakey() throws ParseException { return replaceProperties(rsakey); }
     public void setRsakey(String rsakey) { this.rsakey = rsakey; }
+
+    public String getPassphrase() throws ParseException { return replaceProperties(passphrase); }
+    public void setPassphrase(String passphrase) { this.passphrase = passphrase; }
     
     @Override
     public boolean equals(Object obj) {

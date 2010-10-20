@@ -112,4 +112,9 @@ public class StreamStorage extends StorageIntf {
     public void delete(String filename) throws StorageException {
         throw new RuntimeException("Not supported method.");
     }
+    
+    @Override
+    public void move(String src, String dst) throws StorageException {
+        throw new RuntimeException("Not supported method.");
+    }
 }

@@ -246,13 +246,15 @@ public class DeployDTF {
                     String dtfx_user = dtfx.getUser();
                     String dtfx_path = dtfx.getPath();
                     String dtfx_rsakey = dtfx.getRsakey();
+                    String dtfx_passphrase = dtfx.getPassphrase();
                    
                     try { 
                         Properties state = getState("dtfx",
                                                     dtfx_host,
                                                     dtfx_user,
                                                     dtfx_path,
-                                                    dtfx_rsakey);
+                                                    dtfx_rsakey,
+                                                    dtfx_passphrase);
                         
                         _logger.info("DTFX running at [" + dtfx_host + "]");
                         String exited = state.getProperty("dtf.node.exited");
@@ -400,7 +402,12 @@ public class DeployDTF {
                 String dtfx_rsakey = dtfx.getRsakey();
                
                 try { 
-                    Properties state = getState("dtfx", dtfx_host, dtfx_user, dtfx_path, dtfx_rsakey);
+                    Properties state = getState("dtfx",
+                                                dtfx_host,
+                                                dtfx_user,
+                                                dtfx_path,
+                                                dtfx_rsakey,
+                                                dtfx.getPassphrase());
                     int dport = Integer.valueOf(state.getProperty("dtf.debug.port"));
                    
                     String exited = state.getProperty("dtf.node.exited");
@@ -445,12 +452,16 @@ public class DeployDTF {
                 String dtfx_user = dtfx.getUser();
                 String dtfx_path = dtfx.getPath();
                 String dtfx_rsakey = dtfx.getRsakey();
+                String dtfx_passphrase = dtfx.getPassphrase();
                 
                 if ( dtfx_path == null ) 
                     dtfx_path = "dtf";
 
 	            try { 
-	                Session session = SSHUtil.connectToHost(dtfx_host, dtfx_user, dtfx_rsakey);
+	                Session session = SSHUtil.connectToHost(dtfx_host,
+	                                                        dtfx_user,
+	                                                        dtfx_rsakey,
+	                                                        dtfx_passphrase);
 	                try { 
 		                SSHUtil.execute(session,
 		                                "tail -f " + dtfx_path + "/dtfx.log",
@@ -471,11 +482,15 @@ public class DeployDTF {
 	                                    String host,
 	                                    String user,
 	                                    String path,
-	                                    String rsakey) 
+	                                    String rsakey,
+	                                    String passphrase) 
                   throws JSchException, SftpException, IOException { 
         Properties props = new Properties();
         
-        Session session = SSHUtil.connectToHost(host, user, rsakey);
+        Session session = SSHUtil.connectToHost(host,
+                                                user,
+                                                rsakey, 
+                                                passphrase);
         Channel sChannel = session.openChannel("sftp");
         sChannel.connect();
         ChannelSftp csftp = (ChannelSftp)sChannel;
@@ -881,7 +896,7 @@ public class DeployDTF {
             
             try { 
                 if ( isUp("dtfc", host, 40000) ) {
-                    stop("dtfc", host, user, path, rsakey);
+                    stop("dtfc", host, user, path, rsakey, dtfc.getPassphrase());
                 } else { 
                     _logger.info("DTFC not running on " + hostkey);
                 }
@@ -907,6 +922,7 @@ public class DeployDTF {
             String user = dtfc.getUser();
             String path = dtfc.getPath();
             String rsakey = dtfc.getRsakey();
+            String passphrase = dtfc.getPassphrase();
             String hostkey = user + "@" + host;
             
             File file = new File("dtf_logs");
@@ -935,6 +951,7 @@ public class DeployDTF {
                         user,
                         path,
                         rsakey,
+                        passphrase,
                         "dtfc.log",
                         file.getAbsolutePath());
             } catch (JSchException e ) { 
@@ -964,6 +981,7 @@ public class DeployDTF {
                              dtfa_user,
                              dtfa_path,
                              dtfa_rsakey,
+                             dtfa.getPassphrase(),
                              "dtfa-" + a + ".log",
                              file.getAbsolutePath());
                 }
@@ -983,6 +1001,7 @@ public class DeployDTF {
                              dtfx_user,
                              dtfx_path,
                              dtfx_rsakey,
+                             dtfx.getPassphrase(),
                              "dtfx.log",
                              file.getAbsolutePath());
                    
@@ -995,6 +1014,7 @@ public class DeployDTF {
 	                                 dtfx_user,
 	                                 dtfx_path,
 	                                 dtfx_rsakey,
+                                     dtfx.getPassphrase(),
 	                                 logs[l],
 	                                 file.getAbsolutePath());
                         }
@@ -1234,9 +1254,10 @@ public class DeployDTF {
 	                           String host,
 	                           String user,
 			                   String path,
-			                   String rsakey)
+			                   String rsakey,
+			                   String passphrase)
         throws JSchException, IOException, SftpException { 
-        Session session = SSHUtil.connectToHost(host, user, rsakey);
+        Session session = SSHUtil.connectToHost(host, user, rsakey, passphrase);
         
         Channel sChannel = session.openChannel("sftp");
         sChannel.connect();
@@ -1259,11 +1280,12 @@ public class DeployDTF {
 				                  String user,
 				                  String path,
 				                  String rsakey,
+				                  String passphrase,
 				                  String logpath,
 				                  String savepath) 
         throws JSchException,
             IOException, SftpException, DTFException {
-        Session session = SSHUtil.connectToHost(host, user, rsakey);
+        Session session = SSHUtil.connectToHost(host, user, rsakey, passphrase);
         int rc = 0;
 
         Channel sChannel = session.openChannel("sftp");

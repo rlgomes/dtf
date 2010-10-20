@@ -15,33 +15,45 @@
 
         <import uri="storage://INPUT/perfutil.xml"/>
         <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <property name="iterations" value="100000"/>
     </local>
 
     <record uri="storage://OUTPUT/unfiltered.txt">
-        <for property="i" range="1..10">
+        <for property="i" range="1..${iterations}">
             <event name="write.event">
                 <attribute name="recordid" value="${i}"/>
                 <attribute name="timestamp" value="${dtf.timestamp}"/>
                 <attribute name="datestamp" value="${dtf.datestamp}"/>
                 <attribute name="uid" value="${dtf.stream(random,16,${i})}"/>
                 <attribute name="gid" value="${dtf.stream(random,16,${i})}"/>
-                <attribute name="hash" value="${dtf.stream(random,21,${i})}"/>
             </event>
         </for>
     </record> 
 
     <log>start filtering.</log>
-    <filter srcuri="storage://OUTPUT/unfiltered.txt"
-            dsturi="storage://OUTPUT/filtered.txt"
-            event="write.event">
-        <select>
-	        <field name="recordid" />
-	        <field name="hash" />
-        </select>
-        <where>
-            <gt op2="recordid" op1="5"/>
-        </where>
-    </filter>
+    <event name="total">
+	    <filter srcuri="storage://OUTPUT/unfiltered.txt"
+	            dsturi="storage://OUTPUT/filtered.txt"
+	            event="write.event">
+	        <select>
+		        <field name="recordid" />
+		        <field name="hash" />
+	        </select>
+	        <where>
+                <and>
+	               <lt op2="recordid" op1="50000"/>
+	               <gt op2="recordid" op1="10000"/>
+                </and>
+	        </where>
+	    </filter>
+    </event>
     <log>done filtering.</log>
+    
+    <call function="calcEventPerf" result="ops_per_sec">
+        <property name="iterations" value="${iterations}"/>
+        <property name="event" value="total"/>
+    </call>
+    <log>events filtered/sec: ${ops_per_sec}</log>
     
 </script>

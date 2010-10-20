@@ -14,10 +14,12 @@ class DeployUI implements UserInfo {
     
     private String host = null;
     private String user = null;
+    private String passphrase = null;
     
-    public DeployUI(String host, String user) {
+    public DeployUI(String host, String user, String passphrase) {
         this.host = host;
         this.user = user;
+        this.passphrase = passphrase;
     }
         
     public void showMessage(String arg0) {

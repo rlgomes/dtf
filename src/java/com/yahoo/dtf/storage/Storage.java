@@ -235,4 +235,15 @@ public class Storage extends StorageIntf {
             throw new StorageException("Unable to delete [" + filename + "]");
         }
     }
+    
+    @Override
+    public void move(String src, String dst) throws StorageException {
+        File srcFile = new File(_fpath,src);
+        File dstFile = new File(_fpath,dst);
+        
+        if ( !srcFile.renameTo(dstFile) ) { 
+            throw new StorageException("Unable to rename [" + srcFile + 
+                                       "] to [" + dstFile + "]");
+        }
+    }
 }

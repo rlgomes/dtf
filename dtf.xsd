@@ -38,6 +38,7 @@
             <xs:element ref="iterate" />
             <xs:element ref="compare" />
             <xs:element ref="filter"/>
+            <xs:element ref="sort"/>
           
             <!-- logging tags --> 
             <xs:element ref="log"/>
@@ -862,7 +863,7 @@
     <xs:element name="field">
         <xs:complexType>
             <xs:attribute name="name" type="xs:string" use="required" />
-            <xs:attribute name="type" type="xs:string" use="optional" />
+            <xs:attribute name="type" type="xs:string" default="string" />
         </xs:complexType>
     </xs:element>
     
@@ -882,15 +883,35 @@
         </xs:complexType>
     </xs:element>
     
+    <xs:element name="sort">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="1" ref="field"/>
+                <xs:element name="select" maxOccurs="1" minOccurs="0" >
+                   <xs:complexType>
+                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                           <xs:element ref="field" />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="input" use="required"/>
+            <xs:attribute name="output" use="required"/>
+            <xs:attribute name="type" default="txt"/>
+            <xs:attribute name="event" use="required"/>
+            <xs:attribute name="encoding" default="UTF8"/>
+        </xs:complexType>
+    </xs:element>
+    
     <xs:element name="filter">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="select" maxOccurs="1" minOccurs="0" >
-			        <xs:complexType>
-			            <xs:sequence minOccurs="0" maxOccurs="unbounded">
-			                <xs:element ref="field" />
-			            </xs:sequence>
-			        </xs:complexType>
+                   <xs:complexType>
+                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                           <xs:element ref="field" />
+                        </xs:sequence>
+                    </xs:complexType>
                 </xs:element> 
                 <xs:element maxOccurs="1" minOccurs="0" ref="where"/>
             </xs:sequence>
@@ -1513,6 +1534,7 @@
             <xs:attribute name="path"/>
             <xs:attribute name="rsakey"/>
             <xs:attribute name="wrapcmd"/>
+            <xs:attribute name="passphrase"/>
         </xs:complexType>
     </xs:element>
 
@@ -1526,6 +1548,7 @@
             <xs:attribute name="path"/>
             <xs:attribute name="rsakey"/>
             <xs:attribute name="wrapcmd"/>
+            <xs:attribute name="passphrase"/>
         </xs:complexType>
     </xs:element>
 
@@ -1541,9 +1564,9 @@
             <xs:attribute name="logs"/>
             <xs:attribute name="rsakey"/>
             <xs:attribute name="wrapcmd"/>
+            <xs:attribute name="passphrase"/>
         </xs:complexType>
     </xs:element>
-    
     <!--END deploy config elements -->
     
     <!-- selenium tags -->

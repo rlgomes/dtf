@@ -27,9 +27,10 @@ public class SSHUtil {
 
     public static Session connectToHost(String host,
                                           String user,
-                                          String privkey) throws JSchException { 
+                                          String privkey,
+                                          String passphrase) throws JSchException { 
         JSch jsch = new JSch();
-        DeployUI ui = new DeployUI(host,user);
+        DeployUI ui = new DeployUI(host,user,passphrase);
     
         String home = System.getProperty("user.home");
         String known_hosts = home + "/.dtf/known_hosts";
@@ -37,8 +38,10 @@ public class SSHUtil {
         
         if ( privkey != null ) {
             id_rsa = privkey;
+            _logger.info("Using specified RSA key [" + id_rsa + "]");
         } else { 
             id_rsa = home + "/.dtf/id_rsa";
+            _logger.info("Using default RSA key [" + id_rsa + "]");
         }
         
         if (new File(known_hosts).exists())

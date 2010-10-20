@@ -352,6 +352,7 @@ abstract public class Action implements Externalizable {
      *     }
      * }
      * </pre>
+     * 
      */
     public static void checkInterruption() throws InterruptionException { 
         if ( Thread.currentThread().isInterrupted() ) {
