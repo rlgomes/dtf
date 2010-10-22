@@ -20,6 +20,7 @@ import com.jcraft.jsch.SftpException;
 import com.yahoo.dtf.actions.protocol.deploy.DTFNode;
 import com.yahoo.dtf.exception.DTFException;
 import com.yahoo.dtf.logger.DTFLogger;
+import com.yahoo.dtf.util.ThreadUtil;
 
 public class SSHUtil {
     
@@ -126,20 +127,36 @@ public class SSHUtil {
         BufferedReader br = null;
 
         try {
-            InputStreamReader esr = new InputStreamReader(exec.getErrStream());
-            InputStream is = exec.getInputStream();
-            InputStreamReader isr = new InputStreamReader(is);
-            br = new BufferedReader(isr);
-
+            InputStream ise = null;
             String line = null;
-            while ((line = br.readLine()) != null) {
-                out.write((line + "\n").getBytes());
+            
+            try { 
+                ise = exec.getErrStream();
+            } catch (NullPointerException e) { }
+            
+            if ( ise != null ) { 
+                InputStreamReader esr = new InputStreamReader(ise);
+                br = new BufferedReader(esr);
+                while ((line = br.readLine()) != null) {
+                    err.write((line + "\n").getBytes());
+                }
+            }
+            
+            InputStream is = null;
+            try { 
+                is = exec.getInputStream();
+            } catch (NullPointerException e) { }
+           
+            if ( is != null ) { 
+	            InputStreamReader isr = new InputStreamReader(is);
+	            br = new BufferedReader(isr);
+	
+	            while ((line = br.readLine()) != null) {
+	                out.write((line + "\n").getBytes());
+	            }
             }
 
-            br = new BufferedReader(esr);
-            while ((line = br.readLine()) != null) {
-                err.write((line + "\n").getBytes());
-            }
+
 
             return exec.getExitStatus();
         } finally {

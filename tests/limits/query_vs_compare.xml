@@ -30,10 +30,6 @@
                 <attribute name="value3" value="${prop2}" type="string" length="64"/>
                 <attribute name="value4" value="${iteration}-${prop1}" type="string" length="64"/>
                 <attribute name="value5" value="${prop1}${prop1}" type="string" length="64"/>
-                <attribute name="value6" value="${prop2}${prop2}" type="string" length="64"/>
-                <attribute name="value7" value="${prop2}${prop2}${prop1}" type="string" length="64"/>
-                <attribute name="value8" value="${prop2}${prop2}${prop1}" type="string" length="64"/>
-                <attribute name="value9" value="${prop2}${prop2}${prop1}" type="string" length="64"/>
             </event>
         </for>
     </record>
@@ -44,7 +40,12 @@
 		           event="dtf.event"
 		           cursor="cursor"/>
 		    <validate>
-		    	<assert><eq op1="${cursor.value2}" op2="${prop1}"/></assert>
+		    	<assert>
+                    <and>
+	                    <eq op1="${cursor.value2}" op2="${prop1}"/>
+	                    <eq op1="${cursor.value3}" op2="${prop2}"/>
+                    </and>
+                </assert>
 		    </validate>
 	    </compare> 
    	</event>
@@ -54,13 +55,18 @@
 	           event="dtf.event"
 	           cursor="cursor"/>
 	    <iterate cursor="cursor">
-	    	<assert><eq op1="${cursor.value2}" op2="${prop1}"/></assert>
+	    	<assert>
+                <and>
+	                <eq op1="${cursor.value2}" op2="${prop1}"/>
+	                <eq op1="${cursor.value3}" op2="${prop2}"/>
+                </and>
+            </assert>
 	    </iterate>
     </event> 
    
     <subtract op1="${imp.stop}" op2="${imp.start}" result="imp.dur"/> 
     <subtract op1="${cmp.stop}" op2="${cmp.start}" result="cmp.dur"/> 
 
-	<log>Imp time: ${imp.dur}</log>    
-	<log>Cmp time: ${cmp.dur}</log>    
+	<log>Using query and iterate tag:  ${imp.dur}ms</log>    
+	<log>Using Compare tag:            ${cmp.dur}ms</log>    
 </script>

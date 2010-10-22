@@ -233,13 +233,14 @@ public class DebugCLI {
 	                String logn = args[4];
 	                String path = (args.length > 5 ? args[5] : null);
 	                String rsakey = (args.length > 6 ? args[6] : null);
-	                String passphrase = (args.length > 7 ? args[7] : null);
-	                String wrapcmd = (args.length > 8 ? args[8] : null);
+	                String wrapcmd = (args.length > 7 ? args[7] : null);
+	                String passphrase = (args.length > 8 ? args[8] : null);
 	               
 	                // stupid trick to allow the path to be set to null
 	                path = ( path == null || path.equals("null") ? null : path );
 	                rsakey = ( rsakey == null || rsakey.equals("null") ? null : rsakey );
 	                passphrase = ( passphrase == null || passphrase.equals("null") ? null : passphrase );
+	                wrapcmd = ( wrapcmd == null || wrapcmd.equals("null") ? null : wrapcmd );
 
 	                try { 
 	                    // stupid trick to allow the path to be set to null

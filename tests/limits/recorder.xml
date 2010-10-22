@@ -11,6 +11,8 @@
     <local>
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+        <import uri="storage://INPUT/perfutil.xml"/>
 
         <echo>Recorder Limits Tests</echo>
     </local>
@@ -19,38 +21,38 @@
         <echo>Generating data...</echo>
         <property name="prop1" value="222222"/>
         <property name="prop2" value="abababababababababababababababa"/>
-        <property name="iterations" value="20000"/>
-    </local> 
-    
-	<record type="txt" uri="storage://OUTPUT/recorder1.txt" append="false"> 
-        <for property="iteration" range="1..${iterations}">
-            <event name="dtf.event">
-                <attribute name="value1" value="${iteration}" type="string" length="64"/>
-                <attribute name="value2" value="${prop1}" type="string" length="64"/>
-                <attribute name="value3" value="${prop2}" type="string" length="64"/>
-                <attribute name="value4" value="${iteration}-${prop1}" type="string" length="64"/>
-                <attribute name="value5" value="${prop1}${prop1}" type="string" length="64"/>
-                <attribute name="value6" value="${prop2}${prop2}" type="string" length="64"/>
-                <attribute name="value7" value="${prop2}${prop2}${prop1}" type="string" length="64"/>
-                <attribute name="value8" value="${prop2}${prop2}${prop1}" type="string" length="64"/>
-                <attribute name="value9" value="${prop2}${prop2}${prop1}" type="string" length="64"/>
-            </event>
-        </for>
-    </record>
-    
-    <query type="txt" uri="storage://OUTPUT/recorder1.txt" event="dtf.event" cursor="cursor"/>
-           
-    <record type="object" uri="property://perf" append="false"> 
-    	<stats cursor="cursor" event="stats"/>
-    </record> 
-    <local>
-   		<echo>
-              TXT Recorder Performance Stats 
-              -----------------------------------
-              Events per second: ${perf.avg_occ}
-              Total of Events:   ${perf.tot_occ}
-              Total Duration:    ${perf.tot_dur}ms
-        </echo> 
+        <property name="iterations" value="100000"/>
     </local>
+    
+    <for property="type" range="txt,csv">
+        <event name="total">
+			<record type="${type}"
+	                uri="storage://OUTPUT/recorder1.${type}"
+	                append="false"> 
+		        <for property="iteration" range="1..${iterations}">
+		            <event name="dtf.event">
+		                <attribute name="value1" value="${iteration}" type="string" length="64"/>
+		                <attribute name="value2" value="${prop1}" type="string" length="64"/>
+		                <attribute name="value3" value="${prop2}" type="string" length="64"/>
+		                <attribute name="value4" value="${iteration}-${prop1}" type="string" length="64"/>
+		                <attribute name="value5" value="${prop1}${prop1}" type="string" length="64"/>
+		            </event>
+		        </for>
+		    </record>
+        </event>
+	   
+        <call function="calcEventPerf" result="avg_occ">
+            <property name="iterations" value="${iterations}" />
+            <property name="event" value="total" />
+        </call> 
+        
+	    <local>
+	   		<echo>
+	              ${type} Recorder Performance Stats 
+	              -----------------------------------
+	              Events per second: ${avg_occ}
+	        </echo> 
+	    </local>
+    </for>
     
 </script>

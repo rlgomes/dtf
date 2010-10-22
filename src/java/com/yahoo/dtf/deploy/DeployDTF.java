@@ -136,7 +136,7 @@ public class DeployDTF {
 	            user = ( user.equals("N/A") ? null : user );
 	            setupInit(setup, user, script);
 	        }
-        } catch (DTFException e) { 
+        } catch (Throwable e) { 
             _logger.error("Error deploying.",e);
             System.exit(-1);
         }
@@ -755,6 +755,7 @@ public class DeployDTF {
                     String dtfa_user = dtfa.getUser();
                     String dtfa_path = dtfa.getPath();
                     String dtfa_rsakey = dtfa.getRsakey();
+                    String passphrase = dtfa.getPassphrase();
                     
                     String wrapcmd = dtfa.getWrapcmd();
                     if ( wrapcmd != null ) { 
@@ -770,6 +771,7 @@ public class DeployDTF {
                                                    dtfa_path + " " +  
                                                    dtfa_rsakey + " " +
                                                    wrapcmd + " " +
+                                                   passphrase + " " + 
                                                    propstring;
                   
                     if ( _logger.isDebugEnabled() )
