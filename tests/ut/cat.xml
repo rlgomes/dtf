@@ -23,6 +23,29 @@ Arch: ${os.arch}
 dtf.test.property1 = ${dtf.test.property1}
 dtf.test.property2 = ${dtf.test.property2}</cat>
     </local>
+    <property name="src">
+Chinese         一種語言永遠不夠 [一种语言永远不够]
+                yīzhǒng yǔyán yǒngyuǎn bùgòu - Mandarin
+                yātjúng yuéhyình wíhngyyúhn bātgau - Cantonese
+                jit7zung3 ngi1ngien2 jun1jen3 but7kieu5 - Hakka
+Greek           μία γλώσσα δεν είναι ποτέ αρκετή (mia glosa den ine pote arketi)
+Hindi           एक भाषा कभी क़ाफ़ी नहीं है (Ek bhāṣā kabhī qāfī nahīṁ hai)
+Japanese        一つの言語は決して十分ではない
+Persian         یک زبان را هرگز کافی است
+Russian         Один язык недостаточно 
+                Знать один язык недостаточно (Znatʼ odin jazyk nedostatočno)
+                Знать один язык - это недостаточно (Znatʼ odin jazyk - eto nedostatočno)
+Thai            ภาษาเดียวไม่เคยพอ (phāsā dīaw mai khoey po)
+Vietnamese      Một thứ tiếng thì không bao giờ đủ
+Welsh           annigonol ydy un iaith / dyw un iaith byth yn ddigon 
+Yiddish         אײן לשון איז קײנמאָל נישט גענוג         
+</property>
+
+    <cat uri="storage://OUTPUT/special_characters.txt"
+         append="false">${src}</cat>
+
+    <property name="data" uri="storage://OUTPUT/special_characters.txt"/>
+    <assert><eq op1="${src}" op2="${data}"/></assert>
     
     <!-- negative -->
     <try> 

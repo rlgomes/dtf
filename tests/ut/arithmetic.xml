@@ -32,6 +32,9 @@
     <abs op1="-1000" result="abs"/>
     <assert><eq op1="${abs}" op2="1000"/></assert>
     
+    <abs op1="1000" result="abs"/>
+    <assert><eq op1="${abs}" op2="1000"/></assert>
+    
     <!-- 2 + 2 * 3 == 2 * 4 -->
     <multiply op1="2" op2="3" result="a"/>
     <add op1="${a}" op2="2" result="a"/>

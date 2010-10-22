@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -698,6 +699,13 @@ abstract public class Action implements Externalizable {
     }
 
     public static DTFInputStream replacePropertiesAsInputStream(String string) 
+                  throws ParseException {
+        return replacePropertiesAsInputStream(string,
+                                              Charset.defaultCharset().displayName());
+    }
+
+    public static DTFInputStream replacePropertiesAsInputStream(String string,
+                                                                String encoding) 
            throws ParseException {
         
         if (string == null) 
@@ -756,7 +764,7 @@ abstract public class Action implements Externalizable {
             }
         }
         
-        return new StringInputStream(replaceProperties(string));
+        return new StringInputStream(replaceProperties(string),encoding);
     }
     
     public String getClassName() { return Action.getClassName(this.getClass()); }

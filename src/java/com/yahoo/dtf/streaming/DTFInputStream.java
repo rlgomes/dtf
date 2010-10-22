@@ -61,6 +61,10 @@ public abstract class DTFInputStream extends InputStream {
 
     public long getSize() { return _size; } 
    
+    public void setSize(long size) { 
+        _size = size;
+    }
+   
     public void setHashAlgorithm(String algorithm) throws ParseException { 
         try {
             /*

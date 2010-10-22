@@ -157,7 +157,9 @@ public final class StorageFactory implements Cloneable {
      * @return
      * @throws StorageException
      */
-    public OutputStream getOutputStream(URI uri,boolean append) throws StorageException {
+    public OutputStream getOutputStream(URI uri,
+                                        boolean append)
+           throws StorageException {
         StorageIntf storage = retrieveStorage(uri.getHost());
         return storage.getOutputStream(uri.getPath(),append); 
     }

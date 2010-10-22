@@ -57,7 +57,8 @@ public class Property extends DTFProperty {
     
     public Property() { }
 
-    public Property(String name, String value, boolean overwrite) throws ParseException {
+    public Property(String name, String value, boolean overwrite)
+           throws ParseException {
         setName(name);
         setValue(value);
         setOverwrite("" + overwrite);

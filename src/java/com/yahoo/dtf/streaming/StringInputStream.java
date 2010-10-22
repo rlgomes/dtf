@@ -1,32 +1,47 @@
 package com.yahoo.dtf.streaming;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 
 import com.yahoo.dtf.exception.ParseException;
 
 public class StringInputStream extends DTFInputStream {
 
-    private String value = null;
     private int _count = 0;
+    private byte[] bytes = null;
     
     public StringInputStream(String value) throws ParseException { 
-        this(value.length(),value);
+        this(value.length(),
+             value,
+             Charset.defaultCharset().displayName());
     }
-    
-    public StringInputStream(long size, String value) throws ParseException { 
+
+    public StringInputStream(String value,String encoding)
+           throws ParseException { 
+        this(value.length(),value,encoding);
+    }
+
+    public StringInputStream(long size, String value, String encoding)
+           throws ParseException { 
         super(size,value);
-        this.value = value;
+        try {
+            this.bytes = value.getBytes(encoding);
+            setSize(bytes.length);
+        } catch (UnsupportedEncodingException e) {
+            throw new ParseException("Error decoding",e);
+        }
     }
     
     public int readByte() throws IOException {
-        return value.charAt(_count++);
+        return bytes[_count++];
     }
     
     public int readBuffer(byte[] buffer, int offset, int length)
             throws IOException {
        
         for (int i = offset; i < length; i++) 
-            buffer[i] = (byte)value.charAt(_count++);
+            buffer[i] = bytes[_count++];
         
         return length;
     }
