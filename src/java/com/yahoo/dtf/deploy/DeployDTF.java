@@ -136,8 +136,13 @@ public class DeployDTF {
 	            user = ( user.equals("N/A") ? null : user );
 	            setupInit(setup, user, script);
 	        }
-        } catch (Throwable e) { 
-            _logger.error("Error deploying.",e);
+        } catch (Throwable t) { 
+            /*
+             * Its bad practice to catch Throwables but we need to be able 
+             * to report errors correctly and with a stack trace when this 
+             * happens
+             */
+            _logger.error("Error deploying.",t);
             System.exit(-1);
         }
     }

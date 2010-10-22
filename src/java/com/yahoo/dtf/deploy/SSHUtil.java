@@ -127,9 +127,15 @@ public class SSHUtil {
         BufferedReader br = null;
 
         try {
-            InputStream ise = null;
             String line = null;
-            
+           
+            /*
+             * Have to do this because the JSSH library will sometimes not 
+             * instantiate an output or error stream even though it has 
+             * succeeded. So we'll ignore the null and then check the return 
+             * code.
+             */
+            InputStream ise = null;
             try { 
                 ise = exec.getErrStream();
             } catch (NullPointerException e) { }
@@ -142,6 +148,12 @@ public class SSHUtil {
                 }
             }
             
+            /*
+             * Have to do this because the JSSH library will sometimes not 
+             * instantiate an output or error stream even though it has 
+             * succeeded. So we'll ignore the null and then check the return 
+             * code.
+             */
             InputStream is = null;
             try { 
                 is = exec.getInputStream();
@@ -155,8 +167,6 @@ public class SSHUtil {
 	                out.write((line + "\n").getBytes());
 	            }
             }
-
-
 
             return exec.getExitStatus();
         } finally {
