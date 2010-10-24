@@ -339,6 +339,8 @@ public class DTFDoclet {
                     dtfdoc.name = methoddocs[m].tags(DTF_FEATURE)[0].text();
                     dtfdoc.descriptions = methoddocs[m].tags(DTF_FEATURE_DESC);
                     dtfdoc.examples = methoddocs[m].tags(DTF_EXAMPLE);
+                    
+                    fnames.add(dtfdoc.name.trim().toLowerCase());
 	                
 	                fgroups.get(fgroup).add(dtfdoc);
                 }
@@ -360,7 +362,7 @@ public class DTFDoclet {
                 dtfdoc.descriptions = classdoc.tags(DTF_FEATURE_DESC);
                 dtfdoc.examples = classdoc.tags(DTF_EXAMPLE);
 
-                fnames.add(dtfdoc.name.toLowerCase());
+                fnames.add(dtfdoc.name.trim().toLowerCase());
                 
                 fgroups.get(fgroup).add(dtfdoc);
             }
@@ -463,7 +465,7 @@ public class DTFDoclet {
                 ps.print("<html><head></head><body>");
                 ps.print("<a href='javascript:history.back()'>Back</a> ");
                 ps.print("<a href='../index.html'>Top</a>");
-                ps.print("<dt><h3>" + classdoc.name() + "</h3></dt>");
+                ps.print("<dt><h1>" + classdoc.name() + "</h1></dt>");
                 
                 /*
                  * Description
@@ -703,7 +705,7 @@ public class DTFDoclet {
                 ps.print("<html><head></head><body>");
                 ps.print("<a href='javascript:history.back()'>Back</a> ");
                 ps.print("<a href='../index.html'>Top</a>");
-                ps.print("<dt><h3>" + dtfdoc.name + "</h3></dt>");
+                ps.print("<dt><h1>" + dtfdoc.name + "</h1></dt>");
                 
                 /*
                  * Description
@@ -711,7 +713,9 @@ public class DTFDoclet {
                 Tag[] descriptions = dtfdoc.descriptions;
                 if (descriptions.length != 0) { 
                     for (int d = 0; d < descriptions.length; d++) { 
-                        ps.print("<dd>" + treatTag(descriptions[d],tnames,fnames) + "</dd>");
+                        ps.print("<dd>" + 
+                                 treatTag(descriptions[d],tnames,fnames) + 
+                                 "</dd>");
                     }
                 }
                 
@@ -815,6 +819,7 @@ public class DTFDoclet {
         Transformer serializer;
         try {
             serializer = tfactory.newTransformer();
+            serializer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
             serializer.setOutputProperty(OutputKeys.INDENT, "yes");
             serializer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
             serializer.transform(new DOMSource(doc), new StreamResult(out));

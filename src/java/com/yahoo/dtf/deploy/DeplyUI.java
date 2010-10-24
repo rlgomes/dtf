@@ -51,6 +51,6 @@ class DeployUI implements UserInfo {
     }
         
     public String getPassphrase() {
-        return "dtf";
+        return passphrase;
     }
 }

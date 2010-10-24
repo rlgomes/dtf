@@ -8,19 +8,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.Properties;
 
-import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
-import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
-import com.jcraft.jsch.SftpException;
 import com.yahoo.dtf.actions.protocol.deploy.DTFNode;
 import com.yahoo.dtf.exception.DTFException;
 import com.yahoo.dtf.logger.DTFLogger;
-import com.yahoo.dtf.util.ThreadUtil;
 
 public class SSHUtil {
     
@@ -52,12 +47,6 @@ public class SSHUtil {
             jsch.addIdentity(id_rsa);
 
         Session session = jsch.getSession(user, host);
-  
-// XXX: this seems to break others builds and I will have to revist this setting
-//        Properties config = new Properties();
-//        config.put("compression.s2c", "zlib,none");
-//        config.put("compression.c2s", "zlib,none");
-//        session.setConfig(config);
         session.setUserInfo(ui);
         session.connect();
     
