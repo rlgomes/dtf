@@ -50,7 +50,7 @@
 <th width="80%">Name</th><th>Tests</th><th>Errors</th><th>Failures</th><th nowrap>Time(s)</th><th nowrap>Time Stamp</th><th>Host</th>
 </tr>
 <tr valign="top" class="Error">
-<td><a title="Display all tests" href="0_unittests.html">unittests</a></td><td><a title="Display all tests" href="0_unittests.html">171</a></td><td><a title="Display only errors" href="0_unittests-errors.html">1</a></td><td><a title="Display only failures" href="0_unittests-fails.html">1</a></td><td>195.821</td><td>Tue Sep 07 05:21:19 UTC 2010</td><td></td>
+<td><a title="Display all tests" href="0_unittests.html">unittests</a></td><td><a title="Display all tests" href="0_unittests.html">154</a></td><td><a title="Display only errors" href="0_unittests-errors.html">3</a></td><td><a title="Display only failures" href="0_unittests-fails.html">3</a></td><td>43.243</td><td>Fri Nov 05 04:40:06 UTC 2010</td><td></td>
 </tr>
 </table>
 <h2>Failures</h2>
@@ -59,9 +59,19 @@
 <th>Name</th><th>Status</th><th width="80%">Type</th><th nowrap>Time(s)</th>
 </tr>
 <tr valign="top" class="Failure">
-<td><a name="distribute"></a>distribute</td><td>Failure</td><td>N/A<br>
+<td><a name="http"></a>http</td><td>Failure</td><td>N/A<br>
 <br>
-<code>com.yahoo.dtf.exception.AssertionException: Assertion failed [Duration was longer than 500ms at 574ms] at tests/ut/distribute.xml:165:75</code></td><td>5.957</td>
+<code>com.yahoo.dtf.exception.StorageException: Unable to retrieve InputStream for storage: INPUT at tests/ut/http.xml:26:54</code></td><td>0.001</td>
+</tr>
+<tr valign="top" class="Failure">
+<td><a name="http_server"></a>http_server</td><td>Failure</td><td>N/A<br>
+<br>
+<code>com.yahoo.dtf.exception.StorageException: Unable to retrieve InputStream for storage: INPUT at tests/ut/http_server.xml:21:54</code></td><td>0.001</td>
+</tr>
+<tr valign="top" class="Failure">
+<td><a name="http_cleanup_test"></a>http_cleanup_test</td><td>Failure</td><td>N/A<br>
+<br>
+<code>com.yahoo.dtf.exception.StorageException: Unable to retrieve InputStream for storage: INPUT at tests/ut/http_cleanup_test.xml:24:54</code></td><td>0.029</td>
 </tr>
 </table>
 <div class="Properties">
