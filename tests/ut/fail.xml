@@ -20,9 +20,7 @@
    			<fail message="Failure being generated!"/> 
    		</local>
    		<catch exception="${dtf.FailException}" property="message">
-   			<local>
-   				<echo>Caught exception: ${message}</echo>
-   			</local>
+   			<log level="debug">Caught exception: ${message}</log>
    		</catch>
    	</try>
     
@@ -31,9 +29,7 @@
    			<fail message="Text containing funny characters"/>
    		</component>
    		<catch exception="${dtf.FailException}" property="message">
-   			<local>
-   				<echo>Caught exception: ${message}</echo>
-   			</local>
+   			<log level="debug">Caught exception: ${message}</log>
    		</catch>
    	</try>
 
@@ -41,11 +37,8 @@
         <component id="DTFA">
    			<fail message="Text containing funny characters"/>
    		</component>
-        
    		<catch exception="${dtf.FailException}" property="message">
-   			<local>
-   				<echo>Caught exception: ${message}</echo>
-   			</local>
+   			<log level="debug">Caught exception: ${message}</log>
    		</catch>
    	</try>
    

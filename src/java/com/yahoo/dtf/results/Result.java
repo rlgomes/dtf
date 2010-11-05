@@ -24,7 +24,7 @@ public class Result extends Counter {
     private String _name = null;
     private Properties _props = null; 
     
-    private ArrayList _results = null;
+    private ArrayList<Result> _results = null;
    
     private int _type = -1;
     private int _result = PASS_RESULT;
@@ -33,10 +33,11 @@ public class Result extends Counter {
     
     public Result(String name) {
         _name = name;
-        _results = new ArrayList();
+        _results = new ArrayList<Result>();
+        _props = new Properties();
     }
     
-    public ArrayList getResults() { return _results; } 
+    public ArrayList<Result> getResults() { return _results; } 
     public void addResult(Result result) { 
         
         if (result.isTestCase()) {

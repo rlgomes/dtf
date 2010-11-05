@@ -20,7 +20,7 @@ REMOTECMD="while [ true ]; do sleep 1; done"
 if [ "$COMMAND" == "add" ]
 then
     # start reverse ssh tunnel from other machine to the controller on this machine
-    ssh -f -o TCPKeepAlive=true -nNT -R $SPORT:127.0.0.1:$SPORT $MACHINE $REMOTECMD
+    ssh -f -nNT -R $SPORT:127.0.0.1:$SPORT $MACHINE $REMOTECMD
     if [ $? != 0 ] 
     then
         exit $?
@@ -28,7 +28,7 @@ then
         
     # now start up the local tunnel to the remote machine for all communication with
     # that remote machine
-    ssh -f -o TCPKeepAlive=true -N -L $RPORT:127.0.0.1:$RPORT $MACHINE $REMOTECMD
+    ssh -f -N -L $RPORT:127.0.0.1:$RPORT $MACHINE $REMOTECMD
     if [ $? != 0 ] 
     then
         exit $?

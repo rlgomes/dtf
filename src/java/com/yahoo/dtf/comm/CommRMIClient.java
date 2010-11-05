@@ -167,11 +167,13 @@ public class CommRMIClient extends CommClient {
         connect.setAddress(_server.getAddress());
         connect.setPort(_server.getPort());
         connect.setBuildid(DTFNode.getBuildID());
-        
-        _logger.info("Registering " + connect);
+
+        if ( _logger.isDebugEnabled() ) { 
+            _logger.debug("Registering " + connect);
+        }
+       
         try {
             _node.register(connect).execute();
-            _logger.info("Connected to DTFC");
         } catch (RemoteException e) {
             convertException(e, "Unable to register.");
         }

@@ -24,10 +24,18 @@
         <property name="list" uri="storage://INPUT/list.xml"/>
     </local>
     
-    <log>Author:      ${test:xpath:/script/info/author/name/text()}</log>
-    <log>Script Name: ${test:xpath:/script/@name}</log>
-    <log>Email:       ${test:xpath:/script/info/author/email/text()}</log>
-    <log>Info XML:    ${test:xpath:/script/info}</log> 
+    <assert>
+        <eq op1="${test:xpath:/script/info/author/name/text()}"
+            op2="Rodney Gomes"/>
+    </assert>
+    <assert>
+        <eq op1="${test:xpath:/script/@name}"
+            op2="dummy"/>
+    </assert>
+    <assert>
+        <eq op1="${test:xpath:/script/info/author/email/text()}"
+            op2="rlgomes@yahoo-inc.com"/>
+    </assert>
 
     <call function="apply_and_count">
         <property name="xml" value="${list}"/>

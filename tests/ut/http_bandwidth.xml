@@ -24,6 +24,8 @@
         <property name="dtf.http.port" value="22222"/>
         <property name="dtf.http.uri"
                   value="http://localhost:${dtf.http.port}/"/>
+                  
+        <import uri="storage://INPUT/http_util.xml"/>
     </local>
    
     <multiply result="bytes" op2="1024" op1="40"/> 
@@ -45,8 +47,11 @@
     
         <try>
             <sequence>
-                <sleep time="2s"/>
-                <log>Throttling sending data on client side</log>
+                <call function="waitForServer">
+                    <property name="uri"
+                              value="http://localhost:${dtf.http.port}"/>
+                </call>
+                <!-- Throttling sending data on client side -->
 	            <record type="stats">
 		            <http_post uri="http://localhost:${dtf.http.port}/void"
                                bandwidth="${bandwidth}">
@@ -54,34 +59,31 @@
 		            </http_post>
 	            </record>
                 
-	            <log>bps: ${http.post.datasize.avg_val}</log>
                 <assert>
                     <within tolerance="${tolerance}"
                             op2="${http.post.datasize.avg_val}"
                             op1="${bandwidth}"/>
                 </assert>
                 
-                <log>Throttling receiving data on client side</log>
+                <!-- Throttling receiving data on client side -->
 	            <record type="stats">
 		            <http_get uri="http://localhost:${dtf.http.port}/getdata"
                               bandwidth="${bandwidth}"/>
 	            </record>
                 
-	            <log>bps: ${http.get.bodysize.avg_val}</log>
                 <assert>
                     <within tolerance="${tolerance}"
                             op2="${http.get.bodysize.avg_val}"
                             op1="${bandwidth}"/>
                 </assert>
                 
-                <log>Throttling sending data on server side</log>
+                <!-- Throttling sending data on server side -->
                 <record type="stats">
                     <http_post uri="http://localhost:${dtf.http.port}/throttled">
                         <entity value="${dtf.stream(random,${bytes},1234)}"/>
                     </http_post>
                 </record>
                 
-                <log>bps: ${http.post.datasize.avg_val}</log>
                 <assert>
                     <within tolerance="${tolerance}"
                             op2="${http.post.datasize.avg_val}"

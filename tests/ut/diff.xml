@@ -37,7 +37,6 @@ B
     <property name="count" value="0" overwrite="true"/>
     <iterate cursor="cursor">
         <add result="count" op2="${count}" op1="1"/>
-        <log>${cursor.uris} differ on ${cursor.diff}</log>
     </iterate>
     <if>
         <neq op1="${count}" op2="2"/>
@@ -67,7 +66,6 @@ B
     <property name="count" value="0" overwrite="true"/>
     <iterate cursor="cursor">
         <add result="count" op2="${count}" op1="1"/>
-        <log>${cursor.uris} differ on ${cursor.diff}</log>
     </iterate>
     <if>
         <neq op1="${count}" op2="2"/>
@@ -94,26 +92,6 @@ B
     <query uri="storage://OUTPUT/diffs" event="diffs" cursor="cursor"/>
     <iterate cursor="cursor">
         <fail>There shouldn't be any differences.</fail>
-    </iterate>
-
-    <log>Starting to generate file</log>
-    <cat uri="storage://OUTPUT/bigfile" append="false"></cat>
-    <for property="i" range="1..10240">
-        <cat uri="storage://OUTPUT/bigfile">
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</cat>
-    </for> 
-    <log>Done generating file</log>
-    <log>Start of diff</log>
-    <record uri="storage://OUTPUT/diffs2">
-        <diff>
-            <input uri="storage://OUTPUT/bigfile"/>
-            <input uri="storage://OUTPUT/bigfile"/>
-        </diff>
-    </record>
-    <log>End of diff</log>
-    <query uri="storage://OUTPUT/diffs2" event="diffs" cursor="cursor"/>
-    <iterate cursor="cursor">
-        <log>${cursor.uris} differ on ${cursor.diff}</log>
     </iterate>
 
 </script>

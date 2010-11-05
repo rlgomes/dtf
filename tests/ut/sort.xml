@@ -19,7 +19,7 @@
     
     <!-- create some real world events that have record ids -->
     <record uri="storage://OUTPUT/badly_ordered_records.txt">
-        <for property="i" range="${iterations.medium}..1">
+        <for property="i" range="${iterations.small}..1">
             <event name="write.event">
                 <attribute name="rid" value="${i}"/>
                 <attribute name="timestamp" value="${dtf.timestamp}"/>
@@ -30,7 +30,6 @@
         </for>
     </record> 
 
-    <log>start sorting.</log>
     <sort input="storage://OUTPUT/badly_ordered_records.txt"
           output="storage://OUTPUT/sorted_records.txt"
           event="write.event">
@@ -40,12 +39,11 @@
             <field name="hash" />
         </select>
     </sort>
-    <log>done sorting.</log>
 
     <query uri="storage://OUTPUT/sorted_records.txt"
            cursor="elements"/>
            
-    <log>validating all elements are ordered.</log>
+    <!-- validating all elements are ordered. -->
     <iterate cursor="elements">
         <if>
             <isset property="previous"/>
@@ -55,6 +53,5 @@
         </if>    
         <property name="previous" value="${elements.rid}" overwrite="true"/>
     </iterate>
-    <log>validating all elements completed.</log>
 
 </script>

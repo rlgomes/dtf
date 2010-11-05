@@ -10,32 +10,27 @@
 	
 	<local>
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
-        <createstorage id="INPUT" path="${dtf.xml.path}"/>
-
-        <createstorage id="TINPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        
+        <loadproperties uri="storage://INPUT/ut.properties"/>
 	</local>
+
+    <createrange name="tests" value="[testsuite][1..${iterations.tiny}]"/>
     
-	<result uri="storage://OUTPUT/parallel_testsuite_results.xml" type="junit">
-    	<testsuite name="testsuite1" continueOnFailure="true">
-            <parallelloop property="tc" range="[testsuite][1..10]">
-	    		<testscript uri="storage://TINPUT/empty.xml">
+	<result uri="storage://OUTPUT/concurrent_suite_results.xml" type="junit">
+    	<testsuite name="concurrent_suite" continueOnFailure="true">
+            <parallelloop property="tc"
+                          range="[testsuite][1..${iterations.tiny}]">
+	    		<testscript uri="storage://INPUT/empty.xml">
 	        		<property name="testcase.name" value="${tc}"/>
 	            </testscript>		
             </parallelloop>
-    	</testsuite>
-    </result>
 
-    <createrange name="tests" value="[testsuite][1..10]"/>
-    
-	<result uri="storage://OUTPUT/distribute_testsuite_results.xml"
-            type="junit">
-    	<testsuite name="testsuite1" continueOnFailure="true">
             <!-- with this distribute we can parallelize 3 tests at a time
                  while pulling the name of the test to execute from the range
                  specified --> 
-            <distribute iterations="10"
-                        workers="3">
-	    		<testscript uri="storage://TINPUT/empty.xml">
+            <distribute iterations="${iterations.tiny}" range="1..3">
+	    		<testscript uri="storage://INPUT/empty.xml">
 	        		<property name="testcase.name"
                               value="${tests}"
                               overwrite="true"/>

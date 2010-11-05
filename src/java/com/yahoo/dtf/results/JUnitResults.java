@@ -81,10 +81,8 @@ public class JUnitResults extends ResultsBase {
         }
     }
    
-    private boolean hasTestSuite = false;
     public void recordResult(Result result) throws ResultsException {
         if ( result.isTestSuite() ) { 
-            hasTestSuite = true;
             startTestSuite(result, _xml); 
             printProperties(result, _xml);
             printResultNode(result,_xml);
@@ -123,36 +121,30 @@ public class JUnitResults extends ResultsBase {
             _xml.println("<system-err/>");
             _xml.println("</testsuite>");
         } else if (result.isTestCase()) { 
-            if ( !hasTestSuite ) { 
-                hasTestSuite = true;
-                startTestSuite(result, _xml); 
-                _xml.println("</testsuite>");
-            } else {
-                /*
-                 * Test case output should look like this:
-                 * 
-                 * <testcase name="testAdd" 
-                 *           time="0.018"/>
-                 */
-                _xml.print("<testcase name=\"" + result.getName() + "\"");
+            /*
+             * Test case output should look like this:
+             * 
+             * <testcase name="testAdd" 
+             *           time="0.018"/>
+             */
+            _xml.print("<testcase name=\"" + result.getName() + "\"");
                 
-                try { 
-                    _xml.print(" start=\"" + 
-                               TimeUtil.dateStampToDateStamp(result.getStart())
-                               + "\"");
-                    _xml.print(" stop=\"" + 
-                               TimeUtil.dateStampToDateStamp(result.getStop())
-                               + "\"");
-                } catch (ParseException e) { 
-                    throw new ResultsException("Error handling date.",e);
-                }
-                _xml.println(" time=\"" + result.getDurationInSeconds() + "\">");
-
-                printProperties(result,_xml);
-                printResultNode(result,_xml);
-                
-                _xml.println("</testcase>");
+            try { 
+                _xml.print(" start=\"" + 
+                           TimeUtil.dateStampToDateStamp(result.getStart())
+                           + "\"");
+                _xml.print(" stop=\"" + 
+                           TimeUtil.dateStampToDateStamp(result.getStop())
+                           + "\"");
+            } catch (ParseException e) { 
+                throw new ResultsException("Error handling date.",e);
             }
+            _xml.println(" time=\"" + result.getDurationInSeconds() + "\">");
+
+            printProperties(result,_xml);
+            printResultNode(result,_xml);
+                
+            _xml.println("</testcase>");
         }
     }
 

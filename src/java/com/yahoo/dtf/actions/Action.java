@@ -453,7 +453,7 @@ abstract public class Action implements Externalizable {
     public static Object getGlobalContext(String key) {
         return getState().getGlobalContext(key);
     }
-    
+
     public static void unRegisterGlobalContext(String key) { 
         getState().unRegisterGlobalContext(key);
     }
@@ -860,8 +860,8 @@ abstract public class Action implements Externalizable {
             String key = (String)enumeration.nextElement();
             String value = attribs.get(key).toString();
            
-            if ( value.length() > 32 ) 
-                value = value.substring(0,32) + "...";
+            if ( value.length() > 128 ) 
+                value = value.substring(0,128) + "...";
             
             result.append(key + "=" + value + TO_STRING_SEPERATOR);
             oneappend = true;

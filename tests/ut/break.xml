@@ -16,7 +16,7 @@
         <lockcomponent id="C1"/>
     </local>
 
-    <log>validate break within a for loop</log>
+    <!-- validate break within a for loop -->
     <record type="stats">
 	    <for property="i" range="1..10">
 	        <if>
@@ -30,7 +30,7 @@
     </record>
     <assert><eq op1="${for.event.tot_occ}" op2="5"/></assert>
 
-    <log>validate break within a timer</log>
+    <!-- validate break within a timer -->
     <record type="stats">
         <timer interval="30s" property="i">
             <if>
@@ -44,7 +44,7 @@
     </record>
     <assert><eq op1="${timer.event.tot_occ}" op2="5"/></assert>
 
-    <log>validate break within a while</log>
+    <!-- validate break within a while -->
     <record type="stats">
 	    <property name="i" value="0" overwrite="true"/>
 	    <while>
@@ -61,7 +61,7 @@
     </record>
     <assert><eq op1="${while.event.tot_occ}" op2="5"/></assert>
     
-    <log>validate break within a parallelloop</log>
+    <!-- validate break within a parallelloop -->
     <record type="stats">
         <parallelloop property="i" range="1..10">
             <if>
@@ -75,7 +75,7 @@
     </record>
     <assert><eq op1="${pl.event.tot_occ}" op2="5"/></assert>
     
-    <log>validate break within a parallel</log>
+    <!-- validate break within a parallel -->
     <record type="stats">
         <parallel>
             <sequence>
@@ -100,7 +100,7 @@
     </record>
     <assert><eq op1="${parallel.event.tot_occ}" op2="2"/></assert>
 
-    <log>validate break within a parallel on a component</log>
+    <!-- validate break within a parallel on a component -->
     <record type="stats">
         <component id="C1">
             <parallel>

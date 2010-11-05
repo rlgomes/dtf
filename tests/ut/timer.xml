@@ -12,11 +12,12 @@
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
       
         <property name="duration" value="100ms"/> 
-        
-		<echo message="Looping and creating events for ${duration}."/>
 	</local>
 	
-	<record type="txt" event="myevents.*" uri="storage://OUTPUT/timer.txt" append="false">
+	<record type="txt"
+            event="myevents.*"
+            uri="storage://OUTPUT/timer.txt"
+            append="false">
     	<timer interval="${duration}">
     		<local>
     			<event name="myevents.event1"/>

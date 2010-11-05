@@ -72,7 +72,7 @@ public class Testsuite extends Action {
     public Testsuite() {}
     
     public void execute() throws DTFException { 
-        getLogger().info("Starting testsuite: " + getName());
+        getLogger().info("Starting " + getName());
         
         Result result = new Result(getName());
         result.start();
@@ -99,9 +99,8 @@ public class Testsuite extends Action {
             }
         } finally { 
             state.setResults(parent);
+            result.stop();
             if (dtfes != null) {
-                result.stop();
-                
                 for (int i = 0; i < dtfes.size(); i++) { 
                     getLogger().error("Testscript failed.",dtfes.get(i));
                 }
@@ -110,7 +109,6 @@ public class Testsuite extends Action {
                 getResults().recordResult(result);
                 throw dtfes.get(dtfes.size()-1);
             } else { 
-                result.stop();
                 result.setPassResult();
                 getResults().recordResult(result);
             }

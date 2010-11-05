@@ -48,7 +48,10 @@ public class RecorderFactory {
                 } catch (IOException e) {
                     throw new DTFException("Error deleting output file.",e);
                 }
-                _logger.info("Wiped [" + path + "]");
+                
+                if ( _logger.isDebugEnabled() ) {
+                    _logger.debug("Wiped [" + path + "]");
+                }
             }
         }
         

@@ -20,6 +20,8 @@
         
         <property name="dtf.http.port" value="33333"/>
         <property name="perfrun" value="false"/>
+        
+        <import uri="storage://INPUT/http_util.xml"/>        
     </local>
 
     <parallel>
@@ -28,28 +30,27 @@
         </http_server>
         <try>
             <sequence>
-	            <sleep time="2s"/>
-			    <for property="i" range="1..3"> 
-				    <for property="client" range="1..3"> 
-				        <local>
-	            	        <lockgroup>
-	            	            <lockcomponent id="C1"/>
-	            	            <lockcomponent id="C2"/>
-	            	            <lockcomponent id="C3"/>
-	            	        </lockgroup>
-				        </local>
-				
+                <call function="waitForServer">
+                    <property name="uri"
+                              value="http://localhost:${dtf.http.port}"/>
+                </call>
+			    <for property="i" range="1..2"> 
+			        <local>
+            	        <lockgroup>
+            	            <lockcomponent id="C1"/>
+            	            <lockcomponent id="C2"/>
+            	        </lockgroup>
+			        </local>
+				    <for property="client" range="1..2"> 
 				        <component id="C${client}">
 				            <http_get uri="http://localhost:${dtf.http.port}/nada"
                                       perfrun="true"/>
 				        </component>
-                        
-				        <local>
-            	            <unlockcomponent id="C1"/>
-            	            <unlockcomponent id="C2"/>
-            	            <unlockcomponent id="C3"/>
-				        </local>
-				    </for>
+                    </for>             
+			        <local>
+        	            <unlockcomponent id="C1"/>
+        	            <unlockcomponent id="C2"/>
+			        </local>
 			    </for>
             </sequence>
             <finally>

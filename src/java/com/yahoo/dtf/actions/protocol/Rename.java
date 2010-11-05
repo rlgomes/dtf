@@ -19,7 +19,7 @@ public class Rename extends Action {
     public Rename() {}
 
     public void execute() {
-        getLogger().info("Node name set to: " + getName());
+        getLogger().info("Node name is " + getName());
         registerGlobalContext(DTFConstants.DTF_NODE_NAME, getName());
     }
     

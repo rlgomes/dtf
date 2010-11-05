@@ -11,16 +11,20 @@
     <local>
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
         <loadproperties uri="storage://INPUT/ut.properties"/>
-        
-        <echo message="*** Sleep Unit Test ***"/>
-        <sleep time="0s"/>
-        
+
         <lockcomponent id="C1"/>
     </local>
     
     <component id="C1">
-        <sleep time="${ut.sleep.time}"/>
+        <sleep time="100ms"/>
     </component>
+
+    <event name="total">
+        <sleep time="0"/>
+    </event>
+    
+    <subtract op1="${total.stop}" op2="${total.start}" result="dur"/>
+    <assert><lt op1="${dur}" op2="5"/></assert>
     
     <try>
         <sequence>
@@ -29,11 +33,7 @@
             </local>
         </sequence>
         <catch exception="${dtf.ParseException}" property="message">
-            <sequence>
-                <local>
-                    <echo>Caught Exception: ${message}</echo>
-                </local>
-            </sequence>
+            <log level="debug">Caught Exception: ${message}</log>
         </catch>
     </try>
     
@@ -44,11 +44,7 @@
             </local>
         </sequence>
         <catch exception="${dtf.ParseException}" property="message">
-            <sequence>
-                <local>
-                    <echo>Caught Exception: ${message}</echo>
-                </local>
-            </sequence>
+            <log level="debug">Caught Exception: ${message}</log>
         </catch>
     </try>
     

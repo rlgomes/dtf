@@ -21,24 +21,17 @@
 	</local> 
 
 	<local>
-	    <createrange name="range.var" value="1..100000" recycle="false"/>
+	    <createrange name="range.var" value="1..${iterations.tiny}" />
 	    <createrange name="enumerated.range" value="c1,c2,c3,c4,c5" recycle="true"/>
-	    <createrange name="sequential.range" value="c[1..5]" recycle="true"/>
+	    <createrange name="sequential.range" value="[c][1..5]" recycle="true"/>
 	</local>
     
-	<for property="var" range="1..100000">
-		<if>
-			<neq op1="${var}" op2="${range.var}" type="string" nullable="false"/>
-			<then>
-				<local>
-					<echo>Variable dismatch.</echo>
-				</local>
-			</then>	
-		</if>
+	<for property="var" range="1..${iterations.tiny}">
+        <assert><eq op1="${var}" op2="${range.var}"/></assert>
 	</for>
     
     <!-- Validate that concurrent access to the range won't break anything --> 
-    <distribute range="1..10" timer="5s" property="i" unit="1s">
+    <distribute range="1..10" timer="100ms" property="i" unit="10ms">
         <local>
             <property name="test1" value="${enumerated.range}" overwrite="true"/>
             <property name="test2" value="${sequential.range}" overwrite="true"/>

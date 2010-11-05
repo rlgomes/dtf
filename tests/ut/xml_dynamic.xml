@@ -14,9 +14,11 @@
     <local>
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        
+        <loadproperties uri="storage://INPUT/ut.properties"/>
     </local>
     
-    <for property="i" range="1..10000">
+    <for property="i" range="1..${iterations.tiny}">
 		<property name="xml"><![CDATA[
             <req>
                 <index>${i}</index>

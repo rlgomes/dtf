@@ -19,8 +19,8 @@
         <property name="nomore" value="false"/>
         
         <loadproperties uri="storage://INPUT/ut.properties"/>
-        
-	    <import uri="storage://TINPUT/functions.xml" loadFuncs="true" loadRefs="true"/> 
+	    <import uri="storage://INPUT/functions_util.xml"/>
+	    <import uri="storage://TINPUT/functions.xml"/>
     </local>
    	
    	<call function="func1">
@@ -31,16 +31,14 @@
    		<property name="function" value="func2"/>	
    	</call> 
 
-    <property name="expected" value="Failing on purpose here. at tests/ut/functions.xml:33:52"/>
+    <property name="expected"
+              value="Failing on purpose here. at tests/ut/input/functions_util.xml:19:52"/>
     <try> 
         <call function="badfunc"/>
         <catch exception="${dtf.FailException}" property="message">
             <if>
                 <match source="${message}"
                        expression="${expected}"/>
-                <then>
-                    <log>Got the correct line,column and script name</log>
-                </then>
                 <else>
                     <log>
                         expected ${expected}
@@ -60,7 +58,7 @@
         <catch exception="${dtf.ParseException}" property="message">
             <assert>
                 <match source="${message}"
-                       expression="Error parsing XML. at tests/ut/import.xml:57:48"/>
+                       expression="Error parsing XML. at tests/ut/import.xml:55:48"/>
             </assert>
         </catch>
     </try>

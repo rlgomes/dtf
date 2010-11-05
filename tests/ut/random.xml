@@ -19,14 +19,15 @@
         <loadproperties uri="storage://INPUT/ut.properties"/>
         <import uri="storage://INPUT/perfutil.xml"/>
         
-        <property name="rand_types" value="randomInt,randomLong,randomDouble,gaussianLong"/>
+        <property name="rand_types"
+                  value="randomInt,randomLong,randomDouble,gaussianLong"/>
     </local>
     
     <!-- anrandom(a..z)e correctness -->
     <for property="type" range="${rand_types}">
         <log>Correctness check for ${type} generator</log>
         <event name="perf">
-            <for property="i" range="1..${iterations.medium}">
+            <for property="i" range="1..${iterations.small}">
                 <property name="random" value="${dtf.${type}(10000)}" overwrite="true"/>
                 <if>
                     <or>
@@ -44,7 +45,7 @@
     <for property="type" range="${rand_types}">
         <log>Correctness check for ${type} generator</log>
         <event name="perf">
-            <for property="i" range="1..${iterations.medium}">
+            <for property="i" range="1..${iterations.small}">
                 <property name="random" value="${dtf.${type}(100,200)}" overwrite="true"/>
                 <if>
                     <and>
@@ -66,7 +67,7 @@
     <for property="type" range="${rand_types}">
         <log>Correctness check for ${type} generator</log>
         <event name="perf">
-            <for property="i" range="1..${iterations.medium}">
+            <for property="i" range="1..${iterations.small}">
                 <property name="random" value="${dtf.${type}(-100,100)}" overwrite="true"/>
                 <if>
                     <and>

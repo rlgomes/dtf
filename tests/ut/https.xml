@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<script xmlns="http://dtf.org/v1" name="http">
+<script xmlns="http://dtf.org/v1" name="https">
     <info>
         <author>
             <name>Rodney Gomes</name>
             <email>rlgomes@yahoo-inc.com</email>
         </author>
         <description>
-        Simple http tags test to validate the basic functionality of each of the
-        tags. This test requires that the www.example.org server is acessible at
-        the time of execution.
         </description>
     </info>
 
@@ -20,12 +17,16 @@
         
         <property name="dtf.http.port" value="44555"/>
         <property name="perfrun" value="false"/>
+        
+        <import uri="storage://INPUT/http_util.xml"/>
     </local> 
  
     <try>
         <parallel>
             <sequence>
-                <http_server command="start" port="${dtf.http.port}" socket="ssl"/>
+                <http_server command="start"
+                             port="${dtf.http.port}"
+                             socket="ssl"/>
             </sequence>  
             <sequence>
                 <log>here</log>

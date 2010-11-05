@@ -19,10 +19,6 @@
         <echo>Counter Unit Tests</echo>
     </local>
     
-    <local>
-        <echo>Local counter retrieval</echo>
-    </local>
-    
     <record type="console" append="false">
         <for property="index" range="[1..${iterations.tiny}]">
             <event name="dtf.echo">
@@ -32,7 +28,6 @@
     </record>
     
     <local>
-        <echo>Remote counter retrieval</echo>
         <lockcomponent id="DTFA1" timeout="60s"/>
     </local>
     
@@ -40,14 +35,12 @@
         <component id="DTFA1">
             <event name="dtf.DTFA1.echo">
                 <attribute name="iteration" value="${os.name}"/>
-                <local>
-                    <echo>Hello ${os.name}</echo>
-                </local>
+                <log>Hello ${os.name}</log>
             </event>
         </component>
     </record>
 
-    <for property="i" range="1..${iterations.small}">
+    <for property="i" range="1..${iterations.tiny}">
 	    <component id="DTFA1">
 	        <attribute name="iteration" value="XXX"/>
 	        <parallelloop property="t" range="1..${iterations.tiny}">

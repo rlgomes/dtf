@@ -13,14 +13,13 @@
     	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
 
-        <import uri="storage://INPUT/perfutil.xml"/>
         <loadproperties uri="storage://INPUT/ut.properties"/>
         
-        <property name="iterations" value="100000"/>
+        <import uri="storage://INPUT/util.xml"/>
     </local>
 
     <record uri="storage://OUTPUT/unfiltered.txt">
-        <for property="i" range="1..${iterations}">
+        <for property="i" range="1..100">
             <event name="write.event">
                 <attribute name="recordid" value="${i}"/>
                 <attribute name="timestamp" value="${dtf.timestamp}"/>
@@ -31,7 +30,6 @@
         </for>
     </record> 
 
-    <log>start filtering.</log>
     <event name="total">
 	    <filter srcuri="storage://OUTPUT/unfiltered.txt"
 	            dsturi="storage://OUTPUT/filtered.txt"
@@ -42,18 +40,18 @@
 	        </select>
 	        <where>
                 <and>
-	               <lt op2="recordid" op1="50000"/>
-	               <gt op2="recordid" op1="10000"/>
+	               <lt op2="recordid" op1="50"/>
+	               <gt op2="recordid" op1="10"/>
                 </and>
 	        </where>
 	    </filter>
     </event>
-    <log>done filtering.</log>
     
-    <call function="calcEventPerf" result="ops_per_sec">
-        <property name="iterations" value="${iterations}"/>
-        <property name="event" value="total"/>
+    <call function="checkRecordCount">
+        <property name="recorder.location" value="storage://OUTPUT/filtered.txt"/>
+        <property name="recorder.type" value="txt"/>
+        <property name="record.count" value="39"/>
+        <property name="event.name" value="write.event"/>
     </call>
-    <log>events filtered/sec: ${ops_per_sec}</log>
     
 </script>

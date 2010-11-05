@@ -72,8 +72,10 @@ public class Createstorage extends Action {
         
         if ( !DTFNode.getType().equals(DTFConstants.DTFX_ID) )
             path = RemoteStorage.getRemoteStoragePath() + File.separatorChar + path;
+       
+        if ( getLogger().isDebugEnabled() ) 
+            getLogger().debug("Creating storage: " + getId() + " at " + path);
         
-        getLogger().info("Creating storage: " + getId() + " at " + path);
         getStorageFactory().createStorage(getId(), path, getExport());
         /*
          * Create a property with the name of the storage and a suffix that can

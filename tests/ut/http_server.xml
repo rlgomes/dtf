@@ -15,9 +15,12 @@
 
         <property name="dtf.http.port1" value="44444"/>
         <property name="dtf.http.port2" value="44445"/>
-        <loadproperties uri="storage://INPUT/ut.properties" />
-    </local>
 
+        <loadproperties uri="storage://INPUT/ut.properties" />
+
+        <import uri="storage://INPUT/http_util.xml"/>
+    </local>
+    
     <!-- startup an http server that can calculate if a number is odd or even
          and return the result through the response message of the HTTP 
          response -->
@@ -43,8 +46,7 @@
 	        </http_listener>
             
             <http_listener path="/echo-data" method="PUT">
-                <log>received [${http.put.body}] in the HTTP body</log>
-                <log>received headers [${http.put.headerin}]</log>
+                <log>${http.put.body}</log>
             </http_listener>
             
             <http_listener path="/operation1" method="GET">
@@ -75,11 +77,13 @@
          
         <try>
             <sequence>
-                <sleep time="2s"/>
+                <call function="waitForServer">
+                    <property name="uri"
+                              value="http://127.0.0.1:${dtf.http.port1}"/>
+                </call>
                 <http_put uri="http://127.0.0.1:${dtf.http.port1}/isodd">
                     <header name="number" value="3"/>
                 </http_put> 
-                <log>[${http.put.statusmsg}]</log>
                 
                 <if>
                     <neq op1="${http.put.headerout.result}" op2="true"/>
@@ -104,7 +108,7 @@
                 </assert>
 
                 <log>Validating that parallel cookie manipulation doesn't hit any issues </log>
-                <distribute iterations="10000" range="1..3">
+                <distribute iterations="1000" range="1..3">
 	                <http_put uri="http://127.0.0.1:${dtf.http.port1}/null">
 	                    <cookie name="header1" value="value1" path="." domain="."/>
 	                    <header name="header1" value="value1"/>
@@ -138,7 +142,10 @@
         
         <try>
             <record uri="storage://OUTPUT/client_http_events.txt">
-                <sleep time="2s"/>
+                <call function="waitForServer">
+                    <property name="uri"
+                              value="http://127.0.0.1:${dtf.http.port2}"/>
+                </call>
                 <for property="i" range="1..3">
 		            <http_put uri="http://127.0.0.1:${dtf.http.port2}/listener1">
                         <http_config expectcontinue="true"/>
@@ -192,7 +199,6 @@
         </if> 
     </iterate> 
     
-    <log>Test out hashing and perfrun functionality for both client and server.</log>
     <compare>
         <query uri="storage://OUTPUT/client_http_events.txt"
                cursor="client"

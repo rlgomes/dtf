@@ -19,7 +19,7 @@
     </local>
 
     <record uri="storage://OUTPUT/compare_write_data.txt">
-        <for property="i" range="1..${iterations.medium}">
+        <for property="i" range="1..${iterations.tiny}">
             <event name="write.event">
                 <attribute name="recordid" value="${i}"/>
                 <attribute name="timestamp" value="${dtf.timestamp}"/>
@@ -32,7 +32,7 @@
     </record> 
     
     <record uri="storage://OUTPUT/compare_read_data.txt">
-        <for property="i" range="1..${iterations.medium}">
+        <for property="i" range="1..${iterations.tiny}">
             <event name="read.event">
                 <attribute name="recordid" value="${i}"/>
                 <attribute name="timestamp" value="${dtf.timestamp}"/>
@@ -44,7 +44,6 @@
         </for>
     </record> 
      
-    <log>Start comparing data</log>
     <event name="total">
 	    <compare>
 	         <query uri="storage://OUTPUT/compare_write_data.txt"
@@ -76,16 +75,9 @@
 	         </validate>
 	    </compare>
     </event>
-    <log>Done comparing data</log>
    
-    <call function="calcEventPerf" result="avg_occ">
-        <property name="iterations" value="${iterations.medium}" />
-        <property name="event" value="total" /> 
-    </call>
-    <log>Compared ${avg_occ} events/s with sequential events.</log>
-
     <record uri="storage://OUTPUT/compare_write_data.txt">
-        <for property="i" range="${iterations.small}..1">
+        <for property="i" range="${iterations.tiny}..1">
             <event name="write.event">
                 <attribute name="recordid" value="${i}"/>
                 <attribute name="timestamp" value="${dtf.timestamp}"/>
@@ -98,7 +90,7 @@
     </record> 
     
     <record uri="storage://OUTPUT/compare_read_data.txt">
-        <for property="i" range="1..${iterations.small}">
+        <for property="i" range="1..${iterations.tiny}">
             <event name="read.event">
                 <attribute name="recordid" value="${i}"/>
                 <attribute name="timestamp" value="${dtf.timestamp}"/>
@@ -110,7 +102,6 @@
         </for>
     </record> 
      
-    <log>Start comparing data</log>
     <event name="total">
         <compare>
              <query uri="storage://OUTPUT/compare_write_data.txt"
@@ -142,79 +133,9 @@
              </validate>
         </compare>
     </event>
-    <log>Done comparing data</log>
    
-    <call function="calcEventPerf" result="avg_occ">
-        <property name="iterations" value="${iterations.small}" />
-        <property name="event" value="total" /> 
-    </call>
-    <log>Compared ${avg_occ} events/s with non sequential events.</log>
-
-    <property name="threads" value="3"/> 
-    <record uri="storage://OUTPUT/compare_write_data.txt">
-        <parallelloop property="t" range="1..${threads}">
-	        <for property="i" range="1..${iterations.medium}">
-	            <event name="write.event">
-	                <attribute name="recordid" value="${i}"/>
-	                <attribute name="thread"   value="${t}"/>
-	                <attribute name="data"     value="${i}${t}"/>
-	            </event>
-	        </for>
-        </parallelloop>
-    </record> 
-    
     <record uri="storage://OUTPUT/compare_read_data.txt">
-        <parallelloop property="t" range="1..${threads}">
-	        <for property="i" range="1..${iterations.medium}">
-	            <event name="read.event">
-	                <attribute name="recordid" value="${i}"/>
-	                <attribute name="thread"   value="${t}"/>
-	                <attribute name="data"     value="${i}${t}"/>
-	            </event>
-	        </for>
-        </parallelloop>
-    </record> 
-     
-    <event name="total">
-        <parallelloop property="t" range="1..${threads}">
-	        <compare>
-	             <query uri="storage://OUTPUT/compare_write_data.txt"
-	                    event="write.event"
-	                    cursor="c1-${t}">
-                    <where>
-                        <eq op1="thread" op2="${t}"/>
-                    </where>
-                 </query>
-	                    
-	             <query uri="storage://OUTPUT/compare_read_data.txt"
-	                    event="read.event"
-	                    cursor="c2-${t}"/>
-	             
-	             <where>
-	                <and>
-		                <eq op1="${c1-${t}.recordid}" op2="${c2-${t}.recordid}"/>
-		                <eq op1="${c1-${t}.thread}" op2="${c2-${t}.thread}"/>
-	                </and>
-	             </where>
-	            
-	             <validate>
-	                <assert>
-	                    <eq op1="${c1-${t}.data}" op2="${c2-${t}.data}"/>
-	                </assert>
-	             </validate>
-	        </compare>
-        </parallelloop>
-    </event>
-  
-    <multiply op1="${iterations.medium}" op2="${threads}" result="iterations"/>
-    <call function="calcEventPerf" result="avg_occ">
-        <property name="iterations" value="${iterations}" />
-        <property name="event" value="total" /> 
-    </call>
-    <log>Compared ${avg_occ} events/s with multi-threaded compares</log>
-    
-    <record uri="storage://OUTPUT/compare_read_data.txt">
-        <for property="i" range="1..${iterations.medium}">
+        <for property="i" range="1..${iterations.tiny}">
             <event name="read.event">
                 <attribute name="recordid" value="${i}"/>
                 <attribute name="data" value="${dtf.stream(random,16,${i})}"/>
@@ -222,7 +143,6 @@
         </for>
     </record> 
      
-    <log>Start comparing data</log>
     <event name="total">
         <compare>
              <query uri="storage://OUTPUT/compare_read_data.txt"
@@ -237,13 +157,6 @@
              </validate>
         </compare>
     </event>
-    <log>Done comparing data</log>
-
-    <call function="calcEventPerf" result="avg_occ">
-        <property name="iterations" value="${iterations.medium}" />
-        <property name="event" value="total" /> 
-    </call>
-    <log>Compared ${avg_occ} events/s with single query</log>
 
     <record uri="storage://OUTPUT/read_data.txt">
         <for property="i" range="1..${iterations.tiny}">
@@ -254,48 +167,22 @@
         </for>
     </record> 
 
-    <log>Start comparing with bad data</log>
-    <event name="total">
-        <compare>
-             <query uri="storage://OUTPUT/read_data.txt"
-                    event="read.event"
-                    cursor="c1"/>
+    <!-- compare with bad data -->
+    <compare>
+         <query uri="storage://OUTPUT/read_data.txt"
+                event="read.event"
+                cursor="c1"/>
                     
-             <validate>
-                <if>
-                    <neq op1="${c1.data}" op2="BAD DATA"/>
-                    <then>
-                        <log>Failed as expected!</log>
-                    </then>
-                </if>
-             </validate>
-        </compare>
-    </event>
-    <log>Done comparing with bad data</log>
-    
-    <record uri="storage://OUTPUT/loop_data.txt">
-        <for property="i" range="1..${iterations.tiny}">
-            <event name="read.event">
-                <attribute name="recordid" value="${i}"/>
-                <attribute name="data" value="${dtf.stream(random,16,${i})}"/>
-            </event>
-        </for>
-    </record> 
-
-    <log>Start comparing with bad data</log>
-    <event name="total">
-        <compare>
-             <query uri="storage://OUTPUT/read_data.txt"
-                    event="read.event"
-                    cursor="c1"/>
-                    
-             <validate>
-                <assert><neq op1="${c1.data}" op2="BAD DATA"/></assert>
-             </validate>
-        </compare>
-    </event>
-    <log>Done comparing with bad data</log>
-
+         <validate>
+            <if>
+                <neq op1="${c1.data}" op2="BAD DATA"/>
+                <then>
+                    <log level="debug">Failed as expected!</log>
+                </then>
+            </if>
+         </validate>
+    </compare>
+   
     <try>
 	    <compare>
 	         <query uri="storage://OUTPUT/read_data.txt"
@@ -319,7 +206,7 @@
 	         </validate>
 	    </compare> 
         <catch exception="${dtf.DTFException}" property="message">
-            <log>Caught exception correctly [${message}]</log>     
+            <log level="debug">Caught exception correctly [${message}]</log>     
         </catch>
     </try> 
 

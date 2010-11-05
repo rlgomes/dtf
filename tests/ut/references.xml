@@ -11,13 +11,12 @@
     <local>
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
-        <createstorage id="TINPUT" path="${dtf.xml.path}"/>
       
         <loadproperties uri="storage://INPUT/ut.properties"/>
         
-       	<import uri="storage://TINPUT/util.xml" loadFuncs="true" loadRefs="true"/> 
+       	<import uri="storage://INPUT/util.xml" /> 
        	
-       	<lockcomponent id="DTFA1" timeout="60s"/>
+       	<lockcomponent id="DTFA1" />
     </local>
     
     <event name="general.event1" id="event_ref1">
@@ -25,67 +24,38 @@
    		<attribute name="ref1.prop2" value="${dtf.timestamp}" type="string" length="64"/> 
     </event>
 
-	<event name="general.event2" id="event_ref2">
-   		<attribute name="ref2.prop1" value="${index}" type="string" length="64"/> 
-   		<attribute name="ref2.prop2" value="${dtf.timestamp}" type="string" length="64"/> 
-    </event>
-    
-	<event name="general.event3" id="event_ref3">
-   		<attribute name="ref3.prop1" value="${index}" type="string" length="64"/> 
-   		<attribute name="ref3.prop2" value="${dtf.timestamp}" type="string" length="64"/> 
-   		<echo>Remote echo on iteration ${index}</echo>
-    </event>
-    
-	<record type="txt" uri="storage://OUTPUT/references_test1.txt" append="false">
-        <for property="index" range="[1..10]">
+	<record uri="storage://OUTPUT/references_test.txt" append="false">
+        <for property="index" range="[1..${iterations.tiny}]">
         	<event refid="event_ref1"/>
         </for>
     </record>
     
-	<record type="txt" uri="storage://OUTPUT/references_test2.txt" append="false">
-        <for property="index" range="[1..10]">
-        	<event refid="event_ref2"/>
-        </for>
-    </record>
-    
-	<record type="txt" uri="storage://OUTPUT/remote_references_test.txt" append="false">
-        <for property="index" range="[1..10]">
+	<record uri="storage://OUTPUT/remote_references_test.txt" append="false">
+        <for property="index" range="[1..${iterations.tiny}]">
         	<component id="DTFA1">
-        		<event refid="event_ref3"/>
+        		<event refid="event_ref1"/>
         	</component>
         </for>
     </record>
    
     <call function="checkRecordCount">
-    	<property name="recorder.location" value="storage://OUTPUT/references_test1.txt"/>	
+    	<property name="recorder.location" value="storage://OUTPUT/references_test.txt"/>	
     	<property name="recorder.type" value="txt"/>	
     	<property name="event.name" value="general.event1"/>
-    	<property name="record.count" value="10"/>
-    </call>
-    
-	<call function="checkRecordCount">
-    	<property name="recorder.location" value="storage://OUTPUT/references_test2.txt"/>	
-    	<property name="recorder.type" value="txt"/>	
-    	<property name="event.name" value="general.event2"/>
-    	<property name="record.count" value="10"/>
+    	<property name="record.count" value="5"/>
     </call>
     
 	<call function="checkRecordCount">
     	<property name="recorder.location" value="storage://OUTPUT/remote_references_test.txt"/>	
     	<property name="recorder.type" value="txt"/>	
-    	<property name="event.name" value="general.event3"/>
-    	<property name="record.count" value="10"/>
+    	<property name="event.name" value="general.event1"/>
+    	<property name="record.count" value="5"/>
     </call>
     
-    <record id="recorder" uri="storage://OUTPUT/reference_test.txt" append="true">
+    <record uri="storage://OUTPUT/reference_test.txt" append="true">
         <event name="test.event">
             <attribute name="timestamp" value="${dtf.timestamp}"/>
         </event>
     </record>
    
-    <for property="i" range="1..10">
-        <record refid="recorder"/>
-    </for> 
-   
-     
 </script>

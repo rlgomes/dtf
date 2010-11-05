@@ -12,10 +12,10 @@
     <local>
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
-        <createstorage id="TINPUT" path="${dtf.xml.path}"/>
+        
         <loadproperties uri="storage://INPUT/ut.properties"/>
-       
-        <import uri="storage://TINPUT/util.xml"/> 
+        <import uri="storage://INPUT/util.xml"/> 
+        
         <property name="test1" value="true"/>
         <property name="test2" value="true"/>
     </local>

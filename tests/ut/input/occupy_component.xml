@@ -14,9 +14,24 @@
     <local>
         <createstorage id="TINPUT" path="${dtf.xml.path}"/>
         <property name="occupy.duration" value="10s"/>
-    
-        <lockcomponent id="C1"/>
+   
     </local>
+   
+    <if>
+        <isset property="node.id"/>
+        <then>
+		    <local> 
+		        <lockcomponent id="C1">
+                    <attrib name="node.id" value="${node.id}"/>
+                </lockcomponent>
+		    </local>
+        </then>
+        <else>
+		    <local> 
+		        <lockcomponent id="C1"/>
+		    </local>
+        </else>
+    </if> 
     
     <component id="C1">
         <event name="fake.event">

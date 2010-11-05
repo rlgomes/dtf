@@ -66,7 +66,7 @@ public class LockGrp extends Connect {
             } catch (LockException e) { 
                 getLogger().info("Retrying lockgroup [" + this + "]");  
                 excep = e; 
-                ThreadUtil.pause(1000);
+                ThreadUtil.pause(100);
             }
         }
         

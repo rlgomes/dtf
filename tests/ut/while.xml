@@ -15,8 +15,6 @@
 
         <loadproperties uri="storage://INPUT/ut.properties"/>
         
-        <property name="workers" value="5" overwrite="true" />
-  
         <rendezvous_create id="rendezvous" parties="2" />
     </local>
   
@@ -38,7 +36,7 @@
             
         <sequence>
             <log>Thread 2 is starting.</log>
-            <for property="i" range="1..100000">
+            <for property="i" range="1..${iterations.small}">
                 <!-- do some work... -->
             </for>
             <log>Thread 2 is done.</log>

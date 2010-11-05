@@ -27,11 +27,6 @@
             <then>
                 <if>
                     <eq op1="${expected.result}" op2="true" type="string" nullable="false"/>
-                    <then>
-                        <local>
-                            <echo>${op1} within ${op2} by ${tolerance} as expected.</echo>
-                        </local>
-                    </then>
                     <else>
                         <fail message="${op1} not within ${op2} by ${tolerance} not expected."/>
                     </else>
@@ -40,11 +35,6 @@
             <else>
                 <if>
                     <eq op1="${expected.result}" op2="false" type="string" nullable="false"/>
-                    <then>
-                        <local>
-                            <echo>${op1} not within ${op2} by ${tolerance} as expected.</echo>
-                        </local>
-                    </then>
                     <else>
                         <fail message="${op1} within ${op2} by ${tolerance} not expected."/>
                     </else>
@@ -59,9 +49,6 @@
 
         <if>
             <eq op1="${op1}" op2="${op2}"/>
-            <then>
-                <log>${op1} equal to ${op2} as expected.</log>
-            </then>
             <else>
                 <fail message="${op1} not equal to ${op2} as expected."/>
             </else>
@@ -99,85 +86,43 @@
     
     <if>
    		<eq op1="${test1}" op2="${test2}" type="string" nullable="false"/>
-   		
-   		<then>
-   			<local>
-   				<echo>${test1} equals ${test2}</echo>
-   			</local>
-   		</then> 
    		<else>
-   			<local>
-   				<fail message="CRAP!"/>
-   			</local>
+			<fail message="CRAP!"/>
    		</else>
     </if>
 
 	<if>
    		<neq op1="${test1}" op2="${test2}" type="string" nullable="false"/>
-   		
    		<then>
-   			<local>
-   				<fail message="CRAP!"/>
-   			</local>
+			<fail message="CRAP!"/>
    		</then> 
-   		<else>
-			<local>
-   				<echo>${test1} equals ${test2}</echo>
-   			</local>
-   		</else>
     </if>
 
 	<if>
    		<gt op1="12345z" op2="12345a"/>
-   		<then>
-   			<local>
-   				<echo>12345z greater than 12345a</echo>
-   			</local>
-   		</then> 
    		<else>
-   			<local>
-   				<fail message="CRAP!"/>
-   			</local>
+			<fail message="CRAP!"/>
    		</else>
     </if>
     
 	<if>
    		<lt op1="abc12345z" op2="abc12345a" type="string" nullable="false"/>
-   		
    		<then>
-   			<local>
-   				<fail message="CRAP!"/>
-   			</local>
+			<fail message="CRAP!"/>
    		</then> 
-   		<else>
-   			<local>
-   				<echo>abc12345z greater than abc12345a</echo>
-   			</local>
-   		</else>
     </if>
     
 	<if>
    		<lt op1="3.1459" op2="3.1458" type="string" nullable="false"/>
-   		
    		<then>
-   			<local>
-   				<fail message="CRAP!"/>
-   			</local>
+			<fail message="CRAP!"/>
    		</then> 
-   		<else>
-   			<local>
-   				<echo>3.1459 greater than 3.1458</echo>
-   			</local>
-   		</else>
     </if>
     
     <!-- Validate the comparison of 18 with 18.000 works fine -->
     
     <if>
         <eq op1="18" op2="18.000"/>
-        <then>
-            <log>Comparison between 18 and 18.000 succeeded correctly</log>
-        </then>
         <else>
             <fail message="Comparison between 18 and 18.000 failed :("/>
         </else>
@@ -187,9 +132,6 @@
     <!-- Validate comparison of empty strings -->
     <if>
         <eq op1="" op2=""/>
-        <then>
-            <log>Comparison worked correctly.</log>
-        </then>
         <else>
             <fail message="Empty string comparison has failed."/>
         </else>
@@ -200,16 +142,10 @@
         <then>
             <fail message="Empty string comparison has failed."/>
         </then>
-        <else>
-            <log>Comparison worked correctly.</log>
-        </else>
     </if>
 
     <if>
         <eq op1="8.1.2.b" op2="8.1.2.b"/>
-        <then>
-            <log>Passed as expected.</log>
-        </then>
         <else>
             <fail message="Unexpected failure."/>
         </else>
@@ -217,9 +153,6 @@
 
     <if>
         <eq op1="127.0.0.1:3080" op2="127.0.0.1:3080"/>
-        <then>
-            <log>Passed as expected.</log>
-        </then>
         <else>
             <fail message="Unexpected failure."/>
         </else>
@@ -230,9 +163,6 @@
         <then>
             <fail message="Unexpected equality."/>
         </then>
-        <else>
-            <log>Failed as expected.</log>
-        </else>
     </if>
 
     <if>
@@ -240,16 +170,10 @@
         <then>
             <fail message="Unexpected equality."/>
         </then>
-        <else>
-            <log>Failed as expected.</log>
-        </else>
     </if>
 
     <if>
         <lt op1="18.001" op2="18.002"/>
-        <then>
-            <log>Passed as expected.</log>
-        </then>
         <else>
             <fail message="Unexpected failure."/>
         </else>
@@ -257,9 +181,6 @@
 
     <if>
         <lt op1="0.00199999" op2="0.002"/>
-        <then>
-            <log>Passed as expected.</log>
-        </then>
         <else>
             <fail message="Unexpected failure."/>
         </else>
@@ -270,16 +191,10 @@
         <then>
             <fail message="Unexpected failure."/>
         </then>
-        <else>
-            <log>Passed as expected.</log>
-        </else>
     </if>
     
     <if>
         <lt op1="A1" op2="A10"/>
-        <then>
-            <log>Passed as expected.</log>
-        </then>
         <else>
             <fail message="Unexpected failure."/>
         </else>
@@ -287,9 +202,6 @@
 
     <if>
         <lt op1="A0001" op2="A10"/>
-        <then>
-            <log>Passed as expected.</log>
-        </then>
         <else>
             <fail message="Unexpected failure."/>
         </else>
@@ -297,9 +209,6 @@
 
     <if>
         <eq op1="01" op2="0001"/>
-        <then>
-            <log>Passed as expected.</log>
-        </then>
         <else>
             <fail message="Unexpected failure."/>
         </else>
@@ -307,9 +216,6 @@
 
     <if>
         <lt op1="-100" op2="-0.55"/>
-        <then>
-            <log>Passed as expected.</log>
-        </then>
         <else>
             <fail message="Unexpected failure."/>
         </else>

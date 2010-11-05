@@ -22,28 +22,30 @@
     <!-- 
         1st scenario:
     
-        In parallel execute another test that holds onto a component for 5s 
-        while the local script tries to lock the same component, with a timeout
-        of 7s. Makes use of the component can be used by the main script.
+        In parallel execute another test that holds onto a component for 3s 
+        while the local script tries to lock the same component and eventually
+        gets it after the default timeout of 60s.
     --> 
     <parallel>
         <sequence>
-            <property name="occupy.duration" value="3s" overwrite="true"/>
-            <testscript uri="storage://INPUT/occupy_component.xml"/>
-            <log>Done executing occup_component.xml.</log>
+            <testsuite name="dummy">
+	            <testscript uri="storage://INPUT/occupy_component.xml">
+	                <property name="node.id" value="1" overwrite="true"/>
+	                <property name="occupy.duration" value="100ms" overwrite="true"/>
+	            </testscript>
+            </testsuite>
         </sequence>
         
         <local>
-            <sleep time="2s"/>
-            <lockcomponent id="C1"/>
+            <sleep time="100ms"/>
+            <lockcomponent id="C1">
+                <attrib name="node.id" value="1"/>
+            </lockcomponent>
         </local>
     </parallel>
     <component id="C1">
         <log>Still HERE!</log>
     </component>
-    <local>
-        <unlockcomponent id="C1"/>
-    </local>
 
     <!-- 
         2nd scenario:
@@ -53,15 +55,18 @@
         the original component. 
     --> 
     <local>
-        <lockcomponent id="C1"/>
+        <lockcomponent id="C2">
+            <attrib name="node.id" value="2"/>
+        </lockcomponent>
     </local>
-    <property name="occupy.duration" value="2s" overwrite="true"/>
-    <testscript uri="storage://INPUT/occupy_component.xml"/>
-    <component id="C1">
+    <testsuite name="dummy">
+	    <testscript uri="storage://INPUT/occupy_component.xml">
+	        <property name="node.id" value="3" overwrite="true"/>
+	        <property name="occupy.duration" value="100ms" overwrite="true"/>
+	    </testscript>
+    </testsuite>
+    <component id="C2">
         <log>Still HERE!</log>
     </component>
-    <local>
-        <unlockcomponent id="C1"/>
-    </local>
         
 </script>

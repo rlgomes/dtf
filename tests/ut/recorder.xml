@@ -71,14 +71,14 @@
     <record uri="storage://OUTPUT/recorder_output.txt">
         <distribute id="mydist" 
                     range="1..5"
-                    func="const(3)"
+                    func="const(5)"
                     iterations="${iterations.tiny}"
-                    property="iter">
+                    property="iter"
+                    unit="100ms">
             <attribute name="global" value="${mydist.worker}"/>
             <event name="recorder.event">
                 <attribute name="prop" value="${iter}"/>
                 <attribute name="static_string" value="BLAH"/> 
-                <sleep time="1s"/>
             </event>
         </distribute>
     </record>

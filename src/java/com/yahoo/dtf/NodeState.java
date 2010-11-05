@@ -15,8 +15,11 @@ import com.yahoo.dtf.logger.DTFLogger;
 
 
 public class NodeState {
+   
     private static DTFLogger _logger = DTFLogger.getLogger(NodeState.class);
     private static NodeState instance = null;
+
+    private final static Object _lockchanges = new Object();
 
     public synchronized static NodeState getInstance() {
        if (instance == null) {
@@ -38,21 +41,27 @@ public class NodeState {
     }
     
     public synchronized NodeInfo addNode(Connect connect, CommClient client) throws DTFException{
-        NodeInfo ni = new NodeInfo(connect, client);
-       
-        _logger.info("Registering " + ni);
-        
-        if (ni.findAttrib(DTFProperties.DTF_NODE_TYPE).equalsIgnoreCase("dtfx")) { 
-            // dtfx are not to be locked or unlocked
-            ni.lock(null);
+        try { 
+	        NodeInfo ni = new NodeInfo(connect, client);
+	       
+	        _logger.info("Registering " + ni);
+	        
+	        if (ni.findAttrib(DTFProperties.DTF_NODE_TYPE).equalsIgnoreCase("dtfx")) { 
+	            // dtfx are not to be locked or unlocked
+	            ni.lock(null);
+	        }
+	        
+	        if (connectedNodes.contains(ni)) 
+	            throw new DTFException("Node already registered with id: " + 
+	                                   ni.getId());
+	        
+	        connectedNodes.add(ni);
+	        return ni;
+        } finally { 
+            synchronized( _lockchanges ) { 
+                _lockchanges.notifyAll();
+            }
         }
-        
-        if (connectedNodes.contains(ni)) 
-            throw new DTFException("Node already registered with id: " + 
-                                   ni.getId());
-        
-        connectedNodes.add(ni);
-        return ni;
     }
     
     public synchronized boolean isNodeRegistered(String id) { 
@@ -144,6 +153,19 @@ public class NodeState {
         
         locks.remove(node);
     }
+  
+    /**
+     * Will return when there are lock changes on this NodeState object. This
+     * includes if locks were returned or taken from the pool of available 
+     * nodes.
+     */
+    public void waitForLockChanges() { 
+        synchronized(_lockchanges) { 
+            try {
+                _lockchanges.wait();
+            } catch (InterruptedException e) { }
+        }
+    }
    
     /**
      * This method will attempt to all or none of the locks specified by the 
@@ -155,105 +177,124 @@ public class NodeState {
      * @throws DTFException
      */
     public synchronized NodeInfo[] lockNodes(Lock[] locks) throws DTFException { 
-        NodeInfo[] niLocks = new NodeInfo[locks.length];
-        
-        for (int i = 0; i < niLocks.length; i++) 
-            niLocks[i] = new NodeInfo(locks[i]);
-     
-        int n = 0;
-        boolean matched = false;
-        for (n = 0; n < niLocks.length; n++) { 
-            matched = false;
-	        for(int i = 0; i < connectedNodes.size(); i++) {
-	            NodeInfo ni = (NodeInfo) connectedNodes.get(i);
-	               
-	            if ( _logger.isDebugEnabled() )
-	                _logger.debug("Trying to match " + ni + 
-	                              " with " + niLocks[n]);
-	                
-	            if (!ni.isLocked() && niLocks[n].matches(ni)) { 
-	                if (_logger.isDebugEnabled())
-	                    _logger.debug("Locked " + ni + " for " + 
-	                                  locks[n].getOwner());
-	                ni.lock(locks[n].getOwner());
-	                niLocks[n] = ni;
-	                matched = true;
-	            } else 
-	                if (_logger.isDebugEnabled())
-	                    _logger.debug("Didn't find match " + ni);
+        try { 
+	        NodeInfo[] niLocks = new NodeInfo[locks.length];
+	        
+	        for (int i = 0; i < niLocks.length; i++) 
+	            niLocks[i] = new NodeInfo(locks[i]);
+	     
+	        int n = 0;
+	        boolean matched = false;
+	        for (n = 0; n < niLocks.length; n++) { 
+	            matched = false;
+		        for(int i = 0; i < connectedNodes.size(); i++) {
+		            NodeInfo ni = (NodeInfo) connectedNodes.get(i);
+		               
+		            if ( _logger.isDebugEnabled() )
+		                _logger.debug("Trying to match " + ni + 
+		                              " with " + niLocks[n]);
+		                
+		            if (!ni.isLocked() && niLocks[n].matches(ni)) { 
+		                if (_logger.isDebugEnabled())
+		                    _logger.debug("Locked " + ni + " for " + 
+		                                  locks[n].getOwner());
+		                ni.lock(locks[n].getOwner());
+		                niLocks[n] = ni;
+		                matched = true;
+		            } else 
+		                if (_logger.isDebugEnabled())
+		                    _logger.debug("Didn't find match " + ni);
+		        }
+		        
+		        if ( !matched )
+		            break;
 	        }
 	        
-	        if ( !matched )
-	            break;
-        }
-        
-        if ( matched ) { 
-            for (n = 0; n < niLocks.length; n++) { 
-		        addNode(locks[n].getOwner(),niLocks[n]);
-		        // move this node to the end of the list so we'll give all nodes
-		        // a chance when locking
-		        connectedNodes.add(connectedNodes.remove(n));
+	        if ( matched ) { 
+	            for (n = 0; n < niLocks.length; n++) { 
+			        addNode(locks[n].getOwner(),niLocks[n]);
+			        // move this node to the end of the list so we'll give all nodes
+			        // a chance when locking
+			        connectedNodes.add(connectedNodes.remove(n));
+	            }
+	            return niLocks;
+	        }
+	
+	        for (n = 0; n < niLocks.length; n++) { 
+	            if ( niLocks[n] != null ) {
+	                if ( niLocks[n].isLocked() )
+	                    niLocks[n].unlockWithoutRelease();
+	            }
+	        }
+	      
+	        StringBuffer buff = new StringBuffer("[");
+	        
+	        for (NodeInfo ni : niLocks) 
+	            if ( ni != null ) 
+	                buff.append(ni + ", ");
+	        
+	        buff.replace(buff.length()-1, buff.length(), "]");
+	        
+	        throw new LockException("No agent found to match " + buff);
+        } finally { 
+            synchronized(_lockchanges) { 
+                _lockchanges.notifyAll();
             }
-            return niLocks;
         }
-
-        for (n = 0; n < niLocks.length; n++) { 
-            if ( niLocks[n] != null ) {
-                if ( niLocks[n].isLocked() )
-                    niLocks[n].unlockWithoutRelease();
-            }
-        }
-      
-        StringBuffer buff = new StringBuffer("[");
-        
-        for (NodeInfo ni : niLocks) 
-            if ( ni != null ) 
-                buff.append(ni + ", ");
-        
-        buff.replace(buff.length()-1, buff.length(), "]");
-        
-        throw new LockException("No agent found to match " + buff);
     }
     
     public synchronized NodeInfo unlockNode(Lock lock) throws DTFException {
-        NodeInfo niLock = new NodeInfo(lock);
-        for(int i = 0; i < connectedNodes.size(); i++) {
-            NodeInfo ni = (NodeInfo) connectedNodes.get(i);
-            if (_logger.isDebugEnabled())
-                _logger.debug("Trying to match " + ni + " with " + niLock);
-            /*
-             * We only care that the id matches the list of ids that this 
-             * component owns.
-             */
-            if (ni.isLocked() && niLock.getId().equals(ni.getId())) { 
-                removeNode(lock.getOwner(), ni);
-                ni.unlock();
+        try {
+            NodeInfo niLock = new NodeInfo(lock);
+            for(int i = 0; i < connectedNodes.size(); i++) {
+                NodeInfo ni = (NodeInfo) connectedNodes.get(i);
                 if (_logger.isDebugEnabled())
-                    _logger.debug("Unlocked " + ni + " for " + lock.getOwner());
-                return ni;
+                    _logger.debug("Trying to match " + ni + " with " + niLock);
+                /*
+                 * We only care that the id matches the list of ids that this 
+                 * component owns.
+                 */
+                if (ni.isLocked() && niLock.getId().equals(ni.getId())) { 
+                    removeNode(lock.getOwner(), ni);
+                    ni.unlock();
+                    if (_logger.isDebugEnabled())
+                        _logger.debug("Unlocked " + ni + " for " + lock.getOwner());
+                    return ni;
+                }
+            }
+            
+            throw new ActionException("Agent: " + niLock + " never locked.");
+        } finally { 
+            synchronized( _lockchanges ) { 
+                _lockchanges.notifyAll();
             }
         }
-        throw new ActionException("Agent: " + niLock + " never locked.");
     }
     
     public synchronized NodeInfo unlockNodeWithoutRelease(Lock lock)
            throws DTFException {
-        NodeInfo niLock = new NodeInfo(lock);
-        for(int i = 0; i < connectedNodes.size(); i++) {
-            NodeInfo ni = (NodeInfo) connectedNodes.get(i);
-            if (_logger.isDebugEnabled())
-                _logger.debug("Trying to match " + ni + " with " + niLock);
-            /*
-             * We only care that the id matches the list of ids that this 
-             * component owns.
-             */
-            if (ni.isLocked() && niLock.getId().equals(ni.getId())) { 
-                removeNode(lock.getOwner(), ni);
-                if (_logger.isDebugEnabled())
-                    _logger.debug("Unlocked " + ni + " for " + lock.getOwner());
-                return ni;
+        try { 
+	        NodeInfo niLock = new NodeInfo(lock);
+	        for(int i = 0; i < connectedNodes.size(); i++) {
+	            NodeInfo ni = (NodeInfo) connectedNodes.get(i);
+	            if (_logger.isDebugEnabled())
+	                _logger.debug("Trying to match " + ni + " with " + niLock);
+	            /*
+	             * We only care that the id matches the list of ids that this 
+	             * component owns.
+	             */
+	            if (ni.isLocked() && niLock.getId().equals(ni.getId())) { 
+	                removeNode(lock.getOwner(), ni);
+	                if (_logger.isDebugEnabled())
+	                    _logger.debug("Unlocked " + ni + " for " + lock.getOwner());
+	                return ni;
+	            }
+	        }
+	        throw new ActionException("Agent: " + niLock + " never locked.");
+        } finally { 
+            synchronized( _lockchanges ) { 
+                _lockchanges.notifyAll();
             }
         }
-        throw new ActionException("Agent: " + niLock + " never locked.");
     }
 }

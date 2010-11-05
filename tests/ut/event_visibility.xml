@@ -18,24 +18,22 @@
     </local>
 
     <!-- Local Visibility Test -->
-   
-    <log>Testing ${iterations.small} local event(s)</log> 
-    <for property="i" range="1..${iterations.small}">
+    <!-- Testing ${iterations.tiny} local event(s) -->
+    <for property="i" range="1..${iterations.tiny}">
 	    <event name="local_event${i}">
 	        <attribute name="attribute1" value="local_value1"/>
 	    </event>
     </for>
 	   
-    <for property="i" range="1..${iterations.small}"> 
+    <for property="i" range="1..${iterations.tiny}"> 
 	    <property name="X" 
                   value="${local_event${i}.attribute1}"
                   overwrite="true"/>
     </for>
 
     <!-- Remote Visibility Test -->
-
-    <log>Testing ${iterations.small} remote event(s)</log> 
-    <for property="i" range="1..${iterations.small}"> 
+    <!-- Testing ${iterations.tiny} remote event(s) -->
+    <for property="i" range="1..${iterations.tiny}"> 
 	    <component id="C1">
 		    <event name="remote_event1${i}">
 		        <attribute name="attribute1" value="remote_value1"/>
@@ -46,7 +44,7 @@
 	    </component>
     </for>
     
-    <for property="i" range="1..${iterations.small}"> 
+    <for property="i" range="1..${iterations.tiny}"> 
 	    <property name="X" 
                   value="${remote_event1${i}.attribute1}"
                   overwrite="true"/>
@@ -56,20 +54,15 @@
     </for>
 
     <component id="C1">
-        <echo>${X}</echo>
-        <echo>${Y}</echo>
+        <property name="test" value="${X}${Y}"/>
 	</component>
     
     <!-- event visibility outside of functions -->
-    
-    <!-- XXX: make this work! --> 
     <function name="throwsEvents">
-        <event name="myevent">
-        </event>
+        <event name="myevent"/>
     </function>
     
     <call function="throwsEvents"/>
-    
-    <log>myevent started at ${myevent.start}</log>
+    <assert><isset property="myevent.start"/></assert>
 
 </script>  

@@ -20,22 +20,6 @@
         <loadproperties uri="storage://INPUT/ut.properties"/>
     </local>
 
-    <function name="printResults"> 
-        <param name="event" type="required"/>
-        <param name="uri"   type="required"/>
-        
-	    <query uri="${uri}"
-	           event="${event}"
-	           cursor="event_cursor"/>
-	                   
-	    <stats cursor="event_cursor" event="${event}"/>
-	    
-	    <log>
-	        Event1 ${${event}.tot_occ} total requests
-	        Event1 ${${event}.avg_occ} requests/second
-	    </log>
-    </function>
-
     <function name="checkDist">
         <param name="distid" type="required"/>
         <param name="uri"    type="required"/>
@@ -82,11 +66,6 @@
         </distribute>                         
     </record>     
     
-    <call function="printResults">
-        <property name="event" value="test.event1"/>
-        <property name="uri" value="storage://OUTPUT/dist_choices_1500.txt"/>
-    </call>
-
     <call function="checkDist">
         <property name="distid" value="mydist"/>
         <property name="uri" value="storage://OUTPUT/dist_choices_1500.txt"/>
@@ -98,27 +77,22 @@
     <record uri="storage://OUTPUT/dist_choices_15.txt">
         <distribute id="mydist"
                     range="1..3"
-                    iterations="18"
-                    func="const(6)"
-                    timer="12s"
+                    iterations="9"
+                    func="const(3)"
+                    timer="6s"
                     property="iteration">
             <choices>
                 <choose howoften="100%">
                     <event name="test.event1">
                         <attribute name="iteration" value="${iteration}"/>
                         <attribute name="worker"    value="${mydist.worker}"/>
-                        <sleep time="500ms"/>
+                        <sleep time="250ms"/>
                     </event>
                 </choose>
             </choices>
         </distribute>                         
     </record>     
     
-    <call function="printResults">
-        <property name="event" value="test.event1"/>
-        <property name="uri" value="storage://OUTPUT/dist_choices_15.txt"/>
-    </call>
-
     <call function="checkDist">
         <property name="distid" value="mydist"/>
         <property name="uri" value="storage://OUTPUT/dist_choices_15.txt"/>

@@ -5,7 +5,7 @@
             <name>Rodney Gomes</name>
             <email>rlgomes@yahoo-inc.com</email>
         </author>
-        <description>DTF unit test for complex property resolution.</description>
+        <description>DTF unit test for property resolution.</description>
     </info>
 
     <local>
@@ -14,87 +14,148 @@
 
         <loadproperties uri="storage://INPUT/ut.properties"/>
 
-        <echo message="*** Property resolution unit test ***"/>
-       
-        <lockgroup>
-	        <lockcomponent id="DTFA1" timeout="60s"/>
-	        <lockcomponent id="DTFA2" timeout="60s"/>
-        </lockgroup>
+        <lockcomponent id="DTFA1" />
     </local>
+    
+    <component id="DTFA1">
+        <event name="test">
+            <attribute name="value" value="一種語言永遠不夠 [一种语言永远不够]"/>
+        </event>
+    </component>
+    <assert><eq op1="一種語言永遠不夠 [一种语言永远不够]" op2="${test.value}"/></assert>
+    
+    <property name="local.data">
+Breton          ur yezh hepken n'eo ket a-walc'h
+Bulgarian       един език никога не е достатъчен
+Catalan         no n'hi ha prou amb una llengua
+Chinese         一種語言永遠不夠 [一种语言永远不够]
+                yīzhǒng yǔyán yǒngyuǎn bùgòu - Mandarin
+                yātjúng yuéhyình wíhngyyúhn bātgau - Cantonese
+                jit7zung3 ngi1ngien2 jun1jen3 but7kieu5 - Hakka
+Czech           Jeden jazyk nikdy nestačí
+Danish          ét sprog er aldrig nok
+Dutch           één taal is nooit genoeg
+Esperanto       unu lingvo neniam estas sufiĉa
+Finnish         yksi kieli ei ikinä riitä / yksi kieli ei koskaan riitä
+French          une seule langue n'est jamais suffisante 
+Friulian        une lenghe no bastâ mai
+Gaelic (Irish)  neamhleor atá teanga amháin
+Gaelic (Manx)   cha nel dy liooar un çhangey
+German          eine Sprache ist niemals genug
+Greek           μία γλώσσα δεν είναι ποτέ αρκετή (mia glosa den ine pote arketi)
+Hindi           एक भाषा कभी क़ाफ़ी नहीं है (Ek bhāṣā kabhī qāfī nahīṁ hai)
+Hungarian       egy nyelv sosem elég
+Indonesian      Satu bahasa tidak pernah cukup
+Italian         una sola lingua non è mai abbastanza
+Japanese        一つの言語は決して十分ではない
+Latin           una lingua nunquam satis est
+Lithuanian      Kalbų niekad nemokėsi per daug
+Luxembourgish   eng Sprooch as ni genuch
+Norwegian       et språk er aldri nok
+Persian         یک زبان را هرگز کافی است
+Polish          Jeden język nigdy nie wystarcza
+Portuguese      uma só língua nunca basta
+Romanian        o singură limbă nu ajunge niciodată
+Russian         Один язык недостаточно 
+                Знать один язык недостаточно (Znatʼ odin jazyk nedostatočno)
+                Знать один язык - это недостаточно (Znatʼ odin jazyk - eto nedostatočno)
+Serbian         један језик је премало
+Slovak          jeden jazyk nie je nikdy dosť
+Slovenian       en jezik ni nikoli dovolj
+Spanish         una lengua nunca es suficiente
+Sranan          wan tongo no de nofo
+Swedish         ett språk är aldrig nog 
+Thai            ภาษาเดียวไม่เคยพอ (phāsā dīaw mai khoey po)
+Turkish         Bir dil asla yeterli değildir
+Ukrainian       Однієї мови ніколи не достатає
+Vietnamese      Một thứ tiếng thì không bao giờ đủ
+Welsh           annigonol ydy un iaith / dyw un iaith byth yn ddigon 
+Yiddish         אײן לשון איז קײנמאָל נישט גענוג 
+</property>
+    
+    <!-- 
+    Transporting special characters in a property and comparing with the same
+    data generated on the component side
+    -->
+    <component id="DTFA1">
+       <property name="remote.data">
+Breton          ur yezh hepken n'eo ket a-walc'h
+Bulgarian       един език никога не е достатъчен
+Catalan         no n'hi ha prou amb una llengua
+Chinese         一種語言永遠不夠 [一种语言永远不够]
+                yīzhǒng yǔyán yǒngyuǎn bùgòu - Mandarin
+                yātjúng yuéhyình wíhngyyúhn bātgau - Cantonese
+                jit7zung3 ngi1ngien2 jun1jen3 but7kieu5 - Hakka
+Czech           Jeden jazyk nikdy nestačí
+Danish          ét sprog er aldrig nok
+Dutch           één taal is nooit genoeg
+Esperanto       unu lingvo neniam estas sufiĉa
+Finnish         yksi kieli ei ikinä riitä / yksi kieli ei koskaan riitä
+French          une seule langue n'est jamais suffisante 
+Friulian        une lenghe no bastâ mai
+Gaelic (Irish)  neamhleor atá teanga amháin
+Gaelic (Manx)   cha nel dy liooar un çhangey
+German          eine Sprache ist niemals genug
+Greek           μία γλώσσα δεν είναι ποτέ αρκετή (mia glosa den ine pote arketi)
+Hindi           एक भाषा कभी क़ाफ़ी नहीं है (Ek bhāṣā kabhī qāfī nahīṁ hai)
+Hungarian       egy nyelv sosem elég
+Indonesian      Satu bahasa tidak pernah cukup
+Italian         una sola lingua non è mai abbastanza
+Japanese        一つの言語は決して十分ではない
+Latin           una lingua nunquam satis est
+Lithuanian      Kalbų niekad nemokėsi per daug
+Luxembourgish   eng Sprooch as ni genuch
+Norwegian       et språk er aldri nok
+Persian         یک زبان را هرگز کافی است
+Polish          Jeden język nigdy nie wystarcza
+Portuguese      uma só língua nunca basta
+Romanian        o singură limbă nu ajunge niciodată
+Russian         Один язык недостаточно 
+                Знать один язык недостаточно (Znatʼ odin jazyk nedostatočno)
+                Знать один язык - это недостаточно (Znatʼ odin jazyk - eto nedostatočno)
+Serbian         један језик је премало
+Slovak          jeden jazyk nie je nikdy dosť
+Slovenian       en jezik ni nikoli dovolj
+Spanish         una lengua nunca es suficiente
+Sranan          wan tongo no de nofo
+Swedish         ett språk är aldrig nog 
+Thai            ภาษาเดียวไม่เคยพอ (phāsā dīaw mai khoey po)
+Turkish         Bir dil asla yeterli değildir
+Ukrainian       Однієї мови ніколи не достатає
+Vietnamese      Một thứ tiếng thì không bao giờ đủ
+Welsh           annigonol ydy un iaith / dyw un iaith byth yn ddigon 
+Yiddish         אײן לשון איז קײנמאָל נישט גענוג 
+</property>
+        <assert><eq op2="${remote.data}" op1="${local.data}"/></assert>
+    </component>
 
-    <for property="i" range="1..10">
-        <for property="j" range="1..10">
-            <local>
-                <property name="property${i}${j}" value="${i}-${j}"/>
-            </local> 
+    <for property="i" range="1..${iterations.tiny}">
+        <for property="j" range="1..${iterations.tiny}">
+            <property name="property${i}${j}" value="${i}-${j}"/>
         </for>
     </for>
    
-    <for property="i" range="1..10">
-        <for property="j" range="1..10">
-            <if>
-                <neq op1="${property${i}${j}}" op2="${i}-${j}" type="string" nullable="false"/>
-                <then>
-                    <fail message="property mismatch for property${i}${j}: ${property${i}${j}} != ${i}-${j}"/>
-                </then>
-            </if>
+    <for property="i" range="1..${iterations.tiny}">
+        <for property="j" range="1..${iterations.tiny}">
+            <assert>
+                <eq op1="${property${i}${j}}"
+                    op2="${i}-${j}" />
+            </assert>
         </for>
     </for>
     
-    <for property="i" range="1..10">
-        <for property="j" range="1..10">
-            <local>
-                <property name="a${i}b${j}c" value="${i}-${j}"/>
-            </local> 
-        </for>
-    </for>
-   
-    <for property="i" range="1..10">
-        <for property="j" range="1..10">
-            <if>
-                <neq op1="${a${i}b${j}c}" op2="${i}-${j}" type="string" nullable="false"/>
-                <then>
-                    <fail message="property mismatch for [a${i}b${j}c]: ${a${i}b${j}c} != ${i}-${j}"/>
-                </then>
-            </if>
-        </for>
-    </for>
-
     <!-- catch some issues with remote property resolution  -->
-    <property name="prop1" value="localvalue"/> 
-    <record uri="storage://OUTPUT/property_remote_value.txt">
-        <component id="DTFA1">
-            <for property="prop1" range="1..100">
-                <event name="test.event">
-                    <attribute name="iteration" value="${prop1}"/>
-                </event>
-            </for>        
-        </component>
-    </record>
-    
-    <query uri="storage://OUTPUT/property_remote_value.txt"
-           cursor="c1"
-           event="test.event"/>
-    
-    <for property="i" range="1..100"> 
-        <nextresult cursor="c1"/>
-        <if>
-            <neq op1="${c1.iteration}" op2="${i}"/> 
-            <then>
-                <fail message="${c1.iteration} != ${i}, this means there is an issue with property resolution"/>
-            </then>
-        </if>
-    </for>
-   
-    <for property="i" range="1..100"> 
+    <for property="i" range="1..${iterations.tiny}"> 
         <property name="p${i}" value="${i}"/> 
     </for>
-    
+
+    <property name="prop1" value="localvalue"/> 
     <record uri="storage://OUTPUT/property_remote_resolution.txt">
         <component id="DTFA1">
-            <for property="i" range="1..100">
+            <for property="i" range="1..${iterations.tiny}">
                 <event name="test.event">
-                    <attribute name="iteration" value="${p${i}}"/>
+                    <attribute name="range" value="${p${i}}"/>
+                    <attribute name="property" value="${prop1}"/>
                 </event>
             </for>        
         </component>
@@ -103,55 +164,33 @@
     <query uri="storage://OUTPUT/property_remote_resolution.txt"
            cursor="c1"
            event="test.event"/>
-    
-    <for property="i" range="1..100"> 
-        <nextresult cursor="c1"/>
-        <if>
-            <neq op1="${c1.iteration}" op2="${i}"/> 
-            <then>
-                <fail message="${c1.iteration} != ${i}, this means there is an issue with property resolution"/>
-            </then>
-        </if>
-    </for>
-
-    <!--  this just validates that the iterations property can corectly 
-          be passed in as an integer even though it was defined in the runner
-          and not the agent. -->
-    <property name="iterations" value="100" overwrite="true"/>
-    <component id="DTFA1">
-        <distribute range="1" iterations="${iterations.medium}">
-        </distribute>
-    </component>
   
-    <property name="x" value="y"/> 
-    <record uri="storage://OUTPUT/remote_resolution1.txt">
-	    <for property="i" range="1..2"> 
-		    <for property="newproperty" range="1..5">
-		        <component id="DTFA${i}">
-		            <echo>${newproperty} ${x}</echo>
-	                <event name="test.event">
-	                    <attribute name="iteration" value="${newproperty}"/>
-	                </event>
-		        </component>
-		    </for>
-	    </for>
-    </record>
-
-    <query uri="storage://OUTPUT/remote_resolution1.txt"
-           cursor="c1"
-           event="test.event"/>
-
-    <for property="i" range="1..5"> 
-        <nextresult cursor="c1"/>
-        <if>
-            <neq op1="${c1.iteration}" op2="${i}"/> 
-            <then>
-                <fail message="${c1.iteration} != ${i}, this means there is an issue with property resolution"/>
-            </then>
-        </if>
-    </for>
-   
-    <log>simple property resolution visibility for the same runner thread</log> 
+    <createrange name="count" value="1..${iterations.tiny}"/>   
+    <iterate cursor="c1">
+        <assert>
+            <and>
+                <eq op1="${c1.property}" op2="${prop1}"/> 
+                <eq op1="${c1.range}" op2="${count}"/> 
+            </and>
+        </assert>
+    </iterate> 
+    
+    <!-- This is used to catch the issue of a property created only for the 
+         tag for scope that persists afterwards. looking below since J exists
+         in the first for loop done in the main test and then we call some 
+         actions on a component. If J is still defined (which shoudnl't be the 
+         case) then the loops on the components do not have the desired 
+         behavior. --> 
+       
+    <property name="j" value="xxx"/> 
+    <component id="DTFA1">
+        <createrange name="i" value="1..3"/>
+        <for property="j" range="1..3">
+            <assert><eq op2="${i}" op1="${j}"/></assert>
+        </for>    
+    </component>
+    
+    <!-- simple property resolution visibility for the same runner thread -->
     <component id="DTFA1">
         <property name="A" value="B"/>
     </component>

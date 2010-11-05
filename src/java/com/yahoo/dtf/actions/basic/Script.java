@@ -47,7 +47,6 @@ public class Script extends Action {
         result.start();
         
         try {
-            getResults().setTestSuiteRecorded(false);
             executeChildren();
             result.stop();
             result.setPassResult();
@@ -56,15 +55,14 @@ public class Script extends Action {
             result.setFailResult(e);
             throw e;
         } finally { 
+            if (result.getStop() == -1)
+                result.stop();
+            
+            getResults().recordResult(result);
 
-            /*
-             * Only record the test case result if there was no sub 
-             * test suite recording already done.
-             */
-            if (!getResults().isTestSuiteRecorded())  {
-                if (result.getStop() == -1)
-                    result.stop();
-                getResults().recordResult(result);
+            if ( getLogger().isDebugEnabled() ) { 
+	            getLogger().debug(getFilename() + " took " + 
+	                              result.getDurationInMilliSeconds() + "ms");
             }
         }
     }

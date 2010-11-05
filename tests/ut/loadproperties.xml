@@ -24,11 +24,7 @@
             </local>
         </sequence>
         <catch exception="${dtf.StorageException}">
-            <sequence>
-                <local>
-                    <echo>The previous loadproperties has failed correctly.</echo>
-                </local>
-            </sequence>
+            <log level="debug">The previous loadproperties has failed correctly.</log>
         </catch>
     </try>
     

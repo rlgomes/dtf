@@ -26,16 +26,14 @@
 
     <property name="string1" value="Hello World!"/>
     <property name="string2" value="rodney lopes gomes"/>
-  
-    <log>${int1:convert:to-hex}</log> 
-    <log>${int2:convert:to-hex(4)}</log> 
-
-    <log>${hex1:convert:from-hex}</log> 
-    <log>${hex2:convert:from-hex}</log> 
-
-    <log>Length of [${string1}] is ${string1:string:length}</log> 
-    <log>middle name is "${string2:string:sub-string(7,12)}"</log> 
-
-    <log>index of 'W' in "${string1}" is ${string1:string:index-of(W)}</log> 
+    
+    <assert><eq op1="${int1:convert:to-hex}" op2="4d2"/></assert>
+    <assert><eq op1="${int2:convert:to-hex(4)}" op2="002a"/></assert>
+    <assert><eq op1="${hex1:convert:from-hex}" op2="65535"/></assert>
+    <assert><eq op1="${hex2:convert:from-hex}" op2="4294967295"/></assert>
+    
+    <assert><eq op1="${string1:string:length}" op2="12"/></assert>
+    <assert><eq op1="${string2:string:sub-string(7,12)}" op2="lopes"/></assert>
+    <assert><eq op1="${string1:string:index-of(W)}" op2="6"/></assert>
  
 </script>

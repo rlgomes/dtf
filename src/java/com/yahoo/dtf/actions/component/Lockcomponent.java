@@ -144,7 +144,11 @@ public class Lockcomponent extends Action {
         }
 
         getComponents().registerComponent(getId(), lock);
-        getLogger().info("Component locked " + lock + " as " + getId());
+        if ( getLogger().isDebugEnabled() ) { 
+            getLogger().debug("Locked " + lock + " as " + getId());
+        } else { 
+            getLogger().info("Locked " + lock.getId() + " as " + getId()); 
+        }
 
         // execute LockHooks!
         for (int i = 0; i < _lockhooks.size(); i++) {
