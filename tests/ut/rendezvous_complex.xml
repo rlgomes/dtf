@@ -16,16 +16,12 @@
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
 
         <loadproperties uri="storage://INPUT/ut.properties"/>
-
-        <!-- should be larger than 25 for the negative test to work -->
-        <property name="parties" value="50"/> 
     </local>
   
     <local> 
         <lockgroup>
             <lockcomponent id="C1"/>
             <lockcomponent id="C2"/>
-            <lockcomponent id="C3"/>
         </lockgroup>
     </local>
     
@@ -69,35 +65,37 @@
 	    <share_get id="INFO"/> 
 	    <subtract op1="${stop}" op2="${start}" result="duration"/> 
         <add op1="${acc}" op2="${duration}" result="acc"/>
-        <log>resetting ${i}</log>
         <rendezvous_reset id="REMOTERENDEZVOUS"/>
     </for> 
-    
     <divide op1="${acc}" op2="10" result="duration"/>
-	<log>Remote rendezvous sync off by ${duration}ms on average</log>
+    <assert><lt op1="${acc}" op2="100ms"/></assert>
 
-    <rendezvous_create id="R1" parties="20"/> 
+    <!-- create rendezvous on runner then have two parallel components visit 
+         the rendezvous a few times in parallel -->
+    <rendezvous_create id="R1" parties="6"/> 
     <parallel>
 	    <component id="C1">
-            <for property="i" range="1..5">
-	            <parallelloop property="i" range="1..10">
+            <for property="i" range="1..3">
+	            <parallelloop property="i" range="1..3">
 	                <rendezvous_visit id="R1" timeout="2s"/> 
 	            </parallelloop>
             </for>
 	    </component>
 	    <component id="C2">
-            <for property="i" range="1..5">
-	            <parallelloop property="i" range="1..10">
+            <for property="i" range="1..3">
+	            <parallelloop property="i" range="1..3">
 		           <rendezvous_visit id="R1" timeout="2s"/> 
 	            </parallelloop>
             </for>
 	    </component>
     </parallel>
-   
-    <component id="C1">
-        <rendezvous_create id="rv1" parties="5"/> 
   
-	    <parallelloop range="1..5" property="thread">
+    <!-- create the rendezvous point on a component and validate that component
+         can visit the rendezvous and exit correctly --> 
+    <component id="C1">
+        <rendezvous_create id="rv1" parties="3"/> 
+  
+	    <parallelloop range="1..3" property="thread">
 	        <sequence>
 	            <rendezvous_visit id="rv1" timeout="2s"/>
 	        </sequence>
@@ -107,49 +105,33 @@
         <rendezvous_destroy id="rv1"/>
     </component>
 
-    <for property="i" range="1..100">
-	    <parallel>
-		    <component id="C1">
-		        <rendezvous_create id="RV2" parties="3"/> 
-	            <rendezvous_visit id="RV2" timeout="5s"/>
-		    </component>
-		    <component id="C2">
-	            <while><not><rendezvous_exists id="RV2"/></not>
-	                <sleep time="10ms"/>
-	            </while>
-		        <rendezvous_visit id="RV2" timeout="5s"/>
-		    </component>
-		    <component id="C3">
-	            <while><not><rendezvous_exists id="RV2"/></not>
-	                <sleep time="10ms"/>
-	            </while>
-		        <rendezvous_visit id="RV2" timeout="5s"/>
-		    </component>
-	    </parallel>
-        <rendezvous_destroy id="RV2"/>
-    </for>
+    <!-- create the rendezvous point on a component and validate that another
+         component can visit the rendezvous and exit correctly --> 
+    <parallel>
+	    <component id="C1">
+	        <rendezvous_create id="RV2" parties="2"/> 
+            <rendezvous_visit id="RV2" timeout="5s"/>
+	    </component>
+	    <component id="C2">
+            <while><not><rendezvous_exists id="RV2"/></not>
+                <sleep time="10ms"/>
+            </while>
+	        <rendezvous_visit id="RV2" timeout="5s"/>
+	    </component>
+    </parallel>
+    <rendezvous_destroy id="RV2"/>
 
-    <rendezvous_create id="RV3" parties="10"/> 
+    <!-- visit the rendezvous on another component through N parallel calls to 
+         that component.-->
+    <rendezvous_create id="RV3" parties="5"/> 
     <for property="i" range="1..10">
-	    <parallelloop property="t" range="1..10">
+	    <parallelloop property="t" range="1..5">
 		    <component id="C1">
 	            <rendezvous_visit id="RV3" timeout="5s"/>
 		    </component>
 	    </parallelloop>
 	    <rendezvous_reset id="RV3"/>
-        <log>Sync ${i} done.</log>
     </for>
     <rendezvous_destroy id="RV3"/>
-
-    <for property="i" range="1..10">
-        <rendezvous_create id="RV3" parties="10"/> 
-        <parallelloop property="threads" range="1..10">
-            <component id="C1">
-                <rendezvous_visit id="RV3" timeout="5s"/>
-            </component>
-        </parallelloop>
-        <rendezvous_destroy id="RV3"/>
-        <log>Sync ${i} done.</log>
-    </for>
 
 </script> 

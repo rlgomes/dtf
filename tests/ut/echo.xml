@@ -12,140 +12,15 @@
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
         <loadproperties uri="storage://INPUT/ut.properties"/>
-        <echo message="*** Echo Unit Test ***"/>
         
         <property name="prop1" value="a"/>
         <property name="prop2" value="b"/>
         <property name="prop3" value="c"/>
-        
-        <echo>${prop1} : ${prop2} : ${prop3}</echo>
-        
-        <echo message="Echoing some System properties"/>
-        <echo>Os: ${os.name}</echo>
-        <echo>Arch: ${os.arch}</echo>
-        <echo message=" "/>
-        
-        <echo message="Echoing some properties from ut.properties"/>
-        <echo>dtf.test.property1 = ${dtf.test.property1}</echo>
-        <echo>dtf.test.property2 = ${dtf.test.property2}</echo>
-      
-        <property name="echo.clients" value="3"/> 
        
-        <lockgroup>
-            <lockcomponent id="DTFA1" timeout="60s"/>
-            <lockcomponent id="DTFA2" timeout="60s"/>
-            <lockcomponent id="DTFA3" timeout="60s"/>
-        </lockgroup>     
+        <lockcomponent id="DTFA1"/>
     </local>
-   
-    <local>
-        <property name="local.data">
-Breton          ur yezh hepken n'eo ket a-walc'h
-Bulgarian       един език никога не е достатъчен
-Catalan         no n'hi ha prou amb una llengua
-Chinese         一種語言永遠不夠 [一种语言永远不够]
-                yīzhǒng yǔyán yǒngyuǎn bùgòu - Mandarin
-                yātjúng yuéhyình wíhngyyúhn bātgau - Cantonese
-                jit7zung3 ngi1ngien2 jun1jen3 but7kieu5 - Hakka
-Czech           Jeden jazyk nikdy nestačí
-Danish          ét sprog er aldrig nok
-Dutch           één taal is nooit genoeg
-Esperanto       unu lingvo neniam estas sufiĉa
-Finnish         yksi kieli ei ikinä riitä / yksi kieli ei koskaan riitä
-French          une seule langue n'est jamais suffisante 
-Friulian        une lenghe no bastâ mai
-Gaelic (Irish)  neamhleor atá teanga amháin
-Gaelic (Manx)   cha nel dy liooar un çhangey
-German          eine Sprache ist niemals genug
-Greek           μία γλώσσα δεν είναι ποτέ αρκετή (mia glosa den ine pote arketi)
-Hindi           एक भाषा कभी क़ाफ़ी नहीं है (Ek bhāṣā kabhī qāfī nahīṁ hai)
-Hungarian       egy nyelv sosem elég
-Indonesian      Satu bahasa tidak pernah cukup
-Italian         una sola lingua non è mai abbastanza
-Japanese        一つの言語は決して十分ではない
-Latin           una lingua nunquam satis est
-Lithuanian      Kalbų niekad nemokėsi per daug
-Luxembourgish   eng Sprooch as ni genuch
-Norwegian       et språk er aldri nok
-Persian         یک زبان را هرگز کافی است
-Polish          Jeden język nigdy nie wystarcza
-Portuguese      uma só língua nunca basta
-Romanian        o singură limbă nu ajunge niciodată
-Russian         Один язык недостаточно 
-                Знать один язык недостаточно (Znatʼ odin jazyk nedostatočno)
-                Знать один язык - это недостаточно (Znatʼ odin jazyk - eto nedostatočno)
-Serbian         један језик је премало
-Slovak          jeden jazyk nie je nikdy dosť
-Slovenian       en jezik ni nikoli dovolj
-Spanish         una lengua nunca es suficiente
-Sranan          wan tongo no de nofo
-Swedish         ett språk är aldrig nog 
-Thai            ภาษาเดียวไม่เคยพอ (phāsā dīaw mai khoey po)
-Turkish         Bir dil asla yeterli değildir
-Ukrainian       Однієї мови ніколи не достатає
-Vietnamese      Một thứ tiếng thì không bao giờ đủ
-Welsh           annigonol ydy un iaith / dyw un iaith byth yn ddigon 
-Yiddish         אײן לשון איז קײנמאָל נישט גענוג 
-</property>
-      </local> 
     
-    <log>
-    Transporting special characters in a property and comparing with the same
-    data generated on the component side
-    </log>
-    <for property="i" range="1..${echo.clients}">
-	    <component id="DTFA${i}">
-	        <property name="remote.data">
-Breton          ur yezh hepken n'eo ket a-walc'h
-Bulgarian       един език никога не е достатъчен
-Catalan         no n'hi ha prou amb una llengua
-Chinese         一種語言永遠不夠 [一种语言永远不够]
-                yīzhǒng yǔyán yǒngyuǎn bùgòu - Mandarin
-                yātjúng yuéhyình wíhngyyúhn bātgau - Cantonese
-                jit7zung3 ngi1ngien2 jun1jen3 but7kieu5 - Hakka
-Czech           Jeden jazyk nikdy nestačí
-Danish          ét sprog er aldrig nok
-Dutch           één taal is nooit genoeg
-Esperanto       unu lingvo neniam estas sufiĉa
-Finnish         yksi kieli ei ikinä riitä / yksi kieli ei koskaan riitä
-French          une seule langue n'est jamais suffisante 
-Friulian        une lenghe no bastâ mai
-Gaelic (Irish)  neamhleor atá teanga amháin
-Gaelic (Manx)   cha nel dy liooar un çhangey
-German          eine Sprache ist niemals genug
-Greek           μία γλώσσα δεν είναι ποτέ αρκετή (mia glosa den ine pote arketi)
-Hindi           एक भाषा कभी क़ाफ़ी नहीं है (Ek bhāṣā kabhī qāfī nahīṁ hai)
-Hungarian       egy nyelv sosem elég
-Indonesian      Satu bahasa tidak pernah cukup
-Italian         una sola lingua non è mai abbastanza
-Japanese        一つの言語は決して十分ではない
-Latin           una lingua nunquam satis est
-Lithuanian      Kalbų niekad nemokėsi per daug
-Luxembourgish   eng Sprooch as ni genuch
-Norwegian       et språk er aldri nok
-Persian         یک زبان را هرگز کافی است
-Polish          Jeden język nigdy nie wystarcza
-Portuguese      uma só língua nunca basta
-Romanian        o singură limbă nu ajunge niciodată
-Russian         Один язык недостаточно 
-                Знать один язык недостаточно (Znatʼ odin jazyk nedostatočno)
-                Знать один язык - это недостаточно (Znatʼ odin jazyk - eto nedostatočno)
-Serbian         један језик је премало
-Slovak          jeden jazyk nie je nikdy dosť
-Slovenian       en jezik ni nikoli dovolj
-Spanish         una lengua nunca es suficiente
-Sranan          wan tongo no de nofo
-Swedish         ett språk är aldrig nog 
-Thai            ภาษาเดียวไม่เคยพอ (phāsā dīaw mai khoey po)
-Turkish         Bir dil asla yeterli değildir
-Ukrainian       Однієї мови ніколи не достатає
-Vietnamese      Một thứ tiếng thì không bao giờ đủ
-Welsh           annigonol ydy un iaith / dyw un iaith byth yn ddigon 
-Yiddish         אײן לשון איז קײנמאָל נישט גענוג 
-</property>
-	        <assert><eq op2="${remote.data}" op1="${local.data}"/></assert>
-	    </component> 
-    </for>
+    <echo>${prop1} : ${prop2} : ${prop3}</echo>
     
     <try>
         <local>
@@ -153,25 +28,8 @@ Yiddish         אײן לשון איז קײנמאָל נישט גענוג
             <fail message="previous property should have provoked a failure."/>
         </local>
         <catch exception="${dtf.ParseException}">
-            <local>
-                <echo message="Previous echo failed correctly."/>
-            </local>
+            <sequence/>
         </catch>
     </try>
-   
-    <record type="object" uri="property://remoteevent"> 
-	    <component id="DTFA1">
-	        <event name="test">
-                <attribute name="value" value="一種語言永遠不夠 [一种语言永远不够]"/>
-	        </event>
-	    </component>
-    </record>
-    
-    <if>
-        <neq op1="一種語言永遠不夠 [一种语言永远不够]" op2="${remoteevent.value}"/>
-        <then>
-            <fail message="Values dont' match up, this could mean that the strings are getting mangled during transfer to components"/>
-        </then>
-    </if>
     
 </script>

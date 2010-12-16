@@ -8,6 +8,16 @@
         </author>
         <description>Unit test utility functions.</description>
     </info>
+    
+    <!--
+    VERY CAREFUL if you move this function even by a tiny bit you
+    need to update the import.xml file so that the test can validate
+    line,column number as well as script name during exception
+    throwing...
+    -->
+    <function name="badfunc">
+        <fail message="Failing on purpose here." />
+    </function>
    
     <function name="functions.function1">
         <fail message="FAILURE!"/>

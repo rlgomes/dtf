@@ -26,6 +26,8 @@ import com.yahoo.dtf.exception.ParseException;
  */
 public class Attribute extends DTFProperty {
 
+    public enum FieldType {STRING, INTEGER};
+    
     /**
      * @dtf.attr index
      * @dtf.attr.desc Identifies if this attribute is indexable or not.
@@ -76,7 +78,14 @@ public class Attribute extends DTFProperty {
     public void setIndex(String index) { this.index = index; }
     public void setIndex(boolean index) { this.index = ""+index; }
 
-    public String getType() throws ParseException { return replaceProperties(type); }
+    public FieldType getType() throws ParseException { 
+        String t =  replaceProperties(type);
+        
+        if ( t.equals("string") ) return FieldType.STRING;
+        if ( t.equals("integer") ) return FieldType.INTEGER;
+        
+        throw new ParseException("Unknown field type [" + t + "]");
+    }
     public void setType(String type) { this.type = type; }
     
     public boolean equals(Object obj) {

@@ -88,4 +88,14 @@ public abstract class StorageIntf {
      * @param filename
      */
     public abstract void delete(String filename) throws StorageException;
+   
+    /**
+     * moves a resource within a storage allowing for renaming of directories 
+     * and files.
+     *  
+     * @param src
+     * @param dst
+     * @throws StorageException
+     */
+    public abstract void move(String src, String dst) throws StorageException;
 }

@@ -22,11 +22,9 @@
     
     <createrange name="ids" value="1..3" recycle="true"/>
     <parallelloop property="thread" range="1..3">
-        <for property="iteration" range="0..5">
+        <for property="iteration" range="1..3">
             <local>
-                <lockcomponent id="DTFA${thread}">
-                    <attrib name="node.id" value="${ids}"/>
-                </lockcomponent>
+                <lockcomponent id="DTFA${thread}"/>
                 <unlockcomponent id="DTFA${thread}"/>
             </local>
         </for>
@@ -34,9 +32,8 @@
 
     <!-- creating a testsuite here so that we avoid counting the N calls to 
          occupy_component as individual results -->
-    <log>now locking/unlocking in another script...</log>
     <parallelloop property="thread" range="1..3">
-        <for property="iteration" range="1..10">
+        <for property="iteration" range="1..3">
             <testsuite name="lockcomponent">
 	            <testscript uri="storage://INPUT/occupy_component.xml">
                     <property name="occupy.duration" value="0s"/>
@@ -49,7 +46,9 @@
          parallelloop and validate this script can still lock components
          afterwards -->
     <property name="agents" value="3" overwrite="true"/>
-    <testscript uri="storage://INPUT/parallel_occupy_component.xml"/>
+    <testsuite name="lockcomponent">
+        <testscript uri="storage://INPUT/parallel_occupy_component.xml"/>
+    </testsuite>
 
     <local>
         <lockcomponent id="C1"/>     
@@ -60,7 +59,9 @@
          function and validate this script can still lock components afterwards 
     -->
     <property name="agents" value="3" overwrite="true"/>
-    <testscript uri="storage://INPUT/function_occupy_component.xml"/>
+    <testsuite name="lockcomponent">
+        <testscript uri="storage://INPUT/function_occupy_component.xml"/>
+    </testsuite>
 
     <local>
         <lockcomponent id="C1"/>     

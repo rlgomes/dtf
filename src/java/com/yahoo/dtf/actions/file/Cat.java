@@ -85,7 +85,7 @@ public class Cat extends CDATA {
         OutputStream os = getStorageFactory().getOutputStream(getUri(),getAppend());
            
         try { 
-            DTFInputStream dis = getCDATAStream();
+            DTFInputStream dis = getCDATAStream(getEncoding());
             
             if ( dis != null ) {
                 byte[] bytes = new byte[4*1024];

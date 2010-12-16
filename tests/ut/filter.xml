@@ -13,35 +13,45 @@
     	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
 
-        <import uri="storage://INPUT/perfutil.xml"/>
         <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <import uri="storage://INPUT/util.xml"/>
     </local>
 
     <record uri="storage://OUTPUT/unfiltered.txt">
-        <for property="i" range="1..10">
+        <for property="i" range="1..100">
             <event name="write.event">
                 <attribute name="recordid" value="${i}"/>
                 <attribute name="timestamp" value="${dtf.timestamp}"/>
                 <attribute name="datestamp" value="${dtf.datestamp}"/>
                 <attribute name="uid" value="${dtf.stream(random,16,${i})}"/>
                 <attribute name="gid" value="${dtf.stream(random,16,${i})}"/>
-                <attribute name="hash" value="${dtf.stream(random,21,${i})}"/>
             </event>
         </for>
     </record> 
 
-    <log>start filtering.</log>
-    <filter srcuri="storage://OUTPUT/unfiltered.txt"
-            dsturi="storage://OUTPUT/filtered.txt"
-            event="write.event">
-        <select>
-	        <field name="recordid" />
-	        <field name="hash" />
-        </select>
-        <where>
-            <gt op2="recordid" op1="5"/>
-        </where>
-    </filter>
-    <log>done filtering.</log>
+    <event name="total">
+	    <filter srcuri="storage://OUTPUT/unfiltered.txt"
+	            dsturi="storage://OUTPUT/filtered.txt"
+	            event="write.event">
+	        <select>
+		        <field name="recordid" />
+		        <field name="hash" />
+	        </select>
+	        <where>
+                <and>
+	               <lt op2="recordid" op1="50"/>
+	               <gt op2="recordid" op1="10"/>
+                </and>
+	        </where>
+	    </filter>
+    </event>
+    
+    <call function="checkRecordCount">
+        <property name="recorder.location" value="storage://OUTPUT/filtered.txt"/>
+        <property name="recorder.type" value="txt"/>
+        <property name="record.count" value="39"/>
+        <property name="event.name" value="write.event"/>
+    </call>
     
 </script>

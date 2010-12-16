@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -332,6 +333,7 @@ abstract public class Action implements Externalizable {
      *     }
      * }
      * </pre>
+     * 
      */
     public static void checkInterruption() throws InterruptionException { 
         if ( Thread.currentThread().isInterrupted() ) {
@@ -431,7 +433,7 @@ abstract public class Action implements Externalizable {
     public static Object getGlobalContext(String key) {
         return getState().getGlobalContext(key);
     }
-    
+
     public static void unRegisterGlobalContext(String key) { 
         getState().unRegisterGlobalContext(key);
     }
@@ -689,6 +691,13 @@ abstract public class Action implements Externalizable {
     }
 
     public static DTFInputStream replacePropertiesAsInputStream(String string) 
+                  throws ParseException {
+        return replacePropertiesAsInputStream(string,
+                                              Charset.defaultCharset().displayName());
+    }
+
+    public static DTFInputStream replacePropertiesAsInputStream(String string,
+                                                                String encoding) 
            throws ParseException {
         
         if (string == null)  
@@ -842,8 +851,8 @@ abstract public class Action implements Externalizable {
             String key = (String)enumeration.nextElement();
             String value = attribs.get(key).toString();
            
-            if ( value.length() > 32 ) 
-                value = value.substring(0,32) + "...";
+            if ( value.length() > 128 ) 
+                value = value.substring(0,128) + "...";
             
             result.append(key + "=" + value + TO_STRING_SEPERATOR);
             oneappend = true;

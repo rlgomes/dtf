@@ -210,7 +210,7 @@ public class Scanf extends Action {
 	                        break;
 	                    case 'x':
 	                    case 'X':
-	                        String HEXDIGIT = "0123456789abcdefABCDEF";
+	                        String HEXDIGIT = "0123456789abcdefABCDEFxX";
 	                        while ( (width == -1 || cnt++ < width) &&
 	                                 (read = pis.read()) != -1 &&
 	                                 HEXDIGIT.indexOf(read) != -1 ) {

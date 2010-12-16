@@ -1,5 +1,11 @@
 package com.yahoo.dtf.results;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.URI;
@@ -8,6 +14,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import com.yahoo.dtf.DTFProperties;
 import com.yahoo.dtf.actions.Action;
 import com.yahoo.dtf.exception.ResultsException;
 import com.yahoo.dtf.exception.StorageException;
@@ -66,50 +73,69 @@ public class XMLResults extends ResultsBase {
         }
     }
    
-    private boolean hasTestSuite = false;
     public void recordResult(Result result) throws ResultsException {
         if ( result.isTestSuite() ) { 
-            hasTestSuite = true;
             startTestSuite(result, _xml); 
             printProperties(result, _xml);
             printResultNode(result,_xml);
             
-            Iterator results = result.getResults().iterator();
+            Iterator<Result> results = result.getResults().iterator();
             while (results.hasNext()) { 
                 recordResult((Result)results.next());
             }
+            
+            String testlogfile = (String)
+            result.getProperties().get(DTFProperties.DTF_TESTCASE_LOG);
+            
+            File log = null;
+            if (testlogfile != null && (log = new File(testlogfile)).exists()) {
+                _xml.println("<system-out><![CDATA[");
+                try {
+                    FileInputStream fis = new FileInputStream(log);
+                    InputStreamReader isr = new InputStreamReader(fis);
+                    BufferedReader br = new BufferedReader(isr);
+                    try {
+                        String line = null;
+                        while ((line = br.readLine()) != null)
+                            _xml.println(line);
+                    } finally {
+                        br.close();
+                    }
+                } catch (FileNotFoundException e) {
+                    throw new ResultsException("Unable to read log file.", e);
+                } catch (IOException e) {
+                    throw new ResultsException("Error reading log file.", e);
+                }
+                _xml.println("]]></system-out>");
+            } else {
+                _xml.println("<system-out/>");
+            }
             _xml.println("</testsuite>");
         } else if (result.isTestCase()) { 
-            if ( !hasTestSuite ) { 
-                hasTestSuite = true;
-                startTestSuite(result, _xml); 
-                _xml.println("</testsuite>");
-            } else {
-	            /*
-	             * Test case output should look like this:
-	             * 
-	             * <testcase name="testAdd" 
-	             *           time="0.018"/>
-	             */
-                _xml.print("<testcase name=\"" + result.getName() + "\"");
-	            
-		        try { 
-		            _xml.print(" start=\"" + 
-		                       TimeUtil.dateStampToDateStamp(result.getStart())
-		                       + "\"");
-		            _xml.print(" stop=\"" + 
-		                       TimeUtil.dateStampToDateStamp(result.getStop())
-		                       + "\"");
-		        } catch (ParseException e) { 
-		            throw new ResultsException("Error handling date.",e);
-		        }
-	            _xml.println(" time=\"" + result.getDurationInSeconds() + "\">");
-
-	            printProperties(result,_xml);
-	            printResultNode(result,_xml);
-	            
-	            _xml.println("</testcase>");
+            /*
+             * Test case output should look like this:
+             * 
+             * <testcase name="testAdd" 
+             *           time="0.018"/>
+             */
+            _xml.print("<testcase name=\"" + result.getName() + "\"");
+            
+	        try { 
+	            _xml.print(" start=\"" + 
+	                       TimeUtil.dateStampToDateStamp(result.getStart())
+	                       + "\"");
+	            _xml.print(" stop=\"" + 
+	                       TimeUtil.dateStampToDateStamp(result.getStop())
+	                       + "\"");
+	        } catch (ParseException e) { 
+	            throw new ResultsException("Error handling date.",e);
 	        }
+            _xml.println(" time=\"" + result.getDurationInSeconds() + "\">");
+
+            printProperties(result,_xml);
+            printResultNode(result,_xml);
+            
+            _xml.println("</testcase>");
         }
     }
 

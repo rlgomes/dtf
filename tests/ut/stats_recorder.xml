@@ -17,7 +17,7 @@
     </local>
 
     <record type="stats">
-        <for property="index" range="1..10000">
+        <for property="index" range="1..${iterations.tiny}">
 		    <event name="event">
 		        <attribute name="constant" value="1"/>
 		        <attribute name="int1" value="1234567890"/>
@@ -25,14 +25,8 @@
         </for>
     </record>
     
-    <log>
-    Stats Recorder Numbers:
-    *************************
-    Events/second: ${event.avg_occ}
-    Min Duration:  ${event.min_dur}
-    Max Duration:  ${event.max_dur}
-    Avg Duration:  ${event.avg_dur}
-    </log>
-    
-    <cat uri="storage://OUTPUT/plot.data" append="false">${event.csv_dur}</cat>
+    <assert><isset property="event.avg_occ"/></assert>
+    <assert><isset property="event.avg_dur"/></assert>
+    <assert><isset property="event.max_dur"/></assert>
+    <assert><isset property="event.min_dur"/></assert>
 </script>

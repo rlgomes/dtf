@@ -32,6 +32,9 @@
     <abs op1="-1000" result="abs"/>
     <assert><eq op1="${abs}" op2="1000"/></assert>
     
+    <abs op1="1000" result="abs"/>
+    <assert><eq op1="${abs}" op2="1000"/></assert>
+    
     <!-- 2 + 2 * 3 == 2 * 4 -->
     <multiply op1="2" op2="3" result="a"/>
     <add op1="${a}" op2="2" result="a"/>
@@ -66,7 +69,7 @@
     <try>
         <divide op1="3" op2="0" result="caca"/>
         <catch exception="${dtf.ArithmeticException}">
-            <log>Correctly caught division by zero error.</log>
+            <log level="debug">Correctly caught division by zero error.</log>
         </catch>
     </try>
 
@@ -76,7 +79,7 @@
 	        <fail>Didn't catch previous number format error.</fail>
         </sequence>
         <catch exception="${dtf.NumberFormatException}">
-            <log>Correctly caught a bad number</log>
+            <log level="debug">Correctly caught a bad number</log>
         </catch>
     </try>
     
@@ -86,7 +89,7 @@
 	        <fail>Didn't catch previous number format error.</fail>
         </sequence>
         <catch exception="${dtf.NumberFormatException}">
-            <log>Correctly caught a bad number</log>
+            <log level="debug">Correctly caught a bad number</log>
         </catch>
     </try>
 
@@ -96,7 +99,7 @@
 	        <fail>Didn't catch previous number format error.</fail>
         </sequence>
         <catch exception="${dtf.NumberFormatException}">
-            <log>Correctly caught a bad number</log>
+            <log level="debug">Correctly caught a bad number</log>
         </catch>
     </try>
     
@@ -106,7 +109,7 @@
 	        <fail>Didn't catch previous number format error.</fail>
         </sequence>
         <catch exception="${dtf.NumberFormatException}">
-            <log>Correctly caught a bad number</log>
+            <log level="debug">Correctly caught a bad number</log>
         </catch>
     </try>
 
@@ -116,7 +119,7 @@
 	        <fail>Didn't catch previous number format error.</fail>
         </sequence>
         <catch exception="${dtf.NumberFormatException}">
-            <log>Correctly caught a bad number</log>
+            <log level="debug">Correctly caught a bad number</log>
         </catch>
     </try>
 
@@ -126,7 +129,7 @@
 	        <fail>Didn't catch previous number format error.</fail>
         </sequence>
         <catch exception="${dtf.NumberFormatException}">
-            <log>Correctly caught a bad number</log>
+            <log level="debug">Correctly caught a bad number</log>
         </catch>
     </try>
 
@@ -136,7 +139,7 @@
 	        <fail>Didn't catch previous number format error.</fail>
         </sequence>
         <catch exception="${dtf.NumberFormatException}">
-            <log>Correctly caught a bad number</log>
+            <log level="debug">Correctly caught a bad number</log>
         </catch>
     </try>
 
@@ -146,7 +149,7 @@
 	        <fail>Didn't catch previous number format error.</fail>
         </sequence>
         <catch exception="${dtf.NumberFormatException}">
-            <log>Correctly caught a bad number</log>
+            <log level="debug">Correctly caught a bad number</log>
         </catch>
     </try>
 
@@ -156,7 +159,7 @@
 	        <fail>Didn't catch previous number format error.</fail>
         </sequence>
         <catch exception="${dtf.NumberFormatException}">
-            <log>Correctly caught a bad number</log>
+            <log level="debug">Correctly caught a bad number</log>
         </catch>
     </try>
 
@@ -166,7 +169,7 @@
 	        <fail>Didn't catch previous number format error.</fail>
         </sequence>
         <catch exception="${dtf.NumberFormatException}">
-            <log>Correctly caught a bad number</log>
+            <log level="debug">Correctly caught a bad number</log>
         </catch>
     </try>
     

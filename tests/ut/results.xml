@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<script xmlns="http://dtf.org/v1" name="testsuite">
+
+<script xmlns="http://dtf.org/v1" name="results">
 	<info>
 		<author>
 			<name>Rodney Gomes</name>
@@ -10,13 +11,15 @@
 	
 	<local>
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
-        <createstorage id="INPUT" path="${dtf.xml.path}"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        
+        <loadproperties uri="storage://INPUT/ut.properties"/>
 	</local>
 
     <for property="results.type" range="xml,console,junit">
 		<result uri="storage://OUTPUT/results_output.${results.type}"
                 type="${results.type}">
-	    	<testsuite name="testsuite1" continueOnFailure="true">
+	    	<testsuite name="results" continueOnFailure="true">
 	    		<testscript uri="storage://INPUT/testcase.xml">		
     	    		<property name="testcase.name" value="testcase1"/>
                 </testscript>
@@ -33,5 +36,14 @@
 	    	</testsuite>
 	    </result>
     </for>
-    
+   
+    <for property="results.type" range="xml,junit">
+	    <result type="${results.type}"
+                uri="storage://OUTPUT/results_result1.${results.type}">
+			<testscript uri="storage://INPUT/testcase.xml">
+	    		<property name="testcase.name" value="testcase1" overwrite="true"/>
+	        </testscript>
+	    </result>
+    </for>
+
 </script>

@@ -259,14 +259,34 @@
 			
 	<target name="run_ut"
 			depends="init"
-			description="run DTF unit tests.">
+			description="run DTF unit tests."
+		    >
 	    <antcall target="run_test">
 	    	<param name="dtf.xml.filename" value="tests/ut/ut.xml"/>
 		</antcall>
 	</target>
 
-	<target name="run_perf"
+	<target name="run_dvt"
+            depends="init"
+            description="run DTF deployment verification tests (dvt)."
+		    >
+		
+	    <property name="host" value="localhost"/>
+        <property name="user" value="${user.name}"/>
+		<property name="deploy.wait.interval" value="1000"/>
+			   
+       	<property name="deploy.config" value="tests/setup/ut_config.xml"/>
+		
+		<antcall target="deploy-start"/>
+		<antcall target="deploy-wait"/>
+		<antcall target="deploy-status"/>
+		<antcall target="deploy-stop"/>
+		<antcall target="deploy-savelogs"/>
+    </target>
+
+	<target name="run_pvt"
 			depends="init"
+            description="run DTF performance verification tests (pvt)."
 		    >
 	    <antcall target="run_test">
 	    	<param name="dtf.xml.filename" value="tests/perf/perf.xml"/>

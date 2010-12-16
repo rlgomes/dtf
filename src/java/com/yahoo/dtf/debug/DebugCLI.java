@@ -234,16 +234,19 @@ public class DebugCLI {
 	                String path = (args.length > 5 ? args[5] : null);
 	                String rsakey = (args.length > 6 ? args[6] : null);
 	                String wrapcmd = (args.length > 7 ? args[7] : null);
+	                String passphrase = (args.length > 8 ? args[8] : null);
 	               
 	                // stupid trick to allow the path to be set to null
 	                path = ( path == null || path.equals("null") ? null : path );
 	                rsakey = ( rsakey == null || rsakey.equals("null") ? null : rsakey );
+	                passphrase = ( passphrase == null || passphrase.equals("null") ? null : passphrase );
+	                wrapcmd = ( wrapcmd == null || wrapcmd.equals("null") ? null : wrapcmd );
 
 	                try { 
 	                    // stupid trick to allow the path to be set to null
 	                    wrapcmd = ( wrapcmd == null || wrapcmd.equals("null") ? null : URLDecoder.decode(wrapcmd,"UTF8"));
 	                    
-	                    String propstring = ( args.length > 8 ? URLDecoder.decode(args[8],"UTF8") : null);
+	                    String propstring = ( args.length > 9 ? URLDecoder.decode(args[9],"UTF8") : null);
 	                    String[] props = (propstring == null ? new String[0] : propstring.split(","));
 	                    
 	                    HashMap<String, String> properties = 
@@ -260,7 +263,10 @@ public class DebugCLI {
 	                        // find next available port
 	                        while ( SocketUtil.isPortOpen(++rport));
 	                        
-		                    Session session = SSHUtil.connectToHost(host, user, rsakey);
+		                    Session session = SSHUtil.connectToHost(host,
+		                                                            user,
+		                                                            rsakey,
+		                                                            passphrase);
 		                    _sessions.put(host + rport, session);
 		                    
 		                    // SSH Tunnel on local rport for dtfc to connect to 

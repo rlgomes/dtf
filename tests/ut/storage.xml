@@ -9,10 +9,10 @@
     </info>
    
    	<local> 
-  		<echo>Create a bunch of storages.</echo>
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
         <loadproperties uri="storage://INPUT/ut.properties"/>
   	</local>
+    
   	<for range="[1..10]" property="id">
         <local>	
             <createstorage id="STORAGE${id}" path="${dtf.xml.path}/output/STORE${id}"/>
@@ -25,9 +25,7 @@
             <fail>Previous statement should have failed</fail>
         </local>
         <catch exception="${dtf.StorageException}" property="message">
-        	<local>
-        		<echo>Caught correction exception: ${message}</echo>
-        	</local>
+            <log level="debug">Caught correction exception: ${message}</log>
         </catch>
     </try>
     
@@ -38,9 +36,7 @@
             <fail>Previous statement should have failed</fail>
         </local>
         <catch exception="${dtf.StorageException}" property="message">
-        	<local>
-        		<echo>Caught correction exception: ${message}</echo>
-        	</local>
+            <log level="debug">Caught correction exception: ${message}</log>
         </catch>
     </try>
 
@@ -50,9 +46,7 @@
             <fail>Previous statement should have failed</fail>
         </local>
         <catch exception="${dtf.StorageException}" property="message">
-        	<local>
-        		<echo>Caught correction exception: ${message}</echo>
-        	</local>
+            <log level="debug">Caught correction exception: ${message}</log>
         </catch>
     </try>
     

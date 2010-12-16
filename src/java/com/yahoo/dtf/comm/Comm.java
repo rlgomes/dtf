@@ -229,7 +229,10 @@ public class Comm extends Thread implements NodeShutdownHook {
 		         getCommClient("dtfc").register();
 	        }
 
-	        Action.getLogger().info("connected [" + Action.getLocalID() + "]");
+	        if ( Action.getLogger().isDebugEnabled() ) { 
+	            Action.getLogger().debug("Connected [" + Action.getLocalID() + 
+	                                     "]");
+	        }
         }
     }
     

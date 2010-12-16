@@ -339,6 +339,8 @@ public class DTFDoclet {
                     dtfdoc.name = methoddocs[m].tags(DTF_FEATURE)[0].text();
                     dtfdoc.descriptions = methoddocs[m].tags(DTF_FEATURE_DESC);
                     dtfdoc.examples = methoddocs[m].tags(DTF_EXAMPLE);
+                    
+                    fnames.add(dtfdoc.name.trim().toLowerCase());
 	                
 	                fgroups.get(fgroup).add(dtfdoc);
                 }
@@ -360,7 +362,7 @@ public class DTFDoclet {
                 dtfdoc.descriptions = classdoc.tags(DTF_FEATURE_DESC);
                 dtfdoc.examples = classdoc.tags(DTF_EXAMPLE);
 
-                fnames.add(dtfdoc.name.toLowerCase());
+                fnames.add(dtfdoc.name.trim().toLowerCase());
                 
                 fgroups.get(fgroup).add(dtfdoc);
             }
@@ -814,6 +816,7 @@ public class DTFDoclet {
         Transformer serializer;
         try {
             serializer = tfactory.newTransformer();
+            serializer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
             serializer.setOutputProperty(OutputKeys.INDENT, "yes");
             serializer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
             serializer.transform(new DOMSource(doc), new StreamResult(out));

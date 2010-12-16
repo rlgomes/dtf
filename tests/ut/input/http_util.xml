@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="http_util">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description></description>
+    </info>
+
+    <function name="waitForServer">
+        <param name="uri" type="required"/>
+            
+        <property name="http.get.status" value="XXX"/> 
+        <while>
+            <match source="${http.get.status}" expression="9.."/>
+            <try>
+                <sequence>
+                    <http_get uri="${uri}" onFailure="continue"/>
+                </sequence>
+            </try>
+        </while>
+    </function>
+</script>

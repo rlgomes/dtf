@@ -22,6 +22,8 @@
         
         <property name="dtf.http.port" value="55555"/>
         <property name="dtf.http.uri" value="http://localhost:${dtf.http.port}/"/>
+        
+        <import uri="storage://INPUT/http_util.xml"/>
     </local> 
 
     <parallel>
@@ -31,24 +33,21 @@
     
         <try>
             <sequence> 
-                <sleep time="1s"/>
+                <call function="waitForServer">
+                    <property name="uri"
+                              value="${dtf.http.uri}"/>
+                </call>
             	<http_config id="DEFAULT_HTTP_CONFIG"/>
                 <headergroup id="DEFAULT_HEADERGROUP">
                     <header name="header1" value="value1"/>
                 </headergroup>
                 <cookiegroup id="DEFAULT_COOKIEGROUP">
-                    <cookie name="testcookie" value="value" domain="blah.com" path="abc/def"/>    
+                    <cookie name="testcookie"
+                            value="value"
+                            domain="blah.com"
+                            path="abc/def"/>    
                 </cookiegroup>
               
-                <local>
-                    <echo>
-                          HTTP POST on ${dtf.http.uri} 
-                          for ${iterations.tiny} iteration(s) 
-                          from ${threads} thread(s)
-                          and ${clients} client(s)
-                    </echo>
-                </local>
-               
                 <record uri="storage://OUTPUT/http_events.txt" type="txt" append="false"> 
                     <parallelloop property="client" range="1..${clients}">
                         <parallelloop property="thread" range="1..${threads}">
@@ -66,15 +65,6 @@
                     </parallelloop>
                 </record>
                 
-                <local>
-                    <echo>
-                          HTTP PUT on ${dtf.http.uri} 
-                          for ${iterations.tiny} iteration(s) 
-                          from ${threads} thread(s)
-                          and ${clients} client(s)
-                    </echo>
-                </local>
-               
                 <record uri="storage://OUTPUT/http_events.txt" type="txt" append="true"> 
                     <parallelloop property="client" range="1..${clients}">
                         <parallelloop property="thread" range="1..${threads}">
@@ -92,13 +82,6 @@
                     </parallelloop>
                 </record>
                 
-                <local>
-                    <echo>
-                          HTTP GET on ${dtf.http.uri} 
-                          for ${iterations.tiny} iteration(s) 
-                          from ${threads} thread(s).
-                    </echo>
-                </local>
                 <record uri="storage://OUTPUT/http_events.txt" append="true" type="txt"> 
                     <parallelloop property="client" range="1..${clients}">
                         <parallelloop property="thread" range="1..${threads}">
@@ -115,13 +98,6 @@
                     </parallelloop>
                 </record>
                 
-               <local>
-                    <echo>
-                          HTTP HEAD on ${dtf.http.uri} 
-                          for ${iterations.tiny} iteration(s) 
-                          from ${threads} thread(s).
-                    </echo>
-                </local>
                 <record uri="storage://OUTPUT/http_events.txt" append="true" type="txt"> 
                     <parallelloop property="client" range="1..${clients}">
                         <parallelloop property="thread" range="1..${threads}">
@@ -138,13 +114,6 @@
                     </parallelloop>
                 </record>
                 
-                <local>
-                    <echo>
-                          HTTP DELETE on ${dtf.http.uri} 
-                          for ${iterations.tiny} iteration(s) 
-                          from ${threads} thread(s).
-                    </echo>
-                </local>
                 <record uri="storage://OUTPUT/http_events.txt" append="true" type="txt"> 
                     <parallelloop property="client" range="1..${clients}">
                         <parallelloop property="thread" range="1..${threads}">
@@ -162,38 +131,32 @@
                 </record>
                 
                 <http_get uri="${dtf.http.uri}"/> 
-                <log>
-                    Event Information from HTTP GET request:
-                    ***************************************
-                    
-                    URI:                    ${http.get.uri}
-                    Status, Status Message: ${http.get.status}, ${http.get.statusmsg}
-                </log>
+                <assert><isset property="http.get.uri"/></assert>
+                <assert><isset property="http.get.status"/></assert>
+                <assert><isset property="http.get.statusmsg"/></assert>
+                <assert><eq op1="${http.get.uri}" op2="${dtf.http.uri}"/></assert>
+                <assert><eq op1="${http.get.status}" op2="200"/></assert>
+                <assert><eq op1="${http.get.statusmsg}" op2="OK"/></assert>
                 
                 <!-- Special characters in the URI --> 
                 <urlencode source="path with spaces" result="path"/>    
                 <http_get uri="${dtf.http.uri}/${path}" onFailure="continue"/> 
-                <log>
-                    Event Information from HTTP GET request:
-                    ***************************************
-                    
-                    URI:                    ${http.get.uri}
-                    Status, Status Message: ${http.get.status}, ${http.get.statusmsg}
-                </log>
+                <assert><isset property="http.get.uri"/></assert>
+                <assert><isset property="http.get.status"/></assert>
+                <assert><isset property="http.get.statusmsg"/></assert>
+                <assert><eq op1="${http.get.uri}" op2="${dtf.http.uri}/${path}"/></assert>
+                <assert><eq op1="${http.get.status}" op2="200"/></assert>
+                <assert><eq op1="${http.get.statusmsg}" op2="OK"/></assert>
                 
                 <urlencode source="中文" result="path"/>    
                 <http_get uri="${dtf.http.uri}/${path}" onFailure="continue"/> 
-                
-                <log>
-                    Event Information from HTTP GET request:
-                    ***************************************
-                    
-                    URI:                    ${http.get.uri}
-                    Status, Status Message: ${http.get.status}, ${http.get.statusmsg}
-                </log>
-        
+                <assert><isset property="http.get.uri"/></assert>
+                <assert><isset property="http.get.status"/></assert>
+                <assert><isset property="http.get.statusmsg"/></assert>
+                <assert><eq op1="${http.get.uri}" op2="${dtf.http.uri}/${path}"/></assert>
+                <assert><eq op1="${http.get.status}" op2="200"/></assert>
+                <assert><eq op1="${http.get.statusmsg}" op2="OK"/></assert>
 
-                <!-- negative testing... -->
                 <http_post uri="${dtf.http.uri}">
                     <entity></entity>
                 </http_post>
@@ -212,69 +175,23 @@
         </try>
     </parallel>
     
-    <function name="calcPerformance"> 
-        <param name="op.name" type="required"/>
-        <param name="op.event" type="required"/>
-    
-        <query uri="storage://OUTPUT/http_events.txt"
-               cursor="events_cursor"
-               event="${op.event}"/>
-               
-        <record type="object" uri="property://eventstats" append="false">
-            <stats cursor="events_cursor" event="${op.event}"/>
-        </record>
-        
-        <local>
-            <echo>
-                HTTP ${op.name}
-                Operations/second:  ${eventstats.avg_occ}
-                Total operations:   ${eventstats.tot_occ}
-                Time (MAX/MIN/AVG): ${eventstats.max_dur}/${eventstats.min_dur}/${eventstats.avg_dur}
-                Duration:           ${eventstats.tot_dur}
-            </echo>
-        </local>
-    </function>
-    
-    <call function="calcPerformance">
-        <property name="op.name" value="POST"/>
-        <property name="op.event" value="http.post"/>
-    </call>
-
-    <call function="calcPerformance">
-        <property name="op.name" value="PUT"/>
-        <property name="op.event" value="http.put"/>
-    </call>
-
-    <call function="calcPerformance">
-        <property name="op.name" value="GET"/>
-        <property name="op.event" value="http.get"/>
-    </call>
-
-    <call function="calcPerformance">
-        <property name="op.name" value="HEAD"/>
-        <property name="op.event" value="http.head"/>
-    </call>
-
-    <call function="calcPerformance">
-        <property name="op.name" value="DELETE"/>
-        <property name="op.event" value="http.delete"/>
-    </call>
-    
-    <log>validate connection refused error</log>
+    <!-- validate connection refused error -->
     <http_put uri="http://localhost:65535" onFailure="continue"/>
     <assert><eq op1="${http.put.status}" op2="900"/></assert>
     
-    <log>validate connection reset error</log>
+    <!-- validate connection reset error -->
     <http_put uri="http://localhost:22/" onFailure="continue"/>
     <assert><eq op1="${http.put.status}" op2="901"/></assert>
 
-    <log>validate unknown host error</log>
-    <http_put uri="http://cacacacaca/" onFailure="continue"/>
+    <!-- validate unknown host error -->
+    <http_put uri="http://inexistent.google.com/" onFailure="continue"/>
     <assert><eq op1="${http.put.status}" op2="902"/></assert>
- 
+
+    <!--  
     <log>validate connection timeout error</log>
-    <http_get uri="http://www.yahoo.com"
+    <http_get uri="http://localhost:12345/toolong"
               onFailure="continue"
-              connecttimeout="1ms"/>
+              connecttimeout="0ms"/>
     <assert><eq op1="${http.get.status}" op2="903"/></assert>
+    -->
 </script>

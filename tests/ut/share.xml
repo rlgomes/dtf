@@ -26,59 +26,44 @@
         </lockgroup>
     </local>
     
-    <property name="remote.iterations" value="${iterations.small}"/>
-    <property name="local.iterations" value="${iterations.small}"/>
+    <property name="remote.iterations" value="${iterations.tiny}"/>
+    <property name="local.iterations" value="${iterations.tiny}"/>
    
     <for property="type" range="single,queue,cumulative">	    
-	    <log>${type} share type</log>
 	    <share_create id="SHARE1" type="${type}"/>
 
-        <event name="total">
-		    <parallel>
-		        <component id="PRODUCER">
-		            <for property="i" range="1..${remote.iterations}">
-		                <share_set id="SHARE1">
-		                    <property name="iteration" value="${i}" overwrite="true"/>
-		                </share_set>
-		            </for>
-		        </component>
-	        
-		        <component id="CONSUMER">
-		            <for property="i" range="1..${remote.iterations}">
-		                <share_get id="SHARE1"/>
-		            </for>        
-		        </component>
-		    </parallel>
-        </event>
-        <call function="calcEventPerf" result="ops_per_sec">
-            <property name="iterations" value="${remote.iterations}"/>
-            <property name="event" value="total"/>
-        </call>
-        <log>${type} share gets ${ops_per_sec} remote syncs per sec</log>
+	    <parallel>
+	        <component id="PRODUCER">
+	            <for property="i" range="1..${remote.iterations}">
+	                <share_set id="SHARE1">
+	                    <property name="iteration" value="${i}" overwrite="true"/>
+	                </share_set>
+	            </for>
+	        </component>
+        
+	        <component id="CONSUMER">
+	            <for property="i" range="1..${remote.iterations}">
+	                <share_get id="SHARE1"/>
+	            </for>        
+	        </component>
+	    </parallel>
          
 	    <share_create id="SHARE2" type="${type}"/>
-        <event name="total">
-		    <parallel>
-		        <sequence>
-		            <for property="i" range="1..${local.iterations}">
-		                <share_set id="SHARE2">
-		                    <property name="iteration" value="${i}" overwrite="true"/>
-		                </share_set>
-		            </for>
-		        </sequence>
-		        
-		        <sequence>
-		            <for property="i" range="1..${local.iterations}">
-		                <share_get id="SHARE2"/>
-		            </for>
-		        </sequence>
-		    </parallel>
-        </event>
-        <call function="calcEventPerf" result="ops_per_sec">
-            <property name="iterations" value="${local.iterations}"/>
-            <property name="event" value="total"/>
-        </call>
-        <log>${type} share gets ${ops_per_sec} local syncs per sec</log>
+	    <parallel>
+	        <sequence>
+	            <for property="i" range="1..${local.iterations}">
+	                <share_set id="SHARE2">
+	                    <property name="iteration" value="${i}" overwrite="true"/>
+	                </share_set>
+	            </for>
+	        </sequence>
+	        
+	        <sequence>
+	            <for property="i" range="1..${local.iterations}">
+	                <share_get id="SHARE2"/>
+	            </for>
+	        </sequence>
+	    </parallel>
 	    
 	    <share_destroy id="SHARE1"/>
 	    <share_destroy id="SHARE2"/>
@@ -98,14 +83,14 @@
     
     <share_get id="SHARE2" blocking="true"/>
     
-    <log>negative tests</log> 
+    <!-- negative tests -->
     <try>
         <sequence>
             <share_get id="inexistent"/>
             <fail>This statement should never be reached</fail>
         </sequence>
         <catch exception="${dtf.ShareException}" property="message">
-            <log>Caught exception correctly [${message}]</log>
+            <log level="debug">Caught exception correctly [${message}]</log>
         </catch>
     </try>   
     
@@ -115,7 +100,7 @@
             <fail>This statement should never be reached</fail>
         </sequence>
         <catch exception="${dtf.ShareException}" property="message">
-            <log>Caught exception correctly [${message}]</log>
+            <log level="debug">Caught exception correctly [${message}]</log>
         </catch>
     </try>   
     
@@ -125,7 +110,7 @@
             <fail>This statement should never be reached</fail>
         </sequence>
         <catch exception="${dtf.ShareException}" property="message">
-            <log>Caught exception correctly [${message}]</log>
+            <log level="debug">Caught exception correctly [${message}]</log>
         </catch>
     </try>   
     
@@ -135,7 +120,7 @@
             <fail>This statement should never be reached</fail>
         </sequence>
         <catch exception="${dtf.ShareException}" property="message">
-            <log>Caught exception correctly [${message}]</log>
+            <log level="debug">Caught exception correctly [${message}]</log>
         </catch>
     </try>   
     
@@ -146,7 +131,7 @@
             <fail>This statement should never be reached</fail>
         </sequence>
         <catch exception="${dtf.ShareException}" property="message">
-            <log>Caught exception correctly [${message}]</log>
+            <log level="debug">Caught exception correctly [${message}]</log>
         </catch>
     </try>   
 </script> 

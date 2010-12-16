@@ -11,104 +11,51 @@
     <local>
     	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
-    	<createstorage id="TINPUT" path="${dtf.xml.path}"/>
-    	<import uri="storage://TINPUT/util.xml" loadFuncs="true" loadRefs="true"/>
+        
+    	<import uri="storage://INPUT/util.xml" loadFuncs="true" loadRefs="true"/>
 
         <loadproperties uri="storage://INPUT/ut.properties"/>
-    	
-        <echo>Loop from [0..5]</echo>
-        
-        <lockcomponent id="AGENT"/>
     </local>
     
-   	<record uri="storage://OUTPUT/for.results" type="txt" append="false"> 
-    	<for property="index" range="[0..5]">
-    		<event name="for.loop">
-    			<attribute name="iteration" value="${index}" type="string" length="64"/>
+   	<record uri="storage://OUTPUT/for.results" append="false"> 
+    	<for property="index" range="[1..5]">
+    		<event name="for.loop1">
+    			<attribute name="iteration" value="${index}"/>
     		</event>
     	</for>
+        
+    	<for property="index" range="[a,b,c,d]">
+    		<event name="for.loop2">
+    			<attribute name="iteration" value="${index}"/>
+    		</event>
+    	</for>
+        
+        <for property="index" range="[0..1][0..1][0..1]">
+            <event name="for.loop3">
+                <attribute name="iteration" value="${index}"/>
+            </event>
+        </for>
     </record>
 
 	<call function="checkRecordCount">    
     	<property name="recorder.location" value="storage://OUTPUT/for.results"/>	
     	<property name="recorder.type" value="txt"/>	
-    	<property name="event.name" value="for.loop"/>
-    	<property name="record.count" value="6"/>
+    	<property name="event.name" value="for.loop1"/>
+    	<property name="record.count" value="5"/>
    	</call>
     
-    <local>
-        <echo>Loop from [a,b,c,d]</echo>
-    </local>
-   	<record uri="storage://OUTPUT/for.results" type="txt" append="false"> 
-    	<for property="index" range="[a,b,c,d]">
-    		<event name="for.loop">
-    			<attribute name="iteration" value="${index}" type="string" length="64"/>
-    		</event>
-    	</for>
-    </record>
-
  	<call function="checkRecordCount">    
     	<property name="recorder.location" value="storage://OUTPUT/for.results"/>	
     	<property name="recorder.type" value="txt"/>	
-    	<property name="event.name" value="for.loop"/> <property name="record.count" value="4"/> </call>
-   
-    <local>
-        <echo>Loop from [0..1][0..1][0..1]</echo>
-    </local>
-   	<record uri="storage://OUTPUT/for.results" type="txt" append="false"> 
-    	<for property="index" range="[0..1][0..1][0..1]">
-    		<event name="for.loop">
-    			<attribute name="iteration" value="${index}" type="string" length="64"/>
-    		</event>
-    	</for>
-    </record>
+    	<property name="event.name" value="for.loop2"/>
+        <property name="record.count" value="4"/>
+    </call>
     
     <call function="checkRecordCount">    
     	<property name="recorder.location" value="storage://OUTPUT/for.results"/>	
     	<property name="recorder.type" value="txt"/>	
-    	<property name="event.name" value="for.loop"/>
+    	<property name="event.name" value="for.loop3"/>
     	<property name="record.count" value="8"/>
    	</call>
-    
-    <local>
-        <echo>Loop from [0..3][a,b,c,d,e]</echo>
-    </local>
-   	<record uri="storage://OUTPUT/for.results" type="txt" append="false"> 
-    	<for property="index" range="[0..3][a,b,c,d,e]">
-    		<event name="for.loop">
-    			<attribute name="iteration" value="${index}" type="string" length="64"/>
-    		</event>
-    	</for>
-    </record> 
-    
-    <call function="checkRecordCount">    
-    	<property name="recorder.location" value="storage://OUTPUT/for.results"/>	
-    	<property name="recorder.type" value="txt"/>	
-    	<property name="event.name" value="for.loop"/>
-    	<property name="record.count" value="20"/>
-   	</call>
-   
-    <!-- This is used to catch the issue of a property created only for the 
-         tag for scope that persists afterwards. looking below since J exists
-         in the first for loop done in the main test and then we call some 
-         actions on a component. If J is still defined (which shoudnl't be the 
-         case) then the loops on the components do not have the desired 
-         behavior. --> 
-       
-    <for property="j" range="1..3">
-        <log>${j}</log>
-    </for>    
-
-    <component id="AGENT">
-        <createrange name="i" value="1..3"/>
-	    <for property="j" range="1..3">
-            <if>
-                <neq op2="${i}" op1="${j}"/>
-                <then>
-                    <fail message="property mismatch probably because j was already defined."/>
-                </then>
-            </if>
-	    </for>    
-    </component>
     
 </script>

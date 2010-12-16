@@ -20,38 +20,34 @@
         <lockcomponent id="AGENT1"/>
     </local>
 
-    <parallel>    
-        <record uri="storage://OUTPUT/matches.txt">
-		    <local>
-	            <monitor_create id="LOGS" file="tests/ut/output/${logfile}.*"/>
-		        <sleep time="3s"/>
-		        <monitor_grep id="LOGS" expression="NEW.*"/>
-		        <monitor_destroy id="LOGS"/>
-		    </local>
-        </record>   
-        
-        <sequence>
-	        <sleep time="1s"/>
-	        <for property="i" range="1..10">
-		        <local>
-		            <cat uri="storage://OUTPUT/${logfile}.exist">NEW LOG LINE${i}
-		            </cat>
-		        </local>
-	        </for>
-	        <for property="i" range="1..10">
-	            <local>
-		            <cat uri="storage://OUTPUT/${logfile}.${i}">NEW LOG LINE${i}</cat>
-	            </local>
-	        </for>
-        </sequence>
-    </parallel>
+    <monitor_create id="LOGS" file="tests/ut/output/${logfile}.*"/>
+    <sequence>
+        <for property="i" range="1..10">
+	        <local>
+	            <cat uri="storage://OUTPUT/${logfile}.exist">NEW LOG LINE${i}
+	            </cat>
+	        </local>
+        </for>
+        <for property="i" range="1..10">
+            <local>
+	            <cat uri="storage://OUTPUT/${logfile}.${i}">NEW LOG LINE${i}</cat>
+            </local>
+        </for>
+    </sequence>
    
+    <record uri="storage://OUTPUT/matches.txt">
+	    <local>
+	        <monitor_grep id="LOGS" expression="NEW.*"/>
+	        <monitor_destroy id="LOGS"/>
+	    </local>
+    </record>   
+    
     <log>Validating data correctness</log> 
     <query uri="storage://OUTPUT/matches.txt"
            cursor="c1"
            event="grep"/>
     
-    <for property="i" range="1..10">
+    <for property="i" range="1..5">
         <nextresult cursor="c1"/>
         <subtract op1="${c1.line}" op2="1" result="line"/>
         <if>
@@ -91,16 +87,16 @@
         <monitor_create id="REMOTEMONITOR" file="tests/ut/output/${logfile}.*"/>
     </component>
 
-    <!-- Detect 10 new files -->
+    <!-- Detect 5 new files -->
     <property name="prefix" value="${dtf.timestamp}"/>
     <monitor_create id="LOGS" file="tests/ut/output/.*"/>
-    <for property="i" range="1..10">
+    <for property="i" range="1..5">
         <cat uri="storage://OUTPUT/newfile-${prefix}-${i}"/>
     </for>
     
     <monitor_diff id="LOGS"/>
     <createrange name="files" value="${monitor_diff.newfiles}"/> 
-    <for property="i" range="1..10">
+    <for property="i" range="1..5">
         <assert>
             <match source="${files}" expression=".*newfile\-${prefix}\-[0-9]*"/>
         </assert>

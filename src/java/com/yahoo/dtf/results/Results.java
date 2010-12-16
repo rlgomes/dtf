@@ -28,8 +28,6 @@ public class Results {
     
     private Properties _properties = null;
 
-    private boolean _testsuiteRecorded = false;
-    
     private Appender _appender = null;
     private String _logfile = null;
     
@@ -76,16 +74,10 @@ public class Results {
         _properties.setProperty(key, value);
     }
     
-    public boolean isTestSuiteRecorded() { return _testsuiteRecorded; }
-    public void setTestSuiteRecorded(boolean value) { _testsuiteRecorded = value; }
-    
     public void recordResult(Result result) throws ResultsException {
-        
         if (_results == null) 
             return;
-        
-        if (result.isTestSuite()) _testsuiteRecorded = true;
-          
+
         result.setProperties(_properties);
         _properties = new Properties();
         
@@ -93,7 +85,7 @@ public class Results {
             _results.recordResult(result);
         }
             
-        if (_parent != null) 
+        if ( _parent != null ) 
             _parent.recordResult(result);
         
     }
@@ -101,7 +93,10 @@ public class Results {
     public void setParent(Results results) { _parent = results; } 
     public Results getParent() { return _parent; } 
     
-    public void start() throws ResultsException { _results.start(); } 
+    public void start() throws ResultsException {
+        _results.start();
+    } 
+    
     public void stop() throws ResultsException { 
         if (_appender != null) { 
             Action.getLogger().removeAppender(_appender);

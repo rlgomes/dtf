@@ -18,17 +18,15 @@
         <loadproperties uri="storage://INPUT/ut.properties"/>
     </local>
    
-    <for property="i" range="1..3">
+    <for property="i" range="1..5">
         <parallelloop property="t" range="1..2">
 		    <local> 
 		        <lockgroup>
 		            <lockcomponent id="DTFA1-${t}"/>
 		            <lockcomponent id="DTFA2-${t}"/>
-		            <lockcomponent id="DTFA3-${t}"/>
 		        </lockgroup>
 	            <unlockcomponent id="DTFA1-${t}"/>
 	            <unlockcomponent id="DTFA2-${t}"/>
-	            <unlockcomponent id="DTFA3-${t}"/>
 		    </local>
         </parallelloop>
     </for>

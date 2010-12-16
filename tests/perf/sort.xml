@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="sort">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>Unit tests for the sort tag.</description>
+    </info>
+   
+    <local>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+
+        <import uri="storage://INPUT/perfutil.xml"/>
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+    </local>
+    
+    <!-- create some real world events that have record ids -->
+    <record uri="storage://OUTPUT/badly_ordered_records.txt">
+        <for property="i" range="${iterations.large}..1">
+            <event name="write.event">
+                <attribute name="recordid" value="${i}"/>
+                <attribute name="timestamp" value="${dtf.timestamp}"/>
+                <attribute name="datestamp" value="${dtf.datestamp}"/>
+                <attribute name="uid" value="${dtf.stream(random,16,${i})}"/>
+                <attribute name="gid1" value="${dtf.stream(random,16,${i})}"/>
+            </event>
+        </for>
+    </record> 
+
+    <log>start sorting.</log>
+    <event name="total">
+        <sort input="storage://OUTPUT/badly_ordered_records.txt"
+              output="storage://OUTPUT/sorted_records.txt"
+              event="write.event">
+            <field name="recordid" type="integer"/>
+            <select>
+                <field name="recordid" />
+                <field name="hash" />
+            </select>
+        </sort>
+    </event>
+    <log>done sorting.</log>
+
+    <call function="calcEventPerf" result="ops_per_sec">
+        <property name="iterations" value="${iterations.large}"/>
+        <property name="event" value="total"/>
+    </call>
+    <log>Events/sec: ${ops_per_sec}</log>
+    
+</script>

@@ -19,32 +19,16 @@
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
 
         <loadproperties uri="storage://INPUT/ut.properties"/>
-        
-        <property name="agents" value="1"/>
     </local>
 
     <local> 
         <lockgroup>
 		    <lockcomponent id="C1"/>
 		    <lockcomponent id="C2"/>
-		    <lockcomponent id="C3"/>
         </lockgroup>
     </local>
     
-    <share_create id="RV1"/>
-    <parallel>
-        <sequence>
-            <sleep time="1s"/>
-            <share_set id="RV1">
-                <property name="special" value="caca"/>
-            </share_set>
-        </sequence>
-        <sequence>
-            <share_get id="RV1" blocking="true"/>
-            <log>Finally got ${special}</log>
-        </sequence>
-    </parallel> 
-     
+    <property name="acc" value="0"/> 
     <for property="i" range="1..5"> 
 	    <parallel>
 	        <component id="C1">
@@ -58,119 +42,64 @@
 	                <property name="create" value="${create_time}"/>
 	            </share_set>
 	        </component> 
-	        <sequence>
-	            <share_wait id="C1_SHARE"/>
-	            <share_get id="C1_SHARE" blocking="true"/>
-	            <log>share_create on agent took: ${create}ms.</log>
-	        </sequence>
 	    </parallel>
+        
+        <share_wait id="C1_SHARE"/>
+        <share_get id="C1_SHARE" blocking="true"/>
         <share_destroy id="C1_SHARE"/>
+        <add op1="${acc}" op2="${create}" result="acc"/>
     </for>
+    <divide op1="${acc}" op2="10" result="duration"/>
+    <assert><lt op1="${duration}" op2="50"/></assert>
     
     <!-- multiple writers and multiple readers on a share of the type queue -->
-
     <share_create id="SHARE1" type="queue"/>
-    <property name="iterations" value="5"/>
-    <property name="threads" value="5" overwrite="true"/>
-    
-    <record uri="storage://OUTPUT/setters.txt">
-	    <parallel>
-            <component id="C1">
-		        <parallelloop property="thread" range="1..${threads}">
-		            <for property="i" range="1..${iterations}">
-			            <share_set id="SHARE1">
-			                <property name="set.thread"
-	                                  value="${thread}"
-	                                  overwrite="true"/>
-			            </share_set>
-		            </for>
-		        </parallelloop>
-            </component>
+    <parallel>
+        <component id="C1">
 	        <parallelloop property="thread" range="1..${threads}">
-	            <for property="i" range="1..${iterations}">
-		            <share_get id="SHARE1" blocking="true"/>
-	                <event name="setter">
-	                    <attribute name="thread" value="${set.thread}"/>
-	                </event>
-	            </for>
+	            <share_set id="SHARE1">
+	                <property name="set.thread"
+                              value="${thread}"
+                              overwrite="true"/>
+	            </share_set>
 	        </parallelloop>
-	    </parallel>
-    </record>
+        </component>
+        <parallelloop property="thread" range="1..${threads}">
+            <share_get id="SHARE1" blocking="true"/>
+            <event name="setter">
+                <attribute name="thread" value="${set.thread}"/>
+            </event>
+        </parallelloop>
+    </parallel>
 
-    <for property="thread" range="1..${threads}">
-        <log>Validating sets from thread ${thread}</log>
-        <query uri="storage://OUTPUT/setters.txt"
-               event="setter"
-               cursor="setters">
-            <where>
-                <eq op1="thread" op2="${thread}"/>
-           </where>       
-	    </query>
-       
-        <property name="count" value="0" overwrite="true"/> 
-        <iterate cursor="setters">
-            <add op1="${count}" op2="1" result="count"/>
-        </iterate>
-       
-        <if>
-            <neq op1="${count}" op2="${iterations}"/>
-            <then>
-                <fail>set for thread ${thread} got ${count} instead of ${iterations}</fail>
-            </then>
-        </if> 
-    </for>
-    
-    <share_create id="SP1"/>
-    <for property="i" range="1..5">
-        <parallelloop property="t" range="1..5">
-            <component id="C1">
-                <share_wait id="SP1"/>
-                <share_set id="SP1">
-                    <property name="caca"/>
-                </share_set>
-            </component>
-        </parallelloop>
-        <parallelloop property="t" range="1..10">
-            <component id="C1">
-                <share_get id="SP1"/>
-            </component>
-        </parallelloop>
-        <log>Parallel sharing with existing share point on iteration ${i}</log>
-    </for>
+    <!-- create the share point on the runner then have 1 component set a 
+         bunch of data and another do all the gets -->
+    <share_create id="SP1" type="queue"/>
+    <parallelloop property="t" range="1..5">
+        <component id="C1">
+            <share_wait id="SP1"/>
+            <share_set id="SP1">
+                <property name="caca"/>
+            </share_set>
+        </component>
+    </parallelloop>
+    <parallelloop property="t" range="1..5">
+        <component id="C2">
+            <share_get id="SP1" blocking="true"/>
+        </component>
+    </parallelloop>
     <share_destroy id="SP1"/>
-
-    <for property="i" range="1..5">
-        <share_create id="SP1"/>
-        <parallelloop property="t" range="1..5">
-            <component id="C1">
-                <share_wait id="SP1"/>
-                <share_set id="SP1">
-                    <property name="caca"/>
-                </share_set>
-            </component>
-        </parallelloop>
-        <parallelloop property="t" range="1..10">
-            <component id="C1">
-                <share_get id="SP1"/>
-            </component>
-        </parallelloop>
-        <share_destroy id="SP1"/>
-        <log>Parallel sharing with recreated share point on iteration ${i}</log>
-    </for>
-    
-    <for property="i" range="1..10">
-        <parallel>
-            <component id="C1">
-                <share_create id="SP1"/>
-            </component>
-            <component id="C2">
-                <share_wait id="SP1" timeout="5s"/>
-            </component>
-            <component id="C3">
-                <share_wait id="SP1" timeout="5s"/>
-            </component>
-        </parallel>
-        <share_destroy id="SP1"/>
-    </for>
+   
+    <!-- one producer to share with one consumer and the share point is 
+         created on one of the components --> 
+    <parallel>
+        <component id="C1">
+            <share_create id="SP1"/>
+        </component>
+        <component id="C2">
+            <share_wait id="SP1" timeout="5s"/>
+        </component>
+    </parallel>
+    <share_destroy id="SP1"/>
 
 </script> 

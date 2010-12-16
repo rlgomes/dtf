@@ -16,18 +16,10 @@
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
         
         <loadproperties uri="storage://INPUT/ut.properties"/>
+
+        <lockcomponent id="DTFA1"/>
     </local>
 
-    <for property="iteration" range="[0..${iterations.tiny}]">
-        <sequence>
-            <local>
-                <echo>Iteration ${iteration}: Locking and Unlocking one DTFA</echo>
-                <lockcomponent id="DTFA1" timeout="10s"/>
-                <unlockcomponent id="DTFA1"/>
-            </local>
-        </sequence>
-    </for>
-    
     <try>
         <sequence>
             <local>
@@ -39,78 +31,31 @@
             </local>
         </sequence>
         <catch exception="${dtf.LockException}">
-            <sequence>
-                <local>
-                    <echo>Caught the exception correctly</echo>
-                </local>
-            </sequence>
+            <log level="debug">Caught Exception correctly: ${message}</log>
         </catch>
     </try>
   
-    <local>
-        <lockcomponent id="DTFA1" timeout="60s"/>
-    </local>
-
-    <log>Remotely executing an echo on the locked agent DTFA1</log>
-    <component id="DTFA1">
-        <echo>***********************************</echo>
-        <echo>This is being printed from the dtfx</echo>
-        <echo>***********************************</echo>
-    </component>
-    
-    <component id="DTFA1">
-        <echo>********************************************</echo>
-        <echo>Echo property on component: ${dtf.node.name}</echo>
-        <echo>********************************************</echo>
-    </component>
-
-    <log>
+    <!-- 
     Make sure parallel threads executing on the same component do not 
     accidentally share state.
-    </log>
-    <record uri="storage://OUTPUT/remote_events_checked.txt"> 
-	    <parallelloop property="thread" range="1..5">
-	        <for property="i" range="1..${iterations.tiny}">
-	            <component id="DTFA1">
-	                <event name="agent.remote_event">
-	                    <attribute name="thread" value="${thread}"/>
-                        <attribute name="iteration" value="${i}"/>
-	                </event>
-	            </component>
-	        </for>
-	    </parallelloop> 
-    </record>
+    -->
+    <parallelloop property="thread" range="1..3">
+        <component id="DTFA1">
+            <event name="agent.remote_event">
+                <attribute name="thread" value="${thread}"/>
+            </event>
+        </component>
+        <assert>
+            <eq op1="${agent.remote_event.thread}" op2="${thread}"/>
+        </assert>
+    </parallelloop> 
    
-    <for property="thread" range="1..5"> 
-	    <query uri="storage://OUTPUT/remote_events_checked.txt" 
-	           cursor="cursor">
-	        <where>
-	            <eq op1="thread" op2="${thread}"/>
-	        </where>
-	    </query>
-        
-        <property name="count" value="0" overwrite="true"/>
-        <iterate cursor="cursor">
-            <add op1="${count}" op2="1" result="count"/>
-        </iterate>
-        
-        <if>
-            <neq op1="${count}" op2="${iterations.tiny}"/>
-            <then>
-                <fail>
-                Count mismatch  for thread ${thread}
-                expected ${iterations.small} got ${count}
-                </fail>
-            </then>
-        </if>
-    </for>
-    
     <!-- negative -->
     <try> 
 	    <component id="inexistent">
 	    </component>
         <catch exception="${dtf.DTFException}" property="message">
-            <log>Caught: ${message}</log>
+            <log level="debug">Caught Exception correctly: ${message}</log>
         </catch>
     </try>
 
@@ -124,7 +69,7 @@
 	    </component>
         <catch exception="${dtf.DTFException}" property="message">
             <sequence>
-	            <log>Caught: ${message}</log>
+                <log level="debug">Caught Exception correctly: ${message}</log>
 	            <assert>
 	                <match source="${message}"
 	                       expression=".* on component \[DTFA1\]"/>

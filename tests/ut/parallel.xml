@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <script xmlns="http://dtf.org/v1" name="parallel">
 	<info>
 		<author>
@@ -7,61 +8,75 @@
 		</author>
 		<description>DTF parallel unit test.</description>
 	</info>
-
-	<local>
-		<lockcomponent id="DTFA1" timeout="60s"/>
-	</local>
-
+    
+    <local>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        
+        <loadproperties uri="storage://INPUT/ut.properties"/> 
+    </local>
+    
+    <createrange name="range1" value="1..16"/>
 	<parallel>
-		<for property="j" range="[1..4]">
-			<local>
-				<echo>Echo ${j}</echo>
-			</local>
+		<for property="j" range="1..4">
+            <property name="property${j}" value="${range1}"/>
 		</for>
-		<for property="j" range="[5,6]">
-			<local>
-				<echo>Echo ${j}</echo>
-			</local>
+		<for property="j" range="1..4">
+            <property name="property${j}" value="${range1}"/>
 		</for>
-		<for property="j" range="[7,8,9,10]">
-			<local>
-				<echo>Echo ${j}</echo>
-			</local>
+		<for property="j" range="1..4">
+            <property name="property${j}" value="${range1}"/>
+		</for>
+		<for property="j" range="1..4">
+            <property name="property${j}" value="${range1}"/>
 		</for>
 	</parallel>
+    
+    <try>
+        <sequence>
+            <property name="hitlimit" value="${range1}"/>
+            <fail>Failure this line shouldn't be hit</fail>
+        </sequence>
+        <catch> 
+            <log level="debug">Exception caught as expected.</log>
+        </catch>
+    </try>
 
-
-	<local>
-		<echo>Echoing some values on the previously locked agent.</echo>
-	</local>
-
+    <createrange name="range1" value="1..24"/>
 	<parallel>
-		<component id="DTFA1">
-			<echo>Echo a</echo>
-		</component>
-		<component id="DTFA1">
-			<echo>Echo b</echo>
-		</component>
-		<component id="DTFA1">
-			<echo>Echo c</echo>
-		</component>
-		<component id="DTFA1">
-			<echo>Echo d</echo>
-		</component>
-		<component id="DTFA1">
-			<echo>Echo e</echo>
-		</component>
-		<component id="DTFA1">
-			<echo>Echo f</echo>
-		</component>
+        <parallel>
+    		<for property="j" range="1..4">
+                <property name="property${j}" value="${range1}"/>
+		    </for>
+    		<for property="j" range="1..4">
+                <property name="property${j}" value="${range1}"/>
+		    </for>
+        </parallel>
+        <parallel>
+    		<for property="j" range="1..4">
+                <property name="property${j}" value="${range1}"/>
+		    </for>
+    		<for property="j" range="1..4">
+                <property name="property${j}" value="${range1}"/>
+		    </for>
+        </parallel>
+        <parallel>
+    		<for property="j" range="1..4">
+                <property name="property${j}" value="${range1}"/>
+		    </for>
+    		<for property="j" range="1..4">
+                <property name="property${j}" value="${range1}"/>
+		    </for>
+        </parallel>
 	</parallel>
 
-	<component id="DTFA1">
-		<echo>Echo a</echo>
-		<echo>Echo b</echo>
-		<echo>Echo c</echo>
-		<echo>Echo d</echo>
-		<echo>Echo e</echo>
-		<echo>Echo f</echo>
-	</component>
+    <try>
+        <sequence>
+            <property name="hitlimit" value="${range1}"/>
+            <fail>Failure this line shouldn't be hit</fail>
+        </sequence>
+        <catch>
+            <log level="debug">Exception caught as expected.</log>
+        </catch>
+    </try>
 </script>

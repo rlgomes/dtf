@@ -45,8 +45,9 @@ public class Storage extends StorageIntf {
         _fpath = new File(path);
         
         if ( !_fpath.exists() ) {
-            _logger.warn("Storage path does not exist [" + path + 
-                         "] will create.");
+            if ( _logger.isDebugEnabled() )
+                _logger.debug("Storage path does not exist [" + path + 
+                              "] will create.");
             
             if ( !_fpath.mkdirs() )
                 throw new StorageException("Unable to create storage path [" + 
@@ -62,8 +63,6 @@ public class Storage extends StorageIntf {
                         File.separatorChar + filename).exists();
     }
     
-
-    
     public OutputStream getOutputStream(String filename, boolean append) 
            throws StorageException {
         try {
@@ -71,7 +70,9 @@ public class Storage extends StorageIntf {
                                  File.separatorChar + filename);
             
             if (!append && file.isDirectory()) {
-                _logger.info("Wiping " + file);
+                if ( _logger.isDebugEnabled() )
+                    _logger.debug("Wiping " + file);
+                
                 SystemUtil.deleteDirectory(file);
             }
           
@@ -233,6 +234,17 @@ public class Storage extends StorageIntf {
         
         if ( !file.delete() ) { 
             throw new StorageException("Unable to delete [" + filename + "]");
+        }
+    }
+    
+    @Override
+    public void move(String src, String dst) throws StorageException {
+        File srcFile = new File(_fpath,src);
+        File dstFile = new File(_fpath,dst);
+        
+        if ( !srcFile.renameTo(dstFile) ) { 
+            throw new StorageException("Unable to rename [" + srcFile + 
+                                       "] to [" + dstFile + "]");
         }
     }
 }

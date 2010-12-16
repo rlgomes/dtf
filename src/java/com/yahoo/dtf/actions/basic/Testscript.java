@@ -3,7 +3,6 @@ package com.yahoo.dtf.actions.basic;
 import java.net.URI;
 import java.util.ArrayList;
 
-import com.yahoo.dtf.DTFNode;
 import com.yahoo.dtf.DTFProperties;
 import com.yahoo.dtf.actions.Action;
 import com.yahoo.dtf.actions.util.ScriptUtil;
@@ -48,11 +47,11 @@ public class Testscript extends Action {
 
     public Testscript() { }
  
-    private static Object _lock = new Object();
+    private Object _lock = new Object();
     
     public void execute() throws DTFException {
-        getLogger().info("Executing testscript " + uri);
-       
+        getLogger().info("Executing " + uri);
+      
         DTFState state = (DTFState) getState().duplicate();
         // necessary so we don't have collisions, plus we don't want to 
         // pass down global context to a different testcase.
@@ -74,7 +73,7 @@ public class Testscript extends Action {
 	                                 sf.getInputStream(getUri()), 
 	                                 state);
         } catch (DTFException e) { 
-            getLogger().error("Testscript failed [" + getUri() + "]");
+            getLogger().error("Failed [" + getUri() + "]");
             Testsuite ts = (Testsuite) getGlobalContext(Testsuite.TESTSUITE_CTX);
            
             if ( ts != null ) { 

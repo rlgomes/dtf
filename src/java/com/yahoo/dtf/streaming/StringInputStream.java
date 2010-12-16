@@ -43,14 +43,9 @@ public class StringInputStream extends DTFInputStream {
         return i;
     }
     
-    
     @Override
-    public int read(byte[] buffer) throws IOException {
-        int length = buffer.length;
-        if ( buffer.length > (getSize()-_read) ) 
-            length = (int)(_size - _read);
-        
-        return read(buffer,0,length);
+    public int read(byte[] b) throws IOException {
+        return read(b,0,b.length);
     }
     
     @Override

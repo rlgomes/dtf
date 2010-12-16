@@ -14,13 +14,8 @@
         <createstorage id="OUTPUT2" path="${dtf.xml.path}/remote-output/D1" />
     </local>
    
-    <for property="i" range="1..10">
-        <cat uri="storage://OUTPUT/file-${i}">caca</cat> 
-    </for> 
-
-    <for property="i" range="1..10">
-        <cat uri="storage://OUTPUT2/file-${i}">caca</cat> 
-    </for> 
+    <cat uri="storage://OUTPUT/file-1">caca</cat> 
+    <cat uri="storage://OUTPUT2/file-1">caca</cat> 
     
     <local>     
         <createstorage id="EXPORTED_OUTPUT" 
@@ -61,83 +56,77 @@
     <assert><eq op2="${test3}" op1="remote3"/></assert> 
     
     <log>Parallel Overwrites</log> 
-    <for property="i" range="1..5">
-	    <parallel>
-		    <component id="DTFA1">
-		        <cat uri="storage://OUTPUT/remotefile" append="false">remote1</cat>
-		    </component> 
-		    
-		    <component id="DTFA2">
-		        <cat uri="storage://OUTPUT/remotefile" append="false">remote2</cat>
-		    </component> 
-		    
-		    <component id="DTFA3">
-		        <cat uri="storage://OUTPUT/remotefile" append="false">remote3</cat>
-		    </component> 
-	    </parallel>
-	
-	    <property name="test"
-                  uri="storage://OUTPUT/remotefile"
-                  overwrite="true"/>
+    <parallel>
+	    <component id="DTFA1">
+	        <cat uri="storage://OUTPUT/remotefile" append="false">remote1</cat>
+	    </component> 
+	    
+	    <component id="DTFA2">
+	        <cat uri="storage://OUTPUT/remotefile" append="false">remote2</cat>
+	    </component> 
+	    
+	    <component id="DTFA3">
+	        <cat uri="storage://OUTPUT/remotefile" append="false">remote3</cat>
+	    </component> 
+    </parallel>
+
+    <property name="test"
+              uri="storage://OUTPUT/remotefile"
+              overwrite="true"/>
                   
-        <assert>
-            <match source="${test}" expression="remote1|remote2|remote3"/>
-        </assert>
-    </for>
+    <assert>
+        <match source="${test}" expression="remote1|remote2|remote3"/>
+    </assert>
   
     <log>Sequential Appends</log> 
-    <for property="i" range="1..5">
-        <cat uri="storage://OUTPUT/remotefile" append="false"/>
+    <cat uri="storage://OUTPUT/remotefile" append="false"/>
 
-	    <component id="DTFA1">
-	        <cat uri="storage://OUTPUT/remotefile">[1:${i}]</cat>
-	    </component> 
+    <component id="DTFA1">
+        <cat uri="storage://OUTPUT/remotefile">[1]</cat>
+    </component> 
     
-	    <component id="DTFA2">
-	        <cat uri="storage://OUTPUT/remotefile">[2:${i}]</cat>
-	    </component> 
+    <component id="DTFA2">
+        <cat uri="storage://OUTPUT/remotefile">[2]</cat>
+    </component> 
        
-	    <component id="DTFA3">
-	        <cat uri="storage://OUTPUT/remotefile">[3:${i}]</cat>
-	    </component>
+    <component id="DTFA3">
+        <cat uri="storage://OUTPUT/remotefile">[3]</cat>
+    </component>
          
-	    <property name="test"
-                  uri="storage://OUTPUT/remotefile"
-                  overwrite="true"/>
+    <property name="test"
+              uri="storage://OUTPUT/remotefile"
+              overwrite="true"/>
         
-        <assert>
-            <match source="${test}" expression="\[1:${i}\]\[2:${i}\]\[3:${i}\]"/>
-        </assert>              
-    </for>
+    <assert>
+        <match source="${test}" expression="\[1\]\[2\]\[3\]"/>
+    </assert>              
    
     <log>Parallel Appends</log> 
-    <for property="i" range="1..5">
-        <cat uri="storage://OUTPUT/remotefile" append="false"/>
+    <cat uri="storage://OUTPUT/remotefile" append="false"/>
 
-        <parallel>
-	        <component id="DTFA1">
-	            <cat uri="storage://OUTPUT/remotefile">[1:${i}]</cat>
-	        </component> 
-	    
-	        <component id="DTFA2">
-	            <cat uri="storage://OUTPUT/remotefile">[2:${i}]</cat>
-	        </component> 
-	     
-	        <component id="DTFA3">
-	            <cat uri="storage://OUTPUT/remotefile">[3:${i}]</cat>
-	        </component>
-        </parallel>
+    <parallel>
+        <component id="DTFA1">
+            <cat uri="storage://OUTPUT/remotefile">[1]</cat>
+        </component> 
+    
+        <component id="DTFA2">
+            <cat uri="storage://OUTPUT/remotefile">[2]</cat>
+        </component> 
+     
+        <component id="DTFA3">
+            <cat uri="storage://OUTPUT/remotefile">[3]</cat>
+        </component>
+    </parallel>
         
-        <property name="test" uri="storage://OUTPUT/remotefile" overwrite="true"/>
-        <switch>
-            <case>
-                <match source="${test}" 
-                       expression="((\[1:${i}\])|(\[2:${i}\])|(\[3:${i}\]))*"/>
-            </case>
-            <default>
-                <fail>${test} does not match regular expression.</fail>
-            </default>
-        </switch>
-    </for>
+    <property name="test" uri="storage://OUTPUT/remotefile" overwrite="true"/>
+    <switch>
+        <case>
+            <match source="${test}" 
+                   expression="((\[1\])|(\[2\])|(\[3\]))*"/>
+        </case>
+        <default>
+            <fail>${test} does not match regular expression.</fail>
+        </default>
+    </switch>
 
 </script>

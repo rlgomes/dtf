@@ -84,58 +84,35 @@ import com.yahoo.dtf.streaming.XMLInputStream;
 import com.yahoo.dtf.util.SystemUtil;
 import com.yahoo.dtf.util.ThreadUtil;
 
-/**
- * 
- * @dtf.feature Internal Properties
+/** 
+ * @dtf.feature Loading Default Properties
  * @dtf.feature.group DTF Properties
- * 
+ *   
  * @dtf.feature.desc
- * <p> 
- * DTF has some internal properties which are useful for writing test case and 
- * that allow you to do small things you wouldn't otherwise know how to do, here 
- * are the currently available internal DTF properties:
- * </p>
+ * <p>
+ * Because sometimes agent command lines can get pretty long including the 
+ * tunneling properties, agent specific attributes and other settings and 
+ * writing that out every time on the command line can be bothersome, there 
+ * is now a single property that can be used to load default properties into
+ * the current component about to be executed. This property name is 
+ * dtf.defaults and it will load a Java Properties file with key=value 
+ * lines. There is a default behavior of making all properties available to
+ * all the code within DTF but also any properties that do not start with 
+ * dtf.* prefix will be loaded as Agent attributes that can later be used to
+ * lock the components. In other words, if you have a property named 
+ * cli.type=xxx in your default properties file and load it using this 
+ * property you can then use the lockcomponent tag like so:
+ * </p> 
  * 
- * <table border='1'>
- *     <tr><th>Property</th><th>Description</ht></tr>
- *     <tr><td>dtf.xml.path</td>
- *         <td>Assigned at the beginning of any DTF run and is always assigned 
- *             to the location of the XML that defines the currently executed 
- *             test case.</td>
- *     </tr>
- *     <tr><td>dtf.script.id</td>
- *         <td>This is assigned the name of your script that is defined by the 
- *             name attribute of the script tag.</td>
- *     </tr>
- *     <tr><td>dtf.timestamp</td>
- *         <td>Retrieves the System.currentMilliseconds() value dynamically at 
- *             execution time of the test case.</td>
- *     </tr>
- *     <tr><td>dtf.randomInt</td>
- *         <td>Gets a random int value using java.util.Random</td>
- *     </tr>
- *     <tr><td>dtf.randomLong</td>
- *         <td>Gets a random long value using java.util.Random</td>
- *     </tr>
- *     <tr><td>dtf.randomDouble</td>
- *         <td>Gets a random double value using java.util.Random</td>
- *     </tr>
- *     <tr><td>dtf.gaussianLong</td>
- *         <td>Generates a random Long that follows a normal gaussian 
- *             distribution.</td>
- *     </tr>
- * </table>
+ * {@dtf.xml
+ * <lockcomponent id="AGENT${agent}">
+ *     <attrib name="client.type" value="xxx"/>
+ * </lockcomponent>}
  * 
- * <p> 
- * The random generators can also be passed arguments to specify limits when 
- * generating random numbers, like so:
- * </p>
- * 
- * <pre>
- * ${dtf.randomInt(1000)} – generate a random upto 1000
- * ${dtf.randomDouble(-100,100)} – generate a random double between -100 and 100 
- * </pre>
- *
+ * And you know you'd be locking the component who had that property and 
+ * not any other one. This is useful for the user of the framework to setup 
+ * agents with properties that define location, build and even APIs available 
+ * from that agent for executing tests.
  */
 public class DTFNode {
 
@@ -366,36 +343,6 @@ public class DTFNode {
         }
     }
     
-    /** 
-     * @dtf.feature Loading Default Properties
-     * @dtf.feature.group DTF Properties
-     *   
-     * @dtf.feature.desc
-     * <p>
-     * Because sometimes agent command lines can get pretty long including the 
-     * tunneling properties, agent specific attributes and other settings and 
-     * writing that out every time on the command line can be bothersome, there 
-     * is now a single property that can be used to load default properties into
-     * the current component about to be executed. This property name is 
-     * dtf.defaults and it will load a Java Properties file with key=value 
-     * lines. There is a default behavior of making all properties available to
-     * all the code within DTF but also any properties that do not start with 
-     * dtf.* prefix will be loaded as Agent attributes that can later be used to
-     * lock the components. In other words, if you have a property named 
-     * cli.type=xxx in your default properties file and load it using this 
-     * property you can then use the lockcomponent tag like so:
-     * </p> 
-     * 
-     * {@dtf.xml
-     * <lockcomponent id="AGENT${agent}">
-     *     <attrib name="client.type" value="xxx"/>
-     * </lockcomponent>}
-     * 
-     * And you know you'd be locking the component who had that property and 
-     * not any other one. This is useful for the user of the framework to setup 
-     * agents with properties that define location, build and even APIs available 
-     * from that agent for executing tests.
-     */
     private static void loadDefaults() throws DTFException { 
         String defaults = _config.getProperty(DTFProperties.DTF_DEFAULTS);
         if ( defaults != null ) { 

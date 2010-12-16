@@ -8,15 +8,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.util.Properties;
 
-import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelExec;
-import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
-import com.jcraft.jsch.SftpException;
 import com.yahoo.dtf.actions.protocol.deploy.DTFNode;
 import com.yahoo.dtf.exception.DTFException;
 import com.yahoo.dtf.logger.DTFLogger;
@@ -27,9 +23,10 @@ public class SSHUtil {
 
     public static Session connectToHost(String host,
                                           String user,
-                                          String privkey) throws JSchException { 
+                                          String privkey,
+                                          String passphrase) throws JSchException { 
         JSch jsch = new JSch();
-        DeployUI ui = new DeployUI(host,user);
+        DeployUI ui = new DeployUI(host,user,passphrase);
     
         String home = System.getProperty("user.home");
         String known_hosts = home + "/.dtf/known_hosts";
@@ -37,8 +34,10 @@ public class SSHUtil {
         
         if ( privkey != null ) {
             id_rsa = privkey;
+            _logger.info("Using specified RSA key [" + id_rsa + "]");
         } else { 
             id_rsa = home + "/.dtf/id_rsa";
+            _logger.info("Using default RSA key [" + id_rsa + "]");
         }
         
         if (new File(known_hosts).exists())
@@ -48,12 +47,6 @@ public class SSHUtil {
             jsch.addIdentity(id_rsa);
 
         Session session = jsch.getSession(user, host);
-  
-// XXX: this seems to break others builds and I will have to revist this setting
-//        Properties config = new Properties();
-//        config.put("compression.s2c", "zlib,none");
-//        config.put("compression.c2s", "zlib,none");
-//        session.setConfig(config);
         session.setUserInfo(ui);
         session.connect();
     
@@ -123,19 +116,45 @@ public class SSHUtil {
         BufferedReader br = null;
 
         try {
-            InputStreamReader esr = new InputStreamReader(exec.getErrStream());
-            InputStream is = exec.getInputStream();
-            InputStreamReader isr = new InputStreamReader(is);
-            br = new BufferedReader(isr);
-
             String line = null;
-            while ((line = br.readLine()) != null) {
-                out.write((line + "\n").getBytes());
+           
+            /*
+             * Have to do this because the JSSH library will sometimes not 
+             * instantiate an output or error stream even though it has 
+             * succeeded. So we'll ignore the null and then check the return 
+             * code.
+             */
+            InputStream ise = null;
+            try { 
+                ise = exec.getErrStream();
+            } catch (NullPointerException e) { }
+            
+            if ( ise != null ) { 
+                InputStreamReader esr = new InputStreamReader(ise);
+                br = new BufferedReader(esr);
+                while ((line = br.readLine()) != null) {
+                    err.write((line + "\n").getBytes());
+                }
             }
-
-            br = new BufferedReader(esr);
-            while ((line = br.readLine()) != null) {
-                err.write((line + "\n").getBytes());
+            
+            /*
+             * Have to do this because the JSSH library will sometimes not 
+             * instantiate an output or error stream even though it has 
+             * succeeded. So we'll ignore the null and then check the return 
+             * code.
+             */
+            InputStream is = null;
+            try { 
+                is = exec.getInputStream();
+            } catch (NullPointerException e) { }
+           
+            if ( is != null ) { 
+	            InputStreamReader isr = new InputStreamReader(is);
+	            br = new BufferedReader(isr);
+	
+	            while ((line = br.readLine()) != null) {
+	                out.write((line + "\n").getBytes());
+	            }
             }
 
             return exec.getExitStatus();

@@ -1,5 +1,6 @@
 package com.yahoo.dtf.actions.util;
 
+import java.nio.charset.Charset;
 import java.util.Hashtable;
 
 import com.yahoo.dtf.actions.Action;
@@ -17,6 +18,10 @@ public class CDATA extends Action {
     public String getCDATA() throws ParseException { return replaceProperties(CDATA); } 
 
     public DTFInputStream getCDATAStream() throws ParseException { 
+        return replacePropertiesAsInputStream(Charset.defaultCharset().displayName());
+    }
+
+    public DTFInputStream getCDATAStream(String encoding) throws ParseException { 
         return replacePropertiesAsInputStream(CDATA);
     } 
 
