@@ -37,8 +37,7 @@ import com.yahoo.dtf.xml.XMLUtil;
  * So lets say we have the property myxml that contains the following xml 
  * snipplet:
  * </p>
- * 
- * <pre>
+ * {@dtf.xml 
  *  <list>
  *      <item>1</item>
  *      <item>2</item>
@@ -46,8 +45,7 @@ import com.yahoo.dtf.xml.XMLUtil;
  *      <item>4</item>
  *      <item>5</item>
  *      <item>6</item>
- *  </list>
- * </pre>
+ *  </list>}
  * 
  * <p>
  * Now lets say we wanted to reference the myxml property but we only want the 

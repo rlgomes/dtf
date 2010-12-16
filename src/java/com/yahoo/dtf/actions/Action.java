@@ -11,7 +11,6 @@ import java.lang.reflect.Modifier;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -59,32 +58,13 @@ abstract public class Action implements Externalizable {
     private static DTFLogger _logger = DTFLogger.getLogger(Action.class);
   
     private ArrayList<Action> _list = null;
-   
-    /**
-     * This classes sole purpose is to guarantee that no one will try to remove
-     * elements from the children of an Action. This is because they can get the
-     * ArrayList of children from the method children() but I don't want them to
-     * remove any elements.
-     * 
-     * @author rlgomes
-     *
-     * @param <T>
-     */
-    private static class ActionArrayList<T> extends ArrayList<T> {
-        private static final String MESSAGE = 
-                         "You can not remove items from the actions children.";
-        public ActionArrayList(int cap) { super(cap); } 
-        public T remove(int index) { throw new RuntimeException(MESSAGE); }
-        public boolean remove(Object o) { throw new RuntimeException(MESSAGE); }
-        public boolean removeAll(Collection<?> c) { throw new RuntimeException(MESSAGE); }
-    }
     
     private int line = -1;
     private int column = -1;
     private String filename = null;
    
     public Action() { 
-        _list = new ActionArrayList<Action>(5); 
+        _list = new ArrayList<Action>(); 
     }
     
     public int getLine() { return line; }
@@ -107,7 +87,7 @@ abstract public class Action implements Externalizable {
 
     public boolean hasChildren() { return _list.size() != 0; }
     public ArrayList<Action> children() {
-        return (ArrayList<Action>)_list;
+        return new FinalArrayList<Action>(_list);
     }
     
     public void clearChildren() { 
@@ -643,6 +623,18 @@ abstract public class Action implements Externalizable {
 
                 int tindex = key.indexOf(':');
                 int findex = key.indexOf('(');
+               
+                /*
+                 * Another silly workaround till we make a more robust property
+                 * resolver as mentioned in the comment below.
+                 */
+                if ( tindex != -1 && findex != -1 ) {
+                    if ( tindex < findex ) { 
+                        findex = -1;
+                    } else { 
+                        tindex = -1;
+                    }
+                }
            
                 /*
                  * XXX: This could use some cleaning up in the near future. 
@@ -699,8 +691,8 @@ abstract public class Action implements Externalizable {
     public static DTFInputStream replacePropertiesAsInputStream(String string) 
            throws ParseException {
         
-        if (string == null) 
-            return new StringInputStream("");
+        if (string == null)  
+            return DTFStream.getStringAsStream("");
 
         Config config = getConfig();
         boolean hasMatch = true;
@@ -721,7 +713,6 @@ abstract public class Action implements Externalizable {
                 String value = null;
 
                 replacements.add(key);
-                
                 int findex = key.indexOf('(');
                 
                 if ( findex != -1) {
@@ -755,7 +746,7 @@ abstract public class Action implements Externalizable {
             }
         }
         
-        return new StringInputStream(replaceProperties(string));
+        return DTFStream.getStringAsStream(replaceProperties(string));
     }
     
     public String getClassName() { return Action.getClassName(this.getClass()); }

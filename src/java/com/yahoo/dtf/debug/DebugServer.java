@@ -4,11 +4,15 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import mx4j.tools.config.DefaultConfigurationBuilder.Shutdown;
+
+import com.yahoo.dtf.NodeShutdownHook;
+import com.yahoo.dtf.actions.protocol.deploy.DTFNode;
 import com.yahoo.dtf.exception.DTFException;
 import com.yahoo.dtf.exception.DebugServerException;
 import com.yahoo.dtf.logger.DTFLogger;
 
-public class DebugServer extends Thread {
+public class DebugServer extends Thread implements NodeShutdownHook {
     
     private static DTFLogger _log = DTFLogger.getLogger(DebugServer.class);
     private final static int MAX_RETRY = 50;
@@ -21,7 +25,9 @@ public class DebugServer extends Thread {
     
     private int port = 40000;
     
-    private DebugServer() throws DebugServerException { 
+    private DebugServer() throws DebugServerException {
+        com.yahoo.dtf.DTFNode.registerShutdownHook(this);
+        
         int retry = 0;
         while ( retry < MAX_RETRY ) { 
 	        try {
@@ -92,7 +98,7 @@ public class DebugServer extends Thread {
         }
     }
     
-    public static void shutdown() { 
+    public void shutdown() { 
         if ( _instance != null ) { 
 	        _instance._running = false;
 	        try {

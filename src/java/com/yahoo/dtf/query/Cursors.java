@@ -3,13 +3,15 @@ package com.yahoo.dtf.query;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+import com.yahoo.dtf.DTFNode;
+import com.yahoo.dtf.NodeShutdownHook;
 import com.yahoo.dtf.query.Cursor;
 import com.yahoo.dtf.query.Cursors;
 import com.yahoo.dtf.exception.QueryException;
 import com.yahoo.dtf.logger.DTFLogger;
 
 
-public class Cursors {
+public class Cursors implements NodeShutdownHook {
     
     private DTFLogger _logger = DTFLogger.getLogger(Cursors.class);
 
@@ -22,6 +24,7 @@ public class Cursors {
      */
     public Cursors() {
         _cursors = new Hashtable();
+        DTFNode.registerShutdownHook(this);
     }
    
     public void addCursor(String name, Cursor cursor) { 
@@ -45,4 +48,6 @@ public class Cursors {
             }
         }
     }
+    
+    public void shutdown() { close(); }
 }

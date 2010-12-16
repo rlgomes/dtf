@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="json_transform">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        DTF unit test for the json transformation and extraction capabilities.
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+        <createstorage id="TINPUT" path="${dtf.xml.path}"/>
+
+        <property name="threads" value="1"/>
+        <loadproperties uri="storage://INPUT/ut.properties"/>
+        
+        <property name="json_list">
+			{
+				"list": {
+			        "item": {
+			            "v1": 1,
+			            "v2": 2,
+			            "v3": 3 
+			         } 
+			     }
+			} 
+        </property>
+       
+        <property name="json_array">
+	        { 
+	           "list":
+		          [
+		              { "id": "1001", "type": "Regular" },
+		              { "id": "1002", "type": "Chocolate" },
+		              { "id": "1003", "type": "Blueberry" },
+		              { "id": "1004", "type": "Devil's Food" }
+		          ]
+	        }
+        </property> 
+    </local>
+
+    <log>${json_list:jpath:/list/item/v1}</log>
+    <log>${json_array:jpath:/list[3]}</log>
+    <log>${json_array:jpath:/list[@id = 1004]/@type}</log>
+
+    <!-- Iterate over the id -->
+    <for property="item" range="jpath(${json_array},/list/@id)">
+        <log>${item}</log> 
+    </for> 
+
+    <!-- Iterate over the type -->
+    <for property="item" range="jpath(${json_array},/list/@type)">
+        <log>${item}</log> 
+    </for> 
+
+    <for property="expr" range="/list/item/v2,/list/item[@v1 = 1]">
+	    <record uri="storage://OUTPUT/jpath_stats.txt"> 
+	        <distribute range="1..${threads}"
+	                    iterations="${iterations.tiny}"
+	                    property="i">
+		        <event name="jpath"> 
+		            <attribute name="i" value="${i}"/>
+		            <property name="t" value="${json_list:jpath:${expr}}"/>
+		        </event>
+	        </distribute>
+	    </record>
+	    
+	    <query uri="storage://OUTPUT/jpath_stats.txt"
+	           cursor="c1"
+	           event="jpath"/> 
+	           
+	    <stats cursor="c1" event="jpath"/>
+    </for>
+	    
+    <for property="expr" range="/list/item/v2,/list/item[@v1 = 1]">
+	    <log>
+            JPath expression:   ${expr} 
+	        JPath operations/s: ${jpath.avg_occ}
+	        JPath max duration: ${jpath.max_dur}ms
+	        JPath imin duration: ${jpath.min_dur}ms
+	        JPath total time:   ${jpath.tot_dur}s
+	    </log>
+    </for>
+
+</script>    

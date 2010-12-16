@@ -6,6 +6,8 @@ import java.util.Map.Entry;
 import org.openqa.selenium.server.RemoteControlConfiguration;
 import org.openqa.selenium.server.SeleniumServer;
 
+import com.yahoo.dtf.DTFNode;
+import com.yahoo.dtf.NodeShutdownHook;
 import com.yahoo.dtf.exception.DTFException;
 
 /**
@@ -18,6 +20,17 @@ public class SeleniumServerFactory {
     
     private static HashMap<String, SeleniumServer> ssmap = 
                                           new HashMap<String, SeleniumServer>();
+    
+    static { 
+        DTFNode.registerShutdownHook(new NodeShutdownHook() {
+            @Override
+            public void shutdown() {
+                for (Entry<String,SeleniumServer> entry : ssmap.entrySet() ) { 
+                    entry.getValue().stop();
+                }
+            } 
+        });
+    }
 
     /**
      * Starts a selenium server if none is already running at the specific port
@@ -39,17 +52,6 @@ public class SeleniumServerFactory {
                 throw new DTFException("Issue starting selenium server",e);
             }
 	        ssmap.put(""+port, server);
-        }
-    }
-    
-    /**
-     * Method responsible for shutting down all currently running selenium 
-     * servers.
-     * 
-     */
-    public static void shutdown() { 
-        for (Entry<String,SeleniumServer> entry : ssmap.entrySet() ) { 
-            entry.getValue().stop();
         }
     }
 }

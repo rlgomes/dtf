@@ -14,144 +14,31 @@
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
         
         <loadproperties uri="storage://INPUT/ut.properties"/>
+        <property name="xsd" value="storage://INPUT/list.xsd"/>
+        
+        <property name="dtf.http.port" value="33333"/>
     </local>
 
-    <log>Validate we always generate the same message for the same signature.</log>
-    <createrange name="seeds" value="${dtf.timestamp},ABRACADABRA"/>    
-    <for property="type" range="random,repeat"> 
-        <property name="seed" value="${seeds}" overwrite="true"/>
-        
-	    <for property="i" range="1..${iterations.medium}">    
-		    <property name="data1"
-		              value="${dtf.stream(${type},32,${seed})}" 
-		              overwrite="true"/>
-		
-		    <property name="data2"
-		              value="${dtf.stream(${type},32,${seed})}" 
-		              overwrite="true"/>
-                      
-            <if>
-                <neq op1="${data1}" op2="${data2}"/>
-                <then>
-                    <log>${data1} != ${data2}</log>
-                    <fail message="Messages differ!"/>
-                </then>
-            </if>
-	    </for> 
-    </for>
-
-    <record uri="storage://OUTPUT/small_stream.txt">
-	    <for property="type" range="random,repeat">
-		    <for property="size" range="32">
-		        <property name="iteration"
-                          value="${iterations.huge}"
-                          overwrite="true"/>
-			    <log>
-                Generate ${iterations.huge} ${size} pieces of ${type} data.
-                </log>
-		        
-			    <event name="generate.${size}">
-				    <for property="i" range="1..${iterations.large}"> 
-				        <property name="test"
-				                  value="${dtf.stream(${type},${size},12345)}" 
-				                  overwrite="true"/>
-				    </for>
-			    </event>
-			    
-			    <subtract op1="${generate.${size}.stop}"
-			              op2="${generate.${size}.start}"
-			              result="duration_ms"/> 
-			              
-			    <divide op1="${duration_ms}"
-			            op2="1000"
-			            result="duration_s"/> 
-			   
-		        <multiply op1="${size}"
-                          op2="${iteration}"
-                          result="bytes"/> 
-  
-                <if>
-                    <eq op1="${duration_s}" op2="0"/>
-                    <then>
-                        <multiply op1="${bytes}"
-                                  op2="${iterations.large}"
-                                  result="bytes_per_sec"/>
-                        <property name="ops_per_sec"
-                                  value="${iterations.large}"/>
-                    </then>
-                    <else>
-					    <divide op1="${bytes}"
-		                        op2="${duration_s}"
-		                        result="bytes_per_sec"/>
-		                        
-					    <divide op1="${iterations.large}"
-		                        op2="${duration_s}"
-		                        result="ops_per_sec"/>
-                    </else>
-                </if>
-			   
-		        <log>
-		        Generating ${size} byte ${type} streams
-			    ${bytes_per_sec} bytes/s
-			    ${ops_per_sec} ops/s
-		        </log>
-		    </for>
-	    </for> 
-    </record>
+    <log>Validate streams always generate the same data for the same seed.</log>
     
-    <record uri="storage://OUTPUT/large_stream.txt">
-        <for property="type" range="random,repeat">
-            <for property="size" range="1048576">
-                <log>
-                Generate 32 ${size} pieces of ${type} data.
-                </log>
-                
-                <event name="generate.${size}">
-                    <for property="i" range="1..32"> 
-                        <property name="test"
-                                  value="${dtf.stream(${type},${size},${dtf.randomInt})}" 
-                                  overwrite="true"/>
-                    </for>
-                </event>
-                
-                <subtract op1="${generate.${size}.stop}"
-                          op2="${generate.${size}.start}"
-                          result="duration_ms"/> 
-                          
-                <divide op1="${duration_ms}"
-                        op2="1000"
-                        result="duration_s"/> 
-               
-                <multiply op1="${size}"
-                          op2="32"
-                          result="bytes"/> 
-  
-                <if>
-                    <eq op1="${duration_s}" op2="0"/>
-                    <then>
-                        <multiply op1="${bytes}"
-                                  op2="32"
-                                  result="bytes_per_sec"/>
-                        <property name="ops_per_sec"
-                                  value="32"/>
-                    </then>
-                    <else>
-                        <divide op1="${bytes}"
-                                op2="${duration_s}"
-                                result="bytes_per_sec"/>
-                                
-                        <divide op1="32"
-                                op2="${duration_s}"
-                                result="ops_per_sec"/>
-                    </else>
-                </if>
-               
-                <log>
-                Generating ${size} byte ${type} streams
-                ${bytes_per_sec} bytes/s
-                ${ops_per_sec} ops/s
-                </log>
-            </for>
-        </for> 
-    </record>
+    <for property="size" range="128,1024,10240">
+	    <createrange name="seeds"
+	                 value="${xsd}"/>    
+	    <for property="type" range="xml"> 
+	        <property name="seed" value="${seeds}" overwrite="true"/>
+	        
+		    <for property="i" range="1..${iterations.small}">    
+			    <property name="data1"
+			              value="${dtf.stream(${type},${size},${seed})}" 
+			              overwrite="true"/>
+			
+			    <property name="data2"
+			              value="${dtf.stream(${type},${size},${seed})}" 
+			              overwrite="true"/>
+	                      
+                <assert><eq op1="${data1}" op2="${data2}"/></assert>
+		    </for> 
+	    </for>
+    </for>
+    
 </script> 

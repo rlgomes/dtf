@@ -463,7 +463,7 @@ public class DTFDoclet {
                 ps.print("<html><head></head><body>");
                 ps.print("<a href='javascript:history.back()'>Back</a> ");
                 ps.print("<a href='../index.html'>Top</a>");
-                ps.print("<dt><h3>" + classdoc.name() + "</h3></dt>");
+                ps.print("<dt><h1>" + classdoc.name() + "</h1></dt>");
                 
                 /*
                  * Description
@@ -471,8 +471,7 @@ public class DTFDoclet {
                 Tag[] descriptions = classdoc.tags(DTF_TAG_DESC);
                 if (descriptions.length != 0) { 
                     for (int d = 0; d < descriptions.length; d++) { 
-                        ps.print("<dd>" + treatTag(descriptions[d],tnames,fnames) 
-                                 + "</dd>");
+                        ps.print(treatTag(descriptions[d],tnames,fnames));
                     }
                 }
                 
@@ -703,7 +702,7 @@ public class DTFDoclet {
                 ps.print("<html><head></head><body>");
                 ps.print("<a href='javascript:history.back()'>Back</a> ");
                 ps.print("<a href='../index.html'>Top</a>");
-                ps.print("<dt><h3>" + dtfdoc.name + "</h3></dt>");
+                ps.print("<dt><h1>" + dtfdoc.name + "</h1></dt>");
                 
                 /*
                  * Description
@@ -711,7 +710,7 @@ public class DTFDoclet {
                 Tag[] descriptions = dtfdoc.descriptions;
                 if (descriptions.length != 0) { 
                     for (int d = 0; d < descriptions.length; d++) { 
-                        ps.print("<dd>" + treatTag(descriptions[d],tnames,fnames) + "</dd>");
+                        ps.print(treatTag(descriptions[d],tnames,fnames));
                     }
                 }
                 

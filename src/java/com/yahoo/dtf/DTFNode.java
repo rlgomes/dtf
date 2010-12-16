@@ -14,7 +14,6 @@ import java.util.Enumeration;
 import java.util.Properties;
 
 import org.apache.commons.jxpath.JXPathIntrospector;
-import org.openqa.selenium.server.SeleniumServer;
 
 import com.yahoo.dtf.actions.Action;
 import com.yahoo.dtf.actions.component.Component;
@@ -22,7 +21,6 @@ import com.yahoo.dtf.actions.component.Lockcomponent;
 import com.yahoo.dtf.actions.component.Stopcomponent;
 import com.yahoo.dtf.actions.protocol.Lock;
 import com.yahoo.dtf.actions.protocol.ReleaseAgent;
-import com.yahoo.dtf.actions.selenium.server.SeleniumServerFactory;
 import com.yahoo.dtf.actions.util.ScriptUtil;
 import com.yahoo.dtf.comm.Comm;
 import com.yahoo.dtf.comm.CommClient;
@@ -43,9 +41,9 @@ import com.yahoo.dtf.config.DTFRandomInt;
 import com.yahoo.dtf.config.DTFRandomLong;
 import com.yahoo.dtf.config.DTFStream;
 import com.yahoo.dtf.config.DTFTimeStamp;
+import com.yahoo.dtf.config.transform.ApplyTransformer;
 import com.yahoo.dtf.config.transform.ConvertTransformer;
 import com.yahoo.dtf.config.transform.JPathTransformer;
-import com.yahoo.dtf.config.transform.ApplyTransformer;
 import com.yahoo.dtf.config.transform.StringTransformer;
 import com.yahoo.dtf.config.transform.TransformerFactory;
 import com.yahoo.dtf.config.transform.XPathTransformer;
@@ -60,11 +58,11 @@ import com.yahoo.dtf.query.QueryFactory;
 import com.yahoo.dtf.query.TxtQuery;
 import com.yahoo.dtf.recorder.CSVRecorder;
 import com.yahoo.dtf.recorder.ConsoleRecorder;
-import com.yahoo.dtf.recorder.StatsRecorder;
 import com.yahoo.dtf.recorder.NullRecorder;
 import com.yahoo.dtf.recorder.ObjectRecorder;
 import com.yahoo.dtf.recorder.Recorder;
 import com.yahoo.dtf.recorder.RecorderFactory;
+import com.yahoo.dtf.recorder.StatsRecorder;
 import com.yahoo.dtf.recorder.TextRecorder;
 import com.yahoo.dtf.results.ConsoleResults;
 import com.yahoo.dtf.results.JUnitResults;
@@ -79,8 +77,10 @@ import com.yahoo.dtf.share.SingleShare;
 import com.yahoo.dtf.state.ActionState;
 import com.yahoo.dtf.state.DTFState;
 import com.yahoo.dtf.storage.StorageFactory;
+import com.yahoo.dtf.streaming.JSONInputStream;
 import com.yahoo.dtf.streaming.RandomInputStream;
 import com.yahoo.dtf.streaming.RepeatInputStream;
+import com.yahoo.dtf.streaming.XMLInputStream;
 import com.yahoo.dtf.util.SystemUtil;
 import com.yahoo.dtf.util.ThreadUtil;
 
@@ -160,6 +160,9 @@ public class DTFNode {
     private static Lock _owner = null;
     
     private static boolean _running = true;
+    
+    private static ArrayList<NodeShutdownHook> _shutdownhooks = 
+                                              new ArrayList<NodeShutdownHook>();
    
     public Config getConfig() { return _config; }
     public Comm getComm() { return _comm; } 
@@ -167,6 +170,10 @@ public class DTFNode {
     
     public static Lock getOwner() { return _owner; } 
     public static void setOwner(Lock owner) { _owner = owner; } 
+    
+    public static void registerShutdownHook(NodeShutdownHook hook) { 
+        _shutdownhooks.add(hook);
+    }
    
     /**
      * Method just initializes all of the state that a DTFNode needs before it 
@@ -240,6 +247,8 @@ public class DTFNode {
         // DTFInputStream handlers (for the above dynamic property DTF_STREAM
         DTFStream.registerStream("random", RandomInputStream.class);
         DTFStream.registerStream("repeat", RepeatInputStream.class);
+        DTFStream.registerStream("xml", XMLInputStream.class);
+        DTFStream.registerStream("json", JSONInputStream.class);
         
         // Share type registering
         ShareFactory.registerShare(SingleShare.NAME, SingleShare.class);
@@ -305,7 +314,6 @@ public class DTFNode {
 	        _state.setComm(_comm);
         } catch (DTFException e) { 
             _logger.error("Unable to start node.",e);
-            DebugServer.shutdown();
             System.exit(-1);
         }
        
@@ -470,12 +478,6 @@ public class DTFNode {
             }
         } catch (DTFException e) { 
             failure = e;
-        } finally { 
-            _state.getCursors().close();
-            _comm.shutdown();
-            SeleniumServerFactory.shutdown();
-            DebugServer.shutdown();
-            _logger.info("Shutting down " + getType());
         }
       
         /*
@@ -488,7 +490,6 @@ public class DTFNode {
                 _logger.error("Failure during test execution.",failure);
            
             writeNodeState(true, false, failure);
-
             System.exit(-1);
         } else { 
             writeNodeState(true, true, failure);
@@ -596,7 +597,21 @@ public class DTFNode {
     }
     
     public static void main(String[] args) throws DTFException {
-        DTFNode node = new DTFNode();
-        node.run();
+        try { 
+            DTFNode node = new DTFNode();
+            node.run();
+        } finally { 
+            _logger.info("Shutting down " + getType());
+            /*
+             * Call all registered node shutdown hooks
+             */
+            for (NodeShutdownHook hook : _shutdownhooks) { 
+                try { 
+                    hook.shutdown();
+                } catch (Throwable t) { 
+                    _logger.info("Error calling shutdown hook",t);
+                }
+            } 
+        }
     }
 }

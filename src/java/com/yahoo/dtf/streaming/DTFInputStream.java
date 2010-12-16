@@ -1,5 +1,6 @@
 package com.yahoo.dtf.streaming;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.MessageDigest;
@@ -9,7 +10,24 @@ import com.yahoo.dtf.actions.Action;
 import com.yahoo.dtf.exception.ParseException;
 import com.yahoo.dtf.util.HashUtil;
 
-public abstract class DTFInputStream extends InputStream {
+/**
+ * This abstract class defines the basic DTF InputStream that you can extend 
+ * from if you'd like to create your own streaming data. The stream is referenced
+ * like so:
+ * 
+ * ${dtf.stream(type,size,args)}
+ * 
+ * where args is a continuation of the arguments to this streaming property that
+ * will be passed to the constructor of your DTFInputStream implementation. 
+ * 
+ * This class adds a few features to the DTFInputStream you create to allow DTF
+ * to calculate the hash of your data or save your data to a temporary buffer
+ * for post process. Obviously you can't save large objects that will result
+ * in the Java heap space being completely filled up.
+ * 
+ * @author rlgomes
+ */
+public class DTFInputStream extends InputStream {
   
     private static int BUFFER_SIZE = 8*1024;
     private static long BIGSTREAM_SIZE = 1024*1024;
@@ -17,12 +35,12 @@ public abstract class DTFInputStream extends InputStream {
     private boolean calcHash = false;
     private boolean savedata = false;
    
-    private byte[] data = null;
-    
+    private ByteArrayOutputStream data = new ByteArrayOutputStream();
+   
     private long _read = 0;
     private long _size = 0;
-
-    private int i = 0;
+    
+    private InputStream _source = null;
   
     /*
      * MessageDigest class and buffer used to not update the hashing algorithm
@@ -30,34 +48,15 @@ public abstract class DTFInputStream extends InputStream {
      */
     private MessageDigest md = null;
     private byte[] _buffer = null;
-    private int _count = 0;
+    private int _unhashedCount = 0;
     
-    public DTFInputStream(long size, String args) throws ParseException {
-        // save the original value that generated this stream, this way when we
-        // print this stream or transfer it to another component we'll send the
-        // original value used to generate data and not stream the data itself.
+    public DTFInputStream(long size, String[] args) throws ParseException {
         _size = size;
     }
-
-    /**
-     * Return the next byte in from this InputStream or return -1 if we've 
-     * reached the end of stream.
-     * 
-     * @return
-     * @throws IOException
-     */
-    public abstract int readByte() throws IOException;
-
-    /**
-     * Return the number of bytes read and place them in the byte[] buffer that 
-     * was passed as an argument. Make sure to fill the buffer completely for 
-     * best efficiency otherwise make sure to return the exact amount of bytes 
-     * you really placed in the buffer.
-     * 
-     * @return
-     * @throws IOException
-     */
-    public abstract int readBuffer(byte[] buffer, int offset, int length) throws IOException;
+    
+    public void setInputStream(InputStream src) { 
+        _source = src;
+    }
 
     public long getSize() { return _size; } 
    
@@ -83,8 +82,8 @@ public abstract class DTFInputStream extends InputStream {
     
     public String getHash() throws ParseException { 
         if ( calcHash ) { 
-            if ( _count > 0 ) { 
-                md.update(_buffer,0,_count);
+            if ( _unhashedCount > 0 ) { 
+                md.update(_buffer,0,_unhashedCount);
             } 
             return HashUtil.convertToHex(md.digest());
         } else { 
@@ -92,68 +91,68 @@ public abstract class DTFInputStream extends InputStream {
         }
     } 
     
-    public void setSaveData(boolean savedata) { this.savedata = savedata; }
+    public void setSaveData(boolean savedata) { 
+        this.savedata = savedata;
+    }
     
     public String getData() throws ParseException {
         if ( !calcHash ) { 
-            if ( _size == 0 )
-                return "";
-            else 
-                return new String(data);
+            return data.toString();
         } else { 
             throw new ParseException("This DTFInputStream was not set to calculate hash.");
         }
     }
-   
-    public final int read() throws IOException {
-        if ( _read >= _size )
-            return -1;
-
-        int result = readByte();
+    
+    @Override
+    public int read() throws IOException {
+        int result = _source.read();
         
         if ( result != -1 ) {
 	        if ( calcHash ) { 
                 md.update((byte)result);
 	        } else if ( savedata ) { 
-	            if ( data == null ) 
-	                data = new byte[(int)getSize()];
-	            
-	            data[i++] = (byte)result;
+	            data.write(result);
 	        }
         }
         _read++;
         return result;
     }
-    
-    public int read(byte[] b) throws IOException {
-        if ( _read >= _size )
-            return -1;
-       
-        int onlyread = b.length;
-       
-        int diff = (int)(_size - _read);
-        
-        if ( diff < onlyread ) 
-            onlyread = diff;
 
-        int read = readBuffer(b, 0, onlyread);
+    @Override
+    public int read(byte[] b, int off, int len) throws IOException {
+        int read = _source.read(b, off, len);
+
+        if ( read == -1 ) 
+            return -1;
         
         if ( calcHash ) { 
-            if ( _count + read > _buffer.length ) { 
-                md.update(_buffer,0,_count);
-                _count = 0;
+            if ( _unhashedCount + read > _buffer.length ) { 
+                md.update(_buffer,0,_unhashedCount);
+                _unhashedCount = 0;
             } 
-            System.arraycopy(b, 0, _buffer, _count, read);
-            _count+=read;
-        } else if ( savedata ) { 
-            if ( data == null ) 
-                data = new byte[(int)getSize()];
-            
-            System.arraycopy(b, 0, data, 0, read);
-        }
+            System.arraycopy(b, 0, _buffer, _unhashedCount, read);
+            _unhashedCount+=read;
+        } 
         
+        if ( savedata ) { 
+            data.write(b,off,len);
+        }
+       
         _read+=read;
         return read;
+    }
+   
+    @Override
+    public int read(byte[] buffer) throws IOException {
+        int length = buffer.length;
+        
+        if ( buffer.length > (_size - _read) ) 
+            length = (int)(_size - _read);
+        
+        if ( length == 0 ) // if we're done lets just give up here and now.
+            return -1;
+        
+        return read(buffer,0,length);
     }
     
     /*
@@ -167,11 +166,10 @@ public abstract class DTFInputStream extends InputStream {
    
     @Override
     public void close() throws IOException {
-        _read = 0;
-        _count = 0;
-        i = 0;
-        super.close();
-        reset();
+        _unhashedCount = 0;
+       
+        if ( _source != null )
+            _source.close();
     }
     
     /**
@@ -193,7 +191,7 @@ public abstract class DTFInputStream extends InputStream {
         byte[] buffer = new byte[BUFFER_SIZE];
         try {
             int read = 0;
-            while ( (read = super.read(buffer)) != -1 ) { 
+            while ( (read = read(buffer)) != -1 ) { 
                 result.append(new String(buffer, 0, read));
             }
             // closing actually resets the underlying buffers and internally

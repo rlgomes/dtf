@@ -15,6 +15,7 @@ import com.yahoo.dtf.actions.Action;
 import com.yahoo.dtf.config.DTFStream;
 import com.yahoo.dtf.exception.DTFException;
 import com.yahoo.dtf.streaming.DTFInputStream;
+import com.yahoo.dtf.streaming.StringInputStream;
 
 /**
  * Streaming Suite validates that the existing and registered DTFInputStream
@@ -43,45 +44,103 @@ public class StreamingSuite extends DTFJUnitTest {
             TestCase.fail("Unable to initialize DTF teststack.");
         }
     }
-  
-    @Test(timeout=600000)
+    
+    private boolean isExactStream(String name) { 
+        return !( name.equals("xml") || name.equals("json"));
+    }
+        
+    private String getArguments(String name) { 
+        if ( name.equals("xml") || name.equals("json") ) { 
+            return "<?xml version='1.0' encoding='UTF-8' standalone='no'?>" + 
+                   "<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'" +
+                   "           elementFormDefault='qualified'>" +
+                   "   <xs:element name='list'>" +
+                   "       <xs:complexType>" +
+                   "           <xs:sequence maxOccurs='unbounded'" +
+                   "                        minOccurs='0'>" +
+                   "               <xs:element name='item' type='xs:string'/>" +
+                   "           </xs:sequence>" +
+                   "       </xs:complexType>" +
+                   "   </xs:element>" +
+                   "</xs:schema>";
+        } else { 
+            return "12345";
+        }
+    }
+    
+//    @Test(timeout=600000)
     public void singleByteRead() throws DTFException { 
         DTFStream dtfstream = new DTFStream();
         ArrayList<String> streamhandlers = DTFStream.getStreamNames();
-     
-        String args = "1234";
+        
         for (int s = 0; s < sizes.length; s++) { 
             long size = sizes[s];
             
 	        for (int i = 0; i < streamhandlers.size(); i++ ) { 
 	            String name = streamhandlers.get(i);
-	            String arguments = name + "," + size + "," + args;
-	            DTFInputStream dtfis = dtfstream.getValueAsStream(arguments);
-	            getLogger().info("Validating [" + name + "] with [" + arguments + "]");
-
-	            long cnt = 0;
-	            try { 
-		            while ( dtfis.read() != -1) {
-		                cnt++;
-		                if ( cnt > size ) {
-		                    TestCase.fail("More bytes read then specified.");
-		                }
+	            
+	            if ( isExactStream(name) ) { 
+		            String args = getArguments(name);
+		            String arguments = name + "," + size + "," + args;
+		            DTFInputStream dtfis = dtfstream.getValueAsStream(arguments);
+		            getLogger().info("Validating [" + name + "] with [" + 
+		                             arguments + "]");
+	
+		            long cnt = 0;
+		            try { 
+			            while ( dtfis.read() != -1) {
+			                cnt++;
+			                if ( cnt > size ) {
+			                    TestCase.fail("More bytes read then specified.");
+			                }
+			            }
+			            TestCase.assertEquals(size, cnt);
+		            } catch (IOException e) { 
+		                getLogger().error("Error",e);
+		                TestCase.fail("Error reading from DTFInputStream.");
 		            }
-		            TestCase.assertEquals(size, cnt);
-	            } catch (IOException e) { 
-	                getLogger().error("Error",e);
-	                TestCase.fail("Error reading from DTFInputStream.");
+	            } else { 
+	                getLogger().debug("Can't test structured stream for exact byte count.");
 	            }
 	        }
         }
     }
-
+    
     @Test(timeout=600000)
+    public void stringInputStreamTest() throws DTFException { 
+        long[] sizes = new long[]{0, 1, 2048};
+        
+        for (int s = 0; s < sizes.length; s++) { 
+            long size = sizes[s];
+            
+            StringBuffer data = new StringBuffer();
+            for (int i = 0; i < size;i++) 
+                data.append("X");
+            
+            StringInputStream dtfis = new StringInputStream(data.toString());
+            long cnt = 0;
+            try { 
+                while ( dtfis.read() != -1) {
+                    cnt++;
+                }
+                if ( cnt != size ) {
+                    getLogger().error("StringInputStream expected " + size + 
+                                      " got " + cnt);
+                }
+                TestCase.assertEquals(size, cnt);
+            } catch (IOException e) { 
+                getLogger().error("Error",e);
+                TestCase.fail("Error reading from DTFInputStream.");
+            }
+            
+        }
+    }
+
+//    @Test(timeout=600000)
     public void bufferedRead() throws DTFException { 
         DTFStream dtfstream = new DTFStream();
         ArrayList<String> streamhandlers = DTFStream.getStreamNames();
      
-        String args = "1234";
         
         for (int b = 0; b < buffersizes.length; b++) { 
             byte[] buffer = new byte[buffersizes[b]];
@@ -90,29 +149,38 @@ public class StreamingSuite extends DTFJUnitTest {
 	            long size = sizes[s];
 		        for (int i = 0; i < streamhandlers.size(); i++ ) { 
 		            String name = streamhandlers.get(i);
-		            String arguments = name + "," + size + "," + args;
-		            DTFInputStream dtfis = dtfstream.getValueAsStream(arguments);
-		            getLogger().info("Validating [" + name + "] with [" + arguments + "] buffersize " + buffer.length);
-		        
-		            long cnt = 0;
-		            try { 
-		                long read = 0;
-			            while ( ( read = dtfis.read(buffer)) != -1) {
-			                cnt+=read;
-			                if ( cnt > size ) 
-			                    TestCase.fail("More bytes read then specified.");
+		            if ( isExactStream(name) ) { 
+			            String args = getArguments(name);
+			            String arguments = name + "," + size + "," + args;
+			            DTFInputStream dtfis = 
+			                              dtfstream.getValueAsStream(arguments);
+			            getLogger().info("Validating [" + name + "] with [" + 
+			                        arguments + "] buffersize " + buffer.length);
+			        
+			            long cnt = 0;
+			            try { 
+			                long read = 0;
+				            while ( ( read = dtfis.read(buffer)) != -1) {
+				                cnt+=read;
+				            }
+			                if ( cnt != size ) {
+			                    getLogger().error(name + " expected " + size + 
+			                                      " got " + cnt);
+			                }
+				            TestCase.assertEquals(cnt, size);
+			            } catch (IOException e) { 
+			                getLogger().error("Error",e);
+			                TestCase.fail("Error reading from DTFInputStream.");
 			            }
-			            TestCase.assertEquals(cnt, size);
-		            } catch (IOException e) { 
-		                getLogger().error("Error",e);
-		                TestCase.fail("Error reading from DTFInputStream.");
+		            } else { 
+		                getLogger().debug("Can't test structured stream for exact byte count.");
 		            }
 		        }
 	        }
         }
     }
 
-    @Test(timeout=600000)
+//    @Test(timeout=600000)
     public void emptyStream() throws DTFException { 
         byte[] buffer = new byte[5];
         DTFInputStream dtfis = Action.replacePropertiesAsInputStream("");
@@ -131,12 +199,11 @@ public class StreamingSuite extends DTFJUnitTest {
         }
     }
 
-    @Test(timeout=600000)
+//    @Test(timeout=600000)
     public void smallOpsPerformance() throws DTFException { 
         DTFStream dtfstream = new DTFStream();
         ArrayList<String> streamhandlers = DTFStream.getStreamNames();
      
-        String args = "123456";
         int size = 32;
         byte[] buffer = new byte[size];
         
@@ -144,12 +211,14 @@ public class StreamingSuite extends DTFJUnitTest {
         
         for (int s = 0; s < streamhandlers.size(); s++ ) { 
             String name = streamhandlers.get(s);
+            String args = getArguments(name);
             String arguments = name + "," + size + "," + args;
        
             try { 
                 long cnt = 0;
                 long read = 0;
-                long iterations = getConfig().getPropertyAsInt("iterations",200000);
+                long iterations = 
+                              getConfig().getPropertyAsInt("iterations",100000);
                 long start = System.currentTimeMillis();
                 for (int i = 0; i < iterations; i++) { 
                     DTFInputStream dtfis = dtfstream.getValueAsStream(arguments);
@@ -170,14 +239,13 @@ public class StreamingSuite extends DTFJUnitTest {
         }
     }
 
-    @Test(timeout=600000)
+//    @Test(timeout=600000)
     public void bigOpsPerformance() throws DTFException { 
         DTFStream dtfstream = new DTFStream();
         ArrayList<String> streamhandlers = DTFStream.getStreamNames();
      
-        String args = "123456";
         byte[] buffer = new byte[32*1024];
-        long iterations = getConfig().getPropertyAsInt("iterations", 5);
+        long iterations = getConfig().getPropertyAsInt("iterations", 3);
         int size = 100*1024*1024;
         
         if ( iterations == 1 ) {
@@ -187,9 +255,9 @@ public class StreamingSuite extends DTFJUnitTest {
 
         getLogger().info("Generating " + (size/1048576) + "MB byte objects.");
 
-        
         for (int s = 0; s < streamhandlers.size(); s++ ) { 
             String name = streamhandlers.get(s);
+            String args = getArguments(name);
             String arguments = name + "," + size + "," + args;
        
             try { 
@@ -223,30 +291,36 @@ public class StreamingSuite extends DTFJUnitTest {
         DTFStream dtfstream = new DTFStream();
         ArrayList<String> streamhandlers = DTFStream.getStreamNames();
      
-        String args = "1234";
         int size = 1024; 
         for (int i = 0; i < streamhandlers.size(); i++ ) { 
             String name = streamhandlers.get(i);
-            String arguments = name + "," + size + "," + args;
-            DTFInputStream dtfis = dtfstream.getValueAsStream(arguments);
-            getLogger().info("Validating [" + name + "] with [" + arguments + "]");
-
-            long cnt = 0;
-            try { 
-                StringBuffer data = new StringBuffer();
-                int read = 0;
-	            while ( (read = dtfis.read()) != -1) {
-	                cnt++;
-	                data.append((char)read);
-	                if ( cnt > size ) {
-	                    TestCase.fail("More bytes read then specified.");
+            if ( isExactStream(name) ) {
+	            String args = getArguments(name);
+	            String arguments = name + "," + size + "," + args;
+	            DTFInputStream dtfis = dtfstream.getValueAsStream(arguments);
+	            getLogger().info("Validating [" + name + "] with [" + 
+	                             arguments + "]");
+	
+	            long cnt = 0;
+	            try { 
+	                StringBuffer data = new StringBuffer();
+	                int read = 0;
+		            while ( (read = dtfis.read()) != -1) {
+		                cnt++;
+		                data.append((char)read);
+		            }
+	                if ( cnt != size ) {
+	                    getLogger().error(name + " expected " + size + 
+	                                      " got " + cnt);
 	                }
+		            TestCase.assertEquals(size, cnt);
+		            getLogger().info("Read [" + data.toString() + "]");
+	            } catch (IOException e) { 
+	                getLogger().error("Error",e);
+	                TestCase.fail("Error reading from DTFInputStream.");
 	            }
-	            TestCase.assertEquals(size, cnt);
-	            getLogger().info("Read [" + data.toString() + "]");
-            } catch (IOException e) { 
-                getLogger().error("Error",e);
-                TestCase.fail("Error reading from DTFInputStream.");
+            } else { 
+                getLogger().debug("Can't test structured stream for exact byte count.");
             }
         }
     }

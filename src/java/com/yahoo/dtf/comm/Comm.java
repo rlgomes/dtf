@@ -18,6 +18,7 @@ import com.yahoo.dtf.DTFConstants;
 import com.yahoo.dtf.DTFNode;
 import com.yahoo.dtf.DTFProperties;
 import com.yahoo.dtf.NodeInfo;
+import com.yahoo.dtf.NodeShutdownHook;
 import com.yahoo.dtf.NodeState;
 import com.yahoo.dtf.actions.Action;
 import com.yahoo.dtf.actions.component.Component;
@@ -33,7 +34,7 @@ import com.yahoo.dtf.util.HostUtils;
 import com.yahoo.dtf.util.SystemUtil;
 import com.yahoo.dtf.util.ThreadUtil;
 
-public class Comm extends Thread {
+public class Comm extends Thread implements NodeShutdownHook {
    
     private static DTFLogger _logger = DTFLogger.getLogger(Comm.class);
   
@@ -198,6 +199,8 @@ public class Comm extends Thread {
                 checkAndConnectToDTFC();
             }
         }
+        
+        DTFNode.registerShutdownHook(this);
     }
    
     private boolean _connected = false;

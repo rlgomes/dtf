@@ -24,6 +24,14 @@ import com.yahoo.dtf.util.StringUtil;
 public class Eq extends Condition {
     
     public Eq() { }
+   
+    public String printBytes(byte[] bytes) { 
+        StringBuffer result = new StringBuffer();
+        for (byte b : bytes) { 
+            result.append(b);
+        }
+        return result.toString();
+    }
     
     public boolean evaluate() throws DTFException {
         String op1 = getOp1();
