@@ -23,8 +23,8 @@
     
     <for property="size" range="128,1024,10240">
 	    <createrange name="seeds"
-	                 value="${xsd}"/>    
-	    <for property="type" range="xml"> 
+	                 value="1234,ABCDEFG,${xsd},${xsd}"/>    
+	    <for property="type" range="random,repeat,json,xml"> 
 	        <property name="seed" value="${seeds}" overwrite="true"/>
 	        
 		    <for property="i" range="1..${iterations.small}">    

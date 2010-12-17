@@ -85,8 +85,8 @@ public class RepeatInputStream extends DTFInputStream {
             int start = _read % BUFFER_SIZE;
             read = BUFFER_SIZE - start;
             
-            if ( totalread + read > length ) 
-                read = length - totalread;
+            if ( totalread + read > onlyread ) 
+                read = onlyread - totalread;
             
             System.arraycopy(_buffer,
                              start,

@@ -139,7 +139,7 @@ public class DTFInputStream extends InputStream {
         } 
         
         if ( savedata ) { 
-            data.write(b,off,len);
+            data.write(b,0,read);
         }
        
         _read+=read;
@@ -148,15 +148,7 @@ public class DTFInputStream extends InputStream {
    
     @Override
     public int read(byte[] buffer) throws IOException {
-        int length = buffer.length;
-        
-        if ( buffer.length > (_size - _read) ) 
-            length = (int)(_size - _read);
-        
-        if ( length == 0 ) // if we're done lets just give up here and now.
-            return -1;
-        
-        return read(buffer,0,length);
+        return read(buffer, 0, buffer.length);
     }
     
     /*
@@ -183,7 +175,7 @@ public class DTFInputStream extends InputStream {
      */
     public String getAsString() throws ParseException { 
         long size = getSize();
-        StringBuffer result = new StringBuffer((int)size);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
      
         if ( size > BIGSTREAM_SIZE ) { 
             Action.getLogger().warn("Using a DTFStream as a String that is " +  
@@ -196,7 +188,7 @@ public class DTFInputStream extends InputStream {
         try {
             int read = 0;
             while ( (read = read(buffer)) != -1 ) { 
-                result.append(new String(buffer, 0, read));
+                baos.write(buffer,0,read);
             }
             // closing actually resets the underlying buffers and internally
             // maintained counters
@@ -205,6 +197,6 @@ public class DTFInputStream extends InputStream {
             throw new ParseException("Unable to read InputStream.",e);
         }
         
-        return result.toString();
+        return new String(baos.toByteArray());
     }
 }

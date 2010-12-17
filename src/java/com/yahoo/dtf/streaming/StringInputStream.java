@@ -6,9 +6,8 @@ import com.yahoo.dtf.exception.ParseException;
 
 public class StringInputStream extends DTFInputStream {
 
-    private String value = null;
+    private byte[] value = null;
     private int _read = 0;
-    private long _size = 0;
     
     public StringInputStream(String value) throws ParseException { 
         this(value.length(),new String[]{value});
@@ -17,35 +16,38 @@ public class StringInputStream extends DTFInputStream {
     public StringInputStream(long size, String[] args) throws ParseException { 
         super(size,args);
         
-        if ( args.length > 0 ) 
-            this.value = args[0];
-        _size = size;
+        if ( args.length > 0 )
+            this.value = args[0].getBytes();
+        
+        setSize(value.length);
     }
    
     @Override
     public int read() throws IOException {
-        if ( _read >= _size )
+        if ( _read >= getSize() )
             return -1;
         
-        return value.charAt(_read++);
+        return (byte)value[_read++];
     }
    
     @Override
     public int read(byte[] buffer, int offset, int length)
             throws IOException {
-        if ( _read >= _size )
+        if ( _read >= getSize()  )
             return -1;
-       
-        int i = 0;
-        for (i = offset; i < length && _read < _size ; i++) 
-            buffer[i] = (byte)value.charAt(_read++);
+      
+        int i = 0; 
+        
+        for (i = offset; i < length && _read < getSize() ; i++) 
+            buffer[i] = (byte)value[_read++];
         
         return i;
     }
+   
     
     @Override
-    public int read(byte[] b) throws IOException {
-        return read(b,0,b.length);
+    public int read(byte[] buffer) throws IOException {
+        return read(buffer, 0, buffer.length);
     }
     
     @Override

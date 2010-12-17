@@ -103,12 +103,12 @@ public class Property extends DTFProperty {
                 InputStream is = getStorageFactory().getInputStream(uri);
                 
                 int read = 0;
-                byte[] buffer = new byte[32*1024];
+                byte[] buffer = new byte[4*1024];
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 while (( read = is.read(buffer)) != -1) {
                     baos.write(buffer,0,read);
                 }
-                result = baos.toString(getEncoding());
+                result = new String(baos.toByteArray(),getEncoding());
             } catch (IOException e) {
                 throw new ParseException("Error reading file contents [" + uri 
                                          + "]",e);

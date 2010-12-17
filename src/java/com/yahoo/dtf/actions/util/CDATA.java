@@ -18,11 +18,11 @@ public class CDATA extends Action {
     public String getCDATA() throws ParseException { return replaceProperties(CDATA); } 
 
     public DTFInputStream getCDATAStream() throws ParseException { 
-        return replacePropertiesAsInputStream(Charset.defaultCharset().displayName());
+        return replacePropertiesAsInputStream(CDATA, Charset.defaultCharset().displayName());
     }
 
     public DTFInputStream getCDATAStream(String encoding) throws ParseException { 
-        return replacePropertiesAsInputStream(CDATA);
+        return replacePropertiesAsInputStream(CDATA, encoding);
     } 
 
     public void execute() throws DTFException { }

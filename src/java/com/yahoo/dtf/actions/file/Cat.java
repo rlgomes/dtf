@@ -82,7 +82,8 @@ public class Cat extends CDATA {
     private String encoding = null;
    
     public void execute() throws DTFException {
-        OutputStream os = getStorageFactory().getOutputStream(getUri(),getAppend());
+        OutputStream os = getStorageFactory().
+                                          getOutputStream(getUri(),getAppend());
            
         try { 
             DTFInputStream dis = getCDATAStream(getEncoding());
@@ -95,7 +96,7 @@ public class Cat extends CDATA {
                 }
             }
         } catch (IOException e) { 
-            throw new DTFException("Unable to write to file [" + getUri() + "]",e);
+            throw new DTFException("Unable to write to [" + getUri() + "]",e);
         } finally { 
             try {
                 os.close();

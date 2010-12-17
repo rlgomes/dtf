@@ -690,7 +690,7 @@ abstract public class Action implements Externalizable {
         return string;
     }
 
-    public static DTFInputStream replacePropertiesAsInputStream(String string) 
+    public static DTFInputStream replacePropertiesAsInputStream(String string)
                   throws ParseException {
         return replacePropertiesAsInputStream(string,
                                               Charset.defaultCharset().displayName());

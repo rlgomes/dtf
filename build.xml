@@ -481,7 +481,10 @@
         			<then>
         				<junit printsummary="yes" 
         				   	   showoutput="true" 
-        					   dir="${dtf.dir}">
+        					   dir="${dtf.dir}"
+        					   haltonerror="true"
+        					   haltonfailure="true"
+        					   >
         				    <jvmarg line="-enableassertions"/>
         					
         					<sysproperty key="dtf.home"
@@ -498,13 +501,16 @@
         
         					<test name="com.yahoo.dtf.junit.${junit.test}"
         				    	  outfile="${dtf.build.dir}/junit_results/${junit.test}"
-        				     	  fork="true"/>
+        				     	  fork="true" />
         				</junit>
         			</then>
         			<else>
         				<junit printsummary="yes" 
         				   	   showoutput="true" 
-        					   dir="${dtf.dir}">
+        					   dir="${dtf.dir}"
+        					   haltonerror="true"
+        					   haltonfailure="true"
+        				       >
         				    <jvmarg line="-enableassertions"/>
         					<sysproperty key="dtf.home"
         		    			         value="${basedir}/${dtf.build.dir}/${dtf.dist.dir}"/>

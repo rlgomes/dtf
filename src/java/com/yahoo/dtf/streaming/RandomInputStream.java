@@ -84,8 +84,8 @@ public class RandomInputStream extends DTFInputStream {
                          buffer,
                          offset,
                          onlyread);
-        _read+=length;
-        return length;
+        _read+=onlyread;
+        return onlyread;
     }
     
     @Override

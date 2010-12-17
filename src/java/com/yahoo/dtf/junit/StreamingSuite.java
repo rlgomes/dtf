@@ -1,5 +1,6 @@
 package com.yahoo.dtf.junit;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -23,7 +24,7 @@ import com.yahoo.dtf.streaming.StringInputStream;
  * to detect bugs. 
  * 
  * I also do a small performance measurement of operations per second and 
- * througput per second so you can validate your new DTFInputStreams agains the
+ * throug-put per second so you can validate your new DTFInputStreams agains the
  * existing ones and take some precautions when using your new handler.
  * 
  * @author rlgomes
@@ -68,7 +69,7 @@ public class StreamingSuite extends DTFJUnitTest {
         }
     }
     
-//    @Test(timeout=600000)
+    @Test(timeout=600000)
     public void singleByteRead() throws DTFException { 
         DTFStream dtfstream = new DTFStream();
         ArrayList<String> streamhandlers = DTFStream.getStreamNames();
@@ -108,26 +109,32 @@ public class StreamingSuite extends DTFJUnitTest {
     
     @Test(timeout=600000)
     public void stringInputStreamTest() throws DTFException { 
-        long[] sizes = new long[]{0, 1, 2048};
+        long[] sizes = new long[]{0,1,2048};
         
         for (int s = 0; s < sizes.length; s++) { 
             long size = sizes[s];
             
-            StringBuffer data = new StringBuffer();
+            String data = new String();
             for (int i = 0; i < size;i++) 
-                data.append("X");
+                data += "X";
             
-            StringInputStream dtfis = new StringInputStream(data.toString());
-            long cnt = 0;
+            StringInputStream dtfis = new StringInputStream(data);
             try { 
-                while ( dtfis.read() != -1) {
-                    cnt++;
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                int read = 0;
+                byte[] buffer = new byte[5];
+                while ( (read = dtfis.read(buffer)) != -1) {
+                    baos.write(buffer,0,read);
                 }
-                if ( cnt != size ) {
+                baos.close();
+                String result = new String(baos.toByteArray());
+               
+                if ( result.length() != size ) {
                     getLogger().error("StringInputStream expected " + size + 
-                                      " got " + cnt);
+                                      " got " + result.length());
                 }
-                TestCase.assertEquals(size, cnt);
+                TestCase.assertEquals(size, result.length());
             } catch (IOException e) { 
                 getLogger().error("Error",e);
                 TestCase.fail("Error reading from DTFInputStream.");
@@ -136,7 +143,7 @@ public class StreamingSuite extends DTFJUnitTest {
         }
     }
 
-//    @Test(timeout=600000)
+    @Test(timeout=600000)
     public void bufferedRead() throws DTFException { 
         DTFStream dtfstream = new DTFStream();
         ArrayList<String> streamhandlers = DTFStream.getStreamNames();
@@ -180,7 +187,7 @@ public class StreamingSuite extends DTFJUnitTest {
         }
     }
 
-//    @Test(timeout=600000)
+    @Test(timeout=600000)
     public void emptyStream() throws DTFException { 
         byte[] buffer = new byte[5];
         DTFInputStream dtfis = Action.replacePropertiesAsInputStream("");
@@ -199,7 +206,7 @@ public class StreamingSuite extends DTFJUnitTest {
         }
     }
 
-//    @Test(timeout=600000)
+    @Test(timeout=600000)
     public void smallOpsPerformance() throws DTFException { 
         DTFStream dtfstream = new DTFStream();
         ArrayList<String> streamhandlers = DTFStream.getStreamNames();
@@ -239,7 +246,7 @@ public class StreamingSuite extends DTFJUnitTest {
         }
     }
 
-//    @Test(timeout=600000)
+    @Test(timeout=600000)
     public void bigOpsPerformance() throws DTFException { 
         DTFStream dtfstream = new DTFStream();
         ArrayList<String> streamhandlers = DTFStream.getStreamNames();
