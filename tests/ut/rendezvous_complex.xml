@@ -68,7 +68,7 @@
         <rendezvous_reset id="REMOTERENDEZVOUS"/>
     </for> 
     <divide op1="${acc}" op2="10" result="duration"/>
-    <assert><lt op1="${acc}" op2="100ms"/></assert>
+    <assert><lt op1="${acc}" op2="100"/></assert>
 
     <!-- create rendezvous on runner then have two parallel components visit 
          the rendezvous a few times in parallel -->
