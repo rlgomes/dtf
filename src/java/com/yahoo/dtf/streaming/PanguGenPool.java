@@ -17,6 +17,14 @@ import com.yahoo.dtf.exception.ParseException;
 import com.yahoo.dtf.exception.StorageException;
 import com.yahoo.dtf.storage.StorageFactory;
 
+/**
+ * A simple object pool to keep track of already generated PanguGen objects 
+ * and reuse the existing PanguGenThread that is available to save time by not
+ * recompiling the whole XSD as well as not having to start/stop a thread per
+ * PanguInputStream.
+ * 
+ * @author rlgomes
+ */
 public class PanguGenPool {
 
     private static HashMap<Integer, PanguGenerateThread> gens = 

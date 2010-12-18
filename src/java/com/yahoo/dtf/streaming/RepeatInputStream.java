@@ -34,7 +34,6 @@ public class RepeatInputStream extends DTFInputStream {
     
     private String _pattern = null;
     private int _read = 0;
-    private long _size = 0;
     private int _patternLength = 0;
     
     private byte[] _buffer = null;
@@ -52,8 +51,6 @@ public class RepeatInputStream extends DTFInputStream {
         // than our original data
         if ( size < BUFFER_SIZE )
             BUFFER_SIZE = (int)size;
-        
-        _size = size;
         
         _buffer = new byte[BUFFER_SIZE];
         for (int i = 0; i < BUFFER_SIZE; i++) 
@@ -73,7 +70,7 @@ public class RepeatInputStream extends DTFInputStream {
         if ( _read >= getSize() )
             return -1;
 
-        int diff = (int)(_size - _read);
+        int diff = (int)(getSize() - _read);
         int onlyread = length;
         
         if ( diff < onlyread ) 
@@ -104,7 +101,7 @@ public class RepeatInputStream extends DTFInputStream {
     public int read(byte[] buffer) throws IOException {
         int length = buffer.length;
         if ( buffer.length > (getSize()-_read) ) 
-            length = (int)(_size - _read);
+            length = (int)(getSize() - _read);
         
         return read(buffer,0,length);
     }

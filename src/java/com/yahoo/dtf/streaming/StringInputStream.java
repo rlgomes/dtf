@@ -4,6 +4,12 @@ import java.io.IOException;
 
 import com.yahoo.dtf.exception.ParseException;
 
+/**
+ * Used internally to represent a simple string as an InputStream to some of the
+ * code when it is looking for DTFInputStreams but there's just a text node.
+ * 
+ * @author rlgomes
+ */
 public class StringInputStream extends DTFInputStream {
 
     private byte[] value = null;

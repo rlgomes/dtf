@@ -39,7 +39,6 @@ public class RandomInputStream extends DTFInputStream {
   
     private int _read = 0;
     private long _seed = 0;
-    private long _size = 0;
     
     public RandomInputStream(long size, String[] args) throws ParseException { 
         super(size, args);
@@ -54,7 +53,6 @@ public class RandomInputStream extends DTFInputStream {
         }
         
         _random = new DTFRandom(_seed);
-        _size = size;
     }
 
     @Override
@@ -71,7 +69,7 @@ public class RandomInputStream extends DTFInputStream {
         if ( _read >= getSize() ) 
             return -1;
 
-        int diff = (int)(_size - _read);
+        int diff = (int)(getSize() - _read);
         int onlyread = length;
         
         if ( diff < onlyread ) 
@@ -92,8 +90,8 @@ public class RandomInputStream extends DTFInputStream {
     public int read(byte[] buffer) throws IOException {
         int length = buffer.length;
         
-        if ( buffer.length > (_size - _read) ) 
-            length = (int)(_size - _read);
+        if ( buffer.length > (getSize() - _read) ) 
+            length = (int)(getSize() - _read);
         
         return read(buffer,0,length);
     }

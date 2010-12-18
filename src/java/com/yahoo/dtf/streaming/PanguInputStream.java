@@ -4,16 +4,21 @@ import java.io.IOException;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 
-import org.pangu.PanguGen;
 import org.pangu.tree.GenInfo;
 import org.pangu.tree.decorators.PanguDecorator;
 
 import com.yahoo.dtf.exception.ParseException;
 
+/**
+ * A useful class to extend from to generate the various type of documents that
+ * pangu supports.
+ * 
+ * @author rlgomes
+ */
 public abstract class PanguInputStream extends DTFInputStream {
 
-    private PanguGen gen = null;
     private String _xsd = null;
+    
     private long _seed = 0;
 
     private PanguGenerateThread _thread = null;
@@ -46,7 +51,7 @@ public abstract class PanguInputStream extends DTFInputStream {
     private void init() throws ParseException { 
         try { 
             GenInfo gi = new GenInfo(_decorator, getSize(), _seed);
-            pis = new PipedInputStream(8*1024);
+            pis = new PipedInputStream();
             PipedOutputStream pos = new PipedOutputStream(pis);
             _thread.newtask(gi, pos, pis);
         } catch (IOException e) {
@@ -80,7 +85,7 @@ public abstract class PanguInputStream extends DTFInputStream {
         try {
             init();
         } catch (ParseException e) {
-            throw new IOException("Error resetting.",e);
+            throw new IOException("Error resetting [" + e.getMessage() + "]");
         }
     }
 }
