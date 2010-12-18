@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="localhost" name="com.yahoo.dtf.junit.StreamingSuite" tests="5" time="15.761" timestamp="2010-11-05T05:48:15">
+<testsuite errors="0" failures="0" hostname="localhost" name="com.yahoo.dtf.junit.StreamingSuite" tests="6" time="73.756" timestamp="2010-12-18T05:53:16">
   <properties>
     <property name="java.vendor" value="Sun Microsystems Inc."></property>
     <property name="sun.java.launcher" value="SUN_STANDARD"></property>
@@ -54,7 +54,7 @@
     <property name="java.vm.vendor" value="Sun Microsystems Inc."></property>
     <property name="dtf.xsl.filename" value="src/xsl/inventory.xsl"></property>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"></property>
-    <property name="java.class.path" value="/home/dtftest/build/dtf/build/dtf/dist/lib/ant-contrib-1.0b3.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/ant-jsch.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-codec-1.4.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-httpclient-3.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-jxpath-1.3.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-lang-2.5.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-logging-1.1.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-net-1.4.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/dtf.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/httpcore-4.0.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/httpcore-nio-4.0.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/jsch-0.1.39.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/log4j-1.2.14.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/opencsv-1.8.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/selenium-java-client-driver-sources.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/selenium-java-client-driver.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/selenium-server-coreless.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/selenium-server-sources.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/selenium-server.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/xercesImpl.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/xml-apis.jar:/opt/junit/junit-4.8.1-src.jar:/opt/junit/junit-4.8.1.jar:/opt/junit/junit-dep-4.8.1.jar:/usr/share/java/ant-launcher-1.7.1.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar"></property>
+    <property name="java.class.path" value="/home/dtftest/build/dtf/build/dtf/dist/lib/ant-contrib-1.0b3.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/ant-jsch.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-codec-1.4.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-httpclient-3.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-jxpath-1.3.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-lang-2.5.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-logging-1.1.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-net-1.4.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/dtf.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/httpcore-4.0.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/httpcore-nio-4.0.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/jsch-0.1.39.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/log4j-1.2.14.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/opencsv-1.8.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/pangu-0.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/selenium-java-client-driver-sources.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/selenium-java-client-driver.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/selenium-server-coreless.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/selenium-server-sources.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/selenium-server.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/xeger-1.0-SNAPSHOT.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/xercesImpl.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/xml-apis.jar:/opt/junit/junit-4.8.1-src.jar:/opt/junit/junit-4.8.1.jar:/opt/junit/junit-dep-4.8.1.jar:/usr/share/java/ant-launcher-1.7.1.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar"></property>
     <property name="ant.version" value="Apache Ant version 1.7.1 compiled on July 1 2010"></property>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"></property>
     <property name="dtf.properties.filename" value="src/config/dtf.properties"></property>
@@ -82,41 +82,46 @@
     <property name="file.encoding" value="UTF-8"></property>
     <property name="java.specification.version" value="1.6"></property>
   </properties>
-  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="singleByteRead" time="0.248"></testcase>
-  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="bufferedRead" time="0.649"></testcase>
+  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="singleByteRead" time="0.189"></testcase>
+  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="stringInputStreamTest" time="0.104"></testcase>
+  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="bufferedRead" time="0.63"></testcase>
   <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="emptyStream" time="0.0020"></testcase>
-  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="smallOpsPerformance" time="4.582"></testcase>
-  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="bigOpsPerformance" time="9.758"></testcase>
-  <system-out><![CDATA[INFO  05/11/2010 05:48:15 StreamingSuite  - Validating [random] with [random,0,1234]
-INFO  05/11/2010 05:48:15 StreamingSuite  - Validating [repeat] with [repeat,0,1234]
-INFO  05/11/2010 05:48:15 StreamingSuite  - Validating [random] with [random,1024,1234]
-INFO  05/11/2010 05:48:15 StreamingSuite  - Validating [repeat] with [repeat,1024,1234]
-INFO  05/11/2010 05:48:15 StreamingSuite  - Validating [random] with [random,2000000,1234]
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [repeat] with [repeat,2000000,1234]
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [random] with [random,0,1234] buffersize 1
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [repeat] with [repeat,0,1234] buffersize 1
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [random] with [random,1024,1234] buffersize 1
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [repeat] with [repeat,1024,1234] buffersize 1
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [random] with [random,2000000,1234] buffersize 1
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [repeat] with [repeat,2000000,1234] buffersize 1
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [random] with [random,0,1234] buffersize 1026
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [repeat] with [repeat,0,1234] buffersize 1026
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [random] with [random,1024,1234] buffersize 1026
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [repeat] with [repeat,1024,1234] buffersize 1026
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [random] with [random,2000000,1234] buffersize 1026
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [repeat] with [repeat,2000000,1234] buffersize 1026
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [random] with [random,0,1234] buffersize 65472
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [repeat] with [repeat,0,1234] buffersize 65472
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [random] with [random,1024,1234] buffersize 65472
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [repeat] with [repeat,1024,1234] buffersize 65472
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [random] with [random,2000000,1234] buffersize 65472
-INFO  05/11/2010 05:48:16 StreamingSuite  - Validating [repeat] with [repeat,2000000,1234] buffersize 65472
-INFO  05/11/2010 05:48:16 StreamingSuite  - Generating 32 byte objects.
-INFO  05/11/2010 05:48:19 StreamingSuite  - random	Op/sec:	75930
-INFO  05/11/2010 05:48:21 StreamingSuite  - repeat	Op/sec:	102827
-INFO  05/11/2010 05:48:21 StreamingSuite  - Generating 100MB byte objects.
-INFO  05/11/2010 05:48:30 StreamingSuite  - random	MB/sec:	52
-INFO  05/11/2010 05:48:31 StreamingSuite  - repeat	MB/sec:	1754
+  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="smallOpsPerformance" time="20.928"></testcase>
+  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="bigOpsPerformance" time="51.382"></testcase>
+  <system-out><![CDATA[INFO  18/12/2010 05:53:16 StreamingSuite  - Validating [random] with [random,0,12345]
+INFO  18/12/2010 05:53:16 StreamingSuite  - Validating [repeat] with [repeat,0,12345]
+INFO  18/12/2010 05:53:16 StreamingSuite  - Validating [random] with [random,1024,12345]
+INFO  18/12/2010 05:53:16 StreamingSuite  - Validating [repeat] with [repeat,1024,12345]
+INFO  18/12/2010 05:53:16 StreamingSuite  - Validating [random] with [random,2000000,12345]
+INFO  18/12/2010 05:53:16 StreamingSuite  - Validating [repeat] with [repeat,2000000,12345]
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [random] with [random,0,12345] buffersize 1
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [repeat] with [repeat,0,12345] buffersize 1
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [random] with [random,1024,12345] buffersize 1
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [repeat] with [repeat,1024,12345] buffersize 1
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [random] with [random,2000000,12345] buffersize 1
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [repeat] with [repeat,2000000,12345] buffersize 1
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [random] with [random,0,12345] buffersize 1026
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [repeat] with [repeat,0,12345] buffersize 1026
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [random] with [random,1024,12345] buffersize 1026
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [repeat] with [repeat,1024,12345] buffersize 1026
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [random] with [random,2000000,12345] buffersize 1026
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [repeat] with [repeat,2000000,12345] buffersize 1026
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [random] with [random,0,12345] buffersize 65472
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [repeat] with [repeat,0,12345] buffersize 65472
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [random] with [random,1024,12345] buffersize 65472
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [repeat] with [repeat,1024,12345] buffersize 65472
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [random] with [random,2000000,12345] buffersize 65472
+INFO  18/12/2010 05:53:17 StreamingSuite  - Validating [repeat] with [repeat,2000000,12345] buffersize 65472
+INFO  18/12/2010 05:53:17 StreamingSuite  - Generating 32 byte objects.
+INFO  18/12/2010 05:53:27 StreamingSuite  - json	Op/sec:	10656
+INFO  18/12/2010 05:53:28 StreamingSuite  - random	Op/sec:	81366
+INFO  18/12/2010 05:53:37 StreamingSuite  - xml	Op/sec:	10711
+INFO  18/12/2010 05:53:38 StreamingSuite  - repeat	Op/sec:	102459
+INFO  18/12/2010 05:53:38 StreamingSuite  - Generating 100MB byte objects.
+INFO  18/12/2010 05:54:01 StreamingSuite  - json	MB/sec:	13
+INFO  18/12/2010 05:54:06 StreamingSuite  - random	MB/sec:	56
+INFO  18/12/2010 05:54:29 StreamingSuite  - xml	MB/sec:	13
+INFO  18/12/2010 05:54:30 StreamingSuite  - repeat	MB/sec:	2068
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
