@@ -25,6 +25,20 @@ import com.yahoo.dtf.exception.ParseException;
  *               doe snot currently allow you to define any HTTP config values
  *               but can easily be adapted to do so in the near future. 
  *               
+ *               <p>
+ *               Events available within your http_listener include the same 
+ *               event attributes that would be visible on the client side when
+ *               using any of the DTF HTTP tags and also include the following:
+ *               </p>
+ *               
+ *               <dl>
+ *                  <b><dt>http.[METHOD].path<dt></b>
+ *                  <dd>
+ *                  This attribute contains the exact path that was hit with 
+ *                  your HTTP request.
+ *                  </dd>
+ *               </dl>
+ *               
  * @dtf.tag.example
  * <http_server port="8080">
  *     <http_listener path="/oddtest" method="PUT">

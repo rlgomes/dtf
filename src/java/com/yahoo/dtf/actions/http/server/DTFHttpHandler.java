@@ -42,8 +42,8 @@ import com.yahoo.dtf.util.streams.Throttler;
  * required needs. You'll find that you have to be a bit careful when starting
  * and shutting down the httpserver because otherwise you may create a test that
  * gets stuck waiting for a parallel executed http_server that doesn't end 
- * because you haven't issued the shutdown correctly. A simple receip to follow
- * is in the next few lines of XML code:
+ * because you haven't issued the shutdown correctly. A simple recipe to follow
+ * when using the http_server tag can be seen in the following lines:
  * </p>
  * 
  * {@dtf.xml

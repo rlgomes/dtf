@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<script xmlns="http://dtf.org/v1" name="util">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description></description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <loadproperties uri="storage://INPUT/test.properties"/>        
+    </local>
+
+    <function name="store">
+        <param name="data" type="required" />
+        <param name="name" type="required" />
+
+        <http_put uri="http://${webserver.host}:${webserver.port}/store/${name}">
+            <entity>${data}</entity>
+        </http_put>
+    </function>
+
+    <function name="retrieve">
+        <param name="name" type="required" />
+
+        <http_get uri="http://${webserver.host}:${webserver.port}/retrieve/${name}" />
+        <return>${http.get.body}</return>
+    </function>
+</script>   

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="server">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description></description>
+    </info>
+    
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output/serverdata"/>
+        
+        <loadproperties uri="storage://INPUT/test.properties"/>        
+    </local> 
+  
+    <http_server port="${webserver.port}">
+        <http_listener path="/store/*" method="PUT">
+            <replace source="${http.put.path}"
+                     destination="path"
+                     expression="/store/"
+                     with=""/>
+            <log>write ${path}</log>
+            <cat uri="storage://OUTPUT/${path}"
+                 append="false">${http.put.body}</cat>
+        </http_listener>
+        
+        <http_listener path="/retrieve/*" method="GET">
+            <replace source="${http.get.path}"
+                     destination="path"
+                     expression="/retrieve/"
+                     with=""/>
+            <log>read ${path}</log>
+            <property name="data" uri="storage://OUTPUT/${path}"/>
+            <http_response status="200">
+                <entity>${data}</entity>
+            </http_response>
+        </http_listener>
+    </http_server> 
+
+</script>   
