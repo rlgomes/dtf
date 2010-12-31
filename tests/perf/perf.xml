@@ -18,8 +18,10 @@
         <createstorage id="PERFOUTPUT" path="${dtf.perf.path}"/>
         
         <property name="build" value="${dtf.timestamp}"/>
+        <property name="http.perf.keepbuilds" value="10"/>
     </local>
-    
+  
+    <!-- 
     <result uri="storage://OUTPUT/perf_results.xml" type="junit" >
         <record event="http.perf"
                 uri="storage://PERFOUTPUT/perf_results.txt"
@@ -49,10 +51,42 @@
 	    	</testsuite>
         </record>
     </result>
-   
+    --> 
     <!-- iterate through performance data and generate the script file to be
          executed that will use the Google Charting Tools to generate some 
          simple but useful graphs of the previous performance runs  --> 
+    <query uri="storage://PERFOUTPUT/perf_results.txt"
+           cursor="perf"/>
+    
+    <property name="builds" value=""/>
+    <iterate cursor="perf">
+        <if>
+            <not><isset property="build-${perf.build}"/></not>
+            <then>
+                <property name="build-${perf.build}" value="found"/>
+                <property name="builds"
+                          value="${perf.build},${builds}"
+                          overwrite="true"/> 
+            </then>
+        </if>
+    </iterate> 
+   
+    <!-- reduce build list to ${http.perf.keepbuilds} --> 
+    <property name="buildexp" value=""/> 
+    <createrange name="buildrange" value="${builds}"/>
+    <for property="i" range="1..${http.perf.keepbuilds}">
+        <property name="buildexp"
+                  value="${buildexp}${buildrange}|"
+                  overwrite="true"/>  
+    </for>
+    
+    <filter srcuri="storage://PERFOUTPUT/perf_results.txt"
+            dsturi="storage://PERFOUTPUT/perf_results.txt">
+        <where>
+            <match source="build" expression="${buildexp}"/>
+        </where>
+    </filter>
+    
     <query uri="storage://PERFOUTPUT/perf_results.txt"
            cursor="perf"/>
     
@@ -78,7 +112,7 @@
                           overwrite="true"/>
             </else>
         </if> 
-    </iterate> 
+    </iterate>
    
     <cat uri="storage://PERFOUTPUT/pullcharts.sh" append="false">#!/bin/bash
 
