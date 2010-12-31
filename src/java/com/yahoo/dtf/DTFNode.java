@@ -518,6 +518,8 @@ public class DTFNode {
             throw new DTFException("Unable to determine build id.",e);
         }
         
+        _config.setProperty(DTFProperties.DTF_BUILD_ID, _buildid);
+        
         if ( _logger.isDebugEnabled() ) 
             _logger.debug("BuildID [" + _buildid + "]");
     }

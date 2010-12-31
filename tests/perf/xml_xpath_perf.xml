@@ -19,7 +19,6 @@
         <loadproperties uri="storage://INPUT/perf.properties"/>
         <import uri="storage://INPUT/perf_util.xml"/>
         
-        <property name="iterations" value="20000" overwrite="true"/>
         
         <property name="list" uri="storage://INPUT/list.xml"/>
        
@@ -27,9 +26,12 @@
         <property name="complex_xpath"
                   value="//item[@att1 >= 1 and count(preceding-sibling::item[@att1 >=1]) >= 1]"/>
         <property name="xpaths" value="simple_xpath,complex_xpath"/>
+        <createrange name="iterrange"
+                     value="${iterations.medium},${iterations.small}"/>
     </local>
-   
+  
     <for property="xpath_expr" range="${xpaths}">
+        <property name="iterations" value="${iterrange}" overwrite="true"/>
 	    <event name="total">
 	        <for property="i" range="1..${iterations}">
 		        <event name="xpath"> 
@@ -44,9 +46,9 @@
         <divide op1="${iterations}" op2="${duration}" result="ops_per_s"/> 
         
 	    <log>${xpath_expr} xpath operations/sec: ${ops_per_s}</log>
-        <call function="writeperf">
-            <property name="uri" value="storage://OUTPUT/xml_xpath_${xpath_expr}.perf"/>
-            <property name="value" value="${ops_per_s}"/>
+        <call function="recordperf">
+            <property name="name" value="xml.xpath.${xpath_expr}.access"/>
+            <property name="ops" value="${ops_per_s}"/>
         </call>
     </for>
 </script>    

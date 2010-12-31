@@ -308,10 +308,12 @@ public class DebugCLI {
 	                    DeployDTF.startup(comp, dtfa, properties, logn, _logger);
 	                } catch (JSchException e) { 
 	                    writeLine(e.getMessage());
-	                    throw new DTFException("Authentication issues can be solved by " + 
-	                              "running the ant setup-ssh -Dsetup.host=xxx -Dsetup.user=yyy, "
-	                              + "before trying to a dtf component on the " +
-	                              "other system.",e);
+	                    throw new DTFException(
+	                        "Authentication issues can be solved by running: " +
+	                        "'./ant.sh setup-ssh -Dsetup.host=x -Dsetup.user=y' " +
+	                        "or you could setup your ssh keys manually and " +
+	                        "copy your id_rsa to ~/.dtf/id_rsa for dtf to use " +
+	                        "to login to the target host.",e);
 	                } catch (IOException e) {
 	                    e.printStackTrace();
 	                    writeLine("ERROR: " + e.getMessage());

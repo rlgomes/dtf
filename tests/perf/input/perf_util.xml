@@ -6,15 +6,20 @@
             <name>Rodney Gomes</name>
             <email>rlgomes@yahoo-inc.com</email>
         </author>
-        <description>Utility functions for outputting performanc results.</description>
+        <description>Utility functions for outputting performance results.</description>
     </info>
 
-    <!-- currently the format used is the default Hudson format for the plot
-         plugin -->
-    <function name="writeperf">
-        <param name="uri" type="required"/>
-        <param name="value" type="required"/>
-        <cat uri="${uri}" append="false">YVALUE=${value}</cat>
+    <!-- 
+         name - name of data you'd like to record
+         ops  - operations per second that were acheived 
+    -->
+    <function name="recordperf">
+        <param name="name" type="required"/>
+        <param name="ops" type="required"/>
+        <event name="http.perf.${name}">
+            <attribute name="ops" value="${ops}"/>
+            <attribute name="build" value="${build}"/>
+        </event>
     </function>
     
     <function name="calcEventPerf">

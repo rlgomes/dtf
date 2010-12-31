@@ -66,6 +66,8 @@ public class DTFProperties {
     public final static String DTF_NODE_OS_ARCH           = "dtf.os.arch";
     public final static String DTF_NODE_OS_VER            = "dtf.os.version";
 
+    public final static String DTF_BUILD_ID               = "dtf.build.id";
+    
     // listening properties
     public final static String DTF_LISTEN_ADDR            = "dtf.listen.addr";
    

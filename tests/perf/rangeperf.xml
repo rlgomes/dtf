@@ -11,10 +11,11 @@
     <local>
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
-        
+       
+        <loadproperties uri="storage://INPUT/perf.properties"/> 
         <import uri="storage://INPUT/perf_util.xml"/>
         
-        <property name="iterations" value="1000000"/>
+        <property name="iterations" value="${iterations.huge}"/>
     </local>
     
     <createrange name="sequential" value="1..1000"/>
@@ -34,9 +35,9 @@
     <divide op1="${iterations}" op2="${duration_s}" result="ops_per_sec"/>
     
     <log>Ops/sec: ${ops_per_sec}</log>
-    <call function="writeperf">
-        <property name="uri" value="storage://OUTPUT/range.perf"/>
-        <property name="value" value="${ops_per_sec}"/>
+    <call function="recordperf">
+        <property name="name" value="range.access"/>
+        <property name="ops" value="${ops_per_sec}"/>
     </call>
     
 </script>

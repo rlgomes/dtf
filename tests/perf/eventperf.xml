@@ -31,7 +31,7 @@
         <parallelloop property="agent" range="1..${agents}">
             <component id="AGENT${agent}">
                 <parallelloop property="thread" range="1..${threads}">
-                    <for property="iter" range="1..100000">
+                    <for property="iter" range="1..${iterations.medium}">
                         <event name="dtf.perf">
                             <attribute name="iteration" value="${iter}"/>
                             <attribute name="agent" value="${agent}"/>
@@ -47,7 +47,7 @@
             append="false">
         <parallelloop property="agent" range="1..${agents}">
             <parallelloop property="thread" range="1..${threads}">
-                <for property="iter" range="1..1000">
+                <for property="iter" range="1..${iterations.tiny}">
                     <component id="AGENT${agent}">
                         <event name="dtf.perf">
                             <attribute name="iteration" value="${iter}"/>
@@ -70,9 +70,9 @@
         Total Duration:    ${dbperf.tot_dur}ms
     </log>
 
-    <call function="writeperf">
-        <property name="uri" value="storage://OUTPUT/events_remote.perf"/>
-        <property name="value" value="${dbperf.avg_occ}"/>
+    <call function="recordperf">
+        <property name="name" value="events.remote"/>
+        <property name="ops" value="${dbperf.avg_occ}"/>
     </call>
     
     <query uri="storage://OUTPUT/local_record_event.txt"
@@ -86,8 +86,8 @@
         Total Duration:    ${dbperf.tot_dur}ms
     </log>
 
-    <call function="writeperf">
-        <property name="uri" value="storage://OUTPUT/events_local.perf"/>
-        <property name="value" value="${dbperf.avg_occ}"/>
+    <call function="recordperf">
+        <property name="name" value="events.local"/>
+        <property name="ops" value="${dbperf.avg_occ}"/>
     </call>
 </script>

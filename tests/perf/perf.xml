@@ -11,32 +11,92 @@
     <local>
         <createstorage id="INPUT" path="${dtf.xml.path}"/>
         <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <!-- this can be controlled externally to record the performance
+             data and script to a permament location -->
+        <property name="dtf.perf.path" value="${dtf.xml.path}/output"
+        <createstorage id="PERFOUTPUT" path="${dtf.perf.path}"/>
+        
+        <property name="build" value="${dtf.timestamp}"/>
     </local>
     
-    <result uri="storage://OUTPUT/perf_results.xml" type="junit">
-    	<testsuite name="perfsuite">
-        	<testscript uri="storage://INPUT/arithmetic.xml"/> 
-        	
-            <testscript uri="storage://INPUT/eventperf.xml"/> 
-            <testscript uri="storage://INPUT/recorderperf.xml"/> 
-            <testscript uri="storage://INPUT/queryperf.xml"/> 
-            <testscript uri="storage://INPUT/stats.xml"/> 
-            
-        	<testscript uri="storage://INPUT/choices.xml"/> 
-        	<testscript uri="storage://INPUT/function.xml"/> 
-            
-        	<testscript uri="storage://INPUT/propertyperf.xml"/> 
-            
-        	<testscript uri="storage://INPUT/random.xml"/> 
-        	<testscript uri="storage://INPUT/rangeperf.xml"/> 
-            
-        	<testscript uri="storage://INPUT/shareperf.xml"/> 
-        	<testscript uri="storage://INPUT/rendezvousperf.xml"/> 
-
-        	<testscript uri="storage://INPUT/httpperf.xml"/> 
-
-        	<testscript uri="storage://INPUT/xml_xpath_perf.xml"/> 
-    	</testsuite>
+    <result uri="storage://OUTPUT/perf_results.xml" type="junit" >
+        <record event="http.perf"
+                uri="storage://PERFOUTPUT/perf_results.txt"
+                append="true">
+	    	<testsuite name="perfsuite">
+	        	<testscript uri="storage://INPUT/arithmetic.xml"/> 
+	        	
+	            <testscript uri="storage://INPUT/eventperf.xml"/> 
+	            <testscript uri="storage://INPUT/recorderperf.xml"/> 
+	            <testscript uri="storage://INPUT/queryperf.xml"/> 
+	            <testscript uri="storage://INPUT/stats.xml"/> 
+	            
+	        	<testscript uri="storage://INPUT/choices.xml"/> 
+	        	<testscript uri="storage://INPUT/function.xml"/> 
+	            
+	        	<testscript uri="storage://INPUT/propertyperf.xml"/> 
+	            
+	        	<testscript uri="storage://INPUT/random.xml"/> 
+	        	<testscript uri="storage://INPUT/rangeperf.xml"/> 
+	            
+	        	<testscript uri="storage://INPUT/shareperf.xml"/> 
+	        	<testscript uri="storage://INPUT/rendezvousperf.xml"/> 
+	
+	        	<testscript uri="storage://INPUT/httpperf.xml"/> 
+	
+	        	<testscript uri="storage://INPUT/xml_xpath_perf.xml"/> 
+	    	</testsuite>
+        </record>
     </result>
+   
+    <!-- iterate through performance data and generate the script file to be
+         executed that will use the Google Charting Tools to generate some 
+         simple but useful graphs of the previous performance runs  --> 
+    <query uri="storage://PERFOUTPUT/perf_results.txt"
+           cursor="perf"/>
+    
+    <property name="events" value=""/> 
+    <iterate cursor="perf">
+        <if>
+            <not><isset property="${perf.event.name}.ops"/></not>
+            <then>
+                <property name="${perf.event.name}.ops"
+                          value="${perf.ops}" overwrite="true"/>
+                <property name="${perf.event.name}.builds"
+                          value="${perf.build}" overwrite="true"/>
+                <property name="events"
+                          value="${perf.event.name},${events}"
+                          overwrite="true"/>
+            </then>
+            <else>
+                <property name="${perf.event.name}.ops"
+                          value="${${perf.event.name}.ops},${perf.ops}"
+                          overwrite="true"/>
+                <property name="${perf.event.name}.builds"
+                          value="${${perf.event.name}.builds},${perf.build}"
+                          overwrite="true"/>
+            </else>
+        </if> 
+    </iterate> 
+   
+    <cat uri="storage://PERFOUTPUT/pullcharts.sh" append="false">#!/bin/bash
+
+</cat> 
+    <for property="event" range="${events}">
+        <replace destination="label"
+                 source="${event}"
+                 expression="http.perf."
+                 with=""/>
+        <if>
+            <eq op1="${label}" op2=""/>
+            <then><break/></then>
+        </if>
+        <cat uri="storage://PERFOUTPUT/pullcharts.sh">
+# chart for ${label}
+echo "getting chart for ${label}"
+./createlc.py '[("${label}",[${${event}.ops}])]' '[${${event}.builds}]' ${label}.png
+</cat>
+    </for>
     
 </script>

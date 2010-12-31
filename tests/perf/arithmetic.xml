@@ -17,7 +17,7 @@
         
         <import uri="storage://INPUT/perf_util.xml"/>
         
-        <property name="iterations" value="200000" overwrite="true"/>
+        <property name="iterations" value="${iterations.medium}"/>
     </local>
     
     <property name="count" value="0"/>
@@ -111,9 +111,9 @@
     </log>
    
     <for property="op" range="add,mod,sub,div,mul,abs"> 
-        <call function="writeperf">
-            <property name="uri" value="storage://OUTPUT/arithmetic_${op}.perf"/>
-            <property name="value" value="${perf${op}.avg_occ}"/>
+        <call function="recordperf">
+            <property name="name" value="arithmetic.${op}"/>
+            <property name="ops" value="${perf${op}.avg_occ}"/>
         </call>
     </for>
    

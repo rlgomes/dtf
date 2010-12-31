@@ -13,6 +13,7 @@
     	<createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
         <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
 
+        <loadproperties uri="storage://INPUT/perf.properties"/>
         <import uri="storage://INPUT/perf_util.xml"/>
         <property name="agents" value="1"/>
   
@@ -22,8 +23,8 @@
         <property name="queuetypes" value="single,queue,cumulative"/>
     </local>
     
-    <property name="remote.iterations" value="2000"/>
-    <property name="local.iterations" value="50000"/>
+    <property name="remote.iterations" value="${iterations.small}"/>
+    <property name="local.iterations" value="${iterations.medium}"/>
 
     <for property="type" range="${queuetypes}">	    
 	    <share_create id="SHARE1.${type}" type="${type}"/>
@@ -53,9 +54,9 @@
             <property name="event" value="total"/>
         </call>
         <log>${type} share gets ${ops_per_sec} remote syncs per sec</log>
-	    <call function="writeperf">
-	        <property name="uri" value="storage://OUTPUT/share_${type}_remote.perf"/>
-	        <property name="value" value="${ops_per_sec}"/>
+	    <call function="recordperf">
+	        <property name="name" value="share.${type}.remote.syncs"/>
+	        <property name="ops" value="${ops_per_sec}"/>
 	    </call>
          
         <event name="total">
@@ -76,9 +77,9 @@
             <property name="event" value="total"/>
         </call>
         <log>${type} share gets ${ops_per_sec} local syncs per sec</log>
-	    <call function="writeperf">
-	        <property name="uri" value="storage://OUTPUT/share_${type}_local.perf"/>
-	        <property name="value" value="${ops_per_sec}"/>
+	    <call function="recordperf">
+	        <property name="name" value="share.${type}.local.syncs"/>
+	        <property name="ops" value="${ops_per_sec}"/>
 	    </call>
     </for>
 

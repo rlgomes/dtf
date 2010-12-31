@@ -22,9 +22,9 @@ public class SSHUtil {
     private static DTFLogger _logger = DTFLogger.getLogger(SSHUtil.class);
 
     public static Session connectToHost(String host,
-                                          String user,
-                                          String privkey,
-                                          String passphrase) throws JSchException { 
+                                        String user,
+                                        String privkey,
+                                        String passphrase) throws JSchException { 
         JSch jsch = new JSch();
         DeployUI ui = new DeployUI(host,user,passphrase);
     

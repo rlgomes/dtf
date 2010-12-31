@@ -22,7 +22,7 @@
             property value.
         </property>
         
-        <property name="iterations" value="200000" overwrite="true"/>
+        <property name="iterations" value="${iterations.large}"/>
     </local>
 
     <for property="type" range="txt">
@@ -61,9 +61,9 @@
 	    <multiply op1="${queries_per_ms}" op2="1000" result="queries_per_s"/>
 	   
 	    <log>${type} queries per second: ${queries_per_s}</log> 
-	    <call function="writeperf">
-	        <property name="uri" value="storage://OUTPUT/query_${type}.perf"/>
-	        <property name="value" value="${queries_per_s}"/>
+	    <call function="recordperf">
+	        <property name="name" value="query.${type}.queries"/>
+	        <property name="ops" value="${queries_per_s}"/>
 	    </call>
     </for>
        

@@ -19,8 +19,9 @@
         <loadproperties uri="storage://INPUT/perf.properties"/>
         <import uri="storage://INPUT/perf_util.xml"/>
         
-        <property name="iterations" value="500000" overwrite="true"/>
-        <property name="rand_types" value="randomInt,randomLong,randomDouble,gaussianLong"/>
+        <property name="iterations" value="${iterations.huge}"/>
+        <property name="rand_types"
+                  value="randomInt,randomLong,randomDouble,gaussianLong"/>
     </local>
    
     <log>random numbers with upper and lower limit</log>
@@ -34,9 +35,10 @@
         <divide op1="${duration_ms}" op2="1000" result="duration_s" />
         <divide op1="${iterations}" op2="${duration_s}" result="ops_per_sec" />
         <log>${type}/second: ${ops_per_sec}</log>
-        <call function="writeperf">
-            <property name="uri" value="storage://OUTPUT/random_${type}.perf"/>
-            <property name="value" value="${ops_per_sec}"/>
+        
+        <call function="recordperf">
+            <property name="name" value="random.${type}.generator"/>
+            <property name="ops" value="${ops_per_sec}"/>
         </call>
     </for>
     

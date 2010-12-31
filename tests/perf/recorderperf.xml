@@ -19,7 +19,7 @@
         <property name="timestring" value="*** The time is [${dtf.timestamp}] ***"/>
         <import uri="storage://TINPUT/eventutil.xml" loadFuncs="true" loadRefs="true"/>
         
-        <property name="total" value="100000"/>
+        <property name="total" value="${iterations.large}"/>
         <property name="mode" value="insert" overwrite="true"/>
     </local>
 
@@ -45,9 +45,9 @@
 	          Events per second: ${ops_per_s}
 	    </log> 
         
-	    <call function="writeperf">
-	        <property name="uri" value="storage://OUTPUT/recorder_${type}.perf"/>
-	        <property name="value" value="${ops_per_s}"/>
+	    <call function="recordperf">
+	        <property name="name" value="recorder.${type}.writes"/>
+	        <property name="ops" value="${ops_per_s}"/>
 	    </call>
     </for>
 

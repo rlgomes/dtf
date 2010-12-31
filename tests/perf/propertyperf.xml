@@ -16,7 +16,7 @@
         <loadproperties uri="storage://INPUT/perf.properties"/>
         <import uri="storage://INPUT/perf_util.xml"/>
         
-        <property name="total_iterations" value="2000000"/>
+        <property name="total_iterations" value="${iterations.huge}"/>
     </local>
     
     <!-- Value of all of the previously created properties should be the 
@@ -33,9 +33,9 @@
     <divide op1="${total_iterations}" op2="${duration}" result="ops_per_s"/>
     
     <log>Property resolutions per second: ${ops_per_s}</log>
-    <call function="writeperf">
-        <property name="uri" value="storage://OUTPUT/property.perf"/>
-        <property name="value" value="${ops_per_s}"/>
+    <call function="recordperf">
+        <property name="name" value="property.resolution"/>
+        <property name="ops" value="${ops_per_s}"/>
     </call>
 
 </script>

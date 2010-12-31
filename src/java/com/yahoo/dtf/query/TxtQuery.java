@@ -230,6 +230,8 @@ public class TxtQuery extends QueryIntf {
                         result.put(key, value);
                     }
                 }
+                
+                result.put(_property + ".event.name", eventName);
                 return result;
             }
             
@@ -312,6 +314,9 @@ public class TxtQuery extends QueryIntf {
             
             if (!_fieldNames.contains("stop")) 
                 _fieldNames.add("stop");
+
+            if (!_fieldNames.contains("event.name")) 
+                _fieldNames.add("event.name");
         }
     }
 }

@@ -19,7 +19,7 @@
         <property name="perfrun" value="true"/>
         <property name="http.server.port" value="33333"/>
         <property name="dtf.http.uri" value="http://localhost:${http.server.port}/"/>
-        <property name="iterations" value="4000" overwrite="true"/>
+        <property name="iterations" value="${iterations.small}" overwrite="true"/>
     </local> 
    
     <for property="client" range="1..${clients}"> 
@@ -172,9 +172,9 @@
             <stats cursor="events_cursor" event="${op.event}"/>
         </record>
         
-        <call function="writeperf">
-	        <property name="uri" value="storage://OUTPUT/${op.event}.perf"/>
-	        <property name="value" value="${eventstats.avg_occ}"/>
+        <call function="recordperf">
+	        <property name="name" value="${op.event}"/>
+	        <property name="ops" value="${eventstats.avg_occ}"/>
         </call>
         
         <local>
