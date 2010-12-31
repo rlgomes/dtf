@@ -49,6 +49,7 @@ cd $BASE/gh-pages/results/perf
 chmod +x *.sh
 chmod +x *.py
 ./pullcharts.sh
+rm *.py *.sh
 
 PERFWIKI=$BASE/dtf.wiki/Performance-test-results.md
 echo "Performance Results for critical parts of DTF" > $PERFWIKI
