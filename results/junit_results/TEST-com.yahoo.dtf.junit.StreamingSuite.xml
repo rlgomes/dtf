@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="localhost" name="com.yahoo.dtf.junit.StreamingSuite" tests="6" time="78.698" timestamp="2010-12-31T08:41:36">
+<testsuite errors="0" failures="0" hostname="localhost" name="com.yahoo.dtf.junit.StreamingSuite" tests="6" time="84.89" timestamp="2010-12-31T20:48:28">
   <properties>
     <property name="java.vendor" value="Sun Microsystems Inc."></property>
     <property name="sun.java.launcher" value="SUN_STANDARD"></property>
@@ -82,46 +82,46 @@
     <property name="file.encoding" value="UTF-8"></property>
     <property name="java.specification.version" value="1.6"></property>
   </properties>
-  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="singleByteRead" time="0.268"></testcase>
-  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="stringInputStreamTest" time="0.025"></testcase>
-  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="bufferedRead" time="0.731"></testcase>
+  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="singleByteRead" time="0.432"></testcase>
+  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="stringInputStreamTest" time="0.019"></testcase>
+  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="bufferedRead" time="1.044"></testcase>
   <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="emptyStream" time="0.0020"></testcase>
-  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="smallOpsPerformance" time="22.446"></testcase>
-  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="bigOpsPerformance" time="54.671"></testcase>
-  <system-out><![CDATA[INFO  31/12/2010 08:41:36 StreamingSuite  - Validating [random] with [random,0,12345]
-INFO  31/12/2010 08:41:36 StreamingSuite  - Validating [repeat] with [repeat,0,12345]
-INFO  31/12/2010 08:41:36 StreamingSuite  - Validating [random] with [random,1024,12345]
-INFO  31/12/2010 08:41:36 StreamingSuite  - Validating [repeat] with [repeat,1024,12345]
-INFO  31/12/2010 08:41:36 StreamingSuite  - Validating [random] with [random,2000000,12345]
-INFO  31/12/2010 08:41:36 StreamingSuite  - Validating [repeat] with [repeat,2000000,12345]
-INFO  31/12/2010 08:41:36 StreamingSuite  - Validating [random] with [random,0,12345] buffersize 1
-INFO  31/12/2010 08:41:36 StreamingSuite  - Validating [repeat] with [repeat,0,12345] buffersize 1
-INFO  31/12/2010 08:41:36 StreamingSuite  - Validating [random] with [random,1024,12345] buffersize 1
-INFO  31/12/2010 08:41:36 StreamingSuite  - Validating [repeat] with [repeat,1024,12345] buffersize 1
-INFO  31/12/2010 08:41:36 StreamingSuite  - Validating [random] with [random,2000000,12345] buffersize 1
-INFO  31/12/2010 08:41:37 StreamingSuite  - Validating [repeat] with [repeat,2000000,12345] buffersize 1
-INFO  31/12/2010 08:41:37 StreamingSuite  - Validating [random] with [random,0,12345] buffersize 1026
-INFO  31/12/2010 08:41:37 StreamingSuite  - Validating [repeat] with [repeat,0,12345] buffersize 1026
-INFO  31/12/2010 08:41:37 StreamingSuite  - Validating [random] with [random,1024,12345] buffersize 1026
-INFO  31/12/2010 08:41:37 StreamingSuite  - Validating [repeat] with [repeat,1024,12345] buffersize 1026
-INFO  31/12/2010 08:41:37 StreamingSuite  - Validating [random] with [random,2000000,12345] buffersize 1026
-INFO  31/12/2010 08:41:37 StreamingSuite  - Validating [repeat] with [repeat,2000000,12345] buffersize 1026
-INFO  31/12/2010 08:41:37 StreamingSuite  - Validating [random] with [random,0,12345] buffersize 65472
-INFO  31/12/2010 08:41:37 StreamingSuite  - Validating [repeat] with [repeat,0,12345] buffersize 65472
-INFO  31/12/2010 08:41:37 StreamingSuite  - Validating [random] with [random,1024,12345] buffersize 65472
-INFO  31/12/2010 08:41:37 StreamingSuite  - Validating [repeat] with [repeat,1024,12345] buffersize 65472
-INFO  31/12/2010 08:41:37 StreamingSuite  - Validating [random] with [random,2000000,12345] buffersize 65472
-INFO  31/12/2010 08:41:37 StreamingSuite  - Validating [repeat] with [repeat,2000000,12345] buffersize 65472
-INFO  31/12/2010 08:41:37 StreamingSuite  - Generating 32 byte objects.
-INFO  31/12/2010 08:41:47 StreamingSuite  - json	Op/sec:	9530
-INFO  31/12/2010 08:41:49 StreamingSuite  - random	Op/sec:	79302
-INFO  31/12/2010 08:41:58 StreamingSuite  - xml	Op/sec:	10309
-INFO  31/12/2010 08:41:59 StreamingSuite  - repeat	Op/sec:	100908
-INFO  31/12/2010 08:41:59 StreamingSuite  - Generating 100MB byte objects.
-INFO  31/12/2010 08:42:24 StreamingSuite  - json	MB/sec:	12
-INFO  31/12/2010 08:42:30 StreamingSuite  - random	MB/sec:	52
-INFO  31/12/2010 08:42:54 StreamingSuite  - xml	MB/sec:	12
-INFO  31/12/2010 08:42:54 StreamingSuite  - repeat	MB/sec:	2189
+  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="smallOpsPerformance" time="21.381"></testcase>
+  <testcase classname="com.yahoo.dtf.junit.StreamingSuite" name="bigOpsPerformance" time="61.337"></testcase>
+  <system-out><![CDATA[INFO  31/12/2010 20:48:29 StreamingSuite  - Validating [random] with [random,0,12345]
+INFO  31/12/2010 20:48:29 StreamingSuite  - Validating [repeat] with [repeat,0,12345]
+INFO  31/12/2010 20:48:29 StreamingSuite  - Validating [random] with [random,1024,12345]
+INFO  31/12/2010 20:48:29 StreamingSuite  - Validating [repeat] with [repeat,1024,12345]
+INFO  31/12/2010 20:48:29 StreamingSuite  - Validating [random] with [random,2000000,12345]
+INFO  31/12/2010 20:48:29 StreamingSuite  - Validating [repeat] with [repeat,2000000,12345]
+INFO  31/12/2010 20:48:29 StreamingSuite  - Validating [random] with [random,0,12345] buffersize 1
+INFO  31/12/2010 20:48:29 StreamingSuite  - Validating [repeat] with [repeat,0,12345] buffersize 1
+INFO  31/12/2010 20:48:29 StreamingSuite  - Validating [random] with [random,1024,12345] buffersize 1
+INFO  31/12/2010 20:48:29 StreamingSuite  - Validating [repeat] with [repeat,1024,12345] buffersize 1
+INFO  31/12/2010 20:48:29 StreamingSuite  - Validating [random] with [random,2000000,12345] buffersize 1
+INFO  31/12/2010 20:48:30 StreamingSuite  - Validating [repeat] with [repeat,2000000,12345] buffersize 1
+INFO  31/12/2010 20:48:30 StreamingSuite  - Validating [random] with [random,0,12345] buffersize 1026
+INFO  31/12/2010 20:48:30 StreamingSuite  - Validating [repeat] with [repeat,0,12345] buffersize 1026
+INFO  31/12/2010 20:48:30 StreamingSuite  - Validating [random] with [random,1024,12345] buffersize 1026
+INFO  31/12/2010 20:48:30 StreamingSuite  - Validating [repeat] with [repeat,1024,12345] buffersize 1026
+INFO  31/12/2010 20:48:30 StreamingSuite  - Validating [random] with [random,2000000,12345] buffersize 1026
+INFO  31/12/2010 20:48:30 StreamingSuite  - Validating [repeat] with [repeat,2000000,12345] buffersize 1026
+INFO  31/12/2010 20:48:30 StreamingSuite  - Validating [random] with [random,0,12345] buffersize 65472
+INFO  31/12/2010 20:48:30 StreamingSuite  - Validating [repeat] with [repeat,0,12345] buffersize 65472
+INFO  31/12/2010 20:48:30 StreamingSuite  - Validating [random] with [random,1024,12345] buffersize 65472
+INFO  31/12/2010 20:48:30 StreamingSuite  - Validating [repeat] with [repeat,1024,12345] buffersize 65472
+INFO  31/12/2010 20:48:30 StreamingSuite  - Validating [random] with [random,2000000,12345] buffersize 65472
+INFO  31/12/2010 20:48:30 StreamingSuite  - Validating [repeat] with [repeat,2000000,12345] buffersize 65472
+INFO  31/12/2010 20:48:30 StreamingSuite  - Generating 32 byte objects.
+INFO  31/12/2010 20:48:40 StreamingSuite  - json	Op/sec:	10428
+INFO  31/12/2010 20:48:41 StreamingSuite  - random	Op/sec:	83125
+INFO  31/12/2010 20:48:50 StreamingSuite  - xml	Op/sec:	10602
+INFO  31/12/2010 20:48:52 StreamingSuite  - repeat	Op/sec:	86730
+INFO  31/12/2010 20:48:52 StreamingSuite  - Generating 100MB byte objects.
+INFO  31/12/2010 20:49:19 StreamingSuite  - json	MB/sec:	10
+INFO  31/12/2010 20:49:26 StreamingSuite  - random	MB/sec:	41
+INFO  31/12/2010 20:49:53 StreamingSuite  - xml	MB/sec:	11
+INFO  31/12/2010 20:49:53 StreamingSuite  - repeat	MB/sec:	4225
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
