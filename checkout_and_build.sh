@@ -30,6 +30,12 @@ function buildDTF() {
     ant build >> $BASE/build/logs/build.log 2>&1
 }
 
+function buildjavadoc() { 
+    cd $BASE/build/dtf
+    ant doc >> $BASE/build/logs/javadoc.log 2>&1
+    cp -fr $DIST/doc/html/dtf/* $BASE/gh-pages/
+}
+
 function runjunit() { 
     cd $DIST
     echo "Running JUnit tests..."
@@ -52,8 +58,8 @@ function runpvt() {
     cd $DIST
     echo "Running DTF performance verification tests..."
     mkdir -p $BASE/gh-pages/results/perf
-    BUILDID=`git --no-pager log --max-count=1 | grep commit | awk '{print $2}'`
-    ./ant.sh run_pvt -Ddtf.perf.path=$BASE/gh-pages/results/perf -Dbuild=$BUILDID > $BASE/build/logs/pvt.log 2>&1
+    OPS="-Diterations.small=100 -Diterations.medium=100 -Diterations.large=100 -Diterations.huge=100"
+    ./ant.sh run_pvt -Ddtf.perf.path=$BASE/gh-pages/results/perf -Dbuild=$BUILDID $OPS > $BASE/build/logs/pvt.log 2>&1
 }
 
 function calccharts() {
@@ -68,9 +74,9 @@ function calccharts() {
 
     PERFWIKI=$BASE/dtf.wiki/Performance-test-results.md
     echo -n "Performance results for critical parts of DTF that we need to make " > $PERFWIKI
-    echo "sure are never affected by changes to the source code. Each of these " >> $PERFWIKI
-    echo "tests only executes the same operation in a loop over and over from a  " >> $PERFWIKI
-    echo "a single thread to get a stable number of how many times this operation " >> $PERFWIKI
+    echo -n "sure are never affected by changes to the source code. Each of these " >> $PERFWIKI
+    echo -n "tests only executes the same operation in a loop over and over from a  " >> $PERFWIKI
+    echo -n "a single thread to get a stable number of how many times this operation " >> $PERFWIKI
     echo "can be executed per second." >> $PERFWIKI
 
     echo "" >> $PERFWIKI
@@ -83,13 +89,21 @@ function calccharts() {
 }
 
 function pushresults() { 
-    cd $BASE
+
+    cd $BASE/dtf.wiki
+    for F in *.png
+    do 
+        git rm $F
+    done
+    git commit -m "cleaning up previous images"
+    git push
+
     echo "Pushing performance results back to wiki"
-    mv $BASE/gh-pages/results/perf/*.png $BASE/dtf.wiki/
+    mv -v $BASE/gh-pages/results/perf/*.png $BASE/dtf.wiki/
     cd $BASE/dtf.wiki
     git add *
     git commit -m "pushing performance results"
-    git push 
+    git push
 
     echo "Generating test reports..."
     cd $BASE/build/dtf
@@ -104,13 +118,18 @@ function pushresults() {
 
     echo "Uploading results to github..."
     cd $BASE/gh-pages
-    git add results > $BASE/build/logs/upload.log 2>&1
-    git commit -m "Test results for $DATE" >> $BASE/build/logs/upload.log 2>&1
-    git push origin gh-pages >> $BASE/build/logs/upload.log 2>&1
+    git add * > $BASE/build/logs/upload.log 2>&1
+    git commit -m "Test results for commit $BUILDID on $DATE" >> $BASE/build/logs/upload.log 2>&1
+    git push >> $BASE/build/logs/upload.log 2>&1
 }
 
 pullsource
+
+cd $BASE/build/dtf
+export BUILDID=`git --no-pager log --max-count=1 | grep commit | awk '{print $2}'`
+
 buildDTF
+buildjavadoc
 runjunit
 runut
 #rundvt
