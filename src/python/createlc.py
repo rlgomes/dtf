@@ -25,7 +25,7 @@ for yd in ydata:
 
 # 25% larger than the biggest value in any of the series
 max_y = int(round(max([max(d)*1.25 for (_,d) in data]),-2))
-chart = SimpleLineChart(640, 320, y_range=[0, max_y])
+chart = SimpleLineChart(800, 320, y_range=[0, max_y])
 
 # Add the chart data
 for (_,d) in data:
