@@ -58,7 +58,7 @@ function runpvt() {
     cd $DIST
     echo "Running DTF performance verification tests..."
     mkdir -p $BASE/gh-pages/results/perf
-    OPS="-Diterations.small=100 -Diterations.medium=100 -Diterations.large=100 -Diterations.huge=100"
+#    OPS="-Diterations.small=100 -Diterations.medium=100 -Diterations.large=100 -Diterations.huge=100"
     ./ant.sh run_pvt -Ddtf.perf.path=$BASE/gh-pages/results/perf -Dbuild=$BUILDID $OPS > $BASE/build/logs/pvt.log 2>&1
 }
 
@@ -127,7 +127,7 @@ pullsource
 
 cd $BASE/build/dtf
 export BUILDID=`git --no-pager log --max-count=1 | grep commit | awk '{print $2}'`
-
+export BUILDID="${BUILDID}_${DATE}"
 buildDTF
 buildjavadoc
 runjunit
