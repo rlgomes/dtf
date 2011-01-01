@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite classname="dtf.unittests" disabled="0" errors="2" failures="2" id="0" name="unittests" package="dtf" passed="151" start="2011-01-01-05.18.20.050" stop="2011-01-01-05.20.05.128" tests="153" time="105.078" timestamp="Sat Jan 01 05:18:20 UTC 2011">
+  <testsuite classname="dtf.unittests" disabled="0" errors="0" failures="0" id="0" name="unittests" package="dtf" passed="154" start="2011-01-01-05.48.32.315" stop="2011-01-01-05.49.19.253" tests="154" time="46.938" timestamp="Sat Jan 01 05:48:32 UTC 2011">
     <property name="test.log.filename" value="tests/ut/output/script-ut.out" />
 
-    <failure>com.yahoo.dtf.exception.LockException: No agent found to match [NodeInfo {port=-1,node.id=1},] at tests/ut/input/occupy_component.xml:24:34</failure>
-
-    <testcase name="state_management" start="2011-01-01-05.18.20.288" stop="2011-01-01-05.18.23.595" time="3.307">
+    <testcase name="state_management" start="2011-01-01-05.48.32.517" stop="2011-01-01-05.48.35.792" time="3.275">
       <property name="DTFA1.dtf.node.host" value="127.0.0.1" />
 
       <property name="DTFA1.dtf.tunneled" value="false" />
 
       <property name="DTFA1.dtf.os.name" value="Linux" />
 
-      <property name="DTFA1.dtf.debug.port" value="40001" />
+      <property name="DTFA1.dtf.debug.port" value="40002" />
 
       <property name="DTFA1.dtf.os.version" value="2.6.32-305-ec2" />
 
@@ -28,10 +26,59 @@
 
     </testcase>
 
-    <testcase name="storage" start="2011-01-01-05.18.24.512" stop="2011-01-01-05.18.24.519" time="0.0070">
+    <testcase name="storage" start="2011-01-01-05.48.36.622" stop="2011-01-01-05.48.36.649" time="0.027">
 </testcase>
 
-    <testcase name="echo" start="2011-01-01-05.18.24.678" stop="2011-01-01-05.18.24.889" time="0.211">
+    <testcase name="echo" start="2011-01-01-05.48.36.774" stop="2011-01-01-05.48.36.956" time="0.182">
+      <property name="DTFA1.dtf.node.host" value="127.0.0.1" />
+
+      <property name="DTFA1.dtf.tunneled" value="false" />
+
+      <property name="DTFA1.dtf.os.name" value="Linux" />
+
+      <property name="DTFA1.dtf.debug.port" value="40001" />
+
+      <property name="DTFA1.dtf.os.version" value="2.6.32-305-ec2" />
+
+      <property name="DTFA1.dtf.node.user" value="dtftest" />
+
+      <property name="DTFA1.dtf.os.arch" value="i386" />
+
+      <property name="DTFA1.node.id" value="2" />
+
+      <property name="DTFA1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+
+      <property name="DTFA1.dtf.node.type" value="dtfa" />
+
+    </testcase>
+
+    <testcase name="sleep" start="2011-01-01-05.48.37.168" stop="2011-01-01-05.48.37.555" time="0.387">
+      <property name="C1.dtf.debug.port" value="40003" />
+
+      <property name="C1.node.id" value="3" />
+
+      <property name="C1.dtf.tunneled" value="false" />
+
+      <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
+
+      <property name="C1.dtf.node.host" value="127.0.0.1" />
+
+      <property name="C1.dtf.os.name" value="Linux" />
+
+      <property name="C1.dtf.node.user" value="dtftest" />
+
+      <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+
+      <property name="C1.dtf.node.type" value="dtfa" />
+
+      <property name="C1.dtf.os.arch" value="i386" />
+
+    </testcase>
+
+    <testcase name="loadproperties" start="2011-01-01-05.48.37.716" stop="2011-01-01-05.48.37.718" time="0.0020">
+</testcase>
+
+    <testcase name="property_resolution" start="2011-01-01-05.48.37.934" stop="2011-01-01-05.48.38.300" time="0.366">
       <property name="DTFA1.dtf.node.host" value="127.0.0.1" />
 
       <property name="DTFA1.dtf.tunneled" value="false" />
@@ -46,7 +93,7 @@
 
       <property name="DTFA1.dtf.os.arch" value="i386" />
 
-      <property name="DTFA1.node.id" value="3" />
+      <property name="DTFA1.node.id" value="1" />
 
       <property name="DTFA1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
 
@@ -54,8 +101,38 @@
 
     </testcase>
 
-    <testcase name="sleep" start="2011-01-01-05.18.25.083" stop="2011-01-01-05.18.25.396" time="0.313">
-      <property name="C1.dtf.debug.port" value="40003" />
+    <testcase name="property" start="2011-01-01-05.48.38.559" stop="2011-01-01-05.48.38.587" time="0.028">
+</testcase>
+
+    <testcase name="cat" start="2011-01-01-05.48.38.717" stop="2011-01-01-05.48.38.745" time="0.028">
+</testcase>
+
+    <testcase name="log" start="2011-01-01-05.48.38.807" stop="2011-01-01-05.48.38.809" time="0.0020">
+</testcase>
+
+    <testcase name="for" start="2011-01-01-05.48.38.935" stop="2011-01-01-05.48.39.058" time="0.123">
+</testcase>
+
+    <testcase name="parallel" start="2011-01-01-05.48.39.246" stop="2011-01-01-05.48.39.293" time="0.047">
+</testcase>
+
+    <testcase name="parallelloop" start="2011-01-01-05.48.39.338" stop="2011-01-01-05.48.39.408" time="0.07">
+</testcase>
+
+    <testcase name="sequence" start="2011-01-01-05.48.39.431" stop="2011-01-01-05.48.39.432" time="0.0010">
+</testcase>
+
+    <testcase name="timer" start="2011-01-01-05.48.39.514" stop="2011-01-01-05.48.39.616" time="0.102">
+</testcase>
+
+    <testcase name="switch" start="2011-01-01-05.48.39.870" stop="2011-01-01-05.48.40.001" time="0.131">
+</testcase>
+
+    <testcase name="while" start="2011-01-01-05.48.40.131" stop="2011-01-01-05.48.40.142" time="0.011">
+</testcase>
+
+    <testcase name="break" start="2011-01-01-05.48.40.377" stop="2011-01-01-05.48.40.626" time="0.249">
+      <property name="C1.dtf.debug.port" value="40001" />
 
       <property name="C1.node.id" value="2" />
 
@@ -77,86 +154,7 @@
 
     </testcase>
 
-    <testcase name="loadproperties" start="2011-01-01-05.18.25.567" stop="2011-01-01-05.18.25.607" time="0.04">
-</testcase>
-
-    <testcase name="property_resolution" start="2011-01-01-05.18.25.838" stop="2011-01-01-05.18.26.114" time="0.276">
-      <property name="DTFA1.dtf.node.host" value="127.0.0.1" />
-
-      <property name="DTFA1.dtf.tunneled" value="false" />
-
-      <property name="DTFA1.dtf.os.name" value="Linux" />
-
-      <property name="DTFA1.dtf.debug.port" value="40001" />
-
-      <property name="DTFA1.dtf.os.version" value="2.6.32-305-ec2" />
-
-      <property name="DTFA1.dtf.node.user" value="dtftest" />
-
-      <property name="DTFA1.dtf.os.arch" value="i386" />
-
-      <property name="DTFA1.node.id" value="1" />
-
-      <property name="DTFA1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
-
-      <property name="DTFA1.dtf.node.type" value="dtfa" />
-
-    </testcase>
-
-    <testcase name="property" start="2011-01-01-05.18.26.372" stop="2011-01-01-05.18.26.382" time="0.01">
-</testcase>
-
-    <testcase name="cat" start="2011-01-01-05.18.26.515" stop="2011-01-01-05.18.26.518" time="0.0030">
-</testcase>
-
-    <testcase name="log" start="2011-01-01-05.18.26.639" stop="2011-01-01-05.18.26.641" time="0.0020">
-</testcase>
-
-    <testcase name="for" start="2011-01-01-05.18.26.693" stop="2011-01-01-05.18.26.832" time="0.139">
-</testcase>
-
-    <testcase name="parallel" start="2011-01-01-05.18.26.989" stop="2011-01-01-05.18.27.087" time="0.098">
-</testcase>
-
-    <testcase name="parallelloop" start="2011-01-01-05.18.27.109" stop="2011-01-01-05.18.27.127" time="0.018">
-</testcase>
-
-    <testcase name="sequence" start="2011-01-01-05.18.27.247" stop="2011-01-01-05.18.27.248" time="0.0010">
-</testcase>
-
-    <testcase name="timer" start="2011-01-01-05.18.27.273" stop="2011-01-01-05.18.27.379" time="0.106">
-</testcase>
-
-    <testcase name="switch" start="2011-01-01-05.18.27.584" stop="2011-01-01-05.18.27.745" time="0.161">
-</testcase>
-
-    <testcase name="while" start="2011-01-01-05.18.27.912" stop="2011-01-01-05.18.27.922" time="0.01">
-</testcase>
-
-    <testcase name="break" start="2011-01-01-05.18.27.995" stop="2011-01-01-05.18.28.329" time="0.334">
-      <property name="C1.dtf.debug.port" value="40002" />
-
-      <property name="C1.node.id" value="3" />
-
-      <property name="C1.dtf.tunneled" value="false" />
-
-      <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
-
-      <property name="C1.dtf.node.host" value="127.0.0.1" />
-
-      <property name="C1.dtf.os.name" value="Linux" />
-
-      <property name="C1.dtf.node.user" value="dtftest" />
-
-      <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
-
-      <property name="C1.dtf.node.type" value="dtfa" />
-
-      <property name="C1.dtf.os.arch" value="i386" />
-
-    </testcase>
-
-    <testcase name="try_catch_finally" start="2011-01-01-05.18.28.473" stop="2011-01-01-05.18.28.638" time="0.165">
+    <testcase name="try_catch_finally" start="2011-01-01-05.48.40.777" stop="2011-01-01-05.48.40.970" time="0.193">
       <property name="DTFA1.dtf.node.host" value="127.0.0.1" />
 
       <property name="DTFA1.dtf.tunneled" value="false" />
@@ -171,7 +169,7 @@
 
       <property name="DTFA1.dtf.os.arch" value="i386" />
 
-      <property name="DTFA1.node.id" value="2" />
+      <property name="DTFA1.node.id" value="3" />
 
       <property name="DTFA1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
 
@@ -179,8 +177,8 @@
 
     </testcase>
 
-    <testcase name="fail" start="2011-01-01-05.18.28.677" stop="2011-01-01-05.18.28.816" time="0.139">
-      <property name="DTFA.dtf.debug.port" value="40001" />
+    <testcase name="fail" start="2011-01-01-05.48.41.118" stop="2011-01-01-05.48.41.216" time="0.098">
+      <property name="DTFA.dtf.debug.port" value="40002" />
 
       <property name="DTFA.dtf.node.host" value="127.0.0.1" />
 
@@ -202,28 +200,28 @@
 
     </testcase>
 
-    <testcase name="distribute" start="2011-01-01-05.18.29.105" stop="2011-01-01-05.18.29.870" time="0.765">
+    <testcase name="distribute" start="2011-01-01-05.48.41.502" stop="2011-01-01-05.48.42.242" time="0.74">
 </testcase>
 
-    <testcase name="choices" start="2011-01-01-05.18.30.140" stop="2011-01-01-05.18.30.261" time="0.121">
+    <testcase name="choices" start="2011-01-01-05.48.42.488" stop="2011-01-01-05.48.42.666" time="0.178">
 </testcase>
 
-    <testcase name="if" start="2011-01-01-05.18.30.576" stop="2011-01-01-05.18.30.580" time="0.0040">
+    <testcase name="if" start="2011-01-01-05.48.42.985" stop="2011-01-01-05.48.42.989" time="0.0040">
 </testcase>
 
-    <testcase name="similar" start="2011-01-01-05.18.30.755" stop="2011-01-01-05.18.31.021" time="0.266">
+    <testcase name="similar" start="2011-01-01-05.48.43.113" stop="2011-01-01-05.48.43.406" time="0.293">
 </testcase>
 
-    <testcase name="createrange" start="2011-01-01-05.18.31.121" stop="2011-01-01-05.18.31.268" time="0.147">
+    <testcase name="createrange" start="2011-01-01-05.48.43.490" stop="2011-01-01-05.48.43.623" time="0.133">
 </testcase>
 
-    <testcase name="range" start="2011-01-01-05.18.31.448" stop="2011-01-01-05.18.31.602" time="0.154">
+    <testcase name="range" start="2011-01-01-05.48.43.842" stop="2011-01-01-05.48.44.050" time="0.208">
 </testcase>
 
-    <testcase name="range_dist" start="2011-01-01-05.18.31.764" stop="2011-01-01-05.18.32.987" time="1.223">
-      <property name="C1.dtf.debug.port" value="40002" />
+    <testcase name="range_dist" start="2011-01-01-05.48.44.192" stop="2011-01-01-05.48.45.488" time="1.296">
+      <property name="C1.dtf.debug.port" value="40001" />
 
-      <property name="C1.node.id" value="3" />
+      <property name="C1.node.id" value="2" />
 
       <property name="C1.dtf.tunneled" value="false" />
 
@@ -243,19 +241,19 @@
 
     </testcase>
 
-    <testcase name="xml_range" start="2011-01-01-05.18.33.196" stop="2011-01-01-05.18.33.205" time="0.0090">
+    <testcase name="xml_range" start="2011-01-01-05.48.45.696" stop="2011-01-01-05.48.45.727" time="0.031">
 </testcase>
 
-    <testcase name="json_range" start="2011-01-01-05.18.33.353" stop="2011-01-01-05.18.33.357" time="0.0040">
+    <testcase name="json_range" start="2011-01-01-05.48.45.837" stop="2011-01-01-05.48.45.840" time="0.0030">
 </testcase>
 
-    <testcase name="functions" start="2011-01-01-05.18.33.646" stop="2011-01-01-05.18.33.988" time="0.342">
+    <testcase name="functions" start="2011-01-01-05.48.46.178" stop="2011-01-01-05.48.46.466" time="0.288">
 </testcase>
 
-    <testcase name="import" start="2011-01-01-05.18.34.094" stop="2011-01-01-05.18.34.545" time="0.451">
+    <testcase name="import" start="2011-01-01-05.48.46.591" stop="2011-01-01-05.48.46.979" time="0.388">
 </testcase>
 
-    <testcase name="export" start="2011-01-01-05.18.34.582" stop="2011-01-01-05.18.34.832" time="0.25">
+    <testcase name="export" start="2011-01-01-05.48.47.066" stop="2011-01-01-05.48.47.289" time="0.223">
       <property name="DTFA1.dtf.node.host" value="127.0.0.1" />
 
       <property name="DTFA1.dtf.tunneled" value="false" />
@@ -270,7 +268,7 @@
 
       <property name="DTFA1.dtf.os.arch" value="i386" />
 
-      <property name="DTFA1.node.id" value="2" />
+      <property name="DTFA1.node.id" value="3" />
 
       <property name="DTFA1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
 
@@ -278,14 +276,14 @@
 
     </testcase>
 
-    <testcase name="references" start="2011-01-01-05.18.34.976" stop="2011-01-01-05.18.35.216" time="0.24">
+    <testcase name="references" start="2011-01-01-05.48.47.465" stop="2011-01-01-05.48.47.711" time="0.246">
       <property name="DTFA1.dtf.node.host" value="127.0.0.1" />
 
       <property name="DTFA1.dtf.tunneled" value="false" />
 
       <property name="DTFA1.dtf.os.name" value="Linux" />
 
-      <property name="DTFA1.dtf.debug.port" value="40001" />
+      <property name="DTFA1.dtf.debug.port" value="40002" />
 
       <property name="DTFA1.dtf.os.version" value="2.6.32-305-ec2" />
 
@@ -301,14 +299,14 @@
 
     </testcase>
 
-    <testcase name="component" start="2011-01-01-05.18.35.354" stop="2011-01-01-05.18.36.702" time="1.348">
+    <testcase name="component" start="2011-01-01-05.48.47.858" stop="2011-01-01-05.48.49.170" time="1.312">
       <property name="DTFA1.dtf.node.host" value="127.0.0.1" />
 
       <property name="DTFA1.dtf.tunneled" value="false" />
 
       <property name="DTFA1.dtf.os.name" value="Linux" />
 
-      <property name="DTFA1.dtf.debug.port" value="40002" />
+      <property name="DTFA1.dtf.debug.port" value="40001" />
 
       <property name="DTFA1.dtf.os.version" value="2.6.32-305-ec2" />
 
@@ -316,7 +314,7 @@
 
       <property name="DTFA1.dtf.os.arch" value="i386" />
 
-      <property name="DTFA1.node.id" value="3" />
+      <property name="DTFA1.node.id" value="2" />
 
       <property name="DTFA1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
 
@@ -324,20 +322,20 @@
 
     </testcase>
 
-    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.18.37.330" stop="2011-01-01-05.18.37.742" tests="1" time="0.412" timestamp="Sat Jan 01 05:18:37 UTC 2011">
+    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.48.49.853" stop="2011-01-01-05.48.50.195" tests="1" time="0.342" timestamp="Sat Jan 01 05:48:49 UTC 2011">
       <property name="DTFA2.dtf.os.name" value="Linux" />
 
       <property name="DTFA2.dtf.os.arch" value="i386" />
 
       <property name="DTFA3.dtf.node.type" value="dtfa" />
 
-      <property name="DTFA2.dtf.tunneled" value="false" />
-
       <property name="DTFA1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
 
-      <property name="DTFA2.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+      <property name="DTFA2.dtf.tunneled" value="false" />
 
       <property name="DTFA3.dtf.tunneled" value="false" />
+
+      <property name="DTFA2.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
 
       <property name="DTFA3.dtf.os.arch" value="i386" />
 
@@ -347,11 +345,11 @@
 
       <property name="DTFA1.dtf.node.user" value="dtftest" />
 
-      <property name="DTFA2.dtf.debug.port" value="40001" />
+      <property name="DTFA2.dtf.debug.port" value="40002" />
+
+      <property name="DTFA3.node.id" value="1" />
 
       <property name="DTFA2.dtf.node.user" value="dtftest" />
-
-      <property name="DTFA3.node.id" value="2" />
 
       <property name="DTFA1.node.id" value="3" />
 
@@ -361,7 +359,7 @@
 
       <property name="DTFA2.dtf.node.type" value="dtfa" />
 
-      <property name="DTFA3.dtf.debug.port" value="40003" />
+      <property name="DTFA3.dtf.debug.port" value="40002" />
 
       <property name="DTFA1.dtf.tunneled" value="false" />
 
@@ -373,9 +371,9 @@
 
       <property name="DTFA1.dtf.node.host" value="127.0.0.1" />
 
-      <property name="DTFA1.dtf.os.arch" value="i386" />
-
       <property name="DTFA1.dtf.os.name" value="Linux" />
+
+      <property name="DTFA1.dtf.os.arch" value="i386" />
 
       <property name="DTFA2.dtf.node.host" value="127.0.0.1" />
 
@@ -383,100 +381,10 @@
 
       <property name="DTFA2.dtf.os.version" value="2.6.32-305-ec2" />
 
-      <property name="DTFA1.dtf.debug.port" value="40002" />
+      <property name="DTFA1.dtf.debug.port" value="40003" />
 
-      <testcase name="occupy_component" start="2011-01-01-05.18.37.451" stop="2011-01-01-05.18.37.736" time="0.285">
-        <property name="C1.dtf.debug.port" value="40002" />
-
-        <property name="C1.node.id" value="3" />
-
-        <property name="C1.dtf.tunneled" value="false" />
-
-        <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
-
-        <property name="C1.dtf.node.host" value="127.0.0.1" />
-
-        <property name="C1.dtf.os.name" value="Linux" />
-
-        <property name="C1.dtf.node.user" value="dtftest" />
-
-        <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
-
-        <property name="C1.dtf.node.type" value="dtfa" />
-
-        <property name="C1.dtf.os.arch" value="i386" />
-
-      </testcase>
-
-      <system-out />
-
-      <system-err />
-
-    </testsuite>
-
-    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.18.37.742" stop="2011-01-01-05.18.37.973" tests="1" time="0.231" timestamp="Sat Jan 01 05:18:37 UTC 2011">
-      <testcase name="occupy_component" start="2011-01-01-05.18.37.809" stop="2011-01-01-05.18.37.939" time="0.13">
-        <property name="C1.dtf.debug.port" value="40002" />
-
-        <property name="C1.node.id" value="3" />
-
-        <property name="C1.dtf.tunneled" value="false" />
-
-        <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
-
-        <property name="C1.dtf.node.host" value="127.0.0.1" />
-
-        <property name="C1.dtf.os.name" value="Linux" />
-
-        <property name="C1.dtf.node.user" value="dtftest" />
-
-        <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
-
-        <property name="C1.dtf.node.type" value="dtfa" />
-
-        <property name="C1.dtf.os.arch" value="i386" />
-
-      </testcase>
-
-      <system-out />
-
-      <system-err />
-
-    </testsuite>
-
-    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.18.37.317" stop="2011-01-01-05.18.38.075" tests="1" time="0.758" timestamp="Sat Jan 01 05:18:37 UTC 2011">
-      <testcase name="occupy_component" start="2011-01-01-05.18.37.441" stop="2011-01-01-05.18.38.071" time="0.63">
+      <testcase name="occupy_component" start="2011-01-01-05.48.50.040" stop="2011-01-01-05.48.50.191" time="0.151">
         <property name="C1.dtf.debug.port" value="40001" />
-
-        <property name="C1.node.id" value="1" />
-
-        <property name="C1.dtf.tunneled" value="false" />
-
-        <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
-
-        <property name="C1.dtf.node.host" value="127.0.0.1" />
-
-        <property name="C1.dtf.os.name" value="Linux" />
-
-        <property name="C1.dtf.node.user" value="dtftest" />
-
-        <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
-
-        <property name="C1.dtf.node.type" value="dtfa" />
-
-        <property name="C1.dtf.os.arch" value="i386" />
-
-      </testcase>
-
-      <system-out />
-
-      <system-err />
-
-    </testsuite>
-
-    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.18.37.330" stop="2011-01-01-05.18.38.087" tests="1" time="0.757" timestamp="Sat Jan 01 05:18:37 UTC 2011">
-      <testcase name="occupy_component" start="2011-01-01-05.18.37.755" stop="2011-01-01-05.18.38.083" time="0.328">
-        <property name="C1.dtf.debug.port" value="40003" />
 
         <property name="C1.node.id" value="2" />
 
@@ -504,9 +412,39 @@
 
     </testsuite>
 
-    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.18.38.087" stop="2011-01-01-05.18.38.388" tests="1" time="0.301" timestamp="Sat Jan 01 05:18:38 UTC 2011">
-      <testcase name="occupy_component" start="2011-01-01-05.18.38.226" stop="2011-01-01-05.18.38.383" time="0.157">
+    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.48.49.823" stop="2011-01-01-05.48.50.340" tests="1" time="0.517" timestamp="Sat Jan 01 05:48:49 UTC 2011">
+      <testcase name="occupy_component" start="2011-01-01-05.48.49.982" stop="2011-01-01-05.48.50.298" time="0.316">
         <property name="C1.dtf.debug.port" value="40002" />
+
+        <property name="C1.node.id" value="1" />
+
+        <property name="C1.dtf.tunneled" value="false" />
+
+        <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
+
+        <property name="C1.dtf.node.host" value="127.0.0.1" />
+
+        <property name="C1.dtf.os.name" value="Linux" />
+
+        <property name="C1.dtf.node.user" value="dtftest" />
+
+        <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+
+        <property name="C1.dtf.node.type" value="dtfa" />
+
+        <property name="C1.dtf.os.arch" value="i386" />
+
+      </testcase>
+
+      <system-out />
+
+      <system-err />
+
+    </testsuite>
+
+    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.48.49.847" stop="2011-01-01-05.48.50.588" tests="1" time="0.741" timestamp="Sat Jan 01 05:48:49 UTC 2011">
+      <testcase name="occupy_component" start="2011-01-01-05.48.50.048" stop="2011-01-01-05.48.50.584" time="0.536">
+        <property name="C1.dtf.debug.port" value="40003" />
 
         <property name="C1.node.id" value="3" />
 
@@ -534,39 +472,9 @@
 
     </testsuite>
 
-    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.18.37.974" stop="2011-01-01-05.18.38.441" tests="1" time="0.467" timestamp="Sat Jan 01 05:18:37 UTC 2011">
-      <testcase name="occupy_component" start="2011-01-01-05.18.38.132" stop="2011-01-01-05.18.38.435" time="0.303">
+    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.48.50.340" stop="2011-01-01-05.48.50.724" tests="1" time="0.384" timestamp="Sat Jan 01 05:48:50 UTC 2011">
+      <testcase name="occupy_component" start="2011-01-01-05.48.50.505" stop="2011-01-01-05.48.50.715" time="0.21">
         <property name="C1.dtf.debug.port" value="40001" />
-
-        <property name="C1.node.id" value="1" />
-
-        <property name="C1.dtf.tunneled" value="false" />
-
-        <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
-
-        <property name="C1.dtf.node.host" value="127.0.0.1" />
-
-        <property name="C1.dtf.os.name" value="Linux" />
-
-        <property name="C1.dtf.node.user" value="dtftest" />
-
-        <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
-
-        <property name="C1.dtf.node.type" value="dtfa" />
-
-        <property name="C1.dtf.os.arch" value="i386" />
-
-      </testcase>
-
-      <system-out />
-
-      <system-err />
-
-    </testsuite>
-
-    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.18.38.075" stop="2011-01-01-05.18.38.538" tests="1" time="0.463" timestamp="Sat Jan 01 05:18:38 UTC 2011">
-      <testcase name="occupy_component" start="2011-01-01-05.18.38.290" stop="2011-01-01-05.18.38.532" time="0.242">
-        <property name="C1.dtf.debug.port" value="40003" />
 
         <property name="C1.node.id" value="2" />
 
@@ -594,39 +502,9 @@
 
     </testsuite>
 
-    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.18.38.389" stop="2011-01-01-05.18.38.744" tests="1" time="0.355" timestamp="Sat Jan 01 05:18:38 UTC 2011">
-      <testcase name="occupy_component" start="2011-01-01-05.18.38.599" stop="2011-01-01-05.18.38.691" time="0.092">
-        <property name="C1.dtf.debug.port" value="40003" />
-
-        <property name="C1.node.id" value="2" />
-
-        <property name="C1.dtf.tunneled" value="false" />
-
-        <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
-
-        <property name="C1.dtf.node.host" value="127.0.0.1" />
-
-        <property name="C1.dtf.os.name" value="Linux" />
-
-        <property name="C1.dtf.node.user" value="dtftest" />
-
-        <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
-
-        <property name="C1.dtf.node.type" value="dtfa" />
-
-        <property name="C1.dtf.os.arch" value="i386" />
-
-      </testcase>
-
-      <system-out />
-
-      <system-err />
-
-    </testsuite>
-
-    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.18.38.538" stop="2011-01-01-05.18.38.799" tests="1" time="0.261" timestamp="Sat Jan 01 05:18:38 UTC 2011">
-      <testcase name="occupy_component" start="2011-01-01-05.18.38.754" stop="2011-01-01-05.18.38.786" time="0.032">
-        <property name="C1.dtf.debug.port" value="40001" />
+    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.48.50.196" stop="2011-01-01-05.48.50.741" tests="1" time="0.545" timestamp="Sat Jan 01 05:48:50 UTC 2011">
+      <testcase name="occupy_component" start="2011-01-01-05.48.50.419" stop="2011-01-01-05.48.50.719" time="0.3">
+        <property name="C1.dtf.debug.port" value="40002" />
 
         <property name="C1.node.id" value="1" />
 
@@ -654,8 +532,128 @@
 
     </testsuite>
 
-    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.18.38.800" stop="2011-01-01-05.18.39.036" tests="1" time="0.236" timestamp="Sat Jan 01 05:18:38 UTC 2011">
-      <testcase name="parallel_occupy_component" start="2011-01-01-05.18.38.906" stop="2011-01-01-05.18.39.025" time="0.119">
+    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.48.50.588" stop="2011-01-01-05.48.51.059" tests="1" time="0.471" timestamp="Sat Jan 01 05:48:50 UTC 2011">
+      <testcase name="occupy_component" start="2011-01-01-05.48.50.881" stop="2011-01-01-05.48.51.038" time="0.157">
+        <property name="C1.dtf.debug.port" value="40001" />
+
+        <property name="C1.node.id" value="2" />
+
+        <property name="C1.dtf.tunneled" value="false" />
+
+        <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
+
+        <property name="C1.dtf.node.host" value="127.0.0.1" />
+
+        <property name="C1.dtf.os.name" value="Linux" />
+
+        <property name="C1.dtf.node.user" value="dtftest" />
+
+        <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+
+        <property name="C1.dtf.node.type" value="dtfa" />
+
+        <property name="C1.dtf.os.arch" value="i386" />
+
+      </testcase>
+
+      <system-out />
+
+      <system-err />
+
+    </testsuite>
+
+    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.48.50.741" stop="2011-01-01-05.48.51.145" tests="1" time="0.404" timestamp="Sat Jan 01 05:48:50 UTC 2011">
+      <testcase name="occupy_component" start="2011-01-01-05.48.50.893" stop="2011-01-01-05.48.51.139" time="0.246">
+        <property name="C1.dtf.debug.port" value="40003" />
+
+        <property name="C1.node.id" value="3" />
+
+        <property name="C1.dtf.tunneled" value="false" />
+
+        <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
+
+        <property name="C1.dtf.node.host" value="127.0.0.1" />
+
+        <property name="C1.dtf.os.name" value="Linux" />
+
+        <property name="C1.dtf.node.user" value="dtftest" />
+
+        <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+
+        <property name="C1.dtf.node.type" value="dtfa" />
+
+        <property name="C1.dtf.os.arch" value="i386" />
+
+      </testcase>
+
+      <system-out />
+
+      <system-err />
+
+    </testsuite>
+
+    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.48.50.724" stop="2011-01-01-05.48.51.208" tests="1" time="0.484" timestamp="Sat Jan 01 05:48:50 UTC 2011">
+      <testcase name="occupy_component" start="2011-01-01-05.48.51.057" stop="2011-01-01-05.48.51.204" time="0.147">
+        <property name="C1.dtf.debug.port" value="40002" />
+
+        <property name="C1.node.id" value="1" />
+
+        <property name="C1.dtf.tunneled" value="false" />
+
+        <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
+
+        <property name="C1.dtf.node.host" value="127.0.0.1" />
+
+        <property name="C1.dtf.os.name" value="Linux" />
+
+        <property name="C1.dtf.node.user" value="dtftest" />
+
+        <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+
+        <property name="C1.dtf.node.type" value="dtfa" />
+
+        <property name="C1.dtf.os.arch" value="i386" />
+
+      </testcase>
+
+      <system-out />
+
+      <system-err />
+
+    </testsuite>
+
+    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.48.51.059" stop="2011-01-01-05.48.51.348" tests="1" time="0.289" timestamp="Sat Jan 01 05:48:51 UTC 2011">
+      <testcase name="occupy_component" start="2011-01-01-05.48.51.224" stop="2011-01-01-05.48.51.344" time="0.12">
+        <property name="C1.dtf.debug.port" value="40002" />
+
+        <property name="C1.node.id" value="1" />
+
+        <property name="C1.dtf.tunneled" value="false" />
+
+        <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
+
+        <property name="C1.dtf.node.host" value="127.0.0.1" />
+
+        <property name="C1.dtf.os.name" value="Linux" />
+
+        <property name="C1.dtf.node.user" value="dtftest" />
+
+        <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+
+        <property name="C1.dtf.node.type" value="dtfa" />
+
+        <property name="C1.dtf.os.arch" value="i386" />
+
+      </testcase>
+
+      <system-out />
+
+      <system-err />
+
+    </testsuite>
+
+    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.48.51.348" stop="2011-01-01-05.48.51.560" tests="1" time="0.212" timestamp="Sat Jan 01 05:48:51 UTC 2011">
+      <testcase name="parallel_occupy_component" start="2011-01-01-05.48.51.426" stop="2011-01-01-05.48.51.551" time="0.125">
         <property name="C1.dtf.node.type" value="dtfa" />
 
         <property name="C3.dtf.node.host" value="127.0.0.1" />
@@ -666,19 +664,19 @@
 
         <property name="C1.dtf.tunneled" value="false" />
 
-        <property name="C2.node.id" value="2" />
+        <property name="C2.node.id" value="3" />
 
         <property name="C2.dtf.tunneled" value="false" />
 
         <property name="C2.dtf.os.version" value="2.6.32-305-ec2" />
 
-        <property name="C1.node.id" value="3" />
+        <property name="C1.node.id" value="2" />
 
-        <property name="C1.dtf.debug.port" value="40002" />
+        <property name="C1.dtf.debug.port" value="40001" />
 
         <property name="C3.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
 
-        <property name="C3.dtf.debug.port" value="40001" />
+        <property name="C3.dtf.debug.port" value="40002" />
 
         <property name="C1.dtf.node.host" value="127.0.0.1" />
 
@@ -724,8 +722,8 @@
 
     </testsuite>
 
-    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.18.39.112" stop="2011-01-01-05.18.39.278" tests="1" time="0.166" timestamp="Sat Jan 01 05:18:39 UTC 2011">
-      <property name="C1.dtf.debug.port" value="40001" />
+    <testsuite classname="dtf.lockcomponent" disabled="0" errors="0" failures="0" name="dtf.lockcomponent" passed="1" start="2011-01-01-05.48.51.620" stop="2011-01-01-05.48.51.802" tests="1" time="0.182" timestamp="Sat Jan 01 05:48:51 UTC 2011">
+      <property name="C1.dtf.debug.port" value="40002" />
 
       <property name="C1.node.id" value="1" />
 
@@ -745,7 +743,7 @@
 
       <property name="C1.dtf.os.arch" value="i386" />
 
-      <testcase name="function_occupy_component" start="2011-01-01-05.18.39.135" stop="2011-01-01-05.18.39.269" time="0.134">
+      <testcase name="function_occupy_component" start="2011-01-01-05.48.51.701" stop="2011-01-01-05.48.51.769" time="0.068">
         <property name="C1.dtf.node.type" value="dtfa" />
 
         <property name="C3.dtf.node.host" value="127.0.0.1" />
@@ -756,19 +754,19 @@
 
         <property name="C1.dtf.tunneled" value="false" />
 
-        <property name="C2.node.id" value="2" />
+        <property name="C2.node.id" value="3" />
 
         <property name="C2.dtf.tunneled" value="false" />
 
         <property name="C2.dtf.os.version" value="2.6.32-305-ec2" />
 
-        <property name="C1.node.id" value="3" />
+        <property name="C1.node.id" value="2" />
 
-        <property name="C1.dtf.debug.port" value="40002" />
+        <property name="C1.dtf.debug.port" value="40001" />
 
         <property name="C3.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
 
-        <property name="C3.dtf.debug.port" value="40001" />
+        <property name="C3.dtf.debug.port" value="40002" />
 
         <property name="C1.dtf.node.host" value="127.0.0.1" />
 
@@ -814,8 +812,8 @@
 
     </testsuite>
 
-    <testcase name="lockcomponent" start="2011-01-01-05.18.36.816" stop="2011-01-01-05.18.39.292" time="2.476">
-      <property name="C1.dtf.debug.port" value="40001" />
+    <testcase name="lockcomponent" start="2011-01-01-05.48.49.296" stop="2011-01-01-05.48.51.847" time="2.551">
+      <property name="C1.dtf.debug.port" value="40002" />
 
       <property name="C1.node.id" value="1" />
 
@@ -837,10 +835,10 @@
 
     </testcase>
 
-    <testcase name="lockgroup" start="2011-01-01-05.18.39.348" stop="2011-01-01-05.18.40.187" time="0.839">
+    <testcase name="lockgroup" start="2011-01-01-05.48.51.929" stop="2011-01-01-05.48.52.746" time="0.817">
       <property name="DTFA2-2.dtf.os.name" value="Linux" />
 
-      <property name="DTFA2-2.node.id" value="3" />
+      <property name="DTFA2-2.node.id" value="2" />
 
       <property name="DTFA1-2.dtf.node.host" value="127.0.0.1" />
 
@@ -848,9 +846,9 @@
 
       <property name="DTFA1-2.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
 
-      <property name="DTFA1-1.node.id" value="3" />
+      <property name="DTFA1-1.node.id" value="2" />
 
-      <property name="DTFA2-2.dtf.debug.port" value="40002" />
+      <property name="DTFA2-2.dtf.debug.port" value="40001" />
 
       <property name="DTFA2-1.dtf.node.host" value="127.0.0.1" />
 
@@ -884,9 +882,9 @@
 
       <property name="DTFA1-1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
 
-      <property name="DTFA1-2.node.id" value="2" />
+      <property name="DTFA1-2.node.id" value="3" />
 
-      <property name="DTFA2-1.node.id" value="2" />
+      <property name="DTFA2-1.node.id" value="3" />
 
       <property name="DTFA2-1.dtf.tunneled" value="false" />
 
@@ -906,7 +904,7 @@
 
       <property name="DTFA1-2.dtf.debug.port" value="40003" />
 
-      <property name="DTFA1-1.dtf.debug.port" value="40002" />
+      <property name="DTFA1-1.dtf.debug.port" value="40001" />
 
       <property name="DTFA2-2.dtf.node.host" value="127.0.0.1" />
 
@@ -920,7 +918,7 @@
 
     </testcase>
 
-    <testcase name="remotestorage" start="2011-01-01-05.18.40.391" stop="2011-01-01-05.18.42.185" time="1.794">
+    <testcase name="remotestorage" start="2011-01-01-05.48.52.932" stop="2011-01-01-05.48.54.727" time="1.795">
       <property name="DTFA2.dtf.os.name" value="Linux" />
 
       <property name="DTFA2.dtf.os.arch" value="i386" />
@@ -945,7 +943,7 @@
 
       <property name="DTFA2.dtf.debug.port" value="40003" />
 
-      <property name="DTFA3.node.id" value="3" />
+      <property name="DTFA3.node.id" value="2" />
 
       <property name="DTFA2.dtf.node.user" value="dtftest" />
 
@@ -957,7 +955,7 @@
 
       <property name="DTFA2.dtf.node.type" value="dtfa" />
 
-      <property name="DTFA3.dtf.debug.port" value="40002" />
+      <property name="DTFA3.dtf.debug.port" value="40001" />
 
       <property name="DTFA1.dtf.tunneled" value="false" />
 
@@ -965,7 +963,7 @@
 
       <property name="DTFA3.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
 
-      <property name="DTFA2.node.id" value="2" />
+      <property name="DTFA2.node.id" value="3" />
 
       <property name="DTFA1.dtf.os.arch" value="i386" />
 
@@ -979,11 +977,11 @@
 
       <property name="DTFA2.dtf.os.version" value="2.6.32-305-ec2" />
 
-      <property name="DTFA1.dtf.debug.port" value="40001" />
+      <property name="DTFA1.dtf.debug.port" value="40002" />
 
     </testcase>
 
-    <testcase name="recorder" start="2011-01-01-05.18.42.343" stop="2011-01-01-05.18.42.540" time="0.197">
+    <testcase name="recorder" start="2011-01-01-05.48.54.933" stop="2011-01-01-05.48.55.090" time="0.157">
       <property name="DTFA1.dtf.node.host" value="127.0.0.1" />
 
       <property name="DTFA1.dtf.tunneled" value="false" />
@@ -991,45 +989,6 @@
       <property name="DTFA1.dtf.os.name" value="Linux" />
 
       <property name="DTFA1.dtf.debug.port" value="40003" />
-
-      <property name="DTFA1.dtf.os.version" value="2.6.32-305-ec2" />
-
-      <property name="DTFA1.dtf.node.user" value="dtftest" />
-
-      <property name="DTFA1.dtf.os.arch" value="i386" />
-
-      <property name="DTFA1.node.id" value="2" />
-
-      <property name="DTFA1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
-
-      <property name="DTFA1.dtf.node.type" value="dtfa" />
-
-    </testcase>
-
-    <testcase name="stats_recorder" start="2011-01-01-05.18.42.647" stop="2011-01-01-05.18.42.648" time="0.0010">
-</testcase>
-
-    <testsuite classname="dtf.query" disabled="0" errors="0" failures="0" name="dtf.query" passed="1" start="2011-01-01-05.18.42.804" stop="2011-01-01-05.18.43.463" tests="1" time="0.659" timestamp="Sat Jan 01 05:18:42 UTC 2011">
-      <testcase name="query" start="2011-01-01-05.18.43.066" stop="2011-01-01-05.18.43.463" time="0.397">
-</testcase>
-
-      <system-out />
-
-      <system-err />
-
-    </testsuite>
-
-    <testcase name="query" start="2011-01-01-05.18.42.793" stop="2011-01-01-05.18.43.835" time="1.042">
-</testcase>
-
-    <testcase name="event" start="2011-01-01-05.18.43.918" stop="2011-01-01-05.18.44.170" time="0.252">
-      <property name="DTFA1.dtf.node.host" value="127.0.0.1" />
-
-      <property name="DTFA1.dtf.tunneled" value="false" />
-
-      <property name="DTFA1.dtf.os.name" value="Linux" />
-
-      <property name="DTFA1.dtf.debug.port" value="40002" />
 
       <property name="DTFA1.dtf.os.version" value="2.6.32-305-ec2" />
 
@@ -1045,83 +1004,11 @@
 
     </testcase>
 
-    <testcase name="event_visibility" start="2011-01-01-05.18.44.247" stop="2011-01-01-05.18.44.371" time="0.124">
-      <property name="C1.dtf.debug.port" value="40001" />
-
-      <property name="C1.node.id" value="1" />
-
-      <property name="C1.dtf.tunneled" value="false" />
-
-      <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
-
-      <property name="C1.dtf.node.host" value="127.0.0.1" />
-
-      <property name="C1.dtf.os.name" value="Linux" />
-
-      <property name="C1.dtf.node.user" value="dtftest" />
-
-      <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
-
-      <property name="C1.dtf.node.type" value="dtfa" />
-
-      <property name="C1.dtf.os.arch" value="i386" />
-
-    </testcase>
-
-    <testcase name="compare" start="2011-01-01-05.18.44.621" stop="2011-01-01-05.18.44.693" time="0.072">
+    <testcase name="stats_recorder" start="2011-01-01-05.48.55.185" stop="2011-01-01-05.48.55.186" time="0.0010">
 </testcase>
 
-    <testcase name="filter" start="2011-01-01-05.18.44.822" stop="2011-01-01-05.18.45.003" time="0.181">
-</testcase>
-
-    <testcase name="sort" start="2011-01-01-05.18.45.134" stop="2011-01-01-05.18.45.362" time="0.228">
-</testcase>
-
-    <testsuite classname="dtf.testsuite1" disabled="0" errors="0" failures="0" name="dtf.testsuite1" passed="13" start="2011-01-01-05.18.45.427" stop="2011-01-01-05.18.46.138" tests="13" time="0.711" timestamp="Sat Jan 01 05:18:45 UTC 2011">
-      <testcase name="donothing" start="2011-01-01-05.18.45.526" stop="2011-01-01-05.18.45.526" time="0.0">
-</testcase>
-
-      <testcase name="testcase1" start="2011-01-01-05.18.45.452" stop="2011-01-01-05.18.45.527" time="0.075">
-</testcase>
-
-      <testcase name="donothing" start="2011-01-01-05.18.45.607" stop="2011-01-01-05.18.45.607" time="0.0">
-</testcase>
-
-      <testcase name="testcase2" start="2011-01-01-05.18.45.591" stop="2011-01-01-05.18.45.608" time="0.017">
-</testcase>
-
-      <testcase name="donothing" start="2011-01-01-05.18.45.736" stop="2011-01-01-05.18.45.736" time="0.0">
-</testcase>
-
-      <testcase name="testcase3" start="2011-01-01-05.18.45.688" stop="2011-01-01-05.18.45.738" time="0.05">
-</testcase>
-
-      <testsuite classname="dtf.testsuite2" disabled="0" errors="0" failures="0" name="dtf.testsuite2" passed="6" start="2011-01-01-05.18.45.827" stop="2011-01-01-05.18.46.138" tests="6" time="0.311" timestamp="Sat Jan 01 05:18:45 UTC 2011">
-        <testcase name="donothing" start="2011-01-01-05.18.45.900" stop="2011-01-01-05.18.45.901" time="0.0010">
-</testcase>
-
-        <testcase name="testcase3" start="2011-01-01-05.18.45.885" stop="2011-01-01-05.18.45.961" time="0.076">
-</testcase>
-
-        <testcase name="donothing" start="2011-01-01-05.18.46.029" stop="2011-01-01-05.18.46.029" time="0.0">
-</testcase>
-
-        <testcase name="testcase-sub2" start="2011-01-01-05.18.45.985" stop="2011-01-01-05.18.46.030" time="0.045">
-</testcase>
-
-        <testcase name="donothing" start="2011-01-01-05.18.46.137" stop="2011-01-01-05.18.46.137" time="0.0">
-</testcase>
-
-        <testcase name="testcase-sub3" start="2011-01-01-05.18.46.121" stop="2011-01-01-05.18.46.138" time="0.017">
-</testcase>
-
-        <system-out />
-
-        <system-err />
-
-      </testsuite>
-
-      <testcase name="testsuite-sub" start="2011-01-01-05.18.45.827" stop="2011-01-01-05.18.46.138" time="0.311">
+    <testsuite classname="dtf.query" disabled="0" errors="0" failures="0" name="dtf.query" passed="1" start="2011-01-01-05.48.55.398" stop="2011-01-01-05.48.56.030" tests="1" time="0.632" timestamp="Sat Jan 01 05:48:55 UTC 2011">
+      <testcase name="query" start="2011-01-01-05.48.55.671" stop="2011-01-01-05.48.56.030" time="0.359">
 </testcase>
 
       <system-out />
@@ -1130,234 +1017,17 @@
 
     </testsuite>
 
-    <testcase name="testsuite" start="2011-01-01-05.18.45.426" stop="2011-01-01-05.18.46.196" time="0.77">
+    <testcase name="query" start="2011-01-01-05.48.55.353" stop="2011-01-01-05.48.56.346" time="0.993">
 </testcase>
 
-    <testsuite classname="dtf.results" disabled="0" errors="0" failures="0" name="dtf.results" passed="13" start="2011-01-01-05.18.46.236" stop="2011-01-01-05.18.47.033" tests="13" time="0.797" timestamp="Sat Jan 01 05:18:46 UTC 2011">
-      <testcase name="donothing" start="2011-01-01-05.18.46.349" stop="2011-01-01-05.18.46.349" time="0.0">
-</testcase>
-
-      <testcase name="testcase1" start="2011-01-01-05.18.46.333" stop="2011-01-01-05.18.46.350" time="0.017">
-</testcase>
-
-      <testcase name="donothing" start="2011-01-01-05.18.46.506" stop="2011-01-01-05.18.46.506" time="0.0">
-</testcase>
-
-      <testcase name="testcase2" start="2011-01-01-05.18.46.430" stop="2011-01-01-05.18.46.507" time="0.077">
-</testcase>
-
-      <testcase name="donothing" start="2011-01-01-05.18.46.546" stop="2011-01-01-05.18.46.546" time="0.0">
-</testcase>
-
-      <testcase name="testcase3" start="2011-01-01-05.18.46.531" stop="2011-01-01-05.18.46.548" time="0.017">
-</testcase>
-
-      <testsuite classname="dtf.testsuite2" disabled="0" errors="0" failures="0" name="dtf.testsuite2" passed="6" start="2011-01-01-05.18.46.674" stop="2011-01-01-05.18.47.032" tests="6" time="0.358" timestamp="Sat Jan 01 05:18:46 UTC 2011">
-        <testcase name="donothing" start="2011-01-01-05.18.46.811" stop="2011-01-01-05.18.46.811" time="0.0">
-</testcase>
-
-        <testcase name="testcase3" start="2011-01-01-05.18.46.700" stop="2011-01-01-05.18.46.812" time="0.112">
-</testcase>
-
-        <testcase name="donothing" start="2011-01-01-05.18.46.927" stop="2011-01-01-05.18.46.927" time="0.0">
-</testcase>
-
-        <testcase name="testcase-sub2" start="2011-01-01-05.18.46.843" stop="2011-01-01-05.18.46.928" time="0.085">
-</testcase>
-
-        <testcase name="donothing" start="2011-01-01-05.18.47.030" stop="2011-01-01-05.18.47.030" time="0.0">
-</testcase>
-
-        <testcase name="testcase-sub3" start="2011-01-01-05.18.47.014" stop="2011-01-01-05.18.47.032" time="0.018">
-</testcase>
-
-        <system-out />
-
-        <system-err />
-
-      </testsuite>
-
-      <testcase name="testsuite-sub" start="2011-01-01-05.18.46.666" stop="2011-01-01-05.18.47.033" time="0.367">
-</testcase>
-
-      <system-out />
-
-      <system-err />
-
-    </testsuite>
-
-    <testsuite classname="dtf.results" disabled="0" errors="0" failures="0" name="dtf.results" passed="13" start="2011-01-01-05.18.47.068" stop="2011-01-01-05.18.47.809" tests="13" time="0.741" timestamp="Sat Jan 01 05:18:47 UTC 2011">
-      <testcase name="donothing" start="2011-01-01-05.18.47.172" stop="2011-01-01-05.18.47.172" time="0.0">
-</testcase>
-
-      <testcase name="testcase3" start="2011-01-01-05.18.47.093" stop="2011-01-01-05.18.47.173" time="0.08">
-</testcase>
-
-      <testcase name="donothing" start="2011-01-01-05.18.47.265" stop="2011-01-01-05.18.47.265" time="0.0">
-</testcase>
-
-      <testcase name="testcase2" start="2011-01-01-05.18.47.250" stop="2011-01-01-05.18.47.266" time="0.016">
-</testcase>
-
-      <testcase name="donothing" start="2011-01-01-05.18.47.377" stop="2011-01-01-05.18.47.377" time="0.0">
-</testcase>
-
-      <testcase name="testcase3" start="2011-01-01-05.18.47.291" stop="2011-01-01-05.18.47.386" time="0.095">
-</testcase>
-
-      <testsuite classname="dtf.testsuite2" disabled="0" errors="0" failures="0" name="dtf.testsuite2" passed="6" start="2011-01-01-05.18.47.480" stop="2011-01-01-05.18.47.809" tests="6" time="0.329" timestamp="Sat Jan 01 05:18:47 UTC 2011">
-        <testcase name="donothing" start="2011-01-01-05.18.47.617" stop="2011-01-01-05.18.47.617" time="0.0">
-</testcase>
-
-        <testcase name="testcase3" start="2011-01-01-05.18.47.539" stop="2011-01-01-05.18.47.618" time="0.079">
-</testcase>
-
-        <testcase name="donothing" start="2011-01-01-05.18.47.689" stop="2011-01-01-05.18.47.689" time="0.0">
-</testcase>
-
-        <testcase name="testcase-sub2" start="2011-01-01-05.18.47.670" stop="2011-01-01-05.18.47.691" time="0.021">
-</testcase>
-
-        <testcase name="donothing" start="2011-01-01-05.18.47.807" stop="2011-01-01-05.18.47.807" time="0.0">
-</testcase>
-
-        <testcase name="testcase-sub3" start="2011-01-01-05.18.47.792" stop="2011-01-01-05.18.47.809" time="0.017">
-</testcase>
-
-        <system-out />
-
-        <system-err />
-
-      </testsuite>
-
-      <testcase name="testsuite-sub" start="2011-01-01-05.18.47.480" stop="2011-01-01-05.18.47.809" time="0.329">
-</testcase>
-
-      <system-out />
-
-      <system-err />
-
-    </testsuite>
-
-    <testsuite classname="dtf.results" disabled="0" errors="0" failures="0" name="dtf.results" passed="13" start="2011-01-01-05.18.47.810" stop="2011-01-01-05.18.48.539" tests="13" time="0.729" timestamp="Sat Jan 01 05:18:47 UTC 2011">
-      <testcase name="donothing" start="2011-01-01-05.18.47.927" stop="2011-01-01-05.18.47.927" time="0.0">
-</testcase>
-
-      <testcase name="testcase3" start="2011-01-01-05.18.47.912" stop="2011-01-01-05.18.47.928" time="0.016">
-</testcase>
-
-      <testcase name="donothing" start="2011-01-01-05.18.48.066" stop="2011-01-01-05.18.48.066" time="0.0">
-</testcase>
-
-      <testcase name="testcase2" start="2011-01-01-05.18.47.988" stop="2011-01-01-05.18.48.067" time="0.079">
-</testcase>
-
-      <testcase name="donothing" start="2011-01-01-05.18.48.136" stop="2011-01-01-05.18.48.136" time="0.0">
-</testcase>
-
-      <testcase name="testcase3" start="2011-01-01-05.18.48.121" stop="2011-01-01-05.18.48.137" time="0.016">
-</testcase>
-
-      <testsuite classname="dtf.testsuite2" disabled="0" errors="0" failures="0" name="dtf.testsuite2" passed="6" start="2011-01-01-05.18.48.225" stop="2011-01-01-05.18.48.539" tests="6" time="0.314" timestamp="Sat Jan 01 05:18:48 UTC 2011">
-        <testcase name="donothing" start="2011-01-01-05.18.48.295" stop="2011-01-01-05.18.48.295" time="0.0">
-</testcase>
-
-        <testcase name="testcase3" start="2011-01-01-05.18.48.280" stop="2011-01-01-05.18.48.296" time="0.016">
-</testcase>
-
-        <testcase name="donothing" start="2011-01-01-05.18.48.437" stop="2011-01-01-05.18.48.437" time="0.0">
-</testcase>
-
-        <testcase name="testcase-sub2" start="2011-01-01-05.18.48.380" stop="2011-01-01-05.18.48.438" time="0.058">
-</testcase>
-
-        <testcase name="donothing" start="2011-01-01-05.18.48.538" stop="2011-01-01-05.18.48.538" time="0.0">
-</testcase>
-
-        <testcase name="testcase-sub3" start="2011-01-01-05.18.48.523" stop="2011-01-01-05.18.48.539" time="0.016">
-</testcase>
-
-        <system-out />
-
-        <system-err />
-
-      </testsuite>
-
-      <testcase name="testsuite-sub" start="2011-01-01-05.18.48.225" stop="2011-01-01-05.18.48.539" time="0.314">
-</testcase>
-
-      <system-out />
-
-      <system-err />
-
-    </testsuite>
-
-    <testcase name="donothing" start="2011-01-01-05.18.48.677" stop="2011-01-01-05.18.48.677" time="0.0">
-</testcase>
-
-    <testcase name="testcase1" start="2011-01-01-05.18.48.571" stop="2011-01-01-05.18.48.678" time="0.107">
-</testcase>
-
-    <testcase name="donothing" start="2011-01-01-05.18.48.720" stop="2011-01-01-05.18.48.720" time="0.0">
-</testcase>
-
-    <testcase name="testcase1" start="2011-01-01-05.18.48.704" stop="2011-01-01-05.18.48.720" time="0.016">
-</testcase>
-
-    <testcase name="results" start="2011-01-01-05.18.46.234" stop="2011-01-01-05.18.48.721" time="2.487">
-</testcase>
-
-    <testsuite classname="dtf.concurrent_suite" disabled="0" errors="0" failures="0" name="dtf.concurrent_suite" passed="10" start="2011-01-01-05.18.48.853" stop="2011-01-01-05.18.49.297" tests="10" time="0.444" timestamp="Sat Jan 01 05:18:48 UTC 2011">
-      <testcase name="echo" start="2011-01-01-05.18.48.998" stop="2011-01-01-05.18.48.998" time="0.0">
-</testcase>
-
-      <testcase name="echo" start="2011-01-01-05.18.49.011" stop="2011-01-01-05.18.49.011" time="0.0">
-</testcase>
-
-      <testcase name="echo" start="2011-01-01-05.18.49.013" stop="2011-01-01-05.18.49.013" time="0.0">
-</testcase>
-
-      <testcase name="echo" start="2011-01-01-05.18.49.015" stop="2011-01-01-05.18.49.015" time="0.0">
-</testcase>
-
-      <testcase name="echo" start="2011-01-01-05.18.49.008" stop="2011-01-01-05.18.49.008" time="0.0">
-</testcase>
-
-      <testcase name="echo" start="2011-01-01-05.18.49.201" stop="2011-01-01-05.18.49.201" time="0.0">
-</testcase>
-
-      <testcase name="echo" start="2011-01-01-05.18.49.204" stop="2011-01-01-05.18.49.204" time="0.0">
-</testcase>
-
-      <testcase name="echo" start="2011-01-01-05.18.49.207" stop="2011-01-01-05.18.49.207" time="0.0">
-</testcase>
-
-      <testcase name="echo" start="2011-01-01-05.18.49.292" stop="2011-01-01-05.18.49.292" time="0.0">
-</testcase>
-
-      <testcase name="echo" start="2011-01-01-05.18.49.297" stop="2011-01-01-05.18.49.297" time="0.0">
-</testcase>
-
-      <system-out />
-
-      <system-err />
-
-    </testsuite>
-
-    <testcase name="concurrent_suite" start="2011-01-01-05.18.48.852" stop="2011-01-01-05.18.49.299" time="0.447">
-</testcase>
-
-    <testcase name="stats" start="2011-01-01-05.18.49.452" stop="2011-01-01-05.18.49.605" time="0.153">
-</testcase>
-
-    <testcase name="file" start="2011-01-01-05.18.49.674" stop="2011-01-01-05.18.50.507" time="0.833">
+    <testcase name="event" start="2011-01-01-05.48.56.493" stop="2011-01-01-05.48.56.720" time="0.227">
       <property name="DTFA1.dtf.node.host" value="127.0.0.1" />
 
       <property name="DTFA1.dtf.tunneled" value="false" />
 
       <property name="DTFA1.dtf.os.name" value="Linux" />
 
-      <property name="DTFA1.dtf.debug.port" value="40003" />
+      <property name="DTFA1.dtf.debug.port" value="40001" />
 
       <property name="DTFA1.dtf.os.version" value="2.6.32-305-ec2" />
 
@@ -1373,119 +1043,8 @@
 
     </testcase>
 
-    <testcase name="http" start="2011-01-01-05.18.50.924" stop="2011-01-01-05.18.51.424" time="0.5">
-</testcase>
-
-    <testcase name="http_server" start="2011-01-01-05.18.51.658" stop="2011-01-01-05.18.53.446" time="1.788">
-</testcase>
-
-    <testcase name="http_cleanup_test" start="2011-01-01-05.18.53.600" stop="2011-01-01-05.18.54.396" time="0.796">
-      <property name="C1.dtf.node.type" value="dtfa" />
-
-      <property name="C2.dtf.debug.port" value="40002" />
-
-      <property name="C2.dtf.node.type" value="dtfa" />
-
-      <property name="C1.dtf.tunneled" value="false" />
-
-      <property name="C2.node.id" value="3" />
-
-      <property name="C2.dtf.tunneled" value="false" />
-
-      <property name="C2.dtf.os.version" value="2.6.32-305-ec2" />
-
-      <property name="C1.node.id" value="1" />
-
-      <property name="C1.dtf.debug.port" value="40001" />
-
-      <property name="C1.dtf.node.host" value="127.0.0.1" />
-
-      <property name="C2.dtf.node.host" value="127.0.0.1" />
-
-      <property name="C1.dtf.os.arch" value="i386" />
-
-      <property name="C1.dtf.os.name" value="Linux" />
-
-      <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
-
-      <property name="C2.dtf.os.arch" value="i386" />
-
-      <property name="C2.dtf.os.name" value="Linux" />
-
-      <property name="C2.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
-
-      <property name="C1.dtf.node.user" value="dtftest" />
-
-      <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
-
-      <property name="C2.dtf.node.user" value="dtftest" />
-
-    </testcase>
-
-    <testcase name="string_manipulation" start="2011-01-01-05.18.54.575" stop="2011-01-01-05.18.54.576" time="0.0010">
-</testcase>
-
-    <testcase name="string_transform" start="2011-01-01-05.18.54.690" stop="2011-01-01-05.18.54.691" time="0.0010">
-</testcase>
-
-    <testcase name="convert" start="2011-01-01-05.18.54.834" stop="2011-01-01-05.18.54.895" time="0.061">
-</testcase>
-
-    <testcase name="arithmetic" start="2011-01-01-05.18.55.081" stop="2011-01-01-05.18.55.082" time="0.0010">
-</testcase>
-
-    <testcase name="random" start="2011-01-01-05.18.55.224" stop="2011-01-01-05.18.55.427" time="0.203">
-</testcase>
-
-    <testcase name="monitor" start="2011-01-01-05.18.55.599" stop="2011-01-01-05.18.55.745" time="0.146">
-      <property name="AGENT1.dtf.os.arch" value="i386" />
-
-      <property name="AGENT1.dtf.tunneled" value="false" />
-
-      <property name="AGENT1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
-
-      <property name="AGENT1.dtf.node.type" value="dtfa" />
-
-      <property name="AGENT1.node.id" value="2" />
-
-      <property name="AGENT1.dtf.node.host" value="127.0.0.1" />
-
-      <property name="AGENT1.dtf.os.name" value="Linux" />
-
-      <property name="AGENT1.dtf.debug.port" value="40003" />
-
-      <property name="AGENT1.dtf.os.version" value="2.6.32-305-ec2" />
-
-      <property name="AGENT1.dtf.node.user" value="dtftest" />
-
-    </testcase>
-
-    <testcase name="diff" start="2011-01-01-05.18.55.889" stop="2011-01-01-05.18.55.894" time="0.0050">
-</testcase>
-
-    <testcase name="xml_xpath" start="2011-01-01-05.18.56.078" stop="2011-01-01-05.18.56.090" time="0.012">
-</testcase>
-
-    <testcase name="xml_dynamic" start="2011-01-01-05.18.56.205" stop="2011-01-01-05.18.56.205" time="0.0">
-</testcase>
-
-    <testcase name="json_transform" start="2011-01-01-05.18.56.242" stop="2011-01-01-05.18.56.322" time="0.08">
-</testcase>
-
-    <testcase name="stream" start="2011-01-01-05.18.56.358" stop="2011-01-01-05.18.59.331" time="2.973">
-</testcase>
-
-    <testcase name="assertions" start="2011-01-01-05.18.59.466" stop="2011-01-01-05.18.59.467" time="0.0010">
-</testcase>
-
-    <testcase name="encoding" start="2011-01-01-05.18.59.600" stop="2011-01-01-05.18.59.602" time="0.0020">
-</testcase>
-
-    <testcase name="special_characters" start="2011-01-01-05.18.59.728" stop="2011-01-01-05.18.59.728" time="0.0">
-</testcase>
-
-    <testsuite classname="dtf.dummy" disabled="0" errors="1" failures="1" name="dtf.dummy" passed="0" start="2011-01-01-05.18.59.769" stop="2011-01-01-05.20.00.507" tests="1" time="60.738" timestamp="Sat Jan 01 05:18:59 UTC 2011">
-      <property name="C1.dtf.debug.port" value="40001" />
+    <testcase name="event_visibility" start="2011-01-01-05.48.56.834" stop="2011-01-01-05.48.56.947" time="0.113">
+      <property name="C1.dtf.debug.port" value="40002" />
 
       <property name="C1.node.id" value="1" />
 
@@ -1505,12 +1064,63 @@
 
       <property name="C1.dtf.os.arch" value="i386" />
 
-      <failure>com.yahoo.dtf.exception.LockException: No agent found to match [NodeInfo {port=-1,node.id=1},] at tests/ut/input/occupy_component.xml:24:34</failure>
+    </testcase>
 
-      <testcase name="occupy_component" start="2011-01-01-05.18.59.891" stop="2011-01-01-05.20.00.502" time="60.611">
-        <failure>com.yahoo.dtf.exception.LockException: No agent found to match [NodeInfo {port=-1,node.id=1},] at tests/ut/input/occupy_component.xml:24:34</failure>
+    <testcase name="compare" start="2011-01-01-05.48.57.171" stop="2011-01-01-05.48.57.298" time="0.127">
+</testcase>
 
-      </testcase>
+    <testcase name="filter" start="2011-01-01-05.48.57.398" stop="2011-01-01-05.48.57.623" time="0.225">
+</testcase>
+
+    <testcase name="sort" start="2011-01-01-05.48.57.736" stop="2011-01-01-05.48.57.930" time="0.194">
+</testcase>
+
+    <testsuite classname="dtf.testsuite1" disabled="0" errors="0" failures="0" name="dtf.testsuite1" passed="13" start="2011-01-01-05.48.58.029" stop="2011-01-01-05.48.58.765" tests="13" time="0.736" timestamp="Sat Jan 01 05:48:58 UTC 2011">
+      <testcase name="donothing" start="2011-01-01-05.48.58.130" stop="2011-01-01-05.48.58.130" time="0.0">
+</testcase>
+
+      <testcase name="testcase1" start="2011-01-01-05.48.58.082" stop="2011-01-01-05.48.58.151" time="0.069">
+</testcase>
+
+      <testcase name="donothing" start="2011-01-01-05.48.58.250" stop="2011-01-01-05.48.58.250" time="0.0">
+</testcase>
+
+      <testcase name="testcase2" start="2011-01-01-05.48.58.193" stop="2011-01-01-05.48.58.251" time="0.058">
+</testcase>
+
+      <testcase name="donothing" start="2011-01-01-05.48.58.341" stop="2011-01-01-05.48.58.341" time="0.0">
+</testcase>
+
+      <testcase name="testcase3" start="2011-01-01-05.48.58.326" stop="2011-01-01-05.48.58.343" time="0.017">
+</testcase>
+
+      <testsuite classname="dtf.testsuite2" disabled="0" errors="0" failures="0" name="dtf.testsuite2" passed="6" start="2011-01-01-05.48.58.447" stop="2011-01-01-05.48.58.765" tests="6" time="0.318" timestamp="Sat Jan 01 05:48:58 UTC 2011">
+        <testcase name="donothing" start="2011-01-01-05.48.58.544" stop="2011-01-01-05.48.58.544" time="0.0">
+</testcase>
+
+        <testcase name="testcase3" start="2011-01-01-05.48.58.499" stop="2011-01-01-05.48.58.546" time="0.047">
+</testcase>
+
+        <testcase name="donothing" start="2011-01-01-05.48.58.666" stop="2011-01-01-05.48.58.666" time="0.0">
+</testcase>
+
+        <testcase name="testcase-sub2" start="2011-01-01-05.48.58.599" stop="2011-01-01-05.48.58.667" time="0.068">
+</testcase>
+
+        <testcase name="donothing" start="2011-01-01-05.48.58.764" stop="2011-01-01-05.48.58.764" time="0.0">
+</testcase>
+
+        <testcase name="testcase-sub3" start="2011-01-01-05.48.58.735" stop="2011-01-01-05.48.58.765" time="0.03">
+</testcase>
+
+        <system-out />
+
+        <system-err />
+
+      </testsuite>
+
+      <testcase name="testsuite-sub" start="2011-01-01-05.48.58.447" stop="2011-01-01-05.48.58.765" time="0.318">
+</testcase>
 
       <system-out />
 
@@ -1518,18 +1128,259 @@
 
     </testsuite>
 
-    <testcase name="testscript_component_complex" start="2011-01-01-05.18.59.768" stop="2011-01-01-05.20.00.509" time="60.741">
-      <failure>com.yahoo.dtf.exception.LockException: No agent found to match [NodeInfo {port=-1,node.id=1},] at tests/ut/input/occupy_component.xml:24:34</failure>
+    <testcase name="testsuite" start="2011-01-01-05.48.58.027" stop="2011-01-01-05.48.58.770" time="0.743">
+</testcase>
+
+    <testsuite classname="dtf.results" disabled="0" errors="0" failures="0" name="dtf.results" passed="13" start="2011-01-01-05.48.58.887" stop="2011-01-01-05.48.59.614" tests="13" time="0.727" timestamp="Sat Jan 01 05:48:58 UTC 2011">
+      <testcase name="donothing" start="2011-01-01-05.48.59.001" stop="2011-01-01-05.48.59.001" time="0.0">
+</testcase>
+
+      <testcase name="testcase1" start="2011-01-01-05.48.58.951" stop="2011-01-01-05.48.59.001" time="0.05">
+</testcase>
+
+      <testcase name="donothing" start="2011-01-01-05.48.59.101" stop="2011-01-01-05.48.59.101" time="0.0">
+</testcase>
+
+      <testcase name="testcase2" start="2011-01-01-05.48.59.055" stop="2011-01-01-05.48.59.102" time="0.047">
+</testcase>
+
+      <testcase name="donothing" start="2011-01-01-05.48.59.209" stop="2011-01-01-05.48.59.209" time="0.0">
+</testcase>
+
+      <testcase name="testcase3" start="2011-01-01-05.48.59.160" stop="2011-01-01-05.48.59.210" time="0.05">
+</testcase>
+
+      <testsuite classname="dtf.testsuite2" disabled="0" errors="0" failures="0" name="dtf.testsuite2" passed="6" start="2011-01-01-05.48.59.273" stop="2011-01-01-05.48.59.614" tests="6" time="0.341" timestamp="Sat Jan 01 05:48:59 UTC 2011">
+        <testcase name="donothing" start="2011-01-01-05.48.59.394" stop="2011-01-01-05.48.59.394" time="0.0">
+</testcase>
+
+        <testcase name="testcase3" start="2011-01-01-05.48.59.337" stop="2011-01-01-05.48.59.395" time="0.058">
+</testcase>
+
+        <testcase name="donothing" start="2011-01-01-05.48.59.525" stop="2011-01-01-05.48.59.525" time="0.0">
+</testcase>
+
+        <testcase name="testcase-sub2" start="2011-01-01-05.48.59.461" stop="2011-01-01-05.48.59.526" time="0.065">
+</testcase>
+
+        <testcase name="donothing" start="2011-01-01-05.48.59.613" stop="2011-01-01-05.48.59.613" time="0.0">
+</testcase>
+
+        <testcase name="testcase-sub3" start="2011-01-01-05.48.59.551" stop="2011-01-01-05.48.59.614" time="0.063">
+</testcase>
+
+        <system-out />
+
+        <system-err />
+
+      </testsuite>
+
+      <testcase name="testsuite-sub" start="2011-01-01-05.48.59.272" stop="2011-01-01-05.48.59.614" time="0.342">
+</testcase>
+
+      <system-out />
+
+      <system-err />
+
+    </testsuite>
+
+    <testsuite classname="dtf.results" disabled="0" errors="0" failures="0" name="dtf.results" passed="13" start="2011-01-01-05.48.59.659" stop="2011-01-01-05.49.00.432" tests="13" time="0.773" timestamp="Sat Jan 01 05:48:59 UTC 2011">
+      <testcase name="donothing" start="2011-01-01-05.48.59.758" stop="2011-01-01-05.48.59.758" time="0.0">
+</testcase>
+
+      <testcase name="testcase3" start="2011-01-01-05.48.59.684" stop="2011-01-01-05.48.59.758" time="0.074">
+</testcase>
+
+      <testcase name="donothing" start="2011-01-01-05.48.59.888" stop="2011-01-01-05.48.59.888" time="0.0">
+</testcase>
+
+      <testcase name="testcase2" start="2011-01-01-05.48.59.840" stop="2011-01-01-05.48.59.895" time="0.055">
+</testcase>
+
+      <testcase name="donothing" start="2011-01-01-05.49.00.033" stop="2011-01-01-05.49.00.033" time="0.0">
+</testcase>
+
+      <testcase name="testcase3" start="2011-01-01-05.48.59.961" stop="2011-01-01-05.49.00.034" time="0.073">
+</testcase>
+
+      <testsuite classname="dtf.testsuite2" disabled="0" errors="0" failures="0" name="dtf.testsuite2" passed="6" start="2011-01-01-05.49.00.102" stop="2011-01-01-05.49.00.432" tests="6" time="0.33" timestamp="Sat Jan 01 05:49:00 UTC 2011">
+        <testcase name="donothing" start="2011-01-01-05.49.00.203" stop="2011-01-01-05.49.00.203" time="0.0">
+</testcase>
+
+        <testcase name="testcase3" start="2011-01-01-05.49.00.158" stop="2011-01-01-05.49.00.204" time="0.046">
+</testcase>
+
+        <testcase name="donothing" start="2011-01-01-05.49.00.326" stop="2011-01-01-05.49.00.326" time="0.0">
+</testcase>
+
+        <testcase name="testcase-sub2" start="2011-01-01-05.49.00.257" stop="2011-01-01-05.49.00.327" time="0.07">
+</testcase>
+
+        <testcase name="donothing" start="2011-01-01-05.49.00.431" stop="2011-01-01-05.49.00.431" time="0.0">
+</testcase>
+
+        <testcase name="testcase-sub3" start="2011-01-01-05.49.00.386" stop="2011-01-01-05.49.00.432" time="0.046">
+</testcase>
+
+        <system-out />
+
+        <system-err />
+
+      </testsuite>
+
+      <testcase name="testsuite-sub" start="2011-01-01-05.49.00.102" stop="2011-01-01-05.49.00.432" time="0.33">
+</testcase>
+
+      <system-out />
+
+      <system-err />
+
+    </testsuite>
+
+    <testsuite classname="dtf.results" disabled="0" errors="0" failures="0" name="dtf.results" passed="13" start="2011-01-01-05.49.00.434" stop="2011-01-01-05.49.01.206" tests="13" time="0.772" timestamp="Sat Jan 01 05:49:00 UTC 2011">
+      <testcase name="donothing" start="2011-01-01-05.49.00.542" stop="2011-01-01-05.49.00.542" time="0.0">
+</testcase>
+
+      <testcase name="testcase3" start="2011-01-01-05.49.00.487" stop="2011-01-01-05.49.00.543" time="0.056">
+</testcase>
+
+      <testcase name="donothing" start="2011-01-01-05.49.00.666" stop="2011-01-01-05.49.00.666" time="0.0">
+</testcase>
+
+      <testcase name="testcase2" start="2011-01-01-05.49.00.610" stop="2011-01-01-05.49.00.667" time="0.057">
+</testcase>
+
+      <testcase name="donothing" start="2011-01-01-05.49.00.782" stop="2011-01-01-05.49.00.782" time="0.0">
+</testcase>
+
+      <testcase name="testcase3" start="2011-01-01-05.49.00.735" stop="2011-01-01-05.49.00.783" time="0.048">
+</testcase>
+
+      <testsuite classname="dtf.testsuite2" disabled="0" errors="0" failures="0" name="dtf.testsuite2" passed="6" start="2011-01-01-05.49.00.863" stop="2011-01-01-05.49.01.206" tests="6" time="0.343" timestamp="Sat Jan 01 05:49:00 UTC 2011">
+        <testcase name="donothing" start="2011-01-01-05.49.00.968" stop="2011-01-01-05.49.00.968" time="0.0">
+</testcase>
+
+        <testcase name="testcase3" start="2011-01-01-05.49.00.918" stop="2011-01-01-05.49.00.970" time="0.052">
+</testcase>
+
+        <testcase name="donothing" start="2011-01-01-05.49.01.092" stop="2011-01-01-05.49.01.092" time="0.0">
+</testcase>
+
+        <testcase name="testcase-sub2" start="2011-01-01-05.49.01.045" stop="2011-01-01-05.49.01.093" time="0.048">
+</testcase>
+
+        <testcase name="donothing" start="2011-01-01-05.49.01.205" stop="2011-01-01-05.49.01.205" time="0.0">
+</testcase>
+
+        <testcase name="testcase-sub3" start="2011-01-01-05.49.01.145" stop="2011-01-01-05.49.01.206" time="0.061">
+</testcase>
+
+        <system-out />
+
+        <system-err />
+
+      </testsuite>
+
+      <testcase name="testsuite-sub" start="2011-01-01-05.49.00.862" stop="2011-01-01-05.49.01.206" time="0.344">
+</testcase>
+
+      <system-out />
+
+      <system-err />
+
+    </testsuite>
+
+    <testcase name="donothing" start="2011-01-01-05.49.01.337" stop="2011-01-01-05.49.01.337" time="0.0">
+</testcase>
+
+    <testcase name="testcase1" start="2011-01-01-05.49.01.297" stop="2011-01-01-05.49.01.339" time="0.042">
+</testcase>
+
+    <testcase name="donothing" start="2011-01-01-05.49.01.466" stop="2011-01-01-05.49.01.466" time="0.0">
+</testcase>
+
+    <testcase name="testcase1" start="2011-01-01-05.49.01.418" stop="2011-01-01-05.49.01.467" time="0.049">
+</testcase>
+
+    <testcase name="results" start="2011-01-01-05.48.58.885" stop="2011-01-01-05.49.01.467" time="2.582">
+</testcase>
+
+    <testsuite classname="dtf.concurrent_suite" disabled="0" errors="0" failures="0" name="dtf.concurrent_suite" passed="10" start="2011-01-01-05.49.01.552" stop="2011-01-01-05.49.01.968" tests="10" time="0.416" timestamp="Sat Jan 01 05:49:01 UTC 2011">
+      <testcase name="echo" start="2011-01-01-05.49.01.661" stop="2011-01-01-05.49.01.661" time="0.0">
+</testcase>
+
+      <testcase name="echo" start="2011-01-01-05.49.01.710" stop="2011-01-01-05.49.01.710" time="0.0">
+</testcase>
+
+      <testcase name="echo" start="2011-01-01-05.49.01.682" stop="2011-01-01-05.49.01.682" time="0.0">
+</testcase>
+
+      <testcase name="echo" start="2011-01-01-05.49.01.746" stop="2011-01-01-05.49.01.746" time="0.0">
+</testcase>
+
+      <testcase name="echo" start="2011-01-01-05.49.01.754" stop="2011-01-01-05.49.01.754" time="0.0">
+</testcase>
+
+      <testcase name="echo" start="2011-01-01-05.49.01.815" stop="2011-01-01-05.49.01.815" time="0.0">
+</testcase>
+
+      <testcase name="echo" start="2011-01-01-05.49.01.892" stop="2011-01-01-05.49.01.892" time="0.0">
+</testcase>
+
+      <testcase name="echo" start="2011-01-01-05.49.01.892" stop="2011-01-01-05.49.01.892" time="0.0">
+</testcase>
+
+      <testcase name="echo" start="2011-01-01-05.49.01.920" stop="2011-01-01-05.49.01.920" time="0.0">
+</testcase>
+
+      <testcase name="echo" start="2011-01-01-05.49.01.968" stop="2011-01-01-05.49.01.968" time="0.0">
+</testcase>
+
+      <system-out />
+
+      <system-err />
+
+    </testsuite>
+
+    <testcase name="concurrent_suite" start="2011-01-01-05.49.01.551" stop="2011-01-01-05.49.01.970" time="0.419">
+</testcase>
+
+    <testcase name="stats" start="2011-01-01-05.49.02.139" stop="2011-01-01-05.49.02.293" time="0.154">
+</testcase>
+
+    <testcase name="file" start="2011-01-01-05.49.02.416" stop="2011-01-01-05.49.03.212" time="0.796">
+      <property name="DTFA1.dtf.node.host" value="127.0.0.1" />
+
+      <property name="DTFA1.dtf.tunneled" value="false" />
+
+      <property name="DTFA1.dtf.os.name" value="Linux" />
+
+      <property name="DTFA1.dtf.debug.port" value="40003" />
+
+      <property name="DTFA1.dtf.os.version" value="2.6.32-305-ec2" />
+
+      <property name="DTFA1.dtf.node.user" value="dtftest" />
+
+      <property name="DTFA1.dtf.os.arch" value="i386" />
+
+      <property name="DTFA1.node.id" value="3" />
+
+      <property name="DTFA1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+
+      <property name="DTFA1.dtf.node.type" value="dtfa" />
 
     </testcase>
 
-    <testcase name="rendezvous" start="2011-01-01-05.20.00.676" stop="2011-01-01-05.20.00.825" time="0.149">
+    <testcase name="http" start="2011-01-01-05.49.03.993" stop="2011-01-01-05.49.04.895" time="0.902">
 </testcase>
 
-    <testcase name="rendezvous_complex" start="2011-01-01-05.20.01.117" stop="2011-01-01-05.20.02.961" time="1.844">
+    <testcase name="http_server" start="2011-01-01-05.49.05.189" stop="2011-01-01-05.49.06.976" time="1.787">
+</testcase>
+
+    <testcase name="http_cleanup_test" start="2011-01-01-05.49.07.073" stop="2011-01-01-05.49.07.967" time="0.894">
       <property name="C1.dtf.node.type" value="dtfa" />
 
-      <property name="C2.dtf.debug.port" value="40003" />
+      <property name="C2.dtf.debug.port" value="40001" />
 
       <property name="C2.dtf.node.type" value="dtfa" />
 
@@ -1541,7 +1392,7 @@
 
       <property name="C2.dtf.os.version" value="2.6.32-305-ec2" />
 
-      <property name="C1.node.id" value="3" />
+      <property name="C1.node.id" value="1" />
 
       <property name="C1.dtf.debug.port" value="40002" />
 
@@ -1569,7 +1420,218 @@
 
     </testcase>
 
-    <testcase name="share" start="2011-01-01-05.20.03.302" stop="2011-01-01-05.20.03.765" time="0.463">
+    <testcase name="string_manipulation" start="2011-01-01-05.49.08.169" stop="2011-01-01-05.49.08.170" time="0.0010">
+</testcase>
+
+    <testcase name="string_transform" start="2011-01-01-05.49.08.259" stop="2011-01-01-05.49.08.260" time="0.0010">
+</testcase>
+
+    <testcase name="convert" start="2011-01-01-05.49.08.353" stop="2011-01-01-05.49.08.437" time="0.084">
+</testcase>
+
+    <testcase name="arithmetic" start="2011-01-01-05.49.08.691" stop="2011-01-01-05.49.08.692" time="0.0010">
+</testcase>
+
+    <testcase name="random" start="2011-01-01-05.49.08.838" stop="2011-01-01-05.49.09.070" time="0.232">
+</testcase>
+
+    <testcase name="monitor" start="2011-01-01-05.49.09.253" stop="2011-01-01-05.49.09.403" time="0.15">
+      <property name="AGENT1.dtf.os.arch" value="i386" />
+
+      <property name="AGENT1.dtf.tunneled" value="false" />
+
+      <property name="AGENT1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+
+      <property name="AGENT1.dtf.node.type" value="dtfa" />
+
+      <property name="AGENT1.node.id" value="3" />
+
+      <property name="AGENT1.dtf.node.host" value="127.0.0.1" />
+
+      <property name="AGENT1.dtf.os.name" value="Linux" />
+
+      <property name="AGENT1.dtf.debug.port" value="40003" />
+
+      <property name="AGENT1.dtf.os.version" value="2.6.32-305-ec2" />
+
+      <property name="AGENT1.dtf.node.user" value="dtftest" />
+
+    </testcase>
+
+    <testcase name="diff" start="2011-01-01-05.49.09.551" stop="2011-01-01-05.49.09.568" time="0.017">
+</testcase>
+
+    <testcase name="xml_xpath" start="2011-01-01-05.49.09.763" stop="2011-01-01-05.49.09.780" time="0.017">
+</testcase>
+
+    <testcase name="xml_dynamic" start="2011-01-01-05.49.09.859" stop="2011-01-01-05.49.09.859" time="0.0">
+</testcase>
+
+    <testcase name="json_transform" start="2011-01-01-05.49.09.969" stop="2011-01-01-05.49.09.985" time="0.016">
+</testcase>
+
+    <testcase name="stream" start="2011-01-01-05.49.10.094" stop="2011-01-01-05.49.12.764" time="2.67">
+</testcase>
+
+    <testcase name="assertions" start="2011-01-01-05.49.12.972" stop="2011-01-01-05.49.12.973" time="0.0010">
+</testcase>
+
+    <testcase name="encoding" start="2011-01-01-05.49.13.066" stop="2011-01-01-05.49.13.068" time="0.0020">
+</testcase>
+
+    <testcase name="special_characters" start="2011-01-01-05.49.13.171" stop="2011-01-01-05.49.13.172" time="0.0010">
+</testcase>
+
+    <testsuite classname="dtf.dummy" disabled="0" errors="0" failures="0" name="dtf.dummy" passed="1" start="2011-01-01-05.49.13.271" stop="2011-01-01-05.49.13.506" tests="1" time="0.235" timestamp="Sat Jan 01 05:49:13 UTC 2011">
+      <testcase name="occupy_component" start="2011-01-01-05.49.13.340" stop="2011-01-01-05.49.13.501" time="0.161">
+        <property name="C1.dtf.debug.port" value="40002" />
+
+        <property name="C1.node.id" value="1" />
+
+        <property name="C1.dtf.tunneled" value="false" />
+
+        <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
+
+        <property name="C1.dtf.node.host" value="127.0.0.1" />
+
+        <property name="C1.dtf.os.name" value="Linux" />
+
+        <property name="C1.dtf.node.user" value="dtftest" />
+
+        <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+
+        <property name="C1.dtf.node.type" value="dtfa" />
+
+        <property name="C1.dtf.os.arch" value="i386" />
+
+      </testcase>
+
+      <system-out />
+
+      <system-err />
+
+    </testsuite>
+
+    <testsuite classname="dtf.dummy" disabled="0" errors="0" failures="0" name="dtf.dummy" passed="1" start="2011-01-01-05.49.14.460" stop="2011-01-01-05.49.14.674" tests="1" time="0.214" timestamp="Sat Jan 01 05:49:14 UTC 2011">
+      <property name="C1.dtf.node.type" value="dtfa" />
+
+      <property name="C2.dtf.debug.port" value="40001" />
+
+      <property name="C2.dtf.node.type" value="dtfa" />
+
+      <property name="C1.dtf.tunneled" value="false" />
+
+      <property name="C2.node.id" value="2" />
+
+      <property name="C2.dtf.tunneled" value="false" />
+
+      <property name="C2.dtf.os.version" value="2.6.32-305-ec2" />
+
+      <property name="C1.node.id" value="1" />
+
+      <property name="C1.dtf.debug.port" value="40002" />
+
+      <property name="C1.dtf.node.host" value="127.0.0.1" />
+
+      <property name="C2.dtf.node.host" value="127.0.0.1" />
+
+      <property name="C1.dtf.os.arch" value="i386" />
+
+      <property name="C1.dtf.os.name" value="Linux" />
+
+      <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+
+      <property name="C2.dtf.os.arch" value="i386" />
+
+      <property name="C2.dtf.os.name" value="Linux" />
+
+      <property name="C2.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+
+      <property name="C1.dtf.node.user" value="dtftest" />
+
+      <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
+
+      <property name="C2.dtf.node.user" value="dtftest" />
+
+      <testcase name="occupy_component" start="2011-01-01-05.49.14.536" stop="2011-01-01-05.49.14.671" time="0.135">
+        <property name="C1.dtf.debug.port" value="40003" />
+
+        <property name="C1.node.id" value="3" />
+
+        <property name="C1.dtf.tunneled" value="false" />
+
+        <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
+
+        <property name="C1.dtf.node.host" value="127.0.0.1" />
+
+        <property name="C1.dtf.os.name" value="Linux" />
+
+        <property name="C1.dtf.node.user" value="dtftest" />
+
+        <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+
+        <property name="C1.dtf.node.type" value="dtfa" />
+
+        <property name="C1.dtf.os.arch" value="i386" />
+
+      </testcase>
+
+      <system-out />
+
+      <system-err />
+
+    </testsuite>
+
+    <testcase name="testscript_component_complex" start="2011-01-01-05.49.13.260" stop="2011-01-01-05.49.14.680" time="1.42">
+</testcase>
+
+    <testcase name="rendezvous" start="2011-01-01-05.49.14.916" stop="2011-01-01-05.49.15.040" time="0.124">
+</testcase>
+
+    <testcase name="rendezvous_complex" start="2011-01-01-05.49.15.314" stop="2011-01-01-05.49.17.079" time="1.765">
+      <property name="C1.dtf.node.type" value="dtfa" />
+
+      <property name="C2.dtf.debug.port" value="40003" />
+
+      <property name="C2.dtf.node.type" value="dtfa" />
+
+      <property name="C1.dtf.tunneled" value="false" />
+
+      <property name="C2.node.id" value="3" />
+
+      <property name="C2.dtf.tunneled" value="false" />
+
+      <property name="C2.dtf.os.version" value="2.6.32-305-ec2" />
+
+      <property name="C1.node.id" value="2" />
+
+      <property name="C1.dtf.debug.port" value="40001" />
+
+      <property name="C1.dtf.node.host" value="127.0.0.1" />
+
+      <property name="C2.dtf.node.host" value="127.0.0.1" />
+
+      <property name="C1.dtf.os.arch" value="i386" />
+
+      <property name="C1.dtf.os.name" value="Linux" />
+
+      <property name="C1.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+
+      <property name="C2.dtf.os.arch" value="i386" />
+
+      <property name="C2.dtf.os.name" value="Linux" />
+
+      <property name="C2.dtf.node.home" value="/home/dtftest/build/dtf/build/dtf/dist" />
+
+      <property name="C1.dtf.node.user" value="dtftest" />
+
+      <property name="C1.dtf.os.version" value="2.6.32-305-ec2" />
+
+      <property name="C2.dtf.node.user" value="dtftest" />
+
+    </testcase>
+
+    <testcase name="share" start="2011-01-01-05.49.17.403" stop="2011-01-01-05.49.17.919" time="0.516">
       <property name="CONSUMER.dtf.node.user" value="dtftest" />
 
       <property name="PRODUCER.dtf.os.version" value="2.6.32-305-ec2" />
@@ -1586,15 +1648,15 @@
 
       <property name="PRODUCER.dtf.debug.port" value="40003" />
 
-      <property name="CONSUMER.node.id" value="3" />
+      <property name="CONSUMER.node.id" value="2" />
 
       <property name="PRODUCER.dtf.node.type" value="dtfa" />
 
-      <property name="CONSUMER.dtf.debug.port" value="40002" />
+      <property name="CONSUMER.dtf.debug.port" value="40001" />
 
       <property name="CONSUMER.dtf.node.host" value="127.0.0.1" />
 
-      <property name="PRODUCER.node.id" value="2" />
+      <property name="PRODUCER.node.id" value="3" />
 
       <property name="PRODUCER.dtf.tunneled" value="false" />
 
@@ -1612,7 +1674,7 @@
 
     </testcase>
 
-    <testcase name="share_complex" start="2011-01-01-05.20.04.063" stop="2011-01-01-05.20.04.693" time="0.63">
+    <testcase name="share_complex" start="2011-01-01-05.49.18.164" stop="2011-01-01-05.49.18.767" time="0.603">
       <property name="C1.dtf.node.type" value="dtfa" />
 
       <property name="C2.dtf.debug.port" value="40003" />
@@ -1621,15 +1683,15 @@
 
       <property name="C1.dtf.tunneled" value="false" />
 
-      <property name="C2.node.id" value="2" />
+      <property name="C2.node.id" value="3" />
 
       <property name="C2.dtf.tunneled" value="false" />
 
       <property name="C2.dtf.os.version" value="2.6.32-305-ec2" />
 
-      <property name="C1.node.id" value="3" />
+      <property name="C1.node.id" value="2" />
 
-      <property name="C1.dtf.debug.port" value="40002" />
+      <property name="C1.dtf.debug.port" value="40001" />
 
       <property name="C1.dtf.node.host" value="127.0.0.1" />
 
@@ -1655,38 +1717,38 @@
 
     </testcase>
 
-    <testcase name="scanf" start="2011-01-01-05.20.04.843" stop="2011-01-01-05.20.04.949" time="0.106">
+    <testcase name="scanf" start="2011-01-01-05.49.18.944" stop="2011-01-01-05.49.19.049" time="0.105">
 </testcase>
 
-    <testcase name="printf" start="2011-01-01-05.20.05.019" stop="2011-01-01-05.20.05.021" time="0.0020">
+    <testcase name="printf" start="2011-01-01-05.49.19.159" stop="2011-01-01-05.49.19.164" time="0.0050">
 </testcase>
 
-    <testcase name="read_image" start="2011-01-01-05.20.05.124" stop="2011-01-01-05.20.05.128" time="0.0040">
+    <testcase name="read_image" start="2011-01-01-05.49.19.243" stop="2011-01-01-05.49.19.253" time="0.01">
 </testcase>
 
     <system-out><![CDATA[
-INFO  01/01/2011 05:18:20 Testsuite       - Starting unittests
-INFO  01/01/2011 05:18:20 Testscript      - Executing storage://INPUT/state_management.xml
-INFO  01/01/2011 05:18:20 Rename          - Node name is dtfx-3
-INFO  01/01/2011 05:18:20 Lockcomponent   - Locked dtfa-0 as DTFA1
-WARN  01/01/2011 05:18:20 DTFInputStream  - Using a DTFStream as a String that is 5242880 bytes can be quite inefficient. There are better ways of streaming large amounts of data in DTF.
-INFO  01/01/2011 05:18:24 Testscript      - Executing storage://INPUT/storage.xml
-INFO  01/01/2011 05:18:24 Testscript      - Executing storage://INPUT/echo.xml
-INFO  01/01/2011 05:18:24 Rename          - Node name is dtfx-4
-INFO  01/01/2011 05:18:24 Lockcomponent   - Locked dtfa-1 as DTFA1
-INFO  01/01/2011 05:18:24 Echo            - a : b : c
-INFO  01/01/2011 05:18:24 Testscript      - Executing storage://INPUT/sleep.xml
-INFO  01/01/2011 05:18:25 Rename          - Node name is dtfx-5
-INFO  01/01/2011 05:18:25 Lockcomponent   - Locked dtfa-2 as C1
-INFO  01/01/2011 05:18:25 Testscript      - Executing storage://INPUT/loadproperties.xml
-INFO  01/01/2011 05:18:25 Echo            - The previous loadproperties should succeed.
-INFO  01/01/2011 05:18:25 Echo            - dtf.test.property1 = property value1
-INFO  01/01/2011 05:18:25 Testscript      - Executing storage://INPUT/property_resolution.xml
-INFO  01/01/2011 05:18:25 Rename          - Node name is dtfx-6
-INFO  01/01/2011 05:18:25 Lockcomponent   - Locked dtfa-0 as DTFA1
-INFO  01/01/2011 05:18:26 Testscript      - Executing storage://INPUT/property.xml
-INFO  01/01/2011 05:18:26 Echo            - value1
-INFO  01/01/2011 05:18:26 Echo            - {
+INFO  01/01/2011 05:48:32 Testsuite       - Starting unittests
+INFO  01/01/2011 05:48:32 Testscript      - Executing storage://INPUT/state_management.xml
+INFO  01/01/2011 05:48:32 Rename          - Node name is dtfx-3
+INFO  01/01/2011 05:48:32 Lockcomponent   - Locked dtfa-0 as DTFA1
+WARN  01/01/2011 05:48:32 DTFInputStream  - Using a DTFStream as a String that is 5242880 bytes can be quite inefficient. There are better ways of streaming large amounts of data in DTF.
+INFO  01/01/2011 05:48:36 Testscript      - Executing storage://INPUT/storage.xml
+INFO  01/01/2011 05:48:36 Testscript      - Executing storage://INPUT/echo.xml
+INFO  01/01/2011 05:48:36 Rename          - Node name is dtfx-4
+INFO  01/01/2011 05:48:36 Lockcomponent   - Locked dtfa-1 as DTFA1
+INFO  01/01/2011 05:48:36 Echo            - a : b : c
+INFO  01/01/2011 05:48:36 Testscript      - Executing storage://INPUT/sleep.xml
+INFO  01/01/2011 05:48:37 Rename          - Node name is dtfx-5
+INFO  01/01/2011 05:48:37 Lockcomponent   - Locked dtfa-2 as C1
+INFO  01/01/2011 05:48:37 Testscript      - Executing storage://INPUT/loadproperties.xml
+INFO  01/01/2011 05:48:37 Echo            - The previous loadproperties should succeed.
+INFO  01/01/2011 05:48:37 Echo            - dtf.test.property1 = property value1
+INFO  01/01/2011 05:48:37 Testscript      - Executing storage://INPUT/property_resolution.xml
+INFO  01/01/2011 05:48:37 Rename          - Node name is dtfx-6
+INFO  01/01/2011 05:48:38 Lockcomponent   - Locked dtfa-0 as DTFA1
+INFO  01/01/2011 05:48:38 Testscript      - Executing storage://INPUT/property.xml
+INFO  01/01/2011 05:48:38 Echo            - value1
+INFO  01/01/2011 05:48:38 Echo            - {
 	"ydht": {  
     	"fields": { 
             "hello": { "value": "world2" }, 
@@ -1701,493 +1763,493 @@ INFO  01/01/2011 05:18:26 Echo            - {
     }
 }
 
-INFO  01/01/2011 05:18:26 Echo            - 
+INFO  01/01/2011 05:48:38 Echo            - 
         Contents of the property come from the child text node like this one,
         which will continue to look just like this in the property itself.
         
         test1: value1
         
-INFO  01/01/2011 05:18:26 Log             - Data matches!
-INFO  01/01/2011 05:18:26 Log             - Caught property recursion correctly.
-INFO  01/01/2011 05:18:26 Log             - Caught nested property recursion correctly.
-INFO  01/01/2011 05:18:26 Log             - value2value2value2
-INFO  01/01/2011 05:18:26 Testscript      - Executing storage://INPUT/cat.xml
-INFO  01/01/2011 05:18:26 Log             - Caught exception correctly [Unable to find storage: CACA at tests/ut/cat.xml:51:10]
-INFO  01/01/2011 05:18:26 Testscript      - Executing storage://INPUT/log.xml
-INFO  01/01/2011 05:18:26 Log             - Just testing the logging functionality
-INFO  01/01/2011 05:18:26 Log             - INFO INFO INFO
-ERROR 01/01/2011 05:18:26 Log             - ERROR ERROR ERROR
-WARN  01/01/2011 05:18:26 Log             - WARNING WARNING WARNING
-INFO  01/01/2011 05:18:26 Log             - INFO with tag TESTING
-ERROR 01/01/2011 05:18:26 Log             - ERROR with tag TESTING
-WARN  01/01/2011 05:18:26 Log             - WARNING with tag TESTING
-INFO  01/01/2011 05:18:26 Testscript      - Executing storage://INPUT/for.xml
-INFO  01/01/2011 05:18:26 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  01/01/2011 05:18:26 Testscript      - Executing storage://INPUT/parallel.xml
-INFO  01/01/2011 05:18:27 Testscript      - Executing storage://INPUT/parallelloop.xml
-INFO  01/01/2011 05:18:27 Testscript      - Executing storage://INPUT/sequence.xml
-INFO  01/01/2011 05:18:27 Echo            - HERE
-INFO  01/01/2011 05:18:27 Echo            - HERE
-INFO  01/01/2011 05:18:27 Testscript      - Executing storage://INPUT/timer.xml
-INFO  01/01/2011 05:18:27 Timer           - Timer took 106ms of 100ms.
-INFO  01/01/2011 05:18:27 Testscript      - Executing storage://INPUT/switch.xml
-INFO  01/01/2011 05:18:27 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  01/01/2011 05:18:27 Log             - Switch case #1
-INFO  01/01/2011 05:18:27 Log             - Switch case #2
-INFO  01/01/2011 05:18:27 Log             - Looped through switch and function call correctly.
-INFO  01/01/2011 05:18:27 Log             - Switch case #2
-INFO  01/01/2011 05:18:27 Log             - Looped through switch and function call correctly.
-INFO  01/01/2011 05:18:27 Log             - Looped through switch and function call correctly.
-INFO  01/01/2011 05:18:27 Log             - Switch went into the failure case correctly.
-INFO  01/01/2011 05:18:27 Testscript      - Executing storage://INPUT/while.xml
-INFO  01/01/2011 05:18:27 Log             - Thread 1 is starting.
-INFO  01/01/2011 05:18:27 Log             - Thread 2 is starting.
-INFO  01/01/2011 05:18:27 Log             - Thread 2 is done.
-INFO  01/01/2011 05:18:27 Log             - Thread 1 is done.
-INFO  01/01/2011 05:18:27 Testscript      - Executing storage://INPUT/break.xml
-INFO  01/01/2011 05:18:28 Rename          - Node name is dtfx-7
-INFO  01/01/2011 05:18:28 Lockcomponent   - Locked dtfa-1 as C1
-INFO  01/01/2011 05:18:28 Timer           - Timer took 0ms of 30000ms.
-INFO  01/01/2011 05:18:28 Testscript      - Executing storage://INPUT/try_catch_fail.xml
-INFO  01/01/2011 05:18:28 Rename          - Node name is dtfx-8
-INFO  01/01/2011 05:18:28 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  01/01/2011 05:18:28 Echo            - Try/Catch and Fail Unit Test
-INFO  01/01/2011 05:18:28 Echo            - The previous statement has failed correctly.
-INFO  01/01/2011 05:18:28 Echo            - Caught the exception on outter try/catch.
-INFO  01/01/2011 05:18:28 Echo            - Message: Failure should be caught by catch. at tests/ut/try_catch_fail.xml:40:77
-INFO  01/01/2011 05:18:28 Echo            - Caught exception from remote component.
-INFO  01/01/2011 05:18:28 Echo            - Message: Failing on component at tests/ut/try_catch_fail.xml:66:46 on component [DTFA1]
-INFO  01/01/2011 05:18:28 Testscript      - Executing storage://INPUT/fail.xml
-INFO  01/01/2011 05:18:28 Rename          - Node name is dtfx-9
-INFO  01/01/2011 05:18:28 Lockcomponent   - Locked dtfa-0 as DTFA
-INFO  01/01/2011 05:18:28 Testscript      - Executing storage://INPUT/distribute.xml
-INFO  01/01/2011 05:18:29 Testscript      - Executing storage://INPUT/choices.xml
-INFO  01/01/2011 05:18:30 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  01/01/2011 05:18:30 Testscript      - Executing storage://INPUT/if.xml
-INFO  01/01/2011 05:18:30 Testscript      - Executing storage://INPUT/similar.xml
-INFO  01/01/2011 05:18:31 Log             - png: being checked
-INFO  01/01/2011 05:18:31 Log             - images are within 100% similarity
-INFO  01/01/2011 05:18:31 Log             - gif: being checked
-INFO  01/01/2011 05:18:31 Log             - images are within 100% similarity
-INFO  01/01/2011 05:18:31 Log             - bmp: being checked
-INFO  01/01/2011 05:18:31 Log             - images are within 100% similarity
-INFO  01/01/2011 05:18:31 Testscript      - Executing storage://INPUT/createrange.xml
-INFO  01/01/2011 05:18:31 Testscript      - Executing storage://INPUT/range.xml
-INFO  01/01/2011 05:18:31 Testscript      - Executing storage://INPUT/range_dist.xml
-INFO  01/01/2011 05:18:31 Rename          - Node name is dtfx-10
-INFO  01/01/2011 05:18:31 Lockcomponent   - Locked dtfa-1 as C1
-INFO  01/01/2011 05:18:33 Testscript      - Executing storage://INPUT/xml_range.xml
-INFO  01/01/2011 05:18:33 Log             - XPath range validation
-INFO  01/01/2011 05:18:33 Log             - XPath range validation on XML with namespace
-INFO  01/01/2011 05:18:33 Log             - XPath range validation on XML with default namespace
-INFO  01/01/2011 05:18:33 Log             - negative tests
-INFO  01/01/2011 05:18:33 Log             - Failed correctly
-INFO  01/01/2011 05:18:33 Testscript      - Executing storage://INPUT/json_range.xml
-INFO  01/01/2011 05:18:33 Log             - JPath range validation
-INFO  01/01/2011 05:18:33 Log             - Negative Tests
-INFO  01/01/2011 05:18:33 Log             - Failed correctly
-INFO  01/01/2011 05:18:33 Testscript      - Executing storage://INPUT/functions.xml
-INFO  01/01/2011 05:18:33 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  01/01/2011 05:18:33 Import          - Importing elements from Import {uri=storage://INPUT/functions_util.xml}
-WARN  01/01/2011 05:18:33 Function        - Argument [function] not being used by the function [func2]
-WARN  01/01/2011 05:18:33 Function        - Argument [function] not being used by the function [func3]
-WARN  01/01/2011 05:18:33 Function        - Argument [p3] not being used by the function [functionWithParams]
-INFO  01/01/2011 05:18:33 Testscript      - Executing storage://INPUT/import.xml
-INFO  01/01/2011 05:18:34 Import          - Importing elements from Import {uri=storage://INPUT/functions_util.xml}
-INFO  01/01/2011 05:18:34 Import          - Importing elements from Import {uri=storage://TINPUT/functions.xml}
-WARN  01/01/2011 05:18:34 Function        - Argument [function] not being used by the function [func2]
-WARN  01/01/2011 05:18:34 Function        - Argument [function] not being used by the function [func3]
-INFO  01/01/2011 05:18:34 Import          - Importing elements from Import {uri=storage://INPUT/badxml}
-INFO  01/01/2011 05:18:34 Testscript      - Executing storage://INPUT/export.xml
-INFO  01/01/2011 05:18:34 Import          - Importing elements from Import {uri=storage://INPUT/export_util.xml}
-INFO  01/01/2011 05:18:34 Rename          - Node name is dtfx-11
-INFO  01/01/2011 05:18:34 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  01/01/2011 05:18:34 Log             - Got exception as expected.
-INFO  01/01/2011 05:18:34 Testscript      - Executing storage://INPUT/references.xml
-INFO  01/01/2011 05:18:34 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  01/01/2011 05:18:35 Rename          - Node name is dtfx-12
-INFO  01/01/2011 05:18:35 Lockcomponent   - Locked dtfa-0 as DTFA1
-INFO  01/01/2011 05:18:35 Testscript      - Executing storage://INPUT/component.xml
-INFO  01/01/2011 05:18:35 Rename          - Node name is dtfx-13
-INFO  01/01/2011 05:18:35 Lockcomponent   - Locked dtfa-1 as DTFA1
-INFO  01/01/2011 05:18:35 Echo            - About to lock a dtfa by name and this will fail.
-INFO  01/01/2011 05:18:36 Testscript      - Executing storage://INPUT/lockcomponent.xml
-INFO  01/01/2011 05:18:36 Rename          - Node name is dtfx-14
-INFO  01/01/2011 05:18:36 Lockcomponent   - Locked dtfa-2 as DTFA3
-INFO  01/01/2011 05:18:36 Lockcomponent   - Locked dtfa-0 as DTFA1
-INFO  01/01/2011 05:18:36 Unlockcomponent - Unlocking dtfa-0
-INFO  01/01/2011 05:18:36 Lockcomponent   - Locked dtfa-1 as DTFA2
-INFO  01/01/2011 05:18:36 Unlockcomponent - Unlocking dtfa-1
-INFO  01/01/2011 05:18:37 Unlockcomponent - Component unlocked DTFA1
-INFO  01/01/2011 05:18:37 Unlockcomponent - Component unlocked DTFA2
-INFO  01/01/2011 05:18:37 Lockcomponent   - Locked dtfa-0 as DTFA2
-INFO  01/01/2011 05:18:37 Unlockcomponent - Unlocking dtfa-0
-INFO  01/01/2011 05:18:37 Unlockcomponent - Component unlocked DTFA2
-INFO  01/01/2011 05:18:37 Lockcomponent   - Locked dtfa-1 as DTFA1
-INFO  01/01/2011 05:18:37 Unlockcomponent - Unlocking dtfa-1
-INFO  01/01/2011 05:18:37 Lockcomponent   - Locked dtfa-0 as DTFA2
-INFO  01/01/2011 05:18:37 Unlockcomponent - Unlocking dtfa-0
-INFO  01/01/2011 05:18:37 Unlockcomponent - Component unlocked DTFA2
-INFO  01/01/2011 05:18:37 Unlockcomponent - Component unlocked DTFA1
-INFO  01/01/2011 05:18:37 Lockcomponent   - Locked dtfa-1 as DTFA1
-INFO  01/01/2011 05:18:37 Unlockcomponent - Unlocking dtfa-1
-INFO  01/01/2011 05:18:37 Unlockcomponent - Component unlocked DTFA1
-INFO  01/01/2011 05:18:37 Unlockcomponent - Unlocking dtfa-2
-INFO  01/01/2011 05:18:37 Unlockcomponent - Component unlocked DTFA3
-INFO  01/01/2011 05:18:37 Lockcomponent   - Locked dtfa-2 as DTFA3
-INFO  01/01/2011 05:18:37 Unlockcomponent - Unlocking dtfa-2
-INFO  01/01/2011 05:18:37 Unlockcomponent - Component unlocked DTFA3
-INFO  01/01/2011 05:18:37 Lockcomponent   - Locked dtfa-2 as DTFA3
-INFO  01/01/2011 05:18:37 Unlockcomponent - Unlocking dtfa-2
-INFO  01/01/2011 05:18:37 Unlockcomponent - Component unlocked DTFA3
-INFO  01/01/2011 05:18:37 Testsuite       - Starting lockcomponent
-INFO  01/01/2011 05:18:37 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  01/01/2011 05:18:37 Testsuite       - Starting lockcomponent
-INFO  01/01/2011 05:18:37 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  01/01/2011 05:18:37 Testsuite       - Starting lockcomponent
-INFO  01/01/2011 05:18:37 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  01/01/2011 05:18:37 Rename          - Node name is dtfx-15
-INFO  01/01/2011 05:18:37 Lockcomponent   - Locked dtfa-0 as C1
-INFO  01/01/2011 05:18:37 Rename          - Node name is dtfx-16
-INFO  01/01/2011 05:18:37 Lockcomponent   - Locked dtfa-1 as C1
-INFO  01/01/2011 05:18:37 Testsuite       - Starting lockcomponent
-INFO  01/01/2011 05:18:37 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  01/01/2011 05:18:37 Rename          - Node name is dtfx-17
-INFO  01/01/2011 05:18:37 Lockcomponent   - Locked dtfa-2 as C1
-INFO  01/01/2011 05:18:37 Rename          - Node name is dtfx-18
-INFO  01/01/2011 05:18:37 Lockcomponent   - Locked dtfa-1 as C1
-INFO  01/01/2011 05:18:37 Testsuite       - Starting lockcomponent
-INFO  01/01/2011 05:18:37 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  01/01/2011 05:18:38 Testsuite       - Starting lockcomponent
-INFO  01/01/2011 05:18:38 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  01/01/2011 05:18:38 Testsuite       - Starting lockcomponent
-INFO  01/01/2011 05:18:38 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  01/01/2011 05:18:38 Rename          - Node name is dtfx-19
-INFO  01/01/2011 05:18:38 Lockcomponent   - Locked dtfa-0 as C1
-INFO  01/01/2011 05:18:38 Rename          - Node name is dtfx-20
-INFO  01/01/2011 05:18:38 Rename          - Node name is dtfx-21
-INFO  01/01/2011 05:18:38 Lockcomponent   - Locked dtfa-1 as C1
-INFO  01/01/2011 05:18:38 Testsuite       - Starting lockcomponent
-INFO  01/01/2011 05:18:38 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  01/01/2011 05:18:38 Lockcomponent   - Locked dtfa-2 as C1
-INFO  01/01/2011 05:18:38 Testsuite       - Starting lockcomponent
-INFO  01/01/2011 05:18:38 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  01/01/2011 05:18:38 Rename          - Node name is dtfx-22
-INFO  01/01/2011 05:18:38 Lockcomponent   - Locked dtfa-2 as C1
-INFO  01/01/2011 05:18:38 Rename          - Node name is dtfx-23
-INFO  01/01/2011 05:18:38 Lockcomponent   - Locked dtfa-0 as C1
-INFO  01/01/2011 05:18:38 Testsuite       - Starting lockcomponent
-INFO  01/01/2011 05:18:38 Testscript      - Executing storage://INPUT/parallel_occupy_component.xml
-INFO  01/01/2011 05:18:38 Rename          - Node name is dtfx-24
-INFO  01/01/2011 05:18:38 Lockcomponent   - Locked dtfa-1 as C1
-INFO  01/01/2011 05:18:38 Lockcomponent   - Locked dtfa-2 as C2
-INFO  01/01/2011 05:18:38 Lockcomponent   - Locked dtfa-0 as C3
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-0 as C1
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-0
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked C1
-INFO  01/01/2011 05:18:39 Testsuite       - Starting lockcomponent
-INFO  01/01/2011 05:18:39 Testscript      - Executing storage://INPUT/function_occupy_component.xml
-INFO  01/01/2011 05:18:39 Rename          - Node name is dtfx-25
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-1 as C1
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-2 as C2
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-0 as C3
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-0 as C1
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-0
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked C1
-INFO  01/01/2011 05:18:39 Testscript      - Executing storage://INPUT/lockgroup.xml
-INFO  01/01/2011 05:18:39 Rename          - Node name is dtfx-26
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-1 as DTFA1-2
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-2 as DTFA2-2
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-1
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked DTFA1-2
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-2
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked DTFA2-2
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-2 as DTFA1-1
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-1 as DTFA2-1
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-2
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked DTFA1-1
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-1
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked DTFA2-1
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-0 as DTFA1-1
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-2 as DTFA2-1
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-0
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked DTFA1-1
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-2
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked DTFA2-1
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-0 as DTFA1-2
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-1 as DTFA2-2
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-0
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked DTFA1-2
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-1
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked DTFA2-2
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-1 as DTFA1-1
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-2 as DTFA2-1
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-1
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked DTFA1-1
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-2
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked DTFA2-1
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-2 as DTFA1-2
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-1 as DTFA2-2
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-2
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked DTFA1-2
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-1
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked DTFA2-2
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-0 as DTFA1-1
-INFO  01/01/2011 05:18:39 Lockcomponent   - Locked dtfa-2 as DTFA2-1
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-0
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked DTFA1-1
-INFO  01/01/2011 05:18:39 Unlockcomponent - Unlocking dtfa-2
-INFO  01/01/2011 05:18:39 Unlockcomponent - Component unlocked DTFA2-1
-INFO  01/01/2011 05:18:40 Lockcomponent   - Locked dtfa-0 as DTFA1-2
-INFO  01/01/2011 05:18:40 Lockcomponent   - Locked dtfa-1 as DTFA2-2
-INFO  01/01/2011 05:18:40 Unlockcomponent - Unlocking dtfa-0
-INFO  01/01/2011 05:18:40 Unlockcomponent - Component unlocked DTFA1-2
-INFO  01/01/2011 05:18:40 Unlockcomponent - Unlocking dtfa-1
-INFO  01/01/2011 05:18:40 Unlockcomponent - Component unlocked DTFA2-2
-INFO  01/01/2011 05:18:40 Lockcomponent   - Locked dtfa-1 as DTFA1-1
-INFO  01/01/2011 05:18:40 Lockcomponent   - Locked dtfa-2 as DTFA2-1
-INFO  01/01/2011 05:18:40 Unlockcomponent - Unlocking dtfa-1
-INFO  01/01/2011 05:18:40 Unlockcomponent - Component unlocked DTFA1-1
-INFO  01/01/2011 05:18:40 Unlockcomponent - Unlocking dtfa-2
-INFO  01/01/2011 05:18:40 Unlockcomponent - Component unlocked DTFA2-1
-INFO  01/01/2011 05:18:40 Lockcomponent   - Locked dtfa-2 as DTFA1-2
-INFO  01/01/2011 05:18:40 Lockcomponent   - Locked dtfa-1 as DTFA2-2
-INFO  01/01/2011 05:18:40 Unlockcomponent - Unlocking dtfa-2
-INFO  01/01/2011 05:18:40 Unlockcomponent - Component unlocked DTFA1-2
-INFO  01/01/2011 05:18:40 Unlockcomponent - Unlocking dtfa-1
-INFO  01/01/2011 05:18:40 Unlockcomponent - Component unlocked DTFA2-2
-INFO  01/01/2011 05:18:40 Testscript      - Executing storage://INPUT/remotestorage.xml
-INFO  01/01/2011 05:18:40 Rename          - Node name is dtfx-27
-INFO  01/01/2011 05:18:40 Lockcomponent   - Locked dtfa-0 as DTFA1
-INFO  01/01/2011 05:18:40 Lockcomponent   - Locked dtfa-2 as DTFA2
-INFO  01/01/2011 05:18:40 Lockcomponent   - Locked dtfa-1 as DTFA3
-INFO  01/01/2011 05:18:40 Log             - DTFA1
-INFO  01/01/2011 05:18:40 Log             - DTFA2
-INFO  01/01/2011 05:18:40 Log             - DTFA3
-INFO  01/01/2011 05:18:41 Log             - Parallel Overwrites
-INFO  01/01/2011 05:18:41 Log             - Sequential Appends
-INFO  01/01/2011 05:18:41 Log             - Parallel Appends
-INFO  01/01/2011 05:18:42 Testscript      - Executing storage://INPUT/recorder.xml
-INFO  01/01/2011 05:18:42 Rename          - Node name is dtfx-28
-INFO  01/01/2011 05:18:42 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  01/01/2011 05:18:42 Log             - TXT Recorder Unit Tests
-INFO  01/01/2011 05:18:42 Log             - Object Recorder Unit Tests
-INFO  01/01/2011 05:18:42 Echo            - Previous event started at: 1293859122428
-INFO  01/01/2011 05:18:42 Echo            - Previous event ended at: 1293859122428
-INFO  01/01/2011 05:18:42 Echo            - Previous event had property1 set to: 1
-INFO  01/01/2011 05:18:42 Echo            - Previous event started at: 1293859122429
-INFO  01/01/2011 05:18:42 Echo            - Previous event ended at: 1293859122429
-INFO  01/01/2011 05:18:42 Echo            - Previous event had property1 set to: 1
-INFO  01/01/2011 05:18:42 Log             - Caught exception correctly [Unable to find storage: SOMEWHERE at tests/ut/recorder.xml:87:10]
-INFO  01/01/2011 05:18:42 Log             - Caught exception correctly [Unsupported recorder type [caca] at tests/ut/recorder.xml:95:10]
-INFO  01/01/2011 05:18:42 Testscript      - Executing storage://INPUT/stats_recorder.xml
-INFO  01/01/2011 05:18:42 Testscript      - Executing storage://INPUT/query.xml
-INFO  01/01/2011 05:18:42 Log             - 1: abcxyzup
-INFO  01/01/2011 05:18:42 Log             - 5: abcxyzup
-INFO  01/01/2011 05:18:42 Log             - Total Ops 5
-INFO  01/01/2011 05:18:42 Testsuite       - Starting query
-INFO  01/01/2011 05:18:42 Testscript      - Executing storage://INPUT/query_testcase.xml
-INFO  01/01/2011 05:18:43 Log             - Queries per second: 1000
-INFO  01/01/2011 05:18:43 Log             - Complex queries for txt format
-INFO  01/01/2011 05:18:43 Echo            - All done iterating correctly.
-INFO  01/01/2011 05:18:43 Echo            - All done iterating correctly.
-INFO  01/01/2011 05:18:43 Echo            - All done iterating correctly.
-INFO  01/01/2011 05:18:43 Resetcursor     - Resetting curosr [element2]
-INFO  01/01/2011 05:18:43 Echo            - All done iterating correctly.
-INFO  01/01/2011 05:18:43 Log             - caca
-INFO  01/01/2011 05:18:43 Testscript      - Executing storage://INPUT/event.xml
-INFO  01/01/2011 05:18:43 Echo            - Counter Unit Tests
-INFO  01/01/2011 05:18:43 ConsoleRecorder - {dtf.echo.start=1293859123919, dtf.echo.stop=1293859123919, dtf.echo.iteration=1}
-INFO  01/01/2011 05:18:43 ConsoleRecorder - {dtf.echo.start=1293859123919, dtf.echo.stop=1293859123919, dtf.echo.iteration=2}
-INFO  01/01/2011 05:18:43 ConsoleRecorder - {dtf.echo.start=1293859123919, dtf.echo.stop=1293859123919, dtf.echo.iteration=3}
-INFO  01/01/2011 05:18:43 ConsoleRecorder - {dtf.echo.start=1293859123920, dtf.echo.stop=1293859123920, dtf.echo.iteration=4}
-INFO  01/01/2011 05:18:43 ConsoleRecorder - {dtf.echo.start=1293859123920, dtf.echo.stop=1293859123920, dtf.echo.iteration=5}
-INFO  01/01/2011 05:18:43 Rename          - Node name is dtfx-29
-INFO  01/01/2011 05:18:43 Lockcomponent   - Locked dtfa-1 as DTFA1
-INFO  01/01/2011 05:18:44 Testscript      - Executing storage://INPUT/event_visibility.xml
-INFO  01/01/2011 05:18:44 Rename          - Node name is dtfx-30
-INFO  01/01/2011 05:18:44 Lockcomponent   - Locked dtfa-0 as C1
-INFO  01/01/2011 05:18:44 Testscript      - Executing storage://INPUT/compare.xml
-INFO  01/01/2011 05:18:44 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  01/01/2011 05:18:44 Testscript      - Executing storage://INPUT/filter.xml
-INFO  01/01/2011 05:18:44 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  01/01/2011 05:18:45 Testscript      - Executing storage://INPUT/sort.xml
-INFO  01/01/2011 05:18:45 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  01/01/2011 05:18:45 Testscript      - Executing storage://INPUT/testsuite.xml
-INFO  01/01/2011 05:18:45 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testsuite_results.xml}
-INFO  01/01/2011 05:18:45 Testsuite       - Starting testsuite1
-INFO  01/01/2011 05:18:45 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:45 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:45 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:45 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:45 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:45 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:45 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:45 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:45 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:45 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:45 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:45 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:45 Testscript      - Executing storage://INPUT/testsuite-sub.xml
-INFO  01/01/2011 05:18:45 Testsuite       - Starting testsuite2
-INFO  01/01/2011 05:18:45 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:45 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:45 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:45 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:45 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:45 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:45 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:46 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:46 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:46 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:46 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:46 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:46 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testsuite_results.xml}
-INFO  01/01/2011 05:18:46 Testscript      - Executing storage://INPUT/results.xml
-INFO  01/01/2011 05:18:46 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  01/01/2011 05:18:46 Testsuite       - Starting results
-INFO  01/01/2011 05:18:46 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:46 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:46 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:46 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:46 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:46 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:46 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:46 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:46 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:46 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:46 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:46 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:46 Testscript      - Executing storage://INPUT/testsuite-sub.xml
-INFO  01/01/2011 05:18:46 Testsuite       - Starting testsuite2
-INFO  01/01/2011 05:18:46 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:46 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:46 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:46 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:46 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:46 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:46 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:46 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:46 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:47 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:47 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  01/01/2011 05:18:47 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  01/01/2011 05:18:47 Testsuite       - Starting results
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:47 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:47 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:47 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:47 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:47 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:47 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/testsuite-sub.xml
-INFO  01/01/2011 05:18:47 Testsuite       - Starting testsuite2
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:47 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:47 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:47 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:47 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:47 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:47 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 ConsoleResults  - Testsuite: results passed. 13 passed testcases.
-INFO  01/01/2011 05:18:47 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  01/01/2011 05:18:47 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  01/01/2011 05:18:47 Testsuite       - Starting results
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:47 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:47 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:47 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:47 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:48 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:48 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:48 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/testsuite-sub.xml
-INFO  01/01/2011 05:18:48 Testsuite       - Starting testsuite2
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:48 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:48 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:48 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:48 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:48 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:48 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:48 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  01/01/2011 05:18:48 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:48 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:48 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:48 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
-INFO  01/01/2011 05:18:48 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  01/01/2011 05:18:48 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  01/01/2011 05:18:48 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  01/01/2011 05:18:48 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/concurrent_suite.xml
-INFO  01/01/2011 05:18:48 Result          - Starting Result recording: Result {uri=storage://OUTPUT/concurrent_suite_results.xml}
-INFO  01/01/2011 05:18:48 Testsuite       - Starting concurrent_suite
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/empty.xml
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/empty.xml
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/empty.xml
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/empty.xml
-INFO  01/01/2011 05:18:48 Testscript      - Executing storage://INPUT/empty.xml
-INFO  01/01/2011 05:18:49 Testscript      - Executing storage://INPUT/empty.xml
-INFO  01/01/2011 05:18:49 Testscript      - Executing storage://INPUT/empty.xml
-INFO  01/01/2011 05:18:49 Testscript      - Executing storage://INPUT/empty.xml
-INFO  01/01/2011 05:18:49 Testscript      - Executing storage://INPUT/empty.xml
-INFO  01/01/2011 05:18:49 Testscript      - Executing storage://INPUT/empty.xml
-INFO  01/01/2011 05:18:49 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/concurrent_suite_results.xml}
-INFO  01/01/2011 05:18:49 Testscript      - Executing storage://INPUT/stats.xml
-INFO  01/01/2011 05:18:49 Resetcursor     - Resetting curosr [cursor1]
-INFO  01/01/2011 05:18:49 Log             - Caught exception correctly [Cursor [inexistent] does not exist at tests/ut/stats.xml:71:10]
-INFO  01/01/2011 05:18:49 Testscript      - Executing storage://INPUT/file.xml
-INFO  01/01/2011 05:18:49 Rename          - Node name is dtfx-31
-INFO  01/01/2011 05:18:49 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  01/01/2011 05:18:50 Log             - Caught expected failure.
-INFO  01/01/2011 05:18:50 Testscript      - Executing storage://INPUT/http.xml
-INFO  01/01/2011 05:18:50 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
-INFO  01/01/2011 05:18:51 Http_server     - Starting [127.0.0.1:55555]
-INFO  01/01/2011 05:18:51 Http_server     - Stopping [127.0.0.1:55555]
-INFO  01/01/2011 05:18:51 Testscript      - Executing storage://INPUT/http_server.xml
-INFO  01/01/2011 05:18:51 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
-INFO  01/01/2011 05:18:51 Http_server     - Starting [127.0.0.1:44444]
-INFO  01/01/2011 05:18:51 Log             - SOME DATA FROM THE CLIENT
-INFO  01/01/2011 05:18:51 Log             - in operation1
-INFO  01/01/2011 05:18:51 Log             - in operation2
-INFO  01/01/2011 05:18:51 Log             - in operation3
-INFO  01/01/2011 05:18:51 Log             - Validating that parallel cookie manipulation doesn't hit any issues 
-INFO  01/01/2011 05:18:53 Http_server     - Stopping [127.0.0.1:44444]
-INFO  01/01/2011 05:18:53 Http_server     - Starting [127.0.0.1:44445]
-INFO  01/01/2011 05:18:53 Http_server     - Stopping [127.0.0.1:44445]
-INFO  01/01/2011 05:18:53 Testscript      - Executing storage://INPUT/http_cleanup_test.xml
-INFO  01/01/2011 05:18:53 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
-INFO  01/01/2011 05:18:53 Rename          - Node name is dtfx-32
-INFO  01/01/2011 05:18:53 Http_server     - Starting [127.0.0.1:33333]
-INFO  01/01/2011 05:18:53 Lockcomponent   - Locked dtfa-1 as C1
-INFO  01/01/2011 05:18:53 Lockcomponent   - Locked dtfa-0 as C2
-INFO  01/01/2011 05:18:54 Unlockcomponent - Unlocking dtfa-1
-ERROR 01/01/2011 05:18:54 Client closed connection.
+INFO  01/01/2011 05:48:38 Log             - Data matches!
+INFO  01/01/2011 05:48:38 Log             - Caught property recursion correctly.
+INFO  01/01/2011 05:48:38 Log             - Caught nested property recursion correctly.
+INFO  01/01/2011 05:48:38 Log             - value2value2value2
+INFO  01/01/2011 05:48:38 Testscript      - Executing storage://INPUT/cat.xml
+INFO  01/01/2011 05:48:38 Log             - Caught exception correctly [Unable to find storage: CACA at tests/ut/cat.xml:51:10]
+INFO  01/01/2011 05:48:38 Testscript      - Executing storage://INPUT/log.xml
+INFO  01/01/2011 05:48:38 Log             - Just testing the logging functionality
+INFO  01/01/2011 05:48:38 Log             - INFO INFO INFO
+ERROR 01/01/2011 05:48:38 Log             - ERROR ERROR ERROR
+WARN  01/01/2011 05:48:38 Log             - WARNING WARNING WARNING
+INFO  01/01/2011 05:48:38 Log             - INFO with tag TESTING
+ERROR 01/01/2011 05:48:38 Log             - ERROR with tag TESTING
+WARN  01/01/2011 05:48:38 Log             - WARNING with tag TESTING
+INFO  01/01/2011 05:48:38 Testscript      - Executing storage://INPUT/for.xml
+INFO  01/01/2011 05:48:38 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  01/01/2011 05:48:39 Testscript      - Executing storage://INPUT/parallel.xml
+INFO  01/01/2011 05:48:39 Testscript      - Executing storage://INPUT/parallelloop.xml
+INFO  01/01/2011 05:48:39 Testscript      - Executing storage://INPUT/sequence.xml
+INFO  01/01/2011 05:48:39 Echo            - HERE
+INFO  01/01/2011 05:48:39 Echo            - HERE
+INFO  01/01/2011 05:48:39 Testscript      - Executing storage://INPUT/timer.xml
+INFO  01/01/2011 05:48:39 Timer           - Timer took 102ms of 100ms.
+INFO  01/01/2011 05:48:39 Testscript      - Executing storage://INPUT/switch.xml
+INFO  01/01/2011 05:48:39 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  01/01/2011 05:48:39 Log             - Switch case #1
+INFO  01/01/2011 05:48:39 Log             - Switch case #2
+INFO  01/01/2011 05:48:39 Log             - Looped through switch and function call correctly.
+INFO  01/01/2011 05:48:39 Log             - Switch case #2
+INFO  01/01/2011 05:48:39 Log             - Looped through switch and function call correctly.
+INFO  01/01/2011 05:48:39 Log             - Looped through switch and function call correctly.
+INFO  01/01/2011 05:48:39 Log             - Switch went into the failure case correctly.
+INFO  01/01/2011 05:48:40 Testscript      - Executing storage://INPUT/while.xml
+INFO  01/01/2011 05:48:40 Log             - Thread 1 is starting.
+INFO  01/01/2011 05:48:40 Log             - Thread 2 is starting.
+INFO  01/01/2011 05:48:40 Log             - Thread 2 is done.
+INFO  01/01/2011 05:48:40 Log             - Thread 1 is done.
+INFO  01/01/2011 05:48:40 Testscript      - Executing storage://INPUT/break.xml
+INFO  01/01/2011 05:48:40 Rename          - Node name is dtfx-7
+INFO  01/01/2011 05:48:40 Lockcomponent   - Locked dtfa-1 as C1
+INFO  01/01/2011 05:48:40 Timer           - Timer took 0ms of 30000ms.
+INFO  01/01/2011 05:48:40 Testscript      - Executing storage://INPUT/try_catch_fail.xml
+INFO  01/01/2011 05:48:40 Rename          - Node name is dtfx-8
+INFO  01/01/2011 05:48:40 Lockcomponent   - Locked dtfa-2 as DTFA1
+INFO  01/01/2011 05:48:40 Echo            - Try/Catch and Fail Unit Test
+INFO  01/01/2011 05:48:40 Echo            - The previous statement has failed correctly.
+INFO  01/01/2011 05:48:40 Echo            - Caught the exception on outter try/catch.
+INFO  01/01/2011 05:48:40 Echo            - Message: Failure should be caught by catch. at tests/ut/try_catch_fail.xml:40:77
+INFO  01/01/2011 05:48:40 Echo            - Caught exception from remote component.
+INFO  01/01/2011 05:48:40 Echo            - Message: Failing on component at tests/ut/try_catch_fail.xml:66:46 on component [DTFA1]
+INFO  01/01/2011 05:48:41 Testscript      - Executing storage://INPUT/fail.xml
+INFO  01/01/2011 05:48:41 Rename          - Node name is dtfx-9
+INFO  01/01/2011 05:48:41 Lockcomponent   - Locked dtfa-0 as DTFA
+INFO  01/01/2011 05:48:41 Testscript      - Executing storage://INPUT/distribute.xml
+INFO  01/01/2011 05:48:42 Testscript      - Executing storage://INPUT/choices.xml
+INFO  01/01/2011 05:48:42 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  01/01/2011 05:48:42 Testscript      - Executing storage://INPUT/if.xml
+INFO  01/01/2011 05:48:42 Testscript      - Executing storage://INPUT/similar.xml
+INFO  01/01/2011 05:48:43 Log             - png: being checked
+INFO  01/01/2011 05:48:43 Log             - images are within 100% similarity
+INFO  01/01/2011 05:48:43 Log             - gif: being checked
+INFO  01/01/2011 05:48:43 Log             - images are within 100% similarity
+INFO  01/01/2011 05:48:43 Log             - bmp: being checked
+INFO  01/01/2011 05:48:43 Log             - images are within 100% similarity
+INFO  01/01/2011 05:48:43 Testscript      - Executing storage://INPUT/createrange.xml
+INFO  01/01/2011 05:48:43 Testscript      - Executing storage://INPUT/range.xml
+INFO  01/01/2011 05:48:44 Testscript      - Executing storage://INPUT/range_dist.xml
+INFO  01/01/2011 05:48:44 Rename          - Node name is dtfx-10
+INFO  01/01/2011 05:48:44 Lockcomponent   - Locked dtfa-1 as C1
+INFO  01/01/2011 05:48:45 Testscript      - Executing storage://INPUT/xml_range.xml
+INFO  01/01/2011 05:48:45 Log             - XPath range validation
+INFO  01/01/2011 05:48:45 Log             - XPath range validation on XML with namespace
+INFO  01/01/2011 05:48:45 Log             - XPath range validation on XML with default namespace
+INFO  01/01/2011 05:48:45 Log             - negative tests
+INFO  01/01/2011 05:48:45 Log             - Failed correctly
+INFO  01/01/2011 05:48:45 Testscript      - Executing storage://INPUT/json_range.xml
+INFO  01/01/2011 05:48:45 Log             - JPath range validation
+INFO  01/01/2011 05:48:45 Log             - Negative Tests
+INFO  01/01/2011 05:48:45 Log             - Failed correctly
+INFO  01/01/2011 05:48:45 Testscript      - Executing storage://INPUT/functions.xml
+INFO  01/01/2011 05:48:46 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  01/01/2011 05:48:46 Import          - Importing elements from Import {uri=storage://INPUT/functions_util.xml}
+WARN  01/01/2011 05:48:46 Function        - Argument [function] not being used by the function [func2]
+WARN  01/01/2011 05:48:46 Function        - Argument [function] not being used by the function [func3]
+WARN  01/01/2011 05:48:46 Function        - Argument [p3] not being used by the function [functionWithParams]
+INFO  01/01/2011 05:48:46 Testscript      - Executing storage://INPUT/import.xml
+INFO  01/01/2011 05:48:46 Import          - Importing elements from Import {uri=storage://INPUT/functions_util.xml}
+INFO  01/01/2011 05:48:46 Import          - Importing elements from Import {uri=storage://TINPUT/functions.xml}
+WARN  01/01/2011 05:48:46 Function        - Argument [function] not being used by the function [func2]
+WARN  01/01/2011 05:48:46 Function        - Argument [function] not being used by the function [func3]
+INFO  01/01/2011 05:48:46 Import          - Importing elements from Import {uri=storage://INPUT/badxml}
+INFO  01/01/2011 05:48:46 Testscript      - Executing storage://INPUT/export.xml
+INFO  01/01/2011 05:48:47 Import          - Importing elements from Import {uri=storage://INPUT/export_util.xml}
+INFO  01/01/2011 05:48:47 Rename          - Node name is dtfx-11
+INFO  01/01/2011 05:48:47 Lockcomponent   - Locked dtfa-2 as DTFA1
+INFO  01/01/2011 05:48:47 Log             - Got exception as expected.
+INFO  01/01/2011 05:48:47 Testscript      - Executing storage://INPUT/references.xml
+INFO  01/01/2011 05:48:47 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  01/01/2011 05:48:47 Rename          - Node name is dtfx-12
+INFO  01/01/2011 05:48:47 Lockcomponent   - Locked dtfa-0 as DTFA1
+INFO  01/01/2011 05:48:47 Testscript      - Executing storage://INPUT/component.xml
+INFO  01/01/2011 05:48:47 Rename          - Node name is dtfx-13
+INFO  01/01/2011 05:48:47 Lockcomponent   - Locked dtfa-1 as DTFA1
+INFO  01/01/2011 05:48:47 Echo            - About to lock a dtfa by name and this will fail.
+INFO  01/01/2011 05:48:49 Testscript      - Executing storage://INPUT/lockcomponent.xml
+INFO  01/01/2011 05:48:49 Rename          - Node name is dtfx-14
+INFO  01/01/2011 05:48:49 Lockcomponent   - Locked dtfa-1 as DTFA2
+INFO  01/01/2011 05:48:49 Lockcomponent   - Locked dtfa-0 as DTFA3
+INFO  01/01/2011 05:48:49 Unlockcomponent - Unlocking dtfa-1
+INFO  01/01/2011 05:48:49 Lockcomponent   - Locked dtfa-2 as DTFA1
+INFO  01/01/2011 05:48:49 Unlockcomponent - Unlocking dtfa-2
+INFO  01/01/2011 05:48:49 Unlockcomponent - Component unlocked DTFA2
+INFO  01/01/2011 05:48:49 Unlockcomponent - Component unlocked DTFA1
+INFO  01/01/2011 05:48:49 Unlockcomponent - Unlocking dtfa-0
+INFO  01/01/2011 05:48:49 Lockcomponent   - Locked dtfa-1 as DTFA2
+INFO  01/01/2011 05:48:49 Unlockcomponent - Unlocking dtfa-1
+INFO  01/01/2011 05:48:49 Unlockcomponent - Component unlocked DTFA3
+INFO  01/01/2011 05:48:49 Unlockcomponent - Component unlocked DTFA2
+INFO  01/01/2011 05:48:49 Lockcomponent   - Locked dtfa-0 as DTFA2
+INFO  01/01/2011 05:48:49 Lockcomponent   - Locked dtfa-2 as DTFA1
+INFO  01/01/2011 05:48:49 Unlockcomponent - Unlocking dtfa-0
+INFO  01/01/2011 05:48:49 Unlockcomponent - Component unlocked DTFA2
+INFO  01/01/2011 05:48:49 Lockcomponent   - Locked dtfa-1 as DTFA3
+INFO  01/01/2011 05:48:49 Unlockcomponent - Unlocking dtfa-1
+INFO  01/01/2011 05:48:49 Unlockcomponent - Component unlocked DTFA3
+INFO  01/01/2011 05:48:49 Lockcomponent   - Locked dtfa-0 as DTFA3
+INFO  01/01/2011 05:48:49 Unlockcomponent - Unlocking dtfa-0
+INFO  01/01/2011 05:48:49 Unlockcomponent - Component unlocked DTFA3
+INFO  01/01/2011 05:48:49 Unlockcomponent - Unlocking dtfa-2
+INFO  01/01/2011 05:48:49 Unlockcomponent - Component unlocked DTFA1
+INFO  01/01/2011 05:48:49 Lockcomponent   - Locked dtfa-2 as DTFA1
+INFO  01/01/2011 05:48:49 Unlockcomponent - Unlocking dtfa-2
+INFO  01/01/2011 05:48:49 Unlockcomponent - Component unlocked DTFA1
+INFO  01/01/2011 05:48:49 Testsuite       - Starting lockcomponent
+INFO  01/01/2011 05:48:49 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  01/01/2011 05:48:49 Testsuite       - Starting lockcomponent
+INFO  01/01/2011 05:48:49 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  01/01/2011 05:48:49 Testsuite       - Starting lockcomponent
+INFO  01/01/2011 05:48:49 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  01/01/2011 05:48:50 Rename          - Node name is dtfx-15
+INFO  01/01/2011 05:48:50 Rename          - Node name is dtfx-16
+INFO  01/01/2011 05:48:50 Lockcomponent   - Locked dtfa-1 as C1
+INFO  01/01/2011 05:48:50 Rename          - Node name is dtfx-17
+INFO  01/01/2011 05:48:50 Lockcomponent   - Locked dtfa-0 as C1
+INFO  01/01/2011 05:48:50 Testsuite       - Starting lockcomponent
+INFO  01/01/2011 05:48:50 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  01/01/2011 05:48:50 Testsuite       - Starting lockcomponent
+INFO  01/01/2011 05:48:50 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  01/01/2011 05:48:50 Lockcomponent   - Locked dtfa-2 as C1
+INFO  01/01/2011 05:48:50 Rename          - Node name is dtfx-18
+INFO  01/01/2011 05:48:50 Lockcomponent   - Locked dtfa-0 as C1
+INFO  01/01/2011 05:48:50 Rename          - Node name is dtfx-19
+INFO  01/01/2011 05:48:50 Testsuite       - Starting lockcomponent
+INFO  01/01/2011 05:48:50 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  01/01/2011 05:48:50 Lockcomponent   - Locked dtfa-1 as C1
+INFO  01/01/2011 05:48:50 Testsuite       - Starting lockcomponent
+INFO  01/01/2011 05:48:50 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  01/01/2011 05:48:50 Testsuite       - Starting lockcomponent
+INFO  01/01/2011 05:48:50 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  01/01/2011 05:48:50 Rename          - Node name is dtfx-20
+INFO  01/01/2011 05:48:50 Lockcomponent   - Locked dtfa-1 as C1
+INFO  01/01/2011 05:48:50 Rename          - Node name is dtfx-21
+INFO  01/01/2011 05:48:50 Lockcomponent   - Locked dtfa-2 as C1
+INFO  01/01/2011 05:48:51 Testsuite       - Starting lockcomponent
+INFO  01/01/2011 05:48:51 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  01/01/2011 05:48:51 Rename          - Node name is dtfx-22
+INFO  01/01/2011 05:48:51 Lockcomponent   - Locked dtfa-0 as C1
+INFO  01/01/2011 05:48:51 Rename          - Node name is dtfx-23
+INFO  01/01/2011 05:48:51 Lockcomponent   - Locked dtfa-0 as C1
+INFO  01/01/2011 05:48:51 Testsuite       - Starting lockcomponent
+INFO  01/01/2011 05:48:51 Testscript      - Executing storage://INPUT/parallel_occupy_component.xml
+INFO  01/01/2011 05:48:51 Rename          - Node name is dtfx-24
+INFO  01/01/2011 05:48:51 Lockcomponent   - Locked dtfa-1 as C1
+INFO  01/01/2011 05:48:51 Lockcomponent   - Locked dtfa-2 as C2
+INFO  01/01/2011 05:48:51 Lockcomponent   - Locked dtfa-0 as C3
+INFO  01/01/2011 05:48:51 Lockcomponent   - Locked dtfa-0 as C1
+INFO  01/01/2011 05:48:51 Unlockcomponent - Unlocking dtfa-0
+INFO  01/01/2011 05:48:51 Unlockcomponent - Component unlocked C1
+INFO  01/01/2011 05:48:51 Testsuite       - Starting lockcomponent
+INFO  01/01/2011 05:48:51 Testscript      - Executing storage://INPUT/function_occupy_component.xml
+INFO  01/01/2011 05:48:51 Rename          - Node name is dtfx-25
+INFO  01/01/2011 05:48:51 Lockcomponent   - Locked dtfa-1 as C1
+INFO  01/01/2011 05:48:51 Lockcomponent   - Locked dtfa-2 as C2
+INFO  01/01/2011 05:48:51 Lockcomponent   - Locked dtfa-0 as C3
+INFO  01/01/2011 05:48:51 Lockcomponent   - Locked dtfa-0 as C1
+INFO  01/01/2011 05:48:51 Unlockcomponent - Unlocking dtfa-0
+INFO  01/01/2011 05:48:51 Unlockcomponent - Component unlocked C1
+INFO  01/01/2011 05:48:51 Testscript      - Executing storage://INPUT/lockgroup.xml
+INFO  01/01/2011 05:48:51 Rename          - Node name is dtfx-26
+INFO  01/01/2011 05:48:51 Lockcomponent   - Locked dtfa-1 as DTFA1-2
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-2 as DTFA2-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA1-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA2-2
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-2 as DTFA1-1
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-1 as DTFA2-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA1-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA2-1
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-0 as DTFA1-1
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-2 as DTFA2-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-0
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA1-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA2-1
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-0 as DTFA1-2
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-1 as DTFA2-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-0
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA1-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA2-2
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-1 as DTFA1-1
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-2 as DTFA2-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA1-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA2-1
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-2 as DTFA1-2
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-1 as DTFA2-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA1-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA2-2
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-0 as DTFA1-1
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-2 as DTFA2-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-0
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA1-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA2-1
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-0 as DTFA1-2
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-1 as DTFA2-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-0
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA1-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA2-2
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-1 as DTFA1-1
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-2 as DTFA2-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA1-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA2-1
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-2 as DTFA1-2
+INFO  01/01/2011 05:48:52 Lockcomponent   - Locked dtfa-1 as DTFA2-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA1-2
+INFO  01/01/2011 05:48:52 Unlockcomponent - Unlocking dtfa-1
+INFO  01/01/2011 05:48:52 Unlockcomponent - Component unlocked DTFA2-2
+INFO  01/01/2011 05:48:52 Testscript      - Executing storage://INPUT/remotestorage.xml
+INFO  01/01/2011 05:48:52 Rename          - Node name is dtfx-27
+INFO  01/01/2011 05:48:53 Lockcomponent   - Locked dtfa-0 as DTFA1
+INFO  01/01/2011 05:48:53 Lockcomponent   - Locked dtfa-2 as DTFA2
+INFO  01/01/2011 05:48:53 Lockcomponent   - Locked dtfa-1 as DTFA3
+INFO  01/01/2011 05:48:53 Log             - DTFA1
+INFO  01/01/2011 05:48:53 Log             - DTFA2
+INFO  01/01/2011 05:48:53 Log             - DTFA3
+INFO  01/01/2011 05:48:53 Log             - Parallel Overwrites
+INFO  01/01/2011 05:48:54 Log             - Sequential Appends
+INFO  01/01/2011 05:48:54 Log             - Parallel Appends
+INFO  01/01/2011 05:48:54 Testscript      - Executing storage://INPUT/recorder.xml
+INFO  01/01/2011 05:48:54 Rename          - Node name is dtfx-28
+INFO  01/01/2011 05:48:54 Lockcomponent   - Locked dtfa-2 as DTFA1
+INFO  01/01/2011 05:48:54 Log             - TXT Recorder Unit Tests
+INFO  01/01/2011 05:48:54 Log             - Object Recorder Unit Tests
+INFO  01/01/2011 05:48:54 Echo            - Previous event started at: 1293860934978
+INFO  01/01/2011 05:48:54 Echo            - Previous event ended at: 1293860934978
+INFO  01/01/2011 05:48:54 Echo            - Previous event had property1 set to: 1
+INFO  01/01/2011 05:48:54 Echo            - Previous event started at: 1293860934979
+INFO  01/01/2011 05:48:54 Echo            - Previous event ended at: 1293860934979
+INFO  01/01/2011 05:48:54 Echo            - Previous event had property1 set to: 1
+INFO  01/01/2011 05:48:55 Log             - Caught exception correctly [Unable to find storage: SOMEWHERE at tests/ut/recorder.xml:87:10]
+INFO  01/01/2011 05:48:55 Log             - Caught exception correctly [Unsupported recorder type [caca] at tests/ut/recorder.xml:95:10]
+INFO  01/01/2011 05:48:55 Testscript      - Executing storage://INPUT/stats_recorder.xml
+INFO  01/01/2011 05:48:55 Testscript      - Executing storage://INPUT/query.xml
+INFO  01/01/2011 05:48:55 Log             - 1: abcxyzup
+INFO  01/01/2011 05:48:55 Log             - 5: abcxyzup
+INFO  01/01/2011 05:48:55 Log             - Total Ops 5
+INFO  01/01/2011 05:48:55 Testsuite       - Starting query
+INFO  01/01/2011 05:48:55 Testscript      - Executing storage://INPUT/query_testcase.xml
+INFO  01/01/2011 05:48:55 Log             - Queries per second: 1000
+INFO  01/01/2011 05:48:55 Log             - Complex queries for txt format
+INFO  01/01/2011 05:48:56 Echo            - All done iterating correctly.
+INFO  01/01/2011 05:48:56 Echo            - All done iterating correctly.
+INFO  01/01/2011 05:48:56 Echo            - All done iterating correctly.
+INFO  01/01/2011 05:48:56 Resetcursor     - Resetting curosr [element2]
+INFO  01/01/2011 05:48:56 Echo            - All done iterating correctly.
+INFO  01/01/2011 05:48:56 Log             - caca
+INFO  01/01/2011 05:48:56 Testscript      - Executing storage://INPUT/event.xml
+INFO  01/01/2011 05:48:56 Echo            - Counter Unit Tests
+INFO  01/01/2011 05:48:56 ConsoleRecorder - {dtf.echo.start=1293860936495, dtf.echo.stop=1293860936495, dtf.echo.iteration=1}
+INFO  01/01/2011 05:48:56 ConsoleRecorder - {dtf.echo.start=1293860936495, dtf.echo.stop=1293860936495, dtf.echo.iteration=2}
+INFO  01/01/2011 05:48:56 ConsoleRecorder - {dtf.echo.start=1293860936495, dtf.echo.stop=1293860936495, dtf.echo.iteration=3}
+INFO  01/01/2011 05:48:56 ConsoleRecorder - {dtf.echo.start=1293860936495, dtf.echo.stop=1293860936495, dtf.echo.iteration=4}
+INFO  01/01/2011 05:48:56 ConsoleRecorder - {dtf.echo.start=1293860936495, dtf.echo.stop=1293860936495, dtf.echo.iteration=5}
+INFO  01/01/2011 05:48:56 Rename          - Node name is dtfx-29
+INFO  01/01/2011 05:48:56 Lockcomponent   - Locked dtfa-1 as DTFA1
+INFO  01/01/2011 05:48:56 Testscript      - Executing storage://INPUT/event_visibility.xml
+INFO  01/01/2011 05:48:56 Rename          - Node name is dtfx-30
+INFO  01/01/2011 05:48:56 Lockcomponent   - Locked dtfa-0 as C1
+INFO  01/01/2011 05:48:56 Testscript      - Executing storage://INPUT/compare.xml
+INFO  01/01/2011 05:48:57 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  01/01/2011 05:48:57 Testscript      - Executing storage://INPUT/filter.xml
+INFO  01/01/2011 05:48:57 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  01/01/2011 05:48:57 Testscript      - Executing storage://INPUT/sort.xml
+INFO  01/01/2011 05:48:57 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  01/01/2011 05:48:57 Testscript      - Executing storage://INPUT/testsuite.xml
+INFO  01/01/2011 05:48:58 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testsuite_results.xml}
+INFO  01/01/2011 05:48:58 Testsuite       - Starting testsuite1
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:48:58 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:48:58 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:48:58 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:48:58 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:48:58 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:48:58 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/testsuite-sub.xml
+INFO  01/01/2011 05:48:58 Testsuite       - Starting testsuite2
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:48:58 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:48:58 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:48:58 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:48:58 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:48:58 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:48:58 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:58 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testsuite_results.xml}
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/results.xml
+INFO  01/01/2011 05:48:58 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  01/01/2011 05:48:58 Testsuite       - Starting results
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:48:58 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:58 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:48:59 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:48:59 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:48:59 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:48:59 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:48:59 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/testsuite-sub.xml
+INFO  01/01/2011 05:48:59 Testsuite       - Starting testsuite2
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:48:59 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:48:59 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:48:59 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:48:59 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:48:59 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:48:59 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  01/01/2011 05:48:59 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  01/01/2011 05:48:59 Testsuite       - Starting results
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:48:59 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:48:59 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:48:59 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:48:59 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:48:59 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:48:59 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:49:00 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/testsuite-sub.xml
+INFO  01/01/2011 05:49:00 Testsuite       - Starting testsuite2
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:49:00 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:49:00 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:49:00 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:49:00 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:49:00 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:49:00 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:00 ConsoleResults  - Testsuite: results passed. 13 passed testcases.
+INFO  01/01/2011 05:49:00 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  01/01/2011 05:49:00 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  01/01/2011 05:49:00 Testsuite       - Starting results
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:49:00 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:49:00 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:49:00 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:49:00 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:49:00 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:49:00 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/testsuite-sub.xml
+INFO  01/01/2011 05:49:00 Testsuite       - Starting testsuite2
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:49:00 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:49:00 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:00 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:49:01 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:49:01 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:49:01 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:49:01 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:01 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  01/01/2011 05:49:01 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:49:01 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:49:01 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:01 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
+INFO  01/01/2011 05:49:01 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  01/01/2011 05:49:01 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  01/01/2011 05:49:01 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  01/01/2011 05:49:01 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/concurrent_suite.xml
+INFO  01/01/2011 05:49:01 Result          - Starting Result recording: Result {uri=storage://OUTPUT/concurrent_suite_results.xml}
+INFO  01/01/2011 05:49:01 Testsuite       - Starting concurrent_suite
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/empty.xml
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/empty.xml
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/empty.xml
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/empty.xml
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/empty.xml
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/empty.xml
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/empty.xml
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/empty.xml
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/empty.xml
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/empty.xml
+INFO  01/01/2011 05:49:01 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/concurrent_suite_results.xml}
+INFO  01/01/2011 05:49:01 Testscript      - Executing storage://INPUT/stats.xml
+INFO  01/01/2011 05:49:02 Resetcursor     - Resetting curosr [cursor1]
+INFO  01/01/2011 05:49:02 Log             - Caught exception correctly [Cursor [inexistent] does not exist at tests/ut/stats.xml:71:10]
+INFO  01/01/2011 05:49:02 Testscript      - Executing storage://INPUT/file.xml
+INFO  01/01/2011 05:49:02 Rename          - Node name is dtfx-31
+INFO  01/01/2011 05:49:02 Lockcomponent   - Locked dtfa-2 as DTFA1
+INFO  01/01/2011 05:49:03 Log             - Caught expected failure.
+INFO  01/01/2011 05:49:03 Testscript      - Executing storage://INPUT/http.xml
+INFO  01/01/2011 05:49:03 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
+INFO  01/01/2011 05:49:04 Http_server     - Starting [127.0.0.1:55555]
+INFO  01/01/2011 05:49:04 Http_server     - Stopping [127.0.0.1:55555]
+INFO  01/01/2011 05:49:04 Testscript      - Executing storage://INPUT/http_server.xml
+INFO  01/01/2011 05:49:05 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
+INFO  01/01/2011 05:49:05 Http_server     - Starting [127.0.0.1:44444]
+INFO  01/01/2011 05:49:05 Log             - SOME DATA FROM THE CLIENT
+INFO  01/01/2011 05:49:05 Log             - in operation1
+INFO  01/01/2011 05:49:05 Log             - in operation2
+INFO  01/01/2011 05:49:05 Log             - in operation3
+INFO  01/01/2011 05:49:05 Log             - Validating that parallel cookie manipulation doesn't hit any issues 
+INFO  01/01/2011 05:49:06 Http_server     - Stopping [127.0.0.1:44444]
+INFO  01/01/2011 05:49:06 Http_server     - Starting [127.0.0.1:44445]
+INFO  01/01/2011 05:49:06 Http_server     - Stopping [127.0.0.1:44445]
+INFO  01/01/2011 05:49:06 Testscript      - Executing storage://INPUT/http_cleanup_test.xml
+INFO  01/01/2011 05:49:07 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
+INFO  01/01/2011 05:49:07 Rename          - Node name is dtfx-32
+INFO  01/01/2011 05:49:07 Http_server     - Starting [127.0.0.1:33333]
+INFO  01/01/2011 05:49:07 Lockcomponent   - Locked dtfa-1 as C1
+INFO  01/01/2011 05:49:07 Lockcomponent   - Locked dtfa-0 as C2
+INFO  01/01/2011 05:49:07 Unlockcomponent - Unlocking dtfa-1
+ERROR 01/01/2011 05:49:07 Client closed connection.
 org.apache.http.ConnectionClosedException: Client closed connection
 	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:104)
 	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
@@ -2197,9 +2259,9 @@ org.apache.http.ConnectionClosedException: Client closed connection
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
 	at java.lang.Thread.run(Thread.java:619)
-INFO  01/01/2011 05:18:54 Unlockcomponent - Component unlocked C1
-INFO  01/01/2011 05:18:54 Unlockcomponent - Unlocking dtfa-0
-ERROR 01/01/2011 05:18:54 Client closed connection.
+INFO  01/01/2011 05:49:07 Unlockcomponent - Component unlocked C1
+INFO  01/01/2011 05:49:07 Unlockcomponent - Unlocking dtfa-0
+ERROR 01/01/2011 05:49:07 Client closed connection.
 org.apache.http.ConnectionClosedException: Client closed connection
 	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:104)
 	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
@@ -2209,11 +2271,11 @@ org.apache.http.ConnectionClosedException: Client closed connection
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
 	at java.lang.Thread.run(Thread.java:619)
-INFO  01/01/2011 05:18:54 Unlockcomponent - Component unlocked C2
-INFO  01/01/2011 05:18:54 Lockcomponent   - Locked dtfa-0 as C1
-INFO  01/01/2011 05:18:54 Lockcomponent   - Locked dtfa-1 as C2
-INFO  01/01/2011 05:18:54 Unlockcomponent - Unlocking dtfa-0
-ERROR 01/01/2011 05:18:54 Client closed connection.
+INFO  01/01/2011 05:49:07 Unlockcomponent - Component unlocked C2
+INFO  01/01/2011 05:49:07 Lockcomponent   - Locked dtfa-0 as C1
+INFO  01/01/2011 05:49:07 Lockcomponent   - Locked dtfa-1 as C2
+INFO  01/01/2011 05:49:07 Unlockcomponent - Unlocking dtfa-0
+ERROR 01/01/2011 05:49:07 Client closed connection.
 org.apache.http.ConnectionClosedException: Client closed connection
 	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:104)
 	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
@@ -2223,143 +2285,97 @@ org.apache.http.ConnectionClosedException: Client closed connection
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
 	at java.lang.Thread.run(Thread.java:619)
-INFO  01/01/2011 05:18:54 Unlockcomponent - Component unlocked C1
-INFO  01/01/2011 05:18:54 Unlockcomponent - Unlocking dtfa-1
-INFO  01/01/2011 05:18:54 Unlockcomponent - Component unlocked C2
-INFO  01/01/2011 05:18:54 Http_server     - Stopping [127.0.0.1:33333]
-INFO  01/01/2011 05:18:54 Testscript      - Executing storage://INPUT/string_manipulation.xml
-INFO  01/01/2011 05:18:54 Testscript      - Executing storage://INPUT/string_transform.xml
-INFO  01/01/2011 05:18:54 Testscript      - Executing storage://INPUT/convert.xml
-INFO  01/01/2011 05:18:54 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  01/01/2011 05:18:54 Testscript      - Executing storage://INPUT/arithmetic.xml
-INFO  01/01/2011 05:18:55 Testscript      - Executing storage://INPUT/random.xml
-INFO  01/01/2011 05:18:55 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  01/01/2011 05:18:55 Log             - Correctness check for randomInt generator
-INFO  01/01/2011 05:18:55 Log             - Correctness check for randomLong generator
-INFO  01/01/2011 05:18:55 Log             - Correctness check for randomDouble generator
-INFO  01/01/2011 05:18:55 Log             - Correctness check for gaussianLong generator
-INFO  01/01/2011 05:18:55 Log             - Correctness check for randomInt generator
-INFO  01/01/2011 05:18:55 Log             - Correctness check for randomLong generator
-INFO  01/01/2011 05:18:55 Log             - Correctness check for randomDouble generator
-INFO  01/01/2011 05:18:55 Log             - Correctness check for gaussianLong generator
-INFO  01/01/2011 05:18:55 Log             - Correctness check for randomInt generator
-INFO  01/01/2011 05:18:55 Log             - Correctness check for randomLong generator
-INFO  01/01/2011 05:18:55 Log             - Correctness check for randomDouble generator
-INFO  01/01/2011 05:18:55 Log             - Correctness check for gaussianLong generator
-INFO  01/01/2011 05:18:55 Testscript      - Executing storage://INPUT/monitor.xml
-INFO  01/01/2011 05:18:55 Rename          - Node name is dtfx-33
-INFO  01/01/2011 05:18:55 Lockcomponent   - Locked dtfa-2 as AGENT1
-INFO  01/01/2011 05:18:55 Monitor_grep    - New files [log-1293859135599.1, log-1293859135599.2, log-1293859135599.7, log-1293859135599.10, log-1293859135599.6, log-1293859135599.9, log-1293859135599.8, log-1293859135599.3, log-1293859135599.4, log-1293859135599.5] in /home/dtftest/build/dtf/build/dtf/dist/tests/ut/output
-INFO  01/01/2011 05:18:55 Log             - Validating data correctness
-INFO  01/01/2011 05:18:55 Testscript      - Executing storage://INPUT/diff.xml
-INFO  01/01/2011 05:18:55 Testscript      - Executing storage://INPUT/xml_xpath.xml
-INFO  01/01/2011 05:18:56 Log             - Correct count of 6 for XPath: //list/item/text()
-INFO  01/01/2011 05:18:56 Log             - Correct count of 6 for XPath: //list/item/@att1
-INFO  01/01/2011 05:18:56 Log             - Correct count of 6 for XPath: //list/item
-INFO  01/01/2011 05:18:56 Log             - Correct count of 3 for XPath: //list/item[@att1 < 4]
-INFO  01/01/2011 05:18:56 Testscript      - Executing storage://INPUT/xml_dynamic.xml
-INFO  01/01/2011 05:18:56 Testscript      - Executing storage://INPUT/json_transform.xml
-INFO  01/01/2011 05:18:56 Testscript      - Executing storage://INPUT/stream.xml
-INFO  01/01/2011 05:18:56 Log             - Validate streams always generate the same data for the same seed.
-INFO  01/01/2011 05:18:59 Testscript      - Executing storage://INPUT/assertions.xml
-INFO  01/01/2011 05:18:59 Testscript      - Executing storage://INPUT/encoding.xml
-INFO  01/01/2011 05:18:59 Testscript      - Executing storage://INPUT/special_characters.xml
-INFO  01/01/2011 05:18:59 Testscript      - Executing storage://INPUT/testscript_component_complex.xml
-INFO  01/01/2011 05:18:59 Testsuite       - Starting dummy
-INFO  01/01/2011 05:18:59 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  01/01/2011 05:18:59 Rename          - Node name is dtfx-34
-INFO  01/01/2011 05:18:59 Lockcomponent   - Locked dtfa-0 as C1
-INFO  01/01/2011 05:18:59 Rename          - Node name is dtfx-35
-ERROR 01/01/2011 05:20:00 Error running script.
-com.yahoo.dtf.exception.LockException: No agent found to match [NodeInfo {port=-1,node.id=1},] at tests/ut/input/occupy_component.xml:24:34
-	at com.yahoo.dtf.NodeState.lockNodes(NodeState.java:238)
-	at com.yahoo.dtf.actions.protocol.Lock.execute(Lock.java:63)
-	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:192)
-	at com.yahoo.dtf.actions.flowcontrol.Sequence.execute(Sequence.java:31)
-	at com.yahoo.dtf.comm.rpc.Node.execute(Node.java:73)
-	at sun.reflect.GeneratedMethodAccessor12.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
-	at java.lang.reflect.Method.invoke(Method.java:597)
-	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
-	at sun.rmi.transport.Transport$1.run(Transport.java:159)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
-	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
-	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
-	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+INFO  01/01/2011 05:49:07 Unlockcomponent - Component unlocked C1
+INFO  01/01/2011 05:49:07 Unlockcomponent - Unlocking dtfa-1
+ERROR 01/01/2011 05:49:07 Client closed connection.
+org.apache.http.ConnectionClosedException: Client closed connection
+	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:104)
+	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
+	at org.apache.http.impl.AbstractHttpServerConnection.receiveRequestHeader(AbstractHttpServerConnection.java:232)
+	at org.apache.http.protocol.HttpService.handleRequest(HttpService.java:160)
+	at com.yahoo.dtf.actions.http.server.HTTPRunnable.run(HTTPRunnable.java:35)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
 	at java.lang.Thread.run(Thread.java:619)
-ERROR 01/01/2011 05:20:00 Testscript      - Failed [storage://INPUT/occupy_component.xml]
-ERROR 01/01/2011 05:20:00 Testscript failed.
-com.yahoo.dtf.exception.LockException: No agent found to match [NodeInfo {port=-1,node.id=1},] at tests/ut/input/occupy_component.xml:24:34
-	at com.yahoo.dtf.NodeState.lockNodes(NodeState.java:238)
-	at com.yahoo.dtf.actions.protocol.Lock.execute(Lock.java:63)
-	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:192)
-	at com.yahoo.dtf.actions.flowcontrol.Sequence.execute(Sequence.java:31)
-	at com.yahoo.dtf.comm.rpc.Node.execute(Node.java:73)
-	at sun.reflect.GeneratedMethodAccessor12.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
-	at java.lang.reflect.Method.invoke(Method.java:597)
-	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
-	at sun.rmi.transport.Transport$1.run(Transport.java:159)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
-	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
-	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
-	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
-	at java.lang.Thread.run(Thread.java:619)
-ERROR 01/01/2011 05:20:00 Testscript      - Failed [storage://INPUT/testscript_component_complex.xml]
-INFO  01/01/2011 05:20:00 Testscript      - Executing storage://INPUT/rendezvous.xml
-INFO  01/01/2011 05:20:00 Log             - Expected timeout has occured.
-INFO  01/01/2011 05:20:00 Testscript      - Executing storage://INPUT/rendezvous_complex.xml
-INFO  01/01/2011 05:20:01 Rename          - Node name is dtfx-36
-INFO  01/01/2011 05:20:01 Lockcomponent   - Locked dtfa-1 as C1
-INFO  01/01/2011 05:20:01 Lockcomponent   - Locked dtfa-2 as C2
-INFO  01/01/2011 05:20:02 Testscript      - Executing storage://INPUT/share.xml
-INFO  01/01/2011 05:20:03 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  01/01/2011 05:20:03 Rename          - Node name is dtfx-37
-INFO  01/01/2011 05:20:03 Lockcomponent   - Locked dtfa-2 as PRODUCER
-INFO  01/01/2011 05:20:03 Lockcomponent   - Locked dtfa-1 as CONSUMER
-INFO  01/01/2011 05:20:03 Log             - event.start=1293859203761
-INFO  01/01/2011 05:20:03 Log             - event.stop=1293859203761
-INFO  01/01/2011 05:20:03 Testscript      - Executing storage://INPUT/share_complex.xml
-INFO  01/01/2011 05:20:04 Rename          - Node name is dtfx-38
-INFO  01/01/2011 05:20:04 Lockcomponent   - Locked dtfa-1 as C1
-INFO  01/01/2011 05:20:04 Lockcomponent   - Locked dtfa-2 as C2
-INFO  01/01/2011 05:20:04 Testscript      - Executing storage://INPUT/scanf.xml
-INFO  01/01/2011 05:20:04 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  01/01/2011 05:20:04 Testscript      - Executing storage://INPUT/printf.xml
-INFO  01/01/2011 05:20:05 Log             - INTEGER[23] STRING[Hello There!] FLOAT [1.23] LIST [1,2,3,4]
-INFO  01/01/2011 05:20:05 Log             - 1.23456 -- reduce precision to .2 -> 1.23
-INFO  01/01/2011 05:20:05 Log             - 1 -- pad the number to 3 digits -> 001
-INFO  01/01/2011 05:20:05 Log             - 10 -- convert to hex and pad to 4 digits -> 000a
-INFO  01/01/2011 05:20:05 Testscript      - Executing storage://INPUT/read_image.xml
-INFO  01/01/2011 05:20:05 Log             - png: being checked
-INFO  01/01/2011 05:20:05 Log             - gif: being checked
-INFO  01/01/2011 05:20:05 Log             - bmp: being checked
-ERROR 01/01/2011 05:20:05 Testscript failed.
-com.yahoo.dtf.exception.LockException: No agent found to match [NodeInfo {port=-1,node.id=1},] at tests/ut/input/occupy_component.xml:24:34
-	at com.yahoo.dtf.NodeState.lockNodes(NodeState.java:238)
-	at com.yahoo.dtf.actions.protocol.Lock.execute(Lock.java:63)
-	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:192)
-	at com.yahoo.dtf.actions.flowcontrol.Sequence.execute(Sequence.java:31)
-	at com.yahoo.dtf.comm.rpc.Node.execute(Node.java:73)
-	at sun.reflect.GeneratedMethodAccessor12.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
-	at java.lang.reflect.Method.invoke(Method.java:597)
-	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
-	at sun.rmi.transport.Transport$1.run(Transport.java:159)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
-	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
-	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
-	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
-	at java.lang.Thread.run(Thread.java:619)
+INFO  01/01/2011 05:49:07 Unlockcomponent - Component unlocked C2
+INFO  01/01/2011 05:49:07 Http_server     - Stopping [127.0.0.1:33333]
+INFO  01/01/2011 05:49:07 Testscript      - Executing storage://INPUT/string_manipulation.xml
+INFO  01/01/2011 05:49:08 Testscript      - Executing storage://INPUT/string_transform.xml
+INFO  01/01/2011 05:49:08 Testscript      - Executing storage://INPUT/convert.xml
+INFO  01/01/2011 05:49:08 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  01/01/2011 05:49:08 Testscript      - Executing storage://INPUT/arithmetic.xml
+INFO  01/01/2011 05:49:08 Testscript      - Executing storage://INPUT/random.xml
+INFO  01/01/2011 05:49:08 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  01/01/2011 05:49:08 Log             - Correctness check for randomInt generator
+INFO  01/01/2011 05:49:08 Log             - Correctness check for randomLong generator
+INFO  01/01/2011 05:49:08 Log             - Correctness check for randomDouble generator
+INFO  01/01/2011 05:49:08 Log             - Correctness check for gaussianLong generator
+INFO  01/01/2011 05:49:08 Log             - Correctness check for randomInt generator
+INFO  01/01/2011 05:49:08 Log             - Correctness check for randomLong generator
+INFO  01/01/2011 05:49:08 Log             - Correctness check for randomDouble generator
+INFO  01/01/2011 05:49:09 Log             - Correctness check for gaussianLong generator
+INFO  01/01/2011 05:49:09 Log             - Correctness check for randomInt generator
+INFO  01/01/2011 05:49:09 Log             - Correctness check for randomLong generator
+INFO  01/01/2011 05:49:09 Log             - Correctness check for randomDouble generator
+INFO  01/01/2011 05:49:09 Log             - Correctness check for gaussianLong generator
+INFO  01/01/2011 05:49:09 Testscript      - Executing storage://INPUT/monitor.xml
+INFO  01/01/2011 05:49:09 Rename          - Node name is dtfx-33
+INFO  01/01/2011 05:49:09 Lockcomponent   - Locked dtfa-2 as AGENT1
+INFO  01/01/2011 05:49:09 Monitor_grep    - New files [log-1293860949254.6, log-1293860949254.3, log-1293860949254.1, log-1293860949254.4, log-1293860949254.8, log-1293860949254.7, log-1293860949254.5, log-1293860949254.9, log-1293860949254.2, log-1293860949254.10] in /home/dtftest/build/dtf/build/dtf/dist/tests/ut/output
+INFO  01/01/2011 05:49:09 Log             - Validating data correctness
+INFO  01/01/2011 05:49:09 Testscript      - Executing storage://INPUT/diff.xml
+INFO  01/01/2011 05:49:09 Testscript      - Executing storage://INPUT/xml_xpath.xml
+INFO  01/01/2011 05:49:09 Log             - Correct count of 6 for XPath: //list/item/text()
+INFO  01/01/2011 05:49:09 Log             - Correct count of 6 for XPath: //list/item/@att1
+INFO  01/01/2011 05:49:09 Log             - Correct count of 6 for XPath: //list/item
+INFO  01/01/2011 05:49:09 Log             - Correct count of 3 for XPath: //list/item[@att1 < 4]
+INFO  01/01/2011 05:49:09 Testscript      - Executing storage://INPUT/xml_dynamic.xml
+INFO  01/01/2011 05:49:09 Testscript      - Executing storage://INPUT/json_transform.xml
+INFO  01/01/2011 05:49:09 Testscript      - Executing storage://INPUT/stream.xml
+INFO  01/01/2011 05:49:10 Log             - Validate streams always generate the same data for the same seed.
+INFO  01/01/2011 05:49:12 Testscript      - Executing storage://INPUT/assertions.xml
+INFO  01/01/2011 05:49:12 Testscript      - Executing storage://INPUT/encoding.xml
+INFO  01/01/2011 05:49:13 Testscript      - Executing storage://INPUT/special_characters.xml
+INFO  01/01/2011 05:49:13 Testscript      - Executing storage://INPUT/testscript_component_complex.xml
+INFO  01/01/2011 05:49:13 Testsuite       - Starting dummy
+INFO  01/01/2011 05:49:13 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  01/01/2011 05:49:13 Rename          - Node name is dtfx-34
+INFO  01/01/2011 05:49:13 Lockcomponent   - Locked dtfa-0 as C1
+INFO  01/01/2011 05:49:13 Rename          - Node name is dtfx-35
+INFO  01/01/2011 05:49:14 Lockcomponent   - Locked dtfa-0 as C1
+INFO  01/01/2011 05:49:14 Lockcomponent   - Locked dtfa-1 as C2
+INFO  01/01/2011 05:49:14 Testsuite       - Starting dummy
+INFO  01/01/2011 05:49:14 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  01/01/2011 05:49:14 Rename          - Node name is dtfx-36
+INFO  01/01/2011 05:49:14 Lockcomponent   - Locked dtfa-2 as C1
+INFO  01/01/2011 05:49:14 Testscript      - Executing storage://INPUT/rendezvous.xml
+INFO  01/01/2011 05:49:14 Log             - Expected timeout has occured.
+INFO  01/01/2011 05:49:15 Testscript      - Executing storage://INPUT/rendezvous_complex.xml
+INFO  01/01/2011 05:49:15 Rename          - Node name is dtfx-37
+INFO  01/01/2011 05:49:15 Lockcomponent   - Locked dtfa-1 as C1
+INFO  01/01/2011 05:49:15 Lockcomponent   - Locked dtfa-2 as C2
+INFO  01/01/2011 05:49:17 Testscript      - Executing storage://INPUT/share.xml
+INFO  01/01/2011 05:49:17 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  01/01/2011 05:49:17 Rename          - Node name is dtfx-38
+INFO  01/01/2011 05:49:17 Lockcomponent   - Locked dtfa-2 as PRODUCER
+INFO  01/01/2011 05:49:17 Lockcomponent   - Locked dtfa-1 as CONSUMER
+INFO  01/01/2011 05:49:17 Log             - event.start=1293860957916
+INFO  01/01/2011 05:49:17 Log             - event.stop=1293860957916
+INFO  01/01/2011 05:49:17 Testscript      - Executing storage://INPUT/share_complex.xml
+INFO  01/01/2011 05:49:18 Rename          - Node name is dtfx-39
+INFO  01/01/2011 05:49:18 Lockcomponent   - Locked dtfa-1 as C1
+INFO  01/01/2011 05:49:18 Lockcomponent   - Locked dtfa-2 as C2
+INFO  01/01/2011 05:49:18 Testscript      - Executing storage://INPUT/scanf.xml
+INFO  01/01/2011 05:49:18 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  01/01/2011 05:49:19 Testscript      - Executing storage://INPUT/printf.xml
+INFO  01/01/2011 05:49:19 Log             - INTEGER[23] STRING[Hello There!] FLOAT [1.23] LIST [1,2,3,4]
+INFO  01/01/2011 05:49:19 Log             - 1.23456 -- reduce precision to .2 -> 1.23
+INFO  01/01/2011 05:49:19 Log             - 1 -- pad the number to 3 digits -> 001
+INFO  01/01/2011 05:49:19 Log             - 10 -- convert to hex and pad to 4 digits -> 000a
+INFO  01/01/2011 05:49:19 Testscript      - Executing storage://INPUT/read_image.xml
+INFO  01/01/2011 05:49:19 Log             - png: being checked
+INFO  01/01/2011 05:49:19 Log             - gif: being checked
+INFO  01/01/2011 05:49:19 Log             - bmp: being checked
 ]]></system-out>
 
     <system-err />
