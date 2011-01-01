@@ -1,0 +1,162 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>XML Documentation</h1></dt><p align='justify'><p>
+ When writing tests you can document those tests using JavaDoc tags, that are 
+ then transformed into this document you are reading right now. Using these 
+ tags is a really simple and you only need to know some HTML if you want to 
+ make your documentation look a bit neater. Here are the list of available 
+ documentation tags that you can use within your tags and also to document any
+ new features built into DTF.
+ </p>
+ <p>
+ For examples on using these tags just have a look at any source file with 
+ '@dtf.feature' or '@dtf.tag' taglets in them and you'll find various examples 
+ on how to use this feature to better the documentation of your code.
+ </p>
+ 
+ <h3>Tag Documentation</h3>
+ <table border="1" width="75%">
+      <tr><th colspan="2">Class Taglets</th></tr>
+      <tr><th width="200px">Taglet</th><th>Description</th></tr>
+      <tr>
+          <td><b>@dtf.tag tag</b></td>
+          <td>This tag is required to identify that the following 
+              documentation is for a tag named tag.
+          </td>
+      </tr>
+      <tr>
+          <td><b>@dtf.tag.desc desc</b></td>
+          <td>This is where you can place a detailed description of what this 
+              tag does and what other resources are useful for reading before 
+              using this tag. You can place almost any HTML elements in this 
+              section which allows you to format your documentation nicely 
+              using tables and lists.
+          </td>
+      </tr>
+      <tr>
+          <td><b>@dtf.author author</b></td>
+          <td>Here you can put the author or authors names who are responsible 
+              for maintaining this tag.</td>
+      </tr>
+      <tr>
+          <td><b>@dtf.since version</b></td>
+          <td>Just a simple indication of since when this tag has existed in 
+              terms of versions of DTF.</td>
+      </tr>
+      <tr>
+          <td><b>@dtf.event name</b></td>
+          <td>This taglet is used to document exactly what events are being 
+              thrown by the tag being documented. This makes the life of the 
+              test writer really simple because he/she can consult this 
+              documentation to easily identify what information is available 
+              from executing this tag.
+          </td>
+      </tr>
+      <tr>
+          <td><b>@dtf.event.attr name</b></td>
+          <td>With this taglet you can identify all the names of attributes 
+              that an event has so that the test writer knows exactly what 
+              he/she can get back from executing your tag. This tag depends on
+              the previously documented event name so be sure to use the 
+              '@dtf.event' taglet before this one.</td>
+          </tr>
+      <tr>
+          <td><b>@dtf.event.attr.desc desc</b></td>
+          <td>This taglet is used to describe the previously identified 
+              attribute using the @dtf.event.attr taglet. So be sure to use 
+              that taglet previous to this one otherwise logically the
+              documentation won't make sense.
+          </td>
+      </tr>
+      <tr>
+          <td><b>@dtf.example example</b></td>
+          <td>This tag can be used to identify example XML documentation that
+              shows exact XML samples of how to use the tag being documented.
+              So the body of this taglet can be any XML you'd like just be 
+              sure to place a single root element around your XML.
+          </td>
+      </tr>
+  </table>
+  <br/> 
+  
+  <table border="1" width="75%">
+      <tr><th colspan="2">Attribute Taglets</th></tr>
+      <tr><th width="200px">Taglet</th><th>Description</th></tr>
+      <tr>
+          <td><b>@dtf.attr name</b></td>
+          <td>This identifies the name of the attribute being documented here.</td>
+      </tr>
+      <tr>
+          <td><b>@dtf.attr.desc desc</b></td>
+          <td>
+          This is where you can place the description of the attribute being 
+          documented.You can place almost any HTML elements in this section 
+          which allows you to format your documentation nicely using tables 
+          and lists.
+          </td>
+      </tr>
+  </table>
+  <br/>
+  
+  <table border="1" width="75%">
+      <tr><th colspan="2">Utility Taglets</th></tr>
+      <tr><th width="200px">Taglet</th><th>Description</th></tr>
+      <tr>
+          <td><b>@dtf.link name</b></td>
+          <td>
+          This tag allows you to create a link to another tag/feature just by
+          having the correct name specified. The name is case insensitive so 
+          that you don't have to know the exact case spelling of the tag or 
+          feature you're trying to link to.
+          </td>
+      </tr>
+  </table>
+  <br/>
+
+  <h2>Feature Documentation</h2>
+  <p>
+  The feature documentation allows the developer to document features that may 
+  not be a simple XML tag and instead could be the documentation of how 
+  certain dynamic properties work or the documentation on how ranges work.
+  </p>
+  <p>
+  The only two things you need to define for a feature is what the name of
+  the feature is and which feature group it belongs to. The name of the feature
+  will appear as a link underneat the feature group. There are some already 
+  existing groups that you can attach your documentation to or you can build
+  your own group name and that will be added to the list of documented 
+  features in the generated feature documentation.
+  </p>
+  <table border="1" width="75%">
+      <tr><th colspan="2">Feature Taglets</th></tr>
+      <tr><th width="200px">Taglet</th><th>Description</th></tr>
+      <tr>
+          <td><b>@dtf.feature name</b></td>
+          <td>The name of the feature being documented.</td>
+      </tr>
+      <tr>
+          <td><b>@dtf.feature.group group</b></td>
+          <td>
+          The logical group belongs to within the documentation being 
+          generated. This is going to be used to display this feature within
+          the same group as as other features with the same group name.
+          </td>
+      </tr>
+      <tr>
+          <td><b>@dtf.feature.desc desc</b></td>
+          <td>
+          The description of this feature along with any information that 
+          might be useful for the test writers that may find this feature to 
+          be useful. You can place almost any HTML elements in this section 
+          which allows you to format your documentation nicely using tables 
+          and lists.
+          </td>
+      </tr>
+      <tr>
+          <td><b>@dtf.example example</b></td>
+          <td>
+          This tag can be used to identify example XML documentation that 
+          shows exact XML samples of how to use the feature being documented.
+          So the body of this taglet can be any XML you'd like just be sure to
+          place a single root element around your XML.
+          </td>
+     </tr>
+ </table></p></body></html>

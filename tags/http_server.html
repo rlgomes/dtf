@@ -1,4 +1,4 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Http_server</h3></dt><dd><p align='justify'>This tag will startup an HTTP server and bind it to the 
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Http_server</h1></dt><p align='justify'>This tag will startup an HTTP server and bind it to the 
                host and port you specify. It will then create HTTP listeners
                for the path and methods you specify and allow you to receive
                each of the requests and do something with it. Now currently 
@@ -8,15 +8,21 @@
                <br/>
                The other thing to note bout the http_server tag is that it 
                doe snot currently allow you to define any HTTP config values
-               but can easily be adapted to do so in the near future.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/><a href='http_listener.html'>http_listener</a></b><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>host</b></td><td><p align='justify'>The hostname to bind to, incase your machine has multiple
-                interfaces or you would rather bind to localhost to not 
-                allow external systems to use/attack your HTTP server.</p></td></tr><tr valign='top'><td width='100px'><b>port</b></td><td><p align='justify'>The port number to bind to, by default set to 80.</p></td></tr><tr valign='top'><td width='100px'><b>command</b></td><td><p align='justify'>What operation to do on the HTTP server identified by the
-                key hostname,port. The two existing options are 'start' 
-                and 'stop' being that by default command is set to try
-                and start up the HTTP server described.</p></td></tr><tr valign='top'><td width='100px'><b>threads</b></td><td><p align='justify'>this property specifies the number of maximum threads to 
-                use at any given time to handle incoming requests to this
-                HTTP server.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;http_server port="8080"&gt;
+               but can easily be adapted to do so in the near future. 
+               
+               <p>
+               Events available within your http_listener include the same 
+               event attributes that would be visible on the client side when
+               using any of the DTF HTTP tags and also include the following:
+               </p>
+               
+               <dl>
+                  <b><dt>http.[METHOD].path<dt></b>
+                  <dd>
+                  This attribute contains the exact path that was hit with 
+                  your HTTP request.
+                  </dd>
+               </dl></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/><a href='http_listener.html'>http_listener</a></b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;http_server port="8080"&gt;
      &lt;http_listener method="PUT" path="/oddtest"&gt;
           &lt;mod op1="${http.put.headers.number}" op2="2" result="result"/&gt;
           &lt;if&gt;
@@ -30,13 +36,11 @@
          &lt;/if&gt;
      &lt;/http_listener&gt;
  &lt;/http_server&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;http_server port="8082"&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;http_server port="8082"&gt;
       &lt;http_listener method="PUT" path="/echo-data"&gt;
            &lt;log&gt;received [${http.put.body}] in the HTTP body&lt;/log&gt;
            &lt;log&gt;received headers [${http.headers}]&lt;/log&gt;
       &lt;/http_listener&gt;
  &lt;/http_server&gt;
-</pre></dd><br/><dd><b>Example #3</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;http_server command="stop" port="8082"/&gt;
+</pre></dd><br/><dd><b>Example #3</b></dd><dd><pre>&lt;http_server command="stop" port="8082"/&gt;
 </pre></dd></body></html>

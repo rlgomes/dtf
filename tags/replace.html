@@ -1,14 +1,11 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Replace</h3></dt><dd><p align='justify'>the replace tag allows you to use regular expression to replace
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Replace</h1></dt><p align='justify'>the replace tag allows you to use regular expression to replace
                very specific parts of other strings. The regular expression 
                language is specific to Java's Pattern matching classes and 
                you can find more information ont he specific regular expression
                syntax here <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html">Java Regular Expression</a> 
                You are also able to use group so that you can then replace the
                original expression with just one of the group using the $ sign, 
-               have a look at the examples below for a better understanding.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>source</b></td><td><p align='justify'>Source value to apply replace on.</p></td></tr><tr valign='top'><td width='100px'><b>destination</b></td><td><p align='justify'>The name of the property to record the result in.</p></td></tr><tr valign='top'><td width='100px'><b>expression</b></td><td><p align='justify'>The regular expression to use when matching.</p></td></tr><tr valign='top'><td width='100px'><b>with</b></td><td><p align='justify'>The new string to replace the match with.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;replace destination="newtest" expression=":" source="${test}" with=","/&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;replace destination="user" expression="([^@]+)@(.+)" source="${email}" with="$1"/&gt;
-</pre></dd><br/><dd><b>Example #3</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;replace destination="host" expression="([^@]+)@(.+)" source="${email}" with="$2"/&gt;
+               have a look at the examples below for a better understanding.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>source</b></td><td><p align='justify'>Source value to apply replace on.</p></td></tr><tr valign='top'><td width='100px'><b>destination</b></td><td><p align='justify'>The name of the property to record the result in.</p></td></tr><tr valign='top'><td width='100px'><b>expression</b></td><td><p align='justify'>The regular expression to use when matching.</p></td></tr><tr valign='top'><td width='100px'><b>with</b></td><td><p align='justify'>The new string to replace the match with.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;replace destination="newtest" expression=":" source="${test}" with=","/&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;replace destination="user" expression="([^@]+)@(.+)" source="${email}" with="$1"/&gt;
+</pre></dd><br/><dd><b>Example #3</b></dd><dd><pre>&lt;replace destination="host" expression="([^@]+)@(.+)" source="${email}" with="$2"/&gt;
 </pre></dd></body></html>

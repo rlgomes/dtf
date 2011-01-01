@@ -1,13 +1,11 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Where</h3></dt><dd><p align='justify'>This child tag of query allows us to define the exact 
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Where</h1></dt><p align='justify'>This child tag of query allows us to define the exact 
                conditions of the query that we want to run against the 
-               collection of events stored by a previous recorder.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='false.html'>false</a> | <a href='true.html'>true</a> | <a href='not.html'>not</a> | <a href='and.html'>and</a> | <a href='eq.html'>eq</a> | <a href='gt.html'>gt</a> | <a href='lt.html'>lt</a> | <a href='neq.html'>neq</a> | <a href='or.html'>or</a> | <a href='within.html'>within</a> | <a href='match.html'>match</a> | <a href='isset.html'>isset</a>) </b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;query event="hc.*" property="obj1" type="txt" uri="storage://OUTPUT/perf.db"&gt;
+               collection of events stored by a previous recorder.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='false.html'>false</a> | <a href='true.html'>true</a> | <a href='not.html'>not</a> | <a href='and.html'>and</a> | <a href='eq.html'>eq</a> | <a href='gt.html'>gt</a> | <a href='lt.html'>lt</a> | <a href='neq.html'>neq</a> | <a href='or.html'>or</a> | <a href='within.html'>within</a> | <a href='similar.html'>similar</a> | <a href='match.html'>match</a> | <a href='isset.html'>isset</a>) </b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;query event="hc.*" property="obj1" type="txt" uri="storage://OUTPUT/perf.db"&gt;
      &lt;where&gt;
          &lt;eq field="myfield" value="myvalue"/&gt;
      &lt;/where&gt;
  &lt;/query&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;query event="hc.*" property="obj1" type="txt" uri="storage://OUTPUT/perf.db"&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;query event="hc.*" property="obj1" type="txt" uri="storage://OUTPUT/perf.db"&gt;
      &lt;where&gt;
          &lt;and&gt;
              &lt;eq field="field1" value="somevalue"/&gt;

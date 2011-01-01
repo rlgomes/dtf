@@ -1,4 +1,4 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Within</h3></dt><dd><p align='justify'>Evaluates if value is within range of a specified tolerance 
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Within</h1></dt><p align='justify'>Evaluates if value is within range of a specified tolerance 
                value. The value itself can be any numeric value while the 
                tolerance can be any of the following representations:
                <br/>
@@ -8,8 +8,7 @@
                          op2 by upto 20%
               
                10      - op1 can be lower than op2 by 10x
-               </pre></p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>op1</b></td><td><p align='justify'>Identifies the first operand of a conditional tag.</p></td></tr><tr valign='top'><td width='100px'><b>op2</b></td><td><p align='justify'>Identifies the second operand of a conditional tag.</p></td></tr><tr valign='top'><td width='100px'><b>tolerance</b></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;if&gt;
+               </pre></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>op1</b></td><td><p align='justify'>Identifies the first operand of a conditional tag.</p></td></tr><tr valign='top'><td width='100px'><b>op2</b></td><td><p align='justify'>Identifies the second operand of a conditional tag.</p></td></tr><tr valign='top'><td width='100px'><b>tolerance</b></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;if&gt;
      &lt;within op1="${average}" op2="${value}" tolerance="[5,10]%"/&gt;
      &lt;then&gt;
          &lt;log&gt;parameters within tolerance&lt;/log&gt;
@@ -18,8 +17,7 @@
          &lt;fail&gt;The average value is more than -5,+10% off from previous value&lt;/fail&gt;
      &lt;/else&gt;
  &lt;/if&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;if&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;if&gt;
      &lt;within op1="${average}" op2="${value}" tolerance="5%"/&gt;
      &lt;else&gt;
          &lt;fail&gt;The average value is more than 5% off from previous value&lt;/fail&gt;

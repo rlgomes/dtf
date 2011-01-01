@@ -1,0 +1,15 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Isalertpresent</h1></dt><p align='justify'><p>
+               This function returns true if an alert has occured and false 
+               otherwise.
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://somewhere.com"&gt;
+      &lt;chooseOkOnNextConfirmation/&gt;
+      &lt;runScript script="window.alert('alerte rouge!')"/&gt;
+      &lt;assert&gt;
+        &lt;isAlertPresent/&gt;
+    &lt;/assert&gt;
+      &lt;getAlert property="alert.msg"/&gt;
+      &lt;assert&gt;
+        &lt;eq op1="${alert.msg}" op2="alerte rouge!"/&gt;
+    &lt;/assert&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

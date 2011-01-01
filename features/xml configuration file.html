@@ -1,0 +1,53 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>XML Configuration File</h1></dt><p align='justify'><p>
+ The deployment feature is used by identifying a deployment configuration file
+ as explained in the <a href='../features/command line usage.html'>Command Line Usage</a> section. This 
+ configuration file is written in XML and is quite simple to use. Here is a 
+ basic configuration file to start understanding how to write your own 
+ configuration file:
+ <p>
+ 
+ <pre>&lt;setup xmlns="http://dtf.org/v1"&gt;
+      &lt;dtfc host="${host}" path="dtf/dtfc" user="${user}"&gt;
+          &lt;dtfa host="${host}" path="dtf/dtfa1" user="${user}"&gt;
+              &lt;property name="node.id" value="1"/&gt;
+          &lt;/dtfa&gt;
+          &lt;dtfa host="${host}" path="dtf/dtfa2" user="${user}"&gt;
+              &lt;property name="node.id" value="2"/&gt;
+          &lt;/dtfa&gt;
+          &lt;dtfa host="${host}" path="dtf/dtfa3" user="${user}"&gt;
+              &lt;property name="node.id" value="3"/&gt;
+          &lt;/dtfa&gt;
+          &lt;dtfx host="${host}" logs="tests/ut/output/ut_results.xml" path="dtf/dtfx" test="tests/ut/echo.xml" user="${user}"&gt;
+          &lt;/dtfx&gt;
+      &lt;/dtfc&gt;
+  &lt;/setup&gt;
+</pre>
+  
+  <p>
+  Now from the previous example you can see that the configuration file is 
+  very easy to read and you could easily get started writing your own quickly.
+  Just as any other DTF XML file you can use properties that you can easily 
+  then specify on the command line and control the deployment setup easily 
+  from the command line.
+  </p>
+  <p>
+  Aside from being able to use the properties you can also specify the exact 
+  properties to load into each component at startup. The property loading is 
+  done the same way as it would be when you're using the <b>dtf.defaults</b>
+  property but the loading is handled by the deployment feature itself. You 
+  can read more on the <b>dtf.defaults</b> feature at 
+  <a href='../features/loading default properties.html'>Loading Default Properties</a>.
+  </p>
+  <p>
+  There are a few other important attributes to be specified when identifying
+  the various components that make up your DTF setup. These attributes are all
+  well documented at <a href='../features/deployment tags.html'>Deployment Tags</a>.
+  </p>
+  <p>
+  Another few things to remember when writing these configuration files is 
+  that you don't have to identify the DTFX and can instead use this file to 
+  simply startup and run your tests against the same setup many times. You 
+  can also use the deploy-status to check the status of the setup and easily
+  restart the deployment before running your existing tests against a well 
+  known and well defined setup.
+  </p></p></body></html>

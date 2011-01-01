@@ -1,0 +1,13 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Createcookie</h1></dt><p align='justify'><p>
+               The create cookie command allows you to add new cookies to your
+               Selenium session.
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>nameValuePair</b></td><td><p align='justify'>the name,value pair in the format 'name=value'</p></td></tr><tr valign='top'><td width='100px'><b>optionsString</b></td><td><p align='justify'>options for the cookie. Currently supported options 
+                include 'path' and 'max_age'. the optionsString's format
+                is "path=/path/, max_age=60". The order of options are 
+                irrelevant, the unit of the value of 'max_age' is second.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://www.yahoo.com" browser="*firefox"&gt;
+      &lt;open url="/"/&gt;
+      &lt;waitForPageToLoad timeout="30000"/&gt;
+      &lt;createCookie nameValuePair="C=D" optionsString="path=/"/&gt;
+      &lt;deleteCookie name="C=D" path="/"/&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

@@ -1,15 +1,21 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Select</h3></dt><dd><p align='justify'>This child tag of query allows for you to define what you want 
-               to get back from the query. The fields specified in the select
-               are the only ones you can then refer to in the where tag as 
-               well as the only fields available afterwards on the cursor. 
-               This is useful to avoid loading fields that may have binary
-               blobs that would otherwise hurt the querying performance.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='field.html'>field</a>){0,*} </b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;query event="hc.*" property="obj1" type="txt" uri="storage://OUTPUT/perf.db"&gt;
-     &lt;select&gt;
-         &lt;field name="myfield"/&gt;
-     &lt;/select&gt;
-     &lt;where&gt;
-         &lt;eq field="myfield" value="${myvalue}"/&gt;
-     &lt;/where&gt;
- &lt;/query&gt;
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Select</h1></dt><p align='justify'><p>
+               The selector command instructs selenium to pick a specific 
+               option from a drop down menu. The drop down selection is done
+               using an <a href='../features/element locator.html'>Element Locator</a> while the exact option to
+               pick is done using the <a href='../features/option locator.html'>Option Locator</a>.
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>selectLocator</b></td><td><p align='justify'><a href='../features/element locator.html'>Element Locator</a> to identify the drop down.</p></td></tr><tr valign='top'><td width='100px'><b>optionLocator</b></td><td><p align='justify'><a href='../features/option locator.html'>Option Locator</a> to identify the exact option 
+                to choose.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://www.google.com"&gt;
+      &lt;open url="/finance" windowID="test"/&gt;
+      &lt;waitForPageToLoad timeout="30000"/&gt;
+      &lt;type locator="q" value="GOOG"/&gt;
+      &lt;click locator="//input[@value='Get quotes']"/&gt;
+      &lt;waitForPageToLoad timeout="30000"/&gt;        
+      
+      &lt;log&gt;Toggling between a few drop down options&lt;/log&gt; 
+      &lt;select optionLocator="Most Recent Annual" selectLocator="id=related-select"/&gt;
+      &lt;sleep time="1s"/&gt;
+      &lt;select optionLocator="Most Recent Quarter" selectLocator="id=related-select"/&gt;
+      &lt;sleep time="1s"/&gt;
+      &lt;select optionLocator="Most Recent Annual" selectLocator="id=related-select"/&gt;
+  &lt;/selenium&gt;
 </pre></dd></body></html>

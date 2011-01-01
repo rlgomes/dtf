@@ -1,35 +1,15 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Query</h3></dt><dd><p align='justify'>This tag is used to query for results that have been previously 
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Query</h1></dt><p align='justify'>This tag is used to query for results that have been previously 
                reordered with the record tag. This tag will create a result 
                set and then to iterate over that result set you must call the
                nextresult tag to make it progress. Not all recorders are 
                query-able though, so you should look at the following list for
-               query-able recorders:</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/><a href='select.html'>select</a> . <a href='where.html'>where</a></b><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>type</b></td><td><p align='justify'>Identifies the type of query engine that will be used to 
-                open the specified recorded events at the place specified 
-                byt the <code>uri</code>.
-                
-           <b>Query Types</b>
-           <table border="1">
-               <tr>
-                   <th>Name</th> 
-                   <th>Description</th> 
-               </tr>
-               <tr>
-                   <td>txt</td> 
-                   <td>
-                       Text query engine, able to query the results 
-                       recorded by the txt recorder.
-                   </td> 
-               </tr>
-          </table></p></td></tr><tr valign='top'><td width='100px'><b>event</b></td><td><p align='justify'>The name of the event to query the underlying cursor on.</p></td></tr><tr valign='top'><td width='100px'><b>encoding</b></td><td><p align='justify'>See </p><a href='loadproperties.html'>Loadproperties</a><p align='justify'> for more information on the
-                encoding attribute.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>uri</b></td><td><p align='justify'>Input URI of the previous recorded events.</p></td></tr><tr valign='top'><td width='100px'><b>cursor</b></td><td><p align='justify'>The name of the cursor that will give us the results to 
-                apply the query constraints on.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;query cursor="obj1" event="test.*" uri="storage://OUTPUT/perf.txt"&gt;
+               query-able recorders:</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/><a href='select.html'>select</a> . <a href='where.html'>where</a></b><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>event</b></td><td><p align='justify'>The name of the event to query the underlying cursor on.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>uri</b></td><td><p align='justify'>Input URI of the previous recorded events.</p></td></tr><tr valign='top'><td width='100px'><b>cursor</b></td><td><p align='justify'>The name of the cursor that will give us the results to 
+                apply the query constraints on.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;query cursor="obj1" event="test.*" uri="storage://OUTPUT/perf.txt"&gt;
      &lt;where&gt;
          &lt;eq field="myfield" value="myvalue"/&gt;
      &lt;/where&gt;
  &lt;/query&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;query cursor="obj1" event="test.*" uri="storage://OUTPUT/perf.txt"&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;query cursor="obj1" event="test.*" uri="storage://OUTPUT/perf.txt"&gt;
      &lt;where&gt;
          &lt;and&gt;
              &lt;eq field="field1" value="somevalue"/&gt;

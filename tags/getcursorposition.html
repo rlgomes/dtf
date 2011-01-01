@@ -1,0 +1,16 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Getcursorposition</h1></dt><p align='justify'><p>
+               Retrieves the text cursor position in the given input element
+               or textarea; beware, this may not work perfectly on all
+               browsers. Specifically, if the cursor/selection has been 
+               cleared by JavaScript, this command will tend to return the 
+               position of the last location of the cursor, even though the 
+               cursor is now gone from the page. This is filed as SEL-243.
+               </p>
+               <p>
+               This method will fail if the specified element isn't an input
+               element or textarea, or there is no cursor in the element.
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>locator</b></td></tr><tr valign='top'><td width='100px'><b>property</b></td><td><p align='justify'>the name of the property to save the value to.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://someplace.com" browser="*firefox"&gt;
+      &lt;open url="/"/&gt;
+      &lt;getCursorPosition locator="//input[@id='test']" property="cursor.position"/&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

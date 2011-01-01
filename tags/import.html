@@ -1,14 +1,11 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Import</h3></dt><dd><p align='justify'>Import functions/references from another XML file. If the 
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Import</h1></dt><p align='justify'>Import functions/references from another XML file. If the 
                function already exists then the import will not overwrite
                the current implementation. This will make it so that various
                imports of functions from different files do not overwrite 
                each others implementations and instead the very first import
                of function X will take precedence to all subsequent 
-               implementation.s</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>loadFuncs</b></td><td><p align='justify'>Specifies if functions should be loaded from the specified 
-                XML file.</p></td></tr><tr valign='top'><td width='100px'><b>loadRefs</b></td><td><p align='justify'>Specifies if references should be loaded from the 
-                specified XML file.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>uri</b></td><td><p align='justify'>Specifies an XML file from where we will load functions 
-                and XML references.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;local&gt;
+               implementation.s</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>uri</b></td><td><p align='justify'>Specifies an XML file from where we will load functions 
+                and XML references.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;local&gt;
      &lt;import uri="storage://INPUT/functions.xml"/&gt; 
  &lt;/local&gt;
 </pre></dd></body></html>

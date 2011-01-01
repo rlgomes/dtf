@@ -1,0 +1,22 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Similar</h1></dt><p align='justify'><p>
+ Evaluates if op1 and op2 are within the tolerance level of similarity that is
+ desired for these two pieces of data. The value of tolerance can be expressed
+ like so:
+ </p>
+ <br/>
+ <pre>
+  50%      - op1 is at least 50% similar to op2
+  0.15     - op1 is at least 15% similar to op2
+ </pre>
+ <p>
+ The actual similarity is calculated based on how many bytes are actually the
+ same between the two pieces of data. There is no attempt to calculate if
+ the data has been shifted and therefore the comparison is a direct position 
+ to position comparison.
+ </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>op1</b></td><td><p align='justify'>Identifies the first operand of a conditional tag.</p></td></tr><tr valign='top'><td width='100px'><b>op2</b></td><td><p align='justify'>Identifies the second operand of a conditional tag.</p></td></tr><tr valign='top'><td width='100px'><b>value</b></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;if&gt;
+     &lt;similar op1="AAAAAAA" op2="AAAAAAB" value="15%"/&gt;
+     &lt;else&gt;
+         &lt;fail&gt;The average value is more than 5% off from previous value&lt;/fail&gt;
+     &lt;/else&gt;
+ &lt;/if&gt;
+</pre></dd></body></html>

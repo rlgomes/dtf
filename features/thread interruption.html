@@ -1,4 +1,4 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Thread Interruption</h3></dt><dd><p align='justify'><p>
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Thread Interruption</h1></dt><p align='justify'><p>
  Thread interruption is a necessary evil in the DTF framework that must be
  considered by all developers of any tags. You have to think about the 
  issue of having a long running tag that can't be interrupted in Java 
@@ -14,7 +14,7 @@
  All of the flow control tags such as for, parallelloop, etc within DTF 
  are already interruptable and will correctly clean up their underlying
  spawned threads. Now that your threads are interruptable you only need 
- to register them with the </p><a href='thread management.html'>Thread Management</a><p align='justify'> layer so that you
+ to register them with the <a href='../features/thread management.html'>Thread Management</a> layer so that you
  can have the DTF framework interrupt your threads when necessary. As an 
  example you can see here the code for a the for tag that checks for 
  interruption during its normal execution:
@@ -42,4 +42,4 @@
           getConfig().remove(getProperty());
      }
  }
- </pre></p></dd></body></html>
+ </pre></p></body></html>

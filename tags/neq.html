@@ -1,23 +1,4 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Neq</h3></dt><dd><p align='justify'>Evaluates if op1 and op2 are different.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>type</b></td><td><p align='justify'>Identifies the type of the operands being evaluated. 
-                <b>Supported DTF types:</br>
-                <table border="1">
-                    <tr>
-                        <th>Type</th> 
-                        <th>Description</th> 
-                    </tr>
-                    <tr>
-                         <td>int</td>
-                         <td>Integer type</td>
-                    </tr>
-                    <tr>
-                         <td>string</td>
-                         <td>String type</td>
-                    </tr>
-               </table></p></td></tr><tr valign='top'><td width='100px'><b>nullable</b></td><td><p align='justify'>If nullable is set to true then if one of the operands is
-                equal to null the condition will still evaluate to true.
-                When set to false the behaviour of the comparison of the 
-                two operands is the normal conditional evaluation.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>op1</b></td><td><p align='justify'>Identifies the first operand of a conditional tag.</p></td></tr><tr valign='top'><td width='100px'><b>op2</b></td><td><p align='justify'>Identifies the second operand of a conditional tag.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;if&gt;
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Neq</h1></dt><p align='justify'>Evaluates if op1 and op2 are different.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>op1</b></td><td><p align='justify'>Identifies the first operand of a conditional tag.</p></td></tr><tr valign='top'><td width='100px'><b>op2</b></td><td><p align='justify'>Identifies the second operand of a conditional tag.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;if&gt;
      &lt;neq op1="${responsetime}" op2="50"/&gt;
      &lt;then&gt;
          &lt;log&gt;response time still under 50ms&lt;/log&gt;

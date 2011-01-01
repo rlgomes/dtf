@@ -1,0 +1,14 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Answeronnextprompt</h1></dt><p align='justify'><p>
+               Instructs Selenium to return the specified answer string in 
+               response to the next JavaScript prompt [window.prompt()].
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>answer</b></td><td><p align='justify'>the answer to give in response to the prompt pop-up.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium url="http://somewhere.com"&gt;
+      &lt;answerOnNextPrompt answer="superduper"/&gt;
+      &lt;getEval property="response" script="window.prompt('Secret code word?', '')"/&gt;
+      &lt;assert&gt;
+        &lt;isPromptPresent/&gt;
+    &lt;/assert&gt;
+      &lt;assert&gt;
+        &lt;eq op1="${response}" op2="superduper"/&gt;
+    &lt;/assert&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

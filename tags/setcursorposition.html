@@ -1,0 +1,12 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Setcursorposition</h1></dt><p align='justify'><p>
+               Moves the text cursor to the specified position in the given 
+               input element or textarea. This method will fail if the 
+               specified element isn't an input element or textarea.
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>locator</b></td><td><p align='justify'><a href='../features/element locator.html'>Element Locator</a> to identify the html element.</p></td></tr><tr valign='top'><td width='100px'><b>position</b></td><td><p align='justify'>the numerical position of the cursor in the field; 
+                position should be 0 to move the position to the beginning
+                of the field. You can also set the cursor to -1 to move it
+                to the end of the field.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://www.google.com"&gt;
+      &lt;open url="/"/&gt;
+      &lt;setCursorPosition locator="//input[@id='q']" position="-1"/&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

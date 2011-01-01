@@ -1,0 +1,18 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Repeat Stream Type</h1></dt><p align='justify'><p>
+ The repeat stream type generates a sequence of data that repeats the pattern
+ you specified till it has generated the desired size.
+ </p>
+ <p>
+ Using the repeat streaming property is as simple as referencing the property
+ like so:
+ </p>
+ <pre>
+ ${dtf.stream(repeat,1024,ABC)}
+ </pre>
+ <p>
+ The previous property defines a repeat stream of data that has 1024 bytes in 
+ length and will repeat the string ABC until the desired length has been 
+ reached. The data generated can always be re-generated using  the same seed.
+ This means you only have to store the size & seed to be able to do data 
+ validation later on and not have to save the data itself.
+ </p></p></body></html>

@@ -1,13 +1,8 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Rendezvous_visit</h3></dt><dd><p align='justify'>Visit the rendezvous point and waiting till all of the parties 
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Rendezvous_visit</h1></dt><p align='justify'>Visit the rendezvous point and waiting till all of the parties 
                that were designated to synchronize on this point have arrived.
                This tag also includes a timeout so you can timeout and abort
                the waiting because you have a limit on how long any of the 
-               other parties can take to show up.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>timeout</b></td><td><p align='justify'>the maximum amount of time to wait for all parties to 
-                visit the rendezvous point. If this time limit is exceeded
-                then a RendezvousException is thrown to notify that the
-                timeout was hit.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>id</b></td><td><p align='justify'>the unique identifier used to reference this particular
-                rendezvous point within a DTF testcase.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;rendezvous_visit id="rendezvous"/&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;rendezvous_visit id="rendezvous" timeout="2h"/&gt;
+               other parties can take to show up.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>id</b></td><td><p align='justify'>the unique identifier used to reference this particular
+                rendezvous point within a DTF testcase.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;rendezvous_visit id="rendezvous"/&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;rendezvous_visit id="rendezvous" timeout="2h"/&gt;
 </pre></dd></body></html>

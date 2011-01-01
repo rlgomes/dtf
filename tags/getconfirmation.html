@@ -1,0 +1,19 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Getconfirmation</h1></dt><p align='justify'><p>
+               Retrieves the message of a JavaScript confirmation dialog 
+               generated during the previous action. By default, the confirm 
+               function will return true, having the same effect as manually
+               clicking OK. This can be changed by prior execution of the 
+               chooseCancelOnNextConfirmation command. If an confirmation is 
+               generated but you do not get/verify it, the next Selenium 
+               action will fail.
+               <b>NOTE:</b> under Selenium, JavaScript confirmations will 
+               NOT pop up a visible dialog.
+               <b>NOTE:</b> Selenium does NOT support JavaScript confirmations
+               that are generated in a page's onload() event handler. In this
+               case a visible dialog WILL be generated and Selenium will hang
+               until you manually click OK.
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>property</b></td><td><p align='justify'>the name of the property to save the value to.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://someplace.com" browser="*firefox"&gt;
+      &lt;open url="/"/&gt;
+      &lt;getConfirmation property="confirmation.msg"/&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

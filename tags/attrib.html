@@ -1,4 +1,4 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Attrib</h3></dt><dd><p align='justify'>This tag is used for defining attributes that a lockcomponent 
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Attrib</h1></dt><p align='justify'>This tag is used for defining attributes that a lockcomponent 
                should search for when trying to match the right type of 
                component. The attrib name and value are matched with 
                properties set on the DTFA command line. The properties which
@@ -6,8 +6,7 @@
                context but only if they start with a non dtf.xxx prefix. For 
                more information on this subject have a look at the DTF User's 
                Guide which explains the usage of default properties on agents
-               and locking those agents based on those same properties.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>name</b></td><td><p align='justify'>name of the property to define.</p></td></tr><tr valign='top'><td width='100px'><b>value</b></td><td><p align='justify'>value to give the property defined.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;local&gt;
+               and locking those agents based on those same properties.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;local&gt;
      &lt;echo&gt;Remote counter retrieval&lt;/echo&gt;
      &lt;lockcomponent id="DTFA1"&gt;
           &lt;attrib name="type" value="DTFA"/&gt;

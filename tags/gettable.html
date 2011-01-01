@@ -1,0 +1,8 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Gettable</h1></dt><p align='justify'><p>
+               Gets the text from a cell of a table. The cellAddress syntax 
+               tableLocator.row.column, where row and column start at 0.
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>tableCellAddress</b></td><td><p align='justify'>a cell address, e.g. "foo.1.4".</p></td></tr><tr valign='top'><td width='100px'><b>property</b></td><td><p align='justify'>the name of the property to save the value to.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://someplace.com"&gt;
+      &lt;open url="/"/&gt;
+      &lt;getTable property="foo.1.4.value" tableCellAddress="foo.1.4"/&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

@@ -1,4 +1,4 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Compare</h3></dt><dd><p align='justify'>The compare tag is used to compare events from different event
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Compare</h1></dt><p align='justify'>The compare tag is used to compare events from different event
                files that contain related data. Such as the event file from 
                writing data to a service and the event file from reading that
                same data from the service. There has to be a way to relate 
@@ -14,8 +14,7 @@
                tag more efficient but may require more drastic changes to 
                the way the tag is used. 
                </b>
-               <br/><br/></p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/><a href='query.html'>query</a> . <a href='where.html'>where</a> . <a href='validate.html'>validate</a></b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;compare&gt;
+               <br/><br/></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/><a href='query.html'>query</a> . <a href='where.html'>where</a> . <a href='validate.html'>validate</a></b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;compare&gt;
     &lt;query cursor="c1" event="write.event" uri="storage://OUTPUT/compare_write_data.txt"&gt;
        &lt;select&gt;
            &lt;field name="recordid"/&gt;
@@ -40,8 +39,7 @@
         &lt;/assert&gt;
     &lt;/validate&gt;
  &lt;/compare&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;compare&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;compare&gt;
     &lt;query cursor="c1" event="write.event" uri="storage://OUTPUT/read_data.txt"/&gt;
     &lt;!-- We know that our data was generated in a certain way based on a 
          sequence ID that we used so we can easily validate our read data 

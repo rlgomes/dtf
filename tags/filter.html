@@ -1,0 +1,21 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Filter</h1></dt><p align='justify'>This tag is used to filter elements from an existing event 
+               file. You need to specify the srcuri and dsturi then with the
+               select child tag you can specify which fields from the events
+               to actually filter along and with the where child tag you can
+               specify the exact conditions that have to be matched in order 
+               for the event to make the filter and be written to the dsturi.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/><a href='select.html'>select</a> . <a href='where.html'>where</a></b><br/><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>srcuri</b></td><td><p align='justify'>The source URI to read the events from.</p></td></tr><tr valign='top'><td width='100px'><b>dsturi</b></td><td><p align='justify'>The destination URI to write the events that have matched
+                the where clause specified.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;filter dsturi="storage://OUTPUT/filtered.txt" event="write.event" srcuri="storage://OUTPUT/unfiltered.txt"&gt;
+     &lt;select&gt;
+         &lt;field name="recordid"/&gt;
+         &lt;field name="hash"/&gt;
+     &lt;/select&gt;
+     &lt;where&gt;
+         &lt;gt op1="5" op2="recordid"/&gt;
+     &lt;/where&gt;
+ &lt;/filter&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;filter dsturi="storage://OUTPUT/filtered.txt" event="write.event" srcuri="storage://OUTPUT/unfiltered.txt"&gt;
+     &lt;where&gt;
+         &lt;eq op1="123415123" op2="publish_date"/&gt;
+     &lt;/where&gt;
+ &lt;/filter&gt;
+</pre></dd></body></html>

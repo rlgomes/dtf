@@ -1,0 +1,10 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Draganddrop</h1></dt><p align='justify'><p>
+               This command simulates the dragging and dropping of an HTML
+               element. The element is identified by the locator tag while the
+               movement made is specified by the movementString attribute.
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>locator</b></td><td><p align='justify'><a href='../features/element locator.html'>Element Locator</a> to identify the html element.</p></td></tr><tr valign='top'><td width='100px'><b>movementsString</b></td><td><p align='justify'>offset in pixels from the current location to which the 
+                element should be moved, e.g., "+70,-300"</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://someplace.com" browser="*firefox"&gt;
+      &lt;open url="/"/&gt;
+      &lt;dragAndDrop locator="//input[@name='test']" movementString="0,50"/&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

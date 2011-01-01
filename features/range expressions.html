@@ -1,4 +1,4 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Range Expressions</h3></dt><dd><p align='justify'>Range expressions are used to create/define properties with values that 
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Range Expressions</h1></dt><p align='justify'>Range expressions are used to create/define properties with values that 
  iterate over a collection of values or randomly choose from a collection of 
  values. These ranges are used in some of the looping mechanisms within DTF 
  and can be very useful for defining special identifiers to be used during 
@@ -24,11 +24,10 @@
              </p>
          </td>
          <td>
-          </p><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;for property="prop" range="1..10"&gt;
+          <pre>&lt;for property="prop" range="1..10"&gt;
               &lt;log&gt;Prop: ${prop}&lt;/log&gt;
           &lt;/for&gt;
-</pre><p align='justify'>
+</pre>
           <p>
           The above example will just print out each of those values that are 
           separated by a coma.
@@ -47,14 +46,13 @@
                 so you want to use it carefully.</p>
          </td>
          <td>
-         </p><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;sequence&gt;
+         <pre>&lt;sequence&gt;
              &lt;createrange name="range" value="random(a,b,c,d1,e)"/&gt;
              &lt;for property="prop" range="1..5"&gt;
                  &lt;log&gt;Prop: ${range}&lt;/log&gt;
              &lt;/for&gt;
          &lt;/sequence&gt;
-</pre><p align='justify'>
+</pre>
          <p>The above example will print out 5 randomly chosen elements form 
             the expression defined in the random expression.</p>
          </td>
@@ -70,10 +68,9 @@
                 possible numbers. Like in the examples.</p>
          </td>
          <td>
-         </p><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;createrange name="range" value="[client][1..10]"/&gt;
-</pre><p align='justify'>
+         <pre>&lt;createrange name="range" value="[client][1..10]"/&gt;
+</pre>
          <p>The above range would have the values client1,client2,client3...client10.</p>
          </td>
          </tr> 
-     </table></p></dd></body></html>
+     </table></p></body></html>

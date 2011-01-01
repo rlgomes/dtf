@@ -1,0 +1,27 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Lockgroup</h1></dt><p align='justify'><p>
+               This tag offers the ability to specific a group for locking so
+               that DTF can be smart and allow for the whole group to be 
+               locked or release the partial group so that the resources
+               can be used by others that would be locking components at the
+               same time. This avoids deadlocks because two tests being
+               executed in parallel would like to lock the same 3 resources
+               and end up failing because they locked 1-2 components each and
+               locked the other test out.
+               </p>
+               <h2>When to use a lockgroup?</h2>
+               <p>
+               A lockgroup should be used whenever you are locking more than 1
+               component and are going to be running this test concurrently 
+               with other tests. The lockgroup gives DTF the ability to 
+               correctly free up locks when they're not completely fulfilled
+               for a testscript to execute and give those resources to another
+               test that can execute while this testscript awaits its turn 
+               to use the available resources.  
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='lockcomponent.html'>lockcomponent</a>){0,*} </b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;local&gt;
+     &lt;lockgroup&gt;
+          &lt;lockcomponent id="DTFA1"/&gt;
+          &lt;lockcomponent id="DTFA2"/&gt;
+          &lt;lockcomponent id="DTFA3"/&gt;
+     &lt;/lockgroup&gt;
+ &lt;/local&gt;
+</pre></dd></body></html>

@@ -1,0 +1,14 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Isconfirmationpresent</h1></dt><p align='justify'><p>
+               Has confirm() been called?
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://somewhere.com"&gt;
+      &lt;chooseOkOnNextConfirmation/&gt;
+      &lt;runScript script="window.confirm('Are you sure?')"/&gt;
+      &lt;assert&gt;
+        &lt;isConfirmationPresent/&gt;
+    &lt;/assert&gt;
+      &lt;getConfirmation property="confirm.msg"/&gt;
+      &lt;assert&gt;
+        &lt;eq op1="${confirm.msg}" op2="Are you sure?"/&gt;
+    &lt;/assert&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

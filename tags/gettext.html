@@ -1,0 +1,10 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Gettext</h1></dt><p align='justify'><p>
+               Gets the text of an element. This works for any element that 
+               contains text. This command uses either the textContent 
+               (Mozilla-like browsers) or the innerText (IE-like browsers) of 
+               the element, which is the rendered text shown to the user.
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>locator</b></td></tr><tr valign='top'><td width='100px'><b>property</b></td><td><p align='justify'>the name of the property to save the value to.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://someplace.com"&gt;
+      &lt;open url="/"/&gt;
+      &lt;getText locator="//input[@id='address']" property="address.value"/&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

@@ -1,9 +1,7 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Entity</h3></dt><dd><p align='justify'>this tag defines an entity to be passed in the body of an http
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Entity</h1></dt><p align='justify'>this tag defines an entity to be passed in the body of an http
                request. The data will be placed in the body of the message 'as
                is' and there is currently no support for multi-part messages.
-               (Can be added later)</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>value</b></td><td><p align='justify'>the value of the entity to attach to the current http 
-                request.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;http_get onFailure="fail" perfrun="true" uri="${dtf.http.uri}"&gt;
+               (Can be added later)</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;http_get onFailure="fail" perfrun="true" uri="${dtf.http.uri}"&gt;
       &lt;entity value="XXXXX"/&gt;
  &lt;/http_get&gt;
 </pre></dd></body></html>

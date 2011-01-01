@@ -1,7 +1,7 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Stats</h3></dt><dd><p align='justify'>The stats tag is capable of calculating some statistical 
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Stats</h1></dt><p align='justify'>The stats tag is capable of calculating some statistical 
                analysis over the events identified in the result set of the 
                attribute <code>cursor</code>. The calculated statistics are 
-               thrown as events to be used by the testcase as it best sees fit.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Events</b></dt><dd><table border=1><CAPTION><b>cursor</b> Event</CAPTION><tr valign='top'><td width='120px'><b>csv_dur</b></td><td><p align='justify'><p align='justify'>This property contains a CSV contents for all of the 
+               thrown as events to be used by the testcase as it best sees fit.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Events</b></dt><dd><table border=1><CAPTION><b>cursor</b> Event</CAPTION><tr valign='top'><td width='120px'><b>csv_dur</b></td><td><p align='justify'><p align='justify'>This property contains a CSV contents for all of the 
                       latencies for the events sampled including the number
                       of times it occurred like so:
                      
@@ -76,12 +76,8 @@
                       type will have its average value calculated and recorded
                       in this attribute.</p></p></td></tr><tr valign='top'><td width='120px'><b>min_val</b></td><td><p align='justify'><p align='justify'>Each field of the specified event that is of a number 
                       type will have its minimum value calculated and recorded
-                      in this attribute.</p></p></td></tr></dd></table><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>monitor</b></td><td><p align='justify'>specify a field to monitor the value changes and generate 
-                statistic about the amount of time spent in each state. 
-                When you use this attribute there are some new events that
-                are generated, they are mentioned above.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>cursor</b></td><td><p align='justify'>Identifies the cursor to use when calculating statistics.</p></td></tr><tr valign='top'><td width='100px'><b>event</b></td><td><p align='justify'>Specifies the event name to attach the statistics that 
-                are calculated.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;script&gt;
+                      in this attribute.</p></p></td></tr></dd></table><br/><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>cursor</b></td><td><p align='justify'>Identifies the cursor to use when calculating statistics.</p></td></tr><tr valign='top'><td width='100px'><b>event</b></td><td><p align='justify'>Specifies the event name to attach the statistics that 
+                are calculated.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;script&gt;
      &lt;query cursor="cursor1" event="dtf.event" type="${recorder.type}" uri="storage://OUTPUT/${recorder.filename}"&gt;
          &lt;where&gt;
              &lt;eq op1="runid" op2="${runid}"/&gt;
@@ -92,8 +88,7 @@
          &lt;stats cursor="cursor1" event="stats"/&gt;
      &lt;/record&gt;
  &lt;/script&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;script&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;script&gt;
      &lt;query cursor="cursor1" event="dtf.event" type="${recorder.type}" uri="storage://OUTPUT/${recorder.filename}"/&gt;
                  
      &lt;record type="object" uri="property://txtrecorder"&gt; 

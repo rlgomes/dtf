@@ -1,0 +1,16 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Type</h1></dt><p align='justify'><p>
+               The type command is used to fill in any input element in HTML
+               that can be identified with the locator 
+               <a href='../features/element locator.html'>Element Locator</a> attribute. This allows you to 
+               simulate the filling out of forms or other textual elements
+               with ease. 
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>locator</b></td><td><p align='justify'><a href='../features/element locator.html'>Element Locator</a> to identify the html element.</p></td></tr><tr valign='top'><td width='100px'><b>value</b></td><td><p align='justify'>the value that will be typed into the input element 
+                identified by the locator attribute.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://www.yahoo.com" browser="*${browser}"&gt;
+      &lt;open url="/"/&gt;
+      &lt;waitForPageToLoad timeout="30000"/&gt;
+      &lt;windowMaximize/&gt;
+      &lt;type locator="p" value="finance"/&gt;
+      &lt;click locator="//button[@value='Web Search']"/&gt;
+      &lt;waitForPageToLoad timeout="30000"/&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

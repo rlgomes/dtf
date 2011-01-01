@@ -1,0 +1,13 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Ispromptpresent</h1></dt><p align='justify'><p>
+               Has a prompt occurred?
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://somewhere.com"&gt;
+      &lt;answerOnNextPrompt answer="superduper"/&gt;
+      &lt;getEval property="response" script="window.prompt('Secret code word?', '')"/&gt;
+      &lt;assert&gt;
+        &lt;isPromptPresent/&gt;
+    &lt;/assert&gt;
+      &lt;assert&gt;
+        &lt;eq op1="${response}" op2="superduper"/&gt;
+    &lt;/assert&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

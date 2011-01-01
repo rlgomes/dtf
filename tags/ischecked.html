@@ -1,0 +1,21 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Ischecked</h1></dt><p align='justify'><p>
+               Gets whether a toggle-button (checkbox/radio) is checked. 
+               Fails if the specified element doesn't exist or isn't a 
+               toggle-button.
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>locator</b></td><td><p align='justify'><a href='../features/element locator.html'>Element Locator</a> to identify the html element.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://somewhere.com"&gt;
+      &lt;for property="i" range="0..6"&gt;
+          &lt;check locator="//input[@name='gf-chart-ticker${i}']"/&gt;
+          &lt;assert&gt;
+              &lt;isChecked locator="//input[@name='gf-chart-ticker${i}']"/&gt;
+          &lt;/assert&gt;
+      &lt;/for&gt;
+      &lt;for property="i" range="0..6"&gt;
+          &lt;uncheck locator="//input[@name='gf-chart-ticker${i}']"/&gt;
+          &lt;assert&gt;
+              &lt;not&gt;
+                  &lt;isChecked locator="//input[@name='gf-chart-ticker${i}']"/&gt;
+              &lt;/not&gt;
+          &lt;/assert&gt;
+      &lt;/for&gt; 
+  &lt;/selenium&gt;
+</pre></dd></body></html>

@@ -1,0 +1,11 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Waitforpagetoload</h1></dt><p align='justify'><p>
+               Simple command that can wait for the currently loading page to
+               finish loading before proceeding with the rest of the 
+               Selenium interactions.
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>timeout</b></td><td><p align='justify'>the amount of time in milliseconds to wait for a page to
+                load after which an error will be thrown and the 
+                current execution would terminate.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://www.yahoo.com" browser="*${browser}"&gt;
+      &lt;open url="/"/&gt;
+      &lt;waitForPageToLoad timeout="30000"/&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

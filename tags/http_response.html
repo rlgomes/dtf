@@ -1,60 +1,15 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Http_response</h3></dt><dd><p align='justify'>This tag is used to define the HTTP response sent back from an
-               </p><a href='http_listener.html'>Http_listener</a><p align='justify'>, if you don't use this tag then the
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Http_response</h1></dt><p align='justify'>This tag is used to define the HTTP response sent back from an
+               <a href='../tags/http_listener.html'>Http_listener</a>, if you don't use this tag then the
                HTTP response is either 200 OK or 500 with some exception 
                message being sent as the response message to the client. Now
                if you choose to use this tag you can define any HTTP code 
                (even something outside of the 1xx-5xx range, which could be 
                used by your application for identifying certain scenarios). 
                With this response you can also send back headers, cookies and
-               even an entity (which is a stream of data) to the HTTP client.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='headergroup.html'>headergroup</a> | <a href='cookiegroup.html'>cookiegroup</a> | <a href='cookie.html'>cookie</a> | <a href='header.html'>header</a>) {0,*}  . <a href='entity.html'>entity</a></b><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>message</b></td><td><p align='justify'>The message to set in the HTTP response.</p></td></tr><tr valign='top'><td width='100px'><b>bandwidth</b></td><td><p align='justify'>This attribute will limit the bandwidth when sending or 
-                receiving data in the body of the HTTP request or 
-                response. This means the headers will still be streamed
-                at network speed but the body of the request/response will
-                only have the bandwidth specified by this attribute. The 
-                bandwidth value can be defined with the follow suffixes: 
-                <table border="1">
-                  <tr>
-                      <th>Value</th> 
-                      <th>Description</th> 
-                  </tr>
-                  <tr>
-                      <td>b</td>
-                      <td>bit</td>
-                  </tr>
-                  <tr>
-                      <td>Kb</td>
-                      <td>Kilobit</td>
-                  </tr>
-                  <tr>
-                      <td>Mb</td>
-                      <td>Megabit</td>
-                  </tr>
-                  <tr>
-                      <td>Gb</td>
-                      <td>Gigabit</td>
-                  </tr>
-                  <tr>
-                      <td>B</td>
-                      <td>Byte</td>
-                  </tr>
-                  <tr>
-                      <td>KB</td>
-                      <td>KiloByte</td>
-                  </tr>
-                  <tr>
-                      <td>MB</td>
-                      <td>MegaByte</td>
-                  </tr>
-                  <tr>
-                      <td>GB</td>
-                      <td>GigaByte</td>
-                  </tr>
-                </table></p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>status</b></td><td><p align='justify'>The status code to set in the HTTP response.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;http_response message="Something is wrong" status="400"&gt;
+               even an entity (which is a stream of data) to the HTTP client.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='headergroup.html'>headergroup</a> | <a href='cookiegroup.html'>cookiegroup</a> | <a href='cookie.html'>cookie</a> | <a href='header.html'>header</a>) {0,*}  . <a href='entity.html'>entity</a></b><br/><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>status</b></td><td><p align='justify'>The status code to set in the HTTP response.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;http_response message="Something is wrong" status="400"&gt;
      &lt;header name="result" value="false"/&gt;
  &lt;/http_response&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;http_response message="OK!" status="200"&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;http_response message="OK!" status="200"&gt;
      &lt;header name="header1" value="value1"/&gt;
      &lt;entity&gt;${dtf.stream(random,1024,1234)}&lt;/entity&gt;
  &lt;/http_response&gt;

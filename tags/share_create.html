@@ -1,4 +1,4 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h3>Share_create</h3></dt><dd><p align='justify'>A share point is a special way of communicating between threads
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Share_create</h1></dt><p align='justify'>A share point is a special way of communicating between threads
                in DTF. This resource works across components and can be used
                to share information between any thread running on any component
                in DTF. When creating a share remember that it is local to the
@@ -8,58 +8,6 @@
                <br/>
                Also remember that you can develop your own share point types
                if necessary and consult the developers guide for more 
-               information.</p></dd><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>type</b></td><td><p align='justify'>The share point type is important becuase it defines how
-                all your share_sets and share_gets will behave. The default
-                is 'single', look at the following table for more 
-                information on the various share types:
-                
-           <b>Share Types</b>
-           <table border="1">
-               <tr>
-                   <th>Type</th> 
-                   <th>Description</th> 
-               </tr>
-               <tr>
-                   <td>single</td> 
-                   <td>
-                   The single share point type basically will hold a 
-                   single instance of the last set done to this share.
-                   Any previous share_set is lost and can never be 
-                   retrieved. This type is usually used when you just want
-                   to have share that contains the latest and greatest 
-                   version of some information.
-                   </td> 
-               </tr>
-               <tr>
-                   <td>queue</td> 
-                   <td>
-                   The queue share point type basically will queue up all 
-                   of the share_sets done and will return them in the same 
-                   order back to the each of the share_gets that are done. 
-                   If N threads are doing share_get on the same queue 
-                   share point they will each get a different set from the 
-                   queue and never will there be 2 threads have the same 
-                   thing returned.
-                   </td>
-               </tr>
-               <tr>
-                   <td>cumulative</td> 
-                   <td>
-                   The cumulative share point is special because just like 
-                   the queue it will keep all the sets that were done in a 
-                   queue, but when a share_get comes through this share 
-                   point will return all of its current information back 
-                   to that one share_get.  So it acts like a buffer where 
-                   you can write a bunch of different information and once 
-                   one single share_get comes through it will be able to 
-                   pick up all the information in a single request. You 
-                   must be careful to not overload this type of share 
-                   point with thousands of sets because you will break 
-                   the agents with an out of memory exception.
-                   </td>
-               </tr>
-          </table></p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>id</b></td><td><p align='justify'>Unique id for this share point</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;share_create id="SHARE1" type="single"/&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
-&lt;share_create id="SHARE1" type="queue"/&gt;
+               information.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>id</b></td><td><p align='justify'>Unique id for this share point</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;share_create id="SHARE1" type="single"/&gt;
+</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;share_create id="SHARE1" type="queue"/&gt;
 </pre></dd></body></html>

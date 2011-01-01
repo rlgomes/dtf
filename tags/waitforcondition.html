@@ -1,0 +1,20 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Waitforcondition</h1></dt><p align='justify'><p>
+               Runs the specified JavaScript snippet repeatedly until it 
+               evaluates to "true". The snippet may have multiple lines, but 
+               only the result of the last line will be considered.
+               </p>
+               <p>
+               Note that, by default, the snippet will be run in the runner's
+               test window, not in the window of your application. To get the 
+               window of your application, you can use the JavaScript snippet 
+               selenium.browserbot.getCurrentWindow(), and then run your 
+               JavaScript in there
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>script</b></td><td><p align='justify'>the javascript to execute in the browser</p></td></tr><tr valign='top'><td width='100px'><b>timeout</b></td><td><p align='justify'>the amount of time in milliseconds to wait for a page to
+                load after which an error will be thrown and the 
+                current execution would terminate.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://www.yahoo.com" browser="*${browser}"&gt;
+      &lt;open url="/"/&gt;
+      &lt;refresh/&gt;
+      &lt;!-- like a waitForPageToLoad but done with javascript --&gt;
+      &lt;waitForCondition script="selenium.browserbot.getCurrentWindow().document.getElementById('search-submit')" timeout="30000"/&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

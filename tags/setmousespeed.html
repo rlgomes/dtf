@@ -1,0 +1,17 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Setmousespeed</h1></dt><p align='justify'><p>
+               Configure the number of pixels between "mousemove" events 
+               during dragAndDrop commands (default=10). Setting this value 
+               to 0 means that we'll send a "mousemove" event to every single 
+               pixel in between the start location and the end location; that 
+               can be very slow, and may cause some browsers to force the 
+               JavaScript to timeout.
+               </p>
+               <p>
+               If the mouse speed is greater than the distance between the two
+               dragged objects, we'll just send one "mousemove" at the start
+               location and then one final one at the end location.
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>pixels</b></td><td><p align='justify'>the number of pixels between "mousemove" events</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://www.google.com"&gt;
+      &lt;open url="/"/&gt;
+      &lt;setMouseSpeed pixels="15"/&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

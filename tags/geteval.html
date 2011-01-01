@@ -1,0 +1,17 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Geteval</h1></dt><p align='justify'><p>
+               Gets the result of evaluating the specified JavaScript snippet.
+               The snippet may have multiple lines, but only the result of 
+               the last line will be returned. Note that, by default, the 
+               snippet will run in the context of the "selenium" object 
+               itself, so this will refer to the Selenium object, and window
+               will refer to the top-level runner test window, not the window 
+               of your application.
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>property</b></td><td><p align='justify'>the name of the property to save the value to.</p></td></tr><tr valign='top'><td width='100px'><b>script</b></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://www.google.com"&gt;
+      &lt;open url="/"/&gt;
+      &lt;waitForPageToLoad timeout="30000"/&gt;
+      &lt;open url="/finance"/&gt;
+      &lt;waitForPageToLoad timeout="30000"/&gt;
+      &lt;getEval script="history.go(-1)"/&gt;
+      &lt;waitForPageToLoad timeout="30000"/&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

@@ -1,0 +1,14 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Waitforpopup</h1></dt><p align='justify'><p>
+               Waits for a popup window to appear and load up.
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>windowID</b></td><td><p align='justify'>the JavaScript window "name" of the window that will 
+                appear (not the text of the title bar) If unspecified, 
+                or specified as "null", this command will wait for the 
+                first non-top window to appear (don't rely on this if you 
+                are working with multiple popups simultaneously).</p></td></tr><tr valign='top'><td width='100px'><b>timeout</b></td><td><p align='justify'>the amount of time in milliseconds to wait for a page to
+                load after which an error will be thrown and the 
+                current execution would terminate.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://www.yahoo.com"&gt;
+      &lt;open url="/"/&gt;
+      &lt;openWindow url="http://www.yahoo.com/finance" windowID="other"/&gt;
+      &lt;waitForPopUp timeout="30000" windowID="other"/&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

@@ -1,0 +1,9 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Keyup</h1></dt><p align='justify'><p>
+               This command simulates releasing a specified key sequence.
+               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>locator</b></td><td><p align='justify'><a href='../features/element locator.html'>Element Locator</a> to identify the html element.</p></td></tr><tr valign='top'><td width='100px'><b>keySequence</b></td><td><p align='justify'>either be a string("\" followed by the numeric keycode of 
+                the key to be pressed, normally the ASCII value of that 
+                key), or a single character. For example: "w", "\119".</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://www.yahoo.com" browser="*firefox"&gt;
+      &lt;open url="/"/&gt;
+      &lt;keyUp keySequence="w" locator="//input[@name='p']"/&gt;
+  &lt;/selenium&gt;
+</pre></dd></body></html>

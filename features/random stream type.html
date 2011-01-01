@@ -1,0 +1,21 @@
+<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Random Stream Type</h1></dt><p align='justify'><p>
+ The random stream type generates a random sequence of bytes of the size that
+ you choose with the optional seed you specify. The actual random data 
+ follows the details explained in the <a href='../features/generating random data.html'>Generating Random Data</a> 
+ section. 
+ </p>
+ <p>
+ Using the random streaming property is as simple as referencing the property
+ like so:
+ </p>
+ <pre>
+ ${dtf.stream(random,1024,1234)}
+ </pre>
+ <p>
+ The previous property defines a random stream of data that has 1024 bytes in 
+ length and has a random seed of 1234. This pseudo random data is generated
+ following some rules as explained earlier in this document and can always
+ be re-generated using the same seed. This means you only have to store the
+ size & seed to be able to do data validation later on and not have to save 
+ the data itself.
+ </p></p></body></html>
