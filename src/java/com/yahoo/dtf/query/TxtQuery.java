@@ -230,8 +230,12 @@ public class TxtQuery extends QueryIntf {
                         result.put(key, value);
                     }
                 }
+               
+                if ( _property != null ) 
+                    result.put(_property + ".event.name", eventName);
+                else 
+                    result.put("event.name", eventName);
                 
-                result.put(_property + ".event.name", eventName);
                 return result;
             }
             
