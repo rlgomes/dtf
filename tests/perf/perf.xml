@@ -20,7 +20,7 @@
         <property name="build" value="${dtf.timestamp}"/>
         <property name="http.perf.keepbuilds" value="10"/>
     </local>
-  
+ 
     <result uri="storage://OUTPUT/perf_results.xml" type="junit" >
         <record event="http.perf"
                 uri="storage://PERFOUTPUT/perf_results.txt"
@@ -68,14 +68,19 @@
             </then>
         </if>
     </iterate> 
-   
+    
     <!-- reduce build list to ${http.perf.keepbuilds} --> 
     <property name="buildexp" value=""/> 
-    <createrange name="buildrange" value="${builds}"/>
-    <for property="i" range="1..${http.perf.keepbuilds}">
+    <property name="count" value="0" />
+    <for property="i" range="${builds}">
         <property name="buildexp"
-                  value="${buildexp}${buildrange}|"
-                  overwrite="true"/>  
+                  value="${buildexp}${i}|"
+                  overwrite="true"/> 
+        <add result="count" op2="${count}" op1="1"/> 
+        <if>
+            <gt op1="${count}" op2="${http.perf.keepbuilds}"/>
+            <then><break/></then>
+        </if>
     </for>
     
     <filter srcuri="storage://PERFOUTPUT/perf_results.txt"
@@ -106,7 +111,7 @@
                           value="${${perf.event.name}.ops},${perf.ops}"
                           overwrite="true"/>
                 <property name="${perf.event.name}.builds"
-                          value="${${perf.event.name}.builds},${perf.build}"
+                          value="${${perf.event.name}.builds},&quot;${perf.build}&quot;"
                           overwrite="true"/>
             </else>
         </if> 
