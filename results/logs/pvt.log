@@ -1,39 +1,289 @@
 Buildfile: build.xml
 
 init:
-     [echo] Creating log dir ./logs/31-12-2010.23.50.19
-    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf/dist/logs/31-12-2010.23.50.19
+     [echo] Creating log dir ./logs/01-01-2011.00.32.34
+    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf/dist/logs/01-01-2011.00.32.34
 
 run_pvt:
 
 init:
-     [echo] Creating log dir ./logs/31-12-2010.23.50.19
+     [echo] Creating log dir ./logs/01-01-2011.00.32.34
 
 run_test:
 
 init:
-     [echo] Creating log dir ./logs/31-12-2010.23.50.19
+     [echo] Creating log dir ./logs/01-01-2011.00.32.34
 
 run_components:
      [echo] Starting up dtfc
-     [echo] logging to ./logs/31-12-2010.23.50.19/dtfc.*.log
+     [echo] logging to ./logs/01-01-2011.00.32.34/dtfc.*.log
      [echo] Starting DTFA1...
-     [echo] logging to ./logs/31-12-2010.23.50.19/dtfa-1.*.log
+     [echo] logging to ./logs/01-01-2011.00.32.34/dtfa-1.*.log
      [echo] Starting DTFA2...
-     [echo] logging to ./logs/31-12-2010.23.50.19/dtfa-2.*.log
+     [echo] logging to ./logs/01-01-2011.00.32.34/dtfa-2.*.log
      [echo] Starting DTFA3...
-     [echo] logging to ./logs/31-12-2010.23.50.19/dtfa-3.*.log
+     [echo] logging to ./logs/01-01-2011.00.32.34/dtfa-3.*.log
 
 init:
-     [echo] Creating log dir ./logs/31-12-2010.23.50.19
+     [echo] Creating log dir ./logs/01-01-2011.00.32.34
 
 run_dtfx:
-     [java] INFO  31/12/2010 23:50:26 DebugServer     - Listening at 127.0.0.1:40004
-     [java] INFO  31/12/2010 23:50:26 Comm            - Host address [127.0.0.1]
-     [java] INFO  31/12/2010 23:50:26 CommRMIServer   - Listening at [30003]
-     [java] INFO  31/12/2010 23:50:26 Comm            - DTFX Setup.
-     [java] ERROR 31/12/2010 23:50:30 Error running script.
-     [java] com.yahoo.dtf.exception.ParseException: Range [buildrange] out of elements. at tests/perf/perf.xml:80:37
+     [java] INFO  01/01/2011 00:32:40 DebugServer     - Listening at 127.0.0.1:40004
+     [java] INFO  01/01/2011 00:32:40 Comm            - Host address [127.0.0.1]
+     [java] INFO  01/01/2011 00:32:41 CommRMIServer   - Listening at [30003]
+     [java] INFO  01/01/2011 00:32:41 Comm            - DTFX Setup.
+     [java] INFO  01/01/2011 00:32:44 Result          - Starting Result recording: Result {uri=storage://OUTPUT/perf_results.xml}
+     [java] INFO  01/01/2011 00:32:44 Testsuite       - Starting perfsuite
+     [java] INFO  01/01/2011 00:32:44 Testscript      - Executing storage://INPUT/arithmetic.xml
+     [java] INFO  01/01/2011 00:32:45 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  01/01/2011 00:33:06 Log             - 
+     [java]         Arithmetic Performance:
+     [java]         **********************
+     [java]         
+     [java]         add/second:      15323.322
+     [java]         mod/second:      17825.312
+     [java]         abs/second:      17724.211
+     [java]         subtract/second: 16818.029
+     [java]         divide/second:   18989.746
+     [java]         multiply/second: 17655.367
+     [java]     
+     [java] INFO  01/01/2011 00:33:06 Testscript      - Executing storage://INPUT/eventperf.xml
+     [java] INFO  01/01/2011 00:33:06 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  01/01/2011 00:33:06 Rename          - Node name is dtfx-3
+     [java] INFO  01/01/2011 00:33:06 Lockcomponent   - Locked dtfa-0 as AGENT1
+     [java] INFO  01/01/2011 00:33:46 Log             - 
+     [java]         Remote record events with 1 agent(s) with 1 thread(s)
+     [java]         Events per second: 15239.257
+     [java]         Total of Events:   50000
+     [java]         Total Duration:    3281ms
+     [java]     
+     [java] INFO  01/01/2011 00:33:46 Log             - 
+     [java]         Local record events with 1 agent(s) with 1 thread(s)
+     [java]         Events per second: 168.976
+     [java]         Total of Events:   500
+     [java]         Total Duration:    2959ms
+     [java]     
+     [java] INFO  01/01/2011 00:33:46 Testscript      - Executing storage://INPUT/recorderperf.xml
+     [java] INFO  01/01/2011 00:33:46 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  01/01/2011 00:33:46 Import          - Importing elements from Import {uri=storage://TINPUT/eventutil.xml}
+     [java] INFO  01/01/2011 00:33:51 Log             - 
+     [java]               txt recorder performance
+     [java] 	          ***********************************
+     [java] 	          Events per second: 50000
+     [java] 	    
+     [java] INFO  01/01/2011 00:33:55 Log             - 
+     [java]               csv recorder performance
+     [java] 	          ***********************************
+     [java] 	          Events per second: 50000
+     [java] 	    
+     [java] INFO  01/01/2011 00:33:55 Testscript      - Executing storage://INPUT/queryperf.xml
+     [java] INFO  01/01/2011 00:33:55 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  01/01/2011 00:34:47 Log             - txt queries per second: 15000
+     [java] INFO  01/01/2011 00:34:47 Testscript      - Executing storage://INPUT/stats.xml
+     [java] INFO  01/01/2011 00:34:47 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  01/01/2011 00:35:20 Log             - txt stats operations/s: 71428
+     [java] INFO  01/01/2011 00:35:20 Testscript      - Executing storage://INPUT/choices.xml
+     [java] INFO  01/01/2011 00:35:20 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  01/01/2011 00:35:38 Log             - Number of iterations: 500000
+     [java] INFO  01/01/2011 00:35:38 Log             - ********************************
+     [java] INFO  01/01/2011 00:35:38 Log             - Choices/second: 36840.555
+     [java] INFO  01/01/2011 00:35:38 Testscript      - Executing storage://INPUT/function.xml
+     [java] INFO  01/01/2011 00:35:38 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  01/01/2011 00:36:03 Log             - 
+     [java]         Function calls/second: 25101.661
+     [java]     
+     [java] INFO  01/01/2011 00:36:03 Testscript      - Executing storage://INPUT/propertyperf.xml
+     [java] INFO  01/01/2011 00:36:03 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  01/01/2011 00:36:13 Log             - Property resolutions per second: 55555
+     [java] INFO  01/01/2011 00:36:13 Testscript      - Executing storage://INPUT/random.xml
+     [java] INFO  01/01/2011 00:36:13 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  01/01/2011 00:36:13 Log             - random numbers with upper and lower limit
+     [java] INFO  01/01/2011 00:36:27 Log             - randomInt/second: 38461
+     [java] INFO  01/01/2011 00:36:42 Log             - randomLong/second: 35714
+     [java] INFO  01/01/2011 00:37:00 Log             - randomDouble/second: 27777
+     [java] INFO  01/01/2011 00:37:15 Log             - gaussianLong/second: 35714
+     [java] INFO  01/01/2011 00:37:15 Testscript      - Executing storage://INPUT/rangeperf.xml
+     [java] INFO  01/01/2011 00:37:15 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  01/01/2011 00:37:24 Log             - Ops/sec: 62500
+     [java] INFO  01/01/2011 00:37:24 Testscript      - Executing storage://INPUT/shareperf.xml
+     [java] INFO  01/01/2011 00:37:24 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  01/01/2011 00:37:24 Rename          - Node name is dtfx-4
+     [java] INFO  01/01/2011 00:37:25 Lockcomponent   - Locked dtfa-1 as PRODUCER
+     [java] INFO  01/01/2011 00:37:25 Lockcomponent   - Locked dtfa-2 as CONSUMER
+     [java] INFO  01/01/2011 00:37:55 Log             - single share gets 344 remote syncs per sec
+     [java] INFO  01/01/2011 00:38:05 Log             - single share gets 5000 local syncs per sec
+     [java] INFO  01/01/2011 00:38:33 Log             - queue share gets 370 remote syncs per sec
+     [java] INFO  01/01/2011 00:38:44 Log             - queue share gets 5000 local syncs per sec
+     [java] INFO  01/01/2011 00:39:10 Log             - cumulative share gets 384 remote syncs per sec
+     [java] INFO  01/01/2011 00:39:21 Log             - cumulative share gets 5000 local syncs per sec
+     [java] INFO  01/01/2011 00:39:21 Testscript      - Executing storage://INPUT/rendezvousperf.xml
+     [java] INFO  01/01/2011 00:39:21 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  01/01/2011 00:39:21 Rename          - Node name is dtfx-5
+     [java] INFO  01/01/2011 00:39:21 Lockcomponent   - Locked dtfa-0 as A1
+     [java] INFO  01/01/2011 00:39:21 Lockcomponent   - Locked dtfa-1 as A2
+     [java] INFO  01/01/2011 00:39:21 Lockcomponent   - Locked dtfa-2 as A3
+     [java] INFO  01/01/2011 00:39:36 Log             - local rendezvous visits per second: 13333
+     [java] INFO  01/01/2011 00:40:02 Log             - remote rendezvous visits per second: 400
+     [java] INFO  01/01/2011 00:40:02 Testscript      - Executing storage://INPUT/httpperf.xml
+     [java] INFO  01/01/2011 00:40:03 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  01/01/2011 00:40:03 Rename          - Node name is dtfx-6
+     [java] INFO  01/01/2011 00:40:03 Lockcomponent   - Locked dtfa-0 as CLIENT1
+     [java] INFO  01/01/2011 00:40:03 Http_server     - Starting [127.0.0.1:33333]
+     [java] INFO  01/01/2011 00:40:06 Echo            - 
+     [java]                           HTTP POST on http://localhost:33333/ 
+     [java]                           for 10000 iteration(s) 
+     [java]                           from 1 thread(s)
+     [java]                           and 1 client(s)
+     [java]                     
+     [java] ERROR 01/01/2011 00:40:19 I/O error.
+     [java] java.net.SocketTimeoutException: Read timed out
+     [java] 	at java.net.SocketInputStream.socketRead0(Native Method)
+     [java] 	at java.net.SocketInputStream.read(SocketInputStream.java:129)
+     [java] 	at org.apache.http.impl.io.AbstractSessionInputBuffer.fillBuffer(AbstractSessionInputBuffer.java:130)
+     [java] 	at org.apache.http.impl.io.SocketInputBuffer.fillBuffer(SocketInputBuffer.java:127)
+     [java] 	at org.apache.http.impl.io.AbstractSessionInputBuffer.readLine(AbstractSessionInputBuffer.java:233)
+     [java] 	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:102)
+     [java] 	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
+     [java] 	at org.apache.http.impl.AbstractHttpServerConnection.receiveRequestHeader(AbstractHttpServerConnection.java:232)
+     [java] 	at org.apache.http.protocol.HttpService.handleRequest(HttpService.java:160)
+     [java] 	at com.yahoo.dtf.actions.http.server.HTTPRunnable.run(HTTPRunnable.java:35)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+     [java] 	at java.lang.Thread.run(Thread.java:619)
+     [java] INFO  01/01/2011 00:40:32 Echo            - 
+     [java]                           HTTP PUT on http://localhost:33333/ 
+     [java]                           for 10000 iteration(s) 
+     [java]                           from 1 thread(s)
+     [java]                           and 1 client(s)
+     [java]                     
+     [java] ERROR 01/01/2011 00:40:32 Client closed connection.
+     [java] org.apache.http.ConnectionClosedException: Client closed connection
+     [java] 	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:104)
+     [java] 	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
+     [java] 	at org.apache.http.impl.AbstractHttpServerConnection.receiveRequestHeader(AbstractHttpServerConnection.java:232)
+     [java] 	at org.apache.http.protocol.HttpService.handleRequest(HttpService.java:160)
+     [java] 	at com.yahoo.dtf.actions.http.server.HTTPRunnable.run(HTTPRunnable.java:35)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+     [java] 	at java.lang.Thread.run(Thread.java:619)
+     [java] ERROR 01/01/2011 00:40:44 I/O error.
+     [java] java.net.SocketTimeoutException: Read timed out
+     [java] 	at java.net.SocketInputStream.socketRead0(Native Method)
+     [java] 	at java.net.SocketInputStream.read(SocketInputStream.java:129)
+     [java] 	at org.apache.http.impl.io.AbstractSessionInputBuffer.fillBuffer(AbstractSessionInputBuffer.java:130)
+     [java] 	at org.apache.http.impl.io.SocketInputBuffer.fillBuffer(SocketInputBuffer.java:127)
+     [java] 	at org.apache.http.impl.io.AbstractSessionInputBuffer.readLine(AbstractSessionInputBuffer.java:233)
+     [java] 	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:102)
+     [java] 	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
+     [java] 	at org.apache.http.impl.AbstractHttpServerConnection.receiveRequestHeader(AbstractHttpServerConnection.java:232)
+     [java] 	at org.apache.http.protocol.HttpService.handleRequest(HttpService.java:160)
+     [java] 	at com.yahoo.dtf.actions.http.server.HTTPRunnable.run(HTTPRunnable.java:35)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+     [java] 	at java.lang.Thread.run(Thread.java:619)
+     [java] INFO  01/01/2011 00:40:57 Echo            - 
+     [java]                           HTTP GET on http://localhost:33333/ 
+     [java]                           for 10000 iteration(s) 
+     [java]                           from 1 thread(s).
+     [java]                     
+     [java] ERROR 01/01/2011 00:41:06 I/O error.
+     [java] java.net.SocketTimeoutException: Read timed out
+     [java] 	at java.net.SocketInputStream.socketRead0(Native Method)
+     [java] 	at java.net.SocketInputStream.read(SocketInputStream.java:129)
+     [java] 	at org.apache.http.impl.io.AbstractSessionInputBuffer.fillBuffer(AbstractSessionInputBuffer.java:130)
+     [java] 	at org.apache.http.impl.io.SocketInputBuffer.fillBuffer(SocketInputBuffer.java:127)
+     [java] 	at org.apache.http.impl.io.AbstractSessionInputBuffer.readLine(AbstractSessionInputBuffer.java:233)
+     [java] 	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:102)
+     [java] 	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
+     [java] 	at org.apache.http.impl.AbstractHttpServerConnection.receiveRequestHeader(AbstractHttpServerConnection.java:232)
+     [java] 	at org.apache.http.protocol.HttpService.handleRequest(HttpService.java:160)
+     [java] 	at com.yahoo.dtf.actions.http.server.HTTPRunnable.run(HTTPRunnable.java:35)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+     [java] 	at java.lang.Thread.run(Thread.java:619)
+     [java] INFO  01/01/2011 00:41:16 Echo            - 
+     [java]                           HTTP HEAD on http://localhost:33333/ 
+     [java]                           for 10000 iteration(s) 
+     [java]                           from 1 thread(s).
+     [java]                     
+     [java] ERROR 01/01/2011 00:41:25 I/O error.
+     [java] java.net.SocketTimeoutException: Read timed out
+     [java] 	at java.net.SocketInputStream.socketRead0(Native Method)
+     [java] 	at java.net.SocketInputStream.read(SocketInputStream.java:129)
+     [java] 	at org.apache.http.impl.io.AbstractSessionInputBuffer.fillBuffer(AbstractSessionInputBuffer.java:130)
+     [java] 	at org.apache.http.impl.io.SocketInputBuffer.fillBuffer(SocketInputBuffer.java:127)
+     [java] 	at org.apache.http.impl.io.AbstractSessionInputBuffer.readLine(AbstractSessionInputBuffer.java:233)
+     [java] 	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:102)
+     [java] 	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
+     [java] 	at org.apache.http.impl.AbstractHttpServerConnection.receiveRequestHeader(AbstractHttpServerConnection.java:232)
+     [java] 	at org.apache.http.protocol.HttpService.handleRequest(HttpService.java:160)
+     [java] 	at com.yahoo.dtf.actions.http.server.HTTPRunnable.run(HTTPRunnable.java:35)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+     [java] 	at java.lang.Thread.run(Thread.java:619)
+     [java] INFO  01/01/2011 00:41:34 Echo            - 
+     [java]                           HTTP DELETE on http://localhost:33333/ 
+     [java]                           for 10000 iteration(s) 
+     [java]                           from 1 thread(s).
+     [java]                     
+     [java] ERROR 01/01/2011 00:41:44 I/O error.
+     [java] java.net.SocketTimeoutException: Read timed out
+     [java] 	at java.net.SocketInputStream.socketRead0(Native Method)
+     [java] 	at java.net.SocketInputStream.read(SocketInputStream.java:129)
+     [java] 	at org.apache.http.impl.io.AbstractSessionInputBuffer.fillBuffer(AbstractSessionInputBuffer.java:130)
+     [java] 	at org.apache.http.impl.io.SocketInputBuffer.fillBuffer(SocketInputBuffer.java:127)
+     [java] 	at org.apache.http.impl.io.AbstractSessionInputBuffer.readLine(AbstractSessionInputBuffer.java:233)
+     [java] 	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:102)
+     [java] 	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
+     [java] 	at org.apache.http.impl.AbstractHttpServerConnection.receiveRequestHeader(AbstractHttpServerConnection.java:232)
+     [java] 	at org.apache.http.protocol.HttpService.handleRequest(HttpService.java:160)
+     [java] 	at com.yahoo.dtf.actions.http.server.HTTPRunnable.run(HTTPRunnable.java:35)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+     [java] 	at java.lang.Thread.run(Thread.java:619)
+     [java] INFO  01/01/2011 00:41:53 Http_server     - Stopping [127.0.0.1:33333]
+     [java] INFO  01/01/2011 00:41:54 Echo            - 
+     [java]                 HTTP POST
+     [java]                 Operations/second:  1221.300
+     [java]                 Total operations:   10000
+     [java]                 Time (MAX/MIN/AVG): 243/0/0
+     [java]                 Duration:           8188
+     [java]             
+     [java] INFO  01/01/2011 00:41:56 Echo            - 
+     [java]                 HTTP PUT
+     [java]                 Operations/second:  1383.317
+     [java]                 Total operations:   10000
+     [java]                 Time (MAX/MIN/AVG): 121/0/0
+     [java]                 Duration:           7229
+     [java]             
+     [java] INFO  01/01/2011 00:41:57 Echo            - 
+     [java]                 HTTP GET
+     [java]                 Operations/second:  2247.696
+     [java]                 Total operations:   10000
+     [java]                 Time (MAX/MIN/AVG): 94/0/0
+     [java]                 Duration:           4449
+     [java]             
+     [java] INFO  01/01/2011 00:41:58 Echo            - 
+     [java]                 HTTP HEAD
+     [java]                 Operations/second:  2340.824
+     [java]                 Total operations:   10000
+     [java]                 Time (MAX/MIN/AVG): 123/0/0
+     [java]                 Duration:           4272
+     [java]             
+     [java] INFO  01/01/2011 00:41:59 Echo            - 
+     [java]                 HTTP DELETE
+     [java]                 Operations/second:  2272.727
+     [java]                 Total operations:   10000
+     [java]                 Time (MAX/MIN/AVG): 120/0/0
+     [java]                 Duration:           4400
+     [java]             
+     [java] INFO  01/01/2011 00:41:59 Testscript      - Executing storage://INPUT/xml_xpath_perf.xml
+     [java] INFO  01/01/2011 00:42:00 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  01/01/2011 00:42:15 Log             - simple_xpath xpath operations/sec: 3333
+     [java] INFO  01/01/2011 00:42:30 Log             - complex_xpath xpath operations/sec: 714
+     [java] INFO  01/01/2011 00:42:30 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/perf_results.xml}
+     [java] ERROR 01/01/2011 00:42:30 Error running script.
+     [java] com.yahoo.dtf.exception.ParseException: Range [buildrange] out of elements. at tests/perf/perf.xml:78:37
      [java] 	at com.yahoo.dtf.config.RangeProperty.getValue(RangeProperty.java:30)
      [java] 	at com.yahoo.dtf.config.Config.getProperty(Config.java:149)
      [java] 	at com.yahoo.dtf.actions.Action.replaceProperties(Action.java:668)
@@ -51,7 +301,7 @@ run_dtfx:
      [echo] Shutting down background run_components task.
 
 init:
-     [echo] Creating log dir ./logs/31-12-2010.23.50.19
+     [echo] Creating log dir ./logs/01-01-2011.00.32.34
 
 stop_dtfc:
 
@@ -60,4 +310,4 @@ BUILD FAILED
 /home/dtftest/build/dtf/build/dtf/dist/build.xml:302: /home/dtftest/build/dtf/build/dtf/dist/build.xml:309: The following error occurred while executing this line:
 /home/dtftest/build/dtf/build/dtf/dist/build.xml:131: Java returned: 255
 
-Total time: 23 seconds
+Total time: 10 minutes 6 seconds
