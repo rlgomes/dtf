@@ -25,7 +25,7 @@
         </local>
     </for>
 
-    <record uri="storage://OUTPUT/remote_record_event.txt"
+    <record uri="storage://OUTPUT/local_record_event.txt"
             event="dtf.perf"
             append="false">
         <parallelloop property="agent" range="1..${agents}">
@@ -42,12 +42,12 @@
         </parallelloop>
     </record>
 
-    <record uri="storage://OUTPUT/local_record_event.txt"
+    <record uri="storage://OUTPUT/remote_record_event.txt"
             event="dtf.perf"
             append="false">
         <parallelloop property="agent" range="1..${agents}">
             <parallelloop property="thread" range="1..${threads}">
-                <for property="iter" range="1..${iterations.tiny}">
+                <for property="iter" range="1..${iterations.small}">
                     <component id="AGENT${agent}">
                         <event name="dtf.perf">
                             <attribute name="iteration" value="${iter}"/>
