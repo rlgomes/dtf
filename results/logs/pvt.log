@@ -1,56 +1,56 @@
 Buildfile: build.xml
 
 init:
-     [echo] Creating log dir ./logs/05-01-2011.05.34.38
-    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf/dist/logs/05-01-2011.05.34.38
+     [echo] Creating log dir ./logs/05-01-2011.05.57.13
+    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf/dist/logs/05-01-2011.05.57.13
 
 run_pvt:
 
 init:
-     [echo] Creating log dir ./logs/05-01-2011.05.34.38
+     [echo] Creating log dir ./logs/05-01-2011.05.57.13
 
 run_test:
 
 init:
-     [echo] Creating log dir ./logs/05-01-2011.05.34.38
+     [echo] Creating log dir ./logs/05-01-2011.05.57.13
 
 run_components:
      [echo] Starting up dtfc
-     [echo] logging to ./logs/05-01-2011.05.34.38/dtfc.*.log
+     [echo] logging to ./logs/05-01-2011.05.57.13/dtfc.*.log
      [echo] Starting DTFA1...
-     [echo] logging to ./logs/05-01-2011.05.34.38/dtfa-1.*.log
+     [echo] logging to ./logs/05-01-2011.05.57.13/dtfa-1.*.log
      [echo] Starting DTFA2...
-     [echo] logging to ./logs/05-01-2011.05.34.38/dtfa-2.*.log
+     [echo] logging to ./logs/05-01-2011.05.57.13/dtfa-2.*.log
      [echo] Starting DTFA3...
-     [echo] logging to ./logs/05-01-2011.05.34.38/dtfa-3.*.log
+     [echo] logging to ./logs/05-01-2011.05.57.13/dtfa-3.*.log
 
 init:
-     [echo] Creating log dir ./logs/05-01-2011.05.34.38
+     [echo] Creating log dir ./logs/05-01-2011.05.57.13
 
 run_dtfx:
-     [java] INFO  05/01/2011 05:34:45 DebugServer     - Listening at 127.0.0.1:40007
-     [java] INFO  05/01/2011 05:34:45 Comm            - Host address [127.0.0.1]
-     [java] INFO  05/01/2011 05:34:45 CommRMIServer   - Listening at [30006]
-     [java] INFO  05/01/2011 05:34:45 Comm            - DTFX Setup.
-     [java] INFO  05/01/2011 05:34:49 Result          - Starting Result recording: Result {uri=storage://OUTPUT/perf_results.xml}
-     [java] INFO  05/01/2011 05:34:49 Testsuite       - Starting perfsuite
-     [java] INFO  05/01/2011 05:34:49 Testscript      - Executing storage://INPUT/arithmetic.xml
-     [java] INFO  05/01/2011 05:34:49 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  05/01/2011 05:35:12 Log             - 
+     [java] INFO  05/01/2011 05:57:19 DebugServer     - Listening at 127.0.0.1:40007
+     [java] INFO  05/01/2011 05:57:19 Comm            - Host address [127.0.0.1]
+     [java] INFO  05/01/2011 05:57:19 CommRMIServer   - Listening at [30006]
+     [java] INFO  05/01/2011 05:57:19 Comm            - DTFX Setup.
+     [java] INFO  05/01/2011 05:57:24 Result          - Starting Result recording: Result {uri=storage://OUTPUT/perf_results.xml}
+     [java] INFO  05/01/2011 05:57:24 Testsuite       - Starting perfsuite
+     [java] INFO  05/01/2011 05:57:24 Testscript      - Executing storage://INPUT/arithmetic.xml
+     [java] INFO  05/01/2011 05:57:24 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 05:57:46 Log             - 
      [java]         Arithmetic Performance:
      [java]         **********************
      [java]         
-     [java]         add/second:      13923.698
-     [java]         mod/second:      17018.380
-     [java]         abs/second:      16005.121
-     [java]         subtract/second: 16302.576
-     [java]         divide/second:   16666.667
-     [java]         multiply/second: 16739.203
+     [java]         add/second:      14823.600
+     [java]         mod/second:      17024.174
+     [java]         abs/second:      15974.440
+     [java]         subtract/second: 16518.005
+     [java]         divide/second:   17241.379
+     [java]         multiply/second: 16931.933
      [java]     
-     [java] INFO  05/01/2011 05:35:12 Testscript      - Executing storage://INPUT/eventperf.xml
-     [java] INFO  05/01/2011 05:35:12 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] ERROR 05/01/2011 05:35:13 Error running script.
-     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] INFO  05/01/2011 05:57:46 Testscript      - Executing storage://INPUT/eventperf.xml
+     [java] INFO  05/01/2011 05:57:46 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] ERROR 05/01/2011 05:57:47 Error running script.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [2011010505512237+0000] != [20110105043527317+0000], you can not connect to components from different builds.
      [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
      [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
      [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
@@ -66,53 +66,53 @@ run_dtfx:
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
      [java] 	at java.lang.Thread.run(Thread.java:619)
-     [java] ERROR 05/01/2011 05:35:13 Testscript      - Failed [storage://INPUT/eventperf.xml]
-     [java] INFO  05/01/2011 05:35:13 Testscript      - Executing storage://INPUT/recorderperf.xml
-     [java] INFO  05/01/2011 05:35:13 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  05/01/2011 05:35:13 Import          - Importing elements from Import {uri=storage://TINPUT/eventutil.xml}
-     [java] INFO  05/01/2011 05:35:18 Log             - 
+     [java] ERROR 05/01/2011 05:57:47 Testscript      - Failed [storage://INPUT/eventperf.xml]
+     [java] INFO  05/01/2011 05:57:47 Testscript      - Executing storage://INPUT/recorderperf.xml
+     [java] INFO  05/01/2011 05:57:47 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 05:57:47 Import          - Importing elements from Import {uri=storage://TINPUT/eventutil.xml}
+     [java] INFO  05/01/2011 05:57:52 Log             - 
      [java]               txt recorder performance
      [java] 	          ***********************************
      [java] 	          Events per second: 50000
      [java] 	    
-     [java] INFO  05/01/2011 05:35:23 Log             - 
+     [java] INFO  05/01/2011 05:57:57 Log             - 
      [java]               csv recorder performance
      [java] 	          ***********************************
      [java] 	          Events per second: 50000
      [java] 	    
-     [java] INFO  05/01/2011 05:35:23 Testscript      - Executing storage://INPUT/queryperf.xml
-     [java] INFO  05/01/2011 05:35:23 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  05/01/2011 05:36:18 Log             - txt queries per second: 14000
-     [java] INFO  05/01/2011 05:36:18 Testscript      - Executing storage://INPUT/stats.xml
-     [java] INFO  05/01/2011 05:36:18 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  05/01/2011 05:36:54 Log             - txt stats operations/s: 62500
-     [java] INFO  05/01/2011 05:36:54 Testscript      - Executing storage://INPUT/choices.xml
-     [java] INFO  05/01/2011 05:36:54 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  05/01/2011 05:37:14 Log             - Number of iterations: 500000
-     [java] INFO  05/01/2011 05:37:14 Log             - ********************************
-     [java] INFO  05/01/2011 05:37:14 Log             - Choices/second: 33788.349
-     [java] INFO  05/01/2011 05:37:14 Testscript      - Executing storage://INPUT/function.xml
-     [java] INFO  05/01/2011 05:37:14 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  05/01/2011 05:37:41 Log             - 
-     [java]         Function calls/second: 23039.352
+     [java] INFO  05/01/2011 05:57:57 Testscript      - Executing storage://INPUT/queryperf.xml
+     [java] INFO  05/01/2011 05:57:57 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 05:58:51 Log             - txt queries per second: 14000
+     [java] INFO  05/01/2011 05:58:51 Testscript      - Executing storage://INPUT/stats.xml
+     [java] INFO  05/01/2011 05:58:51 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 05:59:27 Log             - txt stats operations/s: 62500
+     [java] INFO  05/01/2011 05:59:27 Testscript      - Executing storage://INPUT/choices.xml
+     [java] INFO  05/01/2011 05:59:28 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 05:59:47 Log             - Number of iterations: 500000
+     [java] INFO  05/01/2011 05:59:47 Log             - ********************************
+     [java] INFO  05/01/2011 05:59:47 Log             - Choices/second: 34482.759
+     [java] INFO  05/01/2011 05:59:47 Testscript      - Executing storage://INPUT/function.xml
+     [java] INFO  05/01/2011 05:59:47 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 06:00:14 Log             - 
+     [java]         Function calls/second: 23706.795
      [java]     
-     [java] INFO  05/01/2011 05:37:41 Testscript      - Executing storage://INPUT/propertyperf.xml
-     [java] INFO  05/01/2011 05:37:41 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  05/01/2011 05:37:52 Log             - Property resolutions per second: 50000
-     [java] INFO  05/01/2011 05:37:52 Testscript      - Executing storage://INPUT/random.xml
-     [java] INFO  05/01/2011 05:37:52 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  05/01/2011 05:37:52 Log             - random numbers with upper and lower limit
-     [java] INFO  05/01/2011 05:38:07 Log             - randomInt/second: 33333
-     [java] INFO  05/01/2011 05:38:23 Log             - randomLong/second: 33333
-     [java] INFO  05/01/2011 05:38:43 Log             - randomDouble/second: 25000
-     [java] INFO  05/01/2011 05:38:59 Log             - gaussianLong/second: 33333
-     [java] INFO  05/01/2011 05:38:59 Testscript      - Executing storage://INPUT/rangeperf.xml
-     [java] INFO  05/01/2011 05:38:59 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  05/01/2011 05:39:09 Log             - Ops/sec: 55555
-     [java] INFO  05/01/2011 05:39:09 Testscript      - Executing storage://INPUT/shareperf.xml
-     [java] INFO  05/01/2011 05:39:09 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] ERROR 05/01/2011 05:39:09 Error running script.
-     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] INFO  05/01/2011 06:00:14 Testscript      - Executing storage://INPUT/propertyperf.xml
+     [java] INFO  05/01/2011 06:00:14 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 06:00:24 Log             - Property resolutions per second: 50000
+     [java] INFO  05/01/2011 06:00:24 Testscript      - Executing storage://INPUT/random.xml
+     [java] INFO  05/01/2011 06:00:24 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 06:00:25 Log             - random numbers with upper and lower limit
+     [java] INFO  05/01/2011 06:00:40 Log             - randomInt/second: 33333
+     [java] INFO  05/01/2011 06:00:55 Log             - randomLong/second: 33333
+     [java] INFO  05/01/2011 06:01:15 Log             - randomDouble/second: 26315
+     [java] INFO  05/01/2011 06:01:31 Log             - gaussianLong/second: 33333
+     [java] INFO  05/01/2011 06:01:31 Testscript      - Executing storage://INPUT/rangeperf.xml
+     [java] INFO  05/01/2011 06:01:31 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 06:01:41 Log             - Ops/sec: 55555
+     [java] INFO  05/01/2011 06:01:41 Testscript      - Executing storage://INPUT/shareperf.xml
+     [java] INFO  05/01/2011 06:01:41 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] ERROR 05/01/2011 06:01:41 Error running script.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [2011010505512237+0000] != [20110105043527317+0000], you can not connect to components from different builds.
      [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
      [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
      [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
@@ -128,11 +128,11 @@ run_dtfx:
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
      [java] 	at java.lang.Thread.run(Thread.java:619)
-     [java] ERROR 05/01/2011 05:39:09 Testscript      - Failed [storage://INPUT/shareperf.xml]
-     [java] INFO  05/01/2011 05:39:09 Testscript      - Executing storage://INPUT/rendezvousperf.xml
-     [java] INFO  05/01/2011 05:39:09 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] ERROR 05/01/2011 05:39:09 Error running script.
-     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] ERROR 05/01/2011 06:01:41 Testscript      - Failed [storage://INPUT/shareperf.xml]
+     [java] INFO  05/01/2011 06:01:41 Testscript      - Executing storage://INPUT/rendezvousperf.xml
+     [java] INFO  05/01/2011 06:01:41 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] ERROR 05/01/2011 06:01:41 Error running script.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [2011010505512237+0000] != [20110105043527317+0000], you can not connect to components from different builds.
      [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
      [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
      [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
@@ -148,11 +148,11 @@ run_dtfx:
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
      [java] 	at java.lang.Thread.run(Thread.java:619)
-     [java] ERROR 05/01/2011 05:39:09 Testscript      - Failed [storage://INPUT/rendezvousperf.xml]
-     [java] INFO  05/01/2011 05:39:09 Testscript      - Executing storage://INPUT/httpperf.xml
-     [java] INFO  05/01/2011 05:39:10 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] ERROR 05/01/2011 05:39:10 Error running script.
-     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] ERROR 05/01/2011 06:01:41 Testscript      - Failed [storage://INPUT/rendezvousperf.xml]
+     [java] INFO  05/01/2011 06:01:41 Testscript      - Executing storage://INPUT/httpperf.xml
+     [java] INFO  05/01/2011 06:01:42 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] ERROR 05/01/2011 06:01:42 Error running script.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [2011010505512237+0000] != [20110105043527317+0000], you can not connect to components from different builds.
      [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
      [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
      [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
@@ -168,13 +168,13 @@ run_dtfx:
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
      [java] 	at java.lang.Thread.run(Thread.java:619)
-     [java] ERROR 05/01/2011 05:39:10 Testscript      - Failed [storage://INPUT/httpperf.xml]
-     [java] INFO  05/01/2011 05:39:10 Testscript      - Executing storage://INPUT/xml_xpath_perf.xml
-     [java] INFO  05/01/2011 05:39:10 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  05/01/2011 05:39:27 Log             - simple_xpath xpath operations/sec: 2941
-     [java] INFO  05/01/2011 05:39:44 Log             - complex_xpath xpath operations/sec: 625
-     [java] ERROR 05/01/2011 05:39:44 Testscript failed.
-     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] ERROR 05/01/2011 06:01:42 Testscript      - Failed [storage://INPUT/httpperf.xml]
+     [java] INFO  05/01/2011 06:01:42 Testscript      - Executing storage://INPUT/xml_xpath_perf.xml
+     [java] INFO  05/01/2011 06:01:42 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 06:01:59 Log             - simple_xpath xpath operations/sec: 2941
+     [java] INFO  05/01/2011 06:02:16 Log             - complex_xpath xpath operations/sec: 625
+     [java] ERROR 05/01/2011 06:02:16 Testscript failed.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [2011010505512237+0000] != [20110105043527317+0000], you can not connect to components from different builds.
      [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
      [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
      [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
@@ -190,8 +190,8 @@ run_dtfx:
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
      [java] 	at java.lang.Thread.run(Thread.java:619)
-     [java] ERROR 05/01/2011 05:39:44 Testscript failed.
-     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] ERROR 05/01/2011 06:02:16 Testscript failed.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [2011010505512237+0000] != [20110105043527317+0000], you can not connect to components from different builds.
      [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
      [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
      [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
@@ -207,8 +207,8 @@ run_dtfx:
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
      [java] 	at java.lang.Thread.run(Thread.java:619)
-     [java] ERROR 05/01/2011 05:39:44 Testscript failed.
-     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] ERROR 05/01/2011 06:02:16 Testscript failed.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [2011010505512237+0000] != [20110105043527317+0000], you can not connect to components from different builds.
      [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
      [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
      [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
@@ -224,8 +224,8 @@ run_dtfx:
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
      [java] 	at java.lang.Thread.run(Thread.java:619)
-     [java] ERROR 05/01/2011 05:39:44 Testscript failed.
-     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] ERROR 05/01/2011 06:02:16 Testscript failed.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [2011010505512237+0000] != [20110105043527317+0000], you can not connect to components from different builds.
      [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
      [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
      [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
@@ -244,7 +244,7 @@ run_dtfx:
      [echo] Shutting down background run_components task.
 
 init:
-     [echo] Creating log dir ./logs/05-01-2011.05.34.38
+     [echo] Creating log dir ./logs/05-01-2011.05.57.13
 
 stop_dtfc:
 
@@ -264,4 +264,4 @@ The following error occurred while executing this line:
 The following error occurred while executing this line:
 /home/dtftest/build/dtf/build/dtf/dist/build.xml:248: Java returned: 255
 
-Total time: 5 minutes 12 seconds
+Total time: 5 minutes 10 seconds
