@@ -1,1 +1,267 @@
-./checkout_and_build.sh: line 62: ./ant.sh: No such file or directory
+Buildfile: build.xml
+
+init:
+     [echo] Creating log dir ./logs/05-01-2011.05.34.38
+    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf/dist/logs/05-01-2011.05.34.38
+
+run_pvt:
+
+init:
+     [echo] Creating log dir ./logs/05-01-2011.05.34.38
+
+run_test:
+
+init:
+     [echo] Creating log dir ./logs/05-01-2011.05.34.38
+
+run_components:
+     [echo] Starting up dtfc
+     [echo] logging to ./logs/05-01-2011.05.34.38/dtfc.*.log
+     [echo] Starting DTFA1...
+     [echo] logging to ./logs/05-01-2011.05.34.38/dtfa-1.*.log
+     [echo] Starting DTFA2...
+     [echo] logging to ./logs/05-01-2011.05.34.38/dtfa-2.*.log
+     [echo] Starting DTFA3...
+     [echo] logging to ./logs/05-01-2011.05.34.38/dtfa-3.*.log
+
+init:
+     [echo] Creating log dir ./logs/05-01-2011.05.34.38
+
+run_dtfx:
+     [java] INFO  05/01/2011 05:34:45 DebugServer     - Listening at 127.0.0.1:40007
+     [java] INFO  05/01/2011 05:34:45 Comm            - Host address [127.0.0.1]
+     [java] INFO  05/01/2011 05:34:45 CommRMIServer   - Listening at [30006]
+     [java] INFO  05/01/2011 05:34:45 Comm            - DTFX Setup.
+     [java] INFO  05/01/2011 05:34:49 Result          - Starting Result recording: Result {uri=storage://OUTPUT/perf_results.xml}
+     [java] INFO  05/01/2011 05:34:49 Testsuite       - Starting perfsuite
+     [java] INFO  05/01/2011 05:34:49 Testscript      - Executing storage://INPUT/arithmetic.xml
+     [java] INFO  05/01/2011 05:34:49 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 05:35:12 Log             - 
+     [java]         Arithmetic Performance:
+     [java]         **********************
+     [java]         
+     [java]         add/second:      13923.698
+     [java]         mod/second:      17018.380
+     [java]         abs/second:      16005.121
+     [java]         subtract/second: 16302.576
+     [java]         divide/second:   16666.667
+     [java]         multiply/second: 16739.203
+     [java]     
+     [java] INFO  05/01/2011 05:35:12 Testscript      - Executing storage://INPUT/eventperf.xml
+     [java] INFO  05/01/2011 05:35:12 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] ERROR 05/01/2011 05:35:13 Error running script.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+     [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+     [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:597)
+     [java] 	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+     [java] 	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+     [java] 	at java.security.AccessController.doPrivileged(Native Method)
+     [java] 	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+     [java] 	at java.lang.Thread.run(Thread.java:619)
+     [java] ERROR 05/01/2011 05:35:13 Testscript      - Failed [storage://INPUT/eventperf.xml]
+     [java] INFO  05/01/2011 05:35:13 Testscript      - Executing storage://INPUT/recorderperf.xml
+     [java] INFO  05/01/2011 05:35:13 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 05:35:13 Import          - Importing elements from Import {uri=storage://TINPUT/eventutil.xml}
+     [java] INFO  05/01/2011 05:35:18 Log             - 
+     [java]               txt recorder performance
+     [java] 	          ***********************************
+     [java] 	          Events per second: 50000
+     [java] 	    
+     [java] INFO  05/01/2011 05:35:23 Log             - 
+     [java]               csv recorder performance
+     [java] 	          ***********************************
+     [java] 	          Events per second: 50000
+     [java] 	    
+     [java] INFO  05/01/2011 05:35:23 Testscript      - Executing storage://INPUT/queryperf.xml
+     [java] INFO  05/01/2011 05:35:23 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 05:36:18 Log             - txt queries per second: 14000
+     [java] INFO  05/01/2011 05:36:18 Testscript      - Executing storage://INPUT/stats.xml
+     [java] INFO  05/01/2011 05:36:18 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 05:36:54 Log             - txt stats operations/s: 62500
+     [java] INFO  05/01/2011 05:36:54 Testscript      - Executing storage://INPUT/choices.xml
+     [java] INFO  05/01/2011 05:36:54 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 05:37:14 Log             - Number of iterations: 500000
+     [java] INFO  05/01/2011 05:37:14 Log             - ********************************
+     [java] INFO  05/01/2011 05:37:14 Log             - Choices/second: 33788.349
+     [java] INFO  05/01/2011 05:37:14 Testscript      - Executing storage://INPUT/function.xml
+     [java] INFO  05/01/2011 05:37:14 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 05:37:41 Log             - 
+     [java]         Function calls/second: 23039.352
+     [java]     
+     [java] INFO  05/01/2011 05:37:41 Testscript      - Executing storage://INPUT/propertyperf.xml
+     [java] INFO  05/01/2011 05:37:41 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 05:37:52 Log             - Property resolutions per second: 50000
+     [java] INFO  05/01/2011 05:37:52 Testscript      - Executing storage://INPUT/random.xml
+     [java] INFO  05/01/2011 05:37:52 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 05:37:52 Log             - random numbers with upper and lower limit
+     [java] INFO  05/01/2011 05:38:07 Log             - randomInt/second: 33333
+     [java] INFO  05/01/2011 05:38:23 Log             - randomLong/second: 33333
+     [java] INFO  05/01/2011 05:38:43 Log             - randomDouble/second: 25000
+     [java] INFO  05/01/2011 05:38:59 Log             - gaussianLong/second: 33333
+     [java] INFO  05/01/2011 05:38:59 Testscript      - Executing storage://INPUT/rangeperf.xml
+     [java] INFO  05/01/2011 05:38:59 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 05:39:09 Log             - Ops/sec: 55555
+     [java] INFO  05/01/2011 05:39:09 Testscript      - Executing storage://INPUT/shareperf.xml
+     [java] INFO  05/01/2011 05:39:09 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] ERROR 05/01/2011 05:39:09 Error running script.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+     [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+     [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:597)
+     [java] 	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+     [java] 	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+     [java] 	at java.security.AccessController.doPrivileged(Native Method)
+     [java] 	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+     [java] 	at java.lang.Thread.run(Thread.java:619)
+     [java] ERROR 05/01/2011 05:39:09 Testscript      - Failed [storage://INPUT/shareperf.xml]
+     [java] INFO  05/01/2011 05:39:09 Testscript      - Executing storage://INPUT/rendezvousperf.xml
+     [java] INFO  05/01/2011 05:39:09 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] ERROR 05/01/2011 05:39:09 Error running script.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+     [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+     [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:597)
+     [java] 	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+     [java] 	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+     [java] 	at java.security.AccessController.doPrivileged(Native Method)
+     [java] 	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+     [java] 	at java.lang.Thread.run(Thread.java:619)
+     [java] ERROR 05/01/2011 05:39:09 Testscript      - Failed [storage://INPUT/rendezvousperf.xml]
+     [java] INFO  05/01/2011 05:39:09 Testscript      - Executing storage://INPUT/httpperf.xml
+     [java] INFO  05/01/2011 05:39:10 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] ERROR 05/01/2011 05:39:10 Error running script.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+     [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+     [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:597)
+     [java] 	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+     [java] 	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+     [java] 	at java.security.AccessController.doPrivileged(Native Method)
+     [java] 	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+     [java] 	at java.lang.Thread.run(Thread.java:619)
+     [java] ERROR 05/01/2011 05:39:10 Testscript      - Failed [storage://INPUT/httpperf.xml]
+     [java] INFO  05/01/2011 05:39:10 Testscript      - Executing storage://INPUT/xml_xpath_perf.xml
+     [java] INFO  05/01/2011 05:39:10 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  05/01/2011 05:39:27 Log             - simple_xpath xpath operations/sec: 2941
+     [java] INFO  05/01/2011 05:39:44 Log             - complex_xpath xpath operations/sec: 625
+     [java] ERROR 05/01/2011 05:39:44 Testscript failed.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+     [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+     [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:597)
+     [java] 	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+     [java] 	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+     [java] 	at java.security.AccessController.doPrivileged(Native Method)
+     [java] 	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+     [java] 	at java.lang.Thread.run(Thread.java:619)
+     [java] ERROR 05/01/2011 05:39:44 Testscript failed.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+     [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+     [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:597)
+     [java] 	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+     [java] 	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+     [java] 	at java.security.AccessController.doPrivileged(Native Method)
+     [java] 	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+     [java] 	at java.lang.Thread.run(Thread.java:619)
+     [java] ERROR 05/01/2011 05:39:44 Testscript failed.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+     [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+     [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:597)
+     [java] 	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+     [java] 	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+     [java] 	at java.security.AccessController.doPrivileged(Native Method)
+     [java] 	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+     [java] 	at java.lang.Thread.run(Thread.java:619)
+     [java] ERROR 05/01/2011 05:39:44 Testscript failed.
+     [java] com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+     [java] 	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+     [java] 	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+     [java] 	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+     [java] 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+     [java] 	at java.lang.reflect.Method.invoke(Method.java:597)
+     [java] 	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+     [java] 	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+     [java] 	at java.security.AccessController.doPrivileged(Native Method)
+     [java] 	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+     [java] 	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+     [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+     [java] 	at java.lang.Thread.run(Thread.java:619)
+     [echo] Shutting down background run_components task.
+
+init:
+     [echo] Creating log dir ./logs/05-01-2011.05.34.38
+
+stop_dtfc:
+
+BUILD FAILED
+/home/dtftest/build/dtf/build/dtf/dist/build.xml:291: The following error occurred while executing this line:
+/home/dtftest/build/dtf/build/dtf/dist/build.xml:300: 
+The following error occurred while executing this line:
+/home/dtftest/build/dtf/build/dtf/dist/build.xml:191: 
+Java returned: 255
+
+The following error occurred while executing this line:
+/home/dtftest/build/dtf/build/dtf/dist/build.xml:222: Java returned: 255
+The following error occurred while executing this line:
+/home/dtftest/build/dtf/build/dtf/dist/build.xml:222: Java returned: 255
+The following error occurred while executing this line:
+/home/dtftest/build/dtf/build/dtf/dist/build.xml:222: Java returned: 255
+The following error occurred while executing this line:
+/home/dtftest/build/dtf/build/dtf/dist/build.xml:248: Java returned: 255
+
+Total time: 5 minutes 12 seconds

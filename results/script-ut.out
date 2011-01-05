@@ -1,25 +1,87 @@
-INFO  04/01/2011 05:58:58 Testsuite       - Starting unittests
-INFO  04/01/2011 05:58:58 Testscript      - Executing storage://INPUT/state_management.xml
-INFO  04/01/2011 05:58:59 Rename          - Node name is dtfx-3
-INFO  04/01/2011 05:58:59 Lockcomponent   - Locked dtfa-0 as DTFA1
-WARN  04/01/2011 05:58:59 DTFInputStream  - Using a DTFStream as a String that is 5242880 bytes can be quite inefficient. There are better ways of streaming large amounts of data in DTF.
-INFO  04/01/2011 05:59:02 Testscript      - Executing storage://INPUT/storage.xml
-INFO  04/01/2011 05:59:02 Testscript      - Executing storage://INPUT/echo.xml
-INFO  04/01/2011 05:59:03 Rename          - Node name is dtfx-4
-INFO  04/01/2011 05:59:03 Lockcomponent   - Locked dtfa-1 as DTFA1
-INFO  04/01/2011 05:59:03 Echo            - a : b : c
-INFO  04/01/2011 05:59:03 Testscript      - Executing storage://INPUT/sleep.xml
-INFO  04/01/2011 05:59:03 Rename          - Node name is dtfx-5
-INFO  04/01/2011 05:59:03 Lockcomponent   - Locked dtfa-2 as C1
-INFO  04/01/2011 05:59:03 Testscript      - Executing storage://INPUT/loadproperties.xml
-INFO  04/01/2011 05:59:03 Echo            - The previous loadproperties should succeed.
-INFO  04/01/2011 05:59:03 Echo            - dtf.test.property1 = property value1
-INFO  04/01/2011 05:59:03 Testscript      - Executing storage://INPUT/property_resolution.xml
-INFO  04/01/2011 05:59:04 Rename          - Node name is dtfx-6
-INFO  04/01/2011 05:59:04 Lockcomponent   - Locked dtfa-0 as DTFA1
-INFO  04/01/2011 05:59:04 Testscript      - Executing storage://INPUT/property.xml
-INFO  04/01/2011 05:59:04 Echo            - value1
-INFO  04/01/2011 05:59:04 Echo            - {
+INFO  05/01/2011 05:34:02 Testsuite       - Starting unittests
+INFO  05/01/2011 05:34:02 Testscript      - Executing storage://INPUT/state_management.xml
+ERROR 05/01/2011 05:34:02 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:02 Testscript      - Failed [storage://INPUT/state_management.xml]
+INFO  05/01/2011 05:34:02 Testscript      - Executing storage://INPUT/storage.xml
+INFO  05/01/2011 05:34:02 Testscript      - Executing storage://INPUT/echo.xml
+ERROR 05/01/2011 05:34:02 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:02 Testscript      - Failed [storage://INPUT/echo.xml]
+INFO  05/01/2011 05:34:02 Testscript      - Executing storage://INPUT/sleep.xml
+ERROR 05/01/2011 05:34:03 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:03 Testscript      - Failed [storage://INPUT/sleep.xml]
+INFO  05/01/2011 05:34:03 Testscript      - Executing storage://INPUT/loadproperties.xml
+INFO  05/01/2011 05:34:03 Echo            - The previous loadproperties should succeed.
+INFO  05/01/2011 05:34:03 Echo            - dtf.test.property1 = property value1
+INFO  05/01/2011 05:34:03 Testscript      - Executing storage://INPUT/property_resolution.xml
+ERROR 05/01/2011 05:34:03 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:03 Testscript      - Failed [storage://INPUT/property_resolution.xml]
+INFO  05/01/2011 05:34:03 Testscript      - Executing storage://INPUT/property.xml
+INFO  05/01/2011 05:34:03 Echo            - value1
+INFO  05/01/2011 05:34:03 Echo            - {
 	"ydht": {  
     	"fields": { 
             "hello": { "value": "world2" }, 
@@ -34,649 +96,1215 @@ INFO  04/01/2011 05:59:04 Echo            - {
     }
 }
 
-INFO  04/01/2011 05:59:04 Echo            - 
+INFO  05/01/2011 05:34:03 Echo            - 
         Contents of the property come from the child text node like this one,
         which will continue to look just like this in the property itself.
         
         test1: value1
         
-INFO  04/01/2011 05:59:04 Log             - Data matches!
-INFO  04/01/2011 05:59:04 Log             - Caught property recursion correctly.
-INFO  04/01/2011 05:59:04 Log             - Caught nested property recursion correctly.
-INFO  04/01/2011 05:59:04 Log             - value2value2value2
-INFO  04/01/2011 05:59:04 Testscript      - Executing storage://INPUT/cat.xml
-INFO  04/01/2011 05:59:04 Log             - Caught exception correctly [Unable to find storage: CACA at tests/ut/cat.xml:51:10]
-INFO  04/01/2011 05:59:04 Testscript      - Executing storage://INPUT/log.xml
-INFO  04/01/2011 05:59:04 Log             - Just testing the logging functionality
-INFO  04/01/2011 05:59:04 Log             - INFO INFO INFO
-ERROR 04/01/2011 05:59:04 Log             - ERROR ERROR ERROR
-WARN  04/01/2011 05:59:04 Log             - WARNING WARNING WARNING
-INFO  04/01/2011 05:59:04 Log             - INFO with tag TESTING
-ERROR 04/01/2011 05:59:04 Log             - ERROR with tag TESTING
-WARN  04/01/2011 05:59:04 Log             - WARNING with tag TESTING
-INFO  04/01/2011 05:59:04 Testscript      - Executing storage://INPUT/for.xml
-INFO  04/01/2011 05:59:04 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  04/01/2011 05:59:05 Testscript      - Executing storage://INPUT/parallel.xml
-INFO  04/01/2011 05:59:05 Testscript      - Executing storage://INPUT/parallelloop.xml
-INFO  04/01/2011 05:59:05 Testscript      - Executing storage://INPUT/sequence.xml
-INFO  04/01/2011 05:59:05 Echo            - HERE
-INFO  04/01/2011 05:59:05 Echo            - HERE
-INFO  04/01/2011 05:59:05 Testscript      - Executing storage://INPUT/timer.xml
-INFO  04/01/2011 05:59:05 Timer           - Timer took 139ms of 100ms.
-INFO  04/01/2011 05:59:05 Testscript      - Executing storage://INPUT/switch.xml
-INFO  04/01/2011 05:59:05 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  04/01/2011 05:59:06 Log             - Switch case #1
-INFO  04/01/2011 05:59:06 Log             - Switch case #2
-INFO  04/01/2011 05:59:06 Log             - Looped through switch and function call correctly.
-INFO  04/01/2011 05:59:06 Log             - Switch case #2
-INFO  04/01/2011 05:59:06 Log             - Looped through switch and function call correctly.
-INFO  04/01/2011 05:59:06 Log             - Looped through switch and function call correctly.
-INFO  04/01/2011 05:59:06 Log             - Switch went into the failure case correctly.
-INFO  04/01/2011 05:59:06 Testscript      - Executing storage://INPUT/while.xml
-INFO  04/01/2011 05:59:06 Log             - Thread 1 is starting.
-INFO  04/01/2011 05:59:06 Log             - Thread 2 is starting.
-INFO  04/01/2011 05:59:06 Log             - Thread 2 is done.
-INFO  04/01/2011 05:59:06 Log             - Thread 1 is done.
-INFO  04/01/2011 05:59:06 Testscript      - Executing storage://INPUT/break.xml
-INFO  04/01/2011 05:59:06 Rename          - Node name is dtfx-7
-INFO  04/01/2011 05:59:06 Lockcomponent   - Locked dtfa-1 as C1
-INFO  04/01/2011 05:59:06 Timer           - Timer took 0ms of 30000ms.
-INFO  04/01/2011 05:59:06 Testscript      - Executing storage://INPUT/try_catch_fail.xml
-INFO  04/01/2011 05:59:06 Rename          - Node name is dtfx-8
-INFO  04/01/2011 05:59:06 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  04/01/2011 05:59:06 Echo            - Try/Catch and Fail Unit Test
-INFO  04/01/2011 05:59:06 Echo            - The previous statement has failed correctly.
-INFO  04/01/2011 05:59:06 Echo            - Caught the exception on outter try/catch.
-INFO  04/01/2011 05:59:06 Echo            - Message: Failure should be caught by catch. at tests/ut/try_catch_fail.xml:40:77
-INFO  04/01/2011 05:59:06 Echo            - Caught exception from remote component.
-INFO  04/01/2011 05:59:06 Echo            - Message: Failing on component at tests/ut/try_catch_fail.xml:66:46 on component [DTFA1]
-INFO  04/01/2011 05:59:06 Testscript      - Executing storage://INPUT/fail.xml
-INFO  04/01/2011 05:59:07 Rename          - Node name is dtfx-9
-INFO  04/01/2011 05:59:07 Lockcomponent   - Locked dtfa-0 as DTFA
-INFO  04/01/2011 05:59:07 Testscript      - Executing storage://INPUT/distribute.xml
-ERROR 04/01/2011 05:59:08 Error running script.
-com.yahoo.dtf.exception.AssertionException: Assertion failed [Duration was longer than 300ms by 10% at 338ms] at tests/ut/distribute.xml:148:82
-	at com.yahoo.dtf.actions.flowcontrol.Assert.execute(Assert.java:44)
-	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:192)
-	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:50)
-	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
-	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:72)
-	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:192)
-	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
-	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:192)
-	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
-	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:192)
-	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:50)
-	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
-	at com.yahoo.dtf.DTFNode.run(DTFNode.java:405)
-	at com.yahoo.dtf.DTFNode.main(DTFNode.java:551)
-ERROR 04/01/2011 05:59:08 Testscript      - Failed [storage://INPUT/distribute.xml]
-INFO  04/01/2011 05:59:08 Testscript      - Executing storage://INPUT/choices.xml
-INFO  04/01/2011 05:59:08 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  04/01/2011 05:59:08 Testscript      - Executing storage://INPUT/if.xml
-INFO  04/01/2011 05:59:08 Testscript      - Executing storage://INPUT/similar.xml
-INFO  04/01/2011 05:59:09 Log             - png: being checked
-INFO  04/01/2011 05:59:09 Log             - images are within 100% similarity
-INFO  04/01/2011 05:59:09 Log             - gif: being checked
-INFO  04/01/2011 05:59:09 Log             - images are within 100% similarity
-INFO  04/01/2011 05:59:09 Log             - bmp: being checked
-INFO  04/01/2011 05:59:09 Log             - images are within 100% similarity
-INFO  04/01/2011 05:59:09 Testscript      - Executing storage://INPUT/createrange.xml
-INFO  04/01/2011 05:59:09 Testscript      - Executing storage://INPUT/range.xml
-INFO  04/01/2011 05:59:09 Testscript      - Executing storage://INPUT/range_dist.xml
-INFO  04/01/2011 05:59:10 Rename          - Node name is dtfx-10
-INFO  04/01/2011 05:59:10 Lockcomponent   - Locked dtfa-1 as C1
-INFO  04/01/2011 05:59:11 Testscript      - Executing storage://INPUT/xml_range.xml
-INFO  04/01/2011 05:59:11 Log             - XPath range validation
-INFO  04/01/2011 05:59:11 Log             - XPath range validation on XML with namespace
-INFO  04/01/2011 05:59:11 Log             - XPath range validation on XML with default namespace
-INFO  04/01/2011 05:59:11 Log             - negative tests
-INFO  04/01/2011 05:59:11 Log             - Failed correctly
-INFO  04/01/2011 05:59:11 Testscript      - Executing storage://INPUT/json_range.xml
-INFO  04/01/2011 05:59:11 Log             - JPath range validation
-INFO  04/01/2011 05:59:11 Log             - Negative Tests
-INFO  04/01/2011 05:59:11 Log             - Failed correctly
-INFO  04/01/2011 05:59:11 Testscript      - Executing storage://INPUT/functions.xml
-INFO  04/01/2011 05:59:12 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  04/01/2011 05:59:12 Import          - Importing elements from Import {uri=storage://INPUT/functions_util.xml}
-WARN  04/01/2011 05:59:12 Function        - Argument [function] not being used by the function [func2]
-WARN  04/01/2011 05:59:12 Function        - Argument [function] not being used by the function [func3]
-WARN  04/01/2011 05:59:12 Function        - Argument [p3] not being used by the function [functionWithParams]
-INFO  04/01/2011 05:59:12 Testscript      - Executing storage://INPUT/import.xml
-INFO  04/01/2011 05:59:12 Import          - Importing elements from Import {uri=storage://INPUT/functions_util.xml}
-INFO  04/01/2011 05:59:12 Import          - Importing elements from Import {uri=storage://TINPUT/functions.xml}
-WARN  04/01/2011 05:59:12 Function        - Argument [function] not being used by the function [func2]
-WARN  04/01/2011 05:59:12 Function        - Argument [function] not being used by the function [func3]
-INFO  04/01/2011 05:59:12 Import          - Importing elements from Import {uri=storage://INPUT/badxml}
-INFO  04/01/2011 05:59:12 Testscript      - Executing storage://INPUT/export.xml
-INFO  04/01/2011 05:59:12 Import          - Importing elements from Import {uri=storage://INPUT/export_util.xml}
-INFO  04/01/2011 05:59:13 Rename          - Node name is dtfx-11
-INFO  04/01/2011 05:59:13 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  04/01/2011 05:59:13 Log             - Got exception as expected.
-INFO  04/01/2011 05:59:13 Testscript      - Executing storage://INPUT/references.xml
-INFO  04/01/2011 05:59:13 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  04/01/2011 05:59:13 Rename          - Node name is dtfx-12
-INFO  04/01/2011 05:59:13 Lockcomponent   - Locked dtfa-0 as DTFA1
-INFO  04/01/2011 05:59:13 Testscript      - Executing storage://INPUT/component.xml
-INFO  04/01/2011 05:59:13 Rename          - Node name is dtfx-13
-INFO  04/01/2011 05:59:13 Lockcomponent   - Locked dtfa-1 as DTFA1
-INFO  04/01/2011 05:59:13 Echo            - About to lock a dtfa by name and this will fail.
-INFO  04/01/2011 05:59:14 Testscript      - Executing storage://INPUT/lockcomponent.xml
-INFO  04/01/2011 05:59:15 Rename          - Node name is dtfx-14
-INFO  04/01/2011 05:59:15 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  04/01/2011 05:59:15 Lockcomponent   - Locked dtfa-0 as DTFA3
-INFO  04/01/2011 05:59:15 Unlockcomponent - Unlocking dtfa-0
-INFO  04/01/2011 05:59:15 Lockcomponent   - Locked dtfa-1 as DTFA2
-INFO  04/01/2011 05:59:15 Unlockcomponent - Unlocking dtfa-1
-INFO  04/01/2011 05:59:15 Unlockcomponent - Component unlocked DTFA2
-INFO  04/01/2011 05:59:15 Unlockcomponent - Component unlocked DTFA3
-INFO  04/01/2011 05:59:15 Unlockcomponent - Unlocking dtfa-2
-INFO  04/01/2011 05:59:15 Unlockcomponent - Component unlocked DTFA1
-INFO  04/01/2011 05:59:15 Lockcomponent   - Locked dtfa-0 as DTFA2
-INFO  04/01/2011 05:59:15 Lockcomponent   - Locked dtfa-1 as DTFA3
-INFO  04/01/2011 05:59:15 Unlockcomponent - Unlocking dtfa-0
-INFO  04/01/2011 05:59:15 Unlockcomponent - Unlocking dtfa-1
-INFO  04/01/2011 05:59:15 Unlockcomponent - Component unlocked DTFA2
-INFO  04/01/2011 05:59:15 Unlockcomponent - Component unlocked DTFA3
-INFO  04/01/2011 05:59:15 Lockcomponent   - Locked dtfa-0 as DTFA3
-INFO  04/01/2011 05:59:15 Lockcomponent   - Locked dtfa-1 as DTFA2
-INFO  04/01/2011 05:59:15 Unlockcomponent - Unlocking dtfa-0
-INFO  04/01/2011 05:59:15 Unlockcomponent - Unlocking dtfa-1
-INFO  04/01/2011 05:59:15 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  04/01/2011 05:59:15 Unlockcomponent - Unlocking dtfa-2
-INFO  04/01/2011 05:59:15 Unlockcomponent - Component unlocked DTFA3
-INFO  04/01/2011 05:59:15 Unlockcomponent - Component unlocked DTFA1
-INFO  04/01/2011 05:59:15 Unlockcomponent - Component unlocked DTFA2
-INFO  04/01/2011 05:59:15 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  04/01/2011 05:59:15 Unlockcomponent - Unlocking dtfa-2
-INFO  04/01/2011 05:59:15 Unlockcomponent - Component unlocked DTFA1
-INFO  04/01/2011 05:59:15 Testsuite       - Starting lockcomponent
-INFO  04/01/2011 05:59:15 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  04/01/2011 05:59:15 Testsuite       - Starting lockcomponent
-INFO  04/01/2011 05:59:15 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  04/01/2011 05:59:15 Testsuite       - Starting lockcomponent
-INFO  04/01/2011 05:59:15 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  04/01/2011 05:59:15 Rename          - Node name is dtfx-15
-INFO  04/01/2011 05:59:15 Rename          - Node name is dtfx-16
-INFO  04/01/2011 05:59:15 Rename          - Node name is dtfx-17
-INFO  04/01/2011 05:59:15 Lockcomponent   - Locked dtfa-1 as C1
-INFO  04/01/2011 05:59:15 Lockcomponent   - Locked dtfa-0 as C1
-INFO  04/01/2011 05:59:15 Lockcomponent   - Locked dtfa-2 as C1
-INFO  04/01/2011 05:59:16 Testsuite       - Starting lockcomponent
-INFO  04/01/2011 05:59:16 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  04/01/2011 05:59:16 Rename          - Node name is dtfx-18
-INFO  04/01/2011 05:59:16 Lockcomponent   - Locked dtfa-1 as C1
-INFO  04/01/2011 05:59:16 Testsuite       - Starting lockcomponent
-INFO  04/01/2011 05:59:16 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  04/01/2011 05:59:16 Rename          - Node name is dtfx-19
-INFO  04/01/2011 05:59:16 Lockcomponent   - Locked dtfa-1 as C1
-INFO  04/01/2011 05:59:16 Testsuite       - Starting lockcomponent
-INFO  04/01/2011 05:59:16 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  04/01/2011 05:59:16 Rename          - Node name is dtfx-20
-INFO  04/01/2011 05:59:16 Lockcomponent   - Locked dtfa-0 as C1
-INFO  04/01/2011 05:59:16 Testsuite       - Starting lockcomponent
-INFO  04/01/2011 05:59:16 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  04/01/2011 05:59:16 Testsuite       - Starting lockcomponent
-INFO  04/01/2011 05:59:16 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  04/01/2011 05:59:16 Rename          - Node name is dtfx-21
-INFO  04/01/2011 05:59:16 Rename          - Node name is dtfx-22
-INFO  04/01/2011 05:59:16 Lockcomponent   - Locked dtfa-1 as C1
-INFO  04/01/2011 05:59:16 Lockcomponent   - Locked dtfa-2 as C1
-INFO  04/01/2011 05:59:16 Testsuite       - Starting lockcomponent
-INFO  04/01/2011 05:59:16 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  04/01/2011 05:59:16 Rename          - Node name is dtfx-23
-INFO  04/01/2011 05:59:16 Lockcomponent   - Locked dtfa-2 as C1
-INFO  04/01/2011 05:59:17 Testsuite       - Starting lockcomponent
-INFO  04/01/2011 05:59:17 Testscript      - Executing storage://INPUT/parallel_occupy_component.xml
-INFO  04/01/2011 05:59:17 Rename          - Node name is dtfx-24
-INFO  04/01/2011 05:59:17 Lockcomponent   - Locked dtfa-1 as C3
-INFO  04/01/2011 05:59:17 Lockcomponent   - Locked dtfa-0 as C2
-INFO  04/01/2011 05:59:17 Lockcomponent   - Locked dtfa-2 as C1
-INFO  04/01/2011 05:59:17 Lockcomponent   - Locked dtfa-2 as C1
-INFO  04/01/2011 05:59:17 Unlockcomponent - Unlocking dtfa-2
-INFO  04/01/2011 05:59:17 Unlockcomponent - Component unlocked C1
-INFO  04/01/2011 05:59:17 Testsuite       - Starting lockcomponent
-INFO  04/01/2011 05:59:17 Testscript      - Executing storage://INPUT/function_occupy_component.xml
-INFO  04/01/2011 05:59:17 Rename          - Node name is dtfx-25
-INFO  04/01/2011 05:59:17 Lockcomponent   - Locked dtfa-0 as C1
-INFO  04/01/2011 05:59:17 Lockcomponent   - Locked dtfa-1 as C2
-INFO  04/01/2011 05:59:17 Lockcomponent   - Locked dtfa-2 as C3
-INFO  04/01/2011 05:59:17 Lockcomponent   - Locked dtfa-2 as C1
-INFO  04/01/2011 05:59:17 Unlockcomponent - Unlocking dtfa-2
-INFO  04/01/2011 05:59:17 Unlockcomponent - Component unlocked C1
-INFO  04/01/2011 05:59:17 Testscript      - Executing storage://INPUT/lockgroup.xml
-INFO  04/01/2011 05:59:17 Rename          - Node name is dtfx-26
-INFO  04/01/2011 05:59:17 Lockcomponent   - Locked dtfa-0 as DTFA1-2
-INFO  04/01/2011 05:59:17 Lockcomponent   - Locked dtfa-1 as DTFA2-2
-INFO  04/01/2011 05:59:17 Unlockcomponent - Unlocking dtfa-0
-INFO  04/01/2011 05:59:17 Unlockcomponent - Component unlocked DTFA1-2
-INFO  04/01/2011 05:59:17 Unlockcomponent - Unlocking dtfa-1
-INFO  04/01/2011 05:59:17 Unlockcomponent - Component unlocked DTFA2-2
-INFO  04/01/2011 05:59:17 Lockcomponent   - Locked dtfa-1 as DTFA1-1
-INFO  04/01/2011 05:59:17 Lockcomponent   - Locked dtfa-0 as DTFA2-1
-INFO  04/01/2011 05:59:17 Unlockcomponent - Unlocking dtfa-1
-INFO  04/01/2011 05:59:17 Unlockcomponent - Component unlocked DTFA1-1
-INFO  04/01/2011 05:59:17 Unlockcomponent - Unlocking dtfa-0
-INFO  04/01/2011 05:59:17 Unlockcomponent - Component unlocked DTFA2-1
-INFO  04/01/2011 05:59:17 Lockcomponent   - Locked dtfa-2 as DTFA1-1
-INFO  04/01/2011 05:59:17 Lockcomponent   - Locked dtfa-1 as DTFA2-1
-INFO  04/01/2011 05:59:17 Unlockcomponent - Unlocking dtfa-2
-INFO  04/01/2011 05:59:17 Unlockcomponent - Component unlocked DTFA1-1
-INFO  04/01/2011 05:59:17 Unlockcomponent - Unlocking dtfa-1
-INFO  04/01/2011 05:59:18 Unlockcomponent - Component unlocked DTFA2-1
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-2 as DTFA1-2
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-0 as DTFA2-2
-INFO  04/01/2011 05:59:18 Unlockcomponent - Unlocking dtfa-2
-INFO  04/01/2011 05:59:18 Unlockcomponent - Component unlocked DTFA1-2
-INFO  04/01/2011 05:59:18 Unlockcomponent - Unlocking dtfa-0
-INFO  04/01/2011 05:59:18 Unlockcomponent - Component unlocked DTFA2-2
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-0 as DTFA1-1
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-1 as DTFA2-1
-INFO  04/01/2011 05:59:18 Unlockcomponent - Unlocking dtfa-0
-INFO  04/01/2011 05:59:18 Unlockcomponent - Component unlocked DTFA1-1
-INFO  04/01/2011 05:59:18 Unlockcomponent - Unlocking dtfa-1
-INFO  04/01/2011 05:59:18 Unlockcomponent - Component unlocked DTFA2-1
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-1 as DTFA1-2
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-0 as DTFA2-2
-INFO  04/01/2011 05:59:18 Unlockcomponent - Unlocking dtfa-1
-INFO  04/01/2011 05:59:18 Unlockcomponent - Component unlocked DTFA1-2
-INFO  04/01/2011 05:59:18 Unlockcomponent - Unlocking dtfa-0
-INFO  04/01/2011 05:59:18 Unlockcomponent - Component unlocked DTFA2-2
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-2 as DTFA1-1
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-1 as DTFA2-1
-INFO  04/01/2011 05:59:18 Unlockcomponent - Unlocking dtfa-2
-INFO  04/01/2011 05:59:18 Unlockcomponent - Component unlocked DTFA1-1
-INFO  04/01/2011 05:59:18 Unlockcomponent - Unlocking dtfa-1
-INFO  04/01/2011 05:59:18 Unlockcomponent - Component unlocked DTFA2-1
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-2 as DTFA1-2
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-0 as DTFA2-2
-INFO  04/01/2011 05:59:18 Unlockcomponent - Unlocking dtfa-2
-INFO  04/01/2011 05:59:18 Unlockcomponent - Component unlocked DTFA1-2
-INFO  04/01/2011 05:59:18 Unlockcomponent - Unlocking dtfa-0
-INFO  04/01/2011 05:59:18 Unlockcomponent - Component unlocked DTFA2-2
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-0 as DTFA1-1
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-1 as DTFA2-1
-INFO  04/01/2011 05:59:18 Unlockcomponent - Unlocking dtfa-0
-INFO  04/01/2011 05:59:18 Unlockcomponent - Component unlocked DTFA1-1
-INFO  04/01/2011 05:59:18 Unlockcomponent - Unlocking dtfa-1
-INFO  04/01/2011 05:59:18 Unlockcomponent - Component unlocked DTFA2-1
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-1 as DTFA1-2
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-0 as DTFA2-2
-INFO  04/01/2011 05:59:18 Unlockcomponent - Unlocking dtfa-1
-INFO  04/01/2011 05:59:18 Unlockcomponent - Component unlocked DTFA1-2
-INFO  04/01/2011 05:59:18 Unlockcomponent - Unlocking dtfa-0
-INFO  04/01/2011 05:59:18 Unlockcomponent - Component unlocked DTFA2-2
-INFO  04/01/2011 05:59:18 Testscript      - Executing storage://INPUT/remotestorage.xml
-INFO  04/01/2011 05:59:18 Rename          - Node name is dtfx-27
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-1 as DTFA2
-INFO  04/01/2011 05:59:18 Lockcomponent   - Locked dtfa-0 as DTFA3
-INFO  04/01/2011 05:59:18 Log             - DTFA1
-INFO  04/01/2011 05:59:19 Log             - DTFA2
-INFO  04/01/2011 05:59:19 Log             - DTFA3
-INFO  04/01/2011 05:59:19 Log             - Parallel Overwrites
-INFO  04/01/2011 05:59:19 Log             - Sequential Appends
-INFO  04/01/2011 05:59:20 Log             - Parallel Appends
-INFO  04/01/2011 05:59:20 Testscript      - Executing storage://INPUT/recorder.xml
-INFO  04/01/2011 05:59:20 Rename          - Node name is dtfx-28
-INFO  04/01/2011 05:59:20 Lockcomponent   - Locked dtfa-1 as DTFA1
-INFO  04/01/2011 05:59:20 Log             - TXT Recorder Unit Tests
-INFO  04/01/2011 05:59:20 Log             - Object Recorder Unit Tests
-INFO  04/01/2011 05:59:20 Echo            - Previous event started at: 1294120760547
-INFO  04/01/2011 05:59:20 Echo            - Previous event ended at: 1294120760547
-INFO  04/01/2011 05:59:20 Echo            - Previous event had property1 set to: 1
-INFO  04/01/2011 05:59:20 Echo            - Previous event started at: 1294120760548
-INFO  04/01/2011 05:59:20 Echo            - Previous event ended at: 1294120760548
-INFO  04/01/2011 05:59:20 Echo            - Previous event had property1 set to: 1
-INFO  04/01/2011 05:59:20 Log             - Caught exception correctly [Unable to find storage: SOMEWHERE at tests/ut/recorder.xml:87:10]
-INFO  04/01/2011 05:59:20 Log             - Caught exception correctly [Unsupported recorder type [caca] at tests/ut/recorder.xml:95:10]
-INFO  04/01/2011 05:59:20 Testscript      - Executing storage://INPUT/stats_recorder.xml
-INFO  04/01/2011 05:59:20 Testscript      - Executing storage://INPUT/query.xml
-INFO  04/01/2011 05:59:20 Log             - 1: abcxyzup
-INFO  04/01/2011 05:59:20 Log             - 5: abcxyzup
-INFO  04/01/2011 05:59:20 Log             - Total Ops 5
-INFO  04/01/2011 05:59:20 Testsuite       - Starting query
-INFO  04/01/2011 05:59:20 Testscript      - Executing storage://INPUT/query_testcase.xml
-INFO  04/01/2011 05:59:21 Log             - Queries per second: 1000
-INFO  04/01/2011 05:59:21 Log             - Complex queries for txt format
-INFO  04/01/2011 05:59:21 Echo            - All done iterating correctly.
-INFO  04/01/2011 05:59:21 Echo            - All done iterating correctly.
-INFO  04/01/2011 05:59:21 Echo            - All done iterating correctly.
-INFO  04/01/2011 05:59:21 Resetcursor     - Resetting curosr [element2]
-INFO  04/01/2011 05:59:21 Echo            - All done iterating correctly.
-INFO  04/01/2011 05:59:21 Log             - caca
-INFO  04/01/2011 05:59:21 Testscript      - Executing storage://INPUT/event.xml
-INFO  04/01/2011 05:59:21 Echo            - Counter Unit Tests
-INFO  04/01/2011 05:59:21 ConsoleRecorder - {dtf.echo.start=1294120761966, dtf.echo.stop=1294120761966, dtf.echo.iteration=1}
-INFO  04/01/2011 05:59:21 ConsoleRecorder - {dtf.echo.start=1294120761967, dtf.echo.stop=1294120761967, dtf.echo.iteration=2}
-INFO  04/01/2011 05:59:21 ConsoleRecorder - {dtf.echo.start=1294120761967, dtf.echo.stop=1294120761967, dtf.echo.iteration=3}
-INFO  04/01/2011 05:59:21 ConsoleRecorder - {dtf.echo.start=1294120761967, dtf.echo.stop=1294120761967, dtf.echo.iteration=4}
-INFO  04/01/2011 05:59:21 ConsoleRecorder - {dtf.echo.start=1294120761967, dtf.echo.stop=1294120761967, dtf.echo.iteration=5}
-INFO  04/01/2011 05:59:21 Rename          - Node name is dtfx-29
-INFO  04/01/2011 05:59:21 Lockcomponent   - Locked dtfa-0 as DTFA1
-INFO  04/01/2011 05:59:22 Testscript      - Executing storage://INPUT/event_visibility.xml
-INFO  04/01/2011 05:59:22 Rename          - Node name is dtfx-30
-INFO  04/01/2011 05:59:22 Lockcomponent   - Locked dtfa-2 as C1
-INFO  04/01/2011 05:59:22 Testscript      - Executing storage://INPUT/compare.xml
-INFO  04/01/2011 05:59:22 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  04/01/2011 05:59:22 Testscript      - Executing storage://INPUT/filter.xml
-INFO  04/01/2011 05:59:22 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  04/01/2011 05:59:23 Testscript      - Executing storage://INPUT/sort.xml
-INFO  04/01/2011 05:59:23 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  04/01/2011 05:59:23 Testscript      - Executing storage://INPUT/testsuite.xml
-INFO  04/01/2011 05:59:23 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testsuite_results.xml}
-INFO  04/01/2011 05:59:23 Testsuite       - Starting testsuite1
-INFO  04/01/2011 05:59:23 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:23 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:23 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:23 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:23 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:23 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:23 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:23 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:23 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:23 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:23 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:23 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:23 Testscript      - Executing storage://INPUT/testsuite-sub.xml
-INFO  04/01/2011 05:59:23 Testsuite       - Starting testsuite2
-INFO  04/01/2011 05:59:23 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:23 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:23 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:24 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:24 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:24 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:24 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:24 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:24 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testsuite_results.xml}
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/results.xml
-INFO  04/01/2011 05:59:24 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  04/01/2011 05:59:24 Testsuite       - Starting results
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:24 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:24 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:24 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:24 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:24 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:24 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/testsuite-sub.xml
-INFO  04/01/2011 05:59:24 Testsuite       - Starting testsuite2
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:24 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:24 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:24 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:24 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:24 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:25 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:25 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  04/01/2011 05:59:25 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  04/01/2011 05:59:25 Testsuite       - Starting results
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:25 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:25 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:25 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:25 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:25 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:25 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/testsuite-sub.xml
-INFO  04/01/2011 05:59:25 Testsuite       - Starting testsuite2
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:25 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:25 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:25 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:25 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:25 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:25 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 ConsoleResults  - Testsuite: results passed. 13 passed testcases.
-INFO  04/01/2011 05:59:25 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  04/01/2011 05:59:25 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  04/01/2011 05:59:25 Testsuite       - Starting results
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:25 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:25 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:25 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:26 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:26 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:26 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:26 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/testsuite-sub.xml
-INFO  04/01/2011 05:59:26 Testsuite       - Starting testsuite2
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:26 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:26 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:26 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:26 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:26 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:26 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:26 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  04/01/2011 05:59:26 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:26 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:26 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:26 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
-INFO  04/01/2011 05:59:26 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  04/01/2011 05:59:26 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  04/01/2011 05:59:26 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  04/01/2011 05:59:26 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/concurrent_suite.xml
-INFO  04/01/2011 05:59:26 Result          - Starting Result recording: Result {uri=storage://OUTPUT/concurrent_suite_results.xml}
-INFO  04/01/2011 05:59:26 Testsuite       - Starting concurrent_suite
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/empty.xml
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/empty.xml
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/empty.xml
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/empty.xml
-INFO  04/01/2011 05:59:26 Testscript      - Executing storage://INPUT/empty.xml
-INFO  04/01/2011 05:59:27 Testscript      - Executing storage://INPUT/empty.xml
-INFO  04/01/2011 05:59:27 Testscript      - Executing storage://INPUT/empty.xml
-INFO  04/01/2011 05:59:27 Testscript      - Executing storage://INPUT/empty.xml
-INFO  04/01/2011 05:59:27 Testscript      - Executing storage://INPUT/empty.xml
-INFO  04/01/2011 05:59:27 Testscript      - Executing storage://INPUT/empty.xml
-INFO  04/01/2011 05:59:27 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/concurrent_suite_results.xml}
-INFO  04/01/2011 05:59:27 Testscript      - Executing storage://INPUT/stats.xml
-INFO  04/01/2011 05:59:27 Resetcursor     - Resetting curosr [cursor1]
-INFO  04/01/2011 05:59:27 Log             - Caught exception correctly [Cursor [inexistent] does not exist at tests/ut/stats.xml:71:10]
-INFO  04/01/2011 05:59:27 Testscript      - Executing storage://INPUT/file.xml
-INFO  04/01/2011 05:59:27 Rename          - Node name is dtfx-31
-INFO  04/01/2011 05:59:27 Lockcomponent   - Locked dtfa-1 as DTFA1
-INFO  04/01/2011 05:59:28 Log             - Caught expected failure.
-INFO  04/01/2011 05:59:28 Testscript      - Executing storage://INPUT/http.xml
-INFO  04/01/2011 05:59:28 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
-INFO  04/01/2011 05:59:28 Http_server     - Starting [127.0.0.1:55555]
-INFO  04/01/2011 05:59:29 Http_server     - Stopping [127.0.0.1:55555]
-INFO  04/01/2011 05:59:29 Testscript      - Executing storage://INPUT/http_server.xml
-INFO  04/01/2011 05:59:29 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
-INFO  04/01/2011 05:59:29 Http_server     - Starting [127.0.0.1:44444]
-INFO  04/01/2011 05:59:29 Log             - SOME DATA FROM THE CLIENT
-INFO  04/01/2011 05:59:29 Log             - in operation1
-INFO  04/01/2011 05:59:29 Log             - in operation2
-INFO  04/01/2011 05:59:29 Log             - in operation3
-INFO  04/01/2011 05:59:29 Log             - Validating that parallel cookie manipulation doesn't hit any issues 
-INFO  04/01/2011 05:59:31 Http_server     - Stopping [127.0.0.1:44444]
-INFO  04/01/2011 05:59:31 Http_server     - Starting [127.0.0.1:44445]
-INFO  04/01/2011 05:59:31 Http_server     - Stopping [127.0.0.1:44445]
-INFO  04/01/2011 05:59:31 Testscript      - Executing storage://INPUT/http_cleanup_test.xml
-INFO  04/01/2011 05:59:31 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
-INFO  04/01/2011 05:59:31 Rename          - Node name is dtfx-32
-INFO  04/01/2011 05:59:31 Http_server     - Starting [127.0.0.1:33333]
-INFO  04/01/2011 05:59:31 Lockcomponent   - Locked dtfa-0 as C1
-INFO  04/01/2011 05:59:31 Lockcomponent   - Locked dtfa-2 as C2
-INFO  04/01/2011 05:59:32 Unlockcomponent - Unlocking dtfa-0
-ERROR 04/01/2011 05:59:32 Client closed connection.
-org.apache.http.ConnectionClosedException: Client closed connection
-	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:104)
-	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
-	at org.apache.http.impl.AbstractHttpServerConnection.receiveRequestHeader(AbstractHttpServerConnection.java:232)
-	at org.apache.http.protocol.HttpService.handleRequest(HttpService.java:160)
-	at com.yahoo.dtf.actions.http.server.HTTPRunnable.run(HTTPRunnable.java:35)
+INFO  05/01/2011 05:34:03 Log             - Data matches!
+INFO  05/01/2011 05:34:03 Log             - Caught property recursion correctly.
+INFO  05/01/2011 05:34:03 Log             - Caught nested property recursion correctly.
+INFO  05/01/2011 05:34:03 Log             - value2value2value2
+INFO  05/01/2011 05:34:03 Testscript      - Executing storage://INPUT/cat.xml
+INFO  05/01/2011 05:34:04 Log             - Caught exception correctly [Unable to find storage: CACA at tests/ut/cat.xml:51:10]
+INFO  05/01/2011 05:34:04 Testscript      - Executing storage://INPUT/log.xml
+INFO  05/01/2011 05:34:04 Log             - Just testing the logging functionality
+INFO  05/01/2011 05:34:04 Log             - INFO INFO INFO
+ERROR 05/01/2011 05:34:04 Log             - ERROR ERROR ERROR
+WARN  05/01/2011 05:34:04 Log             - WARNING WARNING WARNING
+INFO  05/01/2011 05:34:04 Log             - INFO with tag TESTING
+ERROR 05/01/2011 05:34:04 Log             - ERROR with tag TESTING
+WARN  05/01/2011 05:34:04 Log             - WARNING with tag TESTING
+INFO  05/01/2011 05:34:04 Testscript      - Executing storage://INPUT/for.xml
+INFO  05/01/2011 05:34:04 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  05/01/2011 05:34:04 Testscript      - Executing storage://INPUT/parallel.xml
+INFO  05/01/2011 05:34:04 Testscript      - Executing storage://INPUT/parallelloop.xml
+INFO  05/01/2011 05:34:04 Testscript      - Executing storage://INPUT/sequence.xml
+INFO  05/01/2011 05:34:04 Echo            - HERE
+INFO  05/01/2011 05:34:04 Echo            - HERE
+INFO  05/01/2011 05:34:04 Testscript      - Executing storage://INPUT/timer.xml
+INFO  05/01/2011 05:34:05 Timer           - Timer took 113ms of 100ms.
+INFO  05/01/2011 05:34:05 Testscript      - Executing storage://INPUT/switch.xml
+INFO  05/01/2011 05:34:05 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  05/01/2011 05:34:05 Log             - Switch case #1
+INFO  05/01/2011 05:34:05 Log             - Switch case #2
+INFO  05/01/2011 05:34:05 Log             - Looped through switch and function call correctly.
+INFO  05/01/2011 05:34:05 Log             - Switch case #2
+INFO  05/01/2011 05:34:05 Log             - Looped through switch and function call correctly.
+INFO  05/01/2011 05:34:05 Log             - Looped through switch and function call correctly.
+INFO  05/01/2011 05:34:05 Log             - Switch went into the failure case correctly.
+INFO  05/01/2011 05:34:05 Testscript      - Executing storage://INPUT/while.xml
+INFO  05/01/2011 05:34:05 Log             - Thread 1 is starting.
+INFO  05/01/2011 05:34:05 Log             - Thread 2 is starting.
+INFO  05/01/2011 05:34:05 Log             - Thread 2 is done.
+INFO  05/01/2011 05:34:05 Log             - Thread 1 is done.
+INFO  05/01/2011 05:34:05 Testscript      - Executing storage://INPUT/break.xml
+ERROR 05/01/2011 05:34:05 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
 	at java.lang.Thread.run(Thread.java:619)
-INFO  04/01/2011 05:59:32 Unlockcomponent - Component unlocked C1
-INFO  04/01/2011 05:59:32 Unlockcomponent - Unlocking dtfa-2
-ERROR 04/01/2011 05:59:32 Client closed connection.
-org.apache.http.ConnectionClosedException: Client closed connection
-	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:104)
-	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
-	at org.apache.http.impl.AbstractHttpServerConnection.receiveRequestHeader(AbstractHttpServerConnection.java:232)
-	at org.apache.http.protocol.HttpService.handleRequest(HttpService.java:160)
-	at com.yahoo.dtf.actions.http.server.HTTPRunnable.run(HTTPRunnable.java:35)
+ERROR 05/01/2011 05:34:05 Testscript      - Failed [storage://INPUT/break.xml]
+INFO  05/01/2011 05:34:05 Testscript      - Executing storage://INPUT/try_catch_fail.xml
+ERROR 05/01/2011 05:34:05 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
 	at java.lang.Thread.run(Thread.java:619)
-INFO  04/01/2011 05:59:32 Unlockcomponent - Component unlocked C2
-INFO  04/01/2011 05:59:32 Lockcomponent   - Locked dtfa-2 as C1
-INFO  04/01/2011 05:59:32 Lockcomponent   - Locked dtfa-0 as C2
-INFO  04/01/2011 05:59:32 Unlockcomponent - Unlocking dtfa-2
-ERROR 04/01/2011 05:59:32 Client closed connection.
-org.apache.http.ConnectionClosedException: Client closed connection
-	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:104)
-	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
-	at org.apache.http.impl.AbstractHttpServerConnection.receiveRequestHeader(AbstractHttpServerConnection.java:232)
-	at org.apache.http.protocol.HttpService.handleRequest(HttpService.java:160)
-	at com.yahoo.dtf.actions.http.server.HTTPRunnable.run(HTTPRunnable.java:35)
+ERROR 05/01/2011 05:34:05 Testscript      - Failed [storage://INPUT/try_catch_fail.xml]
+INFO  05/01/2011 05:34:05 Testscript      - Executing storage://INPUT/fail.xml
+ERROR 05/01/2011 05:34:06 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
 	at java.lang.Thread.run(Thread.java:619)
-INFO  04/01/2011 05:59:32 Unlockcomponent - Component unlocked C1
-INFO  04/01/2011 05:59:32 Unlockcomponent - Unlocking dtfa-0
-ERROR 04/01/2011 05:59:32 Client closed connection.
-org.apache.http.ConnectionClosedException: Client closed connection
-	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:104)
-	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
-	at org.apache.http.impl.AbstractHttpServerConnection.receiveRequestHeader(AbstractHttpServerConnection.java:232)
-	at org.apache.http.protocol.HttpService.handleRequest(HttpService.java:160)
-	at com.yahoo.dtf.actions.http.server.HTTPRunnable.run(HTTPRunnable.java:35)
+ERROR 05/01/2011 05:34:06 Testscript      - Failed [storage://INPUT/fail.xml]
+INFO  05/01/2011 05:34:06 Testscript      - Executing storage://INPUT/distribute.xml
+INFO  05/01/2011 05:34:07 Testscript      - Executing storage://INPUT/choices.xml
+INFO  05/01/2011 05:34:07 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  05/01/2011 05:34:07 Testscript      - Executing storage://INPUT/if.xml
+INFO  05/01/2011 05:34:08 Testscript      - Executing storage://INPUT/similar.xml
+INFO  05/01/2011 05:34:08 Log             - png: being checked
+INFO  05/01/2011 05:34:08 Log             - images are within 100% similarity
+INFO  05/01/2011 05:34:08 Log             - gif: being checked
+INFO  05/01/2011 05:34:08 Log             - images are within 100% similarity
+INFO  05/01/2011 05:34:08 Log             - bmp: being checked
+INFO  05/01/2011 05:34:08 Log             - images are within 100% similarity
+INFO  05/01/2011 05:34:08 Testscript      - Executing storage://INPUT/createrange.xml
+INFO  05/01/2011 05:34:08 Testscript      - Executing storage://INPUT/range.xml
+INFO  05/01/2011 05:34:08 Testscript      - Executing storage://INPUT/range_dist.xml
+ERROR 05/01/2011 05:34:09 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
 	at java.lang.Thread.run(Thread.java:619)
-INFO  04/01/2011 05:59:32 Unlockcomponent - Component unlocked C2
-INFO  04/01/2011 05:59:32 Http_server     - Stopping [127.0.0.1:33333]
-INFO  04/01/2011 05:59:32 Testscript      - Executing storage://INPUT/string_manipulation.xml
-INFO  04/01/2011 05:59:32 Testscript      - Executing storage://INPUT/string_transform.xml
-INFO  04/01/2011 05:59:32 Testscript      - Executing storage://INPUT/convert.xml
-INFO  04/01/2011 05:59:32 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  04/01/2011 05:59:32 Testscript      - Executing storage://INPUT/arithmetic.xml
-INFO  04/01/2011 05:59:32 Testscript      - Executing storage://INPUT/random.xml
-INFO  04/01/2011 05:59:32 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  04/01/2011 05:59:33 Log             - Correctness check for randomInt generator
-INFO  04/01/2011 05:59:33 Log             - Correctness check for randomLong generator
-INFO  04/01/2011 05:59:33 Log             - Correctness check for randomDouble generator
-INFO  04/01/2011 05:59:33 Log             - Correctness check for gaussianLong generator
-INFO  04/01/2011 05:59:33 Log             - Correctness check for randomInt generator
-INFO  04/01/2011 05:59:33 Log             - Correctness check for randomLong generator
-INFO  04/01/2011 05:59:33 Log             - Correctness check for randomDouble generator
-INFO  04/01/2011 05:59:33 Log             - Correctness check for gaussianLong generator
-INFO  04/01/2011 05:59:33 Log             - Correctness check for randomInt generator
-INFO  04/01/2011 05:59:33 Log             - Correctness check for randomLong generator
-INFO  04/01/2011 05:59:33 Log             - Correctness check for randomDouble generator
-INFO  04/01/2011 05:59:33 Log             - Correctness check for gaussianLong generator
-INFO  04/01/2011 05:59:33 Testscript      - Executing storage://INPUT/monitor.xml
-INFO  04/01/2011 05:59:33 Rename          - Node name is dtfx-33
-INFO  04/01/2011 05:59:33 Lockcomponent   - Locked dtfa-1 as AGENT1
-INFO  04/01/2011 05:59:33 Monitor_grep    - New files [log-1294120773396.7, log-1294120773396.6, log-1294120773396.2, log-1294120773396.10, log-1294120773396.3, log-1294120773396.1, log-1294120773396.5, log-1294120773396.9, log-1294120773396.4, log-1294120773396.8] in /home/dtftest/build/dtf/build/dtf/dist/tests/ut/output
-INFO  04/01/2011 05:59:33 Log             - Validating data correctness
-INFO  04/01/2011 05:59:33 Testscript      - Executing storage://INPUT/diff.xml
-INFO  04/01/2011 05:59:33 Testscript      - Executing storage://INPUT/xml_xpath.xml
-INFO  04/01/2011 05:59:33 Log             - Correct count of 6 for XPath: //list/item/text()
-INFO  04/01/2011 05:59:33 Log             - Correct count of 6 for XPath: //list/item/@att1
-INFO  04/01/2011 05:59:33 Log             - Correct count of 6 for XPath: //list/item
-INFO  04/01/2011 05:59:33 Log             - Correct count of 3 for XPath: //list/item[@att1 < 4]
-INFO  04/01/2011 05:59:33 Testscript      - Executing storage://INPUT/xml_dynamic.xml
-INFO  04/01/2011 05:59:33 Testscript      - Executing storage://INPUT/json_transform.xml
-INFO  04/01/2011 05:59:34 Testscript      - Executing storage://INPUT/stream.xml
-INFO  04/01/2011 05:59:34 Log             - Validate streams always generate the same data for the same seed.
-INFO  04/01/2011 05:59:36 Testscript      - Executing storage://INPUT/assertions.xml
-INFO  04/01/2011 05:59:36 Testscript      - Executing storage://INPUT/encoding.xml
-INFO  04/01/2011 05:59:37 Testscript      - Executing storage://INPUT/special_characters.xml
-INFO  04/01/2011 05:59:37 Testscript      - Executing storage://INPUT/testscript_component_complex.xml
-INFO  04/01/2011 05:59:37 Testsuite       - Starting dummy
-INFO  04/01/2011 05:59:37 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  04/01/2011 05:59:37 Rename          - Node name is dtfx-34
-INFO  04/01/2011 05:59:37 Lockcomponent   - Locked dtfa-0 as C1
-INFO  04/01/2011 05:59:37 Rename          - Node name is dtfx-35
-INFO  04/01/2011 05:59:38 Lockcomponent   - Locked dtfa-0 as C1
-INFO  04/01/2011 05:59:38 Lockcomponent   - Locked dtfa-1 as C2
-INFO  04/01/2011 05:59:38 Testsuite       - Starting dummy
-INFO  04/01/2011 05:59:38 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  04/01/2011 05:59:38 Rename          - Node name is dtfx-36
-INFO  04/01/2011 05:59:38 Lockcomponent   - Locked dtfa-2 as C1
-INFO  04/01/2011 05:59:38 Testscript      - Executing storage://INPUT/rendezvous.xml
-INFO  04/01/2011 05:59:38 Log             - Expected timeout has occured.
-INFO  04/01/2011 05:59:38 Testscript      - Executing storage://INPUT/rendezvous_complex.xml
-INFO  04/01/2011 05:59:39 Rename          - Node name is dtfx-37
-INFO  04/01/2011 05:59:39 Lockcomponent   - Locked dtfa-0 as C1
-INFO  04/01/2011 05:59:39 Lockcomponent   - Locked dtfa-1 as C2
-INFO  04/01/2011 05:59:41 Testscript      - Executing storage://INPUT/share.xml
-INFO  04/01/2011 05:59:41 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  04/01/2011 05:59:41 Rename          - Node name is dtfx-38
-INFO  04/01/2011 05:59:41 Lockcomponent   - Locked dtfa-1 as PRODUCER
-INFO  04/01/2011 05:59:41 Lockcomponent   - Locked dtfa-0 as CONSUMER
-INFO  04/01/2011 05:59:41 Log             - event.start=1294120781780
-INFO  04/01/2011 05:59:41 Log             - event.stop=1294120781780
-INFO  04/01/2011 05:59:41 Testscript      - Executing storage://INPUT/share_complex.xml
-INFO  04/01/2011 05:59:42 Rename          - Node name is dtfx-39
-INFO  04/01/2011 05:59:42 Lockcomponent   - Locked dtfa-0 as C1
-INFO  04/01/2011 05:59:42 Lockcomponent   - Locked dtfa-1 as C2
-INFO  04/01/2011 05:59:42 Testscript      - Executing storage://INPUT/scanf.xml
-INFO  04/01/2011 05:59:42 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  04/01/2011 05:59:42 Testscript      - Executing storage://INPUT/printf.xml
-INFO  04/01/2011 05:59:43 Log             - INTEGER[23] STRING[Hello There!] FLOAT [1.23] LIST [1,2,3,4]
-INFO  04/01/2011 05:59:43 Log             - 1.23456 -- reduce precision to .2 -> 1.23
-INFO  04/01/2011 05:59:43 Log             - 1 -- pad the number to 3 digits -> 001
-INFO  04/01/2011 05:59:43 Log             - 10 -- convert to hex and pad to 4 digits -> 000a
-INFO  04/01/2011 05:59:43 Testscript      - Executing storage://INPUT/read_image.xml
-INFO  04/01/2011 05:59:43 Log             - png: being checked
-INFO  04/01/2011 05:59:43 Log             - gif: being checked
-INFO  04/01/2011 05:59:43 Log             - bmp: being checked
-ERROR 04/01/2011 05:59:43 Testscript failed.
-com.yahoo.dtf.exception.AssertionException: Assertion failed [Duration was longer than 300ms by 10% at 338ms] at tests/ut/distribute.xml:148:82
-	at com.yahoo.dtf.actions.flowcontrol.Assert.execute(Assert.java:44)
-	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:192)
-	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:50)
-	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
-	at com.yahoo.dtf.actions.basic.Testscript.execute(Testscript.java:72)
-	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:192)
-	at com.yahoo.dtf.actions.basic.Testsuite.execute(Testsuite.java:93)
-	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:192)
-	at com.yahoo.dtf.actions.results.Result.execute(Result.java:99)
-	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:192)
-	at com.yahoo.dtf.actions.basic.Script.execute(Script.java:50)
-	at com.yahoo.dtf.actions.util.ScriptUtil.executeScript(ScriptUtil.java:49)
-	at com.yahoo.dtf.DTFNode.run(DTFNode.java:405)
-	at com.yahoo.dtf.DTFNode.main(DTFNode.java:551)
+ERROR 05/01/2011 05:34:09 Testscript      - Failed [storage://INPUT/range_dist.xml]
+INFO  05/01/2011 05:34:09 Testscript      - Executing storage://INPUT/xml_range.xml
+INFO  05/01/2011 05:34:09 Log             - XPath range validation
+INFO  05/01/2011 05:34:09 Log             - XPath range validation on XML with namespace
+INFO  05/01/2011 05:34:09 Log             - XPath range validation on XML with default namespace
+INFO  05/01/2011 05:34:09 Log             - negative tests
+INFO  05/01/2011 05:34:09 Log             - Failed correctly
+INFO  05/01/2011 05:34:09 Testscript      - Executing storage://INPUT/json_range.xml
+INFO  05/01/2011 05:34:09 Log             - JPath range validation
+INFO  05/01/2011 05:34:09 Log             - Negative Tests
+INFO  05/01/2011 05:34:09 Log             - Failed correctly
+INFO  05/01/2011 05:34:09 Testscript      - Executing storage://INPUT/functions.xml
+INFO  05/01/2011 05:34:09 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  05/01/2011 05:34:10 Import          - Importing elements from Import {uri=storage://INPUT/functions_util.xml}
+WARN  05/01/2011 05:34:10 Function        - Argument [function] not being used by the function [func2]
+WARN  05/01/2011 05:34:10 Function        - Argument [function] not being used by the function [func3]
+WARN  05/01/2011 05:34:10 Function        - Argument [p3] not being used by the function [functionWithParams]
+INFO  05/01/2011 05:34:10 Testscript      - Executing storage://INPUT/import.xml
+INFO  05/01/2011 05:34:10 Import          - Importing elements from Import {uri=storage://INPUT/functions_util.xml}
+INFO  05/01/2011 05:34:10 Import          - Importing elements from Import {uri=storage://TINPUT/functions.xml}
+WARN  05/01/2011 05:34:10 Function        - Argument [function] not being used by the function [func2]
+WARN  05/01/2011 05:34:10 Function        - Argument [function] not being used by the function [func3]
+INFO  05/01/2011 05:34:10 Import          - Importing elements from Import {uri=storage://INPUT/badxml}
+INFO  05/01/2011 05:34:10 Testscript      - Executing storage://INPUT/export.xml
+INFO  05/01/2011 05:34:10 Import          - Importing elements from Import {uri=storage://INPUT/export_util.xml}
+ERROR 05/01/2011 05:34:11 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:11 Testscript      - Failed [storage://INPUT/export.xml]
+INFO  05/01/2011 05:34:11 Testscript      - Executing storage://INPUT/references.xml
+INFO  05/01/2011 05:34:11 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+ERROR 05/01/2011 05:34:11 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:11 Testscript      - Failed [storage://INPUT/references.xml]
+INFO  05/01/2011 05:34:11 Testscript      - Executing storage://INPUT/component.xml
+ERROR 05/01/2011 05:34:11 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:11 Testscript      - Failed [storage://INPUT/component.xml]
+INFO  05/01/2011 05:34:11 Testscript      - Executing storage://INPUT/lockcomponent.xml
+ERROR 05/01/2011 05:34:11 Child failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:11 Child failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:11 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:11 Testscript      - Failed [storage://INPUT/lockcomponent.xml]
+INFO  05/01/2011 05:34:11 Testscript      - Executing storage://INPUT/lockgroup.xml
+ERROR 05/01/2011 05:34:11 Child failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:11 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:11 Testscript      - Failed [storage://INPUT/lockgroup.xml]
+INFO  05/01/2011 05:34:11 Testscript      - Executing storage://INPUT/remotestorage.xml
+ERROR 05/01/2011 05:34:12 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:12 Testscript      - Failed [storage://INPUT/remotestorage.xml]
+INFO  05/01/2011 05:34:12 Testscript      - Executing storage://INPUT/recorder.xml
+ERROR 05/01/2011 05:34:12 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:12 Testscript      - Failed [storage://INPUT/recorder.xml]
+INFO  05/01/2011 05:34:12 Testscript      - Executing storage://INPUT/stats_recorder.xml
+INFO  05/01/2011 05:34:12 Testscript      - Executing storage://INPUT/query.xml
+INFO  05/01/2011 05:34:12 Log             - 1: abcxyzup
+INFO  05/01/2011 05:34:12 Log             - 5: abcxyzup
+INFO  05/01/2011 05:34:12 Log             - Total Ops 5
+INFO  05/01/2011 05:34:12 Testsuite       - Starting query
+INFO  05/01/2011 05:34:12 Testscript      - Executing storage://INPUT/query_testcase.xml
+INFO  05/01/2011 05:34:13 Log             - Queries per second: 1000
+INFO  05/01/2011 05:34:13 Log             - Complex queries for txt format
+INFO  05/01/2011 05:34:13 Echo            - All done iterating correctly.
+INFO  05/01/2011 05:34:13 Echo            - All done iterating correctly.
+INFO  05/01/2011 05:34:13 Echo            - All done iterating correctly.
+INFO  05/01/2011 05:34:13 Resetcursor     - Resetting curosr [element2]
+INFO  05/01/2011 05:34:13 Echo            - All done iterating correctly.
+INFO  05/01/2011 05:34:13 Log             - caca
+INFO  05/01/2011 05:34:13 Testscript      - Executing storage://INPUT/event.xml
+INFO  05/01/2011 05:34:13 Echo            - Counter Unit Tests
+INFO  05/01/2011 05:34:13 ConsoleRecorder - {dtf.echo.start=1294205653692, dtf.echo.stop=1294205653692, dtf.echo.iteration=1}
+INFO  05/01/2011 05:34:13 ConsoleRecorder - {dtf.echo.start=1294205653692, dtf.echo.stop=1294205653692, dtf.echo.iteration=2}
+INFO  05/01/2011 05:34:13 ConsoleRecorder - {dtf.echo.start=1294205653692, dtf.echo.stop=1294205653692, dtf.echo.iteration=3}
+INFO  05/01/2011 05:34:13 ConsoleRecorder - {dtf.echo.start=1294205653692, dtf.echo.stop=1294205653692, dtf.echo.iteration=4}
+INFO  05/01/2011 05:34:13 ConsoleRecorder - {dtf.echo.start=1294205653692, dtf.echo.stop=1294205653693, dtf.echo.iteration=5}
+ERROR 05/01/2011 05:34:13 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:13 Testscript      - Failed [storage://INPUT/event.xml]
+INFO  05/01/2011 05:34:13 Testscript      - Executing storage://INPUT/event_visibility.xml
+ERROR 05/01/2011 05:34:13 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:13 Testscript      - Failed [storage://INPUT/event_visibility.xml]
+INFO  05/01/2011 05:34:13 Testscript      - Executing storage://INPUT/compare.xml
+INFO  05/01/2011 05:34:14 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  05/01/2011 05:34:14 Testscript      - Executing storage://INPUT/filter.xml
+INFO  05/01/2011 05:34:14 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  05/01/2011 05:34:14 Testscript      - Executing storage://INPUT/sort.xml
+INFO  05/01/2011 05:34:14 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  05/01/2011 05:34:14 Testscript      - Executing storage://INPUT/testsuite.xml
+INFO  05/01/2011 05:34:14 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testsuite_results.xml}
+INFO  05/01/2011 05:34:14 Testsuite       - Starting testsuite1
+INFO  05/01/2011 05:34:14 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:15 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:15 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:15 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:15 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:15 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:15 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:15 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:15 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:15 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:15 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:15 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:15 Testscript      - Executing storage://INPUT/testsuite-sub.xml
+INFO  05/01/2011 05:34:15 Testsuite       - Starting testsuite2
+INFO  05/01/2011 05:34:15 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:15 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:15 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:15 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:15 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:15 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:15 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:15 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:15 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:15 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:15 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:15 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:15 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testsuite_results.xml}
+INFO  05/01/2011 05:34:15 Testscript      - Executing storage://INPUT/results.xml
+INFO  05/01/2011 05:34:15 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  05/01/2011 05:34:15 Testsuite       - Starting results
+INFO  05/01/2011 05:34:15 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:15 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:15 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:16 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:16 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:16 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:16 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:16 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/testsuite-sub.xml
+INFO  05/01/2011 05:34:16 Testsuite       - Starting testsuite2
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:16 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:16 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:16 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:16 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:16 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:16 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  05/01/2011 05:34:16 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  05/01/2011 05:34:16 Testsuite       - Starting results
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:16 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:16 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:16 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:16 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:16 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:16 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:17 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/testsuite-sub.xml
+INFO  05/01/2011 05:34:17 Testsuite       - Starting testsuite2
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:17 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:17 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:17 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:17 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:17 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:17 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:17 ConsoleResults  - Testsuite: results passed. 13 passed testcases.
+INFO  05/01/2011 05:34:17 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  05/01/2011 05:34:17 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  05/01/2011 05:34:17 Testsuite       - Starting results
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:17 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:17 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:17 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:17 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:17 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:17 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/testsuite-sub.xml
+INFO  05/01/2011 05:34:17 Testsuite       - Starting testsuite2
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:17 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:17 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:18 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:18 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:18 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:18 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:18 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:18 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  05/01/2011 05:34:18 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:18 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:18 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:18 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
+INFO  05/01/2011 05:34:18 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  05/01/2011 05:34:18 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  05/01/2011 05:34:18 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  05/01/2011 05:34:18 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/concurrent_suite.xml
+INFO  05/01/2011 05:34:18 Result          - Starting Result recording: Result {uri=storage://OUTPUT/concurrent_suite_results.xml}
+INFO  05/01/2011 05:34:18 Testsuite       - Starting concurrent_suite
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/empty.xml
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/empty.xml
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/empty.xml
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/empty.xml
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/empty.xml
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/empty.xml
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/empty.xml
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/empty.xml
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/empty.xml
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/empty.xml
+INFO  05/01/2011 05:34:18 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/concurrent_suite_results.xml}
+INFO  05/01/2011 05:34:18 Testscript      - Executing storage://INPUT/stats.xml
+INFO  05/01/2011 05:34:19 Resetcursor     - Resetting curosr [cursor1]
+INFO  05/01/2011 05:34:19 Log             - Caught exception correctly [Cursor [inexistent] does not exist at tests/ut/stats.xml:71:10]
+INFO  05/01/2011 05:34:19 Testscript      - Executing storage://INPUT/file.xml
+ERROR 05/01/2011 05:34:19 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:19 Testscript      - Failed [storage://INPUT/file.xml]
+INFO  05/01/2011 05:34:19 Testscript      - Executing storage://INPUT/http.xml
+INFO  05/01/2011 05:34:19 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
+INFO  05/01/2011 05:34:20 Http_server     - Starting [127.0.0.1:55555]
+INFO  05/01/2011 05:34:20 Http_server     - Stopping [127.0.0.1:55555]
+INFO  05/01/2011 05:34:20 Testscript      - Executing storage://INPUT/http_server.xml
+INFO  05/01/2011 05:34:20 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
+INFO  05/01/2011 05:34:20 Http_server     - Starting [127.0.0.1:44444]
+INFO  05/01/2011 05:34:20 Log             - SOME DATA FROM THE CLIENT
+INFO  05/01/2011 05:34:20 Log             - in operation1
+INFO  05/01/2011 05:34:20 Log             - in operation2
+INFO  05/01/2011 05:34:20 Log             - in operation3
+INFO  05/01/2011 05:34:20 Log             - Validating that parallel cookie manipulation doesn't hit any issues 
+INFO  05/01/2011 05:34:22 Http_server     - Stopping [127.0.0.1:44444]
+INFO  05/01/2011 05:34:22 Http_server     - Starting [127.0.0.1:44445]
+INFO  05/01/2011 05:34:22 Http_server     - Stopping [127.0.0.1:44445]
+INFO  05/01/2011 05:34:22 Testscript      - Executing storage://INPUT/http_cleanup_test.xml
+INFO  05/01/2011 05:34:22 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
+INFO  05/01/2011 05:34:22 Http_server     - Starting [127.0.0.1:33333]
+INFO  05/01/2011 05:34:22 Http_server     - Stopping [127.0.0.1:33333]
+ERROR 05/01/2011 05:34:22 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:22 Testscript      - Failed [storage://INPUT/http_cleanup_test.xml]
+INFO  05/01/2011 05:34:22 Testscript      - Executing storage://INPUT/string_manipulation.xml
+INFO  05/01/2011 05:34:22 Testscript      - Executing storage://INPUT/string_transform.xml
+INFO  05/01/2011 05:34:22 Testscript      - Executing storage://INPUT/convert.xml
+INFO  05/01/2011 05:34:23 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  05/01/2011 05:34:23 Testscript      - Executing storage://INPUT/arithmetic.xml
+INFO  05/01/2011 05:34:23 Testscript      - Executing storage://INPUT/random.xml
+INFO  05/01/2011 05:34:23 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  05/01/2011 05:34:23 Log             - Correctness check for randomInt generator
+INFO  05/01/2011 05:34:23 Log             - Correctness check for randomLong generator
+INFO  05/01/2011 05:34:23 Log             - Correctness check for randomDouble generator
+INFO  05/01/2011 05:34:23 Log             - Correctness check for gaussianLong generator
+INFO  05/01/2011 05:34:23 Log             - Correctness check for randomInt generator
+INFO  05/01/2011 05:34:23 Log             - Correctness check for randomLong generator
+INFO  05/01/2011 05:34:23 Log             - Correctness check for randomDouble generator
+INFO  05/01/2011 05:34:23 Log             - Correctness check for gaussianLong generator
+INFO  05/01/2011 05:34:23 Log             - Correctness check for randomInt generator
+INFO  05/01/2011 05:34:23 Log             - Correctness check for randomLong generator
+INFO  05/01/2011 05:34:23 Log             - Correctness check for randomDouble generator
+INFO  05/01/2011 05:34:23 Log             - Correctness check for gaussianLong generator
+INFO  05/01/2011 05:34:23 Testscript      - Executing storage://INPUT/monitor.xml
+ERROR 05/01/2011 05:34:23 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:23 Testscript      - Failed [storage://INPUT/monitor.xml]
+INFO  05/01/2011 05:34:23 Testscript      - Executing storage://INPUT/diff.xml
+INFO  05/01/2011 05:34:24 Testscript      - Executing storage://INPUT/xml_xpath.xml
+INFO  05/01/2011 05:34:24 Log             - Correct count of 6 for XPath: //list/item/text()
+INFO  05/01/2011 05:34:24 Log             - Correct count of 6 for XPath: //list/item/@att1
+INFO  05/01/2011 05:34:24 Log             - Correct count of 6 for XPath: //list/item
+INFO  05/01/2011 05:34:24 Log             - Correct count of 3 for XPath: //list/item[@att1 < 4]
+INFO  05/01/2011 05:34:24 Testscript      - Executing storage://INPUT/xml_dynamic.xml
+INFO  05/01/2011 05:34:24 Testscript      - Executing storage://INPUT/json_transform.xml
+INFO  05/01/2011 05:34:24 Testscript      - Executing storage://INPUT/stream.xml
+INFO  05/01/2011 05:34:24 Log             - Validate streams always generate the same data for the same seed.
+INFO  05/01/2011 05:34:27 Testscript      - Executing storage://INPUT/assertions.xml
+INFO  05/01/2011 05:34:27 Testscript      - Executing storage://INPUT/encoding.xml
+INFO  05/01/2011 05:34:27 Testscript      - Executing storage://INPUT/special_characters.xml
+INFO  05/01/2011 05:34:28 Testscript      - Executing storage://INPUT/testscript_component_complex.xml
+INFO  05/01/2011 05:34:28 Testsuite       - Starting dummy
+INFO  05/01/2011 05:34:28 Testscript      - Executing storage://INPUT/occupy_component.xml
+ERROR 05/01/2011 05:34:28 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:28 Testscript      - Failed [storage://INPUT/occupy_component.xml]
+ERROR 05/01/2011 05:34:28 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:28 Child failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:28 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:28 Testscript      - Failed [storage://INPUT/testscript_component_complex.xml]
+INFO  05/01/2011 05:34:28 Testscript      - Executing storage://INPUT/rendezvous.xml
+INFO  05/01/2011 05:34:28 Log             - Expected timeout has occured.
+INFO  05/01/2011 05:34:28 Testscript      - Executing storage://INPUT/rendezvous_complex.xml
+ERROR 05/01/2011 05:34:28 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:28 Testscript      - Failed [storage://INPUT/rendezvous_complex.xml]
+INFO  05/01/2011 05:34:28 Testscript      - Executing storage://INPUT/share.xml
+INFO  05/01/2011 05:34:29 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+ERROR 05/01/2011 05:34:29 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:29 Testscript      - Failed [storage://INPUT/share.xml]
+INFO  05/01/2011 05:34:29 Testscript      - Executing storage://INPUT/share_complex.xml
+ERROR 05/01/2011 05:34:29 Error running script.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:29 Testscript      - Failed [storage://INPUT/share_complex.xml]
+INFO  05/01/2011 05:34:29 Testscript      - Executing storage://INPUT/scanf.xml
+INFO  05/01/2011 05:34:29 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  05/01/2011 05:34:29 Testscript      - Executing storage://INPUT/printf.xml
+INFO  05/01/2011 05:34:29 Log             - INTEGER[23] STRING[Hello There!] FLOAT [1.23] LIST [1,2,3,4]
+INFO  05/01/2011 05:34:29 Log             - 1.23456 -- reduce precision to .2 -> 1.23
+INFO  05/01/2011 05:34:29 Log             - 1 -- pad the number to 3 digits -> 001
+INFO  05/01/2011 05:34:29 Log             - 10 -- convert to hex and pad to 4 digits -> 000a
+INFO  05/01/2011 05:34:29 Testscript      - Executing storage://INPUT/read_image.xml
+INFO  05/01/2011 05:34:30 Log             - png: being checked
+INFO  05/01/2011 05:34:30 Log             - gif: being checked
+INFO  05/01/2011 05:34:30 Log             - bmp: being checked
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
+ERROR 05/01/2011 05:34:30 Testscript failed.
+com.yahoo.dtf.exception.DTFException: Build Id mismatch [20110105052839482+0000] != [20110105043527317+0000], you can not connect to components from different builds.
+	at com.yahoo.dtf.actions.protocol.Connect.execute(Connect.java:63)
+	at com.yahoo.dtf.comm.rpc.Node.register(Node.java:296)
+	at sun.reflect.GeneratedMethodAccessor10.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
+	at sun.rmi.transport.Transport$1.run(Transport.java:159)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
+	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
+	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
+	at java.lang.Thread.run(Thread.java:619)
