@@ -49,8 +49,9 @@
         <share_destroy id="C1_SHARE"/>
         <add op1="${acc}" op2="${create}" result="acc"/>
     </for>
-    <divide op1="${acc}" op2="10" result="duration"/>
+    <divide op1="${acc}" op2="5" result="duration"/>
     <assert><lt op1="${duration}" op2="50"/></assert>
+    <log>share sync off by ${duration}</log>
     
     <!-- multiple writers and multiple readers on a share of the type queue -->
     <share_create id="SHARE1" type="queue"/>

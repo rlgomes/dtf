@@ -39,9 +39,10 @@
 
     <rendezvous_create id="REMOTERENDEZVOUS" parties="2"/> 
     <share_create id="INFO" type="cumulative"/> 
-    
+   
+    <property name="iter" value="10"/> 
     <property name="acc" value="0"/>
-    <for property="i" range="1..5"> 
+    <for property="i" range="1..${iter}"> 
 	    <parallel> 
 		    <component id="C1">
 	            <share_set id="INFO">
@@ -67,8 +68,9 @@
         <add op1="${acc}" op2="${duration}" result="acc"/>
         <rendezvous_reset id="REMOTERENDEZVOUS"/>
     </for> 
-    <divide op1="${acc}" op2="10" result="duration"/>
-    <assert><lt op1="${acc}" op2="100"/></assert>
+    <divide op1="${acc}" op2="${iter}" result="duration"/>
+    <assert><lt op1="${duration}" op2="50"/></assert>
+    <log>rendezvous sync at ${duration}</log>
 
     <!-- create rendezvous on runner then have two parallel components visit 
          the rendezvous a few times in parallel -->
