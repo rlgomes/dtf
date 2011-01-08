@@ -66,7 +66,6 @@ public class ScriptUtil {
             // clean up unlocked components
             try { 
 	            if ( Action.getComm().isConnected() )  {
-	                //XXX: disconnecting null doesn't seem right! :(
 	                if ( Action.getLogger().isDebugEnabled() )
 	                    Action.getLogger().debug("Disconnecting [" + 
 	                                             Action.getLocalID() + "]");

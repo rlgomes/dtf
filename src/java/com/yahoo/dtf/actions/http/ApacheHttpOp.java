@@ -299,7 +299,7 @@ public class ApacheHttpOp extends HttpOp {
                      value.equals("chunked") ) 
                     ((EntityEnclosingMethod)method).setContentChunked(true);
            
-            // XXX: need to have a more elegant way of setting the virtual hos
+            // XXX: need to have a more elegant way of setting the virtual host
             if ( name.equalsIgnoreCase("Host") )
                 method.getParams().setVirtualHost(reqHeader.getValue());
            

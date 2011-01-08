@@ -286,9 +286,6 @@ public class ActionParser implements ContentHandler {
 
             boolean found = false;
             for (int j = 0; j < method.length; j++) {
-                // TODO: later i could implement another way of looking up 
-                //       other methods based on types ? 
-                // First method to be found will have to do...
                 if (method[j].getName().equalsIgnoreCase("set" + attrName)) {
                     Method setMethod = method[j];
                     Class classType = setMethod.getParameterTypes()[0];

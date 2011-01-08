@@ -37,10 +37,6 @@ public class DTFState {
 
     private Hashtable context = null;
    
-    /*
-     * TODO: temporary solution... I need to clean up all of this state setting
-     *       and management code.
-     */
     private Hashtable globalContext = null;
     
   
@@ -172,13 +168,6 @@ public class DTFState {
     }
     
     public DTFState duplicate() {
-        
-        /*
-         * XXX:
-         * Throw this away and replace with a thread safe implementation using 
-         * the ThreadLocal. For now this is an okay solution because duplicate 
-         * is only called in the init phase of any of the flow control tags. 
-         */
         Hashtable ctx =  new Hashtable();
         Iterator<Entry> entries = context.entrySet().iterator();
         while ( entries.hasNext() ) { 

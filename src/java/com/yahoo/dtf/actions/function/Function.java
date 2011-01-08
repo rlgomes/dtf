@@ -33,7 +33,7 @@ import com.yahoo.dtf.state.DTFState;
  * 
  * @dtf.tag.example 
  * <function name="func4" export="true">
- *      <log>XXX</log>
+ *      <log>xxx</log>
  *      <return>BLAH</return>
  * </function>
  */

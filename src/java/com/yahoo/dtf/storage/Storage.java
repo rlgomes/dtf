@@ -88,10 +88,6 @@ public class Storage extends StorageIntf {
                                       boolean checkForCompression)
            throws StorageException { 
         try {
-            // XXX: code needs a bit of a better clean up... but is fine for now.
-            // if the file with the same name and just a .gz extension exists
-            // then just load that file instead because its the compressed 
-            // version of this same file.
             if (new File(_fpath.getAbsolutePath() + File.separatorChar + 
                     filename + ".gz").exists()) { 
                 filename += ".gz";

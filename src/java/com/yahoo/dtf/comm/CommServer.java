@@ -9,6 +9,5 @@ public interface CommServer {
     public void addHandler(String name, Object obj) throws CommException;
     public void start() throws CommException;
     public void shutdown();
-    public void printStats();
     
 }

@@ -65,8 +65,6 @@ public class SequentialRange extends Range {
         cur = null;
     }
    
-    //TODO: need logic to handle the usage of characters instead of
-    //      numbers
     public int size() {
         return (int)((end - start) + 1);
     }

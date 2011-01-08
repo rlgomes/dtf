@@ -23,9 +23,9 @@ import com.yahoo.dtf.storage.StorageFactory;
  * @dtf.author Rodney Gomes
  * 
  * @dtf.tag.desc This tag is used for calculating the differences between two 
- *               or more files. The tag will throw events of the type diffs.XXX 
+ *               or more files. The tag will throw events of the type diffs.xxx 
  *               that will contain the various differences between the files and
- *               will throw one final diff.XXX event that contains the 
+ *               will throw one final diff.xxx event that contains the 
  *               summarized information for all of the differences between those
  *               files. See the Event information below for more detalis.
  *       

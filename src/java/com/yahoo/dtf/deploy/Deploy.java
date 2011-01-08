@@ -113,12 +113,6 @@ public class Deploy {
                 consumeStream(channel.getExtInputStream());
                 channel.disconnect();
 
-                /*
-                 * XXX: 
-                 * Don't like the fact I have to fiddle with permissions but 
-                 * for now this will have to do, whenever i have the yinst pkg 
-                 * things will be easier here.
-                 */
                 System.out.println("Clean up tarball and fix file permissions");
                 channel = session.openChannel("exec");
                 String command = "rm dtf.tar.gz";

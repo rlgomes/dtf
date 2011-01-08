@@ -63,10 +63,6 @@ public class CommRMIServer implements CommServer {
         return _port;
     }
 
-    public void printStats() {
-        // XXX: not implemented yet.
-    }
-
     public void shutdown() {
         try {
             _registry.unbind("node");

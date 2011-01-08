@@ -214,10 +214,8 @@ public abstract class HttpBase extends Action {
         if ( op != null )
             op.shutdown();
     }
-    
-    /*
-     * XXX: legacy call that had a typo in it.
-     */
+   
+    @Deprecated
     public String getURI() throws ParseException {
         return replaceProperties(uri);
     }

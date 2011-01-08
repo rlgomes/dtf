@@ -11,8 +11,6 @@ import com.yahoo.dtf.exception.StorageException;
 import com.yahoo.dtf.storage.StorageIntf;
 
 /*
- *  XXX: clean this up once someone over at Sun decides to fix this obvious bug.
- *  
  *  Using this class from bug id 4691425 in java... since the GZIPInputStream is  *  to special to handle the case of multiple files in the same gzip file.
  * 
  *  This was copied from the bug as a possible workaround and seems to solve
@@ -73,12 +71,10 @@ public class MultiMemberGZIPInputStream extends InputStream {
 		                int auxread = 0;
 		                try { 
 		                    /*
-		                     * XXX: hack to figure out how many gzip files exist in the 
-		                     *      multimember gzip file
-		                     *      
-		                     * First time is a test where we parse the header and read 
-		                     * 1KB of data to see if there is anything completely messed
-		                     * up
+		                     * Figure out how many gzip files exist in the 
+		                     * multimember gzip file. First time is a test where
+		                     * we parse the header and read 1KB of data to see 
+		                     * if there is anything completely messed up
 		                     */
 		                    int skip = read-2;
 		                    while ( (skip -= auxin.skip(skip)) != 0);

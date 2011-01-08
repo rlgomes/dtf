@@ -152,9 +152,9 @@ public class DTFInputStream extends InputStream {
     }
     
     /*
-     * XXX: this way we'll catch where the toString is being done and fix it 
-     *      here to return the DTFStream signature for serialization to the other
-     *      components.
+     * This way we'll catch where the toString is being done and fix it  here 
+     * to return the DTFStream signature for serialization to the other 
+     * components.
      */
     public String toString() {
         throw new RuntimeException("This shouldn't be called.");

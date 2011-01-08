@@ -50,9 +50,7 @@ public class Unlockcomponent extends Action {
         getLogger().info("Unlocking " + lock.getId());
         Unlock unlock = new Unlock(lock.getId(), lock.getOwner());
 
-        //TODO: best effort no executing the return child ? 
-        //Action result = getComm().sendAction("dtfc", unlock);
-        getComm().sendActionToCaller("dtfc", unlock);
+        getComm().sendActionToCaller("dtfc", unlock).execute();
         getComponents().unregisterComponent(getId());
         
         ArrayList<ComponentUnlockHook> hooks = 

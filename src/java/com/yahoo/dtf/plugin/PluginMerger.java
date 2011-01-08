@@ -167,9 +167,11 @@ public class PluginMerger {
                                     child = choice.getFirstChild();
                                    
                                     /*
-                                     * XXX: Hackish for nwo but later I'll revisit
-                                     *      this and write a proper XML merging algorithm.
-                                     *      
+                                     * XXX: need a cleaner merging algorithm
+                                     *      than the current one.
+                                     */
+                                    
+                                    /*      
                                      * If they're both sequences then we should 
                                      * merge those two. 
                                      */

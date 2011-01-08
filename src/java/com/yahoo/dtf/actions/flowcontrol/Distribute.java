@@ -348,10 +348,6 @@ public class Distribute extends Action {
                 if ( elapsedTime < unitWork )
                     ThreadUtil.pause(unitWork-elapsedTime);
                 
-                if ( workDone < workGoal ) { 
-                    /// XXX: spam
-                }
-
                 currentTime++;
             } else { 
                 Sequence sequence = new Sequence();

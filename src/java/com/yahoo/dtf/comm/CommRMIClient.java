@@ -55,13 +55,6 @@ public class CommRMIClient extends CommClient {
     
     public Boolean heartbeat() {
         try {
-            /*
-             * XXX:
-             * 
-             * Easy thing to do here is that if we're in the middle of a 
-             * sendAction then we can assume that guy is still alive and not
-             * have to issue the heartbeat itself. 
-             */
             return _node.heartbeat();
         } catch (RemoteException e) {
             return false;

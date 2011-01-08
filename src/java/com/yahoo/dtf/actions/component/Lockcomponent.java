@@ -168,7 +168,6 @@ public class Lockcomponent extends Action {
         
         Action result = getComm().sendActionToCaller("dtfc", lock);
         
-        // TODO: why not execute the result ? 
         if (result != null) {
             Lock returnedLock = (Lock)result.findAllActions(Lock.class).get(0);
             handleLockResponse(returnedLock);
