@@ -1,20 +1,20 @@
 Buildfile: build.xml
 
 init:
-     [echo] Creating log dir ./logs/08-01-2011.02.12.01
-    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf/dist/logs/08-01-2011.02.12.01
+     [echo] Creating log dir ./logs/08-01-2011.02.51.49
+    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf/dist/logs/08-01-2011.02.51.49
 
 run_dvt:
 
 init:
-     [echo] Creating log dir ./logs/08-01-2011.02.12.01
+     [echo] Creating log dir ./logs/08-01-2011.02.51.49
 
 deploy-init:
 
 deploy-start:
-     [java] INFO  08/01/2011 02:12:02 DeployDTF       - Reading [tests/setup/ut_config.xml] config file
-     [java] INFO  08/01/2011 02:12:13 SSHUtil         - Using default RSA key [/home/dtftest/.dtf/id_rsa]
-     [java] ERROR 08/01/2011 02:12:17 Unable to deploy DTF to [dtftest@localhost]
+     [java] INFO  08/01/2011 02:51:50 DeployDTF       - Reading [tests/setup/ut_config.xml] config file
+     [java] INFO  08/01/2011 02:52:02 SSHUtil         - Using default RSA key [/home/dtftest/.dtf/id_rsa]
+     [java] ERROR 08/01/2011 02:52:05 Unable to deploy DTF to [dtftest@localhost]
      [java] com.jcraft.jsch.JSchException: Auth fail
      [java] 	at com.jcraft.jsch.Session.connect(Session.java:451)
      [java] 	at com.jcraft.jsch.Session.connect(Session.java:149)
@@ -54,7 +54,7 @@ deploy-start:
      [java] 	at org.apache.tools.ant.Main.startAnt(Main.java:187)
      [java] 	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:215)
      [java] 	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:90)
-     [java] ERROR 08/01/2011 02:12:17 Error deploying.
+     [java] ERROR 08/01/2011 02:52:05 Error deploying.
      [java] org.apache.tools.ant.ExitException: Permission (java.lang.RuntimePermission exitVM) was not granted.
      [java] 	at org.apache.tools.ant.types.Permissions$MySM.checkExit(Permissions.java:167)
      [java] 	at java.lang.Runtime.exit(Runtime.java:88)
@@ -96,4 +96,4 @@ BUILD FAILED
 /home/dtftest/build/dtf/build/dtf/dist/build.xml:280: The following error occurred while executing this line:
 /home/dtftest/build/dtf/build/dtf/dist/build.xml:411: Java returned: -1
 
-Total time: 17 seconds
+Total time: 16 seconds
