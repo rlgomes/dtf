@@ -39,8 +39,6 @@
     
         cur['dtf.ext.lib.dir'] = 'external/lib';
     
-        cur['dtf.home'] = '/home/dtftest/build/dtf/build/dtf/dist';
-    
         cur['dtf.jar.filename'] = 'dtf.jar';
     
         cur['dtf.java.target'] = '1.5';
@@ -71,7 +69,7 @@
     
         cur['java.awt.printerjob'] = 'sun.print.PSPrinterJob';
     
-        cur['java.class.path'] = '/home/dtftest/build/dtf/build/dtf/dist/lib/ant-contrib-1.0b3.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/ant-jsch.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-codec-1.4.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-httpclient-3.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-jxpath-1.3.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-lang-2.5.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-logging-1.1.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/commons-net-1.4.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/dtf.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/httpcore-4.0.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/httpcore-nio-4.0.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/jsch-0.1.39.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/log4j-1.2.14.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/opencsv-1.8.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/pangu-0.1.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/selenium-java-client-driver-sources.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/selenium-java-client-driver.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/selenium-server-coreless.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/selenium-server-sources.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/selenium-server.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/xeger-1.0-SNAPSHOT.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/xercesImpl.jar:/home/dtftest/build/dtf/build/dtf/dist/lib/xml-apis.jar:/opt/junit/junit-4.8.1-src.jar:/opt/junit/junit-4.8.1.jar:/opt/junit/junit-dep-4.8.1.jar:/usr/share/java/ant-launcher-1.7.1.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar';
+        cur['java.class.path'] = '/usr/share/ant/lib/ant-launcher.jar:/usr/share/java/xmlParserAPIs.jar:/usr/share/java/xercesImpl.jar:/usr/share/ant/lib/ant-commons-logging.jar:/usr/share/ant/lib/ant-junit.jar:/usr/share/ant/lib/ant-javamail.jar:/usr/share/ant/lib/ant-launcher.jar:/usr/share/ant/lib/ant-nodeps.jar:/usr/share/ant/lib/ant-apache-regexp.jar:/usr/share/ant/lib/ant-trax.jar:/usr/share/ant/lib/ant-jdepend.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-antlr.jar:/usr/share/ant/lib/ant-apache-bcel.jar:/usr/share/ant/lib/ant-swing.jar:/usr/share/ant/lib/ant-apache-oro.jar:/usr/share/ant/lib/ant-jsch.jar:/usr/share/ant/lib/ant-apache-log4j.jar:/usr/share/ant/lib/ant-commons-net.jar:/usr/share/ant/lib/ant-apache-bsf.jar:/usr/share/ant/lib/ant-apache-resolver.jar:/usr/share/ant/lib/ant-jmf.jar:/usr/lib/jvm/java-6-sun-1.6.0.20/lib/tools.jar';
     
         cur['java.class.version'] = '50.0';
     
@@ -124,8 +122,6 @@
         cur['junit.ready'] = 'true';
     
         cur['line.separator'] = ' ';
-    
-        cur['net.sourceforge.cobertura.datafile'] = '/home/dtftest/build/dtf/build/dtf/dist/cobertura-junit.ser';
     
         cur['os.arch'] = 'i386';
     
@@ -209,8 +205,8 @@
 <tr valign="top">
 <th width="80%">Name</th><th>Tests</th><th>Errors</th><th>Failures</th><th nowrap>Time(s)</th><th nowrap>Time Stamp</th><th>Host</th>
 </tr>
-<tr valign="top" class="Pass">
-<td><a title="Display all tests" href="1_CompHookSuite.html">CompHookSuite</a></td><td><a title="Display all tests" href="1_CompHookSuite.html">1</a></td><td>0</td><td>0</td><td>7.839</td><td>2010-12-28T00:13:19</td><td>localhost</td>
+<tr valign="top" class="Error">
+<td><a title="Display all tests" href="1_CompHookSuite.html">CompHookSuite</a></td><td><a title="Display all tests" href="1_CompHookSuite.html">1</a></td><td><a title="Display only errors" href="1_CompHookSuite-errors.html">1</a></td><td>0</td><td>0.000</td><td>2011-01-16T19:49:46</td><td>localhost</td>
 </tr>
 </table>
 <h2>Tests</h2>
@@ -218,19 +214,16 @@
 <tr valign="top">
 <th>Name</th><th>Status</th><th width="80%">Type</th><th nowrap>Time(s)</th>
 </tr>
-<tr valign="top" class="TableRowColor">
-<td><a name="componentHookTimer"></a>componentHookTimer</td><td>Success</td><td></td><td>7.038</td>
+<tr valign="top" class="Error">
+<td><a name="componentHookTimer"></a>componentHookTimer</td><td>Error</td><td>Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.<br>
+<br>
+<code>junit.framework.AssertionFailedError: Forked Java VM exited abnormally. Please note the time in the report does not reflect the time until the VM exit.<br/>	at net.sf.antcontrib.logic.IfTask.execute(IfTask.java:217)<br/>	at net.sf.antcontrib.logic.IfTask.execute(IfTask.java:197)<br/></code></td><td>0.002</td>
 </tr>
 </table>
 <div class="Properties">
 <a href="javascript:displayProperties('com.yahoo.dtf.junit.CompHookSuite');">
                     Properties &raquo;
                 </a>
-</div>
-<div class="Properties">
-<a href="./1_CompHookSuite-out.txt">
-                        System.out &raquo;
-                    </a>
 </div>
 </body>
 </html>
