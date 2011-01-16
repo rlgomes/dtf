@@ -21,3 +21,41 @@ Running a Test
 
 $ cd build/dtf/dist
 $ ./ant.sh run_dtfx -Ddtf.xml.filename=tests/ut/arithmetic.xml
+
+Running the Unit Tests
+----------------------
+
+These tests are more of a functional verification tests but were called unit 
+test early on and need to have their named changed.
+
+   1. Make sure to build dtf first
+   2. Now you can go to the build/dtf/dist directory and execute 
+      ./ant.sh run_ut
+   3. After about 2-3 minutes it will have ran through the existing DTF unit 
+      tests
+
+Running JUnit Tests
+-------------------
+
+DTF has a few JUnit tests used to test parts of the code that can not easily be
+exercised by XML DTF tests. To execute them just do the following:
+
+$ ant junit
+
+From the same directory you build DTF from and optionally you can tell it to run
+a specific test by name under the directory src/java/com/yahoo/dtf/junit like so
+
+$ ant junit -Djunit.test=ByteUtilSuite (for example)
+
+Running Performance Tests
+-------------------------
+
+You can the DTF Performance verification tests that output performance numbers
+on everything from the number of Property lookups you can do per second per thread,
+to the number of shares you can synchronize per second per thread. Most of the 
+performance measurements are done in units of X per second per thread because it
+gives a stable number to work with. To execute do the following:
+
+   1. Build DTF
+   2. From the build/dtf/dist directory you can execute:
+      ./ant.sh run_pvt
