@@ -1,141 +1,141 @@
 Buildfile: build.xml
 
 init:
-     [echo] Creating log dir ./logs/18-01-2011.05.16.39
-    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf/dist/logs/18-01-2011.05.16.39
+     [echo] Creating log dir ./logs/19-01-2011.05.11.17
+    [mkdir] Created dir: /home/dtftest/build/dtf/build/dtf/dist/logs/19-01-2011.05.11.17
 
 run_pvt:
 
 init:
-     [echo] Creating log dir ./logs/18-01-2011.05.16.39
+     [echo] Creating log dir ./logs/19-01-2011.05.11.17
 
 run_test:
 
 init:
-     [echo] Creating log dir ./logs/18-01-2011.05.16.39
+     [echo] Creating log dir ./logs/19-01-2011.05.11.17
 
 run_components:
      [echo] Starting up dtfc
-     [echo] logging to ./logs/18-01-2011.05.16.39/dtfc.*.log
+     [echo] logging to ./logs/19-01-2011.05.11.17/dtfc.*.log
      [echo] Starting DTFA1...
-     [echo] logging to ./logs/18-01-2011.05.16.39/dtfa-1.*.log
+     [echo] logging to ./logs/19-01-2011.05.11.17/dtfa-1.*.log
      [echo] Starting DTFA2...
-     [echo] logging to ./logs/18-01-2011.05.16.39/dtfa-2.*.log
+     [echo] logging to ./logs/19-01-2011.05.11.17/dtfa-2.*.log
      [echo] Starting DTFA3...
-     [echo] logging to ./logs/18-01-2011.05.16.39/dtfa-3.*.log
+     [echo] logging to ./logs/19-01-2011.05.11.17/dtfa-3.*.log
 
 init:
-     [echo] Creating log dir ./logs/18-01-2011.05.16.39
+     [echo] Creating log dir ./logs/19-01-2011.05.11.17
 
 run_dtfx:
-     [java] INFO  18/01/2011 05:16:45 DebugServer     - Listening at 127.0.0.1:40004
-     [java] INFO  18/01/2011 05:16:45 Comm            - Host address [127.0.0.1]
-     [java] INFO  18/01/2011 05:16:46 CommRMIServer   - Listening at [30003]
-     [java] INFO  18/01/2011 05:16:46 Comm            - DTFX Setup.
-     [java] INFO  18/01/2011 05:16:50 Result          - Starting Result recording: Result {uri=storage://OUTPUT/perf_results.xml}
-     [java] INFO  18/01/2011 05:16:50 Testsuite       - Starting perfsuite
-     [java] INFO  18/01/2011 05:16:50 Testscript      - Executing storage://INPUT/arithmetic.xml
-     [java] INFO  18/01/2011 05:16:50 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  18/01/2011 05:17:13 Log             - 
+     [java] INFO  19/01/2011 05:11:23 DebugServer     - Listening at 127.0.0.1:40004
+     [java] INFO  19/01/2011 05:11:24 Comm            - Host address [127.0.0.1]
+     [java] INFO  19/01/2011 05:11:24 CommRMIServer   - Listening at [30003]
+     [java] INFO  19/01/2011 05:11:24 Comm            - DTFX Setup.
+     [java] INFO  19/01/2011 05:11:28 Result          - Starting Result recording: Result {uri=storage://OUTPUT/perf_results.xml}
+     [java] INFO  19/01/2011 05:11:28 Testsuite       - Starting perfsuite
+     [java] INFO  19/01/2011 05:11:28 Testscript      - Executing storage://INPUT/arithmetic.xml
+     [java] INFO  19/01/2011 05:11:28 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  19/01/2011 05:11:49 Log             - 
      [java]         Arithmetic Performance:
      [java]         **********************
      [java]         
-     [java]         add/second:      14160.295
-     [java]         mod/second:      16583.747
-     [java]         abs/second:      15837.820
-     [java]         subtract/second: 16677.786
-     [java]         divide/second:   16528.925
-     [java]         multiply/second: 17041.581
+     [java]         add/second:      15069.319
+     [java]         mod/second:      17283.098
+     [java]         abs/second:      16722.408
+     [java]         subtract/second: 18037.518
+     [java]         divide/second:   17543.860
+     [java]         multiply/second: 17686.594
      [java]     
-     [java] INFO  18/01/2011 05:17:13 Testscript      - Executing storage://INPUT/eventperf.xml
-     [java] INFO  18/01/2011 05:17:13 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  18/01/2011 05:17:13 Rename          - Node name is dtfx-3
-     [java] INFO  18/01/2011 05:17:14 Lockcomponent   - Locked dtfa-0 as AGENT1
-     [java] INFO  18/01/2011 05:18:46 Log             - 
+     [java] INFO  19/01/2011 05:11:49 Testscript      - Executing storage://INPUT/eventperf.xml
+     [java] INFO  19/01/2011 05:11:50 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  19/01/2011 05:11:50 Rename          - Node name is dtfx-3
+     [java] INFO  19/01/2011 05:11:50 Lockcomponent   - Locked dtfa-0 as AGENT1
+     [java] INFO  19/01/2011 05:13:16 Log             - 
      [java]         Remote record events with 1 agent(s) with 1 thread(s)
-     [java]         Events per second: 182.718
+     [java]         Events per second: 199.116
      [java]         Total of Events:   10000
-     [java]         Total Duration:    54729ms
+     [java]         Total Duration:    50222ms
      [java]     
-     [java] INFO  18/01/2011 05:18:47 Log             - 
+     [java] INFO  19/01/2011 05:13:17 Log             - 
      [java]         Local record events with 1 agent(s) with 1 thread(s)
-     [java]         Events per second: 14961.101
+     [java]         Events per second: 15465.512
      [java]         Total of Events:   50000
-     [java]         Total Duration:    3342ms
+     [java]         Total Duration:    3233ms
      [java]     
-     [java] INFO  18/01/2011 05:18:48 Testscript      - Executing storage://INPUT/recorderperf.xml
-     [java] INFO  18/01/2011 05:18:48 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  18/01/2011 05:18:48 Import          - Importing elements from Import {uri=storage://TINPUT/eventutil.xml}
-     [java] INFO  18/01/2011 05:18:53 Log             - 
+     [java] INFO  19/01/2011 05:13:17 Testscript      - Executing storage://INPUT/recorderperf.xml
+     [java] INFO  19/01/2011 05:13:17 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  19/01/2011 05:13:18 Import          - Importing elements from Import {uri=storage://TINPUT/eventutil.xml}
+     [java] INFO  19/01/2011 05:13:22 Log             - 
      [java]               txt recorder performance
      [java] 	          ***********************************
      [java] 	          Events per second: 50000
      [java] 	    
-     [java] INFO  18/01/2011 05:18:58 Log             - 
+     [java] INFO  19/01/2011 05:13:27 Log             - 
      [java]               csv recorder performance
      [java] 	          ***********************************
      [java] 	          Events per second: 50000
      [java] 	    
-     [java] INFO  18/01/2011 05:18:58 Testscript      - Executing storage://INPUT/queryperf.xml
-     [java] INFO  18/01/2011 05:18:58 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  18/01/2011 05:19:52 Log             - txt queries per second: 14000
-     [java] INFO  18/01/2011 05:19:52 Testscript      - Executing storage://INPUT/stats.xml
-     [java] INFO  18/01/2011 05:19:52 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  18/01/2011 05:20:28 Log             - txt stats operations/s: 62500
-     [java] INFO  18/01/2011 05:20:28 Testscript      - Executing storage://INPUT/choices.xml
-     [java] INFO  18/01/2011 05:20:28 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  18/01/2011 05:20:48 Log             - Number of iterations: 500000
-     [java] INFO  18/01/2011 05:20:48 Log             - ********************************
-     [java] INFO  18/01/2011 05:20:48 Log             - Choices/second: 33674.570
-     [java] INFO  18/01/2011 05:20:48 Testscript      - Executing storage://INPUT/function.xml
-     [java] INFO  18/01/2011 05:20:48 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  18/01/2011 05:21:15 Log             - 
-     [java]         Function calls/second: 23552.687
+     [java] INFO  19/01/2011 05:13:27 Testscript      - Executing storage://INPUT/queryperf.xml
+     [java] INFO  19/01/2011 05:13:27 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  19/01/2011 05:14:17 Log             - txt queries per second: 15000
+     [java] INFO  19/01/2011 05:14:17 Testscript      - Executing storage://INPUT/stats.xml
+     [java] INFO  19/01/2011 05:14:17 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  19/01/2011 05:14:51 Log             - txt stats operations/s: 71428
+     [java] INFO  19/01/2011 05:14:51 Testscript      - Executing storage://INPUT/choices.xml
+     [java] INFO  19/01/2011 05:14:51 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  19/01/2011 05:15:09 Log             - Number of iterations: 500000
+     [java] INFO  19/01/2011 05:15:09 Log             - ********************************
+     [java] INFO  19/01/2011 05:15:09 Log             - Choices/second: 36862.282
+     [java] INFO  19/01/2011 05:15:09 Testscript      - Executing storage://INPUT/function.xml
+     [java] INFO  19/01/2011 05:15:09 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  19/01/2011 05:15:34 Log             - 
+     [java]         Function calls/second: 25403.923
      [java]     
-     [java] INFO  18/01/2011 05:21:15 Testscript      - Executing storage://INPUT/propertyperf.xml
-     [java] INFO  18/01/2011 05:21:15 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  18/01/2011 05:21:25 Log             - Property resolutions per second: 50000
-     [java] INFO  18/01/2011 05:21:25 Testscript      - Executing storage://INPUT/random.xml
-     [java] INFO  18/01/2011 05:21:26 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  18/01/2011 05:21:26 Log             - random numbers with upper and lower limit
-     [java] INFO  18/01/2011 05:21:41 Log             - randomInt/second: 33333
-     [java] INFO  18/01/2011 05:21:57 Log             - randomLong/second: 33333
-     [java] INFO  18/01/2011 05:22:18 Log             - randomDouble/second: 25000
-     [java] INFO  18/01/2011 05:22:34 Log             - gaussianLong/second: 31250
-     [java] INFO  18/01/2011 05:22:34 Testscript      - Executing storage://INPUT/rangeperf.xml
-     [java] INFO  18/01/2011 05:22:34 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  18/01/2011 05:22:43 Log             - Ops/sec: 55555
-     [java] INFO  18/01/2011 05:22:43 Testscript      - Executing storage://INPUT/shareperf.xml
-     [java] INFO  18/01/2011 05:22:44 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  18/01/2011 05:22:44 Rename          - Node name is dtfx-4
-     [java] INFO  18/01/2011 05:22:44 Lockcomponent   - Locked dtfa-1 as PRODUCER
-     [java] INFO  18/01/2011 05:22:44 Lockcomponent   - Locked dtfa-2 as CONSUMER
-     [java] INFO  18/01/2011 05:23:15 Log             - single share gets 333 remote syncs per sec
-     [java] INFO  18/01/2011 05:23:26 Log             - single share gets 5000 local syncs per sec
-     [java] INFO  18/01/2011 05:23:53 Log             - queue share gets 370 remote syncs per sec
-     [java] INFO  18/01/2011 05:24:04 Log             - queue share gets 5000 local syncs per sec
-     [java] INFO  18/01/2011 05:24:33 Log             - cumulative share gets 357 remote syncs per sec
-     [java] INFO  18/01/2011 05:24:44 Log             - cumulative share gets 4545 local syncs per sec
-     [java] INFO  18/01/2011 05:24:44 Testscript      - Executing storage://INPUT/rendezvousperf.xml
-     [java] INFO  18/01/2011 05:24:44 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  18/01/2011 05:24:44 Rename          - Node name is dtfx-5
-     [java] INFO  18/01/2011 05:24:44 Lockcomponent   - Locked dtfa-0 as A1
-     [java] INFO  18/01/2011 05:24:44 Lockcomponent   - Locked dtfa-1 as A2
-     [java] INFO  18/01/2011 05:24:44 Lockcomponent   - Locked dtfa-2 as A3
-     [java] INFO  18/01/2011 05:24:59 Log             - local rendezvous visits per second: 14285
-     [java] INFO  18/01/2011 05:25:26 Log             - remote rendezvous visits per second: 384
-     [java] INFO  18/01/2011 05:25:26 Testscript      - Executing storage://INPUT/httpperf.xml
-     [java] INFO  18/01/2011 05:25:26 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  18/01/2011 05:25:27 Rename          - Node name is dtfx-6
-     [java] INFO  18/01/2011 05:25:27 Lockcomponent   - Locked dtfa-0 as CLIENT1
-     [java] INFO  18/01/2011 05:25:27 Http_server     - Starting [127.0.0.1:33333]
-     [java] INFO  18/01/2011 05:25:30 Echo            - 
+     [java] INFO  19/01/2011 05:15:34 Testscript      - Executing storage://INPUT/propertyperf.xml
+     [java] INFO  19/01/2011 05:15:34 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  19/01/2011 05:15:44 Log             - Property resolutions per second: 55555
+     [java] INFO  19/01/2011 05:15:44 Testscript      - Executing storage://INPUT/random.xml
+     [java] INFO  19/01/2011 05:15:44 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  19/01/2011 05:15:44 Log             - random numbers with upper and lower limit
+     [java] INFO  19/01/2011 05:15:58 Log             - randomInt/second: 35714
+     [java] INFO  19/01/2011 05:16:13 Log             - randomLong/second: 35714
+     [java] INFO  19/01/2011 05:16:32 Log             - randomDouble/second: 27777
+     [java] INFO  19/01/2011 05:16:47 Log             - gaussianLong/second: 35714
+     [java] INFO  19/01/2011 05:16:47 Testscript      - Executing storage://INPUT/rangeperf.xml
+     [java] INFO  19/01/2011 05:16:47 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  19/01/2011 05:16:56 Log             - Ops/sec: 62500
+     [java] INFO  19/01/2011 05:16:56 Testscript      - Executing storage://INPUT/shareperf.xml
+     [java] INFO  19/01/2011 05:16:56 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  19/01/2011 05:16:56 Rename          - Node name is dtfx-4
+     [java] INFO  19/01/2011 05:16:56 Lockcomponent   - Locked dtfa-1 as PRODUCER
+     [java] INFO  19/01/2011 05:16:56 Lockcomponent   - Locked dtfa-2 as CONSUMER
+     [java] INFO  19/01/2011 05:17:25 Log             - single share gets 357 remote syncs per sec
+     [java] INFO  19/01/2011 05:17:36 Log             - single share gets 5000 local syncs per sec
+     [java] INFO  19/01/2011 05:18:02 Log             - queue share gets 400 remote syncs per sec
+     [java] INFO  19/01/2011 05:18:12 Log             - queue share gets 5000 local syncs per sec
+     [java] INFO  19/01/2011 05:18:39 Log             - cumulative share gets 384 remote syncs per sec
+     [java] INFO  19/01/2011 05:18:50 Log             - cumulative share gets 5000 local syncs per sec
+     [java] INFO  19/01/2011 05:18:50 Testscript      - Executing storage://INPUT/rendezvousperf.xml
+     [java] INFO  19/01/2011 05:18:50 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  19/01/2011 05:18:50 Rename          - Node name is dtfx-5
+     [java] INFO  19/01/2011 05:18:50 Lockcomponent   - Locked dtfa-0 as A1
+     [java] INFO  19/01/2011 05:18:50 Lockcomponent   - Locked dtfa-1 as A2
+     [java] INFO  19/01/2011 05:18:50 Lockcomponent   - Locked dtfa-2 as A3
+     [java] INFO  19/01/2011 05:19:05 Log             - local rendezvous visits per second: 14285
+     [java] INFO  19/01/2011 05:19:31 Log             - remote rendezvous visits per second: 400
+     [java] INFO  19/01/2011 05:19:31 Testscript      - Executing storage://INPUT/httpperf.xml
+     [java] INFO  19/01/2011 05:19:31 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  19/01/2011 05:19:31 Rename          - Node name is dtfx-6
+     [java] INFO  19/01/2011 05:19:31 Lockcomponent   - Locked dtfa-0 as CLIENT1
+     [java] INFO  19/01/2011 05:19:31 Http_server     - Starting [127.0.0.1:33333]
+     [java] INFO  19/01/2011 05:19:34 Echo            - 
      [java]                           HTTP POST on http://localhost:33333/ 
      [java]                           for 10000 iteration(s) 
      [java]                           from 1 thread(s)
      [java]                           and 1 client(s)
      [java]                     
-     [java] ERROR 18/01/2011 05:25:44 I/O error.
+     [java] ERROR 19/01/2011 05:19:48 I/O error.
      [java] java.net.SocketTimeoutException: Read timed out
      [java] 	at java.net.SocketInputStream.socketRead0(Native Method)
      [java] 	at java.net.SocketInputStream.read(SocketInputStream.java:129)
@@ -150,13 +150,13 @@ run_dtfx:
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
      [java] 	at java.lang.Thread.run(Thread.java:619)
-     [java] INFO  18/01/2011 05:25:57 Echo            - 
+     [java] INFO  19/01/2011 05:20:01 Echo            - 
      [java]                           HTTP PUT on http://localhost:33333/ 
      [java]                           for 10000 iteration(s) 
      [java]                           from 1 thread(s)
      [java]                           and 1 client(s)
      [java]                     
-     [java] ERROR 18/01/2011 05:25:57 Client closed connection.
+     [java] ERROR 19/01/2011 05:20:01 Client closed connection.
      [java] org.apache.http.ConnectionClosedException: Client closed connection
      [java] 	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:104)
      [java] 	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
@@ -166,7 +166,7 @@ run_dtfx:
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
      [java] 	at java.lang.Thread.run(Thread.java:619)
-     [java] ERROR 18/01/2011 05:26:10 I/O error.
+     [java] ERROR 19/01/2011 05:20:14 I/O error.
      [java] java.net.SocketTimeoutException: Read timed out
      [java] 	at java.net.SocketInputStream.socketRead0(Native Method)
      [java] 	at java.net.SocketInputStream.read(SocketInputStream.java:129)
@@ -181,12 +181,12 @@ run_dtfx:
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
      [java] 	at java.lang.Thread.run(Thread.java:619)
-     [java] INFO  18/01/2011 05:26:24 Echo            - 
+     [java] INFO  19/01/2011 05:20:26 Echo            - 
      [java]                           HTTP GET on http://localhost:33333/ 
      [java]                           for 10000 iteration(s) 
      [java]                           from 1 thread(s).
      [java]                     
-     [java] ERROR 18/01/2011 05:26:34 I/O error.
+     [java] ERROR 19/01/2011 05:20:36 I/O error.
      [java] java.net.SocketTimeoutException: Read timed out
      [java] 	at java.net.SocketInputStream.socketRead0(Native Method)
      [java] 	at java.net.SocketInputStream.read(SocketInputStream.java:129)
@@ -201,12 +201,12 @@ run_dtfx:
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
      [java] 	at java.lang.Thread.run(Thread.java:619)
-     [java] INFO  18/01/2011 05:26:44 Echo            - 
+     [java] INFO  19/01/2011 05:20:45 Echo            - 
      [java]                           HTTP HEAD on http://localhost:33333/ 
      [java]                           for 10000 iteration(s) 
      [java]                           from 1 thread(s).
      [java]                     
-     [java] ERROR 18/01/2011 05:26:53 I/O error.
+     [java] ERROR 19/01/2011 05:20:55 I/O error.
      [java] java.net.SocketTimeoutException: Read timed out
      [java] 	at java.net.SocketInputStream.socketRead0(Native Method)
      [java] 	at java.net.SocketInputStream.read(SocketInputStream.java:129)
@@ -221,12 +221,12 @@ run_dtfx:
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
      [java] 	at java.lang.Thread.run(Thread.java:619)
-     [java] INFO  18/01/2011 05:27:03 Echo            - 
+     [java] INFO  19/01/2011 05:21:04 Echo            - 
      [java]                           HTTP DELETE on http://localhost:33333/ 
      [java]                           for 10000 iteration(s) 
      [java]                           from 1 thread(s).
      [java]                     
-     [java] ERROR 18/01/2011 05:27:13 I/O error.
+     [java] ERROR 19/01/2011 05:21:14 I/O error.
      [java] java.net.SocketTimeoutException: Read timed out
      [java] 	at java.net.SocketInputStream.socketRead0(Native Method)
      [java] 	at java.net.SocketInputStream.read(SocketInputStream.java:129)
@@ -241,54 +241,54 @@ run_dtfx:
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
      [java] 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
      [java] 	at java.lang.Thread.run(Thread.java:619)
-     [java] INFO  18/01/2011 05:27:23 Http_server     - Stopping [127.0.0.1:33333]
-     [java] INFO  18/01/2011 05:27:25 Echo            - 
+     [java] INFO  19/01/2011 05:21:23 Http_server     - Stopping [127.0.0.1:33333]
+     [java] INFO  19/01/2011 05:21:24 Echo            - 
      [java]                 HTTP POST
-     [java]                 Operations/second:  1111.235
+     [java]                 Operations/second:  1153.536
      [java]                 Total operations:   10000
-     [java]                 Time (MAX/MIN/AVG): 125/0/0
-     [java]                 Duration:           8999
+     [java]                 Time (MAX/MIN/AVG): 176/0/0
+     [java]                 Duration:           8669
      [java]             
-     [java] INFO  18/01/2011 05:27:26 Echo            - 
+     [java] INFO  19/01/2011 05:21:26 Echo            - 
      [java]                 HTTP PUT
-     [java]                 Operations/second:  1253.761
+     [java]                 Operations/second:  1339.944
      [java]                 Total operations:   10000
-     [java]                 Time (MAX/MIN/AVG): 50/0/0
-     [java]                 Duration:           7976
+     [java]                 Time (MAX/MIN/AVG): 102/0/0
+     [java]                 Duration:           7463
      [java]             
-     [java] INFO  18/01/2011 05:27:27 Echo            - 
+     [java] INFO  19/01/2011 05:21:27 Echo            - 
      [java]                 HTTP GET
-     [java]                 Operations/second:  2087.683
+     [java]                 Operations/second:  2201.189
      [java]                 Total operations:   10000
-     [java]                 Time (MAX/MIN/AVG): 51/0/0
-     [java]                 Duration:           4790
+     [java]                 Time (MAX/MIN/AVG): 106/0/0
+     [java]                 Duration:           4543
      [java]             
-     [java] INFO  18/01/2011 05:27:29 Echo            - 
+     [java] INFO  19/01/2011 05:21:28 Echo            - 
      [java]                 HTTP HEAD
-     [java]                 Operations/second:  2131.742
+     [java]                 Operations/second:  2165.909
      [java]                 Total operations:   10000
-     [java]                 Time (MAX/MIN/AVG): 45/0/0
-     [java]                 Duration:           4691
+     [java]                 Time (MAX/MIN/AVG): 169/0/0
+     [java]                 Duration:           4617
      [java]             
-     [java] INFO  18/01/2011 05:27:30 Echo            - 
+     [java] INFO  19/01/2011 05:21:29 Echo            - 
      [java]                 HTTP DELETE
-     [java]                 Operations/second:  2083.768
+     [java]                 Operations/second:  2188.184
      [java]                 Total operations:   10000
-     [java]                 Time (MAX/MIN/AVG): 56/0/0
-     [java]                 Duration:           4799
+     [java]                 Time (MAX/MIN/AVG): 91/0/0
+     [java]                 Duration:           4570
      [java]             
-     [java] INFO  18/01/2011 05:27:30 Testscript      - Executing storage://INPUT/xml_xpath_perf.xml
-     [java] INFO  18/01/2011 05:27:30 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
-     [java] INFO  18/01/2011 05:27:48 Log             - simple_xpath xpath operations/sec: 2941
-     [java] INFO  18/01/2011 05:28:04 Log             - complex_xpath xpath operations/sec: 625
-     [java] INFO  18/01/2011 05:28:04 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/perf_results.xml}
-     [java] INFO  18/01/2011 05:28:04 DTFNode         - Shutting down dtfx
+     [java] INFO  19/01/2011 05:21:29 Testscript      - Executing storage://INPUT/xml_xpath_perf.xml
+     [java] INFO  19/01/2011 05:21:30 Import          - Importing elements from Import {uri=storage://INPUT/perf_util.xml}
+     [java] INFO  19/01/2011 05:21:46 Log             - simple_xpath xpath operations/sec: 3125
+     [java] INFO  19/01/2011 05:22:02 Log             - complex_xpath xpath operations/sec: 666
+     [java] INFO  19/01/2011 05:22:02 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/perf_results.xml}
+     [java] INFO  19/01/2011 05:22:02 DTFNode         - Shutting down dtfx
      [echo] Shutting down background run_components task.
 
 init:
-     [echo] Creating log dir ./logs/18-01-2011.05.16.39
+     [echo] Creating log dir ./logs/19-01-2011.05.11.17
 
 stop_dtfc:
 
 BUILD SUCCESSFUL
-Total time: 11 minutes 39 seconds
+Total time: 10 minutes 56 seconds
