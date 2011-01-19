@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DATE=`date +%d-%m-%Y.%H:%M:%S`
+DATE=`date +%d%m%Y%H%M%S`
 BASE=/home/dtftest
 DIST=$BASE/build/dtf/build/dtf/dist
 
@@ -37,7 +37,7 @@ function buildjavadoc() {
 }
 
 function runjunit() { 
-    cd $DIST
+    cd $BASE/build/dtf
     echo "Running JUnit tests..."
     ant junit > $BASE/build/logs/junit.log 2>&1
 }
@@ -58,7 +58,7 @@ function runpvt() {
     cd $DIST
     echo "Running DTF performance verification tests..."
     mkdir -p $BASE/gh-pages/results/perf
-#    OPS="-Diterations.small=100 -Diterations.medium=100 -Diterations.large=100 -Diterations.huge=100"
+    #OPS="-Diterations.small=100 -Diterations.medium=100 -Diterations.large=100 -Diterations.huge=100"
     ./ant.sh run_pvt -Ddtf.perf.path=$BASE/gh-pages/results/perf -Dbuild=$BUILDID $OPS > $BASE/build/logs/pvt.log 2>&1
 }
 
@@ -83,13 +83,12 @@ function calccharts() {
     for I in $BASE/gh-pages/results/perf/*.png
     do
         IMG=`basename $I`
-        echo "[[$IMG]]" >> $PERFWIKI
+        echo "[[$IMG|align=center]]" >> $PERFWIKI
         echo "" >> $PERFWIKI
     done
 }
 
 function pushresults() { 
-
     cd $BASE/dtf.wiki
     for F in *.png
     do 
@@ -101,7 +100,8 @@ function pushresults() {
     echo "Pushing performance results back to wiki"
     mv -v $BASE/gh-pages/results/perf/*.png $BASE/dtf.wiki/
     cd $BASE/dtf.wiki
-    git add *
+    git add *.png
+    git add Performance-test-results.md
     git commit -m "pushing performance results"
     git push
 
@@ -123,6 +123,18 @@ function pushresults() {
     git push >> $BASE/build/logs/upload.log 2>&1
 }
 
+function stopnode() {
+    cd $BASE
+    echo "Downloading tools..."
+    wget http://github.com/rlgomes/ec2-tools/raw/master/src/ec2-api.py -O ec2-api.py --no-check-certificate
+    chmod +x ec2-api.py
+
+    echo "Sleeping for 10 minutes in case someone wants to login to do maintenance"
+    sleep 600
+    ./stop.sh
+}
+
+
 pullsource
 
 cd $BASE/build/dtf
@@ -136,12 +148,5 @@ runut
 runpvt
 calccharts
 pushresults
+stopnode
 
-cd $BASE
-echo "Downloading tools..."
-wget http://github.com/rlgomes/ec2-tools/raw/master/src/ec2-api.py -O ec2-api.py --no-check-certificate
-chmod +x ec2-api.py
-
-echo "Sleeping for 10 minutes in case someone wants to login to do maintenance"
-sleep 600
-./stop.sh
