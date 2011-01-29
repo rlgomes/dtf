@@ -49,7 +49,7 @@ import com.yahoo.dtf.logger.DTFLogger;
  *       you'll also have a local ssh tunnel on port 30000 to port 30000 of the i
  *       machine B over the ssh tunnel. So now you can start your DTFA on 
  *       machine B like so: 
- *       <pre>./ant.sh run_dtfa -Ddtf.tunneled=true -Ddtf.listen.port=30000 <pre>
+ *       <pre>./ant.sh run_dtfa -Ddtf.tunneled=true -Ddtf.listen.port=30000</pre>
  *       (remember to match the port with the right port you assigned during the
  *       creation of the tunnel on the DTFC as well as to have the dtf.tunneled 
  *       flag set to true otherwise the Agent will not connect tot he DTFC)

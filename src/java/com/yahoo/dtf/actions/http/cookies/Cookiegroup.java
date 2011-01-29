@@ -9,8 +9,10 @@ import com.yahoo.dtf.exception.DTFException;
  * @dtf.since 1.0
  * @dtf.author Rodney Gomes
  * 
- * @dtf.tag.desc 
- *               
+ * @dtf.tag.desc The cookiegroup tag is used to easy contain groups of useful 
+ *               cookies that you can then easily reference from multiple tags
+ *               without having to copy & paste the same cookies all over your
+ *               test cases.
  * 
  * @dtf.tag.example 
  * 

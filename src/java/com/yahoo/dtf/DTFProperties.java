@@ -47,8 +47,8 @@ package com.yahoo.dtf;
  * </p>
  * 
  * <pre>
- * ${dtf.randomInt(1000)} – generate a random upto 1000
- * ${dtf.randomDouble(-100,100)} – generate a random double between -100 and 100 
+ * ${dtf.randomInt(1000)} - generate a random upto 1000
+ * ${dtf.randomDouble(-100,100)} - generate a random double between -100 and 100 
  * </pre>
  *
  */

@@ -13,58 +13,76 @@ import com.yahoo.dtf.exception.ParseException;
  * @dtf.since 1.0
  * @dtf.author Rodney Gomes
  * 
- * @dtf.tag.desc 
+ * @dtf.tag.desc This tag defines the cookie to be used for a specific HTTP 
+ *               operation. You have the ability to the define the name, value
+ *               and then a few other important attributes.
  * 
- * @dtf.tag.example 
- * 
+ * @dtf.tag.example
+ *  <http_put uri="http://127.0.0.1:80/echo-data">
+ *      <cookie name="cookie1" value="value1" path="/someplace" />
+ *      <cookie name="cookie2" value="value2" path="/anotherplace" />
+ *      <header name="header1" value="value1"/>
+ *      <entity value="SOME DATA FROM THE CLIENT"/>
+ *  </http_put> 
  */
 public class Cookie extends Action {
   
     /**
      * @dtf.attr.name name
-     * @dtf.attr.desc the name of the cookie being specified.
+     * @dtf.attr.desc The name of the cookie being specified.
      */
     private String name = null;
 
     /**
      * @dtf.attr.name value
-     * @dtf.attr.desc the value of the cookie being specified.
+     * @dtf.attr.desc The value of the cookie being specified.
      */
     private String value = null;
    
     /**
      * @dtf.attr.name domain
-     * @dtf.attr.desc 
+     * @dtf.attr.desc The cookie domain and path define the scope of the cookie,
+     *                they tell the client that they should only be sent back 
+     *                to the server for the given domain and path. If not 
+     *                specified, they default to the domain and path of the 
+     *                object that was requested. 
      */
     private String domain = null;
 
     /**
      * @dtf.attr.name path
-     * @dtf.attr.desc 
+     * @dtf.attr.desc The cookie domain and path define the scope of the cookie,
+     *                they tell the client that they should only be sent back 
+     *                to the server for the given domain and path. If not 
+     *                specified, they default to the domain and path of the 
+     *                object that was requested.
      */
     private String path = null;
 
     /**
      * @dtf.attr.name comment
-     * @dtf.attr.desc 
+     * @dtf.attr.desc  
      */
     private String comment = null;
 
     /**
      * @dtf.attr.name version
-     * @dtf.attr.desc 
+     * @dtf.attr.desc  
      */
     private String version = null;
 
     /**
      * @dtf.attr.name secure
-     * @dtf.attr.desc 
+     * @dtf.attr.desc Just specify if the cookie is secure and should only be
+     *                used on HTTPS connections. 
      */
     private String secure = null;
 
     /**
      * @dtf.attr.name expirydate
-     * @dtf.attr.desc 
+     * @dtf.attr.desc This identifies the date after which the HTTP client should
+     *                delete this cookie and no longer send it with any HTTP 
+     *                request.
      */
     private String expirydate = null;
     

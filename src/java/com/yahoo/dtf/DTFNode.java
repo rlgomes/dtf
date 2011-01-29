@@ -109,10 +109,12 @@ import com.yahoo.dtf.util.ThreadUtil;
  *     <attrib name="client.type" value="xxx"/>
  * </lockcomponent>}
  * 
+ * <p> 
  * And you know you'd be locking the component who had that property and 
  * not any other one. This is useful for the user of the framework to setup 
  * agents with properties that define location, build and even APIs available 
  * from that agent for executing tests.
+ * </p>
  */
 public class DTFNode {
 

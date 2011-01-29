@@ -67,7 +67,11 @@ import com.yahoo.dtf.recorder.Event;
  * <http_request uri="http://localhost/webdav/newfolder" method="GET"/>
  */
 public class Http_request extends HttpBase {
-   
+  
+    /**
+     * @dtf.attr method
+     * @dtf.attr.desc the name of the method to pass on the HTTP call.
+     */
     private String method = null;
     
     public Event executeOp() throws DTFException { 

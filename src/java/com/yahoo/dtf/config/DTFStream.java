@@ -25,9 +25,7 @@ import com.yahoo.dtf.streaming.StringInputStream;
  * property is as easy as referencing any other property and can be done so, 
  * like so:
  * </p> 
- * <pre>
- * ${dtf.stream([random|repeat|etc],[size],[additional arguments separated by commas])} 
- * </pre>
+ * <pre>${dtf.stream([random|repeat|etc],[size],[additional arguments separated by commas])}</pre>
  * <p>
  * Internally these properties are not resolved into the data that they 
  * represent but instead into an InputStream that can be read and immediately 

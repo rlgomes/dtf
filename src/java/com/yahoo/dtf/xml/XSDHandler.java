@@ -241,7 +241,8 @@ public class XSDHandler {
                     }
                 }
             } else {
-                result.addAll(findAttributes(aux,use));
+                if ( !aux.getNodeName().equals("xs:element") )
+                    result.addAll(findAttributes(aux,use));
             }
                 
             aux = aux.getNextSibling();

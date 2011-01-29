@@ -278,6 +278,9 @@
 			</fileset>
 		</javadoc>
 		
+		<copy todir="${dtf.build.dir}/${dtf.dist.dir}/doc/html/dtf"
+			  file="src/main.css"/>
+		
 		<tar basedir="${dtf.build.dir}/${dtf.dist.dir}/doc/html/dtf"
 		     destfile="${dtf.build.dir}/${dtf.dist.dir}/doc.tgz"
 		     compression="gzip"

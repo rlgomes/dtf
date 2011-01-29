@@ -19,11 +19,13 @@ import java.util.regex.Pattern;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
 
 import org.w3c.dom.Document;
 
@@ -243,6 +245,7 @@ public class DTFDoclet {
         public String name = null;
         public Tag[] descriptions = null;
         public Tag[] examples = null;
+        public String qname = null;
     }
     
     public static boolean start(RootDoc root) throws Exception {
@@ -293,7 +296,14 @@ public class DTFDoclet {
         }
         
         PrintStream psIndex = createFile(destination + File.separatorChar + "index.html");
-        psIndex.print("<html><head></head><body><center><h1>DTF Documentation</h1></center>");
+        psIndex.println("<html>");
+        psIndex.println("   <head>");
+        psIndex.println("   <link rel='stylesheet' " +
+        		                 "href='main.css' " +
+        		                 "type='text/css'>");
+        psIndex.println("   </head>");
+        psIndex.println("   <body id='body'>");
+        psIndex.println("       <h1>DTF Documentation</h1>");
        
         ArrayList<String> tnames = new ArrayList<String>();
         ArrayList<String> fnames = new ArrayList<String>();
@@ -340,6 +350,7 @@ public class DTFDoclet {
                     dtfdoc.descriptions = methoddocs[m].tags(DTF_FEATURE_DESC);
                     dtfdoc.examples = methoddocs[m].tags(DTF_EXAMPLE);
                     
+                    
                     fnames.add(dtfdoc.name.trim().toLowerCase());
 	                
 	                fgroups.get(fgroup).add(dtfdoc);
@@ -361,6 +372,7 @@ public class DTFDoclet {
                 dtfdoc.name = classdoc.tags(DTF_FEATURE)[0].text();
                 dtfdoc.descriptions = classdoc.tags(DTF_FEATURE_DESC);
                 dtfdoc.examples = classdoc.tags(DTF_EXAMPLE);
+                dtfdoc.qname = classdoc.qualifiedName();
 
                 fnames.add(dtfdoc.name.trim().toLowerCase());
                 
@@ -376,23 +388,42 @@ public class DTFDoclet {
 
         Iterator<String> iter = fgroupnames.iterator();
 
-        psIndex.print("<table><tr><th><h2>Features</h2></th>");
-        psIndex.print("<th><h2>Tags</h2></th></tr>");
-        psIndex.print("<tr><td valign='top' width='25%'>");
+        psIndex.println("<div id='features'>");
+        psIndex.println("   <div id='features_title'>Features</div>");
+        int counttags = 0;
         while (iter.hasNext()) {
-            psIndex.print("<dl>");
-            String feature = (String) iter.next();
-            psIndex.print("<dt><b>" + feature + "</b></dt>");
+            if ( counttags == 0 ) {
+                psIndex.println("<div class='feature_row'>");
+            }
             
+            psIndex.println("<div class='feature_div'>");
+            String feature = (String) iter.next();
+            psIndex.println("<div class='feature_name'>" +
+            		             feature + "</div>");
+            psIndex.println("<div id='collapsible_"+ feature + 
+                               "' class='feature_elems'" + 
+                                 "style='display: block;'>");
             ArrayList<DTFDoc> features = fgroups.get(feature);
             for (int i = 0; i < features.size(); i++) { 
                 DTFDoc dtfdoc = features.get(i);
-                psIndex.print("<dd><a href='" + FEATURES_DIRECTORY + "/" + 
+                psIndex.println("<a class='feature_elem' href='" + FEATURES_DIRECTORY + "/" + 
                               dtfdoc.name.toLowerCase() + ".html'>" + dtfdoc.name + 
-                              "</a></dd>");
+                              "</a>");
             }
-            psIndex.print("</dl>");
+            psIndex.println("</div>");
+            psIndex.println("</div>");
+            
+            counttags++;
+            if ( counttags == 4 ) { 
+                psIndex.println("</div>");
+                counttags = 0;
+            }
         }
+
+        if ( counttags > 0  ) { 
+            psIndex.println("</div>");
+        }
+        psIndex.println("</div>");
         
         /*
          * Link to the root element of the DTF XML as a starting point for the 
@@ -401,14 +432,16 @@ public class DTFDoclet {
         Collections.sort(packagenames);
         iter = packagenames.iterator();
        
-        psIndex.print("</td><td valign='top'>");
-        psIndex.print("<table>");
+        psIndex.println("<div id='tags'>");
+        psIndex.println("<div id='tags_title'>Tags</div>");
+        
+        counttags = 0;
         while (iter.hasNext()) {
-            psIndex.print("<tr>");
             String pname = (String) iter.next();
             ArrayList<ClassDoc> tags = packages.get(pname);
            
-            String aux = pname.substring(pname.lastIndexOf(".actions.")+ "actions.".length()+1);
+            String aux = pname.substring(pname.lastIndexOf(".actions.") + 
+                                         "actions.".length()+1);
             aux = aux.replaceAll("\\."," ");
             aux = StringUtil.capitalize(aux);  
             
@@ -419,26 +452,48 @@ public class DTFDoclet {
                 if ( classdoc.tags(DTF_SKIP_INDEX).length == 0 ) {
 	                String tagname = classdoc.name().toLowerCase();
 	            
-	                buffer.append("<a href='" + TAGS_DIRECOTRY + "/" + 
-	                              tagname + ".html'>" + tagname + "</a> ");
+	                buffer.append("<a class='tag_elem' href='" + 
+	                              TAGS_DIRECOTRY + "/" + tagname + ".html'>" + 
+	                              tagname + "</a> ");
                 }
             }
             
             if ( buffer.length() != 0 ) { 
-	            psIndex.print("<td><b>" + aux + " </b></td><td>");
+	            if ( counttags == 0 ) {
+	                psIndex.println("<div class='tag_row'>");
+	            }
+            
+	            psIndex.println("<div class='tag_div'>");
+                psIndex.println("<div class='tag_name' " +
+                		             "onclick=\"togglediv('collapsible_" + 
+                		             aux + "');\">" + 
+                		             aux + "</div>");
+	            psIndex.println("<div id='collapsible_" + aux + "' " + 
+	                                 "class='tag_elems' " + 
+	                                 "style='display: block;'>");
 	            psIndex.print(buffer.toString());
-	            psIndex.print("</td></tr>");
+	            psIndex.println("</div>");
+	            psIndex.println("</div>");
+	           
+	            counttags++;
+	            if ( counttags == 5 ) { 
+	                psIndex.println("</div>");
+	                counttags = 0;
+	            }
             }
         }
-        psIndex.print("</table>");
+
+        if ( counttags > 0  ) { 
+            psIndex.println("</div>");
+        }
+        psIndex.println("</div>");
        
         /*
-         * 2nd phase 
+         * 1st phase 
          * 
-         * Start putting together each of the package documentation files so 
-         * that there is the index.html that references the other package files
-         * by name and each of those just have the DTF XML documentation 
-         * available within them.
+         * Tag documentation generation that will generate a separate HTML file
+         * for each of the DTF actions that are documented with DTF javadoc
+         * tags.
          */
         iter = packagenames.iterator();
         
@@ -462,45 +517,36 @@ public class DTFDoclet {
                 
                 info("Tag " + tagname);
                 
-                ps.print("<html><head></head><body>");
-                ps.print("<a href='javascript:history.back()'>Back</a> ");
-                ps.print("<a href='../index.html'>Top</a>");
-                ps.print("<dt><h1>" + classdoc.name() + "</h1></dt>");
+                ps.println("<html>");
+                ps.println("    <head>");
+                ps.println("    <link rel='stylesheet' " +
+                		              "href='../main.css' " +
+                		              "type='text/css'>");
+                ps.println("        <title>" + classdoc.name() + "</title>");
+                ps.println("    </head>");
+                ps.println("    <body id='body'>");
+                ps.println("<div id='nav'>");
+                ps.println("<a href='../index.html'>Home</a></div>");
                 
+                // Hiding the class name in the tooltip of the title :)
+                ps.println("<div id='tag_title' title='" + classdoc.qualifiedName() + 
+                           "'>" + classdoc.name() + "</div>");
+
                 /*
                  * Description
                  */
+                ps.println("<div id='tag_description'>");
                 Tag[] descriptions = classdoc.tags(DTF_TAG_DESC);
                 if (descriptions.length != 0) { 
                     for (int d = 0; d < descriptions.length; d++) { 
                         ps.print(treatTag(descriptions[d],tnames,fnames));
                     }
                 }
-                
-                /*
-                 * Authors
-                 */
-                Tag[] authors = classdoc.tags(DTF_AUTHOR);
-                if (authors.length != 0) { 
-                    if (authors.length == 1)
-                        ps.print("<br/><br/><dt><b>Author </b></dt>");
-                    else
-                        ps.print("<br/><br/><dt><b>Authors </b></dt>");
-                   
-                    ps.print("<dd>");
-                    for (int a = 0; a < authors.length; a++) { 
-                        if (a == authors.length - 1)
-                            ps.print(authors[a].text());
-                        else
-                            ps.print(authors[a].text() + ", ");
-                    }
-                    ps.print("</dd>");
-                }
+                ps.println("</div>");
                 
                 /*
                  * Child tags
                  */
-
                 String children = dtfXSD.generateChildrenString(tagname);
                 if ( children != null && children.trim().length() > 0 ) { 
                     Pattern pattern = Pattern.compile("([a-zA-Z_]*)");
@@ -511,6 +557,8 @@ public class DTFDoclet {
                         String match = matcher.group();
                         int start = matcher.start();
                         int end = matcher.end();
+                        
+                        match = match.toLowerCase();
 
                         if ( match.trim().length() > 0 ) {
                             result.append(children.substring(laststart,start));
@@ -520,9 +568,10 @@ public class DTFDoclet {
                     }
                     result.append(children.substring(laststart));
                     
-                    ps.print("<br/><br/><b>Children Tags</b><br/><br/>" + 
-                             result.toString() + 
-                             "</b><br/>");
+                    ps.print("<div class='tag_children_label'>Children Tags</div>");
+                    ps.print("<div class='tag_children'>");
+                    ps.print(result.toString());
+                    ps.print("</div>");
                 }
                 
                 /*
@@ -559,28 +608,33 @@ public class DTFDoclet {
                         }
                     }
                     
-                    ps.print("<br/><br/><dt><b>Events</b></dt>");
+                    ps.print("<div class='tag_events_label'>Events</div>");
                     Iterator<Entry<String,HashMap<String,String>>> eventIter = 
                                                  eventMap.entrySet().iterator();
                     
+                    ps.print("<div class='tag_events'>");
                     while ( eventIter.hasNext() ) { 
                         Entry<String,HashMap<String, String>> entry =  
                                                                eventIter.next();
                         
                         HashMap<String, String> attribs = entry.getValue();
-                        ps.print("<dd><table border=1>" + "<CAPTION><b>" + 
-                                 entry.getKey() + "</b> Event</CAPTION>");
+                        ps.print("<div class='tag_event'>");
+                        ps.print("<div class='tag_event_name'>" + entry.getKey() 
+                                 + " Event</div>");
                         
                         Iterator<Entry<String,String>> attribIter = attribs.entrySet().iterator();
                         while ( attribIter.hasNext() ) { 
                             Entry<String,String> attrib = attribIter.next();
-                            ps.print("<tr valign='top'><td width='120px'><b>" +
-                                     attrib.getKey() + "</b></td>");
-                            ps.print("<td><p align='justify'>" + 
-                                     attrib.getValue() + "</p></td></tr>");
+                            ps.print("<div class='tag_event_attribute'>");
+                            ps.print("<div class='tag_event_attribute_name'>" +
+                                     attrib.getKey() + "</div>");
+                            ps.print("<div class='tag_event_attribute_value'>" +
+                                     attrib.getValue() + "</div>");
+                            ps.print("</div>");
                         }
-                        ps.print("</dd></table><br/>");
+                        ps.print("</div>");
                     }
+                    ps.print("</div>");
                 }
 
                 /*
@@ -607,11 +661,11 @@ public class DTFDoclet {
                     boolean somereq = false;
                     StringBuffer req = new StringBuffer();
 
-                    opt.append("<br/><br/><dt><b>Optional Attributes</b></dt>");
-                    opt.append("<dd><br/><table border=1>");
+                    opt.append("<div id='optional_attributes_label'>Optional Attributes</div>");
+                    opt.append("<div id='optional_attributes'>");
     
-                    req.append("<br/><br/><dt><b>Required Attributes</b></dt>");
-                    req.append("<dd><br/><table border=1>");
+                    req.append("<div id='required_attributes_label'>Required Attributes</div>");
+                    req.append("<div id='required_attributes'>");
                     
                     Iterator<String> keys = attributes.iterator();
                     
@@ -628,53 +682,56 @@ public class DTFDoclet {
                         }
                       
                         if ( which != null ) { 
-	                        which.append("<tr valign='top'>");
-	                        which.append("<td width='100px'><b>" + aName + "</b></td>");
-	                        
+                            which.append("<div class='attribute'>");
+	                        which.append("<div class='attribute_name'>" + aName + "</div>");
 	                        FieldDoc doc = (FieldDoc)attrs.get(aName);
 	                        if (doc != null) { 
 	                            Tag[] descs = doc.tags(DTF_ATTR_DESC);
 	                                    
 	                            if (descs.length != 0) {
-	                                which.append("<td>" + treatTag(descs[0],tnames,fnames) + "</td>");
+	                                which.append("<div class='attribute_desc'>" + 
+	                                             treatTag(descs[0],tnames,fnames) + 
+	                                             "</div>");
 	                            }
 	                        }
-	                        which.append("</tr>");
+	                        which.append("</div>");
                         }
                     }
     
-                    if (someopt) { 
-                        ps.print(opt + "</table></dd>");
-                    }
-    
                     if (somereq) { 
-                        ps.print(req + "</table></dd>");
+                        ps.print(req + "</div>");
+                    }
+
+                    if (someopt) { 
+                        ps.print(opt + "</div>");
                     }
                 }
-
-
 
                 /*
                  * Examples
                  */
                 Tag[] examples = classdoc.tags(DTF_TAG_EXAMPLE);
                 if (examples.length != 0) { 
-                    ps.print("<br/><dt><b>Usage Examples</b></dt>");
-        
+                    ps.print("<div class='tag_examples_label'>Usage Examples</div>");
+       
+                    ps.print("<div class='tag_examples'>");
                     for (int e = 0; e < examples.length; e++) { 
                         Tag example = examples[e];
                         try { 
                             String text = example.text().trim();
                             
                             if (text.length() != 0) {
-                                ps.print("<br/><dd><b>Example #" + (e+1) + "</b></dd>");
-                                ps.print("<dd><pre>" + treatXML(text) + "</pre></dd>");
+                                ps.print("<div class='tag_example_container'>");
+                                ps.print("<div class='tag_example_title'>Example #" + (e+1) + "</div>");
+                                ps.print("<div class='tag_example'>" + treatXML(text) + "</div>");
+                                ps.print("</div>");
                             }
                         } catch (Exception exc) { 
                             throw new Exception("Error handling example #" + 
                                                 (e+1) + " of tag " + tagname, exc);
                         }
                     }
+                    ps.print("</div>");
                 }
                 
                 ps.print("</body></html>");
@@ -700,42 +757,60 @@ public class DTFDoclet {
                                             ".html");
                 
                 info("Feature [" + dtfdoc.name + "]");
-                
-                ps.print("<html><head></head><body>");
-                ps.print("<a href='javascript:history.back()'>Back</a> ");
-                ps.print("<a href='../index.html'>Top</a>");
-                ps.print("<dt><h1>" + dtfdoc.name + "</h1></dt>");
+               
+                ps.println("<html>");
+                ps.println("    <head>");
+                ps.println("    <link rel='stylesheet' " +
+                                      "href='../main.css' " +
+                                      "type='text/css'>");
+                ps.println("        <title>" + dtfdoc.name + "</title>");
+                ps.println("    </head>");
+                ps.println("    <body id='body'>");
+                ps.println("<div id='nav'>");
+                ps.println("<a href='../index.html'>Home</a></div>");
+
+                // Hiding the class name in the tooltip of the title :)
+                ps.println("<div class='feature_title' title='" + dtfdoc.qname 
+                           + "'>" + dtfdoc.name + "</div>");
                 
                 /*
                  * Description
                  */
+                ps.print("<div class='feature_description'>");
                 Tag[] descriptions = dtfdoc.descriptions;
                 if (descriptions.length != 0) { 
                     for (int d = 0; d < descriptions.length; d++) { 
                         ps.print(treatTag(descriptions[d],tnames,fnames));
                     }
                 }
-                
+                ps.print("</div>");
+              
                 /*
                  * Examples
                  */
                 Tag[] examples = dtfdoc.examples;
                 if (examples.length != 0) { 
-                    ps.print("<br/><dt><b>Usage Examples</b></dt>");
-        
+                    ps.print("<div class='feature_examples_label'>Usage Examples</div>");
+       
+                    ps.print("<div class='feature_examples'>");
                     for (int e = 0; e < examples.length; e++) { 
                         Tag example = examples[e];
                         try { 
                             String text = example.text().trim();
+                            
                             if (text.length() != 0) {
-                                ps.print("<br/><dd><b>Example #" + (e+1) + "</b></dd>");
-                                ps.print("<dd><pre>" + treatXML(text) + "</pre></dd>");
+                                ps.print("<div class='feature_example_container'>");
+                                ps.print("<div class='feature_example_title'>Example #" + (e+1) + "</div>");
+                                ps.print("<div class='feature_example'>" + treatXML(text) + "</div>");
+                                ps.print("</div>");
                             }
                         } catch (Exception exc) { 
                             throw new Exception("Error handling example #" + 
-                                                (e+1) + " of tag " + dtfdoc.name, exc);
+                                                (e+1) + " of tag " + dtfdoc.name,
+                                                exc);
                         }
                     }
+                    ps.print("</div>");
                 }
                 
                 ps.print("</body></html>");
@@ -768,7 +843,6 @@ public class DTFDoclet {
         
         Tag[] tags = tag.inlineTags();
        
-        result.append("<p align='justify'>");
         for (int i = 0; i < tags.length; i++) { 
             Tag aux = tags[i];
             if (aux.name().equalsIgnoreCase("text")) { 
@@ -789,23 +863,25 @@ public class DTFDoclet {
                 result.append("<a href='../" + loc + "/" + name + 
                               ".html'>" + aux.text() + "</a>");
             } else if (aux.name().equals("@"+DTF_XML)) { 
-                result.append("<pre>" + treatXML(aux.text()) + "</pre>");
+                result.append(treatXML(aux.text()));
             }
         }
-        result.append("</p>");
         
         return result.toString();
     }
-    
 
     public static String treatXML(String string) throws Exception {
         try { 
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-            Document doc = docBuilder.parse(new ByteArrayInputStream(string.getBytes()));
+            
+            string = string.replaceFirst("\\<\\?xml[^<^>]*\\?\\>","");
+            ByteArrayInputStream bais = 
+                                    new ByteArrayInputStream(string.getBytes());
+            Document doc = docBuilder.parse(bais);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             serialize(doc,baos);
-            return baos.toString().replaceAll("<","&lt;").replaceAll(">", "&gt;");
+            return "<div class='xml_code'>" + baos.toString() + "</div>";
         } catch (Exception e) { 
             throw new Exception("Error processing XML node.",e);
         }
@@ -815,11 +891,25 @@ public class DTFDoclet {
         TransformerFactory tfactory = TransformerFactory.newInstance();
         Transformer serializer;
         try {
-            serializer = tfactory.newTransformer();
-            serializer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
-            serializer.setOutputProperty(OutputKeys.INDENT, "yes");
-            serializer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+            ByteArrayOutputStream aux = new ByteArrayOutputStream();
+           
+            // pretty print the XML
+            FileInputStream fis = new FileInputStream("src/xsl/pretty_printing.xsl");
+            Source xsl = new StreamSource(fis);
+            serializer = tfactory.newTransformer(xsl);
+            serializer.transform(new DOMSource(doc), new StreamResult(aux));
+           
+            DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
+            ByteArrayInputStream bais = new ByteArrayInputStream(aux.toByteArray());
+            doc = docBuilder.parse(bais);
+           
+            // XML to HTML 
+            fis = new FileInputStream("src/xsl/xmlverbatim.xsl");
+            xsl = new StreamSource(fis);
+            serializer = tfactory.newTransformer(xsl);
             serializer.transform(new DOMSource(doc), new StreamResult(out));
+            
         } catch (TransformerException e) {
             throw new Exception("Error processing XML node.",e);
         }
