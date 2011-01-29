@@ -1,4 +1,14 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Lockgroup</h1></dt><p align='justify'><p>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Lockgroup</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.component.Lockgroup'>Lockgroup</div>
+<div id='tag_description'>
+<p>
                This tag offers the ability to specific a group for locking so
                that DTF can be smart and allow for the whole group to be 
                locked or release the partial group so that the resources
@@ -17,11 +27,14 @@
                for a testscript to execute and give those resources to another
                test that can execute while this testscript awaits its turn 
                to use the available resources.  
-               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='lockcomponent.html'>lockcomponent</a>){0,*} </b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;local&gt;
-     &lt;lockgroup&gt;
-          &lt;lockcomponent id="DTFA1"/&gt;
-          &lt;lockcomponent id="DTFA2"/&gt;
-          &lt;lockcomponent id="DTFA3"/&gt;
-     &lt;/lockgroup&gt;
- &lt;/local&gt;
-</pre></dd></body></html>
+               </p></div>
+<div class='tag_children_label'>Children Tags</div><div class='tag_children'>(<a href='lockcomponent.html'>lockcomponent</a>){0,*} </div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">local</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">lockgroup</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">lockcomponent</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">DTFA1</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">lockcomponent</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">DTFA2</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">lockcomponent</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">DTFA3</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">lockgroup</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">local</span>&gt;</div>
+</div></div></div></div></body></html>

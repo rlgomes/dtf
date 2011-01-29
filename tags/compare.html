@@ -1,4 +1,14 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Compare</h1></dt><p align='justify'>The compare tag is used to compare events from different event
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Compare</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.event.Compare'>Compare</div>
+<div id='tag_description'>
+The compare tag is used to compare events from different event
                files that contain related data. Such as the event file from 
                writing data to a service and the event file from reading that
                same data from the service. There has to be a way to relate 
@@ -14,46 +24,44 @@
                tag more efficient but may require more drastic changes to 
                the way the tag is used. 
                </b>
-               <br/><br/></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/><a href='query.html'>query</a> . <a href='where.html'>where</a> . <a href='validate.html'>validate</a></b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;compare&gt;
-    &lt;query cursor="c1" event="write.event" uri="storage://OUTPUT/compare_write_data.txt"&gt;
-       &lt;select&gt;
-           &lt;field name="recordid"/&gt;
-           &lt;field name="data"/&gt;
-       &lt;/select&gt;
-    &lt;/query&gt;
-           
-    &lt;query cursor="c2" event="read.event" uri="storage://OUTPUT/compare_read_data.txt"&gt;
-       &lt;select&gt;
-           &lt;field name="recordid"/&gt;
-           &lt;field name="data"/&gt;
-       &lt;/select&gt;
-    &lt;/query&gt;
-    
-    &lt;where&gt;
-        &lt;eq op1="${c1.recordid}" op2="${c2.recordid}"/&gt;
-    &lt;/where&gt;
-   
-    &lt;validate&gt;
-       &lt;assert&gt;
-            &lt;eq op1="${c1.data}" op2="${c2.data}"/&gt;
-        &lt;/assert&gt;
-    &lt;/validate&gt;
- &lt;/compare&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;compare&gt;
-    &lt;query cursor="c1" event="write.event" uri="storage://OUTPUT/read_data.txt"/&gt;
-    &lt;!-- We know that our data was generated in a certain way based on a 
-         sequence ID that we used so we can easily validate our read data 
-         without the original data to validate against and instead using the 
-         attributes from the event --&gt;
-    &lt;validate&gt;
-        &lt;if&gt;
-            &lt;neq op1="${c1.data}" op2="${dtf.stream(random,${c1.size},${c1.recordid})}"/&gt;
-            &lt;then&gt;
-                &lt;log level="warn"&gt;
-                Data was not equal!!! For recordid [${recordid}]
-                &lt;/log&gt; 
-            &lt;/then&gt;
-        &lt;/if&gt;
-    &lt;/validate&gt;
- &lt;/compare&gt;
-</pre></dd></body></html>
+               <br/><br/></div>
+<div class='tag_children_label'>Children Tags</div><div class='tag_children'><a href='query.html'>query</a> . <a href='where.html'>where</a> . <a href='validate.html'>validate</a></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">compare</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">query</span> <span class="xmlverb-attr-name">cursor</span>="<span class="xmlverb-attr-content">c1</span>" <span class="xmlverb-attr-name">event</span>="<span class="xmlverb-attr-content">write.event</span>" <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/compare_write_data.txt</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">select</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">field</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">recordid</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">field</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">data</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">select</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">query</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">query</span> <span class="xmlverb-attr-name">cursor</span>="<span class="xmlverb-attr-content">c2</span>" <span class="xmlverb-attr-name">event</span>="<span class="xmlverb-attr-content">read.event</span>" <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/compare_read_data.txt</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">select</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">field</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">recordid</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">field</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">data</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">select</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">query</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">where</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">eq</span> <span class="xmlverb-attr-name">op1</span>="<span class="xmlverb-attr-content">${c1.recordid}</span>" <span class="xmlverb-attr-name">op2</span>="<span class="xmlverb-attr-content">${c2.recordid}</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">where</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">validate</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">assert</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">eq</span> <span class="xmlverb-attr-name">op1</span>="<span class="xmlverb-attr-content">${c1.data}</span>" <span class="xmlverb-attr-name">op2</span>="<span class="xmlverb-attr-content">${c2.data}</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">assert</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">validate</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">compare</span>&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">compare</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">query</span> <span class="xmlverb-attr-name">cursor</span>="<span class="xmlverb-attr-content">c1</span>" <span class="xmlverb-attr-name">event</span>="<span class="xmlverb-attr-content">write.event</span>" <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/read_data.txt</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">validate</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">if</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">neq</span> <span class="xmlverb-attr-name">op1</span>="<span class="xmlverb-attr-content">${c1.data}</span>" <span class="xmlverb-attr-name">op2</span>="<span class="xmlverb-attr-content">${dtf.stream(random,${c1.size},${c1.recordid})}</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">then</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span> <span class="xmlverb-attr-name">level</span>="<span class="xmlverb-attr-content">warn</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data&nbsp;was&nbsp;not&nbsp;equal!!!&nbsp;For&nbsp;recordid&nbsp;[${recordid}]<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">then</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">if</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">validate</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">compare</span>&gt;</div>
+</div></div></div></div></body></html>

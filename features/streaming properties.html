@@ -1,13 +1,20 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Streaming Properties</h1></dt><p align='justify'><p>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Streaming Properties</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div class='feature_title' title='com.yahoo.dtf.config.DTFStream'>Streaming Properties</div>
+<div class='feature_description'><p>
  This feature is extremely useful when you need to generate large amounts of
  data but you can't afford to have it all stored in memory at one time during
  execution because it would break your application. Referencing a streaming
  property is as easy as referencing any other property and can be done so, 
  like so:
  </p> 
- <pre>
- ${dtf.stream([random|repeat|etc],[size],[additional arguments separated by commas])} 
- </pre>
+ <pre>${dtf.stream([random|repeat|etc],[size],[additional arguments separated by commas])}</pre>
  <p>
  Internally these properties are not resolved into the data that they 
  represent but instead into an InputStream that can be read and immediately 
@@ -49,4 +56,4 @@
  means that instead of using <b>replaceProperties()</b> function you will have
  to use the <b>replacePropertiesAsInputStream()</b> which if the underlying
  property is a DTF streaming property it will return an InputStream that you 
- can use to get your data without having to house it all in memory.</p></body></html>
+ can use to get your data without having to house it all in memory.</div></body></html>

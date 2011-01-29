@@ -1,4 +1,13 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Special Characters in XML</h1></dt><p align='justify'><p>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Special Characters in XML</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div class='feature_title' title='com.yahoo.dtf.xml.ActionParser'>Special Characters in XML</div>
+<div class='feature_description'><p>
  You can't write everything you would in a text file in an XML file. Sometimes 
  because certain characters such as <,> or – are used in the XML language 
  itself and other times because the XML specification 
@@ -12,17 +21,19 @@
  like so:
  </p>
  
- <pre>&lt;property name="xmldata"&gt;
-      &lt;![CDATA[
-          &lt;myxml&gt;
-              &lt;list&gt;
-                  &lt;element1/&gt;
-                  &lt;element2/&gt;
-                  &lt;element3/&gt;
-              &lt;/list&gt;
-          &lt;/myxml&gt;]]&gt;
-  &lt;/property&gt;
-</pre>
+ <div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">xmldata</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;lt;myxml&amp;gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;lt;list&amp;gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;lt;element1/&amp;gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;lt;element2/&amp;gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;lt;element3/&amp;gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;lt;/list&amp;gt;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;lt;/myxml&amp;gt;<br>
+&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">property</span>&gt;</div>
+</div>
   
  <p>
  Anything written between <![CDATA[ and ]]> is preserved exactly as is and can
@@ -35,11 +46,13 @@
  following:
  </p>
  
- <pre>&lt;sequence&gt;
-      &lt;property name="tab" value="&amp;#09;"/&gt;   
-      &lt;property name="another.enter" value="&amp;#10;"/&gt;
-  &lt;/sequence&gt;
-</pre>
+ <div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">sequence</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">tab</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">&amp;amp;#09;</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">another.enter</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">&amp;amp;#10;</span>" /&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">sequence</span>&gt;</div>
+</div>
  
  <p> 
  So you basically have to use the XML special characters when dealing with 
@@ -52,4 +65,4 @@
  only characters that you can't use inside of an XML comment are the – 
  characters because they confuse most parsers when it comes to knowing where 
  the comment starts and ends. XML comments are contained between <-- and -->.
- </p></p></body></html>
+ </p></div></body></html>

@@ -1,5 +1,20 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Getfile</h1></dt><p align='justify'>this file can be used to retrieve a file from a component and
-               place it in a storage identified on the runner side.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>uri</b></td></tr><tr valign='top'><td width='100px'><b>remotefile</b></td><td><p align='justify'>The fullpath to the remote file relative to where the 
-                DTFA was started.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;getfile remotefile="build.xml" uri="storage://OUTPUT/build.copy1.xml"/&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;getfile remotefile="/etc/hosts" uri="storage://OUTPUT/hosts1"/&gt;
-</pre></dd></body></html>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Getfile</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.file.Getfile'>Getfile</div>
+<div id='tag_description'>
+this file can be used to retrieve a file from a component and
+               place it in a storage identified on the runner side.</div>
+<div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>uri</div></div><div class='attribute'><div class='attribute_name'>remotefile</div><div class='attribute_desc'>The fullpath to the remote file relative to where the 
+                DTFA was started.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">getfile</span> <span class="xmlverb-attr-name">remotefile</span>="<span class="xmlverb-attr-content">build.xml</span>" <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/build.copy1.xml</span>" /&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">getfile</span> <span class="xmlverb-attr-name">remotefile</span>="<span class="xmlverb-attr-content">/etc/hosts</span>" <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/hosts1</span>" /&gt;</div>
+</div></div></div></div></body></html>

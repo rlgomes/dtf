@@ -1,11 +1,28 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Replace</h1></dt><p align='justify'>the replace tag allows you to use regular expression to replace
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Replace</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.properties.Replace'>Replace</div>
+<div id='tag_description'>
+the replace tag allows you to use regular expression to replace
                very specific parts of other strings. The regular expression 
                language is specific to Java's Pattern matching classes and 
                you can find more information ont he specific regular expression
                syntax here <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/regex/Pattern.html">Java Regular Expression</a> 
                You are also able to use group so that you can then replace the
                original expression with just one of the group using the $ sign, 
-               have a look at the examples below for a better understanding.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>source</b></td><td><p align='justify'>Source value to apply replace on.</p></td></tr><tr valign='top'><td width='100px'><b>destination</b></td><td><p align='justify'>The name of the property to record the result in.</p></td></tr><tr valign='top'><td width='100px'><b>expression</b></td><td><p align='justify'>The regular expression to use when matching.</p></td></tr><tr valign='top'><td width='100px'><b>with</b></td><td><p align='justify'>The new string to replace the match with.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;replace destination="newtest" expression=":" source="${test}" with=","/&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;replace destination="user" expression="([^@]+)@(.+)" source="${email}" with="$1"/&gt;
-</pre></dd><br/><dd><b>Example #3</b></dd><dd><pre>&lt;replace destination="host" expression="([^@]+)@(.+)" source="${email}" with="$2"/&gt;
-</pre></dd></body></html>
+               have a look at the examples below for a better understanding.</div>
+<div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>source</div><div class='attribute_desc'>Source value to apply replace on.</div></div><div class='attribute'><div class='attribute_name'>destination</div><div class='attribute_desc'>The name of the property to record the result in.</div></div><div class='attribute'><div class='attribute_name'>expression</div><div class='attribute_desc'>The regular expression to use when matching.</div></div><div class='attribute'><div class='attribute_name'>with</div><div class='attribute_desc'>The new string to replace the match with.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">replace</span> <span class="xmlverb-attr-name">destination</span>="<span class="xmlverb-attr-content">newtest</span>" <span class="xmlverb-attr-name">expression</span>="<span class="xmlverb-attr-content">:</span>" <span class="xmlverb-attr-name">source</span>="<span class="xmlverb-attr-content">${test}</span>" <span class="xmlverb-attr-name">with</span>="<span class="xmlverb-attr-content">,</span>" /&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">replace</span> <span class="xmlverb-attr-name">destination</span>="<span class="xmlverb-attr-content">user</span>" <span class="xmlverb-attr-name">expression</span>="<span class="xmlverb-attr-content">([^@]+)@(.+)</span>" <span class="xmlverb-attr-name">source</span>="<span class="xmlverb-attr-content">${email}</span>" <span class="xmlverb-attr-name">with</span>="<span class="xmlverb-attr-content">$1</span>" /&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #3</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">replace</span> <span class="xmlverb-attr-name">destination</span>="<span class="xmlverb-attr-content">host</span>" <span class="xmlverb-attr-name">expression</span>="<span class="xmlverb-attr-content">([^@]+)@(.+)</span>" <span class="xmlverb-attr-name">source</span>="<span class="xmlverb-attr-content">${email}</span>" <span class="xmlverb-attr-name">with</span>="<span class="xmlverb-attr-content">$2</span>" /&gt;</div>
+</div></div></div></div></body></html>

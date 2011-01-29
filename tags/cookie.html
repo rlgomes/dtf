@@ -1,1 +1,30 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Cookie</h1></dt><p align='justify'></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>name</b></td><td><p align='justify'>the name of the cookie being specified.</p></td></tr><tr valign='top'><td width='100px'><b>value</b></td><td><p align='justify'>the value of the cookie being specified.</p></td></tr><tr valign='top'><td width='100px'><b>domain</b></td><td><p align='justify'></p></td></tr><tr valign='top'><td width='100px'><b>path</b></td><td><p align='justify'></p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt></body></html>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Cookie</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.http.cookies.Cookie'>Cookie</div>
+<div id='tag_description'>
+This tag defines the cookie to be used for a specific HTTP 
+               operation. You have the ability to the define the name, value
+               and then a few other important attributes.</div>
+<div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>name</div><div class='attribute_desc'>The name of the cookie being specified.</div></div><div class='attribute'><div class='attribute_name'>value</div><div class='attribute_desc'>The value of the cookie being specified.</div></div><div class='attribute'><div class='attribute_name'>domain</div><div class='attribute_desc'>The cookie domain and path define the scope of the cookie,
+                they tell the client that they should only be sent back 
+                to the server for the given domain and path. If not 
+                specified, they default to the domain and path of the 
+                object that was requested.</div></div><div class='attribute'><div class='attribute_name'>path</div><div class='attribute_desc'>The cookie domain and path define the scope of the cookie,
+                they tell the client that they should only be sent back 
+                to the server for the given domain and path. If not 
+                specified, they default to the domain and path of the 
+                object that was requested.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">http_put</span> <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">http://127.0.0.1:80/echo-data</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">cookie</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">cookie1</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">/someplace</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">value1</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">cookie</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">cookie2</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">/anotherplace</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">value2</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">header</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">header1</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">value1</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">entity</span> <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">SOME DATA FROM THE CLIENT</span>" /&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">http_put</span>&gt;</div>
+</div></div></div></div></body></html>

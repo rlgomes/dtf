@@ -1,13 +1,28 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Loadproperties</h1></dt><p align='justify'>Loads all of the properties from a regular  
-               <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/Properties.html#load(java.io.InputStream)}">Java Properties file</a></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>overwrite</b></td><td><p align='justify'>Defaults to false, and this defines if the properties 
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Loadproperties</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.properties.Loadproperties'>Loadproperties</div>
+<div id='tag_description'>
+Loads all of the properties from a regular  
+               <a href="http://java.sun.com/j2se/1.4.2/docs/api/java/util/Properties.html#load(java.io.InputStream)}">Java Properties file</a></div>
+<div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>uri</div><div class='attribute_desc'>Specifies the location where the properties file can be 
+                found.</div></div></div><div id='optional_attributes_label'>Optional Attributes</div><div id='optional_attributes'><div class='attribute'><div class='attribute_name'>overwrite</div><div class='attribute_desc'>Defaults to false, and this defines if the properties 
                 being loaded from this external file are to overwrite 
-                existing values of any property or not.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>uri</b></td><td><p align='justify'>Specifies the location where the properties file can be 
-                found.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;local&gt;
-     &lt;createstorage id="INPUT" path="${dtf.xml.path}/input"/&gt;
-     &lt;loadproperties uri="storage://INPUT/ut.properties"/&gt;
- &lt;/local&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;local&gt;
-     &lt;createstorage id="INPUT" path="${dtf.xml.path}/input"/&gt;
-     &lt;loadproperties encoding="UTF-16" uri="storage://INPUT/ut.properties"/&gt;
- &lt;/local&gt;
-</pre></dd></body></html>
+                existing values of any property or not.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">local</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">createstorage</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">INPUT</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">${dtf.xml.path}/input</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">loadproperties</span> <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://INPUT/ut.properties</span>" /&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">local</span>&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">local</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">createstorage</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">INPUT</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">${dtf.xml.path}/input</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">loadproperties</span> <span class="xmlverb-attr-name">encoding</span>="<span class="xmlverb-attr-content">UTF-16</span>" <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://INPUT/ut.properties</span>" /&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">local</span>&gt;</div>
+</div></div></div></div></body></html>

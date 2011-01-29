@@ -1,43 +1,57 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Diff</h1></dt><p align='justify'>This tag is used for calculating the differences between two 
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Diff</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.file.Diff'>Diff</div>
+<div id='tag_description'>
+This tag is used for calculating the differences between two 
                or more files. The tag will throw events of the type diffs.xxx 
                that will contain the various differences between the files and
                will throw one final diff.xxx event that contains the 
                summarized information for all of the differences between those
-               files. See the Event information below for more detalis.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='input.html'>input</a>){0,*} </b><br/><br/><br/><dt><b>Events</b></dt><dd><table border=1><CAPTION><b>diff</b> Event</CAPTION><tr valign='top'><td width='120px'><b>uri[0-totalfiles].path</b></td><td><p align='justify'><p align='justify'>The full path for each of of the files that were 
-                      compared during the diff calculation.</p></p></td></tr><tr valign='top'><td width='120px'><b>difflines</b></td><td><p align='justify'><p align='justify'>The total number of lines that are different between 
-                      the files being diffed.</p></p></td></tr><tr valign='top'><td width='120px'><b>totallines</b></td><td><p align='justify'><p align='justify'>The total number of lines in that were compared during
-                      the diff calculation.</p></p></td></tr><tr valign='top'><td width='120px'><b>totalfiles</b></td><td><p align='justify'><p align='justify'>The total number of files that were compared during the 
-                       diff calculation.</p></p></td></tr></dd></table><br/><dd><table border=1><CAPTION><b>diffs</b> Event</CAPTION><tr valign='top'><td width='120px'><b>linenumber</b></td><td><p align='justify'><p align='justify'>The line number of where the two files identified by 
-                      the uris attribute differ.</p></p></td></tr><tr valign='top'><td width='120px'><b>uris</b></td><td><p align='justify'><p align='justify'>the ids of the URI's that differed (0-totafiles).</p></p></td></tr><tr valign='top'><td width='120px'><b>line[0-totalfiles]</b></td><td><p align='justify'><p align='justify'>There will exist two of these per diffs event that is 
+               files. See the Event information below for more detalis.</div>
+<div class='tag_children_label'>Children Tags</div><div class='tag_children'>(<a href='input.html'>input</a>){0,*} </div><div class='tag_events_label'>Events</div><div class='tag_events'><div class='tag_event'><div class='tag_event_name'>diff Event</div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>uri[0-totalfiles].path</div><div class='tag_event_attribute_value'>The full path for each of of the files that were 
+                      compared during the diff calculation.</div></div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>difflines</div><div class='tag_event_attribute_value'>The total number of lines that are different between 
+                      the files being diffed.</div></div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>totallines</div><div class='tag_event_attribute_value'>The total number of lines in that were compared during
+                      the diff calculation.</div></div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>totalfiles</div><div class='tag_event_attribute_value'>The total number of files that were compared during the 
+                       diff calculation.</div></div></div><div class='tag_event'><div class='tag_event_name'>diffs Event</div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>linenumber</div><div class='tag_event_attribute_value'>The line number of where the two files identified by 
+                      the uris attribute differ.</div></div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>uris</div><div class='tag_event_attribute_value'>the ids of the URI's that differed (0-totafiles).</div></div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>line[0-totalfiles]</div><div class='tag_event_attribute_value'>There will exist two of these per diffs event that is 
                       thrown and they will be numbered based on the uris 
                       attribute so that you can easily identify which file
-                      contained which line.</p></p></td></tr></dd></table><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;diff&gt;
-     &lt;input uri="storage://OUTPUT/file1"/&gt;
-     &lt;input uri="storage://OUTPUT/file2"/&gt;
-     &lt;input uri="storage://OUTPUT/file3"/&gt;
- &lt;/diff&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;diff&gt;
-     &lt;input uri="storage://OUTPUT/basedata"/&gt;
-     &lt;input uri="storage://OUTPUT/currentdata"/&gt;
- &lt;/diff&gt;
-</pre></dd><br/><dd><b>Example #3</b></dd><dd><pre>&lt;sequence&gt;
-      &lt;record uri="storage://OUTPUT/diffs"&gt;
-          &lt;diff&gt;
-               &lt;input uri="storage://OUTPUT/file1"/&gt;
-               &lt;input uri="storage://OUTPUT/file2"/&gt;
-               &lt;input uri="storage://OUTPUT/file3"/&gt;
-          &lt;/diff&gt;
-      &lt;/record&gt;
-     
-      &lt;log&gt;number of lines that differ: ${diff.difflines}&lt;/log&gt;
-      
-      &lt;query cursor="differences" event="diffs" uri="storage://OUTPUT/diffs"/&gt;
-             
-      &lt;iterate cursor="differences"&gt;
-          &lt;log&gt;files differ at line: ${differences.linenumber}&lt;/log&gt;
-          &lt;for property="id" range="${differences.uris}"&gt;
-              &lt;log&gt;file ${diff.uri${id}.path} has ${differences.line${id}}&lt;/log&gt;
-          &lt;/for&gt;
-      &lt;/iterate&gt;
- &lt;/sequence&gt;
-</pre></dd></body></html>
+                      contained which line.</div></div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">diff</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">input</span> <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/file1</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">input</span> <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/file2</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">input</span> <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/file3</span>" /&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">diff</span>&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">diff</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">input</span> <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/basedata</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">input</span> <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/currentdata</span>" /&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">diff</span>&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #3</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">sequence</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">record</span> <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/diffs</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">diff</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">input</span> <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/file1</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">input</span> <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/file2</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">input</span> <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/file3</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">diff</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">record</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">number&nbsp;of&nbsp;lines&nbsp;that&nbsp;differ:&nbsp;${diff.difflines}</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">query</span> <span class="xmlverb-attr-name">cursor</span>="<span class="xmlverb-attr-content">differences</span>" <span class="xmlverb-attr-name">event</span>="<span class="xmlverb-attr-content">diffs</span>" <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/diffs</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">iterate</span> <span class="xmlverb-attr-name">cursor</span>="<span class="xmlverb-attr-content">differences</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">files&nbsp;differ&nbsp;at&nbsp;line:&nbsp;${differences.linenumber}</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">for</span> <span class="xmlverb-attr-name">property</span>="<span class="xmlverb-attr-content">id</span>" <span class="xmlverb-attr-name">range</span>="<span class="xmlverb-attr-content">${differences.uris}</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">file&nbsp;${diff.uri${id}.path}&nbsp;has&nbsp;${differences.line${id}}</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">for</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">iterate</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">sequence</span>&gt;</div>
+</div></div></div></div></body></html>

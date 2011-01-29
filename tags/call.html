@@ -1,33 +1,42 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Call</h1></dt><p align='justify'>Execute functions that were defined in this test case or
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Call</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.function.Call'>Call</div>
+<div id='tag_description'>
+Execute functions that were defined in this test case or
                imported using the <a href='../tags/import.html'>Import</a> tag. Any properties 
                created/altered within a function will not be visible after 
-               this function has terminated its execution.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='property.html'>property</a>){0,*} </b><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>result</b></td><td><p align='justify'>the property to store the return value from this function.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>function</b></td><td><p align='justify'>The unique name of the function to call from this point 
-                in the XML testcase.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;sequence&gt;
-     &lt;function name="func3"&gt;
-         &lt;param name="nomore" type="optional"/&gt;  
-         &lt;local&gt;
-            &lt;echo&gt;In func3&lt;/echo&gt;
-        &lt;/local&gt;
-     &lt;/function&gt;
-     
-     &lt;call function="func3"/&gt;
-     
-     &lt;call function="func3"&gt;
-         &lt;property name="nomore" value="true"/&gt;
-     &lt;/call&gt;
- &lt;/sequence&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;sequence&gt;
-     &lt;function name="func3"&gt;
-         &lt;param name="flag" type="required"/&gt;  
-         &lt;!-- function does its thing and sets the succeeded property with a 
-              boolean value of the success or insuccess of this function --&gt;
-         &lt;return&gt;${succeeded}&lt;/return&gt;
-     &lt;/function&gt;
-     
-     &lt;call function="func3" result="result"&gt;
-         &lt;property name="flag" value="true"/&gt;
-     &lt;/call&gt;
-      
-     &lt;log&gt;func3 returned ${result}&lt;/log&gt;
- &lt;/sequence&gt;
-</pre></dd></body></html>
+               this function has terminated its execution.</div>
+<div class='tag_children_label'>Children Tags</div><div class='tag_children'>(<a href='property.html'>property</a>){0,*} </div><div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>function</div><div class='attribute_desc'>The unique name of the function to call from this point 
+                in the XML testcase.</div></div></div><div id='optional_attributes_label'>Optional Attributes</div><div id='optional_attributes'><div class='attribute'><div class='attribute_name'>result</div><div class='attribute_desc'>the property to store the return value from this function.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">sequence</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">function</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">func3</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">param</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">nomore</span>" <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">optional</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">local</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">echo</span>&gt;<span class="xmlverb-text">In&nbsp;func3</span>&lt;/<span class="xmlverb-element-name">echo</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">local</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">function</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">call</span> <span class="xmlverb-attr-name">function</span>="<span class="xmlverb-attr-content">func3</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">call</span> <span class="xmlverb-attr-name">function</span>="<span class="xmlverb-attr-content">func3</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">nomore</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">true</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">call</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">sequence</span>&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">sequence</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">function</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">func3</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">param</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">flag</span>" <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">required</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">return</span>&gt;<span class="xmlverb-text">${succeeded}</span>&lt;/<span class="xmlverb-element-name">return</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">function</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">call</span> <span class="xmlverb-attr-name">function</span>="<span class="xmlverb-attr-content">func3</span>" <span class="xmlverb-attr-name">result</span>="<span class="xmlverb-attr-content">result</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">flag</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">true</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">call</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">func3&nbsp;returned&nbsp;${result}</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">sequence</span>&gt;</div>
+</div></div></div></div></body></html>

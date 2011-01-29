@@ -1,4 +1,14 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Event</h1></dt><p align='justify'>This tag is used to throw events in a DTF test case, and allows 
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Event</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.event.Event'>Event</div>
+<div id='tag_description'>
+This tag is used to throw events in a DTF test case, and allows 
                you to measure the amount of time or the number of times a 
                certain block of your test case is executed over the course of 
                the test case. This is useful for measuring the performance of 
@@ -9,13 +19,16 @@
                There are already some events thrown within the DTF code itself 
                for testing of the actual framework. These events are usually 
                prefixed by the  prefix, which makes it simple to filter 
-               out of the other tests being executed.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(){0,*} </b><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>name</b></td><td><p align='justify'>Identifies the name of the the event to be thrown here in 
-                the test case.</p></td></tr><tr valign='top'><td width='100px'><b>id</b></td><td><p align='justify'>Unique ID by which this XML tag will be known to all other
+               out of the other tests being executed.</div>
+<div class='tag_children_label'>Children Tags</div><div class='tag_children'>(){0,*} </div><div id='optional_attributes_label'>Optional Attributes</div><div id='optional_attributes'><div class='attribute'><div class='attribute_name'>name</div><div class='attribute_desc'>Identifies the name of the the event to be thrown here in 
+                the test case.</div></div><div class='attribute'><div class='attribute_name'>id</div><div class='attribute_desc'>Unique ID by which this XML tag will be known to all other
                 elements that which to reference it through the refid 
-                attribute.</p></td></tr><tr valign='top'><td width='100px'><b>refid</b></td><td><p align='justify'>Reference ID should reference an existing element with an 
+                attribute.</div></div><div class='attribute'><div class='attribute_name'>refid</div><div class='attribute_desc'>Reference ID should reference an existing element with an 
                 ID set to this same value, otherwise an exception will be
-                thrown.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;event name="dtf.echo"&gt;
-    &lt;echo&gt;This block of actions is being measured by a a counter&lt;/echo&gt;
-    &lt;property name="iteration" value="${index}"/&gt;
- &lt;/event&gt;
-</pre></dd></body></html>
+                thrown.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">event</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">dtf.echo</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">echo</span>&gt;<span class="xmlverb-text">This&nbsp;block&nbsp;of&nbsp;actions&nbsp;is&nbsp;being&nbsp;measured&nbsp;by&nbsp;a&nbsp;a&nbsp;counter</span>&lt;/<span class="xmlverb-element-name">echo</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">iteration</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">${index}</span>" /&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">event</span>&gt;</div>
+</div></div></div></div></body></html>

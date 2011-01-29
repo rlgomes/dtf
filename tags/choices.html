@@ -1,31 +1,46 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Choices</h1></dt><p align='justify'>Choices tag can be used at any point you want to execute a 
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Choices</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.flowcontrol.Choices'>Choices</div>
+<div id='tag_description'>
+Choices tag can be used at any point you want to execute a 
                group of different actions with a probability associated with
                executing each of the actions. This way you can generate a load
                pattern that is a bit more complex than just the number of 
-               operations per second.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='choose.html'>choose</a>){1,*} </b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;distribute iterations="1..10" workers="3"&gt;
-     &lt;choices&gt;
-         &lt;choose howoften="25%"&gt;
-             &lt;event name="test.event2"/&gt;
-         &lt;/choose&gt;
-         &lt;choose howoften="25%"&gt;
-             &lt;event name="test.event1"/&gt;
-         &lt;/choose&gt;
-         &lt;choose howoften="50%"&gt;
-             &lt;event name="test.event3"/&gt;
-         &lt;/choose&gt;
-     &lt;/choices&gt; 
- &lt;/distribute&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;for property="i" range="1..1000"&gt;
-     &lt;choices&gt;
-         &lt;choose howoften="5%"&gt;
-             &lt;event name="test.event2"/&gt;
-         &lt;/choose&gt;
-         &lt;choose howoften="5%"&gt;
-             &lt;event name="test.event1"/&gt;
-         &lt;/choose&gt;
-         &lt;choose howoften="90%"&gt;
-             &lt;event name="test.event3"/&gt;
-         &lt;/choose&gt;
-     &lt;/choices&gt; 
- &lt;/for&gt;
-</pre></dd></body></html>
+               operations per second.</div>
+<div class='tag_children_label'>Children Tags</div><div class='tag_children'>(<a href='choose.html'>choose</a>){1,*} </div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">distribute</span> <span class="xmlverb-attr-name">iterations</span>="<span class="xmlverb-attr-content">1..10</span>" <span class="xmlverb-attr-name">workers</span>="<span class="xmlverb-attr-content">3</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">choices</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">choose</span> <span class="xmlverb-attr-name">howoften</span>="<span class="xmlverb-attr-content">25%</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">event</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">test.event2</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">choose</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">choose</span> <span class="xmlverb-attr-name">howoften</span>="<span class="xmlverb-attr-content">25%</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">event</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">test.event1</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">choose</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">choose</span> <span class="xmlverb-attr-name">howoften</span>="<span class="xmlverb-attr-content">50%</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">event</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">test.event3</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">choose</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">choices</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">distribute</span>&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">for</span> <span class="xmlverb-attr-name">property</span>="<span class="xmlverb-attr-content">i</span>" <span class="xmlverb-attr-name">range</span>="<span class="xmlverb-attr-content">1..1000</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">choices</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">choose</span> <span class="xmlverb-attr-name">howoften</span>="<span class="xmlverb-attr-content">5%</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">event</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">test.event2</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">choose</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">choose</span> <span class="xmlverb-attr-name">howoften</span>="<span class="xmlverb-attr-content">5%</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">event</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">test.event1</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">choose</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">choose</span> <span class="xmlverb-attr-name">howoften</span>="<span class="xmlverb-attr-content">90%</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">event</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">test.event3</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">choose</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">choices</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">for</span>&gt;</div>
+</div></div></div></div></body></html>

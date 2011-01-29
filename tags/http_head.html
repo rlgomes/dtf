@@ -1,4 +1,14 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Http_head</h1></dt><p align='justify'>The http_head tag is used to generate HTTP head requests and
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Http_head</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.http.Http_head'>Http_head</div>
+<div id='tag_description'>
+The http_head tag is used to generate HTTP head requests and
                can test webservices quite well. At the moment you can't handle 
                cookies, but you do have the ability to add Headers to the
                request as well as entities (data that can be added to your
@@ -12,23 +22,28 @@
                for this run but wont' log the data that was sent or recevied
                by the request. So for those cases in which you you want to 
                measure the performance you should set that value to true so 
-               that you can get more precise performance numbers.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='http_config.html'>http_config</a> | <a href='headergroup.html'>headergroup</a> | <a href='cookiegroup.html'>cookiegroup</a> | <a href='cookie.html'>cookie</a> | <a href='header.html'>header</a>) {0,*} </b><br/><br/><br/><dt><b>Events</b></dt><dd><table border=1><CAPTION><b>http.head</b> Event</CAPTION><tr valign='top'><td width='120px'><b>body</b></td><td><p align='justify'><p align='justify'>the HTTP head data that was received along with the 
-                      HTTP response.</p></p></td></tr><tr valign='top'><td width='120px'><b>headerout</b></td><td><p align='justify'><p align='justify'>each of the output headers received from the HTTP request
+               that you can get more precise performance numbers.</div>
+<div class='tag_children_label'>Children Tags</div><div class='tag_children'>(<a href='http_config.html'>http_config</a> | <a href='headergroup.html'>headergroup</a> | <a href='cookiegroup.html'>cookiegroup</a> | <a href='cookie.html'>cookie</a> | <a href='header.html'>header</a>) {0,*} </div><div class='tag_events_label'>Events</div><div class='tag_events'><div class='tag_event'><div class='tag_event_name'>http.head Event</div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>body</div><div class='tag_event_attribute_value'>the HTTP head data that was received along with the 
+                      HTTP response.</div></div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>headerout</div><div class='tag_event_attribute_value'>each of the output headers received from the HTTP request
                       response will generate an event with this attribute name 
                       as the prefix to the header attribute name. So if you 
                       had a header with the name X then your resulting event 
-                      would be named event.headerout.x</p></p></td></tr><tr valign='top'><td width='120px'><b>bodysize</b></td><td><p align='justify'><p align='justify'>the size in bytes of the data that was received in the
-                      HTTP response.</p></p></td></tr><tr valign='top'><td width='120px'><b>status</b></td><td><p align='justify'><p align='justify'>the status code for the HTTP request.</p></p></td></tr><tr valign='top'><td width='120px'><b>bodyhash</b></td><td><p align='justify'><p align='justify'>the hash of the http.head data that was received along 
-                      with the HTTP response.</p></p></td></tr><tr valign='top'><td width='120px'><b>headerin</b></td><td><p align='justify'><p align='justify'>each of the input headers for the HTTP request will have
+                      would be named event.headerout.x</div></div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>bodysize</div><div class='tag_event_attribute_value'>the size in bytes of the data that was received in the
+                      HTTP response.</div></div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>status</div><div class='tag_event_attribute_value'>the status code for the HTTP request.</div></div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>bodyhash</div><div class='tag_event_attribute_value'>the hash of the http.head data that was received along 
+                      with the HTTP response.</div></div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>headerin</div><div class='tag_event_attribute_value'>each of the input headers for the HTTP request will have
                       an event with this attribute name as the prefix to the
                       header attribute name. So if you had a header with the
                       name X then your resulting event would be named 
-                      event.headerin.x</p></p></td></tr><tr valign='top'><td width='120px'><b>statusmsg</b></td><td><p align='justify'><p align='justify'>the status code for the HTTP request.</p></p></td></tr><tr valign='top'><td width='120px'><b>uri</b></td><td><p align='justify'><p align='justify'>the exact uri passed to the http request.</p></p></td></tr></dd></table><br/><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>uri</b></td><td><p align='justify'>the uri is the exact hostname, port and path to where the
+                      event.headerin.x</div></div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>statusmsg</div><div class='tag_event_attribute_value'>the status code for the HTTP request.</div></div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>uri</div><div class='tag_event_attribute_value'>the exact uri passed to the http request.</div></div></div></div><div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>uri</div><div class='attribute_desc'>the uri is the exact hostname, port and path to where the
                 following http request should be sent. The format looks 
-                like so: http://server:port/path</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;http_head onFailure="fail" perfrun="true" uri="${dtf.http.uri}"&gt;
-      &lt;header name="header1" value="XXXXX"/&gt;
-      &lt;header name="header2" value="YYYY"/&gt;
-      &lt;entity value="${dtf.head.data}"/&gt;
- &lt;/http_head&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;http_head uri="${dtf.http.uri}"/&gt;
-</pre></dd></body></html>
+                like so: http://server:port/path</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">http_head</span> <span class="xmlverb-attr-name">onFailure</span>="<span class="xmlverb-attr-content">fail</span>" <span class="xmlverb-attr-name">perfrun</span>="<span class="xmlverb-attr-content">true</span>" <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">${dtf.http.uri}</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">header</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">header1</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">XXXXX</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">header</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">header2</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">YYYY</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">entity</span> <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">${dtf.head.data}</span>" /&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">http_head</span>&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">http_head</span> <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">${dtf.http.uri}</span>" /&gt;</div>
+</div></div></div></div></body></html>

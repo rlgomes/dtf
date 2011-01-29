@@ -1,4 +1,13 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Convert Transformer</h1></dt><p align='justify'><p>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Convert Transformer</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div class='feature_title' title='com.yahoo.dtf.config.transform.ConvertTransformer'>Convert Transformer</div>
+<div class='feature_description'><p>
                    This is the DTF string conversion transformer and it can be 
                    used to convert between various formats such as hex to 
                    string and string to hex. In the currently available 
@@ -14,18 +23,20 @@
                    <b>from-hex</b><br/>
                    The from-hex does the opposite of to-hex and converts a 
                    hexa-decimal number back to its decimal representation.
-                   </p></p><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;sequence&gt;
-     &lt;property name="int1" value="1234"/&gt; 
-     &lt;property name="int2" value="42"/&gt; 
-
-     &lt;log&gt;${int1:convert:to-hex}&lt;/log&gt; 
-     &lt;log&gt;${int2:convert:to-hex(4)}&lt;/log&gt; 
- &lt;/sequence&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;sequence&gt;
-     &lt;property name="hex1" value="FFFF"/&gt;
-     &lt;property name="hex2" value="FFFFFFFF"/&gt;
-     
-     &lt;log&gt;${hex1:convert:from-hex}&lt;/log&gt; 
-     &lt;log&gt;${hex2:convert:from-hex}&lt;/log&gt; 
- &lt;/sequence&gt;
-</pre></dd></body></html>
+                   </p></div><div class='feature_examples_label'>Usage Examples</div><div class='feature_examples'><div class='feature_example_container'><div class='feature_example_title'>Example #1</div><div class='feature_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">sequence</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">int1</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">1234</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">int2</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">42</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">${int1:convert:to-hex}</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">${int2:convert:to-hex(4)}</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">sequence</span>&gt;</div>
+</div></div></div><div class='feature_example_container'><div class='feature_example_title'>Example #2</div><div class='feature_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">sequence</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">hex1</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">FFFF</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">hex2</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">FFFFFFFF</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">${hex1:convert:from-hex}</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">${hex2:convert:from-hex}</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">sequence</span>&gt;</div>
+</div></div></div></div></body></html>

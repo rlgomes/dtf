@@ -1,16 +1,31 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Where</h1></dt><p align='justify'>This child tag of query allows us to define the exact 
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Where</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.event.Where'>Where</div>
+<div id='tag_description'>
+This child tag of query allows us to define the exact 
                conditions of the query that we want to run against the 
-               collection of events stored by a previous recorder.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='false.html'>false</a> | <a href='true.html'>true</a> | <a href='not.html'>not</a> | <a href='and.html'>and</a> | <a href='eq.html'>eq</a> | <a href='gt.html'>gt</a> | <a href='lt.html'>lt</a> | <a href='neq.html'>neq</a> | <a href='or.html'>or</a> | <a href='within.html'>within</a> | <a href='similar.html'>similar</a> | <a href='match.html'>match</a> | <a href='isset.html'>isset</a>) </b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;query event="hc.*" property="obj1" type="txt" uri="storage://OUTPUT/perf.db"&gt;
-     &lt;where&gt;
-         &lt;eq field="myfield" value="myvalue"/&gt;
-     &lt;/where&gt;
- &lt;/query&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;query event="hc.*" property="obj1" type="txt" uri="storage://OUTPUT/perf.db"&gt;
-     &lt;where&gt;
-         &lt;and&gt;
-             &lt;eq field="field1" value="somevalue"/&gt;
-             &lt;neq field="field2" value="othervalue"/&gt;
-         &lt;/and&gt;
-     &lt;/where&gt;
- &lt;/query&gt;
-</pre></dd></body></html>
+               collection of events stored by a previous recorder.</div>
+<div class='tag_children_label'>Children Tags</div><div class='tag_children'>(<a href='false.html'>false</a> | <a href='true.html'>true</a> | <a href='not.html'>not</a> | <a href='and.html'>and</a> | <a href='eq.html'>eq</a> | <a href='gt.html'>gt</a> | <a href='lt.html'>lt</a> | <a href='neq.html'>neq</a> | <a href='or.html'>or</a> | <a href='within.html'>within</a> | <a href='similar.html'>similar</a> | <a href='match.html'>match</a> | <a href='isset.html'>isset</a>) </div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">query</span> <span class="xmlverb-attr-name">event</span>="<span class="xmlverb-attr-content">hc.*</span>" <span class="xmlverb-attr-name">property</span>="<span class="xmlverb-attr-content">obj1</span>" <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">txt</span>" <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/perf.db</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">where</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">eq</span> <span class="xmlverb-attr-name">field</span>="<span class="xmlverb-attr-content">myfield</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">myvalue</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">where</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">query</span>&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">query</span> <span class="xmlverb-attr-name">event</span>="<span class="xmlverb-attr-content">hc.*</span>" <span class="xmlverb-attr-name">property</span>="<span class="xmlverb-attr-content">obj1</span>" <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">txt</span>" <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/perf.db</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">where</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">and</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">eq</span> <span class="xmlverb-attr-name">field</span>="<span class="xmlverb-attr-content">field1</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">somevalue</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">neq</span> <span class="xmlverb-attr-name">field</span>="<span class="xmlverb-attr-content">field2</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">othervalue</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">and</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">where</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">query</span>&gt;</div>
+</div></div></div></div></body></html>

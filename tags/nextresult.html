@@ -1,25 +1,37 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Nextresult</h1></dt><p align='justify'>This tag is used to move the cursor of a previously executed 
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Nextresult</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.event.Nextresult'>Nextresult</div>
+<div id='tag_description'>
+This tag is used to move the cursor of a previously executed 
                query tag. By moving the cursor we will get new results from 
                the collection of previously recorded events that obey the 
-               previously defined query.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>recycle</b></td><td><p align='justify'>If this value is true then when the result set identified 
+               previously defined query.</div>
+<div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>cursor</div><div class='attribute_desc'>Identifies the cursor name that will be used to fetch the
+                next result.</div></div></div><div id='optional_attributes_label'>Optional Attributes</div><div id='optional_attributes'><div class='attribute'><div class='attribute_name'>recycle</div><div class='attribute_desc'>If this value is true then when the result set identified 
                 by the cursor hits the end of its results the cursor is 
                 reopened. If this value is false once there are no more 
-                results this tag will throw a NoMoreResultsException.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>cursor</b></td><td><p align='justify'>Identifies the cursor name that will be used to fetch the
-                next result.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;try&gt; 
-     &lt;sequence&gt;
-         &lt;query cursor="cursor1" uri="storage://OUTPUT/myevents.txt"/&gt;
-         
-         &lt;nextresult cursor="cursor1"/&gt;
-         &lt;while&gt;
-             &lt;eq op1="true" op2="true"/&gt;
-             &lt;sequence&gt;
-                 &lt;nextresult cursor="cursor1"/&gt;
-                 &lt;log&gt;${cursor1.field}&lt;/log&gt;
-             &lt;/sequence&gt;
-         &lt;/while&gt;
-     &lt;/sequence&gt;
-     &lt;catch exception="com.yahoo.dtf.exceptions.NoMoreResultsException"&gt;
-          &lt;log&gt;All done.&lt;/log&gt;
-     &lt;/catch&gt;
- &lt;/try&gt;
-</pre></dd></body></html>
+                results this tag will throw a NoMoreResultsException.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">try</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">sequence</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">query</span> <span class="xmlverb-attr-name">cursor</span>="<span class="xmlverb-attr-content">cursor1</span>" <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/myevents.txt</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">nextresult</span> <span class="xmlverb-attr-name">cursor</span>="<span class="xmlverb-attr-content">cursor1</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">while</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">eq</span> <span class="xmlverb-attr-name">op1</span>="<span class="xmlverb-attr-content">true</span>" <span class="xmlverb-attr-name">op2</span>="<span class="xmlverb-attr-content">true</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">sequence</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">nextresult</span> <span class="xmlverb-attr-name">cursor</span>="<span class="xmlverb-attr-content">cursor1</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">${cursor1.field}</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">sequence</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">while</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">sequence</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">catch</span> <span class="xmlverb-attr-name">exception</span>="<span class="xmlverb-attr-content">com.yahoo.dtf.exceptions.NoMoreResultsException</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">All&nbsp;done.</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">catch</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">try</span>&gt;</div>
+</div></div></div></div></body></html>

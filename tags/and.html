@@ -1,14 +1,27 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>And</h1></dt><p align='justify'>Evaluates if all of the underlying sub conditional tags 
-               have a conditional evaluation of true.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='isAlertPresent.html'>isAlertPresent</a> | <a href='isChecked.html'>isChecked</a> | <a href='isConfirmationPresent.html'>isConfirmationPresent</a> | <a href='isEditable.html'>isEditable</a> | <a href='isElementPresent.html'>isElementPresent</a> | <a href='isOrdered.html'>isOrdered</a> | <a href='isPromptPresent.html'>isPromptPresent</a> | <a href='isSomethingSelected.html'>isSomethingSelected</a> | <a href='isTextPresent.html'>isTextPresent</a> | <a href='isVisiblefalse.html'>isVisiblefalse</a> | <a href='true.html'>true</a> | <a href='not.html'>not</a> | <a href='and.html'>and</a> | <a href='eq.html'>eq</a> | <a href='gt.html'>gt</a> | <a href='lt.html'>lt</a> | <a href='neq.html'>neq</a> | <a href='or.html'>or</a> | <a href='within.html'>within</a> | <a href='similar.html'>similar</a> | <a href='match.html'>match</a> | <a href='isset.html'>isset</a> | <a href='rendezvous_check.html'>rendezvous_check</a> | <a href='rendezvous_exists.html'>rendezvous_exists</a> | <a href='share_exists.html'>share_exists</a>){0,*} </b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;if&gt;
-     &lt;and&gt;
-         &lt;neq op1="value1" op2="${test.value}"/&gt;
-         &lt;eq op1="value2" op2="${test.value2}"/&gt;
-     &lt;/and&gt;
-     &lt;then&gt;
-         &lt;log&gt;The previous conditions are true.&lt;/log&gt;
-     &lt;/then&gt;
-     &lt;else&gt;
-         &lt;log&gt;The previous conditions are false.&lt;/log&gt;
-     &lt;/else&gt;
- &lt;/if&gt;
-</pre></dd></body></html>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>And</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.conditionals.And'>And</div>
+<div id='tag_description'>
+Evaluates if all of the underlying sub conditional tags 
+               have a conditional evaluation of true.</div>
+<div class='tag_children_label'>Children Tags</div><div class='tag_children'>(<a href='isalertpresent.html'>isalertpresent</a> | <a href='ischecked.html'>ischecked</a> | <a href='isconfirmationpresent.html'>isconfirmationpresent</a> | <a href='iseditable.html'>iseditable</a> | <a href='iselementpresent.html'>iselementpresent</a> | <a href='isordered.html'>isordered</a> | <a href='ispromptpresent.html'>ispromptpresent</a> | <a href='issomethingselected.html'>issomethingselected</a> | <a href='istextpresent.html'>istextpresent</a> | <a href='isvisiblefalse.html'>isvisiblefalse</a> | <a href='true.html'>true</a> | <a href='not.html'>not</a> | <a href='and.html'>and</a> | <a href='eq.html'>eq</a> | <a href='gt.html'>gt</a> | <a href='lt.html'>lt</a> | <a href='neq.html'>neq</a> | <a href='or.html'>or</a> | <a href='within.html'>within</a> | <a href='similar.html'>similar</a> | <a href='match.html'>match</a> | <a href='isset.html'>isset</a> | <a href='rendezvous_check.html'>rendezvous_check</a> | <a href='rendezvous_exists.html'>rendezvous_exists</a> | <a href='share_exists.html'>share_exists</a>){0,*} </div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">if</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">and</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">neq</span> <span class="xmlverb-attr-name">op1</span>="<span class="xmlverb-attr-content">value1</span>" <span class="xmlverb-attr-name">op2</span>="<span class="xmlverb-attr-content">${test.value}</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">eq</span> <span class="xmlverb-attr-name">op1</span>="<span class="xmlverb-attr-content">value2</span>" <span class="xmlverb-attr-name">op2</span>="<span class="xmlverb-attr-content">${test.value2}</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">and</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">then</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">The&nbsp;previous&nbsp;conditions&nbsp;are&nbsp;true.</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">then</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">else</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">The&nbsp;previous&nbsp;conditions&nbsp;are&nbsp;false.</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">else</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">if</span>&gt;</div>
+</div></div></div></div></body></html>

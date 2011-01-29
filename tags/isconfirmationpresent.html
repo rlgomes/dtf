@@ -1,14 +1,27 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Isconfirmationpresent</h1></dt><p align='justify'><p>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Isconfirmationpresent</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.selenium.conditionals.Isconfirmationpresent'>Isconfirmationpresent</div>
+<div id='tag_description'>
+<p>
                Has confirm() been called?
-               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://somewhere.com"&gt;
-      &lt;chooseOkOnNextConfirmation/&gt;
-      &lt;runScript script="window.confirm('Are you sure?')"/&gt;
-      &lt;assert&gt;
-        &lt;isConfirmationPresent/&gt;
-    &lt;/assert&gt;
-      &lt;getConfirmation property="confirm.msg"/&gt;
-      &lt;assert&gt;
-        &lt;eq op1="${confirm.msg}" op2="Are you sure?"/&gt;
-    &lt;/assert&gt;
-  &lt;/selenium&gt;
-</pre></dd></body></html>
+               </p></div>
+<div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">selenium</span> <span class="xmlverb-attr-name">baseurl</span>="<span class="xmlverb-attr-content">http://somewhere.com</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">chooseOkOnNextConfirmation</span> /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">runScript</span> <span class="xmlverb-attr-name">script</span>="<span class="xmlverb-attr-content">window.confirm('Are you sure?')</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">assert</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">isConfirmationPresent</span> /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">assert</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">getConfirmation</span> <span class="xmlverb-attr-name">property</span>="<span class="xmlverb-attr-content">confirm.msg</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">assert</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">eq</span> <span class="xmlverb-attr-name">op1</span>="<span class="xmlverb-attr-content">${confirm.msg}</span>" <span class="xmlverb-attr-name">op2</span>="<span class="xmlverb-attr-content">Are you sure?</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">assert</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">selenium</span>&gt;</div>
+</div></div></div></div></body></html>

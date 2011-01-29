@@ -1,4 +1,14 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Attrib</h1></dt><p align='justify'>This tag is used for defining attributes that a lockcomponent 
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Attrib</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.component.Attrib'>Attrib</div>
+<div id='tag_description'>
+This tag is used for defining attributes that a lockcomponent 
                should search for when trying to match the right type of 
                component. The attrib name and value are matched with 
                properties set on the DTFA command line. The properties which
@@ -6,10 +16,13 @@
                context but only if they start with a non dtf.xxx prefix. For 
                more information on this subject have a look at the DTF User's 
                Guide which explains the usage of default properties on agents
-               and locking those agents based on those same properties.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;local&gt;
-     &lt;echo&gt;Remote counter retrieval&lt;/echo&gt;
-     &lt;lockcomponent id="DTFA1"&gt;
-          &lt;attrib name="type" value="DTFA"/&gt;
-     &lt;/lockcomponent&gt;
- &lt;/local&gt;
-</pre></dd></body></html>
+               and locking those agents based on those same properties.</div>
+<div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">local</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">echo</span>&gt;<span class="xmlverb-text">Remote&nbsp;counter&nbsp;retrieval</span>&lt;/<span class="xmlverb-element-name">echo</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">lockcomponent</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">DTFA1</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">attrib</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">type</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">DTFA</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">lockcomponent</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">local</span>&gt;</div>
+</div></div></div></div></body></html>

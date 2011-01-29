@@ -1,4 +1,13 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Loading Default Properties</h1></dt><p align='justify'><p>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Loading Default Properties</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div class='feature_title' title='com.yahoo.dtf.DTFNode'>Loading Default Properties</div>
+<div class='feature_description'><p>
  Because sometimes agent command lines can get pretty long including the 
  tunneling properties, agent specific attributes and other settings and 
  writing that out every time on the command line can be bothersome, there 
@@ -13,12 +22,16 @@
  property you can then use the lockcomponent tag like so:
  </p> 
  
- <pre>&lt;lockcomponent id="AGENT${agent}"&gt;
-     &lt;attrib name="client.type" value="xxx"/&gt;
- &lt;/lockcomponent&gt;
-</pre>
+ <div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">lockcomponent</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">AGENT${agent}</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">attrib</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">client.type</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">xxx</span>" /&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">lockcomponent</span>&gt;</div>
+</div>
  
+ <p> 
  And you know you'd be locking the component who had that property and 
  not any other one. This is useful for the user of the framework to setup 
  agents with properties that define location, build and even APIs available 
- from that agent for executing tests.</p></body></html>
+ from that agent for executing tests.
+ </p></div></body></html>

@@ -1,4 +1,14 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Http_server</h1></dt><p align='justify'>This tag will startup an HTTP server and bind it to the 
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Http_server</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.http.server.Http_server'>Http_server</div>
+<div id='tag_description'>
+This tag will startup an HTTP server and bind it to the 
                host and port you specify. It will then create HTTP listeners
                for the path and methods you specify and allow you to receive
                each of the requests and do something with it. Now currently 
@@ -22,25 +32,32 @@
                   This attribute contains the exact path that was hit with 
                   your HTTP request.
                   </dd>
-               </dl></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/><a href='http_listener.html'>http_listener</a></b><br/><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;http_server port="8080"&gt;
-     &lt;http_listener method="PUT" path="/oddtest"&gt;
-          &lt;mod op1="${http.put.headers.number}" op2="2" result="result"/&gt;
-          &lt;if&gt;
-              &lt;eq op1="${result}" op2="0"/&gt;
-              &lt;then&gt;
-                  &lt;http_response message="${http.put.headers.number} is even" status="200"/&gt;
-              &lt;/then&gt; 
-              &lt;else&gt;
-                  &lt;http_response message="${http.put.headers.number} is odd" status="200"/&gt;
-              &lt;/else&gt;
-         &lt;/if&gt;
-     &lt;/http_listener&gt;
- &lt;/http_server&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;http_server port="8082"&gt;
-      &lt;http_listener method="PUT" path="/echo-data"&gt;
-           &lt;log&gt;received [${http.put.body}] in the HTTP body&lt;/log&gt;
-           &lt;log&gt;received headers [${http.headers}]&lt;/log&gt;
-      &lt;/http_listener&gt;
- &lt;/http_server&gt;
-</pre></dd><br/><dd><b>Example #3</b></dd><dd><pre>&lt;http_server command="stop" port="8082"/&gt;
-</pre></dd></body></html>
+               </dl></div>
+<div class='tag_children_label'>Children Tags</div><div class='tag_children'><a href='http_listener.html'>http_listener</a></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">http_server</span> <span class="xmlverb-attr-name">port</span>="<span class="xmlverb-attr-content">8080</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">http_listener</span> <span class="xmlverb-attr-name">method</span>="<span class="xmlverb-attr-content">PUT</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">/oddtest</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">mod</span> <span class="xmlverb-attr-name">op1</span>="<span class="xmlverb-attr-content">${http.put.headers.number}</span>" <span class="xmlverb-attr-name">op2</span>="<span class="xmlverb-attr-content">2</span>" <span class="xmlverb-attr-name">result</span>="<span class="xmlverb-attr-content">result</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">if</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">eq</span> <span class="xmlverb-attr-name">op1</span>="<span class="xmlverb-attr-content">${result}</span>" <span class="xmlverb-attr-name">op2</span>="<span class="xmlverb-attr-content">0</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">then</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">http_response</span> <span class="xmlverb-attr-name">message</span>="<span class="xmlverb-attr-content">${http.put.headers.number} is even</span>" <span class="xmlverb-attr-name">status</span>="<span class="xmlverb-attr-content">200</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">then</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">else</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">http_response</span> <span class="xmlverb-attr-name">message</span>="<span class="xmlverb-attr-content">${http.put.headers.number} is odd</span>" <span class="xmlverb-attr-name">status</span>="<span class="xmlverb-attr-content">200</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">else</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">if</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">http_listener</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">http_server</span>&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">http_server</span> <span class="xmlverb-attr-name">port</span>="<span class="xmlverb-attr-content">8082</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">http_listener</span> <span class="xmlverb-attr-name">method</span>="<span class="xmlverb-attr-content">PUT</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">/echo-data</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">received&nbsp;[${http.put.body}]&nbsp;in&nbsp;the&nbsp;HTTP&nbsp;body</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">received&nbsp;headers&nbsp;[${http.headers}]</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">http_listener</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">http_server</span>&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #3</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">http_server</span> <span class="xmlverb-attr-name">command</span>="<span class="xmlverb-attr-content">stop</span>" <span class="xmlverb-attr-name">port</span>="<span class="xmlverb-attr-content">8082</span>" /&gt;</div>
+</div></div></div></div></body></html>

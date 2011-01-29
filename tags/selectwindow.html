@@ -1,10 +1,23 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Selectwindow</h1></dt><p align='justify'><p>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Selectwindow</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.selenium.commands.base.Selectwindow'>Selectwindow</div>
+<div id='tag_description'>
+<p>
                Changes the current Selenium session focus to the window 
                identified by the windowID attribute which will then receive
                the following executing commands.
-               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://www.google.com"&gt;
-      &lt;openWindow url="/finance" windowID="test"/&gt;
-      &lt;selectWindow windowID="test"/&gt;
-      &lt;waitForPageToLoad timeout="30000"/&gt;
-  &lt;/selenium&gt;
-</pre></dd></body></html>
+               </p></div>
+<div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">selenium</span> <span class="xmlverb-attr-name">baseurl</span>="<span class="xmlverb-attr-content">http://www.google.com</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">openWindow</span> <span class="xmlverb-attr-name">url</span>="<span class="xmlverb-attr-content">/finance</span>" <span class="xmlverb-attr-name">windowID</span>="<span class="xmlverb-attr-content">test</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">selectWindow</span> <span class="xmlverb-attr-name">windowID</span>="<span class="xmlverb-attr-content">test</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">waitForPageToLoad</span> <span class="xmlverb-attr-name">timeout</span>="<span class="xmlverb-attr-content">30000</span>" /&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">selenium</span>&gt;</div>
+</div></div></div></div></body></html>

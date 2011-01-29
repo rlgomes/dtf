@@ -1,21 +1,36 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Filter</h1></dt><p align='justify'>This tag is used to filter elements from an existing event 
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Filter</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.event.Filter'>Filter</div>
+<div id='tag_description'>
+This tag is used to filter elements from an existing event 
                file. You need to specify the srcuri and dsturi then with the
                select child tag you can specify which fields from the events
                to actually filter along and with the where child tag you can
                specify the exact conditions that have to be matched in order 
-               for the event to make the filter and be written to the dsturi.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/><a href='select.html'>select</a> . <a href='where.html'>where</a></b><br/><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>srcuri</b></td><td><p align='justify'>The source URI to read the events from.</p></td></tr><tr valign='top'><td width='100px'><b>dsturi</b></td><td><p align='justify'>The destination URI to write the events that have matched
-                the where clause specified.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;filter dsturi="storage://OUTPUT/filtered.txt" event="write.event" srcuri="storage://OUTPUT/unfiltered.txt"&gt;
-     &lt;select&gt;
-         &lt;field name="recordid"/&gt;
-         &lt;field name="hash"/&gt;
-     &lt;/select&gt;
-     &lt;where&gt;
-         &lt;gt op1="5" op2="recordid"/&gt;
-     &lt;/where&gt;
- &lt;/filter&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;filter dsturi="storage://OUTPUT/filtered.txt" event="write.event" srcuri="storage://OUTPUT/unfiltered.txt"&gt;
-     &lt;where&gt;
-         &lt;eq op1="123415123" op2="publish_date"/&gt;
-     &lt;/where&gt;
- &lt;/filter&gt;
-</pre></dd></body></html>
+               for the event to make the filter and be written to the dsturi.</div>
+<div class='tag_children_label'>Children Tags</div><div class='tag_children'><a href='select.html'>select</a> . <a href='where.html'>where</a></div><div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>srcuri</div><div class='attribute_desc'>The source URI to read the events from.</div></div><div class='attribute'><div class='attribute_name'>dsturi</div><div class='attribute_desc'>The destination URI to write the events that have matched
+                the where clause specified.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">filter</span> <span class="xmlverb-attr-name">dsturi</span>="<span class="xmlverb-attr-content">storage://OUTPUT/filtered.txt</span>" <span class="xmlverb-attr-name">event</span>="<span class="xmlverb-attr-content">write.event</span>" <span class="xmlverb-attr-name">srcuri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/unfiltered.txt</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">select</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">field</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">recordid</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">field</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">hash</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">select</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">where</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">gt</span> <span class="xmlverb-attr-name">op1</span>="<span class="xmlverb-attr-content">5</span>" <span class="xmlverb-attr-name">op2</span>="<span class="xmlverb-attr-content">recordid</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">where</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">filter</span>&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">filter</span> <span class="xmlverb-attr-name">dsturi</span>="<span class="xmlverb-attr-content">storage://OUTPUT/filtered.txt</span>" <span class="xmlverb-attr-name">event</span>="<span class="xmlverb-attr-content">write.event</span>" <span class="xmlverb-attr-name">srcuri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/unfiltered.txt</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">where</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">eq</span> <span class="xmlverb-attr-name">op1</span>="<span class="xmlverb-attr-content">123415123</span>" <span class="xmlverb-attr-name">op2</span>="<span class="xmlverb-attr-content">publish_date</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">where</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">filter</span>&gt;</div>
+</div></div></div></div></body></html>

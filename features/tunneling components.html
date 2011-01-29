@@ -1,4 +1,13 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Tunneling Components</h1></dt><p align='justify'><p> 
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Tunneling Components</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div class='feature_title' title='com.yahoo.dtf.comm.RMITunnelSF'>Tunneling Components</div>
+<div class='feature_description'><p> 
  Sometimes there are setups where communication over the normal DTF ports will 
  not be possible  because there are firewalls between two points you're trying
  to connect the various components of DTF. These situations are common and 
@@ -29,7 +38,7 @@
        you'll also have a local ssh tunnel on port 30000 to port 30000 of the i
        machine B over the ssh tunnel. So now you can start your DTFA on 
        machine B like so: 
-       <pre>./ant.sh run_dtfa -Ddtf.tunneled=true -Ddtf.listen.port=30000 <pre>
+       <pre>./ant.sh run_dtfa -Ddtf.tunneled=true -Ddtf.listen.port=30000</pre>
        (remember to match the port with the right port you assigned during the
        creation of the tunnel on the DTFC as well as to have the dtf.tunneled 
        flag set to true otherwise the Agent will not connect tot he DTFC)
@@ -54,4 +63,4 @@
        tunnel.conf file to redirect traffic through a TCPReflector like tool 
        and be able to debug the data being sent.
   </li>
- </ol></p></body></html>
+ </ol></div></body></html>

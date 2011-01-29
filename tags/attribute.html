@@ -1,11 +1,24 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Attribute</h1></dt><p align='justify'>Attribute tag identifies attributes that are recorded by the 
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Attribute</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.event.Attribute'>Attribute</div>
+<div id='tag_description'>
+Attribute tag identifies attributes that are recorded by the 
                event tag. Attributes have at least a name and value and can 
                also carry information about the type of the attribute and its
-               length.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>index</b></td><td><p align='justify'>Identifies if this attribute is indexable or not.</p></td></tr><tr valign='top'><td width='100px'><b>length</b></td><td><p align='justify'>The length of this property is used by the by recorders 
+               length.</div>
+<div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>name</div><div class='attribute_desc'>name of the property to define.</div></div><div class='attribute'><div class='attribute_name'>value</div><div class='attribute_desc'>value to give the property defined.</div></div></div><div id='optional_attributes_label'>Optional Attributes</div><div id='optional_attributes'><div class='attribute'><div class='attribute_name'>index</div><div class='attribute_desc'>Identifies if this attribute is indexable or not.</div></div><div class='attribute'><div class='attribute_name'>length</div><div class='attribute_desc'>The length of this property is used by the by recorders 
                 and only has real significance for the database recorder 
                 that needs to specify the column length when creating the 
-                schema for recording events.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>name</b></td><td><p align='justify'>name of the property to define.</p></td></tr><tr valign='top'><td width='100px'><b>value</b></td><td><p align='justify'>value to give the property defined.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;event name="logevent"&gt;
-     &lt;attribute name="iteration" value="${iter}"/&gt;
-     &lt;log&gt;xxxx&lt;/log&gt;
- &lt;/event&gt;
-</pre></dd></body></html>
+                schema for recording events.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">event</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">logevent</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">attribute</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">iteration</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">${iter}</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">xxxx</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">event</span>&gt;</div>
+</div></div></div></div></body></html>

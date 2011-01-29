@@ -1,4 +1,14 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Rendezvous_create</h1></dt><p align='justify'>create a rendezvous point for a number of parties to 
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Rendezvous_create</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.rendezvous.Rendezvous_create'>Rendezvous_create</div>
+<div id='tag_description'>
+create a rendezvous point for a number of parties to 
                synchronize their execution at. Rendezvous points are used to
                synchronize behavior between multiple threads. They allow for
                a pretty straightforward manner of being able to say that a 
@@ -11,7 +21,12 @@
                them from. So the rendezvous point is local to the component 
                where it was created but it is remote and therefore works in 
                a distributed way when accessed from a different component
-               (runner or agent).</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>id</b></td><td><p align='justify'>the unique identifier used to reference this particular
-                rendezvous point within a DTF testcase.</p></td></tr><tr valign='top'><td width='100px'><b>parties</b></td><td><p align='justify'>the number of visiting parties to this rendezvous point.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;rendezvous_create id="myrendezvous1" parties="3"/&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;rendezvous_create id="myrendezvous2" parties="50"/&gt;
-</pre></dd></body></html>
+               (runner or agent).</div>
+<div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>id</div><div class='attribute_desc'>the unique identifier used to reference this particular
+                rendezvous point within a DTF testcase.</div></div><div class='attribute'><div class='attribute_name'>parties</div><div class='attribute_desc'>the number of visiting parties to this rendezvous point.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">rendezvous_create</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">myrendezvous1</span>" <span class="xmlverb-attr-name">parties</span>="<span class="xmlverb-attr-content">3</span>" /&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">rendezvous_create</span> <span class="xmlverb-attr-name">id</span>="<span class="xmlverb-attr-content">myrendezvous2</span>" <span class="xmlverb-attr-name">parties</span>="<span class="xmlverb-attr-content">50</span>" /&gt;</div>
+</div></div></div></div></body></html>

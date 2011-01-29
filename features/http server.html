@@ -1,4 +1,13 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>HTTP Server</h1></dt><p align='justify'><p>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>HTTP Server</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div class='feature_title' title='com.yahoo.dtf.actions.http.server.DTFHttpHandler'>HTTP Server</div>
+<div class='feature_description'><p>
  Within DTF it is possible to start your own HTTP server that will respond 
  to any type of HTTP method and be able to construct an HTTP response to your
  required needs. You'll find that you have to be a bit careful when starting
@@ -8,23 +17,24 @@
  when using the http_server tag can be seen in the following lines:
  </p>
  
- <pre>&lt;parallel&gt;    
-     &lt;http_server port="28080"&gt;
-         &lt;http_listener method="PUT" path="/testpath"/&gt;
-     &lt;/http_server&gt;
-        
-     &lt;try&gt;
-         &lt;log&gt;Do something...&lt;/log&gt;
-         &lt;finally&gt;
-             &lt;http_server command="stop" port="28080"/&gt;
-         &lt;/finally&gt;
-     &lt;/try&gt;
- &lt;/parallel&gt;
-</pre>
+ <div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">parallel</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">http_server</span> <span class="xmlverb-attr-name">port</span>="<span class="xmlverb-attr-content">28080</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">http_listener</span> <span class="xmlverb-attr-name">method</span>="<span class="xmlverb-attr-content">PUT</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">/testpath</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">http_server</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">try</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">Do&nbsp;something...</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">finally</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">http_server</span> <span class="xmlverb-attr-name">command</span>="<span class="xmlverb-attr-content">stop</span>" <span class="xmlverb-attr-name">port</span>="<span class="xmlverb-attr-content">28080</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">finally</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">try</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">parallel</span>&gt;</div>
+</div>
  
  <p>
  The previous template works well because after staring the HTTP server we're 
  very careful to protect the stop command within a try/finally statement
  that guarantees we'll always stop the server before proceeding from whatever 
  client activity we have tried to execute.
- </p></p></body></html>
+ </p></div></body></html>

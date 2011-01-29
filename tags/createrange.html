@@ -1,11 +1,28 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Createrange</h1></dt><p align='justify'>Creates a property that will iterate through range expression
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Createrange</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.range.Createrange'>Createrange</div>
+<div id='tag_description'>
+Creates a property that will iterate through range expression
                on every subsequent call to resolve this property. This model 
                allows for you to iterate through range expressions without a 
                loop and introduces the ability to do so randomly using the 
-               random() function of range expressions.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>recycle</b></td><td><p align='justify'>Defines if we want the range expression to reset upon 
-                hitting the last element in the range.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>name</b></td><td><p align='justify'>The name of the property that will be used when 
-                referencing this newly created range expression.</p></td></tr><tr valign='top'><td width='100px'><b>value</b></td><td><p align='justify'>The value is a Range expression and the syntax for these
-                expressions is the following:</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;createrange name="range1" recycle="false" value="1..100000"/&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;createrange name="range2" value="a,b,c,d,e"/&gt;
-</pre></dd><br/><dd><b>Example #3</b></dd><dd><pre>&lt;createrange name="range3" value="[a,b,c,d,e][0..3]"/&gt;
-</pre></dd></body></html>
+               random() function of range expressions.</div>
+<div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>name</div><div class='attribute_desc'>The name of the property that will be used when 
+                referencing this newly created range expression.</div></div><div class='attribute'><div class='attribute_name'>value</div><div class='attribute_desc'>The value is a Range expression and the syntax for these
+                expressions is the following:</div></div></div><div id='optional_attributes_label'>Optional Attributes</div><div id='optional_attributes'><div class='attribute'><div class='attribute_name'>recycle</div><div class='attribute_desc'>Defines if we want the range expression to reset upon 
+                hitting the last element in the range.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">createrange</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">range1</span>" <span class="xmlverb-attr-name">recycle</span>="<span class="xmlverb-attr-content">false</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">1..100000</span>" /&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">createrange</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">range2</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">a,b,c,d,e</span>" /&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #3</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">createrange</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">range3</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">[a,b,c,d,e][0..3]</span>" /&gt;</div>
+</div></div></div></div></body></html>

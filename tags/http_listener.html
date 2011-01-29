@@ -1,4 +1,14 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Http_listener</h1></dt><p align='justify'>This tag is used to setup an HTTP listener for the HTTP server
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Http_listener</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.http.server.Http_listener'>Http_listener</div>
+<div id='tag_description'>
+This tag is used to setup an HTTP listener for the HTTP server
                created with the http_server tag. Without this the HTTP server
                will not respond to any requests. When using this tag you can
                easily identify how to handle each type of request and even 
@@ -16,25 +26,32 @@
                See all other HTTP tags for event information: 
                <a href='../tags/http_put.html'>Http_put</a>,<a href='../tags/http_get.html'>Http_get</a>,<a href='../tags/http_head.html'>Http_head</a>,
                <a href='../tags/http_post.html'>Http_post</a>,<a href='../tags/http_delete.html'>Http_delete</a>,
-               <a href='../tags/http_request.html'>Http_request</a>,etc.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/>(<a href='getfile.html'>getfile</a> | <a href='stopcomponent.html'>stopcomponent</a> | <a href='callproperty.html'>callproperty</a> | <a href='createrange.html'>createrange</a> | <a href='unset.html'>unset</a> | <a href='sleep.html'>sleep</a> | <a href='echo.html'>echo</a> | <a href='fail.html'>fail</a> | <a href='break.html'>break</a> | <a href='log.html'>log</a> | <a href='cat.html'>cat</a> | <a href='monitor_create.html'>monitor_create</a> | <a href='monitor_destroy.html'>monitor_destroy</a> | <a href='monitor_grep.html'>monitor_grep</a> | <a href='monitor_diff.html'>monitor_diff</a> | <a href='event.html'>event</a> | <a href='attribute.html'>attribute</a> | <a href='http_get.html'>http_get</a> | <a href='http_post.html'>http_post</a> | <a href='http_put.html'>http_put</a> | <a href='http_head.html'>http_head</a> | <a href='http_delete.html'>http_delete</a> | <a href='http_request.html'>http_request</a> | <a href='http_server.html'>http_server</a> | <a href='http_response.html'>http_response</a> | <a href='urlencode.html'>urlencode</a> | <a href='replace.html'>replace</a> | <a href='add.html'>add</a> | <a href='mod.html'>mod</a> | <a href='abs.html'>abs</a> | <a href='subtract.html'>subtract</a> | <a href='multiply.html'>multiply</a> | <a href='divide.html'>divide</a> | <a href='share_create.html'>share_create</a> | <a href='share_destroy.html'>share_destroy</a> | <a href='share_get.html'>share_get</a> | <a href='share_set.html'>share_set</a> | <a href='share_wait.html'>share_wait</a> | <a href='rendezvous_create.html'>rendezvous_create</a> | <a href='rendezvous_destroy.html'>rendezvous_destroy</a> | <a href='rendezvous_check.html'>rendezvous_check</a> | <a href='rendezvous_visit.html'>rendezvous_visit</a> | <a href='rendezvous_reset.html'>rendezvous_reset</a> | <a href='printf.html'>printf</a> | <a href='scanf.html'>scanf</a> | <a href='sequence.html'>sequence</a> | <a href='parallel.html'>parallel</a> | <a href='for.html'>for</a> | <a href='parallelloop.html'>parallelloop</a> | <a href='while.html'>while</a> | <a href='timer.html'>timer</a> | <a href='distribute.html'>distribute</a> | <a href='choices.html'>choices</a> | <a href='switch.html'>switch</a> | <a href='if.html'>if</a> | <a href='try.html'>try</a> | <a href='assert.html'>assert</a>) {0,*} </b><br/><br/><br/><dt><b>Events</b></dt><dd><table border=1><CAPTION><b>http.[methodname]</b> Event</CAPTION><tr valign='top'><td width='120px'><b>headerin</b></td><td><p align='justify'><p align='justify'>A comma separated list of the header names that were 
+               <a href='../tags/http_request.html'>Http_request</a>,etc.</div>
+<div class='tag_children_label'>Children Tags</div><div class='tag_children'>(<a href='getfile.html'>getfile</a> | <a href='stopcomponent.html'>stopcomponent</a> | <a href='callproperty.html'>callproperty</a> | <a href='createrange.html'>createrange</a> | <a href='unset.html'>unset</a> | <a href='sleep.html'>sleep</a> | <a href='echo.html'>echo</a> | <a href='fail.html'>fail</a> | <a href='break.html'>break</a> | <a href='log.html'>log</a> | <a href='cat.html'>cat</a> | <a href='monitor_create.html'>monitor_create</a> | <a href='monitor_destroy.html'>monitor_destroy</a> | <a href='monitor_grep.html'>monitor_grep</a> | <a href='monitor_diff.html'>monitor_diff</a> | <a href='event.html'>event</a> | <a href='attribute.html'>attribute</a> | <a href='http_get.html'>http_get</a> | <a href='http_post.html'>http_post</a> | <a href='http_put.html'>http_put</a> | <a href='http_head.html'>http_head</a> | <a href='http_delete.html'>http_delete</a> | <a href='http_request.html'>http_request</a> | <a href='http_server.html'>http_server</a> | <a href='http_response.html'>http_response</a> | <a href='urlencode.html'>urlencode</a> | <a href='replace.html'>replace</a> | <a href='add.html'>add</a> | <a href='mod.html'>mod</a> | <a href='abs.html'>abs</a> | <a href='subtract.html'>subtract</a> | <a href='multiply.html'>multiply</a> | <a href='divide.html'>divide</a> | <a href='share_create.html'>share_create</a> | <a href='share_destroy.html'>share_destroy</a> | <a href='share_get.html'>share_get</a> | <a href='share_set.html'>share_set</a> | <a href='share_wait.html'>share_wait</a> | <a href='rendezvous_create.html'>rendezvous_create</a> | <a href='rendezvous_destroy.html'>rendezvous_destroy</a> | <a href='rendezvous_check.html'>rendezvous_check</a> | <a href='rendezvous_visit.html'>rendezvous_visit</a> | <a href='rendezvous_reset.html'>rendezvous_reset</a> | <a href='printf.html'>printf</a> | <a href='scanf.html'>scanf</a> | <a href='sequence.html'>sequence</a> | <a href='parallel.html'>parallel</a> | <a href='for.html'>for</a> | <a href='parallelloop.html'>parallelloop</a> | <a href='while.html'>while</a> | <a href='timer.html'>timer</a> | <a href='distribute.html'>distribute</a> | <a href='choices.html'>choices</a> | <a href='switch.html'>switch</a> | <a href='if.html'>if</a> | <a href='try.html'>try</a> | <a href='assert.html'>assert</a>) {0,*} </div><div class='tag_events_label'>Events</div><div class='tag_events'><div class='tag_event'><div class='tag_event_name'>http.[methodname] Event</div><div class='tag_event_attribute'><div class='tag_event_attribute_name'>headerin</div><div class='tag_event_attribute_value'>A comma separated list of the header names that were 
                       sent with the current HTTP request. You can then use 
                       these names to reference the 
-                      ${http.[method_name].headerin.[headername]} properties.</p></p></td></tr></dd></table><br/><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>path</b></td><td><p align='justify'>The URl path that will lead to this listener being called.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;http_server port="8082"&gt;
-      &lt;http_listener method="PUT" path="/echo-data"&gt;
-           &lt;log&gt;received [${http.put.body}] in the HTTP body&lt;/log&gt;
-           &lt;log&gt;received headers [${http.headerin}]&lt;/log&gt;
-      &lt;/http_listener&gt;
- &lt;/http_server&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;http_server port="8083"&gt;
-      &lt;http_listener method="PUT" path="/write"&gt;
-           &lt;log&gt;received a write operation&lt;/log&gt;
-      &lt;/http_listener&gt;
-      &lt;http_listener method="GET" path="/read"&gt;
-           &lt;log&gt;received a read operation&lt;/log&gt;
-      &lt;/http_listener&gt;
- &lt;/http_server&gt;
-</pre></dd><br/><dd><b>Example #3</b></dd><dd><pre>&lt;http_server port="8080"&gt;
-      &lt;http_listener method="*" path="*"&gt;
-      &lt;/http_listener&gt;
- &lt;/http_server&gt;
-</pre></dd></body></html>
+                      ${http.[method_name].headerin.[headername]} properties.</div></div></div></div><div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>path</div><div class='attribute_desc'>The URl path that will lead to this listener being called.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">http_server</span> <span class="xmlverb-attr-name">port</span>="<span class="xmlverb-attr-content">8082</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">http_listener</span> <span class="xmlverb-attr-name">method</span>="<span class="xmlverb-attr-content">PUT</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">/echo-data</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">received&nbsp;[${http.put.body}]&nbsp;in&nbsp;the&nbsp;HTTP&nbsp;body</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">received&nbsp;headers&nbsp;[${http.headerin}]</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">http_listener</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">http_server</span>&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">http_server</span> <span class="xmlverb-attr-name">port</span>="<span class="xmlverb-attr-content">8083</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">http_listener</span> <span class="xmlverb-attr-name">method</span>="<span class="xmlverb-attr-content">PUT</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">/write</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">received&nbsp;a&nbsp;write&nbsp;operation</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">http_listener</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">http_listener</span> <span class="xmlverb-attr-name">method</span>="<span class="xmlverb-attr-content">GET</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">/read</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">received&nbsp;a&nbsp;read&nbsp;operation</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">http_listener</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">http_server</span>&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #3</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">http_server</span> <span class="xmlverb-attr-name">port</span>="<span class="xmlverb-attr-content">8080</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">http_listener</span> <span class="xmlverb-attr-name">method</span>="<span class="xmlverb-attr-content">*</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">*</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">http_listener</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">http_server</span>&gt;</div>
+</div></div></div></div></body></html>

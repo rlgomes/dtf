@@ -1,8 +1,21 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Getselectedids</h1></dt><p align='justify'><p>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Getselectedids</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.selenium.commands.state.Getselectedids'>Getselectedids</div>
+<div id='tag_description'>
+<p>
                Gets all option element IDs for selected options in the 
                specified select or multi-select element.
-               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>selectLocator</b></td><td><p align='justify'>an <a href='../features/element locator.html'>Element Locator</a> identifying a drop-down menu</p></td></tr><tr valign='top'><td width='100px'><b>property</b></td><td><p align='justify'>the name of the property to save the value to.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://someplace.com"&gt;
-      &lt;open url="/"/&gt;
-      &lt;getSelectedIds property="ids" selectLocator="id=multi-select"/&gt;
-  &lt;/selenium&gt;
-</pre></dd></body></html>
+               </p></div>
+<div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>selectLocator</div><div class='attribute_desc'>an <a href='../features/element locator.html'>Element Locator</a> identifying a drop-down menu</div></div><div class='attribute'><div class='attribute_name'>property</div><div class='attribute_desc'>the name of the property to save the value to.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">selenium</span> <span class="xmlverb-attr-name">baseurl</span>="<span class="xmlverb-attr-content">http://someplace.com</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">open</span> <span class="xmlverb-attr-name">url</span>="<span class="xmlverb-attr-content">/</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">getSelectedIds</span> <span class="xmlverb-attr-name">property</span>="<span class="xmlverb-attr-content">ids</span>" <span class="xmlverb-attr-name">selectLocator</span>="<span class="xmlverb-attr-content">id=multi-select</span>" /&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">selenium</span>&gt;</div>
+</div></div></div></div></body></html>

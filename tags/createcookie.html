@@ -1,13 +1,26 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Createcookie</h1></dt><p align='justify'><p>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Createcookie</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.selenium.commands.cookie.Createcookie'>Createcookie</div>
+<div id='tag_description'>
+<p>
                The create cookie command allows you to add new cookies to your
                Selenium session.
-               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>nameValuePair</b></td><td><p align='justify'>the name,value pair in the format 'name=value'</p></td></tr><tr valign='top'><td width='100px'><b>optionsString</b></td><td><p align='justify'>options for the cookie. Currently supported options 
+               </p></div>
+<div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>nameValuePair</div><div class='attribute_desc'>the name,value pair in the format 'name=value'</div></div><div class='attribute'><div class='attribute_name'>optionsString</div><div class='attribute_desc'>options for the cookie. Currently supported options 
                 include 'path' and 'max_age'. the optionsString's format
                 is "path=/path/, max_age=60". The order of options are 
-                irrelevant, the unit of the value of 'max_age' is second.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://www.yahoo.com" browser="*firefox"&gt;
-      &lt;open url="/"/&gt;
-      &lt;waitForPageToLoad timeout="30000"/&gt;
-      &lt;createCookie nameValuePair="C=D" optionsString="path=/"/&gt;
-      &lt;deleteCookie name="C=D" path="/"/&gt;
-  &lt;/selenium&gt;
-</pre></dd></body></html>
+                irrelevant, the unit of the value of 'max_age' is second.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">selenium</span> <span class="xmlverb-attr-name">baseurl</span>="<span class="xmlverb-attr-content">http://www.yahoo.com</span>" <span class="xmlverb-attr-name">browser</span>="<span class="xmlverb-attr-content">*firefox</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">open</span> <span class="xmlverb-attr-name">url</span>="<span class="xmlverb-attr-content">/</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">waitForPageToLoad</span> <span class="xmlverb-attr-name">timeout</span>="<span class="xmlverb-attr-content">30000</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">createCookie</span> <span class="xmlverb-attr-name">nameValuePair</span>="<span class="xmlverb-attr-content">C=D</span>" <span class="xmlverb-attr-name">optionsString</span>="<span class="xmlverb-attr-content">path=/</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">deleteCookie</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">C=D</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">/</span>" /&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">selenium</span>&gt;</div>
+</div></div></div></div></body></html>

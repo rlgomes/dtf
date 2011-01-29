@@ -1,4 +1,13 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>XPath Transformer</h1></dt><p align='justify'><p>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>XPath Transformer</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div class='feature_title' title='com.yahoo.dtf.config.transform.XPathTransformer'>XPath Transformer</div>
+<div class='feature_description'><p>
  We've already seen that properties can be identified by using the following 
  syntax ${propertyname}. Now this is simple and straightforward but sometimes 
  the contents the property may contain more than just plain text and in those 
@@ -13,15 +22,17 @@
  So lets say we have the property myxml that contains the following xml 
  snipplet:
  </p>
- <pre>&lt;list&gt;
-      &lt;item&gt;1&lt;/item&gt;
-      &lt;item&gt;2&lt;/item&gt;
-      &lt;item&gt;3&lt;/item&gt;
-      &lt;item&gt;4&lt;/item&gt;
-      &lt;item&gt;5&lt;/item&gt;
-      &lt;item&gt;6&lt;/item&gt;
-  &lt;/list&gt;
-</pre>
+ <div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">list</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">item</span>&gt;<span class="xmlverb-text">1</span>&lt;/<span class="xmlverb-element-name">item</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">item</span>&gt;<span class="xmlverb-text">2</span>&lt;/<span class="xmlverb-element-name">item</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">item</span>&gt;<span class="xmlverb-text">3</span>&lt;/<span class="xmlverb-element-name">item</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">item</span>&gt;<span class="xmlverb-text">4</span>&lt;/<span class="xmlverb-element-name">item</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">item</span>&gt;<span class="xmlverb-text">5</span>&lt;/<span class="xmlverb-element-name">item</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">item</span>&gt;<span class="xmlverb-text">6</span>&lt;/<span class="xmlverb-element-name">item</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">list</span>&gt;</div>
+</div>
  
  <p>
  Now lets say we wanted to reference the myxml property but we only want the 
@@ -36,4 +47,4 @@
  <p> 
  The Xpath language is a standard and all of the information on this standard 
  can be easily found by searching for XPath examples online. 
- </p></p></body></html>
+ </p></div></body></html>

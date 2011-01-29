@@ -1,4 +1,13 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>XML Configuration File</h1></dt><p align='justify'><p>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>XML Configuration File</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div class='feature_title' title='com.yahoo.dtf.deploy.DeployDTF'>XML Configuration File</div>
+<div class='feature_description'><p>
  The deployment feature is used by identifying a deployment configuration file
  as explained in the <a href='../features/command line usage.html'>Command Line Usage</a> section. This 
  configuration file is written in XML and is quite simple to use. Here is a 
@@ -6,22 +15,24 @@
  configuration file:
  <p>
  
- <pre>&lt;setup xmlns="http://dtf.org/v1"&gt;
-      &lt;dtfc host="${host}" path="dtf/dtfc" user="${user}"&gt;
-          &lt;dtfa host="${host}" path="dtf/dtfa1" user="${user}"&gt;
-              &lt;property name="node.id" value="1"/&gt;
-          &lt;/dtfa&gt;
-          &lt;dtfa host="${host}" path="dtf/dtfa2" user="${user}"&gt;
-              &lt;property name="node.id" value="2"/&gt;
-          &lt;/dtfa&gt;
-          &lt;dtfa host="${host}" path="dtf/dtfa3" user="${user}"&gt;
-              &lt;property name="node.id" value="3"/&gt;
-          &lt;/dtfa&gt;
-          &lt;dtfx host="${host}" logs="tests/ut/output/ut_results.xml" path="dtf/dtfx" test="tests/ut/echo.xml" user="${user}"&gt;
-          &lt;/dtfx&gt;
-      &lt;/dtfc&gt;
-  &lt;/setup&gt;
-</pre>
+ <div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">setup</span><span class="xmlverb-ns-name"> xmlns</span>="<span class="xmlverb-ns-uri">http://dtf.org/v1</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">dtfc</span> <span class="xmlverb-attr-name">host</span>="<span class="xmlverb-attr-content">${host}</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">dtf/dtfc</span>" <span class="xmlverb-attr-name">user</span>="<span class="xmlverb-attr-content">${user}</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">dtfa</span> <span class="xmlverb-attr-name">host</span>="<span class="xmlverb-attr-content">${host}</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">dtf/dtfa1</span>" <span class="xmlverb-attr-name">user</span>="<span class="xmlverb-attr-content">${user}</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">node.id</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">1</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">dtfa</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">dtfa</span> <span class="xmlverb-attr-name">host</span>="<span class="xmlverb-attr-content">${host}</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">dtf/dtfa2</span>" <span class="xmlverb-attr-name">user</span>="<span class="xmlverb-attr-content">${user}</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">node.id</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">2</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">dtfa</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">dtfa</span> <span class="xmlverb-attr-name">host</span>="<span class="xmlverb-attr-content">${host}</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">dtf/dtfa3</span>" <span class="xmlverb-attr-name">user</span>="<span class="xmlverb-attr-content">${user}</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">node.id</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">3</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">dtfa</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">dtfx</span> <span class="xmlverb-attr-name">host</span>="<span class="xmlverb-attr-content">${host}</span>" <span class="xmlverb-attr-name">logs</span>="<span class="xmlverb-attr-content">tests/ut/output/ut_results.xml</span>" <span class="xmlverb-attr-name">path</span>="<span class="xmlverb-attr-content">dtf/dtfx</span>" <span class="xmlverb-attr-name">test</span>="<span class="xmlverb-attr-content">tests/ut/echo.xml</span>" <span class="xmlverb-attr-name">user</span>="<span class="xmlverb-attr-content">${user}</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">dtfx</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">dtfc</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">setup</span>&gt;</div>
+</div>
   
   <p>
   Now from the previous example you can see that the configuration file is 
@@ -50,4 +61,4 @@
   can also use the deploy-status to check the status of the setup and easily
   restart the deployment before running your existing tests against a well 
   known and well defined setup.
-  </p></p></body></html>
+  </p></div></body></html>

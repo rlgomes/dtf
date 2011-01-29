@@ -1,20 +1,35 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Query</h1></dt><p align='justify'>This tag is used to query for results that have been previously 
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Query</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.event.Query'>Query</div>
+<div id='tag_description'>
+This tag is used to query for results that have been previously 
                reordered with the record tag. This tag will create a result 
                set and then to iterate over that result set you must call the
                nextresult tag to make it progress. Not all recorders are 
                query-able though, so you should look at the following list for
-               query-able recorders:</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><b>Children Tags</b><br/><br/><a href='select.html'>select</a> . <a href='where.html'>where</a></b><br/><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>event</b></td><td><p align='justify'>The name of the event to query the underlying cursor on.</p></td></tr></table></dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>uri</b></td><td><p align='justify'>Input URI of the previous recorded events.</p></td></tr><tr valign='top'><td width='100px'><b>cursor</b></td><td><p align='justify'>The name of the cursor that will give us the results to 
-                apply the query constraints on.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;query cursor="obj1" event="test.*" uri="storage://OUTPUT/perf.txt"&gt;
-     &lt;where&gt;
-         &lt;eq field="myfield" value="myvalue"/&gt;
-     &lt;/where&gt;
- &lt;/query&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;query cursor="obj1" event="test.*" uri="storage://OUTPUT/perf.txt"&gt;
-     &lt;where&gt;
-         &lt;and&gt;
-             &lt;eq field="field1" value="somevalue"/&gt;
-             &lt;neq field="field2" value="othervalue"/&gt;
-         &lt;/and&gt;
-     &lt;/where&gt;
- &lt;/query&gt;
-</pre></dd></body></html>
+               query-able recorders:</div>
+<div class='tag_children_label'>Children Tags</div><div class='tag_children'><a href='select.html'>select</a> . <a href='where.html'>where</a></div><div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>uri</div><div class='attribute_desc'>Input URI of the previous recorded events.</div></div><div class='attribute'><div class='attribute_name'>cursor</div><div class='attribute_desc'>The name of the cursor that will give us the results to 
+                apply the query constraints on.</div></div></div><div id='optional_attributes_label'>Optional Attributes</div><div id='optional_attributes'><div class='attribute'><div class='attribute_name'>event</div><div class='attribute_desc'>The name of the event to query the underlying cursor on.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">query</span> <span class="xmlverb-attr-name">cursor</span>="<span class="xmlverb-attr-content">obj1</span>" <span class="xmlverb-attr-name">event</span>="<span class="xmlverb-attr-content">test.*</span>" <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/perf.txt</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">where</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">eq</span> <span class="xmlverb-attr-name">field</span>="<span class="xmlverb-attr-content">myfield</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">myvalue</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">where</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">query</span>&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">query</span> <span class="xmlverb-attr-name">cursor</span>="<span class="xmlverb-attr-content">obj1</span>" <span class="xmlverb-attr-name">event</span>="<span class="xmlverb-attr-content">test.*</span>" <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/perf.txt</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">where</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">and</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">eq</span> <span class="xmlverb-attr-name">field</span>="<span class="xmlverb-attr-content">field1</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">somevalue</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">neq</span> <span class="xmlverb-attr-name">field</span>="<span class="xmlverb-attr-content">field2</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">othervalue</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">and</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">where</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">query</span>&gt;</div>
+</div></div></div></div></body></html>

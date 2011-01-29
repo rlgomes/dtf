@@ -1,17 +1,26 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Return</h1></dt><p align='justify'>Return a value to the call tag from within a function. For the
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Return</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.function.Return'>Return</div>
+<div id='tag_description'>
+Return a value to the call tag from within a function. For the
                time being this return statement can only be done at the end 
-               of the function.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;sequence&gt;
-     &lt;function name="func3"&gt;
-         &lt;param name="flag" type="required"/&gt;  
-         &lt;!-- function does its thing and sets the succeeded property with a 
-              boolean value of the success or insuccess of this function --&gt;
-         &lt;return&gt;${succeeded}&lt;/return&gt;
-     &lt;/function&gt;
-     
-     &lt;call function="func3" result="result"&gt;
-         &lt;property name="flag" value="true"/&gt;
-     &lt;/call&gt;
-      
-     &lt;log&gt;func3 returned ${result}&lt;/log&gt;
- &lt;/sequence&gt;
-</pre></dd></body></html>
+               of the function.</div>
+<div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">sequence</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">function</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">func3</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">param</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">flag</span>" <span class="xmlverb-attr-name">type</span>="<span class="xmlverb-attr-content">required</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">return</span>&gt;<span class="xmlverb-text">${succeeded}</span>&lt;/<span class="xmlverb-element-name">return</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">function</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">call</span> <span class="xmlverb-attr-name">function</span>="<span class="xmlverb-attr-content">func3</span>" <span class="xmlverb-attr-name">result</span>="<span class="xmlverb-attr-content">result</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">flag</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">true</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">call</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">func3&nbsp;returned&nbsp;${result}</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">sequence</span>&gt;</div>
+</div></div></div></div></body></html>

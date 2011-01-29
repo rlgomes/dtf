@@ -1,7 +1,20 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Entity</h1></dt><p align='justify'>this tag defines an entity to be passed in the body of an http
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Entity</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.http.Entity'>Entity</div>
+<div id='tag_description'>
+this tag defines an entity to be passed in the body of an http
                request. The data will be placed in the body of the message 'as
                is' and there is currently no support for multi-part messages.
-               (Can be added later)</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;http_get onFailure="fail" perfrun="true" uri="${dtf.http.uri}"&gt;
-      &lt;entity value="XXXXX"/&gt;
- &lt;/http_get&gt;
-</pre></dd></body></html>
+               (Can be added later)</div>
+<div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">http_get</span> <span class="xmlverb-attr-name">onFailure</span>="<span class="xmlverb-attr-content">fail</span>" <span class="xmlverb-attr-name">perfrun</span>="<span class="xmlverb-attr-content">true</span>" <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">${dtf.http.uri}</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">entity</span> <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">XXXXX</span>" /&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">http_get</span>&gt;</div>
+</div></div></div></div></body></html>

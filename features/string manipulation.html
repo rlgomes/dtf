@@ -1,4 +1,13 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>String Manipulation</h1></dt><p align='justify'><p>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>String Manipulation</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div class='feature_title' title='com.yahoo.dtf.config.transform.StringTransformer'>String Manipulation</div>
+<div class='feature_description'><p>
                    This is the DTF Transformer and it can be used to apply 
                    string functions to the properties to apply certain types 
                    of encoding to the property values.
@@ -17,16 +26,22 @@
                    <b>index-of(str)</b><br/>
                    This function will find the index of an existing string 
                    within the property's value.
-                   </p></p><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;sequence&gt;
-     &lt;property name="string1" value="Hello World!"/&gt;
-     &lt;log&gt;Length of [${string1}] is ${string1:string:length}&lt;/log&gt; 
- &lt;/sequence&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;sequence&gt;
-     &lt;property name="string2" value="rodney lopes gomes"/&gt;
-     &lt;log&gt;middle name is "${string2:string:sub-string(7,12)}"&lt;/log&gt; 
- &lt;/sequence&gt;
-</pre></dd><br/><dd><b>Example #3</b></dd><dd><pre>&lt;sequence&gt;
-     &lt;property name="string1" value="Hello World!"/&gt;
-     &lt;log&gt;index of 'W' in "${string1}" is ${string1:string:index-of(W)}&lt;/log&gt; 
- &lt;/sequence&gt;
-</pre></dd></body></html>
+                   </p></div><div class='feature_examples_label'>Usage Examples</div><div class='feature_examples'><div class='feature_example_container'><div class='feature_example_title'>Example #1</div><div class='feature_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">sequence</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">string1</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">Hello World!</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">Length&nbsp;of&nbsp;[${string1}]&nbsp;is&nbsp;${string1:string:length}</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">sequence</span>&gt;</div>
+</div></div></div><div class='feature_example_container'><div class='feature_example_title'>Example #2</div><div class='feature_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">sequence</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">string2</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">rodney lopes gomes</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">middle&nbsp;name&nbsp;is&nbsp;"${string2:string:sub-string(7,12)}"</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">sequence</span>&gt;</div>
+</div></div></div><div class='feature_example_container'><div class='feature_example_title'>Example #3</div><div class='feature_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">sequence</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">string1</span>" <span class="xmlverb-attr-name">value</span>="<span class="xmlverb-attr-content">Hello World!</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text">index&nbsp;of&nbsp;'W'&nbsp;in&nbsp;"${string1}"&nbsp;is&nbsp;${string1:string:index-of(W)}</span>&lt;/<span class="xmlverb-element-name">log</span>&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">sequence</span>&gt;</div>
+</div></div></div></div></body></html>

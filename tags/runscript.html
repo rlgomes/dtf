@@ -1,15 +1,28 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Runscript</h1></dt><p align='justify'><p>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Runscript</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.selenium.commands.base.Runscript'>Runscript</div>
+<div id='tag_description'>
+<p>
                This selenium tag allows you to inject javascript into the 
                currently focused window. The javascript is instantly executed
                within the page and can be used to test javascript elements
                that you would otherwise not have a way of testing. In the 
                example we're just demonstrating how you can use this command 
                to manipulate elements on the page easily.
-               </p></p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>script</b></td><td><p align='justify'>the javascript to execute in the browser</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;selenium baseurl="http://www.google.com" browser="*firefox"&gt;
-     &lt;property name="tornadoscript"&gt;
-     javascript:R=0; x1=.1; y1=.05; x2=.25; y2=.24; x3=1.6; y3=.24; x4=300; y4=200; x5=300; y5=200; DI=document.getElementsByTagName("img"); DIL=DI.length; function A(){for(i=0; i-DIL; i++){DIS=DI[ i ].style; DIS.position='absolute'; DIS.left=(Math.sin(R*x1+i*x2+x3)*x4+x5)+"px"; DIS.top=(Math.cos(R*y1+i*y2+y3)*y4+y5)+"px"}R++}setInterval('A()',5); void(0);
-     &lt;/property&gt; 
-     &lt;runScript script="${tornadoscript}"/&gt;
-     &lt;sleep time="2s"/&gt;
- &lt;/selenium&gt;
-</pre></dd></body></html>
+               </p></div>
+<div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>script</div><div class='attribute_desc'>the javascript to execute in the browser</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">selenium</span> <span class="xmlverb-attr-name">baseurl</span>="<span class="xmlverb-attr-content">http://www.google.com</span>" <span class="xmlverb-attr-name">browser</span>="<span class="xmlverb-attr-content">*firefox</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">property</span> <span class="xmlverb-attr-name">name</span>="<span class="xmlverb-attr-content">tornadoscript</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;javascript:R=0;&nbsp;x1=.1;&nbsp;y1=.05;&nbsp;x2=.25;&nbsp;y2=.24;&nbsp;x3=1.6;&nbsp;y3=.24;&nbsp;x4=300;&nbsp;y4=200;&nbsp;x5=300;&nbsp;y5=200;&nbsp;DI=document.getElementsByTagName("img");&nbsp;DIL=DI.length;&nbsp;function&nbsp;A(){for(i=0;&nbsp;i-DIL;&nbsp;i++){DIS=DI[&nbsp;i&nbsp;].style;&nbsp;DIS.position='absolute';&nbsp;DIS.left=(Math.sin(R*x1+i*x2+x3)*x4+x5)+"px";&nbsp;DIS.top=(Math.cos(R*y1+i*y2+y3)*y4+y5)+"px"}R++}setInterval('A()',5);&nbsp;void(0);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>&lt;/<span class="xmlverb-element-name">property</span>&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">runScript</span> <span class="xmlverb-attr-name">script</span>="<span class="xmlverb-attr-content">${tornadoscript}</span>" /&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;</span>&lt;<span class="xmlverb-element-name">sleep</span> <span class="xmlverb-attr-name">time</span>="<span class="xmlverb-attr-content">2s</span>" /&gt;<span class="xmlverb-text"><br>
+</span>&lt;/<span class="xmlverb-element-name">selenium</span>&gt;</div>
+</div></div></div></div></body></html>

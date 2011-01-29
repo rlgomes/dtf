@@ -1,9 +1,24 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Echo</h1></dt><p align='justify'>The echo tag is used to print out test case information during 
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Echo</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.basic.Echo'>Echo</div>
+<div id='tag_description'>
+The echo tag is used to print out test case information during 
                the execution of the test case. It is preferred that you use 
                the tag <a href='../tags/log.html'>log</a> instead of echo since you can easily 
                set the logging level and that way have control over what is
                being logged in your test run just by editing the 
-               dtf.properties file and changing the log4j properties.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Optional Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>message</b></td><td><p align='justify'>The message attribute contains the message to be logged to
-                the test execution log.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;echo message="Hello World"/&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;echo&gt;Hello World&lt;/echo&gt;
-</pre></dd></body></html>
+               dtf.properties file and changing the log4j properties.</div>
+<div id='optional_attributes_label'>Optional Attributes</div><div id='optional_attributes'><div class='attribute'><div class='attribute_name'>message</div><div class='attribute_desc'>The message attribute contains the message to be logged to
+                the test execution log.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">echo</span> <span class="xmlverb-attr-name">message</span>="<span class="xmlverb-attr-content">Hello World</span>" /&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">echo</span>&gt;<span class="xmlverb-text">Hello&nbsp;World</span>&lt;/<span class="xmlverb-element-name">echo</span>&gt;</div>
+</div></div></div></div></body></html>

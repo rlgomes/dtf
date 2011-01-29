@@ -1,10 +1,25 @@
-<html><head></head><body><a href='javascript:history.back()'>Back</a> <a href='../index.html'>Top</a><dt><h1>Cat</h1></dt><p align='justify'>Cat tag is used to output information to files that would 
-               usually be logged to the test case output.</p><br/><br/><dt><b>Author </b></dt><dd>Rodney Gomes</dd><br/><br/><dt><b>Required Attributes</b></dt><dd><br/><table border=1><tr valign='top'><td width='100px'><b>uri</b></td><td><p align='justify'>The URI defining where to output the enclosed message.</p></td></tr></table></dd><br/><dt><b>Usage Examples</b></dt><br/><dd><b>Example #1</b></dd><dd><pre>&lt;cat uri="storage://OUTPUT/testoutput"&gt;
-      This output will be visible at storage://OUTPUT/testoutput
-      Os: ${os.name}
-      Arch: ${os.arch}
-      dtf.test.property1 = ${dtf.test.property1}
-      dtf.test.property2 = ${dtf.test.property2}
- &lt;/cat&gt;
-</pre></dd><br/><dd><b>Example #2</b></dd><dd><pre>&lt;cat append="false" uri="storage://OUTPUT/testoutput"&gt;BLAH BLAH BLAH&lt;/cat&gt;
-</pre></dd></body></html>
+<html>
+    <head>
+    <link rel='stylesheet' href='../main.css' type='text/css'>
+        <title>Cat</title>
+    </head>
+    <body id='body'>
+<div id='nav'>
+<a href='../index.html'>Home</a></div>
+<div id='tag_title' title='com.yahoo.dtf.actions.file.Cat'>Cat</div>
+<div id='tag_description'>
+Cat tag is used to output information to files that would 
+               usually be logged to the test case output.</div>
+<div id='required_attributes_label'>Required Attributes</div><div id='required_attributes'><div class='attribute'><div class='attribute_name'>uri</div><div class='attribute_desc'>The URI defining where to output the enclosed message.</div></div></div><div class='tag_examples_label'>Usage Examples</div><div class='tag_examples'><div class='tag_example_container'><div class='tag_example_title'>Example #1</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">cat</span> <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/testoutput</span>"&gt;<span class="xmlverb-text"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;output&nbsp;will&nbsp;be&nbsp;visible&nbsp;at&nbsp;storage://OUTPUT/testoutput<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Os:&nbsp;${os.name}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Arch:&nbsp;${os.arch}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dtf.test.property1&nbsp;=&nbsp;${dtf.test.property1}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dtf.test.property2&nbsp;=&nbsp;${dtf.test.property2}<br>
+&nbsp;</span>&lt;/<span class="xmlverb-element-name">cat</span>&gt;</div>
+</div></div></div><div class='tag_example_container'><div class='tag_example_title'>Example #2</div><div class='tag_example'><div class='xml_code'>
+<!-- converted by xmlverbatim.xsl 1.1, (c) O. Becker -->
+<div class="xmlverb-default">&lt;<span class="xmlverb-element-name">cat</span> <span class="xmlverb-attr-name">append</span>="<span class="xmlverb-attr-content">false</span>" <span class="xmlverb-attr-name">uri</span>="<span class="xmlverb-attr-content">storage://OUTPUT/testoutput</span>"&gt;<span class="xmlverb-text">BLAH&nbsp;BLAH&nbsp;BLAH</span>&lt;/<span class="xmlverb-element-name">cat</span>&gt;</div>
+</div></div></div></div></body></html>
