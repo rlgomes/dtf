@@ -50,7 +50,7 @@
         <add op1="${acc}" op2="${create}" result="acc"/>
     </for>
     <divide op1="${acc}" op2="5" result="duration"/>
-    <assert><lt op1="${duration}" op2="50"/></assert>
+    <assert><lt op1="${duration}" op2="100"/></assert>
     <log>share sync off by ${duration}</log>
     
     <!-- multiple writers and multiple readers on a share of the type queue -->
