@@ -31,7 +31,7 @@
         <parallelloop property="agent" range="1..${agents}">
             <component id="AGENT${agent}">
                 <parallelloop property="thread" range="1..${threads}">
-                    <for property="iter" range="1..${iterations.medium}">
+                    <for property="iter" range="1..${iterations.large}">
                         <event name="dtf.perf">
                             <attribute name="iteration" value="${iter}"/>
                             <attribute name="agent" value="${agent}"/>
