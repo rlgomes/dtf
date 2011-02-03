@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="simple_query">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email></email>
+        </author>
+        <description>
+        This test will simple query the various queries that are stored in the 
+        ${yql.queries} property and make sure that YQL is capable of responding
+        with some data. This does not of course validate the data or do any 
+        additional work and is simply part of a wiki example of how to use DTF
+        for testing a service like YQL.
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/yql.properties"/>
+    </local>
+
+    <function name="yql">
+        <param name="q" type="required"/>
+        
+        <urlencode result="q" source="${q}"/> 
+        <http_get uri="${yql.url}?q=${q}"/>
+        <return>${http.get.body}</return>
+    </function>    
+
+    <for property="query" range="${yql.queries}">
+        <log>querying [${query}]</log>
+	    <call function="yql" result="result">
+	        <property name="q" value="${query}"/>
+	    </call>
+    </for>
+
+</script> 
