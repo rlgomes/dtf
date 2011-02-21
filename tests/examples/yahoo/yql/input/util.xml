@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="util">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email></email>
+        </author>
+        <description>
+        YQL function library that can be used by other tests.
+        </description>
+    </info>
+
+    <function name="yql" export="true">
+        <param name="q" type="required"/>
+        
+        <urlencode result="q" source="${q}"/> 
+        <http_get uri="${yql.url}?q=${q}"/>
+        <return>${http.get.body}</return>
+    </function>    
+</script> 

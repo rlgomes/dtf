@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<script xmlns="http://dtf.org/v1" name="perf_query">
+    <info>
+        <author>
+            <name>Rodney Gomes</name>
+            <email>rlgomes@yahoo-inc.com</email>
+        </author>
+        <description>
+        </description>
+    </info>
+
+    <local>
+        <createstorage id="INPUT" path="${dtf.xml.path}/input"/>
+        <createstorage id="OUTPUT" path="${dtf.xml.path}/output"/>
+
+        <loadproperties uri="storage://INPUT/yql.properties"/>
+        <import uri="storage://INPUT/util.xml"/>
+    </local>
+
+    <for property="a" range="1..${yql.perf.agents}">
+        <local>
+            <lockcomponent id="agent${a}"/>
+        </local>
+    </for>
+    
+    <property name="threads" value="0"/>
+    <property name="ops_sec" value="0"/>
+
+    <property name="threads_max" value="0"/>
+    <property name="ops_sec_max" value="0"/>
+   
+    <for property="yql.perf.threads" range="1..10">
+        <log>Executing with ${yql.perf.threads}</log>
+	    <record uri="storage://OUTPUT/perf.txt">
+	        <parallelloop property="a" range="1..${yql.perf.agents}">
+	            <log>starting requests on agent ${a}</log>
+	            <component id="agent${a}">
+			        <parallelloop property="t" range="1..${yql.perf.threads}">
+					    <for property="i" range="1..${yql.perf.iterations}">
+						    <call function="yql" result="result">
+						        <property name="q" value="SELECT * FROM search.web WHERE query='pizza'"/>
+						    </call>
+					    </for>
+			        </parallelloop>
+	            </component>
+	        </parallelloop>
+	    </record>
+	    
+	    <log>calculating stats...</log>
+	    <query uri="storage://OUTPUT/perf.txt" cursor="perf"/>
+	    <stats cursor="perf" event="stats"/>
+
+        <log>queries/sec:   ${stats.avg_occ}</log>
+        <property name="threads"
+                  value="${threads},${yql.perf.threads}" 
+                  overwrite="true"/>
+        <property name="ops_sec"
+                  value="${ops_sec},${stats.avg_occ}" 
+                  overwrite="true"/>
+                  
+        <if>
+            <gt op2="${ops_sec_max}" op1="${stats.avg_occ}"/>
+            <then>
+                <property name="ops_sec_max"
+                          value="${stats.avg_occ}"
+                          overwrite="true"/>
+            </then>
+        </if>
+        <if>
+            <gt op2="${threads_max}" op1="${yql.perf.threads}"/>
+            <then>
+                <property name="threads_max"
+                          value="${yql.perf.threads}"
+                          overwrite="true"/>
+            </then>
+        </if>
+    </for>
+
+    <property name="url" value="http://chart.apis.google.com/chart?"/>
+    <property name="url"
+              value="${url}chxr=0,0,${ops_sec_max}|1,0,${threads_max}"
+              overwrite="true"/>
+    <property name="url" value="${url}&amp;cht=lxy" overwrite="true"/>
+    <property name="url" value="${url}&amp;chxt=y,x" overwrite="true"/>
+    <property name="url" value="${url}&amp;chs=320x240" overwrite="true"/>
+    <property name="url"
+              value="${url}&amp;chds=0,${threads_max},0,${ops_sec_max}"
+              overwrite="true"/>
+    <property name="url"
+              value="${url}&amp;chd=t:${threads}|${ops_sec}"
+              overwrite="true"/>
+    <property name="url" value="${url}&amp;chdl=Ops/sec" overwrite="true"/>
+    <property name="url" value="${url}&amp;chtt=YQL Performance" overwrite="true"/>
+
+    <log>[${url}]</log> 
+    
+</script> 
