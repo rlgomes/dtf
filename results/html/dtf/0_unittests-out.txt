@@ -1,26 +1,26 @@
 
-INFO  12/11/2011 18:41:04 Testsuite       - Starting unittests
-INFO  12/11/2011 18:41:04 Testscript      - Executing storage://INPUT/state_management.xml
-INFO  12/11/2011 18:41:04 Rename          - Node name is dtfx-3
-INFO  12/11/2011 18:41:04 Lockcomponent   - Locked dtfa-0 as DTFA1
-WARN  12/11/2011 18:41:04 DTFInputStream  - Using a DTFStream as a String that is 5242880 bytes can be quite inefficient. There are better ways of streaming large amounts of data in DTF.
-INFO  12/11/2011 18:41:08 Testscript      - Executing storage://INPUT/storage.xml
-INFO  12/11/2011 18:41:09 Testscript      - Executing storage://INPUT/echo.xml
-INFO  12/11/2011 18:41:09 Rename          - Node name is dtfx-4
-INFO  12/11/2011 18:41:09 Lockcomponent   - Locked dtfa-1 as DTFA1
-INFO  12/11/2011 18:41:09 Echo            - a : b : c
-INFO  12/11/2011 18:41:09 Testscript      - Executing storage://INPUT/sleep.xml
-INFO  12/11/2011 18:41:09 Rename          - Node name is dtfx-5
-INFO  12/11/2011 18:41:09 Lockcomponent   - Locked dtfa-2 as C1
-INFO  12/11/2011 18:41:10 Testscript      - Executing storage://INPUT/loadproperties.xml
-INFO  12/11/2011 18:41:10 Echo            - The previous loadproperties should succeed.
-INFO  12/11/2011 18:41:10 Echo            - dtf.test.property1 = property value1
-INFO  12/11/2011 18:41:10 Testscript      - Executing storage://INPUT/property_resolution.xml
-INFO  12/11/2011 18:41:10 Rename          - Node name is dtfx-6
-INFO  12/11/2011 18:41:10 Lockcomponent   - Locked dtfa-0 as DTFA1
-INFO  12/11/2011 18:41:11 Testscript      - Executing storage://INPUT/property.xml
-INFO  12/11/2011 18:41:11 Echo            - value1
-INFO  12/11/2011 18:41:11 Echo            - {
+INFO  12/11/2011 20:55:52 Testsuite       - Starting unittests
+INFO  12/11/2011 20:55:52 Testscript      - Executing storage://INPUT/state_management.xml
+INFO  12/11/2011 20:55:53 Rename          - Node name is dtfx-3
+INFO  12/11/2011 20:55:53 Lockcomponent   - Locked dtfa-0 as DTFA1
+WARN  12/11/2011 20:55:53 DTFInputStream  - Using a DTFStream as a String that is 5242880 bytes can be quite inefficient. There are better ways of streaming large amounts of data in DTF.
+INFO  12/11/2011 20:55:56 Testscript      - Executing storage://INPUT/storage.xml
+INFO  12/11/2011 20:55:56 Testscript      - Executing storage://INPUT/echo.xml
+INFO  12/11/2011 20:55:57 Rename          - Node name is dtfx-4
+INFO  12/11/2011 20:55:57 Lockcomponent   - Locked dtfa-1 as DTFA1
+INFO  12/11/2011 20:55:57 Echo            - a : b : c
+INFO  12/11/2011 20:55:57 Testscript      - Executing storage://INPUT/sleep.xml
+INFO  12/11/2011 20:55:57 Rename          - Node name is dtfx-5
+INFO  12/11/2011 20:55:57 Lockcomponent   - Locked dtfa-2 as C1
+INFO  12/11/2011 20:55:57 Testscript      - Executing storage://INPUT/loadproperties.xml
+INFO  12/11/2011 20:55:57 Echo            - The previous loadproperties should succeed.
+INFO  12/11/2011 20:55:57 Echo            - dtf.test.property1 = property value1
+INFO  12/11/2011 20:55:57 Testscript      - Executing storage://INPUT/property_resolution.xml
+INFO  12/11/2011 20:55:58 Rename          - Node name is dtfx-6
+INFO  12/11/2011 20:55:58 Lockcomponent   - Locked dtfa-0 as DTFA1
+INFO  12/11/2011 20:55:58 Testscript      - Executing storage://INPUT/property.xml
+INFO  12/11/2011 20:55:58 Echo            - value1
+INFO  12/11/2011 20:55:58 Echo            - {
 	"ydht": {  
     	"fields": { 
             "hello": { "value": "world2" }, 
@@ -35,493 +35,493 @@ INFO  12/11/2011 18:41:11 Echo            - {
     }
 }
 
-INFO  12/11/2011 18:41:11 Echo            - 
+INFO  12/11/2011 20:55:58 Echo            - 
         Contents of the property come from the child text node like this one,
         which will continue to look just like this in the property itself.
         
         test1: value1
         
-INFO  12/11/2011 18:41:11 Log             - Data matches!
-INFO  12/11/2011 18:41:11 Log             - Caught property recursion correctly.
-INFO  12/11/2011 18:41:11 Log             - Caught nested property recursion correctly.
-INFO  12/11/2011 18:41:11 Log             - value2value2value2
-INFO  12/11/2011 18:41:11 Testscript      - Executing storage://INPUT/cat.xml
-INFO  12/11/2011 18:41:11 Log             - Caught exception correctly [Unable to find storage: CACA at tests/ut/cat.xml:51:10]
-INFO  12/11/2011 18:41:11 Testscript      - Executing storage://INPUT/log.xml
-INFO  12/11/2011 18:41:11 Log             - Just testing the logging functionality
-INFO  12/11/2011 18:41:11 Log             - INFO INFO INFO
-ERROR 12/11/2011 18:41:11 Log             - ERROR ERROR ERROR
-WARN  12/11/2011 18:41:11 Log             - WARNING WARNING WARNING
-INFO  12/11/2011 18:41:11 Log             - INFO with tag TESTING
-ERROR 12/11/2011 18:41:11 Log             - ERROR with tag TESTING
-WARN  12/11/2011 18:41:11 Log             - WARNING with tag TESTING
-INFO  12/11/2011 18:41:11 Testscript      - Executing storage://INPUT/for.xml
-INFO  12/11/2011 18:41:11 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  12/11/2011 18:41:12 Testscript      - Executing storage://INPUT/parallel.xml
-INFO  12/11/2011 18:41:12 Testscript      - Executing storage://INPUT/parallelloop.xml
-INFO  12/11/2011 18:41:12 Testscript      - Executing storage://INPUT/sequence.xml
-INFO  12/11/2011 18:41:12 Echo            - HERE
-INFO  12/11/2011 18:41:12 Echo            - HERE
-INFO  12/11/2011 18:41:12 Testscript      - Executing storage://INPUT/timer.xml
-INFO  12/11/2011 18:41:12 Timer           - Timer took 100ms of 100ms.
-INFO  12/11/2011 18:41:12 Testscript      - Executing storage://INPUT/switch.xml
-INFO  12/11/2011 18:41:13 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  12/11/2011 18:41:13 Log             - Switch case #1
-INFO  12/11/2011 18:41:13 Log             - Switch case #2
-INFO  12/11/2011 18:41:13 Log             - Looped through switch and function call correctly.
-INFO  12/11/2011 18:41:13 Log             - Switch case #2
-INFO  12/11/2011 18:41:13 Log             - Looped through switch and function call correctly.
-INFO  12/11/2011 18:41:13 Log             - Looped through switch and function call correctly.
-INFO  12/11/2011 18:41:13 Log             - Switch went into the failure case correctly.
-INFO  12/11/2011 18:41:13 Testscript      - Executing storage://INPUT/while.xml
-INFO  12/11/2011 18:41:13 Log             - Thread 1 is starting.
-INFO  12/11/2011 18:41:13 Log             - Thread 2 is starting.
-INFO  12/11/2011 18:41:13 Log             - Thread 2 is done.
-INFO  12/11/2011 18:41:13 Log             - Thread 1 is done.
-INFO  12/11/2011 18:41:13 Testscript      - Executing storage://INPUT/break.xml
-INFO  12/11/2011 18:41:13 Rename          - Node name is dtfx-7
-INFO  12/11/2011 18:41:13 Lockcomponent   - Locked dtfa-1 as C1
-INFO  12/11/2011 18:41:13 Timer           - Timer took 1ms of 30000ms.
-INFO  12/11/2011 18:41:14 Testscript      - Executing storage://INPUT/try_catch_fail.xml
-INFO  12/11/2011 18:41:14 Rename          - Node name is dtfx-8
-INFO  12/11/2011 18:41:14 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  12/11/2011 18:41:14 Echo            - Try/Catch and Fail Unit Test
-INFO  12/11/2011 18:41:14 Echo            - The previous statement has failed correctly.
-INFO  12/11/2011 18:41:14 Echo            - Caught the exception on outter try/catch.
-INFO  12/11/2011 18:41:14 Echo            - Message: Failure should be caught by catch. at tests/ut/try_catch_fail.xml:40:77
-INFO  12/11/2011 18:41:14 Echo            - Caught exception from remote component.
-INFO  12/11/2011 18:41:14 Echo            - Message: Failing on component at tests/ut/try_catch_fail.xml:66:46 on component [DTFA1]
-INFO  12/11/2011 18:41:14 Testscript      - Executing storage://INPUT/fail.xml
-INFO  12/11/2011 18:41:14 Rename          - Node name is dtfx-9
-INFO  12/11/2011 18:41:14 Lockcomponent   - Locked dtfa-0 as DTFA
-INFO  12/11/2011 18:41:14 Testscript      - Executing storage://INPUT/distribute.xml
-INFO  12/11/2011 18:41:16 Testscript      - Executing storage://INPUT/choices.xml
-INFO  12/11/2011 18:41:16 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  12/11/2011 18:41:16 Testscript      - Executing storage://INPUT/if.xml
-INFO  12/11/2011 18:41:17 Testscript      - Executing storage://INPUT/similar.xml
-INFO  12/11/2011 18:41:17 Log             - png: being checked
-INFO  12/11/2011 18:41:17 Log             - images are within 100% similarity
-INFO  12/11/2011 18:41:17 Log             - gif: being checked
-INFO  12/11/2011 18:41:17 Log             - images are within 100% similarity
-INFO  12/11/2011 18:41:17 Log             - bmp: being checked
-INFO  12/11/2011 18:41:17 Log             - images are within 100% similarity
-INFO  12/11/2011 18:41:17 Testscript      - Executing storage://INPUT/createrange.xml
-INFO  12/11/2011 18:41:17 Testscript      - Executing storage://INPUT/range.xml
-INFO  12/11/2011 18:41:18 Testscript      - Executing storage://INPUT/range_dist.xml
-INFO  12/11/2011 18:41:18 Rename          - Node name is dtfx-10
-INFO  12/11/2011 18:41:18 Lockcomponent   - Locked dtfa-1 as C1
-INFO  12/11/2011 18:41:20 Testscript      - Executing storage://INPUT/xml_range.xml
-INFO  12/11/2011 18:41:20 Log             - XPath range validation
-INFO  12/11/2011 18:41:20 Log             - XPath range validation on XML with namespace
-INFO  12/11/2011 18:41:20 Log             - XPath range validation on XML with default namespace
-INFO  12/11/2011 18:41:20 Log             - negative tests
-INFO  12/11/2011 18:41:20 Log             - Failed correctly
-INFO  12/11/2011 18:41:20 Testscript      - Executing storage://INPUT/json_range.xml
-INFO  12/11/2011 18:41:20 Log             - JPath range validation
-INFO  12/11/2011 18:41:20 Log             - Negative Tests
-INFO  12/11/2011 18:41:20 Log             - Failed correctly
-INFO  12/11/2011 18:41:20 Testscript      - Executing storage://INPUT/functions.xml
-INFO  12/11/2011 18:41:20 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  12/11/2011 18:41:20 Import          - Importing elements from Import {uri=storage://INPUT/functions_util.xml}
-WARN  12/11/2011 18:41:21 Function        - Argument [function] not being used by the function [func2]
-WARN  12/11/2011 18:41:21 Function        - Argument [function] not being used by the function [func3]
-WARN  12/11/2011 18:41:21 Function        - Argument [p3] not being used by the function [functionWithParams]
-INFO  12/11/2011 18:41:21 Testscript      - Executing storage://INPUT/import.xml
-INFO  12/11/2011 18:41:21 Import          - Importing elements from Import {uri=storage://INPUT/functions_util.xml}
-INFO  12/11/2011 18:41:21 Import          - Importing elements from Import {uri=storage://TINPUT/functions.xml}
-WARN  12/11/2011 18:41:21 Function        - Argument [function] not being used by the function [func2]
-WARN  12/11/2011 18:41:21 Function        - Argument [function] not being used by the function [func3]
-INFO  12/11/2011 18:41:21 Import          - Importing elements from Import {uri=storage://INPUT/badxml}
-INFO  12/11/2011 18:41:21 Testscript      - Executing storage://INPUT/export.xml
-INFO  12/11/2011 18:41:21 Import          - Importing elements from Import {uri=storage://INPUT/export_util.xml}
-INFO  12/11/2011 18:41:22 Rename          - Node name is dtfx-11
-INFO  12/11/2011 18:41:22 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  12/11/2011 18:41:22 Log             - Got exception as expected.
-INFO  12/11/2011 18:41:22 Testscript      - Executing storage://INPUT/references.xml
-INFO  12/11/2011 18:41:22 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  12/11/2011 18:41:22 Rename          - Node name is dtfx-12
-INFO  12/11/2011 18:41:22 Lockcomponent   - Locked dtfa-0 as DTFA1
-INFO  12/11/2011 18:41:22 Testscript      - Executing storage://INPUT/component.xml
-INFO  12/11/2011 18:41:23 Rename          - Node name is dtfx-13
-INFO  12/11/2011 18:41:23 Lockcomponent   - Locked dtfa-1 as DTFA1
-INFO  12/11/2011 18:41:23 Echo            - About to lock a dtfa by name and this will fail.
-INFO  12/11/2011 18:41:24 Testscript      - Executing storage://INPUT/lockcomponent.xml
-INFO  12/11/2011 18:41:24 Rename          - Node name is dtfx-14
-INFO  12/11/2011 18:41:24 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  12/11/2011 18:41:24 Lockcomponent   - Locked dtfa-0 as DTFA2
-INFO  12/11/2011 18:41:24 Unlockcomponent - Unlocking dtfa-0
-INFO  12/11/2011 18:41:24 Lockcomponent   - Locked dtfa-1 as DTFA3
-INFO  12/11/2011 18:41:24 Unlockcomponent - Unlocking dtfa-1
-INFO  12/11/2011 18:41:25 Unlockcomponent - Component unlocked DTFA3
-INFO  12/11/2011 18:41:25 Unlockcomponent - Component unlocked DTFA2
-INFO  12/11/2011 18:41:25 Lockcomponent   - Locked dtfa-1 as DTFA2
-INFO  12/11/2011 18:41:25 Unlockcomponent - Unlocking dtfa-1
-INFO  12/11/2011 18:41:25 Lockcomponent   - Locked dtfa-0 as DTFA3
-INFO  12/11/2011 18:41:25 Unlockcomponent - Component unlocked DTFA2
-INFO  12/11/2011 18:41:25 Unlockcomponent - Unlocking dtfa-0
-INFO  12/11/2011 18:41:25 Lockcomponent   - Locked dtfa-1 as DTFA2
-INFO  12/11/2011 18:41:25 Unlockcomponent - Unlocking dtfa-1
-INFO  12/11/2011 18:41:25 Unlockcomponent - Unlocking dtfa-2
-INFO  12/11/2011 18:41:25 Unlockcomponent - Component unlocked DTFA1
-INFO  12/11/2011 18:41:25 Unlockcomponent - Component unlocked DTFA2
-INFO  12/11/2011 18:41:25 Unlockcomponent - Component unlocked DTFA3
-INFO  12/11/2011 18:41:25 Lockcomponent   - Locked dtfa-1 as DTFA3
-INFO  12/11/2011 18:41:25 Unlockcomponent - Unlocking dtfa-1
-INFO  12/11/2011 18:41:25 Unlockcomponent - Component unlocked DTFA3
-INFO  12/11/2011 18:41:25 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  12/11/2011 18:41:25 Unlockcomponent - Unlocking dtfa-2
-INFO  12/11/2011 18:41:25 Unlockcomponent - Component unlocked DTFA1
-INFO  12/11/2011 18:41:25 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  12/11/2011 18:41:25 Unlockcomponent - Unlocking dtfa-2
-INFO  12/11/2011 18:41:25 Unlockcomponent - Component unlocked DTFA1
-INFO  12/11/2011 18:41:25 Testsuite       - Starting lockcomponent
-INFO  12/11/2011 18:41:25 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  12/11/2011 18:41:25 Testsuite       - Starting lockcomponent
-INFO  12/11/2011 18:41:25 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  12/11/2011 18:41:25 Testsuite       - Starting lockcomponent
-INFO  12/11/2011 18:41:25 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  12/11/2011 18:41:25 Rename          - Node name is dtfx-15
-INFO  12/11/2011 18:41:25 Lockcomponent   - Locked dtfa-0 as C1
-INFO  12/11/2011 18:41:25 Rename          - Node name is dtfx-16
-INFO  12/11/2011 18:41:25 Rename          - Node name is dtfx-17
-INFO  12/11/2011 18:41:25 Lockcomponent   - Locked dtfa-2 as C1
-INFO  12/11/2011 18:41:26 Testsuite       - Starting lockcomponent
-INFO  12/11/2011 18:41:26 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  12/11/2011 18:41:26 Testsuite       - Starting lockcomponent
-INFO  12/11/2011 18:41:26 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  12/11/2011 18:41:26 Lockcomponent   - Locked dtfa-1 as C1
-INFO  12/11/2011 18:41:26 Testsuite       - Starting lockcomponent
-INFO  12/11/2011 18:41:26 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  12/11/2011 18:41:26 Rename          - Node name is dtfx-18
-INFO  12/11/2011 18:41:26 Lockcomponent   - Locked dtfa-2 as C1
-INFO  12/11/2011 18:41:26 Testsuite       - Starting lockcomponent
-INFO  12/11/2011 18:41:26 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  12/11/2011 18:41:26 Rename          - Node name is dtfx-19
-INFO  12/11/2011 18:41:26 Lockcomponent   - Locked dtfa-0 as C1
-INFO  12/11/2011 18:41:26 Testsuite       - Starting lockcomponent
-INFO  12/11/2011 18:41:26 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  12/11/2011 18:41:26 Rename          - Node name is dtfx-20
-INFO  12/11/2011 18:41:26 Lockcomponent   - Locked dtfa-1 as C1
-INFO  12/11/2011 18:41:26 Testsuite       - Starting lockcomponent
-INFO  12/11/2011 18:41:26 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  12/11/2011 18:41:27 Rename          - Node name is dtfx-21
-INFO  12/11/2011 18:41:27 Lockcomponent   - Locked dtfa-2 as C1
-INFO  12/11/2011 18:41:27 Rename          - Node name is dtfx-22
-INFO  12/11/2011 18:41:27 Lockcomponent   - Locked dtfa-0 as C1
-INFO  12/11/2011 18:41:27 Rename          - Node name is dtfx-23
-INFO  12/11/2011 18:41:27 Lockcomponent   - Locked dtfa-0 as C1
-INFO  12/11/2011 18:41:27 Testsuite       - Starting lockcomponent
-INFO  12/11/2011 18:41:27 Testscript      - Executing storage://INPUT/parallel_occupy_component.xml
-INFO  12/11/2011 18:41:27 Rename          - Node name is dtfx-24
-INFO  12/11/2011 18:41:27 Lockcomponent   - Locked dtfa-2 as C2
-INFO  12/11/2011 18:41:27 Lockcomponent   - Locked dtfa-1 as C3
-INFO  12/11/2011 18:41:27 Lockcomponent   - Locked dtfa-0 as C1
-INFO  12/11/2011 18:41:27 Lockcomponent   - Locked dtfa-0 as C1
-INFO  12/11/2011 18:41:27 Unlockcomponent - Unlocking dtfa-0
-INFO  12/11/2011 18:41:27 Unlockcomponent - Component unlocked C1
-INFO  12/11/2011 18:41:27 Testsuite       - Starting lockcomponent
-INFO  12/11/2011 18:41:27 Testscript      - Executing storage://INPUT/function_occupy_component.xml
-INFO  12/11/2011 18:41:27 Rename          - Node name is dtfx-25
-INFO  12/11/2011 18:41:28 Lockcomponent   - Locked dtfa-1 as C1
-INFO  12/11/2011 18:41:28 Lockcomponent   - Locked dtfa-2 as C2
-INFO  12/11/2011 18:41:28 Lockcomponent   - Locked dtfa-0 as C3
-INFO  12/11/2011 18:41:28 Lockcomponent   - Locked dtfa-0 as C1
-INFO  12/11/2011 18:41:28 Unlockcomponent - Unlocking dtfa-0
-INFO  12/11/2011 18:41:28 Unlockcomponent - Component unlocked C1
-INFO  12/11/2011 18:41:28 Testscript      - Executing storage://INPUT/lockgroup.xml
-INFO  12/11/2011 18:41:28 Rename          - Node name is dtfx-26
-INFO  12/11/2011 18:41:28 Lockcomponent   - Locked dtfa-1 as DTFA1-1
-INFO  12/11/2011 18:41:28 Lockcomponent   - Locked dtfa-2 as DTFA2-1
-INFO  12/11/2011 18:41:28 Unlockcomponent - Unlocking dtfa-1
-INFO  12/11/2011 18:41:28 Unlockcomponent - Component unlocked DTFA1-1
-INFO  12/11/2011 18:41:28 Unlockcomponent - Unlocking dtfa-2
-INFO  12/11/2011 18:41:28 Unlockcomponent - Component unlocked DTFA2-1
-INFO  12/11/2011 18:41:28 Lockcomponent   - Locked dtfa-1 as DTFA1-2
-INFO  12/11/2011 18:41:28 Lockcomponent   - Locked dtfa-0 as DTFA2-2
-INFO  12/11/2011 18:41:28 Unlockcomponent - Unlocking dtfa-1
-INFO  12/11/2011 18:41:28 Unlockcomponent - Component unlocked DTFA1-2
-INFO  12/11/2011 18:41:28 Unlockcomponent - Unlocking dtfa-0
-INFO  12/11/2011 18:41:28 Unlockcomponent - Component unlocked DTFA2-2
-INFO  12/11/2011 18:41:28 Lockcomponent   - Locked dtfa-0 as DTFA1-1
-INFO  12/11/2011 18:41:28 Lockcomponent   - Locked dtfa-2 as DTFA2-1
-INFO  12/11/2011 18:41:28 Unlockcomponent - Unlocking dtfa-0
-INFO  12/11/2011 18:41:28 Unlockcomponent - Component unlocked DTFA1-1
-INFO  12/11/2011 18:41:28 Unlockcomponent - Unlocking dtfa-2
-INFO  12/11/2011 18:41:28 Unlockcomponent - Component unlocked DTFA2-1
-INFO  12/11/2011 18:41:28 Lockcomponent   - Locked dtfa-0 as DTFA1-2
-INFO  12/11/2011 18:41:28 Lockcomponent   - Locked dtfa-1 as DTFA2-2
-INFO  12/11/2011 18:41:28 Unlockcomponent - Unlocking dtfa-0
-INFO  12/11/2011 18:41:28 Unlockcomponent - Component unlocked DTFA1-2
-INFO  12/11/2011 18:41:28 Unlockcomponent - Unlocking dtfa-1
-INFO  12/11/2011 18:41:28 Unlockcomponent - Component unlocked DTFA2-2
-INFO  12/11/2011 18:41:28 Lockcomponent   - Locked dtfa-1 as DTFA1-1
-INFO  12/11/2011 18:41:28 Lockcomponent   - Locked dtfa-2 as DTFA2-1
-INFO  12/11/2011 18:41:28 Unlockcomponent - Unlocking dtfa-1
-INFO  12/11/2011 18:41:28 Unlockcomponent - Component unlocked DTFA1-1
-INFO  12/11/2011 18:41:28 Unlockcomponent - Unlocking dtfa-2
-INFO  12/11/2011 18:41:28 Unlockcomponent - Component unlocked DTFA2-1
-INFO  12/11/2011 18:41:29 Lockcomponent   - Locked dtfa-2 as DTFA1-2
-INFO  12/11/2011 18:41:29 Lockcomponent   - Locked dtfa-1 as DTFA2-2
-INFO  12/11/2011 18:41:29 Unlockcomponent - Unlocking dtfa-2
-INFO  12/11/2011 18:41:29 Unlockcomponent - Component unlocked DTFA1-2
-INFO  12/11/2011 18:41:29 Unlockcomponent - Unlocking dtfa-1
-INFO  12/11/2011 18:41:29 Unlockcomponent - Component unlocked DTFA2-2
-INFO  12/11/2011 18:41:29 Lockcomponent   - Locked dtfa-0 as DTFA1-1
-INFO  12/11/2011 18:41:29 Lockcomponent   - Locked dtfa-2 as DTFA2-1
-INFO  12/11/2011 18:41:29 Unlockcomponent - Unlocking dtfa-0
-INFO  12/11/2011 18:41:29 Unlockcomponent - Component unlocked DTFA1-1
-INFO  12/11/2011 18:41:29 Unlockcomponent - Unlocking dtfa-2
-INFO  12/11/2011 18:41:29 Unlockcomponent - Component unlocked DTFA2-1
-INFO  12/11/2011 18:41:29 Lockcomponent   - Locked dtfa-0 as DTFA1-2
-INFO  12/11/2011 18:41:29 Lockcomponent   - Locked dtfa-1 as DTFA2-2
-INFO  12/11/2011 18:41:29 Unlockcomponent - Unlocking dtfa-0
-INFO  12/11/2011 18:41:29 Unlockcomponent - Component unlocked DTFA1-2
-INFO  12/11/2011 18:41:29 Unlockcomponent - Unlocking dtfa-1
-INFO  12/11/2011 18:41:29 Unlockcomponent - Component unlocked DTFA2-2
-INFO  12/11/2011 18:41:29 Lockcomponent   - Locked dtfa-1 as DTFA1-1
-INFO  12/11/2011 18:41:29 Lockcomponent   - Locked dtfa-2 as DTFA2-1
-INFO  12/11/2011 18:41:29 Unlockcomponent - Unlocking dtfa-1
-INFO  12/11/2011 18:41:29 Unlockcomponent - Component unlocked DTFA1-1
-INFO  12/11/2011 18:41:29 Unlockcomponent - Unlocking dtfa-2
-INFO  12/11/2011 18:41:29 Unlockcomponent - Component unlocked DTFA2-1
-INFO  12/11/2011 18:41:29 Lockcomponent   - Locked dtfa-2 as DTFA1-2
-INFO  12/11/2011 18:41:29 Lockcomponent   - Locked dtfa-1 as DTFA2-2
-INFO  12/11/2011 18:41:29 Unlockcomponent - Unlocking dtfa-2
-INFO  12/11/2011 18:41:29 Unlockcomponent - Component unlocked DTFA1-2
-INFO  12/11/2011 18:41:29 Unlockcomponent - Unlocking dtfa-1
-INFO  12/11/2011 18:41:29 Unlockcomponent - Component unlocked DTFA2-2
-INFO  12/11/2011 18:41:29 Testscript      - Executing storage://INPUT/remotestorage.xml
-INFO  12/11/2011 18:41:29 Rename          - Node name is dtfx-27
-INFO  12/11/2011 18:41:29 Lockcomponent   - Locked dtfa-0 as DTFA1
-INFO  12/11/2011 18:41:30 Lockcomponent   - Locked dtfa-2 as DTFA2
-INFO  12/11/2011 18:41:30 Lockcomponent   - Locked dtfa-1 as DTFA3
-INFO  12/11/2011 18:41:30 Log             - DTFA1
-INFO  12/11/2011 18:41:30 Log             - DTFA2
-INFO  12/11/2011 18:41:30 Log             - DTFA3
-INFO  12/11/2011 18:41:31 Log             - Parallel Overwrites
-INFO  12/11/2011 18:41:31 Log             - Sequential Appends
-INFO  12/11/2011 18:41:31 Log             - Parallel Appends
-INFO  12/11/2011 18:41:32 Testscript      - Executing storage://INPUT/recorder.xml
-INFO  12/11/2011 18:41:32 Rename          - Node name is dtfx-28
-INFO  12/11/2011 18:41:32 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  12/11/2011 18:41:32 Log             - TXT Recorder Unit Tests
-INFO  12/11/2011 18:41:32 Log             - Object Recorder Unit Tests
-INFO  12/11/2011 18:41:32 Echo            - Previous event started at: 1321123292624
-INFO  12/11/2011 18:41:32 Echo            - Previous event ended at: 1321123292624
-INFO  12/11/2011 18:41:32 Echo            - Previous event had property1 set to: 1
-INFO  12/11/2011 18:41:32 Echo            - Previous event started at: 1321123292624
-INFO  12/11/2011 18:41:32 Echo            - Previous event ended at: 1321123292625
-INFO  12/11/2011 18:41:32 Echo            - Previous event had property1 set to: 1
-INFO  12/11/2011 18:41:32 Log             - Caught exception correctly [Unable to find storage: SOMEWHERE at tests/ut/recorder.xml:87:10]
-INFO  12/11/2011 18:41:32 Log             - Caught exception correctly [Unsupported recorder type [caca] at tests/ut/recorder.xml:95:10]
-INFO  12/11/2011 18:41:32 Testscript      - Executing storage://INPUT/stats_recorder.xml
-INFO  12/11/2011 18:41:32 Testscript      - Executing storage://INPUT/query.xml
-INFO  12/11/2011 18:41:33 Log             - 1: abcxyzup
-INFO  12/11/2011 18:41:33 Log             - 5: abcxyzup
-INFO  12/11/2011 18:41:33 Log             - Total Ops 5
-INFO  12/11/2011 18:41:33 Testsuite       - Starting query
-INFO  12/11/2011 18:41:33 Testscript      - Executing storage://INPUT/query_testcase.xml
-INFO  12/11/2011 18:41:33 Log             - Queries per second: 1000
-INFO  12/11/2011 18:41:33 Log             - Complex queries for txt format
-INFO  12/11/2011 18:41:33 Echo            - All done iterating correctly.
-INFO  12/11/2011 18:41:33 Echo            - All done iterating correctly.
-INFO  12/11/2011 18:41:33 Echo            - All done iterating correctly.
-INFO  12/11/2011 18:41:33 Resetcursor     - Resetting curosr [element2]
-INFO  12/11/2011 18:41:33 Echo            - All done iterating correctly.
-INFO  12/11/2011 18:41:34 Log             - caca
-INFO  12/11/2011 18:41:34 Testscript      - Executing storage://INPUT/event.xml
-INFO  12/11/2011 18:41:34 Echo            - Counter Unit Tests
-INFO  12/11/2011 18:41:34 ConsoleRecorder - {dtf.echo.start=1321123294363, dtf.echo.stop=1321123294363, dtf.echo.iteration=1}
-INFO  12/11/2011 18:41:34 ConsoleRecorder - {dtf.echo.start=1321123294363, dtf.echo.stop=1321123294363, dtf.echo.iteration=2}
-INFO  12/11/2011 18:41:34 ConsoleRecorder - {dtf.echo.start=1321123294363, dtf.echo.stop=1321123294363, dtf.echo.iteration=3}
-INFO  12/11/2011 18:41:34 ConsoleRecorder - {dtf.echo.start=1321123294364, dtf.echo.stop=1321123294364, dtf.echo.iteration=4}
-INFO  12/11/2011 18:41:34 ConsoleRecorder - {dtf.echo.start=1321123294364, dtf.echo.stop=1321123294364, dtf.echo.iteration=5}
-INFO  12/11/2011 18:41:34 Rename          - Node name is dtfx-29
-INFO  12/11/2011 18:41:34 Lockcomponent   - Locked dtfa-1 as DTFA1
-INFO  12/11/2011 18:41:34 Testscript      - Executing storage://INPUT/event_visibility.xml
-INFO  12/11/2011 18:41:34 Rename          - Node name is dtfx-30
-INFO  12/11/2011 18:41:34 Lockcomponent   - Locked dtfa-0 as C1
-INFO  12/11/2011 18:41:35 Testscript      - Executing storage://INPUT/compare.xml
-INFO  12/11/2011 18:41:35 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  12/11/2011 18:41:35 Testscript      - Executing storage://INPUT/filter.xml
-INFO  12/11/2011 18:41:35 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
-INFO  12/11/2011 18:41:35 Testscript      - Executing storage://INPUT/sort.xml
-INFO  12/11/2011 18:41:35 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  12/11/2011 18:41:36 Testscript      - Executing storage://INPUT/testsuite.xml
-INFO  12/11/2011 18:41:36 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testsuite_results.xml}
-INFO  12/11/2011 18:41:36 Testsuite       - Starting testsuite1
-INFO  12/11/2011 18:41:36 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:36 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:36 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:36 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:36 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:36 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:36 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:36 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:36 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:36 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:36 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:36 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:36 Testscript      - Executing storage://INPUT/testsuite-sub.xml
-INFO  12/11/2011 18:41:36 Testsuite       - Starting testsuite2
-INFO  12/11/2011 18:41:36 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:36 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:36 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:36 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:36 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:36 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:36 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:37 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:37 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:37 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:37 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:37 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:37 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testsuite_results.xml}
-INFO  12/11/2011 18:41:37 Testscript      - Executing storage://INPUT/results.xml
-INFO  12/11/2011 18:41:37 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  12/11/2011 18:41:37 Testsuite       - Starting results
-INFO  12/11/2011 18:41:37 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:37 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:37 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:37 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:37 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:37 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:37 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:37 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:37 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:37 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:37 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:37 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:37 Testscript      - Executing storage://INPUT/testsuite-sub.xml
-INFO  12/11/2011 18:41:37 Testsuite       - Starting testsuite2
-INFO  12/11/2011 18:41:37 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:37 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:37 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:37 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:37 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:38 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:38 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:38 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:38 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:38 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:38 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:38 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:38 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  12/11/2011 18:41:38 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  12/11/2011 18:41:38 Testsuite       - Starting results
-INFO  12/11/2011 18:41:38 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:38 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:38 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:38 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:38 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:38 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:38 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:38 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:38 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:38 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:38 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:38 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:38 Testscript      - Executing storage://INPUT/testsuite-sub.xml
-INFO  12/11/2011 18:41:38 Testsuite       - Starting testsuite2
-INFO  12/11/2011 18:41:38 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:38 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:38 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:38 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:38 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:38 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:38 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:38 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:38 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:39 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:39 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:39 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:39 ConsoleResults  - Testsuite: results passed. 13 passed testcases.
-INFO  12/11/2011 18:41:39 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  12/11/2011 18:41:39 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  12/11/2011 18:41:39 Testsuite       - Starting results
-INFO  12/11/2011 18:41:39 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:39 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:39 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:39 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:39 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:39 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:39 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:39 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:39 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:39 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:39 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:39 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:39 Testscript      - Executing storage://INPUT/testsuite-sub.xml
-INFO  12/11/2011 18:41:39 Testsuite       - Starting testsuite2
-INFO  12/11/2011 18:41:39 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:39 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:39 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:39 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:39 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:39 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:39 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:39 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:39 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:39 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:39 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:40 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:40 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
-INFO  12/11/2011 18:41:40 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:40 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:40 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:40 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
-INFO  12/11/2011 18:41:40 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/testcase.xml
-INFO  12/11/2011 18:41:40 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/donothing.xml
-INFO  12/11/2011 18:41:40 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
-INFO  12/11/2011 18:41:40 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/concurrent_suite.xml
-INFO  12/11/2011 18:41:40 Result          - Starting Result recording: Result {uri=storage://OUTPUT/concurrent_suite_results.xml}
-INFO  12/11/2011 18:41:40 Testsuite       - Starting concurrent_suite
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/empty.xml
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/empty.xml
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/empty.xml
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/empty.xml
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/empty.xml
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/empty.xml
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/empty.xml
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/empty.xml
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/empty.xml
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/empty.xml
-INFO  12/11/2011 18:41:40 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/concurrent_suite_results.xml}
-INFO  12/11/2011 18:41:40 Testscript      - Executing storage://INPUT/stats.xml
-INFO  12/11/2011 18:41:41 Resetcursor     - Resetting curosr [cursor1]
-INFO  12/11/2011 18:41:41 Log             - Caught exception correctly [Cursor [inexistent] does not exist at tests/ut/stats.xml:71:10]
-INFO  12/11/2011 18:41:41 Testscript      - Executing storage://INPUT/file.xml
-INFO  12/11/2011 18:41:41 Rename          - Node name is dtfx-31
-INFO  12/11/2011 18:41:41 Lockcomponent   - Locked dtfa-2 as DTFA1
-INFO  12/11/2011 18:41:42 Log             - Caught expected failure.
-INFO  12/11/2011 18:41:42 Testscript      - Executing storage://INPUT/http.xml
-INFO  12/11/2011 18:41:43 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
-INFO  12/11/2011 18:41:43 Http_server     - Starting [127.0.0.1:55555]
-INFO  12/11/2011 18:41:43 Http_server     - Stopping [127.0.0.1:55555]
-INFO  12/11/2011 18:41:43 Testscript      - Executing storage://INPUT/http_server.xml
-INFO  12/11/2011 18:41:44 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
-INFO  12/11/2011 18:41:44 Http_server     - Starting [127.0.0.1:44444]
-INFO  12/11/2011 18:41:44 Log             - SOME DATA FROM THE CLIENT
-INFO  12/11/2011 18:41:44 Log             - in operation1
-INFO  12/11/2011 18:41:44 Log             - in operation2
-INFO  12/11/2011 18:41:44 Log             - in operation3
-INFO  12/11/2011 18:41:44 Log             - Validating that parallel cookie manipulation doesn't hit any issues 
-INFO  12/11/2011 18:41:46 Http_server     - Stopping [127.0.0.1:44444]
-INFO  12/11/2011 18:41:46 Http_server     - Starting [127.0.0.1:44445]
-INFO  12/11/2011 18:41:46 Http_server     - Stopping [127.0.0.1:44445]
-INFO  12/11/2011 18:41:46 Testscript      - Executing storage://INPUT/http_cleanup_test.xml
-INFO  12/11/2011 18:41:46 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
-INFO  12/11/2011 18:41:46 Rename          - Node name is dtfx-32
-INFO  12/11/2011 18:41:46 Http_server     - Starting [127.0.0.1:33333]
-INFO  12/11/2011 18:41:46 Lockcomponent   - Locked dtfa-1 as C1
-INFO  12/11/2011 18:41:46 Lockcomponent   - Locked dtfa-0 as C2
-INFO  12/11/2011 18:41:47 Unlockcomponent - Unlocking dtfa-1
-ERROR 12/11/2011 18:41:47 Client closed connection.
+INFO  12/11/2011 20:55:58 Log             - Data matches!
+INFO  12/11/2011 20:55:58 Log             - Caught property recursion correctly.
+INFO  12/11/2011 20:55:58 Log             - Caught nested property recursion correctly.
+INFO  12/11/2011 20:55:58 Log             - value2value2value2
+INFO  12/11/2011 20:55:58 Testscript      - Executing storage://INPUT/cat.xml
+INFO  12/11/2011 20:55:58 Log             - Caught exception correctly [Unable to find storage: CACA at tests/ut/cat.xml:51:10]
+INFO  12/11/2011 20:55:58 Testscript      - Executing storage://INPUT/log.xml
+INFO  12/11/2011 20:55:59 Log             - Just testing the logging functionality
+INFO  12/11/2011 20:55:59 Log             - INFO INFO INFO
+ERROR 12/11/2011 20:55:59 Log             - ERROR ERROR ERROR
+WARN  12/11/2011 20:55:59 Log             - WARNING WARNING WARNING
+INFO  12/11/2011 20:55:59 Log             - INFO with tag TESTING
+ERROR 12/11/2011 20:55:59 Log             - ERROR with tag TESTING
+WARN  12/11/2011 20:55:59 Log             - WARNING with tag TESTING
+INFO  12/11/2011 20:55:59 Testscript      - Executing storage://INPUT/for.xml
+INFO  12/11/2011 20:55:59 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  12/11/2011 20:55:59 Testscript      - Executing storage://INPUT/parallel.xml
+INFO  12/11/2011 20:55:59 Testscript      - Executing storage://INPUT/parallelloop.xml
+INFO  12/11/2011 20:55:59 Testscript      - Executing storage://INPUT/sequence.xml
+INFO  12/11/2011 20:55:59 Echo            - HERE
+INFO  12/11/2011 20:55:59 Echo            - HERE
+INFO  12/11/2011 20:55:59 Testscript      - Executing storage://INPUT/timer.xml
+INFO  12/11/2011 20:55:59 Timer           - Timer took 115ms of 100ms.
+INFO  12/11/2011 20:55:59 Testscript      - Executing storage://INPUT/switch.xml
+INFO  12/11/2011 20:56:00 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  12/11/2011 20:56:00 Log             - Switch case #1
+INFO  12/11/2011 20:56:00 Log             - Switch case #2
+INFO  12/11/2011 20:56:00 Log             - Looped through switch and function call correctly.
+INFO  12/11/2011 20:56:00 Log             - Switch case #2
+INFO  12/11/2011 20:56:00 Log             - Looped through switch and function call correctly.
+INFO  12/11/2011 20:56:00 Log             - Looped through switch and function call correctly.
+INFO  12/11/2011 20:56:00 Log             - Switch went into the failure case correctly.
+INFO  12/11/2011 20:56:00 Testscript      - Executing storage://INPUT/while.xml
+INFO  12/11/2011 20:56:00 Log             - Thread 1 is starting.
+INFO  12/11/2011 20:56:00 Log             - Thread 2 is starting.
+INFO  12/11/2011 20:56:00 Log             - Thread 2 is done.
+INFO  12/11/2011 20:56:00 Log             - Thread 1 is done.
+INFO  12/11/2011 20:56:00 Testscript      - Executing storage://INPUT/break.xml
+INFO  12/11/2011 20:56:00 Rename          - Node name is dtfx-7
+INFO  12/11/2011 20:56:00 Lockcomponent   - Locked dtfa-1 as C1
+INFO  12/11/2011 20:56:00 Timer           - Timer took 0ms of 30000ms.
+INFO  12/11/2011 20:56:01 Testscript      - Executing storage://INPUT/try_catch_fail.xml
+INFO  12/11/2011 20:56:01 Rename          - Node name is dtfx-8
+INFO  12/11/2011 20:56:01 Lockcomponent   - Locked dtfa-2 as DTFA1
+INFO  12/11/2011 20:56:01 Echo            - Try/Catch and Fail Unit Test
+INFO  12/11/2011 20:56:01 Echo            - The previous statement has failed correctly.
+INFO  12/11/2011 20:56:01 Echo            - Caught the exception on outter try/catch.
+INFO  12/11/2011 20:56:01 Echo            - Message: Failure should be caught by catch. at tests/ut/try_catch_fail.xml:40:77
+INFO  12/11/2011 20:56:01 Echo            - Caught exception from remote component.
+INFO  12/11/2011 20:56:01 Echo            - Message: Failing on component at tests/ut/try_catch_fail.xml:66:46 on component [DTFA1]
+INFO  12/11/2011 20:56:01 Testscript      - Executing storage://INPUT/fail.xml
+INFO  12/11/2011 20:56:01 Rename          - Node name is dtfx-9
+INFO  12/11/2011 20:56:01 Lockcomponent   - Locked dtfa-0 as DTFA
+INFO  12/11/2011 20:56:01 Testscript      - Executing storage://INPUT/distribute.xml
+INFO  12/11/2011 20:56:02 Testscript      - Executing storage://INPUT/choices.xml
+INFO  12/11/2011 20:56:03 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  12/11/2011 20:56:03 Testscript      - Executing storage://INPUT/if.xml
+INFO  12/11/2011 20:56:03 Testscript      - Executing storage://INPUT/similar.xml
+INFO  12/11/2011 20:56:04 Log             - png: being checked
+INFO  12/11/2011 20:56:04 Log             - images are within 100% similarity
+INFO  12/11/2011 20:56:04 Log             - gif: being checked
+INFO  12/11/2011 20:56:04 Log             - images are within 100% similarity
+INFO  12/11/2011 20:56:04 Log             - bmp: being checked
+INFO  12/11/2011 20:56:04 Log             - images are within 100% similarity
+INFO  12/11/2011 20:56:04 Testscript      - Executing storage://INPUT/createrange.xml
+INFO  12/11/2011 20:56:04 Testscript      - Executing storage://INPUT/range.xml
+INFO  12/11/2011 20:56:04 Testscript      - Executing storage://INPUT/range_dist.xml
+INFO  12/11/2011 20:56:04 Rename          - Node name is dtfx-10
+INFO  12/11/2011 20:56:04 Lockcomponent   - Locked dtfa-1 as C1
+INFO  12/11/2011 20:56:06 Testscript      - Executing storage://INPUT/xml_range.xml
+INFO  12/11/2011 20:56:06 Log             - XPath range validation
+INFO  12/11/2011 20:56:06 Log             - XPath range validation on XML with namespace
+INFO  12/11/2011 20:56:06 Log             - XPath range validation on XML with default namespace
+INFO  12/11/2011 20:56:06 Log             - negative tests
+INFO  12/11/2011 20:56:06 Log             - Failed correctly
+INFO  12/11/2011 20:56:06 Testscript      - Executing storage://INPUT/json_range.xml
+INFO  12/11/2011 20:56:06 Log             - JPath range validation
+INFO  12/11/2011 20:56:06 Log             - Negative Tests
+INFO  12/11/2011 20:56:06 Log             - Failed correctly
+INFO  12/11/2011 20:56:06 Testscript      - Executing storage://INPUT/functions.xml
+INFO  12/11/2011 20:56:06 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  12/11/2011 20:56:07 Import          - Importing elements from Import {uri=storage://INPUT/functions_util.xml}
+WARN  12/11/2011 20:56:07 Function        - Argument [function] not being used by the function [func2]
+WARN  12/11/2011 20:56:07 Function        - Argument [function] not being used by the function [func3]
+WARN  12/11/2011 20:56:07 Function        - Argument [p3] not being used by the function [functionWithParams]
+INFO  12/11/2011 20:56:07 Testscript      - Executing storage://INPUT/import.xml
+INFO  12/11/2011 20:56:07 Import          - Importing elements from Import {uri=storage://INPUT/functions_util.xml}
+INFO  12/11/2011 20:56:07 Import          - Importing elements from Import {uri=storage://TINPUT/functions.xml}
+WARN  12/11/2011 20:56:07 Function        - Argument [function] not being used by the function [func2]
+WARN  12/11/2011 20:56:07 Function        - Argument [function] not being used by the function [func3]
+INFO  12/11/2011 20:56:07 Import          - Importing elements from Import {uri=storage://INPUT/badxml}
+INFO  12/11/2011 20:56:07 Testscript      - Executing storage://INPUT/export.xml
+INFO  12/11/2011 20:56:07 Import          - Importing elements from Import {uri=storage://INPUT/export_util.xml}
+INFO  12/11/2011 20:56:08 Rename          - Node name is dtfx-11
+INFO  12/11/2011 20:56:08 Lockcomponent   - Locked dtfa-2 as DTFA1
+INFO  12/11/2011 20:56:08 Log             - Got exception as expected.
+INFO  12/11/2011 20:56:08 Testscript      - Executing storage://INPUT/references.xml
+INFO  12/11/2011 20:56:08 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  12/11/2011 20:56:08 Rename          - Node name is dtfx-12
+INFO  12/11/2011 20:56:08 Lockcomponent   - Locked dtfa-0 as DTFA1
+INFO  12/11/2011 20:56:08 Testscript      - Executing storage://INPUT/component.xml
+INFO  12/11/2011 20:56:08 Rename          - Node name is dtfx-13
+INFO  12/11/2011 20:56:08 Lockcomponent   - Locked dtfa-1 as DTFA1
+INFO  12/11/2011 20:56:08 Echo            - About to lock a dtfa by name and this will fail.
+INFO  12/11/2011 20:56:10 Testscript      - Executing storage://INPUT/lockcomponent.xml
+INFO  12/11/2011 20:56:10 Rename          - Node name is dtfx-14
+INFO  12/11/2011 20:56:10 Lockcomponent   - Locked dtfa-0 as DTFA3
+INFO  12/11/2011 20:56:10 Lockcomponent   - Locked dtfa-2 as DTFA2
+INFO  12/11/2011 20:56:10 Lockcomponent   - Locked dtfa-1 as DTFA1
+INFO  12/11/2011 20:56:10 Unlockcomponent - Unlocking dtfa-0
+INFO  12/11/2011 20:56:10 Unlockcomponent - Unlocking dtfa-1
+INFO  12/11/2011 20:56:10 Unlockcomponent - Component unlocked DTFA3
+INFO  12/11/2011 20:56:10 Unlockcomponent - Component unlocked DTFA1
+INFO  12/11/2011 20:56:10 Lockcomponent   - Locked dtfa-0 as DTFA1
+INFO  12/11/2011 20:56:10 Unlockcomponent - Unlocking dtfa-0
+INFO  12/11/2011 20:56:10 Unlockcomponent - Component unlocked DTFA1
+INFO  12/11/2011 20:56:10 Lockcomponent   - Locked dtfa-1 as DTFA3
+INFO  12/11/2011 20:56:10 Unlockcomponent - Unlocking dtfa-2
+INFO  12/11/2011 20:56:10 Unlockcomponent - Component unlocked DTFA2
+INFO  12/11/2011 20:56:10 Lockcomponent   - Locked dtfa-0 as DTFA1
+INFO  12/11/2011 20:56:10 Unlockcomponent - Unlocking dtfa-1
+INFO  12/11/2011 20:56:10 Unlockcomponent - Component unlocked DTFA3
+INFO  12/11/2011 20:56:10 Lockcomponent   - Locked dtfa-2 as DTFA2
+INFO  12/11/2011 20:56:10 Unlockcomponent - Unlocking dtfa-0
+INFO  12/11/2011 20:56:10 Unlockcomponent - Component unlocked DTFA1
+INFO  12/11/2011 20:56:10 Lockcomponent   - Locked dtfa-1 as DTFA3
+INFO  12/11/2011 20:56:10 Unlockcomponent - Unlocking dtfa-2
+INFO  12/11/2011 20:56:10 Unlockcomponent - Component unlocked DTFA2
+INFO  12/11/2011 20:56:10 Unlockcomponent - Unlocking dtfa-1
+INFO  12/11/2011 20:56:10 Unlockcomponent - Component unlocked DTFA3
+INFO  12/11/2011 20:56:10 Lockcomponent   - Locked dtfa-2 as DTFA2
+INFO  12/11/2011 20:56:10 Unlockcomponent - Unlocking dtfa-2
+INFO  12/11/2011 20:56:10 Unlockcomponent - Component unlocked DTFA2
+INFO  12/11/2011 20:56:10 Testsuite       - Starting lockcomponent
+INFO  12/11/2011 20:56:10 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  12/11/2011 20:56:10 Testsuite       - Starting lockcomponent
+INFO  12/11/2011 20:56:10 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  12/11/2011 20:56:10 Testsuite       - Starting lockcomponent
+INFO  12/11/2011 20:56:10 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  12/11/2011 20:56:11 Rename          - Node name is dtfx-15
+INFO  12/11/2011 20:56:11 Lockcomponent   - Locked dtfa-0 as C1
+INFO  12/11/2011 20:56:11 Rename          - Node name is dtfx-16
+INFO  12/11/2011 20:56:11 Rename          - Node name is dtfx-17
+INFO  12/11/2011 20:56:11 Lockcomponent   - Locked dtfa-2 as C1
+INFO  12/11/2011 20:56:11 Lockcomponent   - Locked dtfa-1 as C1
+INFO  12/11/2011 20:56:11 Testsuite       - Starting lockcomponent
+INFO  12/11/2011 20:56:11 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  12/11/2011 20:56:11 Testsuite       - Starting lockcomponent
+INFO  12/11/2011 20:56:11 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  12/11/2011 20:56:11 Testsuite       - Starting lockcomponent
+INFO  12/11/2011 20:56:11 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  12/11/2011 20:56:11 Rename          - Node name is dtfx-18
+INFO  12/11/2011 20:56:11 Lockcomponent   - Locked dtfa-2 as C1
+INFO  12/11/2011 20:56:11 Rename          - Node name is dtfx-19
+INFO  12/11/2011 20:56:11 Lockcomponent   - Locked dtfa-0 as C1
+INFO  12/11/2011 20:56:11 Testsuite       - Starting lockcomponent
+INFO  12/11/2011 20:56:11 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  12/11/2011 20:56:11 Rename          - Node name is dtfx-20
+INFO  12/11/2011 20:56:11 Lockcomponent   - Locked dtfa-1 as C1
+INFO  12/11/2011 20:56:12 Testsuite       - Starting lockcomponent
+INFO  12/11/2011 20:56:12 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  12/11/2011 20:56:12 Testsuite       - Starting lockcomponent
+INFO  12/11/2011 20:56:12 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  12/11/2011 20:56:12 Rename          - Node name is dtfx-21
+INFO  12/11/2011 20:56:12 Rename          - Node name is dtfx-22
+INFO  12/11/2011 20:56:12 Lockcomponent   - Locked dtfa-2 as C1
+INFO  12/11/2011 20:56:12 Rename          - Node name is dtfx-23
+INFO  12/11/2011 20:56:12 Lockcomponent   - Locked dtfa-0 as C1
+INFO  12/11/2011 20:56:12 Lockcomponent   - Locked dtfa-1 as C1
+INFO  12/11/2011 20:56:12 Testsuite       - Starting lockcomponent
+INFO  12/11/2011 20:56:12 Testscript      - Executing storage://INPUT/parallel_occupy_component.xml
+INFO  12/11/2011 20:56:12 Rename          - Node name is dtfx-24
+INFO  12/11/2011 20:56:12 Lockcomponent   - Locked dtfa-2 as C2
+INFO  12/11/2011 20:56:12 Lockcomponent   - Locked dtfa-1 as C1
+INFO  12/11/2011 20:56:12 Lockcomponent   - Locked dtfa-0 as C3
+INFO  12/11/2011 20:56:12 Lockcomponent   - Locked dtfa-0 as C1
+INFO  12/11/2011 20:56:12 Unlockcomponent - Unlocking dtfa-0
+INFO  12/11/2011 20:56:12 Unlockcomponent - Component unlocked C1
+INFO  12/11/2011 20:56:12 Testsuite       - Starting lockcomponent
+INFO  12/11/2011 20:56:12 Testscript      - Executing storage://INPUT/function_occupy_component.xml
+INFO  12/11/2011 20:56:12 Rename          - Node name is dtfx-25
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-1 as C1
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-2 as C2
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-0 as C3
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-0 as C1
+INFO  12/11/2011 20:56:13 Unlockcomponent - Unlocking dtfa-0
+INFO  12/11/2011 20:56:13 Unlockcomponent - Component unlocked C1
+INFO  12/11/2011 20:56:13 Testscript      - Executing storage://INPUT/lockgroup.xml
+INFO  12/11/2011 20:56:13 Rename          - Node name is dtfx-26
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-1 as DTFA1-2
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-2 as DTFA2-2
+INFO  12/11/2011 20:56:13 Unlockcomponent - Unlocking dtfa-1
+INFO  12/11/2011 20:56:13 Unlockcomponent - Component unlocked DTFA1-2
+INFO  12/11/2011 20:56:13 Unlockcomponent - Unlocking dtfa-2
+INFO  12/11/2011 20:56:13 Unlockcomponent - Component unlocked DTFA2-2
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-2 as DTFA1-1
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-1 as DTFA2-1
+INFO  12/11/2011 20:56:13 Unlockcomponent - Unlocking dtfa-2
+INFO  12/11/2011 20:56:13 Unlockcomponent - Component unlocked DTFA1-1
+INFO  12/11/2011 20:56:13 Unlockcomponent - Unlocking dtfa-1
+INFO  12/11/2011 20:56:13 Unlockcomponent - Component unlocked DTFA2-1
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-0 as DTFA1-1
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-2 as DTFA2-1
+INFO  12/11/2011 20:56:13 Unlockcomponent - Unlocking dtfa-0
+INFO  12/11/2011 20:56:13 Unlockcomponent - Component unlocked DTFA1-1
+INFO  12/11/2011 20:56:13 Unlockcomponent - Unlocking dtfa-2
+INFO  12/11/2011 20:56:13 Unlockcomponent - Component unlocked DTFA2-1
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-0 as DTFA1-2
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-1 as DTFA2-2
+INFO  12/11/2011 20:56:13 Unlockcomponent - Unlocking dtfa-0
+INFO  12/11/2011 20:56:13 Unlockcomponent - Component unlocked DTFA1-2
+INFO  12/11/2011 20:56:13 Unlockcomponent - Unlocking dtfa-1
+INFO  12/11/2011 20:56:13 Unlockcomponent - Component unlocked DTFA2-2
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-1 as DTFA1-1
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-2 as DTFA2-1
+INFO  12/11/2011 20:56:13 Unlockcomponent - Unlocking dtfa-1
+INFO  12/11/2011 20:56:13 Unlockcomponent - Component unlocked DTFA1-1
+INFO  12/11/2011 20:56:13 Unlockcomponent - Unlocking dtfa-2
+INFO  12/11/2011 20:56:13 Unlockcomponent - Component unlocked DTFA2-1
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-2 as DTFA1-2
+INFO  12/11/2011 20:56:13 Lockcomponent   - Locked dtfa-1 as DTFA2-2
+INFO  12/11/2011 20:56:14 Unlockcomponent - Unlocking dtfa-2
+INFO  12/11/2011 20:56:14 Unlockcomponent - Component unlocked DTFA1-2
+INFO  12/11/2011 20:56:14 Unlockcomponent - Unlocking dtfa-1
+INFO  12/11/2011 20:56:14 Unlockcomponent - Component unlocked DTFA2-2
+INFO  12/11/2011 20:56:14 Lockcomponent   - Locked dtfa-0 as DTFA1-1
+INFO  12/11/2011 20:56:14 Lockcomponent   - Locked dtfa-2 as DTFA2-1
+INFO  12/11/2011 20:56:14 Unlockcomponent - Unlocking dtfa-0
+INFO  12/11/2011 20:56:14 Unlockcomponent - Component unlocked DTFA1-1
+INFO  12/11/2011 20:56:14 Unlockcomponent - Unlocking dtfa-2
+INFO  12/11/2011 20:56:14 Unlockcomponent - Component unlocked DTFA2-1
+INFO  12/11/2011 20:56:14 Lockcomponent   - Locked dtfa-0 as DTFA1-2
+INFO  12/11/2011 20:56:14 Lockcomponent   - Locked dtfa-1 as DTFA2-2
+INFO  12/11/2011 20:56:14 Unlockcomponent - Unlocking dtfa-0
+INFO  12/11/2011 20:56:14 Unlockcomponent - Component unlocked DTFA1-2
+INFO  12/11/2011 20:56:14 Unlockcomponent - Unlocking dtfa-1
+INFO  12/11/2011 20:56:14 Unlockcomponent - Component unlocked DTFA2-2
+INFO  12/11/2011 20:56:14 Lockcomponent   - Locked dtfa-1 as DTFA1-1
+INFO  12/11/2011 20:56:14 Lockcomponent   - Locked dtfa-2 as DTFA2-1
+INFO  12/11/2011 20:56:14 Unlockcomponent - Unlocking dtfa-1
+INFO  12/11/2011 20:56:14 Unlockcomponent - Component unlocked DTFA1-1
+INFO  12/11/2011 20:56:14 Unlockcomponent - Unlocking dtfa-2
+INFO  12/11/2011 20:56:14 Unlockcomponent - Component unlocked DTFA2-1
+INFO  12/11/2011 20:56:14 Lockcomponent   - Locked dtfa-1 as DTFA1-2
+INFO  12/11/2011 20:56:14 Lockcomponent   - Locked dtfa-0 as DTFA2-2
+INFO  12/11/2011 20:56:14 Unlockcomponent - Unlocking dtfa-1
+INFO  12/11/2011 20:56:14 Unlockcomponent - Component unlocked DTFA1-2
+INFO  12/11/2011 20:56:14 Unlockcomponent - Unlocking dtfa-0
+INFO  12/11/2011 20:56:14 Unlockcomponent - Component unlocked DTFA2-2
+INFO  12/11/2011 20:56:14 Testscript      - Executing storage://INPUT/remotestorage.xml
+INFO  12/11/2011 20:56:14 Rename          - Node name is dtfx-27
+INFO  12/11/2011 20:56:14 Lockcomponent   - Locked dtfa-0 as DTFA1
+INFO  12/11/2011 20:56:14 Lockcomponent   - Locked dtfa-2 as DTFA2
+INFO  12/11/2011 20:56:14 Lockcomponent   - Locked dtfa-1 as DTFA3
+INFO  12/11/2011 20:56:14 Log             - DTFA1
+INFO  12/11/2011 20:56:14 Log             - DTFA2
+INFO  12/11/2011 20:56:15 Log             - DTFA3
+INFO  12/11/2011 20:56:15 Log             - Parallel Overwrites
+INFO  12/11/2011 20:56:15 Log             - Sequential Appends
+INFO  12/11/2011 20:56:16 Log             - Parallel Appends
+INFO  12/11/2011 20:56:16 Testscript      - Executing storage://INPUT/recorder.xml
+INFO  12/11/2011 20:56:16 Rename          - Node name is dtfx-28
+INFO  12/11/2011 20:56:16 Lockcomponent   - Locked dtfa-2 as DTFA1
+INFO  12/11/2011 20:56:16 Log             - TXT Recorder Unit Tests
+INFO  12/11/2011 20:56:16 Log             - Object Recorder Unit Tests
+INFO  12/11/2011 20:56:16 Echo            - Previous event started at: 1321131376712
+INFO  12/11/2011 20:56:16 Echo            - Previous event ended at: 1321131376712
+INFO  12/11/2011 20:56:16 Echo            - Previous event had property1 set to: 1
+INFO  12/11/2011 20:56:16 Echo            - Previous event started at: 1321131376712
+INFO  12/11/2011 20:56:16 Echo            - Previous event ended at: 1321131376712
+INFO  12/11/2011 20:56:16 Echo            - Previous event had property1 set to: 1
+INFO  12/11/2011 20:56:16 Log             - Caught exception correctly [Unable to find storage: SOMEWHERE at tests/ut/recorder.xml:87:10]
+INFO  12/11/2011 20:56:16 Log             - Caught exception correctly [Unsupported recorder type [caca] at tests/ut/recorder.xml:95:10]
+INFO  12/11/2011 20:56:16 Testscript      - Executing storage://INPUT/stats_recorder.xml
+INFO  12/11/2011 20:56:16 Testscript      - Executing storage://INPUT/query.xml
+INFO  12/11/2011 20:56:17 Log             - 1: abcxyzup
+INFO  12/11/2011 20:56:17 Log             - 5: abcxyzup
+INFO  12/11/2011 20:56:17 Log             - Total Ops 5
+INFO  12/11/2011 20:56:17 Testsuite       - Starting query
+INFO  12/11/2011 20:56:17 Testscript      - Executing storage://INPUT/query_testcase.xml
+INFO  12/11/2011 20:56:17 Log             - Queries per second: 1000
+INFO  12/11/2011 20:56:17 Log             - Complex queries for txt format
+INFO  12/11/2011 20:56:17 Echo            - All done iterating correctly.
+INFO  12/11/2011 20:56:17 Echo            - All done iterating correctly.
+INFO  12/11/2011 20:56:17 Echo            - All done iterating correctly.
+INFO  12/11/2011 20:56:17 Resetcursor     - Resetting curosr [element2]
+INFO  12/11/2011 20:56:17 Echo            - All done iterating correctly.
+INFO  12/11/2011 20:56:18 Log             - caca
+INFO  12/11/2011 20:56:18 Testscript      - Executing storage://INPUT/event.xml
+INFO  12/11/2011 20:56:18 Echo            - Counter Unit Tests
+INFO  12/11/2011 20:56:18 ConsoleRecorder - {dtf.echo.start=1321131378415, dtf.echo.stop=1321131378415, dtf.echo.iteration=1}
+INFO  12/11/2011 20:56:18 ConsoleRecorder - {dtf.echo.start=1321131378416, dtf.echo.stop=1321131378416, dtf.echo.iteration=2}
+INFO  12/11/2011 20:56:18 ConsoleRecorder - {dtf.echo.start=1321131378416, dtf.echo.stop=1321131378416, dtf.echo.iteration=3}
+INFO  12/11/2011 20:56:18 ConsoleRecorder - {dtf.echo.start=1321131378416, dtf.echo.stop=1321131378416, dtf.echo.iteration=4}
+INFO  12/11/2011 20:56:18 ConsoleRecorder - {dtf.echo.start=1321131378417, dtf.echo.stop=1321131378417, dtf.echo.iteration=5}
+INFO  12/11/2011 20:56:18 Rename          - Node name is dtfx-29
+INFO  12/11/2011 20:56:18 Lockcomponent   - Locked dtfa-1 as DTFA1
+INFO  12/11/2011 20:56:18 Testscript      - Executing storage://INPUT/event_visibility.xml
+INFO  12/11/2011 20:56:18 Rename          - Node name is dtfx-30
+INFO  12/11/2011 20:56:18 Lockcomponent   - Locked dtfa-0 as C1
+INFO  12/11/2011 20:56:18 Testscript      - Executing storage://INPUT/compare.xml
+INFO  12/11/2011 20:56:19 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  12/11/2011 20:56:19 Testscript      - Executing storage://INPUT/filter.xml
+INFO  12/11/2011 20:56:19 Import          - Importing elements from Import {uri=storage://INPUT/util.xml}
+INFO  12/11/2011 20:56:19 Testscript      - Executing storage://INPUT/sort.xml
+INFO  12/11/2011 20:56:19 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  12/11/2011 20:56:20 Testscript      - Executing storage://INPUT/testsuite.xml
+INFO  12/11/2011 20:56:20 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testsuite_results.xml}
+INFO  12/11/2011 20:56:20 Testsuite       - Starting testsuite1
+INFO  12/11/2011 20:56:20 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:20 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:20 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:20 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:20 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:20 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:20 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:20 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:20 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:20 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:20 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:20 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:20 Testscript      - Executing storage://INPUT/testsuite-sub.xml
+INFO  12/11/2011 20:56:20 Testsuite       - Starting testsuite2
+INFO  12/11/2011 20:56:20 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:20 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:20 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:20 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:20 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:20 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:20 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:20 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:20 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:20 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:20 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:20 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:20 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testsuite_results.xml}
+INFO  12/11/2011 20:56:20 Testscript      - Executing storage://INPUT/results.xml
+INFO  12/11/2011 20:56:21 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  12/11/2011 20:56:21 Testsuite       - Starting results
+INFO  12/11/2011 20:56:21 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:21 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:21 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:21 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:21 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:21 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:21 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:21 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:21 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:21 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:21 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:21 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:21 Testscript      - Executing storage://INPUT/testsuite-sub.xml
+INFO  12/11/2011 20:56:21 Testsuite       - Starting testsuite2
+INFO  12/11/2011 20:56:21 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:21 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:21 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:21 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:21 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:21 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:21 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:21 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:21 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:21 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:21 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:21 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:21 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  12/11/2011 20:56:21 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  12/11/2011 20:56:21 Testsuite       - Starting results
+INFO  12/11/2011 20:56:21 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:22 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:22 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:22 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:22 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:22 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:22 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/testsuite-sub.xml
+INFO  12/11/2011 20:56:22 Testsuite       - Starting testsuite2
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:22 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:22 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:22 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:22 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:22 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:22 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 ConsoleResults  - Testsuite: results passed. 13 passed testcases.
+INFO  12/11/2011 20:56:22 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  12/11/2011 20:56:22 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  12/11/2011 20:56:22 Testsuite       - Starting results
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:22 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:22 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:22 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:22 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:22 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:23 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:23 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/testsuite-sub.xml
+INFO  12/11/2011 20:56:23 Testsuite       - Starting testsuite2
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:23 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:23 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:23 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:23 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:23 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:23 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:23 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_output.${results.type}}
+INFO  12/11/2011 20:56:23 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:23 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:23 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:23 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
+INFO  12/11/2011 20:56:23 Result          - Starting Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/testcase.xml
+INFO  12/11/2011 20:56:23 Result          - Starting Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/donothing.xml
+INFO  12/11/2011 20:56:23 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/testcase_result2.xml}
+INFO  12/11/2011 20:56:23 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/results_result1.${results.type}}
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/concurrent_suite.xml
+INFO  12/11/2011 20:56:23 Result          - Starting Result recording: Result {uri=storage://OUTPUT/concurrent_suite_results.xml}
+INFO  12/11/2011 20:56:23 Testsuite       - Starting concurrent_suite
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/empty.xml
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/empty.xml
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/empty.xml
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/empty.xml
+INFO  12/11/2011 20:56:23 Testscript      - Executing storage://INPUT/empty.xml
+INFO  12/11/2011 20:56:24 Testscript      - Executing storage://INPUT/empty.xml
+INFO  12/11/2011 20:56:24 Testscript      - Executing storage://INPUT/empty.xml
+INFO  12/11/2011 20:56:24 Testscript      - Executing storage://INPUT/empty.xml
+INFO  12/11/2011 20:56:24 Testscript      - Executing storage://INPUT/empty.xml
+INFO  12/11/2011 20:56:24 Testscript      - Executing storage://INPUT/empty.xml
+INFO  12/11/2011 20:56:24 Result          - Stopping Result recording: Result {uri=storage://OUTPUT/concurrent_suite_results.xml}
+INFO  12/11/2011 20:56:24 Testscript      - Executing storage://INPUT/stats.xml
+INFO  12/11/2011 20:56:24 Resetcursor     - Resetting curosr [cursor1]
+INFO  12/11/2011 20:56:24 Log             - Caught exception correctly [Cursor [inexistent] does not exist at tests/ut/stats.xml:71:10]
+INFO  12/11/2011 20:56:24 Testscript      - Executing storage://INPUT/file.xml
+INFO  12/11/2011 20:56:24 Rename          - Node name is dtfx-31
+INFO  12/11/2011 20:56:24 Lockcomponent   - Locked dtfa-2 as DTFA1
+INFO  12/11/2011 20:56:25 Log             - Caught expected failure.
+INFO  12/11/2011 20:56:25 Testscript      - Executing storage://INPUT/http.xml
+INFO  12/11/2011 20:56:25 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
+INFO  12/11/2011 20:56:26 Http_server     - Starting [127.0.0.1:55555]
+INFO  12/11/2011 20:56:26 Http_server     - Stopping [127.0.0.1:55555]
+INFO  12/11/2011 20:56:26 Testscript      - Executing storage://INPUT/http_server.xml
+INFO  12/11/2011 20:56:26 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
+INFO  12/11/2011 20:56:26 Http_server     - Starting [127.0.0.1:44444]
+INFO  12/11/2011 20:56:26 Log             - SOME DATA FROM THE CLIENT
+INFO  12/11/2011 20:56:26 Log             - in operation1
+INFO  12/11/2011 20:56:26 Log             - in operation2
+INFO  12/11/2011 20:56:26 Log             - in operation3
+INFO  12/11/2011 20:56:26 Log             - Validating that parallel cookie manipulation doesn't hit any issues 
+INFO  12/11/2011 20:56:28 Http_server     - Stopping [127.0.0.1:44444]
+INFO  12/11/2011 20:56:28 Http_server     - Starting [127.0.0.1:44445]
+INFO  12/11/2011 20:56:28 Http_server     - Stopping [127.0.0.1:44445]
+INFO  12/11/2011 20:56:28 Testscript      - Executing storage://INPUT/http_cleanup_test.xml
+INFO  12/11/2011 20:56:29 Import          - Importing elements from Import {uri=storage://INPUT/http_util.xml}
+INFO  12/11/2011 20:56:29 Rename          - Node name is dtfx-32
+INFO  12/11/2011 20:56:29 Http_server     - Starting [127.0.0.1:33333]
+INFO  12/11/2011 20:56:29 Lockcomponent   - Locked dtfa-1 as C1
+INFO  12/11/2011 20:56:29 Lockcomponent   - Locked dtfa-0 as C2
+INFO  12/11/2011 20:56:29 Unlockcomponent - Unlocking dtfa-1
+ERROR 12/11/2011 20:56:29 Client closed connection.
 org.apache.http.ConnectionClosedException: Client closed connection
 	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:104)
 	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
@@ -531,9 +531,9 @@ org.apache.http.ConnectionClosedException: Client closed connection
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
 	at java.lang.Thread.run(Thread.java:619)
-INFO  12/11/2011 18:41:47 Unlockcomponent - Component unlocked C1
-INFO  12/11/2011 18:41:47 Unlockcomponent - Unlocking dtfa-0
-ERROR 12/11/2011 18:41:47 Client closed connection.
+INFO  12/11/2011 20:56:29 Unlockcomponent - Component unlocked C1
+INFO  12/11/2011 20:56:29 Unlockcomponent - Unlocking dtfa-0
+ERROR 12/11/2011 20:56:29 Client closed connection.
 org.apache.http.ConnectionClosedException: Client closed connection
 	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:104)
 	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
@@ -543,11 +543,11 @@ org.apache.http.ConnectionClosedException: Client closed connection
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
 	at java.lang.Thread.run(Thread.java:619)
-INFO  12/11/2011 18:41:47 Unlockcomponent - Component unlocked C2
-INFO  12/11/2011 18:41:47 Lockcomponent   - Locked dtfa-0 as C1
-INFO  12/11/2011 18:41:47 Lockcomponent   - Locked dtfa-1 as C2
-INFO  12/11/2011 18:41:47 Unlockcomponent - Unlocking dtfa-0
-ERROR 12/11/2011 18:41:47 Client closed connection.
+INFO  12/11/2011 20:56:29 Unlockcomponent - Component unlocked C2
+INFO  12/11/2011 20:56:29 Lockcomponent   - Locked dtfa-0 as C1
+INFO  12/11/2011 20:56:29 Lockcomponent   - Locked dtfa-1 as C2
+INFO  12/11/2011 20:56:30 Unlockcomponent - Unlocking dtfa-0
+ERROR 12/11/2011 20:56:30 Client closed connection.
 org.apache.http.ConnectionClosedException: Client closed connection
 	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:104)
 	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
@@ -557,9 +557,9 @@ org.apache.http.ConnectionClosedException: Client closed connection
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
 	at java.lang.Thread.run(Thread.java:619)
-INFO  12/11/2011 18:41:47 Unlockcomponent - Component unlocked C1
-INFO  12/11/2011 18:41:47 Unlockcomponent - Unlocking dtfa-1
-ERROR 12/11/2011 18:41:47 Client closed connection.
+INFO  12/11/2011 20:56:30 Unlockcomponent - Component unlocked C1
+INFO  12/11/2011 20:56:30 Unlockcomponent - Unlocking dtfa-1
+ERROR 12/11/2011 20:56:30 Client closed connection.
 org.apache.http.ConnectionClosedException: Client closed connection
 	at org.apache.http.impl.io.HttpRequestParser.parseHead(HttpRequestParser.java:104)
 	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:210)
@@ -569,141 +569,85 @@ org.apache.http.ConnectionClosedException: Client closed connection
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
 	at java.lang.Thread.run(Thread.java:619)
-INFO  12/11/2011 18:41:47 Unlockcomponent - Component unlocked C2
-INFO  12/11/2011 18:41:47 Http_server     - Stopping [127.0.0.1:33333]
-INFO  12/11/2011 18:41:47 Testscript      - Executing storage://INPUT/string_manipulation.xml
-INFO  12/11/2011 18:41:47 Testscript      - Executing storage://INPUT/string_transform.xml
-INFO  12/11/2011 18:41:47 Testscript      - Executing storage://INPUT/convert.xml
-INFO  12/11/2011 18:41:48 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  12/11/2011 18:41:48 Testscript      - Executing storage://INPUT/arithmetic.xml
-INFO  12/11/2011 18:41:48 Testscript      - Executing storage://INPUT/random.xml
-INFO  12/11/2011 18:41:48 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  12/11/2011 18:41:48 Log             - Correctness check for randomInt generator
-INFO  12/11/2011 18:41:48 Log             - Correctness check for randomLong generator
-INFO  12/11/2011 18:41:48 Log             - Correctness check for randomDouble generator
-INFO  12/11/2011 18:41:48 Log             - Correctness check for gaussianLong generator
-INFO  12/11/2011 18:41:48 Log             - Correctness check for randomInt generator
-INFO  12/11/2011 18:41:48 Log             - Correctness check for randomLong generator
-INFO  12/11/2011 18:41:48 Log             - Correctness check for randomDouble generator
-INFO  12/11/2011 18:41:48 Log             - Correctness check for gaussianLong generator
-INFO  12/11/2011 18:41:48 Log             - Correctness check for randomInt generator
-INFO  12/11/2011 18:41:48 Log             - Correctness check for randomLong generator
-INFO  12/11/2011 18:41:48 Log             - Correctness check for randomDouble generator
-INFO  12/11/2011 18:41:49 Log             - Correctness check for gaussianLong generator
-INFO  12/11/2011 18:41:49 Testscript      - Executing storage://INPUT/monitor.xml
-INFO  12/11/2011 18:41:49 Rename          - Node name is dtfx-33
-INFO  12/11/2011 18:41:49 Lockcomponent   - Locked dtfa-2 as AGENT1
-INFO  12/11/2011 18:41:49 Monitor_grep    - New files [log-1321123309155.6, log-1321123309155.1, log-1321123309155.3, log-1321123309155.5, log-1321123309155.8, log-1321123309155.2, log-1321123309155.9, log-1321123309155.10, log-1321123309155.4, log-1321123309155.7] in /home/dtftest/build/dtf/build/dtf/dist/tests/ut/output
-INFO  12/11/2011 18:41:49 Log             - Validating data correctness
-INFO  12/11/2011 18:41:49 Testscript      - Executing storage://INPUT/diff.xml
-INFO  12/11/2011 18:41:49 Testscript      - Executing storage://INPUT/xml_xpath.xml
-INFO  12/11/2011 18:41:49 Log             - Correct count of 6 for XPath: //list/item/text()
-INFO  12/11/2011 18:41:49 Log             - Correct count of 6 for XPath: //list/item/@att1
-INFO  12/11/2011 18:41:49 Log             - Correct count of 6 for XPath: //list/item
-INFO  12/11/2011 18:41:49 Log             - Correct count of 3 for XPath: //list/item[@att1 < 4]
-INFO  12/11/2011 18:41:49 Testscript      - Executing storage://INPUT/xml_dynamic.xml
-INFO  12/11/2011 18:41:49 Testscript      - Executing storage://INPUT/json_transform.xml
-INFO  12/11/2011 18:41:50 Testscript      - Executing storage://INPUT/stream.xml
-INFO  12/11/2011 18:41:50 Log             - Validate streams always generate the same data for the same seed.
-INFO  12/11/2011 18:41:53 Testscript      - Executing storage://INPUT/assertions.xml
-INFO  12/11/2011 18:41:53 Testscript      - Executing storage://INPUT/encoding.xml
-INFO  12/11/2011 18:41:53 Testscript      - Executing storage://INPUT/special_characters.xml
-INFO  12/11/2011 18:41:53 Testscript      - Executing storage://INPUT/testscript_component_complex.xml
-INFO  12/11/2011 18:41:54 Testsuite       - Starting dummy
-INFO  12/11/2011 18:41:54 Testscript      - Executing storage://INPUT/occupy_component.xml
-INFO  12/11/2011 18:41:54 Rename          - Node name is dtfx-34
-INFO  12/11/2011 18:41:54 Lockcomponent   - Locked dtfa-0 as C1
-INFO  12/11/2011 18:41:54 Rename          - Node name is dtfx-35
-ERROR 12/11/2011 18:42:54 Error running script.
-com.yahoo.dtf.exception.LockException: No agent found to match [NodeInfo {port=-1,node.id=1},] at tests/ut/input/occupy_component.xml:24:34
-	at com.yahoo.dtf.NodeState.lockNodes(NodeState.java:238)
-	at com.yahoo.dtf.actions.protocol.Lock.execute(Lock.java:63)
-	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:192)
-	at com.yahoo.dtf.actions.flowcontrol.Sequence.execute(Sequence.java:31)
-	at com.yahoo.dtf.comm.rpc.Node.execute(Node.java:73)
-	at sun.reflect.GeneratedMethodAccessor13.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
-	at java.lang.reflect.Method.invoke(Method.java:597)
-	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
-	at sun.rmi.transport.Transport$1.run(Transport.java:159)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
-	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
-	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
-	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
-	at java.lang.Thread.run(Thread.java:619)
-ERROR 12/11/2011 18:42:54 Testscript      - Failed [storage://INPUT/occupy_component.xml]
-ERROR 12/11/2011 18:42:54 Testscript failed.
-com.yahoo.dtf.exception.LockException: No agent found to match [NodeInfo {port=-1,node.id=1},] at tests/ut/input/occupy_component.xml:24:34
-	at com.yahoo.dtf.NodeState.lockNodes(NodeState.java:238)
-	at com.yahoo.dtf.actions.protocol.Lock.execute(Lock.java:63)
-	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:192)
-	at com.yahoo.dtf.actions.flowcontrol.Sequence.execute(Sequence.java:31)
-	at com.yahoo.dtf.comm.rpc.Node.execute(Node.java:73)
-	at sun.reflect.GeneratedMethodAccessor13.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
-	at java.lang.reflect.Method.invoke(Method.java:597)
-	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
-	at sun.rmi.transport.Transport$1.run(Transport.java:159)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
-	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
-	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
-	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
-	at java.lang.Thread.run(Thread.java:619)
-ERROR 12/11/2011 18:42:54 Testscript      - Failed [storage://INPUT/testscript_component_complex.xml]
-INFO  12/11/2011 18:42:54 Testscript      - Executing storage://INPUT/rendezvous.xml
-INFO  12/11/2011 18:42:55 Log             - Expected timeout has occured.
-INFO  12/11/2011 18:42:55 Testscript      - Executing storage://INPUT/rendezvous_complex.xml
-INFO  12/11/2011 18:42:55 Rename          - Node name is dtfx-36
-INFO  12/11/2011 18:42:55 Lockcomponent   - Locked dtfa-1 as C1
-INFO  12/11/2011 18:42:55 Lockcomponent   - Locked dtfa-2 as C2
-INFO  12/11/2011 18:42:56 Log             - rendezvous sync at 17
-INFO  12/11/2011 18:42:58 Testscript      - Executing storage://INPUT/share.xml
-INFO  12/11/2011 18:42:58 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  12/11/2011 18:42:58 Rename          - Node name is dtfx-37
-INFO  12/11/2011 18:42:59 Lockcomponent   - Locked dtfa-2 as PRODUCER
-INFO  12/11/2011 18:42:59 Lockcomponent   - Locked dtfa-1 as CONSUMER
-INFO  12/11/2011 18:42:59 Log             - event.start=1321123379474
-INFO  12/11/2011 18:42:59 Log             - event.stop=1321123379474
-INFO  12/11/2011 18:42:59 Testscript      - Executing storage://INPUT/share_complex.xml
-INFO  12/11/2011 18:42:59 Rename          - Node name is dtfx-38
-INFO  12/11/2011 18:42:59 Lockcomponent   - Locked dtfa-1 as C1
-INFO  12/11/2011 18:42:59 Lockcomponent   - Locked dtfa-2 as C2
-INFO  12/11/2011 18:43:00 Log             - share sync off by 67
-INFO  12/11/2011 18:43:00 Testscript      - Executing storage://INPUT/scanf.xml
-INFO  12/11/2011 18:43:00 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
-INFO  12/11/2011 18:43:01 Testscript      - Executing storage://INPUT/printf.xml
-INFO  12/11/2011 18:43:01 Log             - INTEGER[23] STRING[Hello There!] FLOAT [1.23] LIST [1,2,3,4]
-INFO  12/11/2011 18:43:01 Log             - 1.23456 -- reduce precision to .2 -> 1.23
-INFO  12/11/2011 18:43:01 Log             - 1 -- pad the number to 3 digits -> 001
-INFO  12/11/2011 18:43:01 Log             - 10 -- convert to hex and pad to 4 digits -> 000a
-INFO  12/11/2011 18:43:01 Testscript      - Executing storage://INPUT/read_image.xml
-INFO  12/11/2011 18:43:01 Log             - png: being checked
-INFO  12/11/2011 18:43:01 Log             - gif: being checked
-INFO  12/11/2011 18:43:01 Log             - bmp: being checked
-ERROR 12/11/2011 18:43:01 Testscript failed.
-com.yahoo.dtf.exception.LockException: No agent found to match [NodeInfo {port=-1,node.id=1},] at tests/ut/input/occupy_component.xml:24:34
-	at com.yahoo.dtf.NodeState.lockNodes(NodeState.java:238)
-	at com.yahoo.dtf.actions.protocol.Lock.execute(Lock.java:63)
-	at com.yahoo.dtf.actions.Action.executeChildren(Action.java:192)
-	at com.yahoo.dtf.actions.flowcontrol.Sequence.execute(Sequence.java:31)
-	at com.yahoo.dtf.comm.rpc.Node.execute(Node.java:73)
-	at sun.reflect.GeneratedMethodAccessor13.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
-	at java.lang.reflect.Method.invoke(Method.java:597)
-	at sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:305)
-	at sun.rmi.transport.Transport$1.run(Transport.java:159)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at sun.rmi.transport.Transport.serviceCall(Transport.java:155)
-	at sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:535)
-	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:790)
-	at sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:649)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:886)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:908)
-	at java.lang.Thread.run(Thread.java:619)
+INFO  12/11/2011 20:56:30 Unlockcomponent - Component unlocked C2
+INFO  12/11/2011 20:56:30 Http_server     - Stopping [127.0.0.1:33333]
+INFO  12/11/2011 20:56:30 Testscript      - Executing storage://INPUT/string_manipulation.xml
+INFO  12/11/2011 20:56:30 Testscript      - Executing storage://INPUT/string_transform.xml
+INFO  12/11/2011 20:56:30 Testscript      - Executing storage://INPUT/convert.xml
+INFO  12/11/2011 20:56:30 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  12/11/2011 20:56:30 Testscript      - Executing storage://INPUT/arithmetic.xml
+INFO  12/11/2011 20:56:30 Testscript      - Executing storage://INPUT/random.xml
+INFO  12/11/2011 20:56:30 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  12/11/2011 20:56:31 Log             - Correctness check for randomInt generator
+INFO  12/11/2011 20:56:31 Log             - Correctness check for randomLong generator
+INFO  12/11/2011 20:56:31 Log             - Correctness check for randomDouble generator
+INFO  12/11/2011 20:56:31 Log             - Correctness check for gaussianLong generator
+INFO  12/11/2011 20:56:31 Log             - Correctness check for randomInt generator
+INFO  12/11/2011 20:56:31 Log             - Correctness check for randomLong generator
+INFO  12/11/2011 20:56:31 Log             - Correctness check for randomDouble generator
+INFO  12/11/2011 20:56:31 Log             - Correctness check for gaussianLong generator
+INFO  12/11/2011 20:56:31 Log             - Correctness check for randomInt generator
+INFO  12/11/2011 20:56:31 Log             - Correctness check for randomLong generator
+INFO  12/11/2011 20:56:31 Log             - Correctness check for randomDouble generator
+INFO  12/11/2011 20:56:31 Log             - Correctness check for gaussianLong generator
+INFO  12/11/2011 20:56:31 Testscript      - Executing storage://INPUT/monitor.xml
+INFO  12/11/2011 20:56:31 Rename          - Node name is dtfx-33
+INFO  12/11/2011 20:56:31 Lockcomponent   - Locked dtfa-2 as AGENT1
+INFO  12/11/2011 20:56:31 Monitor_grep    - New files [log-1321131391425.10, log-1321131391425.7, log-1321131391425.8, log-1321131391425.6, log-1321131391425.1, log-1321131391425.9, log-1321131391425.2, log-1321131391425.5, log-1321131391425.4, log-1321131391425.3] in /home/dtftest/build/dtf/build/dtf/dist/tests/ut/output
+INFO  12/11/2011 20:56:31 Log             - Validating data correctness
+INFO  12/11/2011 20:56:31 Testscript      - Executing storage://INPUT/diff.xml
+INFO  12/11/2011 20:56:31 Testscript      - Executing storage://INPUT/xml_xpath.xml
+INFO  12/11/2011 20:56:32 Log             - Correct count of 6 for XPath: //list/item/text()
+INFO  12/11/2011 20:56:32 Log             - Correct count of 6 for XPath: //list/item/@att1
+INFO  12/11/2011 20:56:32 Log             - Correct count of 6 for XPath: //list/item
+INFO  12/11/2011 20:56:32 Log             - Correct count of 3 for XPath: //list/item[@att1 < 4]
+INFO  12/11/2011 20:56:32 Testscript      - Executing storage://INPUT/xml_dynamic.xml
+INFO  12/11/2011 20:56:32 Testscript      - Executing storage://INPUT/json_transform.xml
+INFO  12/11/2011 20:56:32 Testscript      - Executing storage://INPUT/stream.xml
+INFO  12/11/2011 20:56:32 Log             - Validate streams always generate the same data for the same seed.
+INFO  12/11/2011 20:56:34 Testscript      - Executing storage://INPUT/assertions.xml
+INFO  12/11/2011 20:56:35 Testscript      - Executing storage://INPUT/encoding.xml
+INFO  12/11/2011 20:56:35 Testscript      - Executing storage://INPUT/special_characters.xml
+INFO  12/11/2011 20:56:35 Testscript      - Executing storage://INPUT/testscript_component_complex.xml
+INFO  12/11/2011 20:56:35 Testsuite       - Starting dummy
+INFO  12/11/2011 20:56:35 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  12/11/2011 20:56:35 Rename          - Node name is dtfx-34
+INFO  12/11/2011 20:56:35 Lockcomponent   - Locked dtfa-1 as C1
+INFO  12/11/2011 20:56:35 Rename          - Node name is dtfx-35
+INFO  12/11/2011 20:56:36 Lockcomponent   - Locked dtfa-1 as C1
+INFO  12/11/2011 20:56:36 Lockcomponent   - Locked dtfa-2 as C2
+INFO  12/11/2011 20:56:36 Testsuite       - Starting dummy
+INFO  12/11/2011 20:56:36 Testscript      - Executing storage://INPUT/occupy_component.xml
+INFO  12/11/2011 20:56:36 Rename          - Node name is dtfx-36
+INFO  12/11/2011 20:56:36 Lockcomponent   - Locked dtfa-0 as C1
+INFO  12/11/2011 20:56:36 Testscript      - Executing storage://INPUT/rendezvous.xml
+INFO  12/11/2011 20:56:36 Log             - Expected timeout has occured.
+INFO  12/11/2011 20:56:37 Testscript      - Executing storage://INPUT/rendezvous_complex.xml
+INFO  12/11/2011 20:56:37 Rename          - Node name is dtfx-37
+INFO  12/11/2011 20:56:37 Lockcomponent   - Locked dtfa-1 as C1
+INFO  12/11/2011 20:56:37 Lockcomponent   - Locked dtfa-2 as C2
+INFO  12/11/2011 20:56:38 Log             - rendezvous sync at 22
+INFO  12/11/2011 20:56:39 Testscript      - Executing storage://INPUT/share.xml
+INFO  12/11/2011 20:56:40 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  12/11/2011 20:56:40 Rename          - Node name is dtfx-38
+INFO  12/11/2011 20:56:40 Lockcomponent   - Locked dtfa-2 as PRODUCER
+INFO  12/11/2011 20:56:40 Lockcomponent   - Locked dtfa-1 as CONSUMER
+INFO  12/11/2011 20:56:40 Log             - event.start=1321131400612
+INFO  12/11/2011 20:56:40 Log             - event.stop=1321131400612
+INFO  12/11/2011 20:56:40 Testscript      - Executing storage://INPUT/share_complex.xml
+INFO  12/11/2011 20:56:40 Rename          - Node name is dtfx-39
+INFO  12/11/2011 20:56:40 Lockcomponent   - Locked dtfa-1 as C1
+INFO  12/11/2011 20:56:40 Lockcomponent   - Locked dtfa-2 as C2
+INFO  12/11/2011 20:56:41 Log             - share sync off by 6
+INFO  12/11/2011 20:56:41 Testscript      - Executing storage://INPUT/scanf.xml
+INFO  12/11/2011 20:56:41 Import          - Importing elements from Import {uri=storage://INPUT/perfutil.xml}
+INFO  12/11/2011 20:56:41 Testscript      - Executing storage://INPUT/printf.xml
+INFO  12/11/2011 20:56:42 Log             - INTEGER[23] STRING[Hello There!] FLOAT [1.23] LIST [1,2,3,4]
+INFO  12/11/2011 20:56:42 Log             - 1.23456 -- reduce precision to .2 -> 1.23
+INFO  12/11/2011 20:56:42 Log             - 1 -- pad the number to 3 digits -> 001
+INFO  12/11/2011 20:56:42 Log             - 10 -- convert to hex and pad to 4 digits -> 000a
+INFO  12/11/2011 20:56:42 Testscript      - Executing storage://INPUT/read_image.xml
+INFO  12/11/2011 20:56:42 Log             - png: being checked
+INFO  12/11/2011 20:56:42 Log             - gif: being checked
+INFO  12/11/2011 20:56:42 Log             - bmp: being checked
 
