@@ -284,13 +284,13 @@ public class DTFNode {
         readBuildID();
         
         try { 
-	        _state.setResults(new Results(new NullResults()));
-	        // Setup Communications
-	        _comm = new Comm(_config);
-	        _comm.start();
-	        
-	        // Set COMM to default state
-	        _state.setComm(_comm);
+            _state.setResults(new Results(new NullResults()));
+            // Setup Communications
+            _comm = new Comm(_config);
+            _comm.start();
+            
+            // Set COMM to default state
+            _state.setComm(_comm);
         } catch (DTFException e) { 
             _logger.error("Unable to start node.",e);
             System.exit(-1);
@@ -455,53 +455,53 @@ public class DTFNode {
      */
     public static void status(PrintWriter pw) throws DTFException {
         if ( _state.getComm() != null ) { 
-	        CommServer cs = _state.getComm().getCommServer();
-	        pw.write("dtf.node.type=" + getType() + "\n");
-	        pw.write("dtf.node.host=" + _config.getProperty("dtf.listen.addr") + "\n");
+            CommServer cs = _state.getComm().getCommServer();
+            pw.write("dtf.node.type=" + getType() + "\n");
+            pw.write("dtf.node.host=" + _config.getProperty("dtf.listen.addr") + "\n");
             pw.write("dtf.node.user=" + System.getProperty("user.name") + "\n");
             pw.write("dtf.node.home=" + SystemUtil.getCWD() + "\n");
-	        pw.write("dtf.debug.port=" + DebugServer.getInstance().getPort() + "\n");
-	        pw.write("dtf.listen.addr=" + cs.getAddress() + "\n");
-	        pw.write("dtf.listen.port=" + cs.getPort() + "\n");
-	        
-	        if ( getType().equals("dtfx") ) { 
-	            Action action = Action.getState().getAction();
-	            
-	            if ( action != null ) { 
-		            pw.write("dtf.xml.filename=" + action.getFilename() + "\n");
-		            pw.write("dtf.xml.column=" + action.getColumn() + "\n");
-		            pw.write("dtf.xml.line=" + action.getLine() + "\n");
-	            }
-	        }
-	        
-	        if ( getType().equals("dtfc") ) { 
-	            pw.write("\n");
-	            // print the status of the currently connected components
-	            NodeState ns = NodeState.getInstance();
-	            ArrayList<NodeInfo> nodes = ns.getRegisteredNodes();
-	            
-	            for (NodeInfo node : nodes) { 
-	                String type = node.findAttrib("dtf.node.type");
-	                String host = node.findAttrib("dtf.node.host");
-	                
-			        pw.write("dtf.node.type=" + type + "\n");
-	                pw.write("dtf.node.id=" + node.getId() + "\n");
-			        pw.write("dtf.node.host=" + host + "\n");
-			        pw.write("dtf.node.user=" + node.findAttrib("dtf.node.user") + "\n");
-			        pw.write("dtf.node.home=" + node.findAttrib("dtf.node.home") + "\n");
-			        
-			        if ( type.equals("dtfa") ) { 
-				        pw.write("dtf.node.locked=" + node.isLocked() + "\n");
-				        if ( node.isLocked() ) 
-				            pw.write("dtf.node.owner=" + node.getOwner() + "\n");
-			        }
-			        
-			        pw.write("dtf.debug.port=" + node.findAttrib("dtf.debug.port") + "\n");
-			        pw.write("dtf.listen.addr=" + node.getAddress() + "\n");
-			        pw.write("dtf.listen.port=" + node.getPort() + "\n");
-			        pw.write("\n");
-	            }
-	        }
+            pw.write("dtf.debug.port=" + DebugServer.getInstance().getPort() + "\n");
+            pw.write("dtf.listen.addr=" + cs.getAddress() + "\n");
+            pw.write("dtf.listen.port=" + cs.getPort() + "\n");
+            
+            if ( getType().equals("dtfx") ) { 
+                Action action = Action.getState().getAction();
+                
+                if ( action != null ) { 
+                    pw.write("dtf.xml.filename=" + action.getFilename() + "\n");
+                    pw.write("dtf.xml.column=" + action.getColumn() + "\n");
+                    pw.write("dtf.xml.line=" + action.getLine() + "\n");
+                }
+            }
+            
+            if ( getType().equals("dtfc") ) { 
+                pw.write("\n");
+                // print the status of the currently connected components
+                NodeState ns = NodeState.getInstance();
+                ArrayList<NodeInfo> nodes = ns.getRegisteredNodes();
+                
+                for (NodeInfo node : nodes) { 
+                    String type = node.findAttrib("dtf.node.type");
+                    String host = node.findAttrib("dtf.node.host");
+                    
+                    pw.write("dtf.node.type=" + type + "\n");
+                    pw.write("dtf.node.id=" + node.getId() + "\n");
+                    pw.write("dtf.node.host=" + host + "\n");
+                    pw.write("dtf.node.user=" + node.findAttrib("dtf.node.user") + "\n");
+                    pw.write("dtf.node.home=" + node.findAttrib("dtf.node.home") + "\n");
+                    
+                    if ( type.equals("dtfa") ) { 
+                        pw.write("dtf.node.locked=" + node.isLocked() + "\n");
+                        if ( node.isLocked() ) 
+                            pw.write("dtf.node.owner=" + node.getOwner() + "\n");
+                    }
+                    
+                    pw.write("dtf.debug.port=" + node.findAttrib("dtf.debug.port") + "\n");
+                    pw.write("dtf.listen.addr=" + node.getAddress() + "\n");
+                    pw.write("dtf.listen.port=" + node.getPort() + "\n");
+                    pw.write("\n");
+                }
+            }
         }
     }
     
@@ -546,9 +546,9 @@ public class DTFNode {
         }
 
     }
-    
+
     public static void main(String[] args) throws DTFException {
-        try { 
+        try{
             DTFNode node = new DTFNode();
             node.run();
         } finally { 

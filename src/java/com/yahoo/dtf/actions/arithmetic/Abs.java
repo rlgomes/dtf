@@ -32,6 +32,7 @@ public class Abs extends ArithmeticOperator {
         } else { 
             result =  "" + d.longValue();
         }
+
         getConfig().setProperty(getResult(), result);
     }
 }
